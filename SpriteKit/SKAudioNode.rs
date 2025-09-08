@@ -166,6 +166,9 @@ impl SKAudioNode {
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `classes` generic probably has further requirements.
         #[unsafe(method(nodeWithFileNamed:securelyWithClasses:andError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(

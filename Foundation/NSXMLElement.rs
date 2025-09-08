@@ -295,6 +295,10 @@ impl NSXMLElement {
         /// Set the attributes base on a name-value dictionary.
         ///
         /// This method is deprecated and does not function correctly. Use -setAttributesWithDictionary: instead.
+        ///
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(setAttributesAsDictionary:))]
         #[unsafe(method_family = none)]

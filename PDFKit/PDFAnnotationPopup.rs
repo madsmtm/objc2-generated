@@ -55,6 +55,9 @@ impl PDFAnnotationPopup {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationPopup {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

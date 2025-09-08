@@ -114,6 +114,10 @@ impl NSAttributeDescription {
         pub unsafe fn defaultValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`defaultValue`][Self::defaultValue].
+        ///
+        /// # Safety
+        ///
+        /// `default_value` should be of the correct type.
         #[unsafe(method(setDefaultValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&AnyObject>);

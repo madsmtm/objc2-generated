@@ -90,6 +90,9 @@ impl NSImageRep {
         pub unsafe fn drawInRect(&self, rect: NSRect) -> bool;
 
         #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `hints` generic should be of the correct type.
         #[unsafe(method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
@@ -178,10 +181,16 @@ impl NSImageRep {
         #[unsafe(method_family = none)]
         pub unsafe fn setLayoutDirection(&self, layout_direction: NSImageLayoutDirection);
 
+        /// # Safety
+        ///
+        /// `image_rep_class` probably has further requirements.
         #[unsafe(method(registerImageRepClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerImageRepClass(image_rep_class: &AnyClass);
 
+        /// # Safety
+        ///
+        /// `image_rep_class` probably has further requirements.
         #[unsafe(method(unregisterImageRepClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterImageRepClass(image_rep_class: &AnyClass);
@@ -288,6 +297,10 @@ impl NSImageRep {
 
         #[cfg(all(feature = "NSGraphicsContext", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// - `proposed_dest_rect` must be a valid pointer or null.
+        /// - `hints` generic should be of the correct type.
         #[unsafe(method(CGImageForProposedRect:context:hints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGImageForProposedRect_context_hints(

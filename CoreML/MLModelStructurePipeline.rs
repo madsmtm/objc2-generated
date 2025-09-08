@@ -36,6 +36,10 @@ impl MLModelStructurePipeline {
         /// The names of the sub models in the pipeline.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subModelNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn subModelNames(&self) -> Retained<NSArray<NSString>>;
@@ -44,6 +48,10 @@ impl MLModelStructurePipeline {
         /// The structure of the sub models in the pipeline.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subModels))]
         #[unsafe(method_family = none)]
         pub unsafe fn subModels(&self) -> Retained<NSArray<MLModelStructure>>;

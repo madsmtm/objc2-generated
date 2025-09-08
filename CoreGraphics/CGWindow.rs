@@ -188,6 +188,9 @@ pub unsafe extern "C-unwind" fn CGWindowListCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `window_array` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn CGWindowListCreateDescriptionFromArray(
     window_array: Option<&CFArray>,
@@ -255,6 +258,9 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateImage(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `window_array` generic must be of the correct type.
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]

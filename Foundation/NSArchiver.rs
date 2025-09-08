@@ -40,23 +40,35 @@ impl NSArchiver {
         #[unsafe(method_family = none)]
         pub unsafe fn archiverData(&self) -> Retained<NSMutableData>;
 
+        /// # Safety
+        ///
+        /// `root_object` should be of the correct type.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(encodeRootObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRootObject(&self, root_object: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(encodeConditionalObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeConditionalObject(&self, object: Option<&AnyObject>);
 
         #[cfg(feature = "NSData")]
+        /// # Safety
+        ///
+        /// `root_object` should be of the correct type.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(archivedDataWithRootObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn archivedDataWithRootObject(root_object: &AnyObject) -> Retained<NSData>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `root_object` should be of the correct type.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(archiveRootObject:toFile:))]
         #[unsafe(method_family = none)]
@@ -81,6 +93,10 @@ impl NSArchiver {
             true_name: &NSString,
         ) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `new_object` should be of the correct type.
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(replaceObject:withObject:))]
         #[unsafe(method_family = none)]
@@ -131,6 +147,9 @@ impl NSUnarchiver {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSZone")]
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(setObjectZone:))]
         #[unsafe(method_family = none)]
@@ -200,6 +219,10 @@ impl NSUnarchiver {
             in_archive_name: &NSString,
         ) -> Retained<NSString>;
 
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `new_object` should be of the correct type.
         #[deprecated = "Use NSKeyedUnarchiver instead"]
         #[unsafe(method(replaceObject:withObject:))]
         #[unsafe(method_family = none)]

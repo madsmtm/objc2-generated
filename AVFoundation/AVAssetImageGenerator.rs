@@ -301,6 +301,10 @@ impl AVAssetImageGenerator {
         /// Because of the nature of timed audiovisual media, generating an image may take significant time. AVAssetImageGenerator may have to block the calling thread in order to do so.  In order to avoid blocking, clients can use -generateCGImagesAsynchronouslyForTimes:completionHandler: to request that one or more images be generated asynchronously and to be notified when they become available.
         ///
         /// On iOS and tvOS, it is particularly important to avoid blocking.  To preserve responsiveness, a synchronous request that blocks for too long (eg, a request to generate an image from an asset on a slow HTTP server) may lead to media services being reset.
+        ///
+        /// # Safety
+        ///
+        /// `actual_time` must be a valid pointer or null.
         #[deprecated = "Use generateCGImageAsynchronouslyForTime:completionHandler: instead"]
         #[unsafe(method(copyCGImageAtTime:actualTime:error:_))]
         #[unsafe(method_family = copy)]
@@ -325,6 +329,10 @@ impl AVAssetImageGenerator {
         /// The client will receive exactly one handler callback for each requested time in requestedTimes.
         /// Changes to generator properties (snap behavior, maximum size, etc...) will not affect outstanding asynchronous image generation requests.
         /// The generated image is not retained.  Clients should retain the image if they wish it to persist after the completion handler returns.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(generateCGImagesAsynchronouslyForTimes:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateCGImagesAsynchronouslyForTimes_completionHandler(
@@ -348,6 +356,10 @@ impl AVAssetImageGenerator {
         /// Changes to generator properties (snap behavior, maximum size, etc...) will not affect outstanding asynchronous image generation requests.
         /// The generated image is not retained.  Clients should retain the image if they wish it to persist after the completion handler returns.
         /// If image generation succeeds, the `image` parameter to the completion handler will be non-NULL and the `error` parameter will be nil.  If image generation fails or was cancelled, the `image` parameter will be NULL and the `error` parameter will describe what went wrong.  For cancelled images, the returned error will be AVErrorOperationCancelled.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(generateCGImageAsynchronouslyForTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateCGImageAsynchronouslyForTime_completionHandler(

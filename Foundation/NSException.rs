@@ -136,6 +136,9 @@ impl NSException {
             feature = "NSObjCRuntime",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(exceptionWithName:reason:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionWithName_reason_userInfo(
@@ -149,6 +152,9 @@ impl NSException {
             feature = "NSObjCRuntime",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// `a_user_info` generic should be of the correct type.
         #[unsafe(method(initWithName:reason:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_reason_userInfo(
@@ -207,6 +213,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `_` must be a valid pointer or null.
     pub fn NSSetUncaughtExceptionHandler(param1: *mut NSUncaughtExceptionHandler);
 }
 

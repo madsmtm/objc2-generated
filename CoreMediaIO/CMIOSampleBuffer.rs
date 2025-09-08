@@ -569,6 +569,12 @@ extern "C-unwind" {
     /// Returns: Returns paramErr if there is an error in parameters, memFullErr if memory
     /// could not be allocated, and noErr for success.  In addition, errors
     /// returned by CMSampleBufferCreate() will be passed back.
+    ///
+    /// # Safety
+    ///
+    /// - `sample_timing_array` must be a valid pointer.
+    /// - `sample_size_array` must be a valid pointer.
+    /// - `s_buf_out` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferCreate(
         allocator: Option<&CFAllocator>,
@@ -611,6 +617,11 @@ extern "C-unwind" {
     /// match the image buffer attachments for all the keys in the list returned by
     /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers (if absent in either they
     /// must be absent in both).
+    ///
+    /// # Safety
+    ///
+    /// - `sample_timing` must be a valid pointer.
+    /// - `s_buf_out` must be a valid pointer.
     #[cfg(all(
         feature = "objc2-core-foundation",
         feature = "objc2-core-media",
@@ -639,6 +650,10 @@ extern "C-unwind" {
     ///
     /// Returns: Returns paramErr if there is an error in parameters, memFullErr if memory
     /// could not be allocated, and noErr for success.
+    ///
+    /// # Safety
+    ///
+    /// `s_buf_out` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferCreateNoDataMarker(
         allocator: Option<&CFAllocator>,
@@ -662,6 +677,11 @@ extern "C-unwind" {
     /// this function should only be called if the caller is sure that it has the sole
     /// reference to the buffer;  if this cannot be guarenteed, then the caller should
     /// first create a copy of the buffer using CMSampleBufferCreateCopy().
+    ///
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `sbuf` might not allow `None`.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferSetSequenceNumber(
         allocator: Option<&CFAllocator>,
@@ -678,6 +698,10 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kCMIOInvalidSequenceNumber if there is an error in parameters, or if no sequence number
     /// was attached to the buffer.
+    ///
+    /// # Safety
+    ///
+    /// `sbuf` might not allow `None`.
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferGetSequenceNumber(sbuf: Option<&CMSampleBuffer>) -> u64;
 }
@@ -691,6 +715,11 @@ extern "C-unwind" {
     /// errors, this function should only be called if the caller is sure that it has the sole
     /// reference to the buffer;  if this cannot be guarenteed, then the caller should first create
     /// a copy of the buffer using CMSampleBufferCreateCopy().
+    ///
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `sbuf` might not allow `None`.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferSetDiscontinuityFlags(
         allocator: Option<&CFAllocator>,
@@ -707,6 +736,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMIOSampleBufferDiscontinuityFlag_UnknownDiscontinuity if an error occurs.
+    ///
+    /// # Safety
+    ///
+    /// `sbuf` might not allow `None`.
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferGetDiscontinuityFlags(sbuf: Option<&CMSampleBuffer>) -> u32;
 }
@@ -720,6 +753,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns paramErr if there is an error in parameters, and noErr for success.
+    ///
+    /// # Safety
+    ///
+    /// - `source_s_buf` might not allow `None`.
+    /// - `dest_s_buf` might not allow `None`.
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferCopyNonRequiredAttachments(
         source_s_buf: Option<&CMSampleBuffer>,
@@ -740,6 +778,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns paramErr if there is an error in parameters, and noErr for success.
+    ///
+    /// # Safety
+    ///
+    /// - `source_s_buf` might not allow `None`.
+    /// - `dest_s_buf` might not allow `None`.
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferCopySampleAttachments(
         source_s_buf: Option<&CMSampleBuffer>,

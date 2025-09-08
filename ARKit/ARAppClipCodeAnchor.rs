@@ -99,6 +99,10 @@ impl ARAppClipCodeAnchor {
         /// The URL encoded in this app clip code. Not nil only if urlDecodingState is .decoded.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(url))]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
@@ -106,6 +110,10 @@ impl ARAppClipCodeAnchor {
         /// The URL decoding state of the app clip code.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(urlDecodingState))]
         #[unsafe(method_family = none)]
         pub unsafe fn urlDecodingState(&self) -> ARAppClipCodeURLDecodingState;
@@ -113,6 +121,10 @@ impl ARAppClipCodeAnchor {
         /// The estimated radius of the app clip code in meters.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(radius))]
         #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> c_float;

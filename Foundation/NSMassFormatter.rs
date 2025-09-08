@@ -121,6 +121,9 @@ impl NSMassFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `unitp` must be a valid pointer or null.
         #[unsafe(method(unitStringFromKilograms:usedUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromKilograms_usedUnit(

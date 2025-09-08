@@ -115,6 +115,10 @@ impl NSExceptionHandler {
         #[unsafe(method_family = none)]
         pub unsafe fn exceptionHangingMask(&self) -> NSUInteger;
 
+        /// # Safety
+        ///
+        /// - `an_object` should be of the correct type.
+        /// - `an_object` might not allow `None`.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, an_object: Option<&AnyObject>);
@@ -148,6 +152,10 @@ pub unsafe trait NSObjectNSExceptionHandlerDelegate:
     ClassType + Sized + private_NSObjectNSExceptionHandlerDelegate::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `exception` might not allow `None`.
         #[unsafe(method(exceptionHandler:shouldLogException:mask:))]
         #[unsafe(method_family = none)]
         unsafe fn exceptionHandler_shouldLogException_mask(
@@ -157,6 +165,10 @@ pub unsafe trait NSObjectNSExceptionHandlerDelegate:
             a_mask: NSUInteger,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `exception` might not allow `None`.
         #[unsafe(method(exceptionHandler:shouldHandleException:mask:))]
         #[unsafe(method_family = none)]
         unsafe fn exceptionHandler_shouldHandleException_mask(

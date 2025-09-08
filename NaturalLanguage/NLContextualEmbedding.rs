@@ -71,6 +71,9 @@ impl NLContextualEmbedding {
             model_identifier: &NSString,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `values_dictionary` generic should be of the correct type.
         #[unsafe(method(contextualEmbeddingsForValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextualEmbeddingsForValues(
@@ -200,6 +203,9 @@ impl NLContextualEmbeddingResult {
             >,
         );
 
+        /// # Safety
+        ///
+        /// `token_range` must be a valid pointer or null.
         #[unsafe(method(tokenVectorAtIndex:tokenRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenVectorAtIndex_tokenRange(

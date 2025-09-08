@@ -103,6 +103,10 @@ impl VNFaceLandmarkRegion2D {
         ///
         ///
         /// Returns: the address of the array of pointCount points.
+        ///
+        /// # Safety
+        ///
+        /// You must ensure this is still alive.
         #[unsafe(method(normalizedPoints))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalizedPoints(&self) -> *const CGPoint;

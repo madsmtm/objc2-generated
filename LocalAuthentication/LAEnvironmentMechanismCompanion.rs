@@ -32,6 +32,10 @@ impl LAEnvironmentMechanismCompanion {
         /// Type of the companion.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> LACompanionType;
@@ -46,6 +50,10 @@ impl LAEnvironmentMechanismCompanion {
         /// it changes whenever the set of paired companions of this type is changed.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;

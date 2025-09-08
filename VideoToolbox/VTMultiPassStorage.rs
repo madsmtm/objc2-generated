@@ -54,6 +54,11 @@ impl VTMultiPassStorage {
     /// Parameter `timeRange`: Gives a hint to the multi pass storage about valid time stamps for data.
     ///
     /// Parameter `options`: If the file did not exist when the storage was created, the file will be deleted when the VTMultiPassStorage object is finalized, unless you set the kVTMultiPassStorageCreationOption_DoNotDelete option to kCFBooleanTrue in the options dictionary.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `multi_pass_storage_out` must be a valid pointer.
     #[doc(alias = "VTMultiPassStorageCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]

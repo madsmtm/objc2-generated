@@ -35,6 +35,10 @@ impl HMService {
         /// Accessory that provides this service.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accessory))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessory(&self) -> Option<Retained<HMAccessory>>;
@@ -42,6 +46,10 @@ impl HMService {
         /// The type of the service, e.g. HMServiceTypeLightbulb.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(serviceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
@@ -49,6 +57,10 @@ impl HMService {
         /// The localized description of the service.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
@@ -60,6 +72,10 @@ impl HMService {
         /// the name characteristic of the service, if it has one.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -71,6 +87,10 @@ impl HMService {
         /// or HMServiceTypeSwitch) that supports HMCharacteristicTypePowerState characteristic.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(associatedServiceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn associatedServiceType(&self) -> Option<Retained<NSString>>;
@@ -80,6 +100,10 @@ impl HMService {
         /// provided by the service.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(characteristics))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristics(&self) -> Retained<NSArray<HMCharacteristic>>;
@@ -87,6 +111,10 @@ impl HMService {
         /// A unique identifier for the service.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
@@ -98,6 +126,10 @@ impl HMService {
         /// should not directly interact with, e.g. HMServiceTypeAccessoryInformation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isUserInteractive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUserInteractive(&self) -> bool;
@@ -108,6 +140,10 @@ impl HMService {
         /// Applications should use this property to show the primary service on the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isPrimaryService))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrimaryService(&self) -> bool;
@@ -119,6 +155,10 @@ impl HMService {
         /// linkedServices will be nil when the service does not link to any other services.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(linkedServices))]
         #[unsafe(method_family = none)]
         pub unsafe fn linkedServices(&self) -> Option<Retained<NSArray<HMService>>>;
@@ -129,6 +169,10 @@ impl HMService {
         /// This property is nil for HAP accessories, and set to a valid value for Matter devices.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(matterEndpointID))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterEndpointID(&self) -> Option<Retained<NSNumber>>;

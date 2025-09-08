@@ -34,6 +34,10 @@ impl HMCharacteristicMetadata {
         /// The minimum value for the characteristic if it has a format of "int" or "float".
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(minimumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumValue(&self) -> Option<Retained<NSNumber>>;
@@ -41,6 +45,10 @@ impl HMCharacteristicMetadata {
         /// The maximum value for the characteristic if it has a format of "int" or "float".
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maximumValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumValue(&self) -> Option<Retained<NSNumber>>;
@@ -48,6 +56,10 @@ impl HMCharacteristicMetadata {
         /// Step value for the characteristic that indicates the minimum step value allowed if it has a format of "int" or "float".
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stepValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn stepValue(&self) -> Option<Retained<NSNumber>>;
@@ -55,6 +67,10 @@ impl HMCharacteristicMetadata {
         /// Max length value for the characteristic that indicates the maximum number of UTF-8 characters allowed if it has a format of "string".
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maxLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxLength(&self) -> Option<Retained<NSNumber>>;
@@ -62,6 +78,10 @@ impl HMCharacteristicMetadata {
         /// The format of the value. Refer to HMCharacteristicMetadataFormat constants for supported units.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> Option<Retained<NSString>>;
@@ -69,6 +89,10 @@ impl HMCharacteristicMetadata {
         /// The units of the value. Refer to HMCharacteristicMetadataUnits constants for supported units.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(units))]
         #[unsafe(method_family = none)]
         pub unsafe fn units(&self) -> Option<Retained<NSString>>;
@@ -76,6 +100,10 @@ impl HMCharacteristicMetadata {
         /// Manufacturer provided description for the characteristic to present to the user.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(manufacturerDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturerDescription(&self) -> Option<Retained<NSString>>;
@@ -83,6 +111,10 @@ impl HMCharacteristicMetadata {
         /// The subset of valid values supported by the characteristic when the format is unsigned integral type.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(validValues))]
         #[unsafe(method_family = none)]
         pub unsafe fn validValues(&self) -> Option<Retained<NSArray<NSNumber>>>;

@@ -309,6 +309,10 @@ impl NSCell {
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`controlView`][Self::controlView].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setControlView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlView(&self, control_view: Option<&NSView>);
@@ -338,6 +342,10 @@ impl NSCell {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -347,6 +355,10 @@ impl NSCell {
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
@@ -503,6 +515,10 @@ impl NSCell {
         /// Setter for [`objectValue`][Self::objectValue].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `object_value` should be of the correct type.
         #[unsafe(method(setObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
@@ -522,6 +538,9 @@ impl NSCell {
         #[unsafe(method_family = none)]
         pub unsafe fn setStringValue(&self, string_value: &NSString);
 
+        /// # Safety
+        ///
+        /// `other_cell` should be of the correct type.
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compare(&self, other_cell: &AnyObject) -> NSComparisonResult;
@@ -562,26 +581,44 @@ impl NSCell {
         #[unsafe(method_family = none)]
         pub unsafe fn setIntegerValue(&self, integer_value: NSInteger);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeIntValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeIntValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeFloatValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeFloatValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeDoubleValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeDoubleValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeStringValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeStringValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeObjectValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeObjectValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeIntegerValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&AnyObject>);
@@ -611,6 +648,10 @@ impl NSCell {
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
+        ///
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[unsafe(method(setRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
@@ -689,6 +730,10 @@ impl NSCell {
         #[unsafe(method_family = none)]
         pub unsafe fn mouseDownFlags(&self) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// - `delay` must be a valid pointer.
+        /// - `interval` must be a valid pointer.
         #[unsafe(method(getPeriodicDelay:interval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPeriodicDelay_interval(
@@ -744,6 +789,9 @@ impl NSCell {
             feature = "NSText",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[unsafe(method(editWithFrame:inView:editor:delegate:event:))]
         #[unsafe(method_family = none)]
         pub unsafe fn editWithFrame_inView_editor_delegate_event(
@@ -756,6 +804,9 @@ impl NSCell {
         );
 
         #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[unsafe(method(selectWithFrame:inView:editor:delegate:start:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectWithFrame_inView_editor_delegate_start_length(
@@ -943,6 +994,9 @@ impl NSCell {
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsFirstResponder(&self, shows_first_responder: bool);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(performClick:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performClick(&self, sender: Option<&AnyObject>);

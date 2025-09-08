@@ -21,6 +21,10 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// `out_session_ref` must be a valid pointer.
     #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
     #[deprecated]
     pub fn IOBluetoothOBEXSessionCreateWithIOBluetoothSDPServiceRecordRef(
@@ -48,6 +52,10 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// `out_session_ref` must be a valid pointer.
     #[cfg(all(
         feature = "Bluetooth",
         feature = "IOBluetoothUserLib",
@@ -81,6 +89,12 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
+    /// - `out_session_ref` must be a valid pointer.
     #[cfg(all(feature = "IOBluetoothUserLib", feature = "OBEX"))]
     #[deprecated]
     pub fn IOBluetoothOBEXSessionCreateWithIncomingIOBluetoothRFCOMMChannel(
@@ -115,6 +129,12 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[cfg(feature = "OBEX")]
     #[deprecated]
     pub fn IOBluetoothOBEXSessionOpenTransportConnection(

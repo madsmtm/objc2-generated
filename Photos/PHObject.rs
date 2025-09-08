@@ -32,6 +32,10 @@ extern_conformance!(
 impl PHObject {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(localIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn localIdentifier(&self) -> Retained<NSString>;

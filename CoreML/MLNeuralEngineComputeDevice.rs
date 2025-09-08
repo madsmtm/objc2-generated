@@ -40,6 +40,10 @@ impl MLNeuralEngineComputeDevice {
         /// The total number of cores in the NeuralEngine.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(totalCoreCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCoreCount(&self) -> NSInteger;

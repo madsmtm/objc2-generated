@@ -87,6 +87,10 @@ impl NSDrawer {
 
         #[cfg(feature = "NSWindow")]
         /// Setter for [`parentWindow`][Self::parentWindow].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setParentWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
@@ -119,6 +123,10 @@ impl NSDrawer {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSDrawerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSDrawerDelegate>>);
@@ -135,14 +143,23 @@ impl NSDrawer {
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(open:))]
         #[unsafe(method_family = none)]
         pub unsafe fn open_(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(close:))]
         #[unsafe(method_family = none)]
         pub unsafe fn close_(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggle(&self, sender: Option<&AnyObject>);

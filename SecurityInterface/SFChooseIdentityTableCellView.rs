@@ -57,6 +57,10 @@ impl SFChooseIdentityTableCellView {
         pub unsafe fn issuerTextField(&self) -> Option<Retained<NSTextField>>;
 
         /// Setter for [`issuerTextField`][Self::issuerTextField].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setIssuerTextField:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIssuerTextField(&self, issuer_text_field: Option<&NSTextField>);

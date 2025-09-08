@@ -35,6 +35,10 @@ impl LARightStore {
         /// Parameter `identifier`: Identifier associated with a previously stored right.
         ///
         /// Parameter `handler`: Completion handler with the fetched right or an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(rightForIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightForIdentifier_completion(
@@ -51,6 +55,10 @@ impl LARightStore {
         /// Parameter `identifier`: Identifier to be associated with the right. Useful for later retrieval.
         ///
         /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(saveRight:identifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRight_identifier_completion(
@@ -70,6 +78,10 @@ impl LARightStore {
         /// Parameter `secret`: Secret data to be associated with the provided right.
         ///
         /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(saveRight:identifier:secret:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveRight_identifier_secret_completion(
@@ -86,6 +98,10 @@ impl LARightStore {
         /// Parameter `right`: `LAPersistedRight`instance to remove.
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(removeRight:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRight_completion(
@@ -101,6 +117,10 @@ impl LARightStore {
         /// `LAPersistedRight`instance to remove.
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(removeRightForIdentifier:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRightForIdentifier_completion(
@@ -113,6 +133,10 @@ impl LARightStore {
         /// Removes all rights stored by the client
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(removeAllRightsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllRightsWithCompletion(

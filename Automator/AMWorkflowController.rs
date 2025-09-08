@@ -91,22 +91,37 @@ impl AMWorkflowController {
         #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(run:))]
         #[unsafe(method_family = none)]
         pub unsafe fn run(&self, sender: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(stop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self, sender: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(pause:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self, sender: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(step:))]
         #[unsafe(method_family = none)]
         pub unsafe fn step(&self, sender: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(reset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self, sender: &AnyObject);

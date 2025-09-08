@@ -41,16 +41,28 @@ extern_conformance!(
 impl PHCollection {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(canContainAssets))]
         #[unsafe(method_family = none)]
         pub unsafe fn canContainAssets(&self) -> bool;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(canContainCollections))]
         #[unsafe(method_family = none)]
         pub unsafe fn canContainCollections(&self) -> bool;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(localizedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Option<Retained<NSString>>;
@@ -128,38 +140,66 @@ impl PHAssetCollection {
     extern_methods!(
         #[cfg(feature = "PhotosTypes")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(assetCollectionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetCollectionType(&self) -> PHAssetCollectionType;
 
         #[cfg(feature = "PhotosTypes")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(assetCollectionSubtype))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetCollectionSubtype(&self) -> PHAssetCollectionSubtype;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(estimatedAssetCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedAssetCount(&self) -> NSUInteger;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-location")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(approximateLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn approximateLocation(&self) -> Option<Retained<CLLocation>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(localizedLocationNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedLocationNames(&self) -> Retained<NSArray<NSString>>;
@@ -291,27 +331,47 @@ impl PHCollectionList {
     extern_methods!(
         #[cfg(feature = "PhotosTypes")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(collectionListType))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectionListType(&self) -> PHCollectionListType;
 
         #[cfg(feature = "PhotosTypes")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(collectionListSubtype))]
         #[unsafe(method_family = none)]
         pub unsafe fn collectionListSubtype(&self) -> PHCollectionListSubtype;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(localizedLocationNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedLocationNames(&self) -> Retained<NSArray<NSString>>;

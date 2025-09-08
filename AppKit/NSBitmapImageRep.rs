@@ -259,6 +259,9 @@ impl NSBitmapImageRep {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSGraphics")]
+        /// # Safety
+        ///
+        /// `planes` must be a valid pointer or null.
         #[unsafe(method(initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel(
@@ -276,6 +279,9 @@ impl NSBitmapImageRep {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSGraphics")]
+        /// # Safety
+        ///
+        /// `planes` must be a valid pointer or null.
         #[unsafe(method(initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel(
@@ -321,6 +327,9 @@ impl NSBitmapImageRep {
         #[unsafe(method_family = none)]
         pub unsafe fn bitmapData(&self) -> *mut c_uchar;
 
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer.
         #[unsafe(method(getBitmapDataPlanes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBitmapDataPlanes(&self, data: NonNull<*mut c_uchar>);
@@ -353,6 +362,10 @@ impl NSBitmapImageRep {
         #[unsafe(method_family = none)]
         pub unsafe fn bitmapFormat(&self) -> NSBitmapFormat;
 
+        /// # Safety
+        ///
+        /// - `compression` must be a valid pointer or null.
+        /// - `factor` must be a valid pointer or null.
         #[unsafe(method(getCompression:factor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCompression_factor(
@@ -391,6 +404,10 @@ impl NSBitmapImageRep {
             factor: c_float,
         ) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// - `list` must be a valid pointer.
+        /// - `num_types` must be a valid pointer.
         #[unsafe(method(getTIFFCompressionTypes:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTIFFCompressionTypes_count(
@@ -441,10 +458,16 @@ impl NSBitmapImageRep {
         #[unsafe(method_family = none)]
         pub unsafe fn colorAtX_y(&self, x: NSInteger, y: NSInteger) -> Option<Retained<NSColor>>;
 
+        /// # Safety
+        ///
+        /// `p` must be a valid pointer.
         #[unsafe(method(getPixel:atX:y:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPixel_atX_y(&self, p: NonNull<NSUInteger>, x: NSInteger, y: NSInteger);
 
+        /// # Safety
+        ///
+        /// `p` must be a valid pointer.
         #[unsafe(method(setPixel:atX:y:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPixel_atX_y(&self, p: NonNull<NSUInteger>, x: NSInteger, y: NSInteger);
@@ -510,6 +533,9 @@ impl NSBitmapImageRep {
 #[cfg(feature = "NSImageRep")]
 impl NSBitmapImageRep {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(representationOfImageRepsInArray:usingType:properties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn representationOfImageRepsInArray_usingType_properties(
@@ -518,6 +544,9 @@ impl NSBitmapImageRep {
             properties: &NSDictionary<NSBitmapImageRepPropertyKey, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(representationUsingType:properties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn representationUsingType_properties(
@@ -526,6 +555,9 @@ impl NSBitmapImageRep {
             properties: &NSDictionary<NSBitmapImageRepPropertyKey, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setProperty:withValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperty_withValue(

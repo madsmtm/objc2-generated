@@ -18,6 +18,13 @@ extern_protocol!(
         /// This message is sent for each image that gets scanned.
         ///
         /// Based on the IKScannerDeviceViewTransferMode the downloaded file will be saved on disk using the 'url', or returned in memory as NSData
+        ///
+        /// # Safety
+        ///
+        /// - `scanner_device_view` might not allow `None`.
+        /// - `url` might not allow `None`.
+        /// - `data` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[optional]
         #[unsafe(method(scannerDeviceView:didScanToURL:fileData:error:))]
         #[unsafe(method_family = none)]
@@ -32,6 +39,12 @@ extern_protocol!(
         /// For file based transfer this message is sent for each image that gets scanned.
         ///
         /// Based on the IKScannerDeviceViewTransferMode the downloaded file will be saved on disk using the 'url', or returned in memory as NSData
+        ///
+        /// # Safety
+        ///
+        /// - `scanner_device_view` might not allow `None`.
+        /// - `url` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[optional]
         #[unsafe(method(scannerDeviceView:didScanToURL:error:))]
         #[unsafe(method_family = none)]
@@ -46,6 +59,14 @@ extern_protocol!(
         /// For memory a based transfer this message is sent for every time an image band of data was scanned.
         ///
         /// The 'data' parameter describes the scanned image data. Note that rotation/cropping/image adjustments are not applied yet. The 'scanInfo' parameter contains additional information (rotation angle, ...) that should be applied once the scan is completed.
+        ///
+        /// # Safety
+        ///
+        /// - `scanner_device_view` might not allow `None`.
+        /// - `data` might not allow `None`.
+        /// - `scan_info` generic should be of the correct type.
+        /// - `scan_info` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[optional]
         #[unsafe(method(scannerDeviceView:didScanToBandData:scanInfo:error:))]
         #[unsafe(method_family = none)]
@@ -58,6 +79,11 @@ extern_protocol!(
         );
 
         /// This message is sent every time the scanner device reports an error.
+        ///
+        /// # Safety
+        ///
+        /// - `scanner_device_view` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[optional]
         #[unsafe(method(scannerDeviceView:didEncounterError:))]
         #[unsafe(method_family = none)]
@@ -164,6 +190,10 @@ impl IKScannerDeviceView {
         ) -> Option<Retained<ProtocolObject<dyn IKScannerDeviceViewDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -183,6 +213,10 @@ impl IKScannerDeviceView {
 
         #[cfg(feature = "objc2-image-capture-core")]
         /// Setter for [`scannerDevice`][Self::scannerDevice].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setScannerDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScannerDevice(&self, scanner_device: Option<&ICScannerDevice>);
@@ -270,6 +304,10 @@ impl IKScannerDeviceView {
         pub unsafe fn downloadsDirectory(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`downloadsDirectory`][Self::downloadsDirectory].
+        ///
+        /// # Safety
+        ///
+        /// `downloads_directory` might not allow `None`.
         #[unsafe(method(setDownloadsDirectory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownloadsDirectory(&self, downloads_directory: Option<&NSURL>);
@@ -305,6 +343,10 @@ impl IKScannerDeviceView {
         pub unsafe fn postProcessApplication(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`postProcessApplication`][Self::postProcessApplication].
+        ///
+        /// # Safety
+        ///
+        /// `post_process_application` might not allow `None`.
         #[unsafe(method(setPostProcessApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPostProcessApplication(&self, post_process_application: Option<&NSURL>);

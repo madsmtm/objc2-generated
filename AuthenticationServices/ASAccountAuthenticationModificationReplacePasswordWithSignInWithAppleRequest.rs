@@ -38,6 +38,10 @@ impl ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleReques
         /// will receive an empty password for the credential to upgrade. It should check that it is authorized to perform
         /// the upgrade. The authorization check should ideally be done with information in userInfo, but may involve
         /// communicating with a backend server or using a shared data container between the app and extension.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(initWithUser:serviceIdentifier:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUser_serviceIdentifier_userInfo(

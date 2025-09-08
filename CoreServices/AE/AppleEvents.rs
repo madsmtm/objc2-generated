@@ -133,6 +133,11 @@ pub const errAEEventNotPermitted: c_int = -1743;
 /// ************************************************************************
 /// These calls are used to set up and modify the event dispatch table.D
 /// ************************************************************************
+///
+/// # Safety
+///
+/// - `handler` must be implemented correctly.
+/// - `handler_refcon` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEInstallEventHandler(
@@ -162,6 +167,9 @@ pub unsafe extern "C-unwind" fn AEInstallEventHandler(
     }
 }
 
+/// # Safety
+///
+/// `handler` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AERemoveEventHandler(
@@ -188,6 +196,10 @@ pub unsafe extern "C-unwind" fn AERemoveEventHandler(
     }
 }
 
+/// # Safety
+///
+/// - `handler` must be a valid pointer.
+/// - `handler_refcon` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEGetEventHandler(
@@ -221,6 +233,10 @@ pub unsafe extern "C-unwind" fn AEGetEventHandler(
 /// These calls are used to set up and modify special hooks into the
 /// AppleEvent manager.
 /// ************************************************************************
+///
+/// # Safety
+///
+/// `handler` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEInstallSpecialHandler(
@@ -238,6 +254,9 @@ pub unsafe extern "C-unwind" fn AEInstallSpecialHandler(
     unsafe { AEInstallSpecialHandler(function_class, handler, is_sys_handler as _) }
 }
 
+/// # Safety
+///
+/// `handler` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AERemoveSpecialHandler(
@@ -255,6 +274,9 @@ pub unsafe extern "C-unwind" fn AERemoveSpecialHandler(
     unsafe { AERemoveSpecialHandler(function_class, handler, is_sys_handler as _) }
 }
 
+/// # Safety
+///
+/// `handler` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEGetSpecialHandler(
@@ -279,6 +301,10 @@ extern "C-unwind" {
     /// currently active is returned in 'result'
     /// (available only in vers 1.0.1 and greater).
     /// ************************************************************************
+    ///
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[cfg(feature = "AEDataModel")]
     pub fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr;
 }
@@ -352,6 +378,10 @@ unsafe impl RefEncode for AERemoteProcessResolver {
 pub type AERemoteProcessResolverRef = *mut AERemoteProcessResolver;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `url` might not allow `None`.
     pub fn AECreateRemoteProcessResolver(
         allocator: Option<&CFAllocator>,
         url: Option<&CFURL>,
@@ -359,10 +389,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ref` must be a valid pointer.
     pub fn AEDisposeRemoteProcessResolver(r#ref: AERemoteProcessResolverRef);
 }
 
 impl AERemoteProcessResolver {
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `out_error` must be a valid pointer.
     #[doc(alias = "AERemoteProcessResolverGetProcesses")]
     #[inline]
     pub unsafe fn processes(
@@ -385,6 +422,13 @@ pub type AERemoteProcessResolverCallback =
     Option<unsafe extern "C-unwind" fn(AERemoteProcessResolverRef, *mut c_void)>;
 
 impl AERemoteProcessResolver {
+    /// # Safety
+    ///
+    /// - `ref` must be a valid pointer.
+    /// - `run_loop` might not allow `None`.
+    /// - `run_loop_mode` might not allow `None`.
+    /// - `callback` must be implemented correctly.
+    /// - `ctx` must be a valid pointer.
     #[doc(alias = "AERemoteProcessResolverScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(
@@ -457,6 +501,10 @@ impl AERemoteProcessResolver {
 /// current application is not permitted to send the event, errAEEventNotPermitted will be returned.  If the target application
 /// is not running, then procNotFound will be returned.  If askUserIfNeeded is false, and this application is not yet permitted
 /// to send AppleEvents to the target, then errAEEventWouldRequireUserConsent will be returned.
+///
+/// # Safety
+///
+/// `target` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEDeterminePermissionToAutomateTarget(

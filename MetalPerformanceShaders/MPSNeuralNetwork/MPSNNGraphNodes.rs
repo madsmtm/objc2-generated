@@ -140,6 +140,9 @@ extern_conformance!(
 
 impl MPSNNImageNode {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `handle` must implement MPSHandle.
         #[unsafe(method(initWithHandle:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHandle(
@@ -147,6 +150,9 @@ impl MPSNNImageNode {
             handle: Option<&NSObject>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `handle` must implement MPSHandle.
         #[unsafe(method(nodeWithHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithHandle(handle: Option<&NSObject>) -> Retained<Self>;
@@ -154,6 +160,10 @@ impl MPSNNImageNode {
         /// Create a autoreleased MPSNNImageNode with exportFromGraph = YES.
         ///
         /// Note: image is still temporary. See MPSNNImageNode.imageAllocator parameter.
+        ///
+        /// # Safety
+        ///
+        /// `handle` must implement MPSHandle.
         #[unsafe(method(exportedNodeWithHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportedNodeWithHandle(handle: Option<&NSObject>) -> Retained<Self>;
@@ -809,6 +819,10 @@ impl MPSNNFilterNode {
         /// Returns: The list of new MPSNNFilterNode training graph termini. These MPSNNFilterNodes
         /// are not necessarily all MPSNNGradientFilterNodes. To build a full list of nodes
         /// created, use a custom nodeHandler. If no nodes are created nil is returned.
+        ///
+        /// # Safety
+        ///
+        /// `node_handler` must be a valid pointer or null.
         #[unsafe(method(trainingGraphWithSourceGradient:nodeHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trainingGraphWithSourceGradient_nodeHandler(
@@ -1191,6 +1205,13 @@ impl MPSCNNBinaryConvolutionNode {
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
+        ///
+        /// # Safety
+        ///
+        /// - `output_bias_terms` must be a valid pointer or null.
+        /// - `output_scale_terms` must be a valid pointer or null.
+        /// - `input_bias_terms` must be a valid pointer or null.
+        /// - `input_scale_terms` must be a valid pointer or null.
         #[unsafe(method(nodeWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
@@ -1230,6 +1251,13 @@ impl MPSCNNBinaryConvolutionNode {
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
+        ///
+        /// # Safety
+        ///
+        /// - `output_bias_terms` must be a valid pointer or null.
+        /// - `output_scale_terms` must be a valid pointer or null.
+        /// - `input_bias_terms` must be a valid pointer or null.
+        /// - `input_scale_terms` must be a valid pointer or null.
         #[unsafe(method(initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
@@ -1416,6 +1444,13 @@ impl MPSCNNBinaryFullyConnectedNode {
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
+        ///
+        /// # Safety
+        ///
+        /// - `output_bias_terms` must be a valid pointer or null.
+        /// - `output_scale_terms` must be a valid pointer or null.
+        /// - `input_bias_terms` must be a valid pointer or null.
+        /// - `input_scale_terms` must be a valid pointer or null.
         #[unsafe(method(nodeWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
@@ -1455,6 +1490,13 @@ impl MPSCNNBinaryFullyConnectedNode {
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
+        ///
+        /// # Safety
+        ///
+        /// - `output_bias_terms` must be a valid pointer or null.
+        /// - `output_scale_terms` must be a valid pointer or null.
+        /// - `input_bias_terms` must be a valid pointer or null.
+        /// - `input_scale_terms` must be a valid pointer or null.
         #[unsafe(method(initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(

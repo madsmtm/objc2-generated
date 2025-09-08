@@ -165,6 +165,10 @@ impl MPSKernel {
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(

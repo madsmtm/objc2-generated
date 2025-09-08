@@ -125,6 +125,10 @@ impl TKTokenConfiguration {
 
         #[cfg(all(feature = "TKToken", feature = "TKTokenKeychainItem"))]
         /// Returns keychain item key with specified objectID.  Fills error with TKTokenErrorCodeObjectNotFound if no such key exists.
+        ///
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(keyForObjectID:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyForObjectID_error(
@@ -134,6 +138,10 @@ impl TKTokenConfiguration {
 
         #[cfg(all(feature = "TKToken", feature = "TKTokenKeychainItem"))]
         /// Returns certificate with specified objectID.  Fills error with TKTokenErrorCodeObjectNotFound if no such certificate exists.
+        ///
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(certificateForObjectID:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn certificateForObjectID_error(

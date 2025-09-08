@@ -57,6 +57,10 @@ extern_protocol!(
         fn setComputePipelineState(&self, state: &ProtocolObject<dyn MTLComputePipelineState>);
 
         /// Set the data (by copy) for a given buffer binding point.  This will remove any existing MTLBuffer from the binding point.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(setBytes:length:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBytes_length_atIndex(
@@ -92,6 +96,11 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of global buffers for all compute kernels with the given bind point range.
+        ///
+        /// # Safety
+        ///
+        /// - `buffers` must be a valid pointer.
+        /// - `offsets` must be a valid pointer.
         #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
@@ -127,6 +136,12 @@ extern_protocol!(
         /// sets an array of kernel buffers with provided offsets and strides with the
         /// given bind point range. Only call this when at least one buffer is part of
         /// the vertexDescriptor, other buffers must set `MTLAttributeStrideStatic`
+        ///
+        /// # Safety
+        ///
+        /// - `buffers` must be a valid pointer.
+        /// - `offsets` must be a valid pointer.
+        /// - `strides` must be a valid pointer.
         #[unsafe(method(setBuffers:offsets:attributeStrides:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_attributeStrides_withRange(
@@ -150,6 +165,10 @@ extern_protocol!(
 
         /// only call this when the buffer-index is part of the stageInputDescriptor
         /// and has set its stride to `MTLBufferLayoutStrideDynamic`
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(setBytes:length:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBytes_length_attributeStride_atIndex(
@@ -180,6 +199,10 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set visible function tables at the given buffer index range
+        ///
+        /// # Safety
+        ///
+        /// `visible_function_tables` must be a valid pointer.
         #[unsafe(method(setVisibleFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withBufferRange(
@@ -208,6 +231,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set visible function tables at the given buffer index range
+        ///
+        /// # Safety
+        ///
+        /// `intersection_function_tables` must be a valid pointer.
         #[unsafe(method(setIntersectionFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTables_withBufferRange(
@@ -252,6 +279,10 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set an array of global textures for all compute kernels with the given bind point range.
+        ///
+        /// # Safety
+        ///
+        /// `textures` must be a valid pointer.
         #[unsafe(method(setTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextures_withRange(
@@ -272,6 +303,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all compute kernels with the given bind point range.
+        ///
+        /// # Safety
+        ///
+        /// `samplers` must be a valid pointer.
         #[unsafe(method(setSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_withRange(
@@ -294,6 +329,12 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all compute kernels with the given bind point range.
+        ///
+        /// # Safety
+        ///
+        /// - `samplers` must be a valid pointer.
+        /// - `lod_min_clamps` must be a valid pointer.
+        /// - `lod_max_clamps` must be a valid pointer.
         #[unsafe(method(setSamplerStates:lodMinClamps:lodMaxClamps:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_lodMinClamps_lodMaxClamps_withRange(
@@ -404,6 +445,10 @@ extern_protocol!(
         /// For tracked MTL Resources, this method protects against data hazards. This method must be called before encoding any dispatch commands which may access the resources through an argument buffer.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
+        ///
+        /// # Safety
+        ///
+        /// `resources` must be a valid pointer.
         #[unsafe(method(useResources:count:usage:))]
         #[unsafe(method_family = none)]
         unsafe fn useResources_count_usage(
@@ -429,6 +474,10 @@ extern_protocol!(
         /// For tracked MTLHeaps, this method protects against data hazards. This method must be called before encoding any dispatch commands which may access the resources allocated from the heaps through an argument buffer. This method may cause all of the color attachments allocated from the heaps to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
+        ///
+        /// # Safety
+        ///
+        /// `heaps` must be a valid pointer.
         #[unsafe(method(useHeaps:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useHeaps_count(
@@ -486,6 +535,10 @@ extern_protocol!(
         /// Encodes a barrier between currently dispatched kernels in a concurrent compute command encoder and any subsequent ones on an array of resources.
         ///
         /// This API ensures that all dispatches in the encoder have completed execution and side effects on the specified resources are visible to subsequent dispatches in that encoder. Calling barrier on a serial encoder is allowed, but ignored.
+        ///
+        /// # Safety
+        ///
+        /// `resources` must be a valid pointer.
         #[unsafe(method(memoryBarrierWithResources:count:))]
         #[unsafe(method_family = none)]
         unsafe fn memoryBarrierWithResources_count(

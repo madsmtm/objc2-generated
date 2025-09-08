@@ -86,6 +86,9 @@ impl NSMediaLibraryBrowserController {
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaLibraries(&self, media_libraries: NSMediaLibrary);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(togglePanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn togglePanel(&self, sender: Option<&AnyObject>);

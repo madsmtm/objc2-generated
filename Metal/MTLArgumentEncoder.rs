@@ -94,6 +94,11 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of buffers at the given bind point index range.
+        ///
+        /// # Safety
+        ///
+        /// - `buffers` must be a valid pointer.
+        /// - `offsets` must be a valid pointer.
         #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
@@ -123,6 +128,10 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set an array of textures at the given bind point index range.
+        ///
+        /// # Safety
+        ///
+        /// `textures` must be a valid pointer.
         #[unsafe(method(setTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextures_withRange(
@@ -143,6 +152,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set an array of samplers at the given bind point index range.
+        ///
+        /// # Safety
+        ///
+        /// `samplers` must be a valid pointer.
         #[unsafe(method(setSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_withRange(
@@ -168,6 +181,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Set an array of render pipeline states at a given bind point index range
+        ///
+        /// # Safety
+        ///
+        /// `pipelines` must be a valid pointer.
         #[unsafe(method(setRenderPipelineStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setRenderPipelineStates_withRange(
@@ -188,6 +205,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLComputePipeline")]
         /// Set an array of compute pipeline states at a given bind point index range
+        ///
+        /// # Safety
+        ///
+        /// `pipelines` must be a valid pointer.
         #[unsafe(method(setComputePipelineStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setComputePipelineStates_withRange(
@@ -216,6 +237,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an array of indirect command buffers at the given bind point index range.
+        ///
+        /// # Safety
+        ///
+        /// `buffers` must be a valid pointer.
         #[unsafe(method(setIndirectCommandBuffers:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setIndirectCommandBuffers_withRange(
@@ -267,6 +292,10 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set visible function tables at the given buffer index range
+        ///
+        /// # Safety
+        ///
+        /// `visible_function_tables` must be a valid pointer.
         #[unsafe(method(setVisibleFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withRange(
@@ -295,6 +324,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set intersection function tables at the given buffer index range
+        ///
+        /// # Safety
+        ///
+        /// `intersection_function_tables` must be a valid pointer.
         #[unsafe(method(setIntersectionFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTables_withRange(

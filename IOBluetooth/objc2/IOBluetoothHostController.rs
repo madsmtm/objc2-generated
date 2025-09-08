@@ -34,6 +34,11 @@ impl IOBluetoothHostController {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -131,6 +136,10 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
         /// same controller.
         ///
         /// Parameter `sender`: Controller object that sent this delegate message.
+        ///
+        /// # Safety
+        ///
+        /// `info` must be a valid pointer.
         #[unsafe(method(readRSSIForDeviceComplete:device:info:error:))]
         #[unsafe(method_family = none)]
         unsafe fn readRSSIForDeviceComplete_device_info_error(
@@ -151,6 +160,10 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
         /// same controller.
         ///
         /// Parameter `sender`: Controller object that sent this delegate message.
+        ///
+        /// # Safety
+        ///
+        /// `info` must be a valid pointer.
         #[unsafe(method(readLinkQualityForDeviceComplete:device:info:error:))]
         #[unsafe(method_family = none)]
         unsafe fn readLinkQualityForDeviceComplete_device_info_error(

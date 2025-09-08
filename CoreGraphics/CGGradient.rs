@@ -60,6 +60,10 @@ unsafe impl ConcreteType for CGGradient {
 }
 
 impl CGGradient {
+    /// # Safety
+    ///
+    /// - `components` must be a valid pointer or null.
+    /// - `locations` must be a valid pointer or null.
     #[doc(alias = "CGGradientCreateWithColorComponents")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -82,6 +86,10 @@ impl CGGradient {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `colors` generic must be of the correct type.
+    /// - `locations` must be a valid pointer or null.
     #[doc(alias = "CGGradientCreateWithColors")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]

@@ -95,6 +95,11 @@ extern "C-unwind" {
     /// </code>
     /// is out of range.
     /// Availability: Available in Mac OS X v10.4 and later (not available in CarbonLib 1.x and not available for nonCarbon CFM).
+    ///
+    /// # Safety
+    ///
+    /// - `in_rect` must be a valid pointer.
+    /// - `in_highlight_rect` must be a valid pointer.
     pub fn UAZoomChangeFocus(
         in_rect: *const CGRect,
         in_highlight_rect: *const CGRect,

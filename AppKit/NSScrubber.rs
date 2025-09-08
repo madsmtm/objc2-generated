@@ -550,6 +550,10 @@ impl NSScrubber {
         /// `NSScrubberItemView.`Passing
         /// `nil`for
         /// `itemViewClass`removes a previous registration. Registrations made through this method do not persist through NSCoding.
+        ///
+        /// # Safety
+        ///
+        /// `item_view_class` probably has further requirements.
         #[unsafe(method(registerClass:forItemIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forItemIdentifier(
@@ -582,6 +586,10 @@ impl NSScrubber {
         /// `itemIdentifier.``NSScrubber`searches, in order: the reuse queue, the list of registered classes, and then the list of registered nibs. If the reuse queue is empty, and there is no Class or Interface Builder archive registered for the
         /// `itemIdentifier,`this method returns
         /// `nil.`
+        ///
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(makeItemWithIdentifier:owner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeItemWithIdentifier_owner(

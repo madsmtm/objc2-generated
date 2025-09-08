@@ -405,6 +405,9 @@ impl NSLinguisticTagger {
         );
 
         #[cfg(all(feature = "NSOrthography", feature = "NSRange"))]
+        /// # Safety
+        ///
+        /// `effective_range` must be a valid pointer or null.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(orthographyAtIndex:effectiveRange:))]
         #[unsafe(method_family = none)]
@@ -454,6 +457,9 @@ impl NSLinguisticTagger {
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `token_range` must be a valid pointer or null.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagAtIndex:unit:scheme:tokenRange:))]
         #[unsafe(method_family = none)]
@@ -498,6 +504,10 @@ impl NSLinguisticTagger {
         );
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `token_range` must be a valid pointer or null.
+        /// - `sentence_range` must be a valid pointer or null.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagAtIndex:scheme:tokenRange:sentenceRange:))]
         #[unsafe(method_family = none)]
@@ -539,6 +549,9 @@ impl NSLinguisticTagger {
         pub unsafe fn dominantLanguageForString(string: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSOrthography", feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `token_range` must be a valid pointer or null.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagForString:atIndex:unit:scheme:orthography:tokenRange:))]
         #[unsafe(method_family = none)]
@@ -596,6 +609,10 @@ impl NSLinguisticTagger {
             feature = "NSString",
             feature = "NSValue"
         ))]
+        /// # Safety
+        ///
+        /// - `token_range` must be a valid pointer or null.
+        /// - `sentence_range` must be a valid pointer or null.
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(possibleTagsAtIndex:scheme:tokenRange:sentenceRange:scores:))]
         #[unsafe(method_family = none)]

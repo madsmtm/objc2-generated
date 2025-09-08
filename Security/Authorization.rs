@@ -241,6 +241,12 @@ extern "C-unwind" {
     /// errAuthorizationCanceled -60006 The authorization was canceled by the user.
     ///
     /// errAuthorizationInteractionNotAllowed -60007 The authorization was denied since no interaction with the user was allowed.
+    ///
+    /// # Safety
+    ///
+    /// - `rights` must be a valid pointer or null.
+    /// - `environment` must be a valid pointer or null.
+    /// - `authorization` must be a valid pointer or null.
     pub fn AuthorizationCreate(
         rights: *const AuthorizationRights,
         environment: *const AuthorizationEnvironment,
@@ -266,6 +272,10 @@ extern "C-unwind" {
     /// Returns: errAuthorizationSuccess 0 No error.
     ///
     /// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// `authorization` must be a valid pointer.
     pub fn AuthorizationFree(
         authorization: AuthorizationRef,
         flags: AuthorizationFlags,
@@ -307,6 +317,13 @@ extern "C-unwind" {
     /// errAuthorizationInvalidSet -60001 The rights parameter is invalid.
     ///
     /// errAuthorizationInvalidPointer -60004 The authorizedRights parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// - `authorization` must be a valid pointer.
+    /// - `rights` must be a valid pointer.
+    /// - `environment` must be a valid pointer or null.
+    /// - `authorized_rights` must be a valid pointer or null.
     pub fn AuthorizationCopyRights(
         authorization: AuthorizationRef,
         rights: NonNull<AuthorizationRights>,
@@ -333,6 +350,13 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `callbackBlock`: (input) The callback block to be called upon completion.
+    ///
+    /// # Safety
+    ///
+    /// - `authorization` must be a valid pointer.
+    /// - `rights` must be a valid pointer.
+    /// - `environment` must be a valid pointer or null.
+    /// - `callback_block` must be a valid pointer.
     #[cfg(feature = "block2")]
     pub fn AuthorizationCopyRightsAsync(
         authorization: AuthorizationRef,
@@ -361,6 +385,12 @@ extern "C-unwind" {
     /// errAuthorizationInvalidTag -60003 The tag parameter is invalid.
     ///
     /// errAuthorizationInvalidPointer -60004 The info parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// - `authorization` must be a valid pointer.
+    /// - `tag` must be a valid pointer or null.
+    /// - `info` must be a valid pointer.
     pub fn AuthorizationCopyInfo(
         authorization: AuthorizationRef,
         tag: AuthorizationString,
@@ -386,6 +416,11 @@ extern "C-unwind" {
     /// errAuthorizationExternalizeNotAllowed -60009 Externalizing this authorization is not allowed.
     ///
     /// errAuthorizationInvalidRef -60002 The authorization parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// - `authorization` must be a valid pointer.
+    /// - `ext_form` must be a valid pointer.
     pub fn AuthorizationMakeExternalForm(
         authorization: AuthorizationRef,
         ext_form: NonNull<AuthorizationExternalForm>,
@@ -402,6 +437,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: errAuthorizationInternalizeNotAllowed -60010 Internalizing this authorization is not allowed.
+    ///
+    /// # Safety
+    ///
+    /// - `ext_form` must be a valid pointer.
+    /// - `authorization` must be a valid pointer.
     pub fn AuthorizationCreateFromExternalForm(
         ext_form: NonNull<AuthorizationExternalForm>,
         authorization: NonNull<AuthorizationRef>,
@@ -419,6 +459,10 @@ extern "C-unwind" {
     /// Returns: errAuthorizationSuccess 0 No error.
     ///
     /// errAuthorizationInvalidSet -60001 The set parameter is invalid.
+    ///
+    /// # Safety
+    ///
+    /// `set` must be a valid pointer.
     pub fn AuthorizationFreeItemSet(set: NonNull<AuthorizationItemSet>) -> OSStatus;
 }
 
@@ -433,6 +477,10 @@ extern "C-unwind" {
     /// This function has been deprecated and should no longer be used.
     /// Use a launchd-launched helper tool and/or the Service Mangement framework
     /// for this functionality.
+    ///
+    /// # Safety
+    ///
+    /// `authorization` must be a valid pointer.
     #[deprecated]
     pub fn AuthorizationCopyPrivilegedReference(
         authorization: NonNull<AuthorizationRef>,

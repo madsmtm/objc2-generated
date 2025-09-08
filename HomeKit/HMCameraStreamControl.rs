@@ -34,6 +34,10 @@ impl HMCameraStreamControl {
         /// Delegate that receives updates on the camera stream changes.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -43,6 +47,10 @@ impl HMCameraStreamControl {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -54,6 +62,10 @@ impl HMCameraStreamControl {
         /// Represents the current streaming state.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(streamState))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamState(&self) -> HMCameraStreamState;
@@ -62,6 +74,10 @@ impl HMCameraStreamControl {
         /// Represents the current camera stream.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(cameraStream))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraStream(&self) -> Option<Retained<HMCameraStream>>;

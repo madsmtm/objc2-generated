@@ -55,6 +55,10 @@ impl IOUSBHostDevice {
         ///
         /// Returns: CFMutableDictionaryRef to be used with IOService matching methods. To be released by
         /// caller.
+        ///
+        /// # Safety
+        ///
+        /// `product_id_array` generic should be of the correct type.
         #[unsafe(method(createMatchingDictionaryWithVendorID:productID:bcdDevice:deviceClass:deviceSubclass:deviceProtocol:speed:productIDArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createMatchingDictionaryWithVendorID_productID_bcdDevice_deviceClass_deviceSubclass_deviceProtocol_speed_productIDArray(
@@ -177,6 +181,10 @@ impl IOUSBHostDevice {
         ///
         /// Returns: An IOUSBHostDevice or IOUSBHostInterface. The object is to be released by the caller.
         /// An IOReturn error code will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `interest_handler` must be a valid pointer or null.
         #[unsafe(method(initWithIOService:options:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_options_queue_error_interestHandler(
@@ -213,6 +221,10 @@ impl IOUSBHostDevice {
         ///
         /// Returns: An IOUSBHostDevice or IOUSBHostInterface. The object is to be released by the caller.
         /// An IOReturn error code will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `interest_handler` must be a valid pointer or null.
         #[unsafe(method(initWithIOService:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_queue_error_interestHandler(

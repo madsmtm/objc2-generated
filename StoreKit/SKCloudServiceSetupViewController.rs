@@ -88,6 +88,10 @@ impl SKCloudServiceSetupViewController {
         #[cfg(feature = "block2")]
         /// Load cloud service setup view with the given options.
         /// Block is invoked on the main thread when the load finishes.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[unsafe(method(loadWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]

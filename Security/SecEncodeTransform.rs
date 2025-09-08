@@ -93,6 +93,10 @@ extern "C" {
 ///
 /// This function creates a transform which computes an
 /// encode.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

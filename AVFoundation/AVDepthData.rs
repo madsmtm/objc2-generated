@@ -98,6 +98,10 @@ impl AVDepthData {
         ///
         ///
         /// When using ImageIO framework's CGImageSource API to read from a HEIF or JPEG file containing depth data, AVDepthData can be instantiated using the result of CGImageSourceCopyAuxiliaryDataInfoAtIndex, which returns a CFDictionary of primitive map information.
+        ///
+        /// # Safety
+        ///
+        /// `image_source_aux_data_info_dictionary` generic should be of the correct type.
         #[unsafe(method(depthDataFromDictionaryRepresentation:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthDataFromDictionaryRepresentation_error(

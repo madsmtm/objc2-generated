@@ -57,6 +57,10 @@ impl CTCellularData {
         /// Setter for [`cellularDataRestrictionDidUpdateNotifier`][Self::cellularDataRestrictionDidUpdateNotifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `cellular_data_restriction_did_update_notifier` must be a valid pointer or null.
         #[unsafe(method(setCellularDataRestrictionDidUpdateNotifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellularDataRestrictionDidUpdateNotifier(

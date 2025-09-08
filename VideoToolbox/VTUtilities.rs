@@ -28,6 +28,11 @@ extern "C-unwind" {
     /// undefined results.
     /// Not all CVPixelBuffer pixel formats will support conversion into a CGImage compatible
     /// pixel format.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `image_out` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
     pub fn VTCreateCGImageFromCVPixelBuffer(
         pixel_buffer: &CVPixelBuffer,
@@ -57,6 +62,10 @@ extern "C-unwind" {
     /// Parameter `mediaExtensionPropertiesOut`: If a Media Extension video decoder will be used to decode the specified format, this pointer will return a dictionary with a set of properties describing the extension video decoder. The dictionary keys are VTExtensionPropertiesKey values.
     ///
     /// Returns: If the function succeeds and a Media Extension video decoder will be used to decode this format, the return value will be noErr. If the function succeeds but a Media Extension video decoder will not be used to decode this format, the return value will be kVTCouldNotFindExtensionErr. Otherwise, the return value will be an error code describing the failure.
+    ///
+    /// # Safety
+    ///
+    /// `media_extension_properties_out` must be a valid pointer.
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopyVideoDecoderExtensionProperties(
         format_desc: &CMFormatDescription,
@@ -74,6 +83,10 @@ extern "C-unwind" {
     /// Parameter `mediaExtensionPropertiesOut`: If a Media Extension RAW processor  will be used to process the specified format, this pointer will return a dictionary with a set of properties describing the extension RAW processor. The dictionary keys VTExtensionPropertiesKey values.
     ///
     /// Returns: If the function succeeds and a Media Extension RAW processor will be used to process this format, the return value will be noErr. If the function succeeds but a Media Extension RAW processor will not be used to process this format, the return value will be kVTCouldNotFindExtensionErr. Otherwise, the return value will be an error code describing the failure.
+    ///
+    /// # Safety
+    ///
+    /// `media_extension_properties_out` must be a valid pointer.
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopyRAWProcessorExtensionProperties(
         format_desc: &CMFormatDescription,

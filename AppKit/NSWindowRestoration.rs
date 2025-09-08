@@ -84,6 +84,11 @@ impl NSWindow {
         pub unsafe fn restorationClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`restorationClass`][Self::restorationClass].
+        ///
+        /// # Safety
+        ///
+        /// - `restoration_class` must implement NSWindowRestoration.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setRestorationClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&AnyClass>);

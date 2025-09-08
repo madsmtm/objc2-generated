@@ -118,6 +118,14 @@ extern "C-unwind" {
     /// Returns: Returns errSecureDownloadInvalidTicket if the ticket was invalid.  Otherwise
     /// see "Security Error Codes" (SecBase.h).
     /// .
+    ///
+    /// # Safety
+    ///
+    /// - `setup` must be implemented correctly.
+    /// - `setup_context` must be a valid pointer.
+    /// - `evaluate` must be implemented correctly.
+    /// - `evaluate_context` must be a valid pointer.
+    /// - `download_ref` must be a valid pointer.
     #[cfg(feature = "SecTrust")]
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCreateWithTicket(
@@ -141,6 +149,11 @@ extern "C-unwind" {
     /// Parameter `urls`: On return, the list of URL's to download.  Format is a CFArray of CFURL's.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` must be a valid pointer.
+    /// - `urls` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyURLs(
         download_ref: SecureDownloadRef,
@@ -156,6 +169,11 @@ extern "C-unwind" {
     /// Parameter `name`: On output, the download name.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` must be a valid pointer.
+    /// - `name` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyName(
         download_ref: SecureDownloadRef,
@@ -169,6 +187,11 @@ extern "C-unwind" {
     /// Parameter `downloadRef`: A SecureDownloadRef instance.
     ///
     /// Returns: A result code.
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` must be a valid pointer.
+    /// - `date` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyCreationDate(
         download_ref: SecureDownloadRef,
@@ -184,6 +207,11 @@ extern "C-unwind" {
     /// Parameter `downloadSize`: On output, the size of the download.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` must be a valid pointer.
+    /// - `download_size` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadGetDownloadSize(
         download_ref: SecureDownloadRef,
@@ -201,6 +229,11 @@ extern "C-unwind" {
     ///
     /// Returns: Returns errSecureDownloadInvalidDownload if data is invalid.  Otherwise
     /// see "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `download_ref` must be a valid pointer.
+    /// - `data` might not allow `None`.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadUpdateWithData(
         download_ref: SecureDownloadRef,
@@ -215,6 +248,10 @@ extern "C-unwind" {
     ///
     /// Returns: Returns errSecureDownloadInvalidDownload if data is invalid.  Otherwise
     /// see "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `download_ref` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadFinished(download_ref: SecureDownloadRef) -> OSStatus;
 }
@@ -225,6 +262,10 @@ extern "C-unwind" {
     /// Parameter `downloadRef`: The SecureDownloadRef to release.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `download_ref` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus;
 }
@@ -237,6 +278,10 @@ extern "C-unwind" {
     /// Parameter `ticketLocation`: On exit, the URL of the ticket.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `ticket_location` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyTicketLocation(
         url: Option<&CFURL>,

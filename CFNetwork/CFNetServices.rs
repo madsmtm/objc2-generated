@@ -349,6 +349,9 @@ impl CFNetService {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceRegisterWithOptions")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -368,6 +371,9 @@ impl CFNetService {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceResolveWithTimeout")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -468,6 +474,9 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `key_value_pairs` generics must be of the correct type.
     #[doc(alias = "CFNetServiceCreateTXTDataWithDictionary")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -485,6 +494,10 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `client_cb` must be implemented correctly.
+    /// - `client_context` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceSetClient")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -534,6 +547,10 @@ impl CFNetService {
 }
 
 impl CFNetServiceMonitor {
+    /// # Safety
+    ///
+    /// - `client_cb` must be implemented correctly.
+    /// - `client_context` must be a valid pointer.
     #[doc(alias = "CFNetServiceMonitorCreate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -568,6 +585,9 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorInvalidate(self) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceMonitorStart")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -587,6 +607,9 @@ impl CFNetServiceMonitor {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceMonitorStop")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -627,6 +650,10 @@ impl CFNetServiceMonitor {
 }
 
 impl CFNetServiceBrowser {
+    /// # Safety
+    ///
+    /// - `client_cb` must be implemented correctly.
+    /// - `client_context` must be a valid pointer.
     #[doc(alias = "CFNetServiceBrowserCreate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -658,6 +685,9 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserInvalidate(self) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceBrowserSearchForDomains")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -678,6 +708,9 @@ impl CFNetServiceBrowser {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceBrowserSearchForServices")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -700,6 +733,9 @@ impl CFNetServiceBrowser {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceBrowserStopSearch")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -743,6 +779,9 @@ impl CFNetServiceBrowser {
 }
 
 impl CFNetService {
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceRegister")]
     #[deprecated]
     #[inline]
@@ -757,6 +796,9 @@ impl CFNetService {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFNetServiceResolve")]
     #[deprecated]
     #[inline]

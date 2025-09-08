@@ -13,6 +13,9 @@ impl INIntentResolutionResult {
         #[unsafe(method_family = none)]
         pub unsafe fn unsupportedWithReason(reason: NSInteger) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `item_to_confirm` should be of the correct type.
         #[unsafe(method(confirmationRequiredWithItemToConfirm:forReason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn confirmationRequiredWithItemToConfirm_forReason(

@@ -109,6 +109,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLAllocation")]
         /// Adds allocations to the set, leaving them uncommitted until commit is called.
+        ///
+        /// # Safety
+        ///
+        /// `allocations` must be a valid pointer.
         #[unsafe(method(addAllocations:count:))]
         #[unsafe(method_family = none)]
         unsafe fn addAllocations_count(
@@ -125,6 +129,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLAllocation")]
         /// Marks allocations to be removed from the set on the next commit call.
+        ///
+        /// # Safety
+        ///
+        /// `allocations` must be a valid pointer.
         #[unsafe(method(removeAllocations:count:))]
         #[unsafe(method_family = none)]
         unsafe fn removeAllocations_count(

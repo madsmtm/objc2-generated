@@ -186,6 +186,10 @@ impl UIWebView {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIWebViewDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

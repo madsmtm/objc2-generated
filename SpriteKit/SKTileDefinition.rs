@@ -249,6 +249,10 @@ impl SKTileDefinition {
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;
 
         /// Setter for [`userData`][Self::userData].
+        ///
+        /// # Safety
+        ///
+        /// `user_data` generic should be of the correct type.
         #[unsafe(method(setUserData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserData(&self, user_data: Option<&NSMutableDictionary>);

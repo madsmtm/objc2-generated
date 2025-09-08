@@ -391,6 +391,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Setter for [`jwksTrustedRootCertificates`][Self::jwksTrustedRootCertificates].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `jwks_trusted_root_certificates` generic should be of the correct type.
         #[unsafe(method(setJwksTrustedRootCertificates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setJwksTrustedRootCertificates(
@@ -483,6 +487,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomAssertionRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
@@ -497,6 +505,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomAssertionRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
@@ -596,6 +608,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomLoginRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
@@ -610,6 +626,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomLoginRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(
@@ -710,6 +730,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomRefreshRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomRefreshRequestHeaderClaims_returningError(
@@ -724,6 +748,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomRefreshRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomRefreshRequestBodyClaims_returningError(
@@ -841,6 +869,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
 
         #[cfg(feature = "objc2-security")]
         /// Setter for [`loginRequestEncryptionPublicKey`][Self::loginRequestEncryptionPublicKey].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setLoginRequestEncryptionPublicKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLoginRequestEncryptionPublicKey(
@@ -944,6 +976,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomKeyExchangeRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomKeyExchangeRequestHeaderClaims_returningError(
@@ -958,6 +994,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomKeyExchangeRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomKeyExchangeRequestBodyClaims_returningError(
@@ -987,6 +1027,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomKeyRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomKeyRequestHeaderClaims_returningError(
@@ -1001,6 +1045,10 @@ impl ASAuthorizationProviderExtensionLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomKeyRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomKeyRequestBodyClaims_returningError(

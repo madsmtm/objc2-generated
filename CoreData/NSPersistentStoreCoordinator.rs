@@ -330,6 +330,9 @@ impl NSPersistentStoreCoordinator {
         ) -> bool;
 
         #[cfg(feature = "NSPersistentStore")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(addPersistentStoreWithType:configuration:URL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPersistentStoreWithType_configuration_URL_options_error(
@@ -358,6 +361,9 @@ impl NSPersistentStoreCoordinator {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSPersistentStore")]
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(setMetadata:forPersistentStore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata_forPersistentStore(
@@ -398,6 +404,9 @@ impl NSPersistentStoreCoordinator {
         #[unsafe(method_family = none)]
         pub unsafe fn registeredStoreTypes() -> Retained<NSDictionary<NSString, NSValue>>;
 
+        /// # Safety
+        ///
+        /// `store_class` probably has further requirements.
         #[unsafe(method(registerStoreClass:forStoreType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerStoreClass_forStoreType(
@@ -405,6 +414,9 @@ impl NSPersistentStoreCoordinator {
             store_type: &NSString,
         );
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(metadataForPersistentStoreOfType:URL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataForPersistentStoreOfType_URL_options_error(
@@ -413,6 +425,10 @@ impl NSPersistentStoreCoordinator {
             options: Option<&NSDictionary>,
         ) -> Result<Retained<NSDictionary<NSString, AnyObject>>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// - `metadata` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(setMetadata:forPersistentStoreOfType:URL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata_forPersistentStoreOfType_URL_options_error(
@@ -430,6 +446,9 @@ impl NSPersistentStoreCoordinator {
         ) -> Retained<NSDictionary>;
 
         #[cfg(feature = "NSPersistentStore")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[unsafe(method(importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:_))]
         #[unsafe(method_family = none)]
@@ -443,6 +462,9 @@ impl NSPersistentStoreCoordinator {
         ) -> Result<Retained<NSPersistentStore>, Retained<NSError>>;
 
         #[cfg(feature = "NSPersistentStore")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(migratePersistentStore:toURL:options:withType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn migratePersistentStore_toURL_options_withType_error(
@@ -453,6 +475,9 @@ impl NSPersistentStoreCoordinator {
             store_type: &NSString,
         ) -> Result<Retained<NSPersistentStore>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(destroyPersistentStoreAtURL:withType:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn destroyPersistentStoreAtURL_withType_options_error(
@@ -462,6 +487,10 @@ impl NSPersistentStoreCoordinator {
             options: Option<&NSDictionary>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// - `destination_options` generic should be of the correct type.
+        /// - `source_options` generic should be of the correct type.
         #[unsafe(method(replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn replacePersistentStoreAtURL_destinationOptions_withPersistentStoreFromURL_sourceOptions_storeType_error(
@@ -484,6 +513,9 @@ impl NSPersistentStoreCoordinator {
         pub unsafe fn performBlockAndWait(&self, block: &block2::DynBlock<dyn Fn() + '_>);
 
         #[cfg(feature = "NSPersistentHistoryToken")]
+        /// # Safety
+        ///
+        /// `stores` generic should be of the correct type.
         #[unsafe(method(currentPersistentHistoryTokenFromStores:))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentPersistentHistoryTokenFromStores(
@@ -502,6 +534,9 @@ impl NSPersistentStoreCoordinator {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSManagedObjectID")]
+        /// # Safety
+        ///
+        /// `utf8string` must be a valid pointer.
         #[unsafe(method(managedObjectIDFromUTF8String:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectIDFromUTF8String_length(
@@ -540,6 +575,9 @@ impl NSPersistentStoreCoordinator {
             url: &NSURL,
         ) -> Result<Retained<NSDictionary<NSString, AnyObject>>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated = "Use  -setMetadata:forPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType"]
         #[unsafe(method(setMetadata:forPersistentStoreOfType:URL:error:_))]
         #[unsafe(method_family = none)]
@@ -549,6 +587,9 @@ impl NSPersistentStoreCoordinator {
             url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Please see the release notes and Core Data documentation."]
         #[unsafe(method(removeUbiquitousContentAndPersistentStoreAtURL:options:error:_))]
         #[unsafe(method_family = none)]

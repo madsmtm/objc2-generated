@@ -18,6 +18,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphstorage?language=objc)
     pub unsafe trait NSGlyphStorage {
         #[cfg(feature = "NSFont")]
+        /// # Safety
+        ///
+        /// `glyphs` must be a valid pointer.
         #[unsafe(method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
@@ -60,6 +63,10 @@ extern_conformance!(
 
 impl NSGlyphGenerator {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `glyph_index` must be a valid pointer or null.
+        /// - `char_index` must be a valid pointer or null.
         #[unsafe(method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(

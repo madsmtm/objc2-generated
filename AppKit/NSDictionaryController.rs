@@ -40,6 +40,10 @@ impl NSDictionaryControllerKeyValuePair {
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`value`][Self::value].
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&AnyObject>);
@@ -148,6 +152,10 @@ impl NSDictionaryController {
         pub unsafe fn initialValue(&self) -> Retained<AnyObject>;
 
         /// Setter for [`initialValue`][Self::initialValue].
+        ///
+        /// # Safety
+        ///
+        /// `initial_value` should be of the correct type.
         #[unsafe(method(setInitialValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialValue(&self, initial_value: &AnyObject);
@@ -209,6 +217,9 @@ impl NSDictionaryController {
 ))]
 impl NSDictionaryController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `content` should be of the correct type.
         #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(

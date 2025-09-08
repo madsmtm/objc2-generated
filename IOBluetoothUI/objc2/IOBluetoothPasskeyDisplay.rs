@@ -108,6 +108,10 @@ impl IOBluetoothPasskeyDisplay {
         pub unsafe fn returnImage(&self) -> Option<Retained<NSImage>>;
 
         /// Setter for [`returnImage`][Self::returnImage].
+        ///
+        /// # Safety
+        ///
+        /// `return_image` might not allow `None`.
         #[unsafe(method(setReturnImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReturnImage(&self, return_image: Option<&NSImage>);
@@ -117,6 +121,10 @@ impl IOBluetoothPasskeyDisplay {
         pub unsafe fn returnHighlightImage(&self) -> Option<Retained<NSImage>>;
 
         /// Setter for [`returnHighlightImage`][Self::returnHighlightImage].
+        ///
+        /// # Safety
+        ///
+        /// `return_highlight_image` might not allow `None`.
         #[unsafe(method(setReturnHighlightImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReturnHighlightImage(&self, return_highlight_image: Option<&NSImage>);
@@ -129,6 +137,10 @@ impl IOBluetoothPasskeyDisplay {
         pub unsafe fn centeredView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`centeredView`][Self::centeredView].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setCenteredView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCenteredView(&self, centered_view: Option<&NSView>);
@@ -141,6 +153,10 @@ impl IOBluetoothPasskeyDisplay {
         pub unsafe fn backgroundImageConstraint(&self) -> Option<Retained<NSLayoutConstraint>>;
 
         /// Setter for [`backgroundImageConstraint`][Self::backgroundImageConstraint].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setBackgroundImageConstraint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImageConstraint(
@@ -155,6 +171,10 @@ impl IOBluetoothPasskeyDisplay {
         ) -> Option<Retained<IOBluetoothPasskeyDisplay>>;
 
         #[cfg(feature = "objc2-io-bluetooth")]
+        /// # Safety
+        ///
+        /// - `in_string` might not allow `None`.
+        /// - `device` might not allow `None`.
         #[unsafe(method(setPasskey:forDevice:usingSSP:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPasskey_forDevice_usingSSP(
@@ -177,17 +197,26 @@ impl IOBluetoothPasskeyDisplay {
         pub unsafe fn resetPasskeyIndicator(&self);
 
         #[cfg(feature = "objc2-io-bluetooth")]
+        /// # Safety
+        ///
+        /// `device` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setupUIForDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setupUIForDevice(&self, device: Option<&IOBluetoothDevice>);
 
         #[cfg(feature = "objc2-io-bluetooth")]
+        /// # Safety
+        ///
+        /// `device` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setupUIForSSPDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setupUIForSSPDevice(&self, device: Option<&IOBluetoothDevice>);
 
+        /// # Safety
+        ///
+        /// `in_string` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setPasskeyString:))]
         #[unsafe(method_family = none)]

@@ -276,6 +276,12 @@ extern "C" {
 impl CIFilter {
     extern_methods!(
         /// Returns a CIFilter that will in turn return a properly processed CIImage as "outputImage".
+        ///
+        /// # Safety
+        ///
+        /// - `url` might not allow `None`.
+        /// - `options` generic should be of the correct type.
+        /// - `options` might not allow `None`.
         #[deprecated = "Use new CIRAWFilter class instead."]
         #[unsafe(method(filterWithImageURL:options:))]
         #[unsafe(method_family = none)]
@@ -287,6 +293,12 @@ impl CIFilter {
         /// Returns a CIFilter that will in turn return a properly processed CIImage as "outputImage".
         ///
         /// Note that when using this initializer, you should pass in a source type identifier hint (kCGImageSourceTypeIdentifierHint) key/value pair in order to help the decoder determine the file type, as otherwise confusion and incorrect results are possible.
+        ///
+        /// # Safety
+        ///
+        /// - `data` might not allow `None`.
+        /// - `options` generic should be of the correct type.
+        /// - `options` might not allow `None`.
         #[deprecated = "Use new CIRAWFilter class instead."]
         #[unsafe(method(filterWithImageData:options:))]
         #[unsafe(method_family = none)]
@@ -301,6 +313,14 @@ impl CIFilter {
         /// Note that when using this initializer, you should pass in a CVPixelBufferRef with one of the following Raw pixel format types
         /// kCVPixelFormatType_14Bayer_GRBG, kCVPixelFormatType_14Bayer_RGGB, kCVPixelFormatType_14Bayer_BGGR, kCVPixelFormatType_14Bayer_GBRG
         /// as well as the root properties attachment from the CMSampleBufferRef.
+        ///
+        /// # Safety
+        ///
+        /// - `pixel_buffer` might not allow `None`.
+        /// - `properties` generic should be of the correct type.
+        /// - `properties` might not allow `None`.
+        /// - `options` generic should be of the correct type.
+        /// - `options` might not allow `None`.
         #[deprecated = "Use new CIRAWFilter class instead."]
         #[unsafe(method(filterWithCVPixelBuffer:properties:options:))]
         #[unsafe(method_family = none)]

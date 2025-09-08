@@ -16,6 +16,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
     ClassType + Sized + private_NSDictionaryOBEXExtensions::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `in_headers_data` must be a valid pointer.
         #[unsafe(method(dictionaryWithOBEXHeadersData:headersDataSize:))]
         #[unsafe(method_family = none)]
         unsafe fn dictionaryWithOBEXHeadersData_headersDataSize(
@@ -24,6 +27,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-foundation")]
+        /// # Safety
+        ///
+        /// `in_headers_data` might not allow `None`.
         #[unsafe(method(dictionaryWithOBEXHeadersData:))]
         #[unsafe(method_family = none)]
         unsafe fn dictionaryWithOBEXHeadersData(
@@ -36,6 +42,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         unsafe fn getHeaderBytes(&self) -> Option<Retained<NSMutableData>>;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addTargetHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addTargetHeader_length(
@@ -45,6 +54,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addHTTPHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addHTTPHeader_length(
@@ -54,6 +66,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addBodyHeader:length:endOfBody:))]
         #[unsafe(method_family = none)]
         unsafe fn addBodyHeader_length_endOfBody(
@@ -64,6 +79,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addWhoHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addWhoHeader_length(
@@ -73,6 +91,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addConnectionIDHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addConnectionIDHeader_length(
@@ -82,6 +103,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addApplicationParameterHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addApplicationParameterHeader_length(
@@ -91,6 +115,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addByteSequenceHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addByteSequenceHeader_length(
@@ -100,6 +127,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addObjectClassHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addObjectClassHeader_length(
@@ -109,6 +139,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addAuthorizationChallengeHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addAuthorizationChallengeHeader_length(
@@ -118,6 +151,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addAuthorizationResponseHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addAuthorizationResponseHeader_length(
@@ -127,6 +163,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addTimeISOHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addTimeISOHeader_length(
@@ -136,6 +175,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(all(feature = "OBEX", feature = "objc2-foundation"))]
+        /// # Safety
+        ///
+        /// `type` might not allow `None`.
         #[unsafe(method(addTypeHeader:))]
         #[unsafe(method_family = none)]
         unsafe fn addTypeHeader(&self, r#type: Option<&NSString>) -> OBEXError;
@@ -156,6 +198,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         unsafe fn addCountHeader(&self, in_count: u32) -> OBEXError;
 
         #[cfg(all(feature = "OBEX", feature = "objc2-foundation"))]
+        /// # Safety
+        ///
+        /// `in_description_string` might not allow `None`.
         #[unsafe(method(addDescriptionHeader:))]
         #[unsafe(method_family = none)]
         unsafe fn addDescriptionHeader(
@@ -164,11 +209,17 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(all(feature = "OBEX", feature = "objc2-foundation"))]
+        /// # Safety
+        ///
+        /// `in_name_string` might not allow `None`.
         #[unsafe(method(addNameHeader:))]
         #[unsafe(method_family = none)]
         unsafe fn addNameHeader(&self, in_name_string: Option<&NSString>) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addUserDefinedHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addUserDefinedHeader_length(
@@ -178,11 +229,17 @@ pub unsafe trait NSDictionaryOBEXExtensions:
         ) -> OBEXError;
 
         #[cfg(all(feature = "OBEX", feature = "objc2-foundation"))]
+        /// # Safety
+        ///
+        /// `type` might not allow `None`.
         #[unsafe(method(addImageHandleHeader:))]
         #[unsafe(method_family = none)]
         unsafe fn addImageHandleHeader(&self, r#type: Option<&NSString>) -> OBEXError;
 
         #[cfg(feature = "OBEX")]
+        /// # Safety
+        ///
+        /// `in_header_data` must be a valid pointer.
         #[unsafe(method(addImageDescriptorHeader:length:))]
         #[unsafe(method_family = none)]
         unsafe fn addImageDescriptorHeader_length(
@@ -191,6 +248,9 @@ pub unsafe trait NSDictionaryOBEXExtensions:
             in_header_data_length: u32,
         ) -> OBEXError;
 
+        /// # Safety
+        ///
+        /// `in_headers_data` must be a valid pointer.
         #[deprecated = "No longer supported"]
         #[unsafe(method(withOBEXHeadersData:headersDataSize:))]
         #[unsafe(method_family = none)]

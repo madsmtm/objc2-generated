@@ -96,6 +96,10 @@ impl DOMUIEvent {
         pub unsafe fn which(&self) -> c_int;
 
         #[cfg(feature = "DOMAbstractView")]
+        /// # Safety
+        ///
+        /// - `type` might not allow `None`.
+        /// - `view` might not allow `None`.
         #[unsafe(method(initUIEvent:canBubble:cancelable:view:detail:))]
         #[unsafe(method_family = none)]
         pub unsafe fn initUIEvent_canBubble_cancelable_view_detail(
@@ -148,6 +152,10 @@ impl DOMUIEvent {
 impl DOMUIEvent {
     extern_methods!(
         #[cfg(feature = "DOMAbstractView")]
+        /// # Safety
+        ///
+        /// - `type` might not allow `None`.
+        /// - `view` might not allow `None`.
         #[deprecated]
         #[unsafe(method(initUIEvent:::::))]
         #[unsafe(method_family = none)]

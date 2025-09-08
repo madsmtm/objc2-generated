@@ -120,6 +120,10 @@ impl NSTextFinder {
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSTextFinderClient>>>;
 
         /// Setter for [`client`][Self::client].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn NSTextFinderClient>>);
@@ -142,6 +146,10 @@ impl NSTextFinder {
         ) -> Option<Retained<ProtocolObject<dyn NSTextFinderBarContainer>>>;
 
         /// Setter for [`findBarContainer`][Self::findBarContainer].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setFindBarContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFindBarContainer(
@@ -229,6 +237,10 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn string(&self) -> Retained<NSString>;
 
+        /// # Safety
+        ///
+        /// - `out_range` must be a valid pointer.
+        /// - `out_flag` must be a valid pointer.
         #[optional]
         #[unsafe(method(stringAtIndex:effectiveRange:endsWithSearchBoundary:))]
         #[unsafe(method_family = none)]
@@ -287,6 +299,9 @@ extern_protocol!(
         unsafe fn didReplaceCharacters(&self);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `out_range` must be a valid pointer.
         #[optional]
         #[unsafe(method(contentViewAtIndex:effectiveCharacterRange:))]
         #[unsafe(method_family = none)]

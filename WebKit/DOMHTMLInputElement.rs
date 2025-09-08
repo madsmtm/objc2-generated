@@ -164,6 +164,10 @@ impl DOMHTMLInputElement {
 
         #[cfg(feature = "DOMFileList")]
         /// Setter for [`files`][Self::files].
+        ///
+        /// # Safety
+        ///
+        /// `files` might not allow `None`.
         #[unsafe(method(setFiles:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFiles(&self, files: Option<&DOMFileList>);

@@ -60,6 +60,10 @@ impl CMSimpleQueue {
     ///
     /// Returns: Returns noErr if the call succeeds.  Returns kCMSimpleQueueError_ParameterOutOfRange if
     /// capacity is negative.
+    ///
+    /// # Safety
+    ///
+    /// `queue_out` must be a valid pointer.
     #[doc(alias = "CMSimpleQueueCreate")]
     #[inline]
     pub unsafe fn create(
@@ -82,6 +86,10 @@ impl CMSimpleQueue {
     /// If the queue is full, this operation will fail.
     ///
     /// Returns: Returns noErr if the call succeeds, kCMSimpleQueueError_QueueIsFull if the queue is full.
+    ///
+    /// # Safety
+    ///
+    /// `element` must be a valid pointer.
     #[doc(alias = "CMSimpleQueueEnqueue")]
     #[inline]
     pub unsafe fn enqueue(&self, element: NonNull<c_void>) -> OSStatus {

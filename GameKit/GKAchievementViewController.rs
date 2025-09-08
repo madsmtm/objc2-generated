@@ -76,6 +76,10 @@ impl GKAchievementViewController {
         /// Setter for [`achievementDelegate`][Self::achievementDelegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `achievement_delegate` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setAchievementDelegate:))]
         #[unsafe(method_family = none)]
@@ -139,6 +143,10 @@ extern_protocol!(
         #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// The achievement view has finished
+        ///
+        /// # Safety
+        ///
+        /// `view_controller` might not allow `None`.
         #[deprecated]
         #[unsafe(method(achievementViewControllerDidFinish:))]
         #[unsafe(method_family = none)]

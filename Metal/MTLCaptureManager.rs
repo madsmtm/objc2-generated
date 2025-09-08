@@ -96,6 +96,10 @@ impl MTLCaptureDescriptor {
         pub unsafe fn captureObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`captureObject`][Self::captureObject].
+        ///
+        /// # Safety
+        ///
+        /// `capture_object` should be of the correct type.
         #[unsafe(method(setCaptureObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCaptureObject(&self, capture_object: Option<&AnyObject>);

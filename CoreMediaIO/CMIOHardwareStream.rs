@@ -225,6 +225,12 @@ extern "C-unwind" {
     /// If the return value is non-NULL, the client will need to release the queue when done with it.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `queue_altered_proc` must be implemented correctly.
+    /// - `queue_altered_ref_con` must be a valid pointer.
+    /// - `queue` must be a valid pointer.
     #[cfg(all(feature = "CMIOHardwareObject", feature = "objc2-core-media"))]
     pub fn CMIOStreamCopyBufferQueue(
         stream_id: CMIOStreamID,
@@ -330,6 +336,11 @@ extern "C-unwind" {
     /// Parameter `clock`: Receives the created clock. When the clock is no longer needed, CMIOStreamClockInvalidate should be called, followed by CFRelease.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `source_identifier` must be a valid pointer.
+    /// - `clock` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOStreamClockCreate(
         allocator: Option<&CFAllocator>,
@@ -357,6 +368,11 @@ extern "C-unwind" {
 /// Parameter `clock`: The CMIO Device Clock returned by CMIOStreamClockCreate.
 ///
 /// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `clock` should be of the correct type.
+/// - `clock` might not allow `None`.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CMIOStreamClockPostTimingEvent(
@@ -386,6 +402,11 @@ extern "C-unwind" {
     /// Parameter `clock`: The CMIO Stream Clock returned by CMIOStreamClockCreate.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `clock` should be of the correct type.
+    /// - `clock` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus;
 }
@@ -398,6 +419,11 @@ extern "C-unwind" {
     /// Parameter `clock`: The device clock object returned by CMIOStreamClockCreate.
     ///
     /// Returns: The time on clock that is equivalent to the given hosttime.
+    ///
+    /// # Safety
+    ///
+    /// - `clock` should be of the correct type.
+    /// - `clock` might not allow `None`.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOStreamClockConvertHostTimeToDeviceTime(
         host_time: u64,

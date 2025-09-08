@@ -43,6 +43,10 @@ impl MLArrayBatchProvider {
         /// Initialize with a dictionary which maps feature names to an array of values [String : [Any]]
         /// Error is returned if all arrays do not have equal length or if array values
         /// for a specific feature name do not have the same type or not expressible as MLFeatureValue
+        ///
+        /// # Safety
+        ///
+        /// `dictionary` generic generic should be of the correct type.
         #[unsafe(method(initWithDictionary:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary_error(

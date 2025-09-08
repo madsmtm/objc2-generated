@@ -86,6 +86,9 @@ impl MDLAnimatedValue {
         #[unsafe(method_family = none)]
         pub unsafe fn clear(&self);
 
+        /// # Safety
+        ///
+        /// `times_array` must be a valid pointer.
         #[unsafe(method(getTimes:maxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTimes_maxCount(
@@ -143,6 +146,9 @@ impl MDLAnimatedScalarArray {
             array_element_count: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `array` must be a valid pointer.
         #[unsafe(method(setFloatArray:count:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFloatArray_count_atTime(
@@ -152,6 +158,9 @@ impl MDLAnimatedScalarArray {
             time: NSTimeInterval,
         );
 
+        /// # Safety
+        ///
+        /// `array` must be a valid pointer.
         #[unsafe(method(setDoubleArray:count:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoubleArray_count_atTime(
@@ -161,6 +170,9 @@ impl MDLAnimatedScalarArray {
             time: NSTimeInterval,
         );
 
+        /// # Safety
+        ///
+        /// `array` must be a valid pointer.
         #[unsafe(method(getFloatArray:maxCount:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFloatArray_maxCount_atTime(
@@ -170,6 +182,9 @@ impl MDLAnimatedScalarArray {
             time: NSTimeInterval,
         ) -> NSUInteger;
 
+        /// # Safety
+        ///
+        /// `array` must be a valid pointer.
         #[unsafe(method(getDoubleArray:maxCount:atTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDoubleArray_maxCount_atTime(
@@ -179,6 +194,10 @@ impl MDLAnimatedScalarArray {
             time: NSTimeInterval,
         ) -> NSUInteger;
 
+        /// # Safety
+        ///
+        /// - `values_array` must be a valid pointer.
+        /// - `times_array` must be a valid pointer.
         #[unsafe(method(resetWithFloatArray:count:atTimes:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetWithFloatArray_count_atTimes_count(
@@ -189,6 +208,10 @@ impl MDLAnimatedScalarArray {
             times_count: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// - `values_array` must be a valid pointer.
+        /// - `times_array` must be a valid pointer.
         #[unsafe(method(resetWithDoubleArray:count:atTimes:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetWithDoubleArray_count_atTimes_count(
@@ -199,6 +222,9 @@ impl MDLAnimatedScalarArray {
             times_count: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// `values_array` must be a valid pointer.
         #[unsafe(method(getFloatArray:maxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFloatArray_maxCount(
@@ -207,6 +233,9 @@ impl MDLAnimatedScalarArray {
             max_count: NSUInteger,
         ) -> NSUInteger;
 
+        /// # Safety
+        ///
+        /// `values_array` must be a valid pointer.
         #[unsafe(method(getDoubleArray:maxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDoubleArray_maxCount(
@@ -363,6 +392,10 @@ impl MDLAnimatedScalar {
         #[unsafe(method_family = none)]
         pub unsafe fn doubleAtTime(&self, time: NSTimeInterval) -> c_double;
 
+        /// # Safety
+        ///
+        /// - `values_array` must be a valid pointer.
+        /// - `times_array` must be a valid pointer.
         #[unsafe(method(resetWithFloatArray:atTimes:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetWithFloatArray_atTimes_count(
@@ -372,6 +405,10 @@ impl MDLAnimatedScalar {
             count: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// - `values_array` must be a valid pointer.
+        /// - `times_array` must be a valid pointer.
         #[unsafe(method(resetWithDoubleArray:atTimes:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resetWithDoubleArray_atTimes_count(
@@ -381,6 +418,9 @@ impl MDLAnimatedScalar {
             count: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// `values_array` must be a valid pointer.
         #[unsafe(method(getFloatArray:maxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFloatArray_maxCount(
@@ -389,6 +429,9 @@ impl MDLAnimatedScalar {
             max_count: NSUInteger,
         ) -> NSUInteger;
 
+        /// # Safety
+        ///
+        /// `values_array` must be a valid pointer.
         #[unsafe(method(getDoubleArray:maxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDoubleArray_maxCount(

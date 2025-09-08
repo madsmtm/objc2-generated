@@ -61,6 +61,10 @@ extern_protocol!(
         /// When handling the replace: action, use this method to defer the replacement to the system.
         ///
         /// For example, a replacement could be deferred after it is selected from the autocorrect replacements list.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(textInput:deferReplaceTextActionToSystem:))]
         #[unsafe(method_family = none)]
         unsafe fn textInput_deferReplaceTextActionToSystem(

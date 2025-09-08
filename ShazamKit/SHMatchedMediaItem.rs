@@ -125,6 +125,10 @@ impl SHMatchedMediaItem {
         /// `SHMediaItemProperty`and their values
         ///
         /// You may add your own keys here to return custom data, custom data should conform to NSCoding
+        ///
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(mediaItemWithProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaItemWithProperties(

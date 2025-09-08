@@ -367,6 +367,10 @@ impl PHASEMetaParameter {
         pub unsafe fn value(&self) -> Retained<AnyObject>;
 
         /// Setter for [`value`][Self::value].
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: &AnyObject);

@@ -217,6 +217,10 @@ impl UILocalNotification {
         /// Setter for [`userInfo`][Self::userInfo].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]

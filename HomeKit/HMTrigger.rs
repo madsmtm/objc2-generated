@@ -37,6 +37,10 @@ impl HMTrigger {
         /// Name of the trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -47,6 +51,10 @@ impl HMTrigger {
         /// TRUE if the trigger is enable, FALSE otherwise.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -56,6 +64,10 @@ impl HMTrigger {
         /// with this trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(actionSets))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionSets(&self) -> Retained<NSArray<HMActionSet>>;
@@ -63,6 +75,10 @@ impl HMTrigger {
         /// The date that this trigger was most recently fired.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported"]
         #[unsafe(method(lastFireDate))]
         #[unsafe(method_family = none)]
@@ -71,6 +87,10 @@ impl HMTrigger {
         /// A unique identifier for the trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;

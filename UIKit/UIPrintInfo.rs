@@ -110,6 +110,9 @@ impl UIPrintInfo {
         #[unsafe(method_family = none)]
         pub unsafe fn printInfo(mtm: MainThreadMarker) -> Retained<UIPrintInfo>;
 
+        /// # Safety
+        ///
+        /// `dictionary` generic should be of the correct type.
         #[unsafe(method(printInfoWithDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn printInfoWithDictionary(

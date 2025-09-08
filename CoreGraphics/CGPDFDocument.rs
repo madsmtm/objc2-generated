@@ -107,6 +107,10 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `major_version` must be a valid pointer.
+    /// - `minor_version` must be a valid pointer.
     #[doc(alias = "CGPDFDocumentGetVersion")]
     #[inline]
     pub unsafe fn version(
@@ -133,6 +137,9 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentIsEncrypted(document) }
     }
 
+    /// # Safety
+    ///
+    /// `password` must be a valid pointer.
     #[doc(alias = "CGPDFDocumentUnlockWithPassword")]
     #[inline]
     pub unsafe fn unlock_with_password(

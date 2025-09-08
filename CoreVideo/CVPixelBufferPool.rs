@@ -56,6 +56,12 @@ impl CVPixelBufferPool {
     /// Parameter `poolOut`: The newly created pool will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// # Safety
+    ///
+    /// - `pool_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pool_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[inline]
@@ -131,6 +137,10 @@ impl CVPixelBufferPool {
     /// Parameter `pixelBufferOut`: The newly created pixel buffer will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// # Safety
+    ///
+    /// `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreatePixelBuffer")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -156,6 +166,10 @@ impl CVPixelBufferPool {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `aux_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreatePixelBufferWithAuxAttributes")]
     #[cfg(all(
         feature = "CVBuffer",

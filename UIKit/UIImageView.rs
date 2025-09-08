@@ -232,6 +232,10 @@ impl UIImageView {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
+        ///
+        /// # Safety
+        ///
+        /// `tint_color` might not allow `None`.
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
@@ -369,6 +373,10 @@ impl UIImageView {
             feature = "objc2-symbols"
         ))]
         /// Adds a symbol effect to the image view with specified options, animation, and completion handler.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(addSymbolEffect:options:animated:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSymbolEffect_options_animated_completion(
@@ -412,6 +420,10 @@ impl UIImageView {
             feature = "objc2-symbols"
         ))]
         /// Removes from the image view the symbol effect matching the type of effect passed in, with specified options, animation, and completion handler.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(removeSymbolEffectOfType:options:animated:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSymbolEffectOfType_options_animated_completion(
@@ -474,6 +486,10 @@ impl UIImageView {
         ))]
         /// Sets the symbol image on the image view with a symbol content transition, options, and completion handler.
         /// Passing in a non-symbol image will result in undefined behavior.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(setSymbolImage:withContentTransition:options:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSymbolImage_withContentTransition_options_completion(

@@ -116,6 +116,10 @@ impl HKCumulativeQuantitySeriesSample {
         ///
         /// The quantity must have a unit that is compatible with the given quantity type.
         /// See -[HKQuantityType isCompatibleWithUnit:].
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(quantitySampleWithType:quantity:startDate:endDate:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_metadata(
@@ -141,6 +145,10 @@ impl HKCumulativeQuantitySeriesSample {
         ///
         /// The quantity must have a unit that is compatible with the given quantity type.
         /// See -[HKQuantityType isCompatibleWithUnit:].
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(quantitySampleWithType:quantity:startDate:endDate:device:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_device_metadata(

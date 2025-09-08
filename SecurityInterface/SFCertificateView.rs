@@ -57,6 +57,10 @@ impl SFCertificateView {
         /// Specifies the certificate that's displayed in the view.
         ///
         /// Parameter `certificate`: The new certificate for the view.
+        ///
+        /// # Safety
+        ///
+        /// `certificate` might not allow `None`.
         #[unsafe(method(setCertificate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCertificate(&self, certificate: Option<&SecCertificate>);
@@ -75,6 +79,11 @@ impl SFCertificateView {
         ///
         /// Applications will typically display a SFCertificateView in the context of a specific usage, such as SSL or S/MIME.
         /// You should set only the policy references which apply to your intended usage.
+        ///
+        /// # Safety
+        ///
+        /// - `policies` should be of the correct type.
+        /// - `policies` might not allow `None`.
         #[unsafe(method(setPolicies:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolicies(&self, policies: Option<&AnyObject>);

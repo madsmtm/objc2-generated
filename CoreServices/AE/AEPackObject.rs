@@ -5,10 +5,18 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `the_descriptor` must be a valid pointer.
     #[cfg(feature = "AEDataModel")]
     pub fn CreateOffsetDescriptor(the_offset: c_long, the_descriptor: *mut AEDesc) -> OSErr;
 }
 
+/// # Safety
+///
+/// - `operand1` must be a valid pointer.
+/// - `operand2` must be a valid pointer.
+/// - `the_descriptor` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn CreateCompDescriptor(
@@ -38,6 +46,10 @@ pub unsafe extern "C-unwind" fn CreateCompDescriptor(
     }
 }
 
+/// # Safety
+///
+/// - `the_logical_terms` must be a valid pointer.
+/// - `the_descriptor` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn CreateLogicalDescriptor(
@@ -64,6 +76,11 @@ pub unsafe extern "C-unwind" fn CreateLogicalDescriptor(
     }
 }
 
+/// # Safety
+///
+/// - `the_container` must be a valid pointer.
+/// - `key_data` must be a valid pointer.
+/// - `obj_specifier` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn CreateObjSpecifier(
@@ -96,6 +113,11 @@ pub unsafe extern "C-unwind" fn CreateObjSpecifier(
     }
 }
 
+/// # Safety
+///
+/// - `range_start` must be a valid pointer.
+/// - `range_stop` must be a valid pointer.
+/// - `the_descriptor` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn CreateRangeDescriptor(

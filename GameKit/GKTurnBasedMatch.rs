@@ -486,6 +486,9 @@ impl GKTurnBasedMatch {
         );
 
         #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `achievements` generic should be of the correct type.
         #[unsafe(method(endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler(
@@ -807,6 +810,10 @@ impl GKTurnBasedEventHandler {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `delegate` must implement GKTurnBasedEventHandlerDelegate.
         #[deprecated]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

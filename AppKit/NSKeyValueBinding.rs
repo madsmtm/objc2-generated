@@ -55,6 +55,10 @@ impl NSBindingSelectionMarker {
         #[unsafe(method_family = none)]
         pub unsafe fn notApplicableSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
+        /// # Safety
+        ///
+        /// - `placeholder` should be of the correct type.
+        /// - `object_class` probably has further requirements.
         #[unsafe(method(setDefaultPlaceholder:forMarker:onClass:withBinding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultPlaceholder_forMarker_onClass_withBinding(
@@ -64,6 +68,9 @@ impl NSBindingSelectionMarker {
             binding: &NSBindingName,
         );
 
+        /// # Safety
+        ///
+        /// `object_class` probably has further requirements.
         #[unsafe(method(defaultPlaceholderForMarker:onClass:withBinding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultPlaceholderForMarker_onClass_withBinding(
@@ -101,6 +108,9 @@ extern "C" {
     pub static NSNotApplicableMarker: &'static AnyObject;
 }
 
+/// # Safety
+///
+/// `object` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSIsControllerMarker(object: Option<&AnyObject>) -> bool {
     extern "C-unwind" {
@@ -151,6 +161,10 @@ pub unsafe trait NSObjectNSKeyValueBindingCreation:
         unsafe fn valueClassForBinding(&self, binding: &NSBindingName)
             -> Option<&'static AnyClass>;
 
+        /// # Safety
+        ///
+        /// - `observable` should be of the correct type.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(bind:toObject:withKeyPath:options:))]
         #[unsafe(method_family = none)]
         unsafe fn bind_toObject_withKeyPath_options(
@@ -197,6 +211,10 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn commitEditing(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// - `did_commit_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(commitEditingWithDelegate:didCommitSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(

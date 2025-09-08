@@ -271,6 +271,9 @@ impl IOSurface {
         pub fn baseAddressOfPlaneAtIndex(&self, plane_index: NSUInteger) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-foundation")]
+        /// # Safety
+        ///
+        /// `an_object` should be of the correct type.
         #[unsafe(method(setAttachment:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachment_forKey(&self, an_object: &AnyObject, key: &NSString);
@@ -320,6 +323,9 @@ impl IOSurface {
         pub fn allowsPixelSizeCasting(&self) -> bool;
 
         #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
+        /// # Safety
+        ///
+        /// `old_state` must be a valid pointer or null.
         #[unsafe(method(setPurgeable:oldState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPurgeable_oldState(

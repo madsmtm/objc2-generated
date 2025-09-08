@@ -298,6 +298,10 @@ impl AVAudioInputNode {
         /// manual rendering mode.
         /// Switching the engine to render to/from an audio device invalidates any previously set block,
         /// and makes this method ineffective.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(setManualRenderingInputPCMFormat:inputBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setManualRenderingInputPCMFormat_inputBlock(

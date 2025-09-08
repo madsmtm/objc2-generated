@@ -92,6 +92,10 @@ impl UITextSelectionDisplayInteraction {
             feature = "UIView"
         ))]
         /// Setter for [`cursorView`][Self::cursorView].
+        ///
+        /// # Safety
+        ///
+        /// `cursor_view` must implement UITextCursorView.
         #[unsafe(method(setCursorView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorView(&self, cursor_view: &UIView);
@@ -112,6 +116,10 @@ impl UITextSelectionDisplayInteraction {
             feature = "UIView"
         ))]
         /// Setter for [`highlightView`][Self::highlightView].
+        ///
+        /// # Safety
+        ///
+        /// `highlight_view` must implement UITextSelectionHighlightView.
         #[unsafe(method(setHighlightView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHighlightView(&self, highlight_view: &UIView);
@@ -136,6 +144,10 @@ impl UITextSelectionDisplayInteraction {
             feature = "UIView"
         ))]
         /// Setter for [`handleViews`][Self::handleViews].
+        ///
+        /// # Safety
+        ///
+        /// `handle_views` generic must implement UITextSelectionHandleView.
         #[unsafe(method(setHandleViews:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandleViews(&self, handle_views: &NSArray<UIView>);

@@ -357,6 +357,13 @@ impl CFDictionary {
     /// the behavior when that callback function is used is undefined.
     ///
     /// Returns: A reference to the new immutable CFDictionary.
+    ///
+    /// # Safety
+    ///
+    /// - `keys` must be a valid pointer.
+    /// - `values` must be a valid pointer.
+    /// - `key_call_backs` must be a valid pointer.
+    /// - `value_call_backs` must be a valid pointer.
     #[doc(alias = "CFDictionaryCreate")]
     #[inline]
     pub unsafe fn new(
@@ -500,6 +507,11 @@ impl CFMutableDictionary {
     /// the behavior when that callback function is used is undefined.
     ///
     /// Returns: A reference to the new mutable CFDictionary.
+    ///
+    /// # Safety
+    ///
+    /// - `key_call_backs` must be a valid pointer.
+    /// - `value_call_backs` must be a valid pointer.
     #[doc(alias = "CFDictionaryCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -553,6 +565,11 @@ impl CFMutableDictionary {
     /// not a valid CFDictionary, the behavior is undefined.
     ///
     /// Returns: A reference to the new mutable CFDictionary.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` might not allow `None`.
     #[doc(alias = "CFDictionaryCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -604,6 +621,11 @@ impl CFDictionary {
     ///
     /// Returns: Returns 1 if a matching key is used by the dictionary,
     /// 0 otherwise.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetCountOfKey")]
     #[inline]
     pub unsafe fn count_of_key(&self, key: *const c_void) -> CFIndex {
@@ -626,6 +648,11 @@ impl CFDictionary {
     /// the behavior is undefined.
     ///
     /// Returns: The number of times the given value occurs in the dictionary.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
@@ -653,6 +680,11 @@ impl CFDictionary {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the key is in the dictionary, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryContainsKey")]
     #[inline]
     pub unsafe fn contains_ptr_key(&self, key: *const c_void) -> bool {
@@ -676,6 +708,11 @@ impl CFDictionary {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the value is in the dictionary, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryContainsValue")]
     #[inline]
     pub unsafe fn contains_ptr_value(&self, value: *const c_void) -> bool {
@@ -705,6 +742,11 @@ impl CFDictionary {
     /// can be a valid value in some dictionaries, the function
     /// CFDictionaryGetValueIfPresent() must be used to distinguish
     /// NULL-no-found from NULL-is-the-value.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetValue")]
     #[inline]
     pub unsafe fn value(&self, key: *const c_void) -> *const c_void {
@@ -737,6 +779,12 @@ impl CFDictionary {
     /// whether or not the key-value pair was present).
     ///
     /// Returns: true, if a matching key was found, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `key` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetValueIfPresent")]
     #[inline]
     pub unsafe fn value_if_present(&self, key: *const c_void, value: *mut *const c_void) -> bool {
@@ -771,6 +819,12 @@ impl CFDictionary {
     /// if the values are not desired. If this parameter is not a valid
     /// pointer to a C array of at least CFDictionaryGetCount() pointers,
     /// or NULL, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `keys` must be a valid pointer.
+    /// - `values` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetKeysAndValues")]
     #[inline]
     pub unsafe fn keys_and_values(&self, keys: *mut *const c_void, values: *mut *const c_void) {
@@ -801,6 +855,12 @@ impl CFDictionary {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `applier` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFDictionaryApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
@@ -837,6 +897,13 @@ impl CFMutableDictionary {
     /// by the dictionary using the retain callback provided when the
     /// dictionary was created. If the value is not of the sort expected
     /// by the retain callback, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` might not allow `None`.
+    /// - `key` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryAddValue")]
     #[inline]
     pub unsafe fn add_value(
@@ -874,6 +941,13 @@ impl CFMutableDictionary {
     /// when the dictionary was created, and the previous value if any is
     /// released. If the value is not of the sort expected by the
     /// retain or release callbacks, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` might not allow `None`.
+    /// - `key` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionarySetValue")]
     #[inline]
     pub unsafe fn set_value(
@@ -907,6 +981,13 @@ impl CFMutableDictionary {
     /// when the dictionary was created, and the previous value is
     /// released. If the value is not of the sort expected by the
     /// retain or release callbacks, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` might not allow `None`.
+    /// - `key` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryReplaceValue")]
     #[inline]
     pub unsafe fn replace_value(
@@ -934,6 +1015,12 @@ impl CFMutableDictionary {
     /// which matches this key is present in the dictionary, the key-value
     /// pair is removed from the dictionary, otherwise this function does
     /// nothing ("remove if present").
+    ///
+    /// # Safety
+    ///
+    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` might not allow `None`.
+    /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryRemoveValue")]
     #[inline]
     pub unsafe fn remove_value(the_dict: Option<&CFMutableDictionary>, key: *const c_void) {

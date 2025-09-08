@@ -65,6 +65,10 @@ impl ASAccountAuthenticationModificationViewController {
         /// with the ASExtensionErrorCodeUserCanceled error code. The existingCredential parameter will have
         /// an empty password for in-app upgrades. The extension should check if a user is already logged in by
         /// checking a data container shared with its containing app.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier:existingCredential:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertAccountToSignInWithAppleWithoutUserInteractionForServiceIdentifier_existingCredential_userInfo(
@@ -93,6 +97,10 @@ impl ASAccountAuthenticationModificationViewController {
         /// extension UI. The existingCredential parameter will have an empty password for in-app upgrades. The
         /// extension should check if a user is already logged in by checking state in a data container shared
         /// with its containing app.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier_existingCredential_userInfo(
@@ -124,6 +132,10 @@ impl ASAccountAuthenticationModificationViewController {
         /// canceled with the ASExtensionErrorCodeUserCanceled error code. The existingCredential parameter
         /// will have an empty password for in-app upgrades. The extension should check if a user is already
         /// logged in by checking a data container shared with its containing app.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(changePasswordWithoutUserInteractionForServiceIdentifier:existingCredential:newPassword:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changePasswordWithoutUserInteractionForServiceIdentifier_existingCredential_newPassword_userInfo(
@@ -157,6 +169,10 @@ impl ASAccountAuthenticationModificationViewController {
         /// extension's Info.plist. The existingCredential parameter will have an empty password for in-app upgrades.
         /// The extension should check if a user is already logged in by checking state in a data container shared
         /// with its containing app.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(prepareInterfaceToChangePasswordForServiceIdentifier:existingCredential:newPassword:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareInterfaceToChangePasswordForServiceIdentifier_existingCredential_newPassword_userInfo(

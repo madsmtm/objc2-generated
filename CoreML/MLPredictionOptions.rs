@@ -108,6 +108,10 @@ impl MLPredictionOptions {
         /// Setter for [`outputBackings`][Self::outputBackings].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `output_backings` generic should be of the correct type.
         #[unsafe(method(setOutputBackings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputBackings(&self, output_backings: &NSDictionary<NSString, AnyObject>);

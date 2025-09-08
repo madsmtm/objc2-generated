@@ -232,6 +232,10 @@ impl CMMovementDisorderManager {
         /// Parameter `handler`: The completion handler for accessing and processing result values.
         ///
         /// Warning: Please note that movement disorder results are available for a maximum of seven (7) days.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(queryDyskineticSymptomFromDate:toDate:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryDyskineticSymptomFromDate_toDate_withHandler(
@@ -251,6 +255,10 @@ impl CMMovementDisorderManager {
         /// Parameter `handler`: The completion handler for accessing and processing result values.
         ///
         /// Warning: Please note that movement disorder results are available for a maximum of seven (7) days.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(queryTremorFromDate:toDate:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryTremorFromDate_toDate_withHandler(

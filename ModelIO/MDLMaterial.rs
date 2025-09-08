@@ -702,6 +702,9 @@ impl MDLMaterialPropertyNode {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(evaluationFunction))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluationFunction(

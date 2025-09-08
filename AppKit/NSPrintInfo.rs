@@ -266,6 +266,9 @@ impl NSPrintInfo {
         #[unsafe(method_family = none)]
         pub unsafe fn setSharedPrintInfo(shared_print_info: &NSPrintInfo);
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(initWithDictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary(

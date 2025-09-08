@@ -653,6 +653,10 @@ pub type IONDHandle = u32;
 extern "C-unwind" {
     /// Open a connection to an IONetworkInterface object.
     /// An IONetworkUserClient object is created to manage the connection.
+    ///
+    /// # Safety
+    ///
+    /// `con` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IONetworkOpen(obj: io_object_t, con: *mut io_connect_t) -> IOReturn;
 }
@@ -675,6 +679,10 @@ extern "C-unwind" {
     /// Parameter `inSize`: The size of the source buffer.
     ///
     /// Returns: kIOReturnSuccess on success, or an error code otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `src_buf` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IONetworkWriteData(
         con_obj: io_connect_t,
@@ -698,6 +706,11 @@ extern "C-unwind" {
     /// it with the actual number of bytes written to the buffer.
     ///
     /// Returns: kIOReturnSuccess on success, or an error code otherwise.
+    ///
+    /// # Safety
+    ///
+    /// - `dest_buf` must be a valid pointer.
+    /// - `in_out_size_p` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IONetworkReadData(
         con_obj: io_connect_t,
@@ -729,6 +742,10 @@ extern "C-unwind" {
     /// Parameter `capacityP`: Upon success, the capacity is written to this address.
     ///
     /// Returns: kIOReturnSuccess on success, or an error code otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `capacity_p` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IONetworkGetDataCapacity(
         con_object: io_connect_t,
@@ -747,6 +764,11 @@ extern "C-unwind" {
     /// Parameter `dataHandleP`: Upon success, the handle is written to this address.
     ///
     /// Returns: kIOReturnSuccess on success, or an error code otherwise.
+    ///
+    /// # Safety
+    ///
+    /// - `data_name` must be a valid pointer.
+    /// - `data_handle_p` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IONetworkGetDataHandle(
         con_object: io_connect_t,
@@ -774,6 +796,10 @@ extern "C-unwind" {
     /// Parameter `options`: No options are currently defined.
     ///
     /// Returns: An IOReturn error code.
+    ///
+    /// # Safety
+    ///
+    /// `filter_group` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IONetworkSetPacketFiltersMask(
         connect: io_connect_t,
@@ -807,6 +833,11 @@ extern "C-unwind" {
     /// filters that are supported by the hardware.
     ///
     /// Returns: An IOReturn error code.
+    ///
+    /// # Safety
+    ///
+    /// - `filter_group` Array TODO.
+    /// - `filters_mask` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IONetworkGetPacketFiltersMask(
         connect: io_connect_t,

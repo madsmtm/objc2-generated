@@ -24,10 +24,18 @@ impl NSThread {
         pub fn currentThread() -> Retained<NSThread>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(detachNewThreadWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detachNewThreadWithBlock(block: &block2::DynBlock<dyn Fn()>);
 
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `argument` should be of the correct type.
         #[unsafe(method(detachNewThreadSelector:toTarget:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detachNewThreadSelector_toTarget_withObject(
@@ -135,6 +143,10 @@ impl NSThread {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `argument` should be of the correct type.
         #[unsafe(method(initWithTarget:selector:object:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_selector_object(
@@ -145,6 +157,9 @@ impl NSThread {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(initWithBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBlock(
@@ -223,6 +238,10 @@ pub unsafe trait NSObjectNSThreadPerformAdditions:
 {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `arg` should be of the correct type.
         #[unsafe(method(performSelectorOnMainThread:withObject:waitUntilDone:modes:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelectorOnMainThread_withObject_waitUntilDone_modes(
@@ -233,6 +252,10 @@ pub unsafe trait NSObjectNSThreadPerformAdditions:
             array: Option<&NSArray<NSString>>,
         );
 
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `arg` should be of the correct type.
         #[unsafe(method(performSelectorOnMainThread:withObject:waitUntilDone:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelectorOnMainThread_withObject_waitUntilDone(
@@ -243,6 +266,10 @@ pub unsafe trait NSObjectNSThreadPerformAdditions:
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `arg` should be of the correct type.
         #[unsafe(method(performSelector:onThread:withObject:waitUntilDone:modes:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelector_onThread_withObject_waitUntilDone_modes(
@@ -254,6 +281,10 @@ pub unsafe trait NSObjectNSThreadPerformAdditions:
             array: Option<&NSArray<NSString>>,
         );
 
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `arg` should be of the correct type.
         #[unsafe(method(performSelector:onThread:withObject:waitUntilDone:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelector_onThread_withObject_waitUntilDone(
@@ -264,6 +295,10 @@ pub unsafe trait NSObjectNSThreadPerformAdditions:
             wait: bool,
         );
 
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `arg` should be of the correct type.
         #[unsafe(method(performSelectorInBackground:withObject:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelectorInBackground_withObject(

@@ -184,6 +184,11 @@ impl AVContentKeySession {
         /// Parameter `options`: Additional information necessary to obtain the key, or nil if none. See AVContentKeyRequest*Key below.
         ///
         /// May be used to generate an AVContentKeyRequest from request initialization data already in hand, without awaiting such data during the processing of media data of an associated recipient.
+        ///
+        /// # Safety
+        ///
+        /// - `identifier` should be of the correct type.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(processContentKeyRequestWithIdentifier:initializationData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processContentKeyRequestWithIdentifier_initializationData_options(
@@ -209,6 +214,10 @@ impl AVContentKeySession {
         /// Parameter `persistableContentKeyData`: Persistable content key data that was previously created using -[AVContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] or obtained via AVContentKeySessionDelegate callback -contentKeySession:didUpdatePersistableContentKey:forContentKeyIdentifier:.
         ///
         /// Parameter `handler`: Once the secure token is ready, this block will be called with the token or an error describing the failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(makeSecureTokenForExpirationDateOfPersistableContentKey:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeSecureTokenForExpirationDateOfPersistableContentKey_completionHandler(
@@ -227,6 +236,10 @@ impl AVContentKeySession {
         /// Parameter `handler`: Once the server playback context is ready, this block will be called with the data or an error describing the failure.
         ///
         /// Once invalidated, a persistable content key cannot be used to answer key requests during later playback sessions.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(invalidatePersistableContentKey:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidatePersistableContentKey_options_completionHandler(
@@ -248,6 +261,10 @@ impl AVContentKeySession {
         /// Parameter `handler`: Once the server playback context is ready, this block will be called with the data or an error describing the failure.
         ///
         /// Once invalidated, persistable content keys cannot be used to answer key requests during later playback sessions.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(invalidateAllPersistableContentKeysForApp:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateAllPersistableContentKeysForApp_options_completionHandler(
@@ -391,6 +408,9 @@ extern_protocol!(
             key_request: &AVPersistableContentKeyRequest,
         );
 
+        /// # Safety
+        ///
+        /// `key_identifier` should be of the correct type.
         #[optional]
         #[unsafe(method(contentKeySession:didUpdatePersistableContentKey:forContentKeyIdentifier:))]
         #[unsafe(method_family = none)]
@@ -536,6 +556,10 @@ impl AVContentKeyRequest {
         pub unsafe fn identifier(&self) -> Option<Retained<AnyObject>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(initializationData))]
         #[unsafe(method_family = none)]
         pub unsafe fn initializationData(&self) -> Option<Retained<NSData>>;
@@ -568,6 +592,10 @@ impl AVContentKeyRequest {
         /// Parameter `handler`: Once the streaming content key request is prepared, this block will be called with the request data or an error describing the failure.
         ///
         /// If option AVContentKeyRequestProtocolVersionsKey is not specified the default protocol version of 1 is assumed.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeStreamingContentKeyRequestDataForApp_contentIdentifier_options_completionHandler(
@@ -653,6 +681,10 @@ impl AVPersistableContentKeyRequest {
         /// Returns: The persistable content key data that may be stored offline to answer future loading requests of the same content key.
         ///
         /// The data returned from this method may be used to immediately satisfy an AVPersistableContentKeyRequest, as well as any subsequent requests for the same key url using processContentKeyResponse: method. When you receive an AVContentKeyRequest via -contentKeySession:didProvideContentKeyRequest: and you want to use existing persistent content key from storage, you must invoke -respondByRequestingPersistableContentKeyRequest on that AVContentKeyRequest in order to signal that you want to process an AVPersistableContentKeyRequest instead. If the underlying protocol supports persistable content keys, in response your delegate will receive an AVPersistableContentKeyRequest via -contentKeySession:didProvidePersistableContentKeyRequest:. You can set the persistent key from storage on the AVPersistableContentKeyRequest using processContentKeyResponse:.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(persistableContentKeyFromKeyVendorResponse:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn persistableContentKeyFromKeyVendorResponse_options_error(
@@ -827,6 +859,11 @@ impl AVContentKeySpecifier {
         /// Returns: A new AVContentKeySpecifier
         ///
         /// This method returns an AVContentKeySpecifier instance that represents a content key in a specific content key system.
+        ///
+        /// # Safety
+        ///
+        /// - `content_key_identifier` should be of the correct type.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(contentKeySpecifierForKeySystem:identifier:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentKeySpecifierForKeySystem_identifier_options(
@@ -846,6 +883,11 @@ impl AVContentKeySpecifier {
         /// Returns: An instance of AVContentKeySpecifier
         ///
         /// This method returns an AVContentKeySpecifier instance that represents a content key in a specific content key system.
+        ///
+        /// # Safety
+        ///
+        /// - `content_key_identifier` should be of the correct type.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(initForKeySystem:identifier:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initForKeySystem_identifier_options(
@@ -978,6 +1020,10 @@ impl AVContentKey {
 /// Parameter `outError`: If the result is NO and errorOut is non-NULL, the location referenced by errorOut receives an instance of NSError that describes the reason for failure to attach the content key.
 ///
 /// The client is expected to attach AVContentKeys to CMSampleBuffers that have been created by the client for enqueueing with AVSampleBufferDisplayLayer or AVSampleBufferAudioRenderer, for which the AVContentKeySpecifier matches indications of suitability that are available to the client according to the content key system that's in use.
+///
+/// # Safety
+///
+/// `out_error` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn AVSampleBufferAttachContentKey(

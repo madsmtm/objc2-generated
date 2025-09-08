@@ -116,6 +116,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-ui-kit")]
+        /// # Safety
+        ///
+        /// `context` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[optional]
         #[unsafe(method(documentViewController:didUpdateWithContext:))]
@@ -228,6 +231,9 @@ impl TVDocumentViewController {
         );
 
         #[cfg(feature = "TVApplicationController")]
+        /// # Safety
+        ///
+        /// `context` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(viewControllerWithContext:forAppController:))]
         #[unsafe(method_family = none)]
@@ -237,6 +243,9 @@ impl TVDocumentViewController {
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `context` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(updateUsingContext:))]
         #[unsafe(method_family = none)]

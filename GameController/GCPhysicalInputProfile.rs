@@ -54,6 +54,11 @@ impl GCPhysicalInputProfile {
         /// Parameter `profile`: this profile that is being used to map the raw input data into logical values on controller elements such as the dpad or the buttons.
         ///
         /// Parameter `element`: the element that has been modified.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(valueDidChangeHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueDidChangeHandler(

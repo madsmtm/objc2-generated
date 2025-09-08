@@ -32,6 +32,10 @@ impl HMHomeAccessControl {
         /// Specifies if the user has administrative privileges for the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isAdministrator))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAdministrator(&self) -> bool;

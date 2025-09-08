@@ -51,10 +51,16 @@ impl GKDialogController {
         #[unsafe(method_family = none)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
+        /// # Safety
+        ///
+        /// `view_controller` must implement GKViewController.
         #[unsafe(method(presentViewController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentViewController(&self, view_controller: &NSViewController) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(dismiss:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismiss(&self, sender: &AnyObject);

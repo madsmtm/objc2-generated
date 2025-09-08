@@ -33,6 +33,10 @@ impl UIActivityItemsConfiguration {
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localObject`][Self::localObject].
+        ///
+        /// # Safety
+        ///
+        /// `local_object` should be of the correct type.
         #[unsafe(method(setLocalObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);
@@ -56,6 +60,9 @@ impl UIActivityItemsConfiguration {
         );
 
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(metadataProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataProvider(
@@ -66,6 +73,10 @@ impl UIActivityItemsConfiguration {
 
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
         /// Setter for [`metadataProvider`][Self::metadataProvider].
+        ///
+        /// # Safety
+        ///
+        /// `metadata_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setMetadataProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadataProvider(
@@ -78,6 +89,9 @@ impl UIActivityItemsConfiguration {
         );
 
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(perItemMetadataProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn perItemMetadataProvider(
@@ -88,6 +102,10 @@ impl UIActivityItemsConfiguration {
 
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
         /// Setter for [`perItemMetadataProvider`][Self::perItemMetadataProvider].
+        ///
+        /// # Safety
+        ///
+        /// `per_item_metadata_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setPerItemMetadataProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerItemMetadataProvider(
@@ -107,6 +125,9 @@ impl UIActivityItemsConfiguration {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(previewProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewProvider(
@@ -125,6 +146,10 @@ impl UIActivityItemsConfiguration {
             feature = "objc2-core-foundation"
         ))]
         /// Setter for [`previewProvider`][Self::previewProvider].
+        ///
+        /// # Safety
+        ///
+        /// `preview_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setPreviewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewProvider(
@@ -149,6 +174,10 @@ impl UIActivityItemsConfiguration {
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`applicationActivitiesProvider`][Self::applicationActivitiesProvider].
+        ///
+        /// # Safety
+        ///
+        /// `application_activities_provider` block's return must be a valid pointer.
         #[unsafe(method(setApplicationActivitiesProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationActivitiesProvider(

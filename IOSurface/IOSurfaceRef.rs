@@ -319,6 +319,9 @@ unsafe impl ConcreteType for IOSurfaceRef {
 }
 
 impl IOSurfaceRef {
+    /// # Safety
+    ///
+    /// `properties` generics must be of the correct type.
     #[doc(alias = "IOSurfaceCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -351,6 +354,9 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetID(self) }
     }
 
+    /// # Safety
+    ///
+    /// `seed` must be a valid pointer or null.
     #[doc(alias = "IOSurfaceLock")]
     #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
     #[inline]
@@ -369,6 +375,9 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceLock(self, options, seed) }
     }
 
+    /// # Safety
+    ///
+    /// `seed` must be a valid pointer or null.
     #[doc(alias = "IOSurfaceUnlock")]
     #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
     #[inline]
@@ -684,6 +693,9 @@ extern "C" {
 }
 
 impl IOSurfaceRef {
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "IOSurfaceSetValue")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -716,6 +728,9 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceRemoveValue(self, key) }
     }
 
+    /// # Safety
+    ///
+    /// `keys_and_values` generics must be of the correct type.
     #[doc(alias = "IOSurfaceSetValues")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -846,6 +861,9 @@ impl IOSurfaceRef {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `old_state` must be a valid pointer or null.
     #[doc(alias = "IOSurfaceSetPurgeable")]
     #[cfg(feature = "libc")]
     #[inline]

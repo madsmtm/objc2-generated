@@ -189,6 +189,11 @@ extern "C" {
 /// with it. A NULL will be returned if an error occurred during
 /// initialization, and if the error parameter
 /// is non-null, it contains the specific error data.
+///
+/// # Safety
+///
+/// - `dictionary` generics must be of the correct type.
+/// - `error` must be a valid pointer or null.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCreateFromExternalRepresentation(
@@ -221,6 +226,10 @@ pub unsafe extern "C-unwind" fn SecTransformCreateFromExternalRepresentation(
 /// described here.
 ///
 /// http://developer.apple.com/mac/library/documentation/CoreFoundation/Conceptual/CFPropertyLists/Articles/Saving.html
+///
+/// # Safety
+///
+/// `transform_ref` should be of the correct type.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCopyExternalRepresentation(
@@ -363,6 +372,10 @@ pub unsafe extern "C-unwind" fn SecTransformCreateGroupTransform() -> CFRetained
 /// error and the named attribute will not be changed if
 /// SecTransformExecute had previously been called on the
 /// transform.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
@@ -426,6 +439,10 @@ pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
 /// data. This function will return an error and the
 /// named attribute will not be changed if SecTransformExecute
 /// has been called on the transform.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformSetAttribute(
@@ -463,6 +480,10 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttribute(
 ///
 ///
 /// This may be called after SecTransformExecute.
+///
+/// # Safety
+///
+/// `transform_ref` should be of the correct type.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformGetAttribute(
@@ -498,6 +519,10 @@ pub unsafe extern "C-unwind" fn SecTransformGetAttribute(
 ///
 /// Returns: The transform group member, or NULL if the member
 /// was not found.
+///
+/// # Safety
+///
+/// `transform` should be of the correct type.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformFindByName(
@@ -549,6 +574,10 @@ pub unsafe extern "C-unwind" fn SecTransformFindByName(
 /// execution, then all processing will stop and NULL will be
 /// returned and the appropriate error will be placed in the
 /// error parameter if it is not NULL.
+///
+/// # Safety
+///
+/// `error_ref` must be a valid pointer or null.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformExecute(

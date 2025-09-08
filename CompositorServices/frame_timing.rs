@@ -42,6 +42,10 @@ impl cp_frame_timing {
     ///
     /// The returned value indicates the optimal time for you to query the input
     /// for your frame.
+    ///
+    /// # Safety
+    ///
+    /// `frame_timing` must be a valid pointer.
     #[doc(alias = "cp_frame_timing_get_optimal_input_time")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -69,6 +73,10 @@ impl cp_frame_timing {
     ///
     /// Finish all CPU and GPU work by the returned time to ensure the timely
     /// display of the frame onscreen.
+    ///
+    /// # Safety
+    ///
+    /// `frame_timing` must be a valid pointer.
     #[doc(alias = "cp_frame_timing_get_rendering_deadline")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -95,6 +103,10 @@ impl cp_frame_timing {
     /// You can use the presentation time as a synchronization point for
     /// other parts of your app. For example, you might play a specific
     /// audio clip when the frame appears.
+    ///
+    /// # Safety
+    ///
+    /// `frame_timing` must be a valid pointer.
     #[doc(alias = "cp_frame_timing_get_presentation_time")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -122,6 +134,10 @@ impl cp_frame_timing {
     ///
     /// - note: For predicting ARKit device anchor use presentation time, see
     /// ``cp_frame_timing_get_presentation_time``
+    ///
+    /// # Safety
+    ///
+    /// `frame_timing` must be a valid pointer.
     #[doc(alias = "cp_frame_timing_get_trackable_anchor_time")]
     #[cfg(feature = "cp_types")]
     #[inline]

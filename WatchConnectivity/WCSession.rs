@@ -135,6 +135,10 @@ impl WCSession {
 
         #[cfg(feature = "block2")]
         /// Clients can use this method to send messages to the counterpart app. Clients wishing to receive a reply to a particular message should pass in a replyHandler block. If the message cannot be sent or if the reply could not be received, the errorHandler block will be invoked with an error. If both a replyHandler and an errorHandler are specified, then exactly one of them will be invoked. Messages can only be sent while the sending app is running. If the sending app exits before the message is dispatched the send will fail. If the counterpart app is not running the counterpart app will be launched upon receiving the message (iOS counterpart app only). The message dictionary can only accept the property list types.
+        ///
+        /// # Safety
+        ///
+        /// `message` generic should be of the correct type.
         #[unsafe(method(sendMessage:replyHandler:errorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMessage_replyHandler_errorHandler(
@@ -162,6 +166,9 @@ impl WCSession {
         #[unsafe(method_family = none)]
         pub unsafe fn applicationContext(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `application_context` generic should be of the correct type.
         #[unsafe(method(updateApplicationContext:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateApplicationContext_error(
@@ -178,6 +185,10 @@ impl WCSession {
 
         #[cfg(feature = "WCSessionUserInfoTransfer")]
         /// The system will enqueue the user info dictionary and transfer it to the counterpart app at an opportune time. The transfer of user info will continue after the sending app has exited. The counterpart app will receive a delegate callback on next launch if the file has successfully arrived. The userInfo dictionary can only accept the property list types.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(transferUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transferUserInfo(
@@ -187,6 +198,10 @@ impl WCSession {
 
         #[cfg(feature = "WCSessionUserInfoTransfer")]
         /// Enqueues a user info dictionary containing the most current information for an enabled complication. If the app's complication is enabled the system will try to transfer this user info immediately. Once a current complication user info is received the system will launch the Watch App Extension in the background and allow it to update the complication content. If the current user info cannot be transferred (i.e. devices disconnected, out of background launch budget, etc.) it will wait in the outstandingUserInfoTransfers queue until next opportune time. There can only be one current complication user info in the outstandingUserInfoTransfers queue. If a current complication user info is outstanding (waiting to transfer) and -transferCurrentComplicationUserInfo: is called again with new user info, the new user info will be tagged as current and the previously current user info will be untagged. The previous user info will however stay in the queue of outstanding transfers.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(transferCurrentComplicationUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transferCurrentComplicationUserInfo(
@@ -204,6 +219,10 @@ impl WCSession {
 
         #[cfg(feature = "WCSessionFile")]
         /// The system will enqueue the file and transfer it to the counterpart app at an opportune time. The transfer of a file will continue after the sending app has exited. The counterpart app will receive a delegate callback on next launch if the file has successfully arrived. The metadata dictionary can only accept the property list types.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(transferFile:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transferFile_metadata(
@@ -277,6 +296,10 @@ extern_protocol!(
         unsafe fn sessionReachabilityDidChange(&self, session: &WCSession);
 
         /// Called on the delegate of the receiver. Will be called on startup if the incoming message caused the receiver to launch.
+        ///
+        /// # Safety
+        ///
+        /// `message` generic should be of the correct type.
         #[optional]
         #[unsafe(method(session:didReceiveMessage:))]
         #[unsafe(method_family = none)]
@@ -288,6 +311,10 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Called on the delegate of the receiver when the sender sends a message that expects a reply. Will be called on startup if the incoming message caused the receiver to launch.
+        ///
+        /// # Safety
+        ///
+        /// `message` generic should be of the correct type.
         #[optional]
         #[unsafe(method(session:didReceiveMessage:replyHandler:))]
         #[unsafe(method_family = none)]
@@ -317,6 +344,10 @@ extern_protocol!(
         );
 
         /// Called on the delegate of the receiver. Will be called on startup if an applicationContext is available.
+        ///
+        /// # Safety
+        ///
+        /// `application_context` generic should be of the correct type.
         #[optional]
         #[unsafe(method(session:didReceiveApplicationContext:))]
         #[unsafe(method_family = none)]
@@ -339,6 +370,10 @@ extern_protocol!(
         );
 
         /// Called on the delegate of the receiver. Will be called on startup if the user info finished transferring when the receiver was not running.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(session:didReceiveUserInfo:))]
         #[unsafe(method_family = none)]

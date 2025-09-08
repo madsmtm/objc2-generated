@@ -153,6 +153,10 @@ impl GKLeaderboardViewController {
         /// Setter for [`leaderboardDelegate`][Self::leaderboardDelegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `leaderboard_delegate` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setLeaderboardDelegate:))]
         #[unsafe(method_family = none)]
@@ -170,6 +174,10 @@ extern_protocol!(
         #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// The leaderboard view has finished
+        ///
+        /// # Safety
+        ///
+        /// `view_controller` might not allow `None`.
         #[deprecated]
         #[unsafe(method(leaderboardViewControllerDidFinish:))]
         #[unsafe(method_family = none)]

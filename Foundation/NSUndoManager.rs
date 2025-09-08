@@ -194,6 +194,10 @@ impl NSUndoManager {
         /// Doesn't re-enable the receiver if it's disabled.
         ///
         /// - Parameter target: The recepient of the undo mesages to be removed.
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(removeAllActionsWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllActionsWithTarget(&self, target: &AnyObject);
@@ -203,6 +207,11 @@ impl NSUndoManager {
         /// - Parameter target: The target of the undo operation. The undo manager maintains an unowned reference to `target` to prevent retain cycles.
         /// - Parameter selector: The selector for the undo operation.
         /// - Parameter object: The argument sent with the selector. The undo manager maintains a strong reference to `object`
+        ///
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `object` should be of the correct type.
         #[unsafe(method(registerUndoWithTarget:selector:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerUndoWithTarget_selector_object(
@@ -224,6 +233,10 @@ impl NSUndoManager {
         ///
         /// - Parameter target: The target of the undo operation. The undo manager maintains a weak reference to `target`.
         /// - Returns:  A proxy object that forwards messages to the undo manager for recording as undo actions.
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(prepareWithInvocationTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareWithInvocationTarget(&self, target: &AnyObject)
@@ -236,6 +249,10 @@ impl NSUndoManager {
         ///
         /// - Parameter target: The target of the undo operation.
         /// - Parameter undoHandler: The block to be executed when an operation is undone. The block takes a single argument, the target of the undo operation.
+        ///
+        /// # Safety
+        ///
+        /// `undo_handler` block must be sendable.
         #[unsafe(method(registerUndoWithTarget:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerUndoWithTarget_handler(
@@ -325,6 +342,10 @@ impl NSUndoManager {
         /// Set user info for the Undo or Redo command.
         /// - Parameter info: Value to be saved in the user info
         /// - Parameter key: Key at which the object should be saved
+        ///
+        /// # Safety
+        ///
+        /// `info` should be of the correct type.
         #[unsafe(method(setActionUserInfoValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionUserInfoValue_forKey(

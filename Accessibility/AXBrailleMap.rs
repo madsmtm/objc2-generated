@@ -90,6 +90,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[optional]
         #[unsafe(method(accessibilityBrailleMapRenderer))]
         #[unsafe(method_family = none)]

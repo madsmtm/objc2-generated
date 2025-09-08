@@ -46,6 +46,10 @@ impl DOMDocument {
         /// This method constructs a URL given an attribute string just as WebKit does.
         /// An attribute string is the value of an attribute of an element such as the href attribute on
         /// the DOMHTMLAnchorElement class. This method is only applicable to attributes that refer to URLs.
+        ///
+        /// # Safety
+        ///
+        /// `string` might not allow `None`.
         #[deprecated]
         #[unsafe(method(URLWithAttributeString:))]
         #[unsafe(method_family = none)]

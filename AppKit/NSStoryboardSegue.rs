@@ -24,6 +24,10 @@ extern_conformance!(
 impl NSStoryboardSegue {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// - `source_controller` should be of the correct type.
+        /// - `destination_controller` should be of the correct type.
         #[unsafe(method(segueWithIdentifier:source:destination:performHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
@@ -33,6 +37,10 @@ impl NSStoryboardSegue {
             perform_handler: &block2::DynBlock<dyn Fn()>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// - `source_controller` should be of the correct type.
+        /// - `destination_controller` should be of the correct type.
         #[unsafe(method(initWithIdentifier:source:destination:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_source_destination(
@@ -76,6 +84,9 @@ impl NSStoryboardSegue {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegueperforming?language=objc)
     pub unsafe trait NSSeguePerforming: NSObjectProtocol + MainThreadOnly {
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(prepareForSegue:sender:))]
         #[unsafe(method_family = none)]
@@ -85,6 +96,9 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(performSegueWithIdentifier:sender:))]
         #[unsafe(method_family = none)]
@@ -94,6 +108,9 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(shouldPerformSegueWithIdentifier:sender:))]
         #[unsafe(method_family = none)]

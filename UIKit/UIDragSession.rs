@@ -41,6 +41,9 @@ extern_protocol!(
             type_identifiers: &NSArray<NSString>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `a_class` must implement NSItemProviderReading.
         #[unsafe(method(canLoadObjectsOfClass:))]
         #[unsafe(method_family = none)]
         unsafe fn canLoadObjectsOfClass(&self, a_class: &AnyClass) -> bool;
@@ -55,6 +58,10 @@ extern_protocol!(
         unsafe fn localContext(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localContext`][Self::localContext].
+        ///
+        /// # Safety
+        ///
+        /// `local_context` should be of the correct type.
         #[unsafe(method(setLocalContext:))]
         #[unsafe(method_family = none)]
         unsafe fn setLocalContext(&self, local_context: Option<&AnyObject>);
@@ -103,6 +110,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `a_class` must implement NSItemProviderReading.
         #[unsafe(method(loadObjectsOfClass:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn loadObjectsOfClass_completion(

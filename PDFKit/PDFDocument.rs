@@ -280,6 +280,10 @@ impl PDFDocument {
         /// Setter for [`documentAttributes`][Self::documentAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `document_attributes` generic should be of the correct type.
         #[unsafe(method(setDocumentAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocumentAttributes(&self, document_attributes: Option<&NSDictionary>);
@@ -362,6 +366,9 @@ impl PDFDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn dataRepresentation(&self) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(dataRepresentationWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataRepresentationWithOptions(
@@ -373,6 +380,9 @@ impl PDFDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn writeToFile(&self, path: &NSString) -> bool;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writeToFile:withOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToFile_withOptions(
@@ -385,6 +395,9 @@ impl PDFDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL(&self, url: &NSURL) -> bool;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writeToURL:withOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_withOptions(
@@ -601,6 +614,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn classForAnnotationType(&self, annotation_type: &NSString) -> &'static AnyClass;
 
+        /// # Safety
+        ///
+        /// `annotation_class` probably has further requirements.
         #[deprecated]
         #[optional]
         #[unsafe(method(classForAnnotationClass:))]

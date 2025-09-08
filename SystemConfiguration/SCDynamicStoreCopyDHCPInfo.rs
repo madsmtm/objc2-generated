@@ -54,6 +54,10 @@ impl SCDynamicStore {
 /// NULL if the requested option data is not present.
 ///
 /// The return value must NOT be released.
+///
+/// # Safety
+///
+/// `info` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
     info: &CFDictionary,
@@ -77,6 +81,10 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
 /// configuration method is not DHCP.
 ///
 /// The return value must NOT be released.
+///
+/// # Safety
+///
+/// `info` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
     info: &CFDictionary,
@@ -100,6 +108,10 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
 /// by a non-NULL lease start time (see DHCPInfoGetLeaseStartTime above).
 ///
 /// The return value must NOT be released.
+///
+/// # Safety
+///
+/// `info` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseExpirationTime(
     info: &CFDictionary,

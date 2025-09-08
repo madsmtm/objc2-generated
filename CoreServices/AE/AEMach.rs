@@ -18,6 +18,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `event` must be a valid pointer.
+    /// - `reply` must be a valid pointer.
     #[cfg(feature = "AEDataModel")]
     pub fn AESendMessage(
         event: *const AppleEvent,

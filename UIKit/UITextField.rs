@@ -318,6 +318,10 @@ impl UITextField {
         /// Setter for [`defaultTextAttributes`][Self::defaultTextAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `default_text_attributes` generic should be of the correct type.
         #[unsafe(method(setDefaultTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTextAttributes(
@@ -437,6 +441,10 @@ impl UITextField {
         /// Setter for [`typingAttributes`][Self::typingAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `typing_attributes` generic should be of the correct type.
         #[unsafe(method(setTypingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTypingAttributes(
@@ -663,6 +671,10 @@ impl UITextField {
         /// Setter for [`interactionState`][Self::interactionState].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `interaction_state` should be of the correct type.
         #[unsafe(method(setInteractionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: &AnyObject);

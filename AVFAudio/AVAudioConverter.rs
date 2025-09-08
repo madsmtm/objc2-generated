@@ -392,6 +392,10 @@ impl AVAudioConverter {
         ///
         /// It attempts to fill the buffer to its capacity. On return, the buffer's length indicates the number of
         /// sample frames successfully converted.
+        ///
+        /// # Safety
+        ///
+        /// `input_block` must be a valid pointer.
         #[unsafe(method(convertToBuffer:error:withInputFromBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertToBuffer_error_withInputFromBlock(

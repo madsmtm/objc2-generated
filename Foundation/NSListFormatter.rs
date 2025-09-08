@@ -69,11 +69,17 @@ impl NSListFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[unsafe(method(stringFromItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(stringForObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(

@@ -54,6 +54,10 @@ impl SHMediaLibrary {
         ///
         /// Parameter `completionHandler`: A block called after all valid
         /// `SHMediaItem`objects have been added to the library. If an error occurred, the error parameter will be populated.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated = "Use SHLibrary instead"]
         #[unsafe(method(addMediaItems:completionHandler:))]
         #[unsafe(method_family = none)]

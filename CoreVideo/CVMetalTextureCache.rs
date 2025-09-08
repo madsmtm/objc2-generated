@@ -60,6 +60,12 @@ impl CVMetalTextureCache {
     /// Parameter `cacheOut`: The newly created texture cache will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// # Safety
+    ///
+    /// - `cache_attributes` generics must be of the correct type.
+    /// - `texture_attributes` generics must be of the correct type.
+    /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVMetalTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
@@ -146,6 +152,11 @@ impl CVMetalTextureCache {
     /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatGBGR422, width, height, 1,
     /// &outTexture
     /// );
+    ///
+    /// # Safety
+    ///
+    /// - `texture_attributes` generics must be of the correct type.
+    /// - `texture_out` must be a valid pointer.
     #[doc(alias = "CVMetalTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",

@@ -79,6 +79,9 @@ extern_protocol!(
             feature = "UITextInputTraits",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_draggable_view` must implement UITextDraggable.
         #[optional]
         #[unsafe(method(textDraggableView:itemsForDrag:))]
         #[unsafe(method_family = none)]
@@ -98,6 +101,9 @@ extern_protocol!(
             feature = "UITextInputTraits",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_draggable_view` must implement UITextDraggable.
         #[optional]
         #[unsafe(method(textDraggableView:dragPreviewForLiftingItem:session:))]
         #[unsafe(method_family = none)]
@@ -116,6 +122,9 @@ extern_protocol!(
             feature = "UITextInputTraits",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_draggable_view` must implement UITextDraggable.
         #[optional]
         #[unsafe(method(textDraggableView:willAnimateLiftWithAnimator:session:))]
         #[unsafe(method_family = none)]
@@ -133,6 +142,9 @@ extern_protocol!(
             feature = "UITextInputTraits",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_draggable_view` must implement UITextDraggable.
         #[optional]
         #[unsafe(method(textDraggableView:dragSessionWillBegin:))]
         #[unsafe(method_family = none)]
@@ -150,6 +162,9 @@ extern_protocol!(
             feature = "UITextInputTraits",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_draggable_view` must implement UITextDraggable.
         #[optional]
         #[unsafe(method(textDraggableView:dragSessionDidEnd:withOperation:))]
         #[unsafe(method_family = none)]

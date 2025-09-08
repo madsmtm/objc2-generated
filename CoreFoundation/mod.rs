@@ -3409,6 +3409,9 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFAllocatorCreate")]
     #[inline]
     pub unsafe fn new(
@@ -3425,6 +3428,9 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFAllocatorAllocateTyped")]
     #[inline]
     pub unsafe fn allocate_typed(
@@ -3444,6 +3450,9 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocateTyped(allocator, size, descriptor, hint) }
     }
 
+    /// # Safety
+    ///
+    /// `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocateTyped")]
     #[inline]
     pub unsafe fn reallocate_typed(
@@ -3482,6 +3491,9 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocateBytes(allocator, size, hint) }
     }
 
+    /// # Safety
+    ///
+    /// `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocateBytes")]
     #[inline]
     pub unsafe fn reallocate_bytes(
@@ -3518,6 +3530,9 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocate(allocator, size, hint) }
     }
 
+    /// # Safety
+    ///
+    /// `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocate")]
     #[inline]
     pub unsafe fn reallocate(
@@ -3537,6 +3552,9 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocate(allocator, ptr, newsize, hint) }
     }
 
+    /// # Safety
+    ///
+    /// `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorDeallocate")]
     #[inline]
     pub unsafe fn deallocate(allocator: Option<&CFAllocator>, ptr: *mut c_void) {
@@ -3563,6 +3581,9 @@ impl CFAllocator {
         unsafe { CFAllocatorGetPreferredSizeForSize(allocator, size, hint) }
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFAllocatorGetContext")]
     #[inline]
     pub unsafe fn context(allocator: Option<&CFAllocator>, context: *mut CFAllocatorContext) {

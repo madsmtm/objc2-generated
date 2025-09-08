@@ -102,6 +102,10 @@ impl HKQuery {
         /// Parameter `key`: The metadata key.
         ///
         /// Parameter `allowedValues`: The list of values that the metadata value can be equal to.
+        ///
+        /// # Safety
+        ///
+        /// `allowed_values` generic should be of the correct type.
         #[unsafe(method(predicateForObjectsWithMetadataKey:allowedValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForObjectsWithMetadataKey_allowedValues(
@@ -120,6 +124,10 @@ impl HKQuery {
         /// Parameter `operatorType`: The comparison operator type for the expression.
         ///
         /// Parameter `value`: The value to be compared against.
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(predicateForObjectsWithMetadataKey:operatorType:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForObjectsWithMetadataKey_operatorType_value(

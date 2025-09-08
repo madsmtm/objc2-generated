@@ -80,6 +80,10 @@ impl ASAuthorizationProviderExtensionAuthorizationResult {
         pub unsafe fn privateKeys(&self) -> Retained<NSArray>;
 
         /// Setter for [`privateKeys`][Self::privateKeys].
+        ///
+        /// # Safety
+        ///
+        /// `private_keys` generic should be of the correct type.
         #[unsafe(method(setPrivateKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrivateKeys(&self, private_keys: &NSArray);

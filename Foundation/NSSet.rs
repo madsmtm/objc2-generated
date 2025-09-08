@@ -103,6 +103,9 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(initWithObjects:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(
@@ -159,6 +162,9 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(descriptionWithLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale(
@@ -178,10 +184,17 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub fn isSubsetOfSet(&self, other_set: &NSSet<ObjectType>) -> bool;
 
+        /// # Safety
+        ///
+        /// `a_selector` must be a valid selector.
         #[unsafe(method(makeObjectsPerformSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeObjectsPerformSelector(&self, a_selector: Sel);
 
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `argument` should be of the correct type.
         #[unsafe(method(makeObjectsPerformSelector:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeObjectsPerformSelector_withObject(
@@ -259,6 +272,9 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn setWithObject(object: &ObjectType) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer.
         #[unsafe(method(setWithObjects:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWithObjects_count(
@@ -311,6 +327,9 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn setWithObject(object: &ObjectType) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer.
         #[unsafe(method(setWithObjects:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWithObjects_count(
@@ -459,6 +478,9 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
 /// Methods declared on superclass `NSSet`.
 impl<ObjectType: Message> NSMutableSet<ObjectType> {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(initWithObjects:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(
@@ -627,6 +649,9 @@ impl<ObjectType: Message> NSCountedSet<ObjectType> {
 /// Methods declared on superclass `NSSet`.
 impl<ObjectType: Message> NSCountedSet<ObjectType> {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(initWithObjects:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(

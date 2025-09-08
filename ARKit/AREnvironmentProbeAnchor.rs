@@ -69,6 +69,10 @@ impl AREnvironmentProbeAnchor {
         /// The texture is provided as a cube using MTLTextureTypeCube.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(environmentTexture))]
         #[unsafe(method_family = none)]
         pub unsafe fn environmentTexture(&self)

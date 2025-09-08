@@ -94,6 +94,10 @@ impl AVCaptureAudioDataOutput {
         /// Setter for [`audioSettings`][Self::audioSettings].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `audio_settings` generic should be of the correct type.
         #[unsafe(method(setAudioSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioSettings(

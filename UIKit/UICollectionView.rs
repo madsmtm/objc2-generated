@@ -461,6 +461,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[deprecated]
         #[optional]
         #[unsafe(method(collectionView:canPerformAction:forItemAtIndexPath:withSender:))]
@@ -474,6 +478,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[deprecated]
         #[optional]
         #[unsafe(method(collectionView:performAction:forItemAtIndexPath:withSender:))]
@@ -1217,6 +1225,9 @@ impl UICollectionView {
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
+        /// # Safety
+        ///
+        /// `cell_class` probably has further requirements.
         #[unsafe(method(registerClass:forCellWithReuseIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forCellWithReuseIdentifier(
@@ -1235,6 +1246,9 @@ impl UICollectionView {
             identifier: &NSString,
         );
 
+        /// # Safety
+        ///
+        /// `view_class` probably has further requirements.
         #[unsafe(method(registerClass:forSupplementaryViewOfKind:withReuseIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forSupplementaryViewOfKind_withReuseIdentifier(
@@ -1278,6 +1292,9 @@ impl UICollectionView {
             feature = "UICollectionViewCell",
             feature = "UICollectionViewItemRegistration"
         ))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[unsafe(method(dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dequeueConfiguredReusableCellWithRegistration_forIndexPath_item(
@@ -1370,6 +1387,9 @@ impl UICollectionView {
             feature = "UICollectionViewTransitionLayout",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(startInteractiveTransitionToCollectionViewLayout:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startInteractiveTransitionToCollectionViewLayout_completion(
@@ -2105,6 +2125,9 @@ impl UICollectionViewPlaceholder {
             feature = "UIView",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(cellUpdateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellUpdateHandler(
@@ -2151,6 +2174,9 @@ impl UICollectionViewDropPlaceholder {
             feature = "UIView",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(previewParametersProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewParametersProvider(
@@ -2170,6 +2196,10 @@ impl UICollectionViewDropPlaceholder {
         /// Setter for [`previewParametersProvider`][Self::previewParametersProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `preview_parameters_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setPreviewParametersProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewParametersProvider(

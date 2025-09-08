@@ -1394,6 +1394,10 @@ impl AVCapturePhotoSettings {
         ///
         ///
         /// If you wish an uncompressed format, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the format specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed output. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. Passing a nil format dictionary is analogous to calling +photoSettings.
+        ///
+        /// # Safety
+        ///
+        /// `format` generic should be of the correct type.
         #[unsafe(method(photoSettingsWithFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithFormat(
@@ -1426,6 +1430,10 @@ impl AVCapturePhotoSettings {
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. If you wish an uncompressed processedFormat, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the processedFormat specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed processedFormat. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. Passing a nil processedFormat dictionary is analogous to calling +photoSettingsWithRawPixelFormatType:. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
+        ///
+        /// # Safety
+        ///
+        /// `processed_format` generic should be of the correct type.
         #[unsafe(method(photoSettingsWithRawPixelFormatType:processedFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType_processedFormat(
@@ -1449,6 +1457,10 @@ impl AVCapturePhotoSettings {
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. Set rawPixelFormatType to 0 if you do not desire a RAW photo callback. If you are specifying a rawFileType, it must be present in AVCapturePhotoOutput's -availableRawPhotoFileTypes array. If you wish an uncompressed processedFormat, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the processedFormat specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed processedFormat. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. If you are specifying a processedFileType, it must be present in AVCapturePhotoOutput's -availablePhotoFileTypes array. Pass a nil processedFormat dictionary if you only desire a RAW photo capture. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
+        ///
+        /// # Safety
+        ///
+        /// `processed_format` generic should be of the correct type.
         #[unsafe(method(photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType(
@@ -1499,6 +1511,10 @@ impl AVCapturePhotoSettings {
         /// Setter for [`rawFileFormat`][Self::rawFileFormat].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `raw_file_format` generic should be of the correct type.
         #[unsafe(method(setRawFileFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRawFileFormat(
@@ -1843,6 +1859,10 @@ impl AVCapturePhotoSettings {
         /// Setter for [`metadata`][Self::metadata].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(setMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSDictionary<NSString, AnyObject>);
@@ -1923,6 +1943,10 @@ impl AVCapturePhotoSettings {
         /// Setter for [`previewPhotoFormat`][Self::previewPhotoFormat].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `preview_photo_format` generic should be of the correct type.
         #[unsafe(method(setPreviewPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewPhotoFormat(
@@ -1954,6 +1978,10 @@ impl AVCapturePhotoSettings {
         /// Setter for [`embeddedThumbnailPhotoFormat`][Self::embeddedThumbnailPhotoFormat].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `embedded_thumbnail_photo_format` generic should be of the correct type.
         #[unsafe(method(setEmbeddedThumbnailPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmbeddedThumbnailPhotoFormat(
@@ -1985,6 +2013,10 @@ impl AVCapturePhotoSettings {
         /// Setter for [`rawEmbeddedThumbnailPhotoFormat`][Self::rawEmbeddedThumbnailPhotoFormat].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `raw_embedded_thumbnail_photo_format` generic should be of the correct type.
         #[unsafe(method(setRawEmbeddedThumbnailPhotoFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRawEmbeddedThumbnailPhotoFormat(
@@ -2116,6 +2148,10 @@ impl AVCapturePhotoBracketSettings {
         /// An NSInvalidArgumentException is thrown if bracketedSettings is nil, contains zero elements, or mixes and matches different subclasses of AVCaptureBracketedStillImageSettings.
         ///
         /// AVCapturePhotoBracketSettings do not support flashMode, autoStillImageStabilizationEnabled, livePhotoMovieFileURL or livePhotoMovieMetadata.
+        ///
+        /// # Safety
+        ///
+        /// `processed_format` generic should be of the correct type.
         #[unsafe(method(photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoBracketSettingsWithRawPixelFormatType_processedFormat_bracketedSettings(
@@ -2146,6 +2182,10 @@ impl AVCapturePhotoBracketSettings {
         /// An NSInvalidArgumentException is thrown if bracketedSettings is nil, contains zero elements, or mixes and matches different subclasses of AVCaptureBracketedStillImageSettings.
         ///
         /// AVCapturePhotoBracketSettings do not support flashMode, autoStillImageStabilizationEnabled, livePhotoMovieFileURL or livePhotoMovieMetadata.
+        ///
+        /// # Safety
+        ///
+        /// `processed_format` generic should be of the correct type.
         #[unsafe(method(photoBracketSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:bracketedSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoBracketSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType_bracketedSettings(
@@ -2205,6 +2245,10 @@ impl AVCapturePhotoBracketSettings {
         ///
         ///
         /// If you wish an uncompressed format, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the format specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed output. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. Passing a nil format dictionary is analogous to calling +photoSettings.
+        ///
+        /// # Safety
+        ///
+        /// `format` generic should be of the correct type.
         #[unsafe(method(photoSettingsWithFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithFormat(
@@ -2237,6 +2281,10 @@ impl AVCapturePhotoBracketSettings {
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. If you wish an uncompressed processedFormat, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the processedFormat specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed processedFormat. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. Passing a nil processedFormat dictionary is analogous to calling +photoSettingsWithRawPixelFormatType:. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
+        ///
+        /// # Safety
+        ///
+        /// `processed_format` generic should be of the correct type.
         #[unsafe(method(photoSettingsWithRawPixelFormatType:processedFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType_processedFormat(
@@ -2260,6 +2308,10 @@ impl AVCapturePhotoBracketSettings {
         ///
         ///
         /// rawPixelFormatType must be one of the OSTypes contained in AVCapturePhotoOutput's -availableRawPhotoPixelFormatTypes array. Set rawPixelFormatType to 0 if you do not desire a RAW photo callback. If you are specifying a rawFileType, it must be present in AVCapturePhotoOutput's -availableRawPhotoFileTypes array. If you wish an uncompressed processedFormat, your dictionary must contain kCVPixelBufferPixelFormatTypeKey, and the processedFormat specified must be present in AVCapturePhotoOutput's -availablePhotoPixelFormatTypes array. kCVPixelBufferPixelFormatTypeKey is the only supported key when expressing uncompressed processedFormat. If you wish a compressed format, your dictionary must contain AVVideoCodecKey and the codec specified must be present in AVCapturePhotoOutput's -availablePhotoCodecTypes array. If you are specifying a compressed format, the AVVideoCompressionPropertiesKey is also supported, with a payload dictionary containing a single AVVideoQualityKey. If you are specifying a processedFileType, it must be present in AVCapturePhotoOutput's -availablePhotoFileTypes array. Pass a nil processedFormat dictionary if you only desire a RAW photo capture. See AVCapturePhotoOutput's -capturePhotoWithSettings:delegate: inline documentation for a discussion of restrictions on AVCapturePhotoSettings when requesting RAW capture.
+        ///
+        /// # Safety
+        ///
+        /// `processed_format` generic should be of the correct type.
         #[unsafe(method(photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType(
@@ -2688,6 +2740,11 @@ impl AVCapturePhoto {
         /// Parameter `replacementDepthData`: Replacement depth data to be written to the flattened file container. To preserve existing depth data to the file, pass self.depthData. To strip it, pass nil. To replace it, pass a new AVDepthData instance.
         ///
         /// Returns: An NSData containing bits in the file container's format, or nil if the flattening process fails.
+        ///
+        /// # Safety
+        ///
+        /// - `replacement_metadata` generic should be of the correct type.
+        /// - `replacement_embedded_thumbnail_photo_format` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:))]
         #[unsafe(method_family = none)]
@@ -2999,6 +3056,10 @@ extern_protocol!(
         ///
         ///
         /// This callback is optional. If your delegate does not implement this callback, the default compression settings for the file type will be used.
+        ///
+        /// # Safety
+        ///
+        /// `default_settings` generic should be of the correct type.
         #[optional]
         #[unsafe(method(replacementAppleProRAWCompressionSettingsForPhoto:defaultSettings:maximumBitDepth:))]
         #[unsafe(method_family = none)]

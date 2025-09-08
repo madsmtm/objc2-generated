@@ -129,6 +129,10 @@ impl MLFeatureValue {
         /// For encoding a sparse feature set or for encoding probabilities. Input keys that are not
         /// NSNumber * or NSString * are rejected on construction and return a MLModelErrorFeatureTypeMismatch
         /// error. Further validation for consistency occurs on evaluation
+        ///
+        /// # Safety
+        ///
+        /// `value` generic should be of the correct type.
         #[unsafe(method(featureValueWithDictionary:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithDictionary_error(

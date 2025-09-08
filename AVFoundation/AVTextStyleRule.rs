@@ -53,6 +53,10 @@ impl AVTextStyleRule {
         /// Parameter `plist`: A property list, normally obtained previously via an invocation of +propertyListForTextStyleRules:.
         ///
         /// Returns: An NSArray of AVTextStyleRules
+        ///
+        /// # Safety
+        ///
+        /// `plist` should be of the correct type.
         #[unsafe(method(textStyleRulesFromPropertyList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStyleRulesFromPropertyList(
@@ -68,6 +72,10 @@ impl AVTextStyleRule {
         /// Returns: An instance of AVTextStyleRule
         ///
         /// Equivalent to invoking +textStyleRuleWithTextMarkupAttributes:textSelector: with a value of nil for textSelector.
+        ///
+        /// # Safety
+        ///
+        /// `text_markup_attributes` generic should be of the correct type.
         #[unsafe(method(textStyleRuleWithTextMarkupAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStyleRuleWithTextMarkupAttributes(
@@ -83,6 +91,10 @@ impl AVTextStyleRule {
         /// Parameter `textSelector`: An identifier for the range or ranges of text to which the attributes should be applied. Eligible identifiers are determined by the format and content of the legible media. A value of nil indicates that the textMarkupAttributes should be applied as default styles for all text unless overridden by content markup or other applicable text selectors.
         ///
         /// Returns: An instance of AVTextStyleRule
+        ///
+        /// # Safety
+        ///
+        /// `text_markup_attributes` generic should be of the correct type.
         #[unsafe(method(textStyleRuleWithTextMarkupAttributes:textSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textStyleRuleWithTextMarkupAttributes_textSelector(
@@ -99,6 +111,10 @@ impl AVTextStyleRule {
         /// Returns: An instance of AVTextStyleRule
         ///
         /// Equivalent to invoking -initWithTextMarkupAttributes:textSelector: with a value of nil for textSelector.
+        ///
+        /// # Safety
+        ///
+        /// `text_markup_attributes` generic should be of the correct type.
         #[unsafe(method(initWithTextMarkupAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextMarkupAttributes(
@@ -115,6 +131,10 @@ impl AVTextStyleRule {
         /// Parameter `textSelector`: An identifier for the range or ranges of text to which the attributes should be applied. Eligible identifiers are determined by the format and content of the legible media. A value of nil indicates that the textMarkupAttributes should be applied as default styles for all text unless overridden by content markup or other applicable text selectors.
         ///
         /// Returns: An instance of AVTextStyleRule
+        ///
+        /// # Safety
+        ///
+        /// `text_markup_attributes` generic should be of the correct type.
         #[unsafe(method(initWithTextMarkupAttributes:textSelector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextMarkupAttributes_textSelector(

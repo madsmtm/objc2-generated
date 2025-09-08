@@ -39,6 +39,10 @@ extern_conformance!(
 impl PHProject {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(projectExtensionData))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
@@ -47,6 +51,10 @@ impl PHProject {
         /// Use -[PHProjectChangeRequest setProjectPreviewImage:] to set a project preview.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(hasProjectPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasProjectPreview(&self) -> bool;

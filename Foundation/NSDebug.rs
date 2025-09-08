@@ -22,6 +22,10 @@ extern "C" {
     pub static NSDeallocateZombies: Bool;
 }
 
+/// # Safety
+///
+/// - `an_object` should be of the correct type.
+/// - `an_object` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn NSIsFreedObject(an_object: Option<&AnyObject>) -> bool {
     extern "C-unwind" {
@@ -59,5 +63,9 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `object` should be of the correct type.
+    /// - `object` might not allow `None`.
     pub fn NSRecordAllocationEvent(event_type: c_int, object: Option<&AnyObject>);
 }

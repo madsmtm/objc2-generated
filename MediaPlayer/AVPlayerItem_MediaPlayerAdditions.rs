@@ -27,6 +27,10 @@ pub unsafe trait AVPlayerItemMPAdditions:
         /// Setter for [`nowPlayingInfo`][Self::nowPlayingInfo].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `now_playing_info` generic should be of the correct type.
         #[unsafe(method(setNowPlayingInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn setNowPlayingInfo(

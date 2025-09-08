@@ -166,6 +166,11 @@ impl UICloudSharingController {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-cloud-kit"))]
+        /// # Safety
+        ///
+        /// - `preparation_handler` block's argument 2 block's argument 1 must be a valid pointer or null.
+        /// - `preparation_handler` block's argument 2 block's argument 2 must be a valid pointer or null.
+        /// - `preparation_handler` block's argument 2 block's argument 3 must be a valid pointer or null.
         #[deprecated = "Use -[UIActivityViewController initWithActivityItemsConfiguration:] and pass it a UIActivityItemsConfigurationReading-conforming object with an NSItemProvider and registered preparation handler"]
         #[unsafe(method(initWithPreparationHandler:))]
         #[unsafe(method_family = init)]

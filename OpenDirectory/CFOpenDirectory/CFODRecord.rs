@@ -45,6 +45,10 @@ impl ODRecordRef {
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details.  Upon failure the original node
     /// will still be intact.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetNodeCredentials")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -89,6 +93,14 @@ impl ODRecordRef {
     ///
     /// Returns: a bool will be returned with the result of the operation and outAuthItems set with response items
     /// and outContext set for any needed continuation.  Upon failure the original node will still be intact.
+    ///
+    /// # Safety
+    ///
+    /// - `auth_items` generic must be of the correct type.
+    /// - `auth_items` might not allow `None`.
+    /// - `out_auth_items` must be a valid pointer.
+    /// - `out_context` must be a valid pointer.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetNodeCredentialsExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -131,6 +143,10 @@ impl ODRecordRef {
     /// Unsupported function.
     ///
     /// Unsupported function.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetNodeCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -161,6 +177,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDictionaryRef of the password policies for the supplied record, or NULL if no policy set
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyPasswordPolicy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyEffectivePolicies"]
@@ -192,6 +212,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordVerifyPassword")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -231,6 +255,14 @@ impl ODRecordRef {
     /// Returns: a bool will be returned with the result of the operation and outAuthItems set with response items
     /// and outContext set for any needed continuation.  Some ODNodes may not support the call so an error of
     /// eNotHandledByThisNode or eNotYetImplemented may be returned.
+    ///
+    /// # Safety
+    ///
+    /// - `auth_items` generic must be of the correct type.
+    /// - `auth_items` might not allow `None`.
+    /// - `out_auth_items` must be a valid pointer.
+    /// - `out_context` must be a valid pointer.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordVerifyPasswordExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -281,6 +313,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordChangePassword")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -352,6 +388,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFArrayRef of the attribute requested if possible, or NULL if the attribute doesn't exist
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyValues")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -391,6 +431,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -427,6 +471,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordAddValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -464,6 +512,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordRemoveValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -503,6 +555,12 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDictionaryRef of the attributes for the record
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyDetails")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -532,6 +590,10 @@ impl ODRecordRef {
     /// Parameter `record`: an ODRecordRef to use
     ///
     /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordSynchronize")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -552,6 +614,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordDelete")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -576,6 +642,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordAddMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -606,6 +676,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordRemoveMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -637,6 +711,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: returns true or false depending on result
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordContainsMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -664,6 +742,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDictionaryRef containing all currently configured policies
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyAccountPolicies"]
@@ -688,6 +770,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDictionaryRef containing all currently configured policies (merging any node-level policies)
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyEffectivePolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordAuthenticationAllowed and similar functions"]
@@ -717,6 +803,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a CFDictionaryRef containing all currently supported policies
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopySupportedPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -746,6 +836,12 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a bool which signifies if the policy set succeeded, otherwise error is set.
+    ///
+    /// # Safety
+    ///
+    /// - `policies` generics must be of the correct type.
+    /// - `policies` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordSetAccountPolicies"]
@@ -778,6 +874,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a bool which signifies if the policy set succeeded, otherwise error is set.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -813,6 +913,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a bool which signifies if the policy removal succeeded, otherwise error is set.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -858,6 +962,13 @@ impl ODRecordRef {
     /// Parameter `error`: is an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the policy addition succeeded, otherwise error is set.
+    ///
+    /// # Safety
+    ///
+    /// - `policy` generics must be of the correct type.
+    /// - `policy` might not allow `None`.
+    /// - `category` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordAddAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -895,6 +1006,13 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the policy removal succeeded, otherwise error is set.
+    ///
+    /// # Safety
+    ///
+    /// - `policy` generics must be of the correct type.
+    /// - `policy` might not allow `None`.
+    /// - `category` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordRemoveAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -941,6 +1059,12 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the policy set succeeded, otherwise error is set.
+    ///
+    /// # Safety
+    ///
+    /// - `policies` generics must be of the correct type.
+    /// - `policies` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -971,6 +1095,10 @@ impl ODRecordRef {
     /// Returns: a CFDictionaryRef containing all currently set policies.  The
     /// format of the dictionary is the same as described in
     /// ODRecordSetAccountPolicies().
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1012,6 +1140,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the authentication is allowed, otherwise error is set.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordAuthenticationAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1046,6 +1178,10 @@ impl ODRecordRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details.
     ///
     /// Returns: a bool which signifies if the password change is allowed, otherwise error is set.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODRecordPasswordChangeAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

@@ -189,6 +189,11 @@ impl SecKeychainItem {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// The keychain item is written to the keychain's permanent data store. If the keychain item has not previously been added to a keychain, a call to the SecKeychainItemModifyContent function does nothing and returns errSecSuccess.
+    ///
+    /// # Safety
+    ///
+    /// - `attr_list` must be a valid pointer or null.
+    /// - `data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemModifyAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -227,6 +232,12 @@ impl SecKeychainItem {
     /// Parameter `itemRef`: On return, a pointer to a reference to the newly created keychain item (optional). When the item reference is no longer required, call CFRelease to deallocate memory occupied by the item.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters are supplied, or errSecAllocate (-108) if there is not enough memory in the current heap zone to create the object.
+    ///
+    /// # Safety
+    ///
+    /// - `attr_list` must be a valid pointer.
+    /// - `data` must be a valid pointer or null.
+    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemCreateFromContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -275,6 +286,11 @@ impl SecKeychainItem {
     /// Parameter `data`: A pointer to a buffer containing the data to store. Pass NULL if you don't need to modify the data.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `attr_list` must be a valid pointer or null.
+    /// - `data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemModifyContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -309,6 +325,13 @@ impl SecKeychainItem {
     /// Parameter `outData`: On return, a pointer to a buffer containing the data in this item. Pass NULL if you don't need to retrieve the data. You must call SecKeychainItemFreeContent when you no longer need the data.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters are supplied.
+    ///
+    /// # Safety
+    ///
+    /// - `item_class` must be a valid pointer or null.
+    /// - `attr_list` must be a valid pointer or null.
+    /// - `length` must be a valid pointer or null.
+    /// - `out_data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemCopyContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -337,6 +360,11 @@ impl SecKeychainItem {
     /// Parameter `attrList`: A pointer to the attribute list to release. Pass NULL to ignore this parameter.
     ///
     /// Parameter `data`: A pointer to the data buffer to release. Pass NULL to ignore this parameter.
+    ///
+    /// # Safety
+    ///
+    /// - `attr_list` must be a valid pointer or null.
+    /// - `data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemFreeContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -369,6 +397,14 @@ impl SecKeychainItem {
     /// Parameter `outData`: On return, a pointer to a buffer containing the data in this item. Pass NULL if you don't need to retrieve the data. You must call SecKeychainItemFreeAttributesAndData when you no longer need the data.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters are supplied.
+    ///
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `item_class` must be a valid pointer or null.
+    /// - `attr_list` must be a valid pointer or null.
+    /// - `length` must be a valid pointer or null.
+    /// - `out_data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemCopyAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -405,6 +441,11 @@ impl SecKeychainItem {
     /// Parameter `data`: A pointer to the data buffer to release. Pass NULL to ignore this parameter.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `attr_list` must be a valid pointer or null.
+    /// - `data` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemFreeAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -447,6 +488,10 @@ impl SecKeychainItem {
     /// Parameter `keychainRef`: On return, the keychain reference for the specified item. Release this reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `keychain_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCopyKeychain")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -472,6 +517,10 @@ impl SecKeychainItem {
     /// Parameter `itemCopy`: On return, a reference to the copied keychain item.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `item_copy` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCreateCopy")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -500,6 +549,10 @@ impl SecKeychainItem {
     /// Parameter `persistentItemRef`: On return, a CFDataRef containing a persistent reference. You must release this data reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `persistent_item_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCreatePersistentReference")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -524,6 +577,10 @@ impl SecKeychainItem {
     /// Parameter `itemRef`: On return, a SecKeychainItemRef for the keychain item described by the persistent reference. You must release this item reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `item_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCopyFromPersistentReference")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -550,6 +607,10 @@ impl SecKeychainItem {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. It should no longer be needed.
+    ///
+    /// # Safety
+    ///
+    /// `dldb_handle` must be a valid pointer.
     #[doc(alias = "SecKeychainItemGetDLDBHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -573,6 +634,10 @@ impl SecKeychainItem {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. It should no longer be needed.
+    ///
+    /// # Safety
+    ///
+    /// `unique_record_id` must be a valid pointer.
     #[doc(alias = "SecKeychainItemGetUniqueRecordID")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -602,6 +667,10 @@ impl SecKeychainItem {
     /// Parameter `access`: On return, a reference to the keychain item's access.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `access` must be a valid pointer.
     #[doc(alias = "SecKeychainItemCopyAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

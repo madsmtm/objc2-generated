@@ -103,6 +103,11 @@ impl CBIdentityPicker {
         ///
         /// - contextInfo: Contextual data passed to the delegate in the
         /// `didEndSelector` message.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated = "Use runModalForWindow:completionHandler: instead."]
         #[unsafe(method(runModalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]

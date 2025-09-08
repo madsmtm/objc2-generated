@@ -22,6 +22,9 @@ unsafe impl RefEncode for CGLShareGroupRec {
 pub type CGLShareGroupObj = *mut CGLShareGroupRec;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[cfg(feature = "CGLTypes")]
     pub fn CGLGetShareGroup(ctx: CGLContextObj) -> CGLShareGroupObj;
 }

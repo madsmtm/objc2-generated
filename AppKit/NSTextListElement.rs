@@ -23,6 +23,9 @@ extern_conformance!(
 impl NSTextListElement {
     extern_methods!(
         #[cfg(feature = "NSTextList")]
+        /// # Safety
+        ///
+        /// `marker_attributes` generic should be of the correct type.
         #[unsafe(method(initWithParentElement:textList:contents:markerAttributes:childElements:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithParentElement_textList_contents_markerAttributes_childElements(
@@ -42,6 +45,9 @@ impl NSTextListElement {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextList")]
+        /// # Safety
+        ///
+        /// `marker_attributes` generic should be of the correct type.
         #[unsafe(method(textListElementWithContents:markerAttributes:textList:childElements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textListElementWithContents_markerAttributes_textList_childElements(

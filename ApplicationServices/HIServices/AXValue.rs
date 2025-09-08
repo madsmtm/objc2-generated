@@ -96,6 +96,10 @@ impl AXValue {
     /// Parameter `theType`:
     /// Parameter `valuePtr`:
     /// Returns:
+    ///
+    /// # Safety
+    ///
+    /// `value_ptr` must be a valid pointer.
     #[doc(alias = "AXValueCreate")]
     #[inline]
     pub unsafe fn new(
@@ -132,6 +136,10 @@ impl AXValue {
     ///
     /// Parameter `value`:
     /// Returns:
+    ///
+    /// # Safety
+    ///
+    /// `value_ptr` must be a valid pointer.
     #[doc(alias = "AXValueGetValue")]
     #[inline]
     pub unsafe fn value(&self, the_type: AXValueType, value_ptr: NonNull<c_void>) -> bool {

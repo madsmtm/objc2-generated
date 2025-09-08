@@ -99,6 +99,11 @@ unsafe impl ConcreteType for CFMessagePort {
 }
 
 impl CFMessagePort {
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
+    /// - `should_free_info` must be a valid pointer.
     #[doc(alias = "CFMessagePortCreateLocal")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -170,6 +175,9 @@ impl CFMessagePort {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFMessagePortGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFMessagePortContext) {
@@ -209,6 +217,9 @@ impl CFMessagePort {
         unsafe { CFMessagePortGetInvalidationCallBack(self) }
     }
 
+    /// # Safety
+    ///
+    /// `callout` must be implemented correctly.
     #[doc(alias = "CFMessagePortSetInvalidationCallBack")]
     #[inline]
     pub unsafe fn set_invalidation_call_back(&self, callout: CFMessagePortInvalidationCallBack) {
@@ -221,6 +232,9 @@ impl CFMessagePort {
         unsafe { CFMessagePortSetInvalidationCallBack(self, callout) }
     }
 
+    /// # Safety
+    ///
+    /// `return_data` must be a valid pointer.
     #[doc(alias = "CFMessagePortSendRequest")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -276,6 +290,9 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `queue` might not allow `None`.
     #[doc(alias = "CFMessagePortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

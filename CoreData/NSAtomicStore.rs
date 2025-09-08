@@ -24,6 +24,9 @@ extern_conformance!(
 impl NSAtomicStore {
     extern_methods!(
         #[cfg(feature = "NSPersistentStoreCoordinator")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithPersistentStoreCoordinator:configurationName:URL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
@@ -83,6 +86,9 @@ impl NSAtomicStore {
         ) -> Option<Retained<NSAtomicStoreCacheNode>>;
 
         #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectID"))]
+        /// # Safety
+        ///
+        /// `data` should be of the correct type.
         #[unsafe(method(objectIDForEntity:referenceObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectIDForEntity_referenceObject(

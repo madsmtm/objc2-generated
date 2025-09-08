@@ -10,6 +10,11 @@ use crate::*;
 pub type CGBitmapContextReleaseDataCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
 
+/// # Safety
+///
+/// - `data` must be a valid pointer or null.
+/// - `release_callback` must be implemented correctly.
+/// - `release_info` must be a valid pointer or null.
 #[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CGBitmapContextCreateWithData(
@@ -52,6 +57,9 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreateWithData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `data` must be a valid pointer or null.
 #[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CGBitmapContextCreate(

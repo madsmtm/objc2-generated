@@ -48,6 +48,10 @@ impl HKAudiogramSensitivityPointClampingRange {
         /// The lower bound of the clamping range, if any, in dBHL.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(lowerBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowerBound(&self) -> Option<Retained<HKQuantity>>;
@@ -56,6 +60,10 @@ impl HKAudiogramSensitivityPointClampingRange {
         /// The upper bound of the clamping range, if any, in dBHL.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(upperBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperBound(&self) -> Option<Retained<HKQuantity>>;

@@ -60,6 +60,10 @@ impl HKSampleQuery {
         /// Parameter `sortDescriptors`: The sort descriptors to use to order the resulting samples.
         ///
         /// Parameter `resultsHandler`: The block to invoke with results when the query has finished executing.
+        ///
+        /// # Safety
+        ///
+        /// `results_handler` block must be sendable.
         #[unsafe(method(initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleType_predicate_limit_sortDescriptors_resultsHandler(
@@ -91,6 +95,10 @@ impl HKSampleQuery {
         /// Parameter `resultsHandler`: The block to invoke with results when the query has finished executing. This
         /// block is invoked once with results, an array of HKSamples matching the
         /// queryDescriptors passed in, or nil if an error occurred.
+        ///
+        /// # Safety
+        ///
+        /// `results_handler` block must be sendable.
         #[unsafe(method(initWithQueryDescriptors:limit:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueryDescriptors_limit_resultsHandler(
@@ -123,6 +131,10 @@ impl HKSampleQuery {
         /// block is invoked once with results, an array of HKSamples matching the
         /// queryDescriptors passed in, or nil if an error occurred. The HKSamples in the
         /// array are sorted by the specified sortDescriptors.
+        ///
+        /// # Safety
+        ///
+        /// `results_handler` block must be sendable.
         #[unsafe(method(initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueryDescriptors_limit_sortDescriptors_resultsHandler(

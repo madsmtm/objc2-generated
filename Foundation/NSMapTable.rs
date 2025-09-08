@@ -260,9 +260,16 @@ unsafe impl RefEncode for NSMapEnumerator {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     pub fn NSResetMapTable(table: &NSMapTable);
 }
 
+/// # Safety
+///
+/// - `table1` generic should be of the correct type.
+/// - `table2` generic should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSCompareMapTables(
     table1: &NSMapTable,
@@ -274,6 +281,9 @@ pub unsafe extern "C-unwind" fn NSCompareMapTables(
     unsafe { NSCompareMapTables(table1, table2) }.as_bool()
 }
 
+/// # Safety
+///
+/// `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
@@ -288,6 +298,11 @@ pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// - `key` must be a valid pointer.
+/// - `original_key` must be a valid pointer or null.
+/// - `value` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSMapMember(
     table: &NSMapTable,
@@ -307,18 +322,33 @@ pub unsafe extern "C-unwind" fn NSMapMember(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `key` must be a valid pointer or null.
     pub fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     pub fn NSMapInsert(table: &NSMapTable, key: *const c_void, value: *const c_void);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     pub fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *const c_void, value: *const c_void);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     pub fn NSMapInsertIfAbsent(
         table: &NSMapTable,
         key: *const c_void,
@@ -327,13 +357,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `key` must be a valid pointer or null.
     pub fn NSMapRemove(table: &NSMapTable, key: *const c_void);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     pub fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
 }
 
+/// # Safety
+///
+/// - `enumerator` must be a valid pointer.
+/// - `key` must be a valid pointer or null.
+/// - `value` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSNextMapEnumeratorPair(
     enumerator: NonNull<NSMapEnumerator>,
@@ -351,15 +392,24 @@ pub unsafe extern "C-unwind" fn NSNextMapEnumeratorPair(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `enumerator` must be a valid pointer.
     pub fn NSEndMapTableEnumeration(enumerator: NonNull<NSMapEnumerator>);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     pub fn NSCountMapTable(table: &NSMapTable) -> NSUInteger;
 }
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     #[doc(alias = "NSStringFromMapTable")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -373,6 +423,9 @@ impl NSString {
     }
 }
 
+/// # Safety
+///
+/// `table` generic should be of the correct type.
 #[cfg(feature = "NSArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllMapTableKeys(table: &NSMapTable) -> Retained<NSArray> {
@@ -384,6 +437,9 @@ pub unsafe extern "C-unwind" fn NSAllMapTableKeys(table: &NSMapTable) -> Retaine
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// `table` generic should be of the correct type.
 #[cfg(feature = "NSArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllMapTableValues(table: &NSMapTable) -> Retained<NSArray> {
@@ -463,6 +519,18 @@ unsafe impl RefEncode for NSMapTableValueCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// # Safety
+///
+/// - `key_call_backs` struct field 1 must be implemented correctly.
+/// - `key_call_backs` struct field 2 must be implemented correctly.
+/// - `key_call_backs` struct field 3 must be implemented correctly.
+/// - `key_call_backs` struct field 4 must be implemented correctly.
+/// - `key_call_backs` struct field 5 must be implemented correctly.
+/// - `key_call_backs` struct field 6 must be a valid pointer or null.
+/// - `value_call_backs` struct field 1 must be implemented correctly.
+/// - `value_call_backs` struct field 2 must be implemented correctly.
+/// - `value_call_backs` struct field 3 must be implemented correctly.
+/// - `zone` must be a valid pointer or null.
 #[cfg(all(feature = "NSString", feature = "NSZone"))]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
@@ -484,6 +552,17 @@ pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// - `key_call_backs` struct field 1 must be implemented correctly.
+/// - `key_call_backs` struct field 2 must be implemented correctly.
+/// - `key_call_backs` struct field 3 must be implemented correctly.
+/// - `key_call_backs` struct field 4 must be implemented correctly.
+/// - `key_call_backs` struct field 5 must be implemented correctly.
+/// - `key_call_backs` struct field 6 must be a valid pointer or null.
+/// - `value_call_backs` struct field 1 must be implemented correctly.
+/// - `value_call_backs` struct field 2 must be implemented correctly.
+/// - `value_call_backs` struct field 3 must be implemented correctly.
 #[cfg(feature = "NSString")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCreateMapTable(

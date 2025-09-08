@@ -336,6 +336,10 @@ impl UIImagePickerController {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -516,6 +520,10 @@ impl UIImagePickerController {
 ))]
 impl UIImagePickerController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `navigation_bar_class` probably has further requirements.
+        /// - `toolbar_class` probably has further requirements.
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
@@ -577,6 +585,9 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// # Safety
+        ///
+        /// `editing_info` generic should be of the correct type.
         #[deprecated]
         #[optional]
         #[unsafe(method(imagePickerController:didFinishPickingImage:editingInfo:))]
@@ -593,6 +604,9 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// # Safety
+        ///
+        /// `info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(imagePickerController:didFinishPickingMediaWithInfo:))]
         #[unsafe(method_family = none)]
@@ -616,6 +630,10 @@ extern_protocol!(
 
 #[cfg(feature = "UIImage")]
 impl UIImage {
+    /// # Safety
+    ///
+    /// - `completion_selector` must be a valid selector.
+    /// - `context_info` must be a valid pointer or null.
     #[doc(alias = "UIImageWriteToSavedPhotosAlbum")]
     #[cfg(feature = "UIImage")]
     #[inline]
@@ -655,6 +673,10 @@ pub unsafe extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `completion_selector` must be a valid selector.
+    /// - `context_info` must be a valid pointer or null.
     pub fn UISaveVideoAtPathToSavedPhotosAlbum(
         video_path: &NSString,
         completion_target: Option<&AnyObject>,

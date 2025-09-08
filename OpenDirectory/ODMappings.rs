@@ -75,6 +75,10 @@ impl ODMappings {
         /// Setter for [`functionAttributes`][Self::functionAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `function_attributes` generic should be of the correct type.
         #[unsafe(method(setFunctionAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionAttributes(&self, function_attributes: Option<&NSArray>);
@@ -92,6 +96,10 @@ impl ODMappings {
         ///
         ///
         /// Returns an ODRecordMap associated with the provided recordtype.
+        ///
+        /// # Safety
+        ///
+        /// `std_type` might not allow `None`.
         #[unsafe(method(recordMapForStandardRecordType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordMapForStandardRecordType(
@@ -104,6 +112,11 @@ impl ODMappings {
         ///
         ///
         /// Sets a particular ODRecordMap for a given standard record type.
+        ///
+        /// # Safety
+        ///
+        /// - `map` might not allow `None`.
+        /// - `std_type` might not allow `None`.
         #[unsafe(method(setRecordMap:forStandardRecordType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordMap_forStandardRecordType(

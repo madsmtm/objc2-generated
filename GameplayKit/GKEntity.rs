@@ -89,11 +89,17 @@ impl GKEntity {
         #[unsafe(method_family = none)]
         pub unsafe fn addComponent(&self, component: &GKComponent);
 
+        /// # Safety
+        ///
+        /// `component_class` probably has further requirements.
         #[unsafe(method(removeComponentForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeComponentForClass(&self, component_class: &AnyClass);
 
         #[cfg(feature = "GKComponent")]
+        /// # Safety
+        ///
+        /// `component_class` probably has further requirements.
         #[unsafe(method(componentForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentForClass(

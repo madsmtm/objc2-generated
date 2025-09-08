@@ -29,6 +29,10 @@ extern "C-unwind" {
     ///
     ///
     /// Finds and returns (by reference) the password for the specified SSID and keychain domain.
+    ///
+    /// # Safety
+    ///
+    /// `password` must be a valid pointer or null.
     #[cfg(feature = "CoreWLANTypes")]
     pub fn CWKeychainFindWiFiPassword(
         domain: CWKeychainDomain,
@@ -105,6 +109,11 @@ extern "C-unwind" {
     ///
     ///
     /// Finds and returns the 802.1X username and password stored for the specified SSID and keychain domain.
+    ///
+    /// # Safety
+    ///
+    /// - `username` must be a valid pointer or null.
+    /// - `password` must be a valid pointer or null.
     #[cfg(feature = "CoreWLANTypes")]
     pub fn CWKeychainFindWiFiEAPUsernameAndPassword(
         domain: CWKeychainDomain,
@@ -185,6 +194,10 @@ extern "C-unwind" {
     ///
     ///
     /// Finds and returns the identity stored for the specified SSID and keychain domain.
+    ///
+    /// # Safety
+    ///
+    /// `identity` must be a valid pointer or null.
     #[cfg(all(feature = "CoreWLANTypes", feature = "objc2-security"))]
     pub fn CWKeychainCopyWiFiEAPIdentity(
         domain: CWKeychainDomain,
@@ -233,6 +246,10 @@ extern "C-unwind" {
     ///
     ///
     /// Finds and returns all available identities.
+    ///
+    /// # Safety
+    ///
+    /// `list` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CWKeychainCopyEAPIdentityList(list: *mut *const CFArray) -> OSStatus;
 }
@@ -258,6 +275,11 @@ extern "C-unwind" {
     ///
     /// Finds and returns the 802.1X username and password stored for the specified SSID.
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    ///
+    /// # Safety
+    ///
+    /// - `username` must be a valid pointer or null.
+    /// - `password` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainFindWiFiEAPUsernameAndPassword() instead"]
     pub fn CWKeychainCopyEAPUsernameAndPassword(
@@ -330,6 +352,10 @@ extern "C-unwind" {
     ///
     /// Finds and returns the identity stored for the specified SSID and keychain domain.
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    ///
+    /// # Safety
+    ///
+    /// `identity` must be a valid pointer or null.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
     #[deprecated = "Use CWKeychainCopyWiFiEAPIdentity() instead"]
     pub fn CWKeychainCopyEAPIdentity(
@@ -399,6 +425,10 @@ extern "C-unwind" {
     ///
     /// Finds and returns (by reference) the password for the specified SSID.
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
+    ///
+    /// # Safety
+    ///
+    /// `password` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainFindWiFiPassword() instead"]
     pub fn CWKeychainCopyPassword(ssid_data: &CFData, password: *mut *const CFString) -> OSStatus;

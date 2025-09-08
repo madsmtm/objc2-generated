@@ -109,6 +109,10 @@ impl WebFrameView {
         /// Creates a print operation set up to print this frame
         ///
         /// Returns: A newly created print operation object
+        ///
+        /// # Safety
+        ///
+        /// `print_info` might not allow `None`.
         #[deprecated]
         #[unsafe(method(printOperationWithPrintInfo:))]
         #[unsafe(method_family = none)]

@@ -56,6 +56,10 @@ impl NSTimer {
         ) -> Retained<NSTimer>;
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `user_info` should be of the correct type.
         #[unsafe(method(timerWithTimeInterval:target:selector:userInfo:repeats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timerWithTimeInterval_target_selector_userInfo_repeats(
@@ -67,6 +71,10 @@ impl NSTimer {
         ) -> Retained<NSTimer>;
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `user_info` should be of the correct type.
         #[unsafe(method(scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledTimerWithTimeInterval_target_selector_userInfo_repeats(
@@ -82,6 +90,10 @@ impl NSTimer {
         /// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(timerWithTimeInterval:repeats:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timerWithTimeInterval_repeats_block(
@@ -95,6 +107,10 @@ impl NSTimer {
         /// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(scheduledTimerWithTimeInterval:repeats:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
@@ -109,6 +125,10 @@ impl NSTimer {
         /// - parameter:  interval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
         /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
         /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(initWithFireDate:interval:repeats:block:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFireDate_interval_repeats_block(
@@ -120,6 +140,10 @@ impl NSTimer {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// - `s` must be a valid selector.
+        /// - `ui` should be of the correct type.
         #[unsafe(method(initWithFireDate:interval:target:selector:userInfo:repeats:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFireDate_interval_target_selector_userInfo_repeats(

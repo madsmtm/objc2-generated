@@ -161,26 +161,44 @@ impl NSTabView {
         #[unsafe(method_family = none)]
         pub unsafe fn selectTabViewItemAtIndex(&self, index: NSInteger);
 
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(selectTabViewItemWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectTabViewItemWithIdentifier(&self, identifier: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeSelectedTabViewItemFromSender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeSelectedTabViewItemFromSender(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectFirstTabViewItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectFirstTabViewItem(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectLastTabViewItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectLastTabViewItem(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectNextTabViewItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectNextTabViewItem(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectPreviousTabViewItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectPreviousTabViewItem(&self, sender: Option<&AnyObject>);
@@ -327,6 +345,9 @@ impl NSTabView {
         #[unsafe(method_family = none)]
         pub unsafe fn tabViewItemAtIndex(&self, index: NSInteger) -> Retained<NSTabViewItem>;
 
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(indexOfTabViewItemWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfTabViewItemWithIdentifier(&self, identifier: &AnyObject) -> NSInteger;

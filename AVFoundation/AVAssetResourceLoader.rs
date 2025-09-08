@@ -533,6 +533,10 @@ impl AVAssetResourceLoadingRequest {
         /// Parameter `outError`: If obtaining the streaming content key request fails, will be set to an instance of NSError describing the failure.
         ///
         /// Returns: The key request data that must be transmitted to the key vendor to obtain the content key.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Use -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:] instead"]
         #[unsafe(method(streamingContentKeyRequestDataForApp:contentIdentifier:options:error:_))]
         #[unsafe(method_family = none)]
@@ -554,6 +558,10 @@ impl AVAssetResourceLoadingRequest {
         /// Returns: The persistable content key data that may be stored offline to answer future loading requests of the same content key.
         ///
         /// The data returned from this method may be used to immediately satisfy an AVAssetResourceLoadingDataRequest, as well as any subsequent requests for the same key url. The value of AVAssetResourceLoadingContentInformationRequest.contentType must be set to AVStreamingKeyDeliveryPersistentContentKeyType when responding with data created with this method.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead"]
         #[unsafe(method(persistentContentKeyFromKeyVendorResponse:options:error:_))]
         #[unsafe(method_family = none)]

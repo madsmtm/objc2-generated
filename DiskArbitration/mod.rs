@@ -292,6 +292,12 @@ extern "C-unwind" {
     /// Parameter `callback`: The callback function to call when a disk has appeared.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `match` generics must be of the correct type.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskAppearedCallback(
         session: &DASession,
@@ -326,6 +332,13 @@ extern "C-unwind" {
     /// Parameter `callback`: The callback function to call when a watched key changes.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `match` generics must be of the correct type.
+    /// - `watch` generic must be of the correct type.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskDescriptionChangedCallback(
         session: &DASession,
@@ -357,6 +370,12 @@ extern "C-unwind" {
     /// Parameter `callback`: The callback function to call when a disk has disappeared.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `match` generics must be of the correct type.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskDisappearedCallback(
         session: &DASession,
@@ -394,6 +413,11 @@ impl DADisk {
     /// Parameter `callback`: The callback function to call once the mount completes.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "DADiskMount")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -429,6 +453,12 @@ impl DADisk {
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
     ///
     /// Parameter `arguments`: The null-terminated list of mount options to pass to /sbin/mount -o.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
+    /// - `arguments` must be a valid pointer or null.
     #[doc(alias = "DADiskMountWithArguments")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -481,6 +511,12 @@ extern "C-unwind" {
     /// Parameter `callback`: The callback function to call when a volume is to be mounted.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `match` generics must be of the correct type.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskMountApprovalCallback(
         session: &DASession,
@@ -514,6 +550,11 @@ impl DADisk {
     /// Parameter `callback`: The callback function to call once the rename completes.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "DADiskRename")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -561,6 +602,11 @@ impl DADisk {
     /// Parameter `callback`: The callback function to call once the unmount completes.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "DADiskUnmount")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -609,6 +655,12 @@ extern "C-unwind" {
     /// Parameter `callback`: The callback function to call when a volume is to be unmounted.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `match` generics must be of the correct type.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskUnmountApprovalCallback(
         session: &DASession,
@@ -642,6 +694,11 @@ impl DADisk {
     /// Parameter `callback`: The callback function to call once the ejection completes.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "DADiskEject")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -690,6 +747,12 @@ extern "C-unwind" {
     /// Parameter `callback`: The callback function to call when a volume is to be ejected.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `match` generics must be of the correct type.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskEjectApprovalCallback(
         session: &DASession,
@@ -744,6 +807,13 @@ impl DADisk {
     /// Parameter `callback`: The callback function to call once the claim completes.
     ///
     /// Parameter `callbackContext`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `release` must be implemented correctly.
+    /// - `release_context` must be a valid pointer or null.
+    /// - `callback` must be implemented correctly.
+    /// - `callback_context` must be a valid pointer or null.
     #[doc(alias = "DADiskClaim")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -833,6 +903,12 @@ extern "C-unwind" {
     /// Parameter `callback`: The callback function to call when a disk has been probed.
     ///
     /// Parameter `context`: The user-defined context parameter to pass to the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `match` generics must be of the correct type.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskPeekCallback(
         session: &DASession,
@@ -888,6 +964,11 @@ extern "C-unwind" {
     /// Parameter `callback`: The registered callback function.
     ///
     /// Parameter `context`: The user-defined context parameter.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be a valid pointer.
+    /// - `context` must be a valid pointer or null.
     #[cfg(feature = "DASession")]
     pub fn DAUnregisterCallback(
         session: &DASession,
@@ -897,6 +978,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `callback` must be a valid pointer.
+    /// - `context` must be a valid pointer or null.
     #[cfg(feature = "DASession")]
     pub fn DAUnregisterApprovalCallback(
         session: &DASession,

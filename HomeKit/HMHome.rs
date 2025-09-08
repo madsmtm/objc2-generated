@@ -61,6 +61,10 @@ impl HMHome {
         /// Delegate that receives updates on the state of the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn HMHomeDelegate>>>;
@@ -68,6 +72,10 @@ impl HMHome {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn HMHomeDelegate>>);
@@ -75,6 +83,10 @@ impl HMHome {
         /// The name of the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -82,6 +94,10 @@ impl HMHome {
         /// Specifies whether this home is the primary home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isPrimary))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrimary(&self) -> bool;
@@ -89,6 +105,10 @@ impl HMHome {
         /// Specifies the state of the home hub.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(homeHubState))]
         #[unsafe(method_family = none)]
         pub unsafe fn homeHubState(&self) -> HMHomeHubState;
@@ -96,6 +116,10 @@ impl HMHome {
         /// A unique identifier for the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
@@ -136,6 +160,10 @@ impl HMHome {
         /// Array of HMAccessory objects that represents all accessories added to the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<HMAccessory>>;
@@ -282,6 +310,10 @@ impl HMHome {
         /// True if this home supports all of the requirements for adding a network router.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(supportsAddingNetworkRouter))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAddingNetworkRouter(&self) -> bool;
@@ -295,6 +327,10 @@ impl HMHome {
         /// HMUser object representing the current user of the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(currentUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUser(&self) -> Retained<HMUser>;
@@ -303,6 +339,10 @@ impl HMHome {
         /// Array of HMUser objects that represent all users associated with the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported."]
         #[unsafe(method(users))]
         #[unsafe(method_family = none)]
@@ -386,6 +426,10 @@ impl HMHome {
         /// Array of HMRoom objects that represents all rooms in the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rooms))]
         #[unsafe(method_family = none)]
         pub unsafe fn rooms(&self) -> Retained<NSArray<HMRoom>>;
@@ -451,6 +495,10 @@ impl HMHome {
         /// Array of HMZone objects that represents all the zones in the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(zones))]
         #[unsafe(method_family = none)]
         pub unsafe fn zones(&self) -> Retained<NSArray<HMZone>>;
@@ -501,6 +549,10 @@ impl HMHome {
         /// Array of HMServiceGroup objects that represents all service groups in the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(serviceGroups))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceGroups(&self) -> Retained<NSArray<HMServiceGroup>>;
@@ -551,6 +603,10 @@ impl HMHome {
         /// Array of HMActionSet objects that represents all the action sets in the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(actionSets))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionSets(&self) -> Retained<NSArray<HMActionSet>>;
@@ -636,6 +692,10 @@ impl HMHome {
         /// Array of HMTrigger objects that represents all the triggers in the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(triggers))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggers(&self) -> Retained<NSArray<HMTrigger>>;
@@ -693,6 +753,10 @@ impl HMHome {
         /// to get a MTRDeviceController object.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(matterControllerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterControllerID(&self) -> Retained<NSString>;
@@ -703,6 +767,10 @@ impl HMHome {
         /// to get a MTRDeviceController object.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(matterControllerXPCConnectBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterControllerXPCConnectBlock(
@@ -714,6 +782,10 @@ impl HMHome {
         /// This property can be passed as part of an MTRXPCDeviceControllerParameters to create an MTRDeviceController that will have access to the Apple Home Fabric.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(matterStartupParametersXPCConnectBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterStartupParametersXPCConnectBlock(

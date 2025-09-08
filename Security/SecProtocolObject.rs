@@ -9,10 +9,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `obj` must be a valid pointer.
     pub fn sec_retain(obj: *mut c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `obj` must be a valid pointer.
     pub fn sec_release(obj: *mut c_void);
 }
 

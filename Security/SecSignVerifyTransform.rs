@@ -54,6 +54,10 @@ extern "C" {
 /// cryptographic signature.   The InputIS defaults to kSecInputIsPlainText,
 /// and the DigestType and DigestLength default to something appropriate for
 /// the type of key you have supplied.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -92,6 +96,10 @@ pub unsafe extern "C-unwind" fn SecSignTransformCreate(
 /// cryptographic signature.  The InputIS defaults to kSecInputIsPlainText,
 /// and the DigestType and DigestLength default to something appropriate for
 /// the type of key you have supplied.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

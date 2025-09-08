@@ -59,6 +59,10 @@ unsafe impl RefEncode for LSAcceptanceFlags {
 /// be found, NULL is returned and outError (if not NULL) is populated.
 /// with kLSApplicationNotFoundErr.
 /// The caller is responsible for releasing this URL.
+///
+/// # Safety
+///
+/// `out_error` must be a valid pointer or null.
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] instead."]
 #[inline]
@@ -104,6 +108,10 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForURL(
 /// If no application could be found, NULL is returned and
 /// outError (if not NULL) is populated with kLSApplicationNotFoundErr.
 /// The caller is responsible for releasing this URL.
+///
+/// # Safety
+///
+/// `out_error` must be a valid pointer or null.
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenContentType:] instead."]
 #[inline]
@@ -147,6 +155,10 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForContentType(
 /// In macOS 10.15 and later, the returned array is sorted with the first element containing the
 /// best available application with the specified bundle identifier. Prior to macOS 10.15, the
 /// order of elements in the array was undefined.
+///
+/// # Safety
+///
+/// `out_error` must be a valid pointer or null.
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsWithBundleIdentifier:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForBundleIdentifier(
@@ -228,6 +240,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `outAcceptsItem`: Filled in with result. Must not be NULL.
+    ///
+    /// # Safety
+    ///
+    /// `out_accepts_item` must be a valid pointer.
     #[cfg(feature = "LSConstants")]
     pub fn LSCanURLAcceptURL(
         in_item_url: &CFURL,

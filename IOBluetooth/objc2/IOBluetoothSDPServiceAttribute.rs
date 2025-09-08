@@ -47,6 +47,10 @@ impl IOBluetoothSDPServiceAttribute {
         /// Returns: Returns the newly allocated service attribute object.  Returns nil if there was an error parsing the                 element value.  The returned IOBluetoothSDPDataElement object has been autoreleased, so it is not
         /// necessary for the caller to release it.  If the object is to be referenced and kept around, retain
         /// should be called.
+        ///
+        /// # Safety
+        ///
+        /// `attribute_element_value` might not allow `None`.
         #[unsafe(method(withID:attributeElementValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withID_attributeElementValue(
@@ -65,6 +69,10 @@ impl IOBluetoothSDPServiceAttribute {
         /// The returned IOBluetoothSDPDataElement object has been autoreleased, so it is not
         /// necessary for the caller to release it.  If the object is to be referenced and kept around, retain
         /// should be called.
+        ///
+        /// # Safety
+        ///
+        /// `attribute_element` might not allow `None`.
         #[unsafe(method(withID:attributeElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withID_attributeElement(
@@ -83,6 +91,10 @@ impl IOBluetoothSDPServiceAttribute {
         /// Parameter `attributeElementValue`: The data element value of the new service attribute
         ///
         /// Returns: Returns self if successful.  Returns nil if there was an error parsing the element value.
+        ///
+        /// # Safety
+        ///
+        /// `attribute_element_value` might not allow `None`.
         #[unsafe(method(initWithID:attributeElementValue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithID_attributeElementValue(
@@ -99,6 +111,10 @@ impl IOBluetoothSDPServiceAttribute {
         /// Parameter `attributeElement`: The data element of the new service attribute.
         ///
         /// Returns: Returns self if successful.  Returns nil if there was an error.
+        ///
+        /// # Safety
+        ///
+        /// `attribute_element` might not allow `None`.
         #[unsafe(method(initWithID:attributeElement:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithID_attributeElement(

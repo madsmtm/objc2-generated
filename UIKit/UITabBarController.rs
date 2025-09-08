@@ -266,6 +266,10 @@ impl UITabBarController {
         pub unsafe fn selectedViewController(&self) -> Option<Retained<UIViewController>>;
 
         /// Setter for [`selectedViewController`][Self::selectedViewController].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setSelectedViewController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedViewController(
@@ -612,6 +616,10 @@ impl UIViewController {
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         /// Setter for [`tabBarItem`][Self::tabBarItem].
+        ///
+        /// # Safety
+        ///
+        /// `tab_bar_item` might not allow `None`.
         #[unsafe(method(setTabBarItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTabBarItem(&self, tab_bar_item: Option<&UITabBarItem>);

@@ -143,6 +143,9 @@ impl UIBarItem {
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[cfg(feature = "UIControl")]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(setTitleTextAttributes:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributes_forState(

@@ -19,6 +19,10 @@ use crate::*;
 /// Parameter `count`: The number of elements in the options parameter.
 ///
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
+///
+/// # Safety
+///
+/// `options` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPClientPreferencesSetApplicationOptions(
     application_id: &CFString,
@@ -49,6 +53,10 @@ extern "C-unwind" {
     /// NULL if no options are defined or an error occurred.
     ///
     /// When you are finished, use free() to release a non-NULL return value.
+    ///
+    /// # Safety
+    ///
+    /// `count` must be a valid pointer.
     pub fn DHCPClientPreferencesCopyApplicationOptions(
         application_id: &CFString,
         count: NonNull<CFIndex>,

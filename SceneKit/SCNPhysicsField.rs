@@ -260,6 +260,10 @@ impl SCNPhysicsField {
             feature = "objc2-core-foundation"
         ))]
         /// A field force with a custom force evaluator.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(customFieldWithEvaluationBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customFieldWithEvaluationBlock(

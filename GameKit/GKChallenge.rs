@@ -355,6 +355,9 @@ impl GKScore {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -373,6 +376,9 @@ impl GKScore {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(
@@ -396,6 +402,9 @@ impl GKLeaderboardEntry {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -414,6 +423,9 @@ impl GKLeaderboardEntry {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(
@@ -437,6 +449,9 @@ impl GKAchievement {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -455,6 +470,9 @@ impl GKAchievement {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(
@@ -474,6 +492,10 @@ impl GKScore {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// * This method is obsolete. Calling this method does nothing and will return nil **
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(challengeComposeControllerWithPlayers:message:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithPlayers_message_completionHandler(
@@ -493,6 +515,10 @@ impl GKAchievement {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// * This method is obsolete. Calling this method does nothing and will return nil **
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(challengeComposeControllerWithPlayers:message:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithPlayers_message_completionHandler(

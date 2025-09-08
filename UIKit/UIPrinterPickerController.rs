@@ -137,6 +137,9 @@ impl UIPrinterPickerController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentAnimated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentAnimated_completionHandler(
@@ -151,6 +154,9 @@ impl UIPrinterPickerController {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentFromRect:inView:animated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentFromRect_inView_animated_completionHandler(
@@ -162,6 +168,9 @@ impl UIPrinterPickerController {
         ) -> bool;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentFromBarButtonItem:animated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentFromBarButtonItem_animated_completionHandler(

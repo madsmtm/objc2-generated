@@ -76,6 +76,9 @@ impl VNGeneratePersonSegmentationRequest {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
@@ -84,6 +87,9 @@ impl VNGeneratePersonSegmentationRequest {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(

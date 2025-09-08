@@ -153,6 +153,10 @@ impl UILabel {
 
         #[cfg(feature = "UIFont")]
         /// Setter for [`font`][Self::font].
+        ///
+        /// # Safety
+        ///
+        /// `font` might not allow `None`.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&UIFont>);
@@ -164,6 +168,10 @@ impl UILabel {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`textColor`][Self::textColor].
+        ///
+        /// # Safety
+        ///
+        /// `text_color` might not allow `None`.
         #[unsafe(method(setTextColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, text_color: Option<&UIColor>);

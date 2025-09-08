@@ -438,6 +438,10 @@ impl ICScannerFeatureEnumeration {
         pub unsafe fn currentValue(&self) -> Retained<AnyObject>;
 
         /// Setter for [`currentValue`][Self::currentValue].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setCurrentValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentValue(&self, current_value: &AnyObject);

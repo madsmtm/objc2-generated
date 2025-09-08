@@ -386,6 +386,10 @@ pub unsafe trait NSObjectUIAccessibility:
         ) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`accessibilityUserInputLabels`][Self::accessibilityUserInputLabels].
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_user_input_labels` might not allow `None`.
         #[unsafe(method(setAccessibilityUserInputLabels:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUserInputLabels(
@@ -422,6 +426,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityHeaderElements`][Self::accessibilityHeaderElements].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_header_elements` generic should be of the correct type.
         #[unsafe(method(setAccessibilityHeaderElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHeaderElements(
@@ -493,6 +501,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`isAccessibilityElementBlock`][Self::isAccessibilityElementBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `is_accessibility_element_block` must be a valid pointer or null.
         #[unsafe(method(setIsAccessibilityElementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setIsAccessibilityElementBlock(
@@ -510,6 +522,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityLabelBlock`][Self::accessibilityLabelBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_label_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityLabelBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabelBlock(
@@ -527,6 +543,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityValueBlock`][Self::accessibilityValueBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_value_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityValueBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValueBlock(
@@ -544,6 +564,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityHintBlock`][Self::accessibilityHintBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_hint_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityHintBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHintBlock(
@@ -561,6 +585,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityTraitsBlock`][Self::accessibilityTraitsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_traits_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityTraitsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTraitsBlock(
@@ -579,6 +607,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityIdentifierBlock`][Self::accessibilityIdentifierBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_identifier_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityIdentifierBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIdentifierBlock(
@@ -599,6 +631,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityHeaderElementsBlock`][Self::accessibilityHeaderElementsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_header_elements_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityHeaderElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHeaderElementsBlock(
@@ -619,6 +655,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityAttributedLabelBlock`][Self::accessibilityAttributedLabelBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_attributed_label_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityAttributedLabelBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedLabelBlock(
@@ -639,6 +679,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityAttributedHintBlock`][Self::accessibilityAttributedHintBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_attributed_hint_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityAttributedHintBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedHintBlock(
@@ -656,6 +700,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityLanguageBlock`][Self::accessibilityLanguageBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_language_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityLanguageBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLanguageBlock(
@@ -676,6 +724,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityTextualContextBlock`][Self::accessibilityTextualContextBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_textual_context_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityTextualContextBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextualContextBlock(
@@ -696,6 +748,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityUserInputLabelsBlock`][Self::accessibilityUserInputLabelsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_user_input_labels_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityUserInputLabelsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUserInputLabelsBlock(
@@ -716,6 +772,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityAttributedUserInputLabelsBlock`][Self::accessibilityAttributedUserInputLabelsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_attributed_user_input_labels_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityAttributedUserInputLabelsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedUserInputLabelsBlock(
@@ -736,6 +796,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityAttributedValueBlock`][Self::accessibilityAttributedValueBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_attributed_value_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityAttributedValueBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedValueBlock(
@@ -756,6 +820,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityElementsHiddenBlock`][Self::accessibilityElementsHiddenBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_elements_hidden_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityElementsHiddenBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElementsHiddenBlock(
@@ -776,6 +844,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityRespondsToUserInteractionBlock`][Self::accessibilityRespondsToUserInteractionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_responds_to_user_interaction_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityRespondsToUserInteractionBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRespondsToUserInteractionBlock(
@@ -793,6 +865,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityViewIsModalBlock`][Self::accessibilityViewIsModalBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_view_is_modal_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityViewIsModalBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityViewIsModalBlock(
@@ -813,6 +889,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityShouldGroupAccessibilityChildrenBlock`][Self::accessibilityShouldGroupAccessibilityChildrenBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_should_group_accessibility_children_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityShouldGroupAccessibilityChildrenBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityShouldGroupAccessibilityChildrenBlock(
@@ -852,6 +932,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityElementsBlock`][Self::accessibilityElementsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_elements_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElementsBlock(
@@ -869,6 +953,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`automationElementsBlock`][Self::automationElementsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `automation_elements_block` must be a valid pointer or null.
         #[unsafe(method(setAutomationElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAutomationElementsBlock(
@@ -889,6 +977,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityContainerTypeBlock`][Self::accessibilityContainerTypeBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_container_type_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityContainerTypeBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityContainerTypeBlock(
@@ -909,6 +1001,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityActivationPointBlock`][Self::accessibilityActivationPointBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_activation_point_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityActivationPointBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityActivationPointBlock(
@@ -926,6 +1022,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityFrameBlock`][Self::accessibilityFrameBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_frame_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityFrameBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFrameBlock(
@@ -946,6 +1046,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityNavigationStyleBlock`][Self::accessibilityNavigationStyleBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_navigation_style_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityNavigationStyleBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNavigationStyleBlock(
@@ -963,6 +1067,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityPathBlock`][Self::accessibilityPathBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_path_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityPathBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPathBlock(
@@ -980,6 +1088,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityActivateBlock`][Self::accessibilityActivateBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_activate_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityActivateBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityActivateBlock(
@@ -997,6 +1109,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityIncrementBlock`][Self::accessibilityIncrementBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_increment_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityIncrementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIncrementBlock(
@@ -1014,6 +1130,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityDecrementBlock`][Self::accessibilityDecrementBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_decrement_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityDecrementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDecrementBlock(
@@ -1034,6 +1154,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityPerformEscapeBlock`][Self::accessibilityPerformEscapeBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_perform_escape_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityPerformEscapeBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPerformEscapeBlock(
@@ -1051,6 +1175,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityMagicTapBlock`][Self::accessibilityMagicTapBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_magic_tap_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityMagicTapBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMagicTapBlock(
@@ -1071,6 +1199,10 @@ pub unsafe trait NSObjectUIAccessibility:
         /// Setter for [`accessibilityCustomActionsBlock`][Self::accessibilityCustomActionsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_custom_actions_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityCustomActionsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomActionsBlock(
@@ -1375,6 +1507,10 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
         ) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityPreviousTextNavigationElement`][Self::accessibilityPreviousTextNavigationElement].
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_previous_text_navigation_element` should be of the correct type.
         #[unsafe(method(setAccessibilityPreviousTextNavigationElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPreviousTextNavigationElement(
@@ -1391,6 +1527,10 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
         ) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`accessibilityNextTextNavigationElement`][Self::accessibilityNextTextNavigationElement].
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_next_text_navigation_element` should be of the correct type.
         #[unsafe(method(setAccessibilityNextTextNavigationElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNextTextNavigationElement(
@@ -1411,6 +1551,10 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
         /// Setter for [`accessibilityPreviousTextNavigationElementBlock`][Self::accessibilityPreviousTextNavigationElementBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_previous_text_navigation_element_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityPreviousTextNavigationElementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPreviousTextNavigationElementBlock(
@@ -1431,6 +1575,10 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
         /// Setter for [`accessibilityNextTextNavigationElementBlock`][Self::accessibilityNextTextNavigationElementBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_next_text_navigation_element_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityNextTextNavigationElementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNextTextNavigationElementBlock(
@@ -1494,6 +1642,10 @@ pub unsafe trait NSObjectUIAccessibilityTextOperations:
         /// Setter for [`accessibilityTextInputResponderBlock`][Self::accessibilityTextInputResponderBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_text_input_responder_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityTextInputResponderBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextInputResponderBlock(
@@ -1508,6 +1660,9 @@ impl private_NSObjectUIAccessibilityTextOperations::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibilityTextOperations for NSObject {}
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `argument` should be of the correct type.
     #[cfg(feature = "UIAccessibilityConstants")]
     pub fn UIAccessibilityPostNotification(
         notification: UIAccessibilityNotifications,

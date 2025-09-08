@@ -82,6 +82,9 @@ extern_conformance!(
 impl NSExpression {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[unsafe(method(expressionWithFormat:argumentArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionWithFormat_argumentArray(
@@ -89,6 +92,9 @@ impl NSExpression {
             arguments: &NSArray,
         ) -> Retained<NSExpression>;
 
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(expressionForConstantValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForConstantValue(obj: Option<&AnyObject>)
@@ -109,6 +115,9 @@ impl NSExpression {
         pub unsafe fn expressionForKeyPath(key_path: &NSString) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(expressionForFunction:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForFunction_arguments(
@@ -154,6 +163,9 @@ impl NSExpression {
         ) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(expressionForFunction:selectorName:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForFunction_selectorName_arguments(
@@ -167,6 +179,9 @@ impl NSExpression {
         pub unsafe fn expressionForAnyKey() -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `block` block's return must be a valid pointer.
         #[unsafe(method(expressionForBlock:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForBlock_arguments(
@@ -262,6 +277,11 @@ impl NSExpression {
         pub unsafe fn falseExpression(&self) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer or null.
         #[unsafe(method(expressionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionBlock(
@@ -277,6 +297,10 @@ impl NSExpression {
         >;
 
         #[cfg(feature = "NSDictionary")]
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `context` generic should be of the correct type.
         #[unsafe(method(expressionValueWithObject:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionValueWithObject_context(

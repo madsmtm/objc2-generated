@@ -22,6 +22,10 @@ use crate::*;
 /// Parameter `ssidArray`: A CFArray of CFStrings of the SSIDs.
 ///
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
+///
+/// # Safety
+///
+/// `ssid_array` generic must be of the correct type.
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> bool {

@@ -33,6 +33,10 @@ impl CKOperation {
         /// See the CKOperationConfiguration class description for info on how this configuration composes with CKOperationGroup.defaultConfiguration
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<CKOperationConfiguration>;
@@ -40,6 +44,10 @@ impl CKOperation {
         /// Setter for [`configuration`][Self::configuration].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&CKOperationConfiguration>);
@@ -48,12 +56,20 @@ impl CKOperation {
         /// The group this operation is associated with
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(group))]
         #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Option<Retained<CKOperationGroup>>;
 
         #[cfg(feature = "CKOperationGroup")]
         /// Setter for [`group`][Self::group].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGroup(&self, group: Option<&CKOperationGroup>);
@@ -64,6 +80,10 @@ impl CKOperation {
         /// This value is chosen by the system, and will be unique to this instance of a CKOperation.  This identifier will be sent to Apple's servers, and can be used to identify any server-side logging associated with this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(operationID))]
         #[unsafe(method_family = none)]
         pub unsafe fn operationID(&self) -> Retained<CKOperationID>;
@@ -79,6 +99,10 @@ impl CKOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(longLivedOperationWasPersistedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn longLivedOperationWasPersistedBlock(&self)
@@ -88,6 +112,10 @@ impl CKOperation {
         /// Setter for [`longLivedOperationWasPersistedBlock`][Self::longLivedOperationWasPersistedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setLongLivedOperationWasPersistedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLongLivedOperationWasPersistedBlock(
@@ -271,6 +299,10 @@ impl CKOperation {
     extern_methods!(
         #[cfg(feature = "CKContainer")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(container))]
         #[unsafe(method_family = none)]
@@ -278,42 +310,70 @@ impl CKOperation {
 
         #[cfg(feature = "CKContainer")]
         /// Setter for [`container`][Self::container].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(setContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(allowsCellularAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
         /// Setter for [`allowsCellularAccess`][Self::allowsCellularAccess].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(setAllowsCellularAccess:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(isLongLived))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLongLived(&self) -> bool;
 
         /// Setter for [`isLongLived`][Self::isLongLived].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(setLongLived:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLongLived(&self, long_lived: bool);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(timeoutIntervalForRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
 
         /// Setter for [`timeoutIntervalForRequest`][Self::timeoutIntervalForRequest].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(setTimeoutIntervalForRequest:))]
         #[unsafe(method_family = none)]
@@ -323,12 +383,20 @@ impl CKOperation {
         );
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(timeoutIntervalForResource))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
 
         /// Setter for [`timeoutIntervalForResource`][Self::timeoutIntervalForResource].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(setTimeoutIntervalForResource:))]
         #[unsafe(method_family = none)]

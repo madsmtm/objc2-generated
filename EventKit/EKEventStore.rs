@@ -112,6 +112,9 @@ impl EKEventStore {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[unsafe(method(requestFullAccessToEventsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestFullAccessToEventsWithCompletion(
@@ -120,6 +123,9 @@ impl EKEventStore {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[unsafe(method(requestWriteOnlyAccessToEventsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestWriteOnlyAccessToEventsWithCompletion(
@@ -128,6 +134,9 @@ impl EKEventStore {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[unsafe(method(requestFullAccessToRemindersWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestFullAccessToRemindersWithCompletion(
@@ -136,6 +145,9 @@ impl EKEventStore {
         );
 
         #[cfg(all(feature = "EKTypes", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[deprecated = "Use -requestFullAccessToEventsWithCompletion:, -requestWriteOnlyAccessToEventsWithCompletion:, or -requestFullAccessToRemindersWithCompletion:"]
         #[unsafe(method(requestAccessToEntityType:completion:))]
         #[unsafe(method_family = none)]
@@ -431,6 +443,10 @@ impl EKEventStore {
         ///
         /// Parameter `block`: The block to call for each event. Your block should return YES in the stop
         /// parameter to stop iterating.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(enumerateEventsMatchingPredicate:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateEventsMatchingPredicate_usingBlock(
@@ -545,6 +561,10 @@ impl EKEventStore {
         /// Given a value returned from fetchRemindersMatchingPredicate, this method can be used to
         /// cancel the request. Once called, the completion block specified in fetchReminders... will
         /// not be called.
+        ///
+        /// # Safety
+        ///
+        /// `fetch_identifier` should be of the correct type.
         #[unsafe(method(cancelFetchRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelFetchRequest(&self, fetch_identifier: &AnyObject);

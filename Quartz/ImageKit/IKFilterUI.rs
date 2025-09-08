@@ -109,6 +109,13 @@ pub unsafe trait CIFilterIKFilterUIAddition:
         /// The development set is targeted towards the development of filters and client apps. Parameters in this set are either experimental or for debugging purposes and should not be shown in a shipping product.
         /// IKUImaxSize:(NSSize)maxSize;    Maximum allowed dimension of the returned view. If the size requested is too small, the filter is expected to return a view as small as possible. It is up to the client to verify that the returned view fits into his context.
         /// IKUIFlavorAllowFallback:Boolean    If a requested flavor set-size combination is not supported, the filter can return a view for a different set-size combination. If this is set to no (which is the default), NULL should be returned by the filter
+        ///
+        /// # Safety
+        ///
+        /// - `in_ui_configuration` generic should be of the correct type.
+        /// - `in_ui_configuration` might not allow `None`.
+        /// - `in_keys` generic should be of the correct type.
+        /// - `in_keys` might not allow `None`.
         #[unsafe(method(viewForUIConfiguration:excludedKeys:))]
         #[unsafe(method_family = none)]
         unsafe fn viewForUIConfiguration_excludedKeys(
@@ -136,6 +143,13 @@ extern_protocol!(
         /// The provideViewForUIConfiguration gets called, when a client requests a filter UI by calling viewForUIConfiguration:excludedKeys.
         ///
         /// See description in viewForUIConfiguration:excludedKeys for details on the parameters. If a filter cannot provide a IKFilterUIView for a given UIConfiguration, it can return nil and the CoreImageKit framework will try to provide a UI for it instead.
+        ///
+        /// # Safety
+        ///
+        /// - `in_ui_configuration` generic should be of the correct type.
+        /// - `in_ui_configuration` might not allow `None`.
+        /// - `in_keys` generic should be of the correct type.
+        /// - `in_keys` might not allow `None`.
         #[unsafe(method(provideViewForUIConfiguration:excludedKeys:))]
         #[unsafe(method_family = none)]
         unsafe fn provideViewForUIConfiguration_excludedKeys(

@@ -48,6 +48,9 @@ extern_conformance!(
 impl UIContextualAction {
     extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(contextualActionWithStyle:title:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextualActionWithStyle_title_handler(
@@ -62,6 +65,11 @@ impl UIContextualAction {
         pub unsafe fn style(&self) -> UIContextualActionStyle;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> UIContextualActionHandler;

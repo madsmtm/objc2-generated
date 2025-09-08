@@ -59,6 +59,9 @@ impl MKPlacemark {
             coordinate: CLLocationCoordinate2D,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `address_dictionary` generic should be of the correct type.
         #[unsafe(method(initWithCoordinate:addressDictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_addressDictionary(
@@ -78,6 +81,10 @@ impl MKPlacemark {
         ) -> Retained<Self>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;

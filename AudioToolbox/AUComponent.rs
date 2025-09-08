@@ -650,6 +650,10 @@ extern "C-unwind" {
     ///
     /// Returns: noErr, or an error representing the reasons why the audio unit was not able
     /// to be initialized successfully
+    ///
+    /// # Safety
+    ///
+    /// `in_unit` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitInitialize(in_unit: AudioUnit) -> OSStatus;
 }
@@ -670,6 +674,10 @@ extern "C-unwind" {
     /// Returns: noErr, or an error representing the reasons why the audio unit was not able
     /// to be initialized successfully. Typically this call won't return an error
     /// unless the audio unit in question is no longer valid.
+    ///
+    /// # Safety
+    ///
+    /// `in_unit` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitUninitialize(in_unit: AudioUnit) -> OSStatus;
 }
@@ -700,6 +708,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or various audio unit errors related to properties
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `out_data_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetPropertyInfo(
         in_unit: AudioUnit,
@@ -734,6 +748,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or various audio unit errors related to properties
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
+    /// - `io_data_size` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetProperty(
         in_unit: AudioUnit,
@@ -770,6 +790,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or various audio unit errors related to properties
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `in_data` must be a valid pointer or null.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitSetProperty(
         in_unit: AudioUnit,
@@ -803,6 +828,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or various audio unit errors related to properties
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_proc_user_data` must be a valid pointer or null.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitAddPropertyListener(
         in_unit: AudioUnit,
@@ -829,6 +860,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or various audio unit errors related to properties
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_proc_user_data` must be a valid pointer or null.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitRemovePropertyListenerWithUserData(
         in_unit: AudioUnit,
@@ -860,6 +897,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or an audio unit error code
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_proc_user_data` must be a valid pointer or null.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitAddRenderNotify(
         in_unit: AudioUnit,
@@ -881,6 +924,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or an audio unit error code
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_proc_user_data` must be a valid pointer or null.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitRemoveRenderNotify(
         in_unit: AudioUnit,
@@ -908,6 +957,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or an audio unit error code (such as InvalidParameter)
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `out_value` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitGetParameter(
         in_unit: AudioUnit,
@@ -941,6 +995,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or an audio unit error code (such as InvalidParameter)
+    ///
+    /// # Safety
+    ///
+    /// `in_unit` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitSetParameter(
         in_unit: AudioUnit,
@@ -992,6 +1050,13 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or an audio unit render error
+    ///
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `io_action_flags` must be a valid pointer or null.
+    /// - `in_time_stamp` must be a valid pointer.
+    /// - `io_data` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitRender(
         in_unit: AudioUnit,
@@ -1004,6 +1069,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `io_action_flags` must be a valid pointer or null.
+    /// - `in_time_stamp` must be a valid pointer.
+    /// - `io_data` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitProcess(
         in_unit: AudioUnit,
@@ -1015,6 +1086,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_unit` must be a valid pointer.
+    /// - `io_action_flags` must be a valid pointer or null.
+    /// - `in_time_stamp` must be a valid pointer.
+    /// - `in_input_buffer_lists` must be a valid pointer.
+    /// - `io_output_buffer_lists` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioUnitProcessMultiple(
         in_unit: AudioUnit,
@@ -1051,6 +1129,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr, or an audio unit error
+    ///
+    /// # Safety
+    ///
+    /// `in_unit` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioUnitReset(
         in_unit: AudioUnit,
@@ -1076,6 +1158,11 @@ extern "C-unwind" {
     /// This allows a publishing application to register its audio (input/)output unit as being able
     /// to be redirected and repurposed as an audio unit effect, generator, music device or music
     /// effect by another host application.
+    ///
+    /// # Safety
+    ///
+    /// - `in_desc` must be a valid pointer.
+    /// - `in_output_unit` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
     pub fn AudioOutputUnitPublish(
@@ -1096,6 +1183,10 @@ extern "C-unwind" {
     /// Parameter `comp`: The AudioComponent being queried.
     ///
     /// Returns: The CFAbsoluteTime at which the node was last active (0 if never).
+    ///
+    /// # Safety
+    ///
+    /// `comp` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
     pub fn AudioComponentGetLastActiveTime(comp: AudioComponent) -> CFAbsoluteTime;
@@ -1114,6 +1205,10 @@ extern "C-unwind" {
     ///
     /// Note that the bundle ID of the process calling this API must prefix (or match)
     /// the provided extension identifier.
+    ///
+    /// # Safety
+    ///
+    /// `audio_component_info` generic must be of the correct type.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioUnitExtensionSetComponentList(
         extension_identifier: &CFString,

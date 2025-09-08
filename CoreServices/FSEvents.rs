@@ -151,6 +151,11 @@ pub type FSEventStreamCallback = Option<
 >;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
+    /// - `paths_to_watch` generic must be of the correct type.
     pub fn FSEventStreamCreate(
         allocator: Option<&CFAllocator>,
         callback: FSEventStreamCallback,
@@ -163,6 +168,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
+    /// - `paths_to_watch_relative_to_device` generic must be of the correct type.
     #[cfg(feature = "libc")]
     pub fn FSEventStreamCreateRelativeToDevice(
         allocator: Option<&CFAllocator>,
@@ -177,15 +187,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamGetLatestEventId(stream_ref: ConstFSEventStreamRef)
         -> FSEventStreamEventId;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn FSEventStreamGetDeviceBeingWatched(stream_ref: ConstFSEventStreamRef) -> libc::dev_t;
 }
 
+/// # Safety
+///
+/// `stream_ref` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn FSEventStreamCopyPathsBeingWatched(
     stream_ref: ConstFSEventStreamRef,
@@ -241,14 +260,23 @@ pub unsafe extern "C-unwind" fn FSEventsPurgeEventsForDeviceUpToEventId(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamRetain(stream_ref: FSEventStreamRef);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamRelease(stream_ref: FSEventStreamRef);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     #[deprecated = "Use FSEventStreamSetDispatchQueue instead."]
     pub fn FSEventStreamScheduleWithRunLoop(
         stream_ref: FSEventStreamRef,
@@ -258,6 +286,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     #[deprecated = "Use FSEventStreamSetDispatchQueue instead."]
     pub fn FSEventStreamUnscheduleFromRunLoop(
         stream_ref: FSEventStreamRef,
@@ -267,14 +298,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     #[cfg(feature = "dispatch2")]
     pub fn FSEventStreamSetDispatchQueue(stream_ref: FSEventStreamRef, q: Option<&DispatchQueue>);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamInvalidate(stream_ref: FSEventStreamRef);
 }
 
+/// # Safety
+///
+/// `stream_ref` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn FSEventStreamStart(stream_ref: FSEventStreamRef) -> bool {
     extern "C-unwind" {
@@ -285,21 +325,36 @@ pub unsafe extern "C-unwind" fn FSEventStreamStart(stream_ref: FSEventStreamRef)
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamFlushAsync(stream_ref: FSEventStreamRef) -> FSEventStreamEventId;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamFlushSync(stream_ref: FSEventStreamRef);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamStop(stream_ref: FSEventStreamRef);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `stream_ref` must be a valid pointer.
     pub fn FSEventStreamShow(stream_ref: ConstFSEventStreamRef);
 }
 
+/// # Safety
+///
+/// `stream_ref` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn FSEventStreamCopyDescription(
     stream_ref: ConstFSEventStreamRef,
@@ -314,6 +369,10 @@ pub unsafe extern "C-unwind" fn FSEventStreamCopyDescription(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// # Safety
+///
+/// - `stream_ref` must be a valid pointer.
+/// - `paths_to_exclude` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn FSEventStreamSetExclusionPaths(
     stream_ref: FSEventStreamRef,

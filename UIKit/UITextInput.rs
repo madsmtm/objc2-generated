@@ -317,6 +317,10 @@ extern_protocol!(
         /// Setter for [`markedTextStyle`][Self::markedTextStyle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `marked_text_style` generic should be of the correct type.
         #[unsafe(method(setMarkedTextStyle:))]
         #[unsafe(method_family = none)]
         unsafe fn setMarkedTextStyle(
@@ -549,11 +553,17 @@ extern_protocol!(
         unsafe fn insertDictationResultPlaceholder(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `placeholder` should be of the correct type.
         #[optional]
         #[unsafe(method(frameForDictationResultPlaceholder:))]
         #[unsafe(method_family = none)]
         unsafe fn frameForDictationResultPlaceholder(&self, placeholder: &AnyObject) -> CGRect;
 
+        /// # Safety
+        ///
+        /// `placeholder` should be of the correct type.
         #[optional]
         #[unsafe(method(removeDictationResultPlaceholder:willInsertResult:))]
         #[unsafe(method_family = none)]
@@ -964,6 +974,9 @@ extern_conformance!(
 impl UITextInputStringTokenizer {
     extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UITextInputTraits"))]
+        /// # Safety
+        ///
+        /// `text_input` must implement UITextInput.
         #[unsafe(method(initWithTextInput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextInput(

@@ -173,6 +173,10 @@ impl MDLAsset {
         /// This can be used to get references to all MDLMesh objects, MDLLights,
         /// etc. if objectClass is not a subclass of MDLObject, an exception will be
         /// raised.
+        ///
+        /// # Safety
+        ///
+        /// `object_class` probably has further requirements.
         #[unsafe(method(childObjectsOfClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn childObjectsOfClass(

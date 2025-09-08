@@ -60,6 +60,10 @@ extern_protocol!(
         /// anything it deems appropriate.
         /// The app should call the provided completion handler once it is ready to play
         /// something.
+        ///
+        /// # Safety
+        ///
+        /// `content_items` generic should be of the correct type.
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[unsafe(method(playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:))]

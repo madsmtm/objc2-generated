@@ -113,6 +113,9 @@ impl MPSNDArrayIdentity {
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
+        /// # Safety
+        ///
+        /// `dimension_sizes` must be a valid pointer.
         #[unsafe(method(reshapeWithCommandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandBuffer_sourceArray_dimensionCount_dimensionSizes_destinationArray(
@@ -136,6 +139,9 @@ impl MPSNDArrayIdentity {
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
+        /// # Safety
+        ///
+        /// `dimension_sizes` must be a valid pointer.
         #[unsafe(method(reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandEncoder_commandBuffer_sourceArray_dimensionCount_dimensionSizes_destinationArray(

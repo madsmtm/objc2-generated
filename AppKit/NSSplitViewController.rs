@@ -306,11 +306,19 @@ impl NSSplitViewController {
 impl NSSplitViewController {
     extern_methods!(
         /// Animatedly collapses or uncollapses the first sidebar split view item in the receiver. Does nothing if the receiver does not contain any sidebars.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleSidebar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleSidebar(&self, sender: Option<&AnyObject>);
 
         /// Animatedly collapses or uncollapses the first inspector split view item in the receiver. Does nothing if the receiver does not contain any inspectors.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleInspector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleInspector(&self, sender: Option<&AnyObject>);

@@ -69,6 +69,9 @@ impl UIPasteConfiguration {
             acceptable_type_identifiers: &NSArray<NSString>,
         );
 
+        /// # Safety
+        ///
+        /// `a_class` must implement NSItemProviderReading.
         #[unsafe(method(initWithTypeIdentifiersForAcceptingClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTypeIdentifiersForAcceptingClass(
@@ -76,6 +79,9 @@ impl UIPasteConfiguration {
             a_class: &AnyClass,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `a_class` must implement NSItemProviderReading.
         #[unsafe(method(addTypeIdentifiersForAcceptingClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTypeIdentifiersForAcceptingClass(&self, a_class: &AnyClass);

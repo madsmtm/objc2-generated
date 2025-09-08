@@ -1352,6 +1352,10 @@ impl MPSRNNImageInferenceLayer {
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
@@ -1817,6 +1821,11 @@ impl MPSRNNMatrixInferenceLayer {
         ///                                                                 recurrentInputState: recurrent0
         ///                                                                recurrentOutputState: nil];
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// - `source_offsets` must be a valid pointer or null.
+        /// - `destination_offsets` must be a valid pointer or null.
         #[unsafe(method(encodeSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:recurrentInputState:recurrentOutputStates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSequenceToCommandBuffer_sourceMatrices_sourceOffsets_destinationMatrices_destinationOffsets_recurrentInputState_recurrentOutputStates(
@@ -1907,6 +1916,10 @@ impl MPSRNNMatrixInferenceLayer {
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
@@ -2458,6 +2471,11 @@ impl MPSRNNMatrixTrainingLayer {
         /// See: initWithDevice or
         ///
         /// See: createWeightMatrices.
+        ///
+        /// # Safety
+        ///
+        /// - `source_offsets` must be a valid pointer or null.
+        /// - `destination_offsets` must be a valid pointer or null.
         #[unsafe(method(encodeForwardSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:trainingStates:recurrentInputState:recurrentOutputStates:weights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeForwardSequenceToCommandBuffer_sourceMatrices_sourceOffsets_destinationMatrices_destinationOffsets_trainingStates_recurrentInputState_recurrentOutputStates_weights(
@@ -2555,6 +2573,12 @@ impl MPSRNNMatrixTrainingLayer {
         /// See: initWithDevice or
         ///
         /// See: createWeightMatrices.
+        ///
+        /// # Safety
+        ///
+        /// - `forward_source_offsets` must be a valid pointer or null.
+        /// - `source_gradient_offsets` must be a valid pointer or null.
+        /// - `destination_offsets` must be a valid pointer or null.
         #[unsafe(method(encodeGradientSequenceToCommandBuffer:forwardSources:forwardSourceOffsets:sourceGradients:sourceGradientOffsets:destinationGradients:destinationOffsets:weightGradients:trainingStates:recurrentInputState:recurrentOutputStates:weights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeGradientSequenceToCommandBuffer_forwardSources_forwardSourceOffsets_sourceGradients_sourceGradientOffsets_destinationGradients_destinationOffsets_weightGradients_trainingStates_recurrentInputState_recurrentOutputStates_weights(
@@ -2650,6 +2674,10 @@ impl MPSRNNMatrixTrainingLayer {
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(

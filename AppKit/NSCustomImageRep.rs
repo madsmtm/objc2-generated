@@ -52,6 +52,10 @@ impl NSCustomImageRep {
         #[unsafe(method_family = none)]
         pub unsafe fn drawingHandler(&self) -> *mut block2::DynBlock<dyn Fn(NSRect) -> Bool>;
 
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `delegate` should be of the correct type.
         #[unsafe(method(initWithDrawSelector:delegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDrawSelector_delegate(

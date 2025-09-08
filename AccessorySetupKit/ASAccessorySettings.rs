@@ -32,6 +32,10 @@ impl ASAccessorySettings {
         /// A hotspot identifier that clients can use to connect to an accessory's hotspot.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
@@ -39,6 +43,10 @@ impl ASAccessorySettings {
         /// Setter for [`SSID`][Self::SSID].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSID(&self, ssid: Option<&NSString>);
@@ -48,6 +56,10 @@ impl ASAccessorySettings {
         /// AccessorySetupKit ignores this property if another app already authorized and bridged the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothTransportBridgingIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothTransportBridgingIdentifier(&self) -> Option<Retained<NSData>>;
@@ -55,6 +67,10 @@ impl ASAccessorySettings {
         /// Setter for [`bluetoothTransportBridgingIdentifier`][Self::bluetoothTransportBridgingIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothTransportBridgingIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothTransportBridgingIdentifier(

@@ -57,6 +57,10 @@ impl ASAuthorizationProviderExtensionUserLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomAssertionRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
@@ -71,6 +75,10 @@ impl ASAuthorizationProviderExtensionUserLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomAssertionRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
@@ -85,6 +93,10 @@ impl ASAuthorizationProviderExtensionUserLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomLoginRequestHeaderClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
@@ -99,6 +111,10 @@ impl ASAuthorizationProviderExtensionUserLoginConfiguration {
         /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
         ///
         /// Returns: YES when successful and NO when claims are rejected.
+        ///
+        /// # Safety
+        ///
+        /// `claims` generic should be of the correct type.
         #[unsafe(method(setCustomLoginRequestBodyClaims:returningError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(

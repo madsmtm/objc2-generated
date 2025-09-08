@@ -239,6 +239,10 @@ impl NSSharingService {
         /// The items represent the objects to be shared and must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
+        ///
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[deprecated = "Use -[NSSharingServicePicker standardShareMenuItem] instead."]
         #[unsafe(method(sharingServicesForItems:))]
         #[unsafe(method_family = none)]
@@ -275,6 +279,10 @@ impl NSSharingService {
         /// The items represent the objects to be shared and must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
+        ///
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[unsafe(method(canPerformWithItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPerformWithItems(&self, items: Option<&NSArray>) -> bool;
@@ -284,6 +292,10 @@ impl NSSharingService {
         /// The items represent the objects to be shared and must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
+        ///
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[unsafe(method(performWithItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performWithItems(&self, items: &NSArray);
@@ -331,6 +343,9 @@ unsafe impl RefEncode for NSSharingContentScope {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicedelegate?language=objc)
     pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol + MainThreadOnly {
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[optional]
         #[unsafe(method(sharingService:willShareItems:))]
         #[unsafe(method_family = none)]
@@ -340,6 +355,9 @@ extern_protocol!(
             items: &NSArray,
         );
 
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[optional]
         #[unsafe(method(sharingService:didFailToShareItems:error:))]
         #[unsafe(method_family = none)]
@@ -350,6 +368,9 @@ extern_protocol!(
             error: &NSError,
         );
 
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[optional]
         #[unsafe(method(sharingService:didShareItems:))]
         #[unsafe(method_family = none)]
@@ -359,6 +380,9 @@ extern_protocol!(
             items: &NSArray,
         );
 
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(sharingService:sourceFrameOnScreenForShareItem:))]
         #[unsafe(method_family = none)]
@@ -370,6 +394,10 @@ extern_protocol!(
 
         #[cfg(feature = "NSImage")]
         /// When non-nil, the image returned would be used for the transitioning animation. When nil, the transitioning animation is disabled.
+        ///
+        /// # Safety
+        ///
+        /// `content_rect` must be a valid pointer.
         #[optional]
         #[unsafe(method(sharingService:transitionImageForShareItem:contentRect:))]
         #[unsafe(method_family = none)]
@@ -381,6 +409,9 @@ extern_protocol!(
         ) -> Option<Retained<NSImage>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+        /// # Safety
+        ///
+        /// `sharing_content_scope` must be a valid pointer.
         #[optional]
         #[unsafe(method(sharingService:sourceWindowForShareItems:sharingContentScope:))]
         #[unsafe(method_family = none)]
@@ -395,6 +426,11 @@ extern_protocol!(
         /// The following method is invoked when the service is performed and wants to display its contents in a popover. The delegate should return the view that will act as the anchor of the popover, along with the target rectangle within the bounds of that view and preferred edge of that rectangle for the popover to appear. The delegate may also return nil, indicating that there is no anchoring view currently available, in which case the service may attempt to display the service via some other means.
         ///
         /// The service named NSSharingServiceNameCloudSharing prefers to display itself using a popover anchored to an "Add People" or "Share" button. If no such button is available or visible, return nil.
+        ///
+        /// # Safety
+        ///
+        /// - `positioning_rect` must be a valid pointer.
+        /// - `preferred_edge` must be a valid pointer.
         #[optional]
         #[unsafe(method(anchoringViewForSharingService:showRelativeToRect:preferredEdge:))]
         #[unsafe(method_family = none)]
@@ -444,6 +480,10 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudsharingservicedelegate?language=objc)
     pub unsafe trait NSCloudSharingServiceDelegate: NSSharingServiceDelegate {
         /// When an NSSharingServiceNameCloudSharing sharing service is dismissed it will invoke this method on the delegate, with an error if there was any. If the delegate implements this method, NSSharingServiceNameCloudSharing will not send -sharingService:didFailToShareItems:error: or -sharingService:didShareItems:.
+        ///
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[optional]
         #[unsafe(method(sharingService:didCompleteForItems:error:))]
         #[unsafe(method_family = none)]
@@ -503,6 +543,12 @@ pub unsafe trait NSItemProviderNSCloudKitSharing:
         #[cfg(all(feature = "block2", feature = "objc2-cloud-kit"))]
         #[cfg(target_vendor = "apple")]
         /// Use this method when you want to share a collection of CKRecords but don't currently have a CKShare. When the preparationHandler is called, you should create a new CKShare with the appropriate root CKRecord. After ensuring the share and all records have been saved to the server, invoke the preparationCompletionHandler with either the resulting CKShare and its CKContainer, or an NSError if saving failed. Invoking the service with a CKShare registered with this method will prompt the user to start sharing.
+        ///
+        /// # Safety
+        ///
+        /// - `preparation_handler` block's argument block's argument 1 must be a valid pointer or null.
+        /// - `preparation_handler` block's argument block's argument 2 must be a valid pointer or null.
+        /// - `preparation_handler` block's argument block's argument 3 must be a valid pointer or null.
         #[unsafe(method(registerCloudKitShareWithPreparationHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn registerCloudKitShareWithPreparationHandler(
@@ -558,6 +604,10 @@ impl NSSharingServicePicker {
         /// Returns a new picker. The items represent the objects to be shared and must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
+        ///
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(this: Allocated<Self>, items: &NSArray) -> Retained<Self>;
@@ -618,6 +668,10 @@ extern_protocol!(
         /// The items represent the objects to be shared and must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
+        ///
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[optional]
         #[unsafe(method(sharingServicePicker:sharingServicesForItems:proposedSharingServices:))]
         #[unsafe(method_family = none)]

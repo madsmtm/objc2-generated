@@ -56,6 +56,10 @@ impl MLCTensorData {
         /// `bytes.`
         /// Returns: A new
         /// `MLCTensorData`object.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(dataWithBytesNoCopy:length:))]
         #[unsafe(method_family = none)]
@@ -76,6 +80,10 @@ impl MLCTensorData {
         /// `bytes.`
         /// Returns: A new
         /// `MLCTensorData`object.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(dataWithImmutableBytesNoCopy:length:))]
         #[unsafe(method_family = none)]
@@ -96,6 +104,10 @@ impl MLCTensorData {
         ///
         /// Returns: A new
         /// `MLCTensorData`object.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(dataWithBytesNoCopy:length:deallocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length_deallocator(

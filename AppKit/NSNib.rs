@@ -60,6 +60,9 @@ impl NSNib {
 /// NSDeprecated.
 impl NSNib {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `nib_file_url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
@@ -68,6 +71,10 @@ impl NSNib {
             nib_file_url: Option<&NSURL>,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// - `external_name_table` generic should be of the correct type.
+        /// - `external_name_table` might not allow `None`.
         #[deprecated]
         #[unsafe(method(instantiateNibWithExternalNameTable:))]
         #[unsafe(method_family = none)]
@@ -76,6 +83,10 @@ impl NSNib {
             external_name_table: Option<&NSDictionary>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// - `owner` should be of the correct type.
+        /// - `owner` might not allow `None`.
         #[deprecated]
         #[unsafe(method(instantiateNibWithOwner:topLevelObjects:))]
         #[unsafe(method_family = none)]

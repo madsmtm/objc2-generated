@@ -40,6 +40,11 @@ unsafe impl ConcreteType for CFUserNotification {
 }
 
 impl CFUserNotification {
+    /// # Safety
+    ///
+    /// - `error` must be a valid pointer.
+    /// - `dictionary` generics must be of the correct type.
+    /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFUserNotificationCreate")]
     #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
     #[inline]
@@ -63,6 +68,9 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `response_flags` must be a valid pointer.
     #[doc(alias = "CFUserNotificationReceiveResponse")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -81,6 +89,9 @@ impl CFUserNotification {
         unsafe { CFUserNotificationReceiveResponse(self, timeout, response_flags) }
     }
 
+    /// # Safety
+    ///
+    /// `key` might not allow `None`.
     #[doc(alias = "CFUserNotificationGetResponseValue")]
     #[inline]
     pub unsafe fn response_value(
@@ -112,6 +123,10 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `dictionary` generics must be of the correct type.
+    /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFUserNotificationUpdate")]
     #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
     #[inline]
@@ -141,6 +156,9 @@ impl CFUserNotification {
         unsafe { CFUserNotificationCancel(self) }
     }
 
+    /// # Safety
+    ///
+    /// `callout` must be implemented correctly.
     #[doc(alias = "CFUserNotificationCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -203,6 +221,9 @@ impl CFUserNotification {
         }
     }
 
+    /// # Safety
+    ///
+    /// `response_flags` must be a valid pointer.
     #[doc(alias = "CFUserNotificationDisplayAlert")]
     #[cfg(all(feature = "CFDate", feature = "CFURL"))]
     #[inline]

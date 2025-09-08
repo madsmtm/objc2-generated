@@ -92,6 +92,9 @@ extern "C-unwind" {
     pub fn UIGraphicsEndImageContext();
 }
 
+/// # Safety
+///
+/// `document_info` generic should be of the correct type.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToFile(
@@ -110,6 +113,9 @@ pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToFile(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `document_info` generic should be of the correct type.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn UIGraphicsBeginPDFContextToData(
         data: &NSMutableData,
@@ -127,6 +133,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `page_info` generic should be of the correct type.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn UIGraphicsBeginPDFPageWithInfo(bounds: CGRect, page_info: Option<&NSDictionary>);
 }

@@ -256,6 +256,12 @@ impl SCNetworkConnection {
     ///
     /// Returns: Returns TRUE if there is a valid service to dial;
     /// FALSE if the function was unable to retrieve a service to dial.
+    ///
+    /// # Safety
+    ///
+    /// - `selection_options` generics must be of the correct type.
+    /// - `service_id` must be a valid pointer.
+    /// - `user_options` must be a valid pointer.
     #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
     #[inline]
     pub unsafe fn user_preferences(
@@ -299,6 +305,11 @@ impl SCNetworkConnection {
     /// callout.
     ///
     /// Returns: Returns a reference to the new SCNetworkConnection.
+    ///
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "SCNetworkConnectionCreateWithServiceID")]
     #[inline]
     pub unsafe fn with_service_id(
@@ -516,6 +527,10 @@ impl SCNetworkConnection {
     /// status needs to be periodically checked); FALSE if the
     /// connection request was not started.  The error must be
     /// retrieved from the SCError function.
+    ///
+    /// # Safety
+    ///
+    /// `user_options` generics must be of the correct type.
     #[doc(alias = "SCNetworkConnectionStart")]
     #[inline]
     pub unsafe fn start(&self, user_options: Option<&CFDictionary>, linger: bool) -> bool {

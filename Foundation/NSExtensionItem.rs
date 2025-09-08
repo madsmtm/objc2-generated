@@ -90,6 +90,10 @@ impl NSExtensionItem {
         /// Setter for [`userInfo`][Self::userInfo].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);

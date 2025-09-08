@@ -23,6 +23,11 @@ impl QLThumbnail {
     ///
     /// QLThumbnailImageCreate() does not replace IconServices.
     /// Also QLThumbnailImageCreate() will block until the thumbnail is generated so you should consider calling it in a thread.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `options` might not allow `None`.
     #[doc(alias = "QLThumbnailImageCreate")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use QuickLookThumbnailing to generate thumbnails for files."]

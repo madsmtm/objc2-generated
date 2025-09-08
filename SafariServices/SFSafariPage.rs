@@ -48,6 +48,10 @@ impl SFSafariPage {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Dispatches a message to the content script injected in this page.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(dispatchMessageToScriptWithName:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchMessageToScriptWithName_userInfo(

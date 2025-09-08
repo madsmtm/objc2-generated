@@ -35,6 +35,10 @@ extern "C" {
 impl MLFeatureValue {
     extern_methods!(
         /// Construct image feature value from an image on disk. Orientation is read from Exif if avaiable
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithImageAtURL_pixelsWide_pixelsHigh_pixelFormatType_options_error(
@@ -47,6 +51,10 @@ impl MLFeatureValue {
 
         #[cfg(feature = "MLImageConstraint")]
         /// Construct image feature value from an image on disk, using a model specified image constraint. Orientation is read from Exif if avaiable
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featureValueWithImageAtURL:constraint:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithImageAtURL_constraint_options_error(
@@ -57,6 +65,10 @@ impl MLFeatureValue {
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Construct image feature value from CGImage (orientation is assumed to be kCGImagePropertyOrientationUp)
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithCGImage_pixelsWide_pixelsHigh_pixelFormatType_options_error(
@@ -69,6 +81,10 @@ impl MLFeatureValue {
 
         #[cfg(all(feature = "MLImageConstraint", feature = "objc2-core-graphics"))]
         /// Construct image feature value from CGImage, using the size and type information required by feature description (orientation is assumed to be kCGImagePropertyOrientationUp)
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featureValueWithCGImage:constraint:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithCGImage_constraint_options_error(
@@ -79,6 +95,10 @@ impl MLFeatureValue {
 
         #[cfg(feature = "objc2-image-io")]
         /// Construct image feature value from an image on disk. The passed in orientation supersedes any in the file
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featureValueWithImageAtURL:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithImageAtURL_orientation_pixelsWide_pixelsHigh_pixelFormatType_options_error(
@@ -92,6 +112,10 @@ impl MLFeatureValue {
 
         #[cfg(all(feature = "MLImageConstraint", feature = "objc2-image-io"))]
         /// Construct image feature value from an image on disk using a model specified image constraint. The passed in orientation supersedes any in the file
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featureValueWithImageAtURL:orientation:constraint:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithImageAtURL_orientation_constraint_options_error(
@@ -103,6 +127,10 @@ impl MLFeatureValue {
 
         #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-image-io"))]
         /// Construct image feature value from CGImage w/ specified orientation
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featureValueWithCGImage:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithCGImage_orientation_pixelsWide_pixelsHigh_pixelFormatType_options_error(
@@ -120,6 +148,10 @@ impl MLFeatureValue {
             feature = "objc2-image-io"
         ))]
         /// Construct image feature value from CGImage w/ specified orientation, using the size and type information required by feature description
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featureValueWithCGImage:orientation:constraint:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithCGImage_orientation_constraint_options_error(

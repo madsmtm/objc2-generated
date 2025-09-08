@@ -295,6 +295,11 @@ impl SecKey {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. Please use the SecKeyGeneratePair API instead.
+    ///
+    /// # Safety
+    ///
+    /// - `public_key` must be a valid pointer or null.
+    /// - `private_key` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreatePair")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -365,6 +370,10 @@ impl SecKey {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7.  Please use the SecKeyGenerateSymmetric API instead.
+    ///
+    /// # Safety
+    ///
+    /// `key_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeyGenerate")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -414,6 +423,10 @@ impl SecKey {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// The CSSM_KEY is valid until the key item reference is released. This API is deprecated in 10.7. Its use should no longer be needed.
+    ///
+    /// # Safety
+    ///
+    /// `cssm_key` must be a valid pointer.
     #[doc(alias = "SecKeyGetCSSMKey")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -439,6 +452,10 @@ impl SecKey {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Its use should no longer be needed.
+    ///
+    /// # Safety
+    ///
+    /// `csp_handle` must be a valid pointer.
     #[doc(alias = "SecKeyGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -464,6 +481,10 @@ impl SecKey {
     /// Parameter `outCredentials`: On return, a pointer to a CSSM_ACCESS_CREDENTIALS structure. This pointer remains valid until the key reference is released. The caller should not attempt to modify or free this data.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `out_credentials` must be a valid pointer.
     #[doc(alias = "SecKeyGetCredentials")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -532,6 +553,11 @@ impl SecKey {
     /// kSecAttrCanDecrypt (defaults to true if not explicitly specified)
     /// kSecAttrCanWrap (defaults to true if not explicitly specified)
     /// kSecAttrCanUnwrap (defaults to true if not explicitly specified)
+    ///
+    /// # Safety
+    ///
+    /// - `parameters` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyGenerateSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -573,6 +599,11 @@ impl SecKey {
     /// kSecAttrCanDecrypt (defaults to true if not explicitly specified)
     /// kSecAttrCanWrap (defaults to true if not explicitly specified)
     /// kSecAttrCanUnwrap (defaults to true if not explicitly specified)
+    ///
+    /// # Safety
+    ///
+    /// - `parameters` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateFromData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -639,6 +670,11 @@ impl SecKey {
     ///
     /// Returns: On success a SecKeyRef is returned.  On failure this result is NULL and the
     /// error parameter contains the reason.
+    ///
+    /// # Safety
+    ///
+    /// - `parameters` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyDeriveFromPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -677,6 +713,11 @@ impl SecKey {
     ///
     /// In order to wrap a key the parameters dictionary may contain the following key:
     /// kSecSalt - a CFData for the salt value for the encrypt.
+    ///
+    /// # Safety
+    ///
+    /// - `parameters` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyWrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -717,6 +758,12 @@ impl SecKey {
     ///
     /// In order to unwrap a key the parameters dictionary may contain the following key:
     /// kSecSalt - a CFData for the salt value for the decrypt.
+    ///
+    /// # Safety
+    ///
+    /// - `key_to_unwrap` must be a valid pointer.
+    /// - `parameters` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyUnwrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -792,6 +839,12 @@ impl SecKey {
     /// on iOS, tvOS and watchOS.
     /// It is recommended to use SecKeyCreateRandomKey() which respects kSecAttrIsPermanent
     /// on all platforms.
+    ///
+    /// # Safety
+    ///
+    /// - `parameters` generics must be of the correct type.
+    /// - `public_key` must be a valid pointer or null.
+    /// - `private_key` must be a valid pointer or null.
     #[doc(alias = "SecKeyGeneratePair")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "Use SecKeyCreateRandomKey"]
@@ -852,6 +905,11 @@ impl SecKey {
     /// kSecAttrCanVerify default false for private keys, true for public keys
     /// kSecAttrCanWrap default false for private keys, true for public keys
     /// kSecAttrCanUnwrap default true for private keys, false for public keys
+    ///
+    /// # Safety
+    ///
+    /// - `parameters` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateRandomKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -888,6 +946,11 @@ impl SecKey {
     /// The requested data format depend on the type of key (kSecAttrKeyType) being created:
     /// kSecAttrKeyTypeRSA               PKCS#1 format, public key can be also in x509 public key format
     /// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateWithData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -938,6 +1001,10 @@ impl SecKey {
     /// The format in which the key will be exported depends on the type of key:
     /// kSecAttrKeyTypeRSA               PKCS#1 format
     /// kSecAttrKeyTypeECSECPrimeRandom  ANSI X9.63 format (04 || X || Y [ || K])
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCopyExternalRepresentation")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1898,6 +1965,10 @@ impl SecKey {
     ///
     /// Computes digital signature using specified key over input data.  The operation algorithm
     /// further defines the exact format of input data, operation to be performed and output signature.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateSignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1936,6 +2007,10 @@ impl SecKey {
     ///
     /// Verifies digital signature operation using specified key and signed data.  The operation algorithm
     /// further defines the exact format of input data, signature and operation to be performed.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyVerifySignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1975,6 +2050,10 @@ impl SecKey {
     ///
     /// Encrypts plaintext data using specified key.  The exact type of the operation including the format
     /// of input and output data is specified by encryption algorithm.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateEncryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2012,6 +2091,10 @@ impl SecKey {
     ///
     /// Decrypts ciphertext data using specified key.  The exact type of the operation including the format
     /// of input and output data is specified by decryption algorithm.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateDecryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2065,6 +2148,11 @@ impl SecKey {
     /// See "Security Error Codes" (SecBase.h).
     ///
     /// Returns: Result of key exchange operation as a CFDataRef, or NULL on failure.
+    ///
+    /// # Safety
+    ///
+    /// - `parameters` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCopyKeyExchangeResult")]
     #[cfg(feature = "SecBase")]
     #[inline]

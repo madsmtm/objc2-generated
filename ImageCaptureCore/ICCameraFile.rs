@@ -180,6 +180,10 @@ impl ICCameraFile {
         /// Parameter `completion`: Completion block called with an NSData* object representing the JPG, and an NSError* for status.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestThumbnailDataWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestThumbnailDataWithOptions_completion(
@@ -196,6 +200,10 @@ impl ICCameraFile {
         /// Parameter `completion`: Completion block called with an NSDictionary* object containing the metadata, and an NSError* for status.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestMetadataDictionaryWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMetadataDictionaryWithOptions_completion(
@@ -219,6 +227,10 @@ impl ICCameraFile {
         /// Parameter `completion`: Completion block to executed after request has returned,
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestDownloadWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestDownloadWithOptions_completion(

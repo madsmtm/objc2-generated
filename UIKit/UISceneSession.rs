@@ -69,6 +69,10 @@ impl UISceneConfiguration {
         pub unsafe fn sceneClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`sceneClass`][Self::sceneClass].
+        ///
+        /// # Safety
+        ///
+        /// `scene_class` probably has further requirements.
         #[unsafe(method(setSceneClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSceneClass(&self, scene_class: Option<&AnyClass>);
@@ -78,6 +82,10 @@ impl UISceneConfiguration {
         pub unsafe fn delegateClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`delegateClass`][Self::delegateClass].
+        ///
+        /// # Safety
+        ///
+        /// `delegate_class` probably has further requirements.
         #[unsafe(method(setDelegateClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegateClass(&self, delegate_class: Option<&AnyClass>);
@@ -175,6 +183,10 @@ impl UISceneSession {
         /// Setter for [`userInfo`][Self::userInfo].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);

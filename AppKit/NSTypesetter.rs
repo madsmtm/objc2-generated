@@ -98,6 +98,10 @@ impl NSTypesetter {
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedString`][Self::attributedString].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setAttributedString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
@@ -126,6 +130,9 @@ impl NSTypesetter {
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphSeparatorCharacterRange(&self) -> NSRange;
 
+        /// # Safety
+        ///
+        /// `line_fragment_origin` must be a valid pointer.
         #[unsafe(method(layoutParagraphAtPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutParagraphAtPoint(
@@ -176,6 +183,10 @@ impl NSTypesetter {
             rect: NSRect,
         ) -> CGFloat;
 
+        /// # Safety
+        ///
+        /// - `line_fragment_rect` must be a valid pointer.
+        /// - `line_fragment_used_rect` must be a valid pointer.
         #[unsafe(method(getLineFragmentRect:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineFragmentRect_usedRect_forParagraphSeparatorGlyphRange_atProposedOrigin(
@@ -226,6 +237,9 @@ impl NSTypesetter {
         pub unsafe fn setHardInvalidation_forGlyphRange(&self, flag: bool, glyph_range: NSRange);
 
         #[cfg(feature = "NSLayoutManager")]
+        /// # Safety
+        ///
+        /// `next_glyph` must be a valid pointer.
         #[unsafe(method(layoutGlyphsInLayoutManager:startingAtGlyphIndex:maxNumberOfLineFragments:nextGlyphIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutGlyphsInLayoutManager_startingAtGlyphIndex_maxNumberOfLineFragments_nextGlyphIndex(
@@ -247,6 +261,9 @@ impl NSTypesetter {
         ) -> NSRange;
 
         #[cfg(feature = "NSLayoutManager")]
+        /// # Safety
+        ///
+        /// `packed_glyphs` must be a valid pointer.
         #[unsafe(method(printingAdjustmentInLayoutManager:forNominallySpacedGlyphRange:packedGlyphs:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn printingAdjustmentInLayoutManager_forNominallySpacedGlyphRange_packedGlyphs_count(
@@ -300,6 +317,11 @@ impl NSTypesetter {
 impl NSTypesetter {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `line_rect` must be a valid pointer.
+        /// - `used_rect` must be a valid pointer.
+        /// - `baseline_offset` must be a valid pointer.
         #[unsafe(method(willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willSetLineFragmentRect_forGlyphRange_usedRect_baselineOffset(
@@ -349,6 +371,9 @@ impl NSTypesetter {
 /// NSGlyphStorageInterface.
 impl NSTypesetter {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `actual_glyph_range` must be a valid pointer or null.
         #[unsafe(method(characterRangeForGlyphRange:actualGlyphRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterRangeForGlyphRange_actualGlyphRange(
@@ -357,6 +382,9 @@ impl NSTypesetter {
             actual_glyph_range: NSRangePointer,
         ) -> NSRange;
 
+        /// # Safety
+        ///
+        /// `actual_char_range` must be a valid pointer or null.
         #[unsafe(method(glyphRangeForCharacterRange:actualCharacterRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphRangeForCharacterRange_actualCharacterRange(
@@ -366,6 +394,11 @@ impl NSTypesetter {
         ) -> NSRange;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `line_fragment_rect` must be a valid pointer.
+        /// - `line_fragment_used_rect` must be a valid pointer.
+        /// - `remaining_rect` must be a valid pointer.
         #[unsafe(method(getLineFragmentRect:usedRect:remainingRect:forStartingGlyphAtIndex:proposedRect:lineSpacing:paragraphSpacingBefore:paragraphSpacingAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineFragmentRect_usedRect_remainingRect_forStartingGlyphAtIndex_proposedRect_lineSpacing_paragraphSpacingBefore_paragraphSpacingAfter(
@@ -404,6 +437,9 @@ impl NSTypesetter {
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `advancements` must be a valid pointer.
         #[unsafe(method(setLocation:withAdvancements:forStartOfGlyphRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocation_withAdvancements_forStartOfGlyphRange(
@@ -421,6 +457,9 @@ impl NSTypesetter {
             glyph_range: NSRange,
         );
 
+        /// # Safety
+        ///
+        /// `levels` must be a valid pointer.
         #[unsafe(method(setBidiLevels:forGlyphRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBidiLevels_forGlyphRange(&self, levels: *const u8, glyph_range: NSRange);
@@ -468,6 +507,13 @@ impl NSTypesetter {
         ) -> NSTypesetterControlCharacterAction;
 
         #[cfg(all(feature = "NSFont", feature = "NSLayoutManager"))]
+        /// # Safety
+        ///
+        /// - `glyph_buffer` must be a valid pointer.
+        /// - `char_index_buffer` must be a valid pointer.
+        /// - `inscribe_buffer` must be a valid pointer.
+        /// - `elastic_buffer` must be a valid pointer.
+        /// - `bidi_level_buffer` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:bidiLevels:))]
         #[unsafe(method_family = none)]
@@ -482,6 +528,9 @@ impl NSTypesetter {
         ) -> NSUInteger;
 
         #[cfg(feature = "NSFont")]
+        /// # Safety
+        ///
+        /// `glyphs` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(substituteGlyphsInRange:withGlyphs:))]
         #[unsafe(method_family = none)]

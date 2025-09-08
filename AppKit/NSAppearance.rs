@@ -42,6 +42,10 @@ impl NSAppearance {
         pub unsafe fn currentAppearance() -> Option<Retained<NSAppearance>>;
 
         /// Setter for [`currentAppearance`][Self::currentAppearance].
+        ///
+        /// # Safety
+        ///
+        /// `current_appearance` might not allow `None`.
         #[deprecated = "Use -performAsCurrentDrawingAppearance: to temporarily set the drawing appearance, or +currentDrawingAppearance to access the currently drawing appearance."]
         #[unsafe(method(setCurrentAppearance:))]
         #[unsafe(method_family = none)]

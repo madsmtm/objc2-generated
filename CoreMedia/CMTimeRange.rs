@@ -344,6 +344,10 @@ impl CMTimeRange {
     /// have the requisite keyed values, an invalid time range is returned.
     ///
     /// Returns: The created CMTimeRange.
+    ///
+    /// # Safety
+    ///
+    /// `dictionary_representation` generics must be of the correct type.
     #[doc(alias = "CMTimeRangeMakeFromDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -509,6 +513,10 @@ impl CMTimeMapping {
     /// have the requisite keyed values, an invalid time mapping is returned.
     ///
     /// Returns: The created CMTimeMapping.
+    ///
+    /// # Safety
+    ///
+    /// `dictionary_representation` generics must be of the correct type.
     #[doc(alias = "CMTimeMappingMakeFromDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]

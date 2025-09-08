@@ -122,10 +122,16 @@ extern_conformance!(
 
 impl NSFontManager {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `factory_id` probably has further requirements.
         #[unsafe(method(setFontPanelFactory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontPanelFactory(factory_id: Option<&AnyClass>, mtm: MainThreadMarker);
 
+        /// # Safety
+        ///
+        /// `factory_id` probably has further requirements.
         #[unsafe(method(setFontManagerFactory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontManagerFactory(factory_id: Option<&AnyClass>, mtm: MainThreadMarker);
@@ -277,6 +283,10 @@ impl NSFontManager {
         pub unsafe fn action(&self) -> Sel;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Sel);
@@ -290,6 +300,10 @@ impl NSFontManager {
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "NSFontManager doesn't have any delegate method. This property should not be used."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -307,6 +321,9 @@ impl NSFontManager {
             face_key: Option<&NSString>,
         ) -> Retained<NSString>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(setSelectedAttributes:isMultiple:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedAttributes_isMultiple(
@@ -315,6 +332,9 @@ impl NSFontManager {
             flag: bool,
         );
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(convertAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertAttributes(
@@ -358,6 +378,9 @@ impl NSFontManager {
         #[unsafe(method_family = none)]
         pub unsafe fn removeCollection(&self, collection_name: &NSString) -> bool;
 
+        /// # Safety
+        ///
+        /// `descriptors` generic should be of the correct type.
         #[deprecated = "Use -[NSMutableFontCollection addQueryForDescriptors:] instead"]
         #[unsafe(method(addFontDescriptors:toCollection:))]
         #[unsafe(method_family = none)]
@@ -392,6 +415,10 @@ impl NSFontManager {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -429,26 +456,44 @@ impl NSFontManager {
             some_traits: NSFontTraitMask,
         ) -> Option<Retained<NSArray<NSString>>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(addFontTrait:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addFontTrait(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(removeFontTrait:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFontTrait(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(modifyFontViaPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifyFontViaPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(modifyFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifyFont(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontFontPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontFontPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontStylesPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontStylesPanel(&self, sender: Option<&AnyObject>);

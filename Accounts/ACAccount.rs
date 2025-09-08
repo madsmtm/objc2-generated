@@ -22,6 +22,9 @@ extern_conformance!(
 impl ACAccount {
     extern_methods!(
         #[cfg(feature = "ACAccountType")]
+        /// # Safety
+        ///
+        /// `type` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(initWithAccountType:))]
         #[unsafe(method_family = init)]
@@ -43,6 +46,10 @@ impl ACAccount {
 
         #[cfg(feature = "ACAccountType")]
         /// Setter for [`accountType`][Self::accountType].
+        ///
+        /// # Safety
+        ///
+        /// `account_type` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(setAccountType:))]
         #[unsafe(method_family = none)]
@@ -86,6 +93,10 @@ impl ACAccount {
 
         #[cfg(feature = "ACAccountCredential")]
         /// Setter for [`credential`][Self::credential].
+        ///
+        /// # Safety
+        ///
+        /// `credential` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(setCredential:))]
         #[unsafe(method_family = none)]

@@ -164,6 +164,11 @@ impl SecAccess {
     /// Parameter `accessRef`: On return, a pointer to the new access reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `trustedlist` generic must be of the correct type.
+    /// - `access_ref` must be a valid pointer.
     #[doc(alias = "SecAccessCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -196,6 +201,12 @@ impl SecAccess {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// For 10.7 and later please use the SecAccessCreateWithOwnerAndACL API
+    ///
+    /// # Safety
+    ///
+    /// - `owner` must be a valid pointer.
+    /// - `acls` must be a valid pointer.
+    /// - `access_ref` must be a valid pointer.
     #[doc(alias = "SecAccessCreateFromOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -235,6 +246,11 @@ impl SecAccess {
     /// Parameter `error`: Optionally a pointer to a CFErrorRef to return any errors with may have occured
     ///
     /// Returns: A pointer to the new access reference.
+    ///
+    /// # Safety
+    ///
+    /// - `acls` generic must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecAccessCreateWithOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -273,6 +289,12 @@ impl SecAccess {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// For 10.7 and later please use the SecAccessCopyOwnerAndACL API
+    ///
+    /// # Safety
+    ///
+    /// - `owner` must be a valid pointer.
+    /// - `acl_count` must be a valid pointer.
+    /// - `acls` must be a valid pointer.
     #[doc(alias = "SecAccessGetOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -312,6 +334,13 @@ impl SecAccess {
     /// Parameter `aclList`: On return, a pointer to a new created CFArray of SecACL instances.  The caller is responsible for calling CFRelease on this array.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `user_id` must be a valid pointer or null.
+    /// - `group_id` must be a valid pointer or null.
+    /// - `owner_type` must be a valid pointer or null.
+    /// - `acl_list` must be a valid pointer or null.
     #[doc(alias = "SecAccessCopyOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -342,6 +371,10 @@ impl SecAccess {
     /// Parameter `aclList`: On return, a pointer to a new created CFArray of SecACL instances.  The caller is responsible for calling CFRelease on this array.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `acl_list` must be a valid pointer.
     #[doc(alias = "SecAccessCopyACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -367,6 +400,10 @@ impl SecAccess {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// For 10.7 and later please use the SecAccessCopyMatchingACLList API
+    ///
+    /// # Safety
+    ///
+    /// `acl_list` must be a valid pointer.
     #[doc(alias = "SecAccessCopySelectedACLList")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -393,6 +430,10 @@ impl SecAccess {
     /// Parameter `authorizationTag`: An authorization tag specifying what action with which to select the action control lists.
     ///
     /// Returns: A pointer to the selected access control lists.
+    ///
+    /// # Safety
+    ///
+    /// `authorization_tag` should be of the correct type.
     #[doc(alias = "SecAccessCopyMatchingACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

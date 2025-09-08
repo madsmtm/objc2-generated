@@ -10,6 +10,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustommodel?language=objc)
     pub unsafe trait MLCustomModel {
         #[cfg(feature = "MLModelDescription")]
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(initWithModelDescription:parameterDictionary:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithModelDescription_parameterDictionary_error(

@@ -100,6 +100,9 @@ impl MCSession {
         pub unsafe fn initWithPeer(this: Allocated<Self>, my_peer_id: &MCPeerID) -> Retained<Self>;
 
         #[cfg(feature = "MCPeerID")]
+        /// # Safety
+        ///
+        /// `identity` generic should be of the correct type.
         #[unsafe(method(initWithPeer:securityIdentity:encryptionPreference:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer_securityIdentity_encryptionPreference(
@@ -245,6 +248,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MCPeerID", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `certificate` generic should be of the correct type.
         #[optional]
         #[unsafe(method(session:didReceiveCertificate:fromPeer:certificateHandler:))]
         #[unsafe(method_family = none)]

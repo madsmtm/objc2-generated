@@ -33,6 +33,10 @@ impl PHPersistentChange {
 
         #[cfg(feature = "PHPersistentChangeToken")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(changeToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeToken(&self) -> Retained<PHPersistentChangeToken>;

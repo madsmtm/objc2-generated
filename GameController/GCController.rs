@@ -189,6 +189,10 @@ impl GCController {
         /// See: microGamepad
         ///
         /// See: extendedGamepad
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[deprecated = "Use the Menu button found on the controller's input profile, if it exists."]
         #[unsafe(method(controllerPausedHandler))]
         #[unsafe(method_family = none)]

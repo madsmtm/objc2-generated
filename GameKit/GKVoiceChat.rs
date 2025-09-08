@@ -74,6 +74,9 @@ impl GKVoiceChat {
         pub unsafe fn setPlayer_muted(&self, player: &GKPlayer, is_muted: bool);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[deprecated = "No longer supported"]
         #[unsafe(method(playerVoiceChatStateDidChangeHandler))]
         #[unsafe(method_family = none)]
@@ -153,6 +156,9 @@ impl GKVoiceChat {
 impl GKVoiceChat {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[deprecated]
         #[unsafe(method(playerStateUpdateHandler))]
         #[unsafe(method_family = none)]

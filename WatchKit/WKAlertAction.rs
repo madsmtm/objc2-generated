@@ -47,6 +47,9 @@ extern_conformance!(
 impl WKAlertAction {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(actionWithTitle:style:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithTitle_style_handler(

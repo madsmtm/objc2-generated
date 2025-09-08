@@ -37,6 +37,10 @@ impl CKAcceptSharesOperation {
 
         #[cfg(feature = "CKShareMetadata")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(shareMetadatas))]
         #[unsafe(method_family = none)]
         pub unsafe fn shareMetadatas(&self) -> Option<Retained<NSArray<CKShareMetadata>>>;
@@ -45,6 +49,10 @@ impl CKAcceptSharesOperation {
         /// Setter for [`shareMetadatas`][Self::shareMetadatas].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setShareMetadatas:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShareMetadatas(&self, share_metadatas: Option<&NSArray<CKShareMetadata>>);
@@ -65,6 +73,13 @@ impl CKAcceptSharesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(perShareCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perShareCompletionBlock(
@@ -80,6 +95,10 @@ impl CKAcceptSharesOperation {
         /// Setter for [`perShareCompletionBlock`][Self::perShareCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPerShareCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerShareCompletionBlock(
@@ -110,6 +129,11 @@ impl CKAcceptSharesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(acceptSharesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptSharesCompletionBlock(
@@ -120,6 +144,10 @@ impl CKAcceptSharesOperation {
         /// Setter for [`acceptSharesCompletionBlock`][Self::acceptSharesCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAcceptSharesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcceptSharesCompletionBlock(

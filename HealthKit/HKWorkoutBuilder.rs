@@ -184,6 +184,10 @@ impl HKWorkoutBuilder {
         /// YES, the metadata has been added to the builder successfully. If success is NO, error will
         /// be non-null and will contain the error encountered during the insertion operation. When an
         /// error occurs, the builder's metadata property will remain unchanged.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(addMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
@@ -250,6 +254,10 @@ impl HKWorkoutBuilder {
         /// YES, the metadata has been added to the activity successfully. If success is NO, error will
         /// be non-null and will contain the error encountered during the insertion operation. When an
         /// error occurs, the activity's metadata property will remain unchanged.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(updateActivityWithUUID:addMedatata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateActivityWithUUID_addMedatata_completion(

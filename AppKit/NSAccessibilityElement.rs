@@ -26,6 +26,9 @@ extern_conformance!(
 impl NSAccessibilityElement {
     extern_methods!(
         #[cfg(feature = "NSAccessibilityConstants")]
+        /// # Safety
+        ///
+        /// `parent` should be of the correct type.
         #[unsafe(method(accessibilityElementWithRole:frame:label:parent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(

@@ -101,6 +101,10 @@ impl PTChannelManager {
         /// The ephemeral push token is only usable when this is nonnull.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(activeChannelUUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeChannelUUID(&self) -> Option<Retained<NSUUID>>;

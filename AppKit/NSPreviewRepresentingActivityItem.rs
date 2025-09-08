@@ -65,6 +65,10 @@ impl NSPreviewRepresentingActivityItem {
         /// - icon: An icon to show in a preview
         ///
         /// For more information about the parameters, see NSPreviewRepresentableActivityItem documentation
+        ///
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[unsafe(method(initWithItem:title:image:icon:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_title_image_icon(
@@ -82,6 +86,10 @@ impl NSPreviewRepresentingActivityItem {
         /// - iconProvider: An NSItemProvider which provides an icon to show in a preview
         ///
         /// For more information about the parameters, see NSPreviewRepresentableActivityItem documentation
+        ///
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[unsafe(method(initWithItem:title:imageProvider:iconProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_title_imageProvider_iconProvider(

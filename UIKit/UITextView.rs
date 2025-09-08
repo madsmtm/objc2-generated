@@ -759,6 +759,10 @@ impl UITextView {
         /// Setter for [`typingAttributes`][Self::typingAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `typing_attributes` generic should be of the correct type.
         #[unsafe(method(setTypingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTypingAttributes(
@@ -860,6 +864,10 @@ impl UITextView {
         /// Setter for [`linkTextAttributes`][Self::linkTextAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `link_text_attributes` generic should be of the correct type.
         #[unsafe(method(setLinkTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLinkTextAttributes(
@@ -911,6 +919,10 @@ impl UITextView {
         /// Setter for [`textHighlightAttributes`][Self::textHighlightAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_highlight_attributes` generic should be of the correct type.
         #[unsafe(method(setTextHighlightAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextHighlightAttributes(
@@ -1098,6 +1110,10 @@ impl UITextView {
         /// Setter for [`interactionState`][Self::interactionState].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `interaction_state` should be of the correct type.
         #[unsafe(method(setInteractionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: &AnyObject);

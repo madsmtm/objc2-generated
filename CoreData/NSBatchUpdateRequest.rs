@@ -97,6 +97,10 @@ impl NSBatchUpdateRequest {
         /// Setter for [`propertiesToUpdate`][Self::propertiesToUpdate].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `properties_to_update` generic should be of the correct type.
         #[unsafe(method(setPropertiesToUpdate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesToUpdate(&self, properties_to_update: Option<&NSDictionary>);

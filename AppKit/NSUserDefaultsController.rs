@@ -45,6 +45,9 @@ impl NSUserDefaultsController {
             mtm: MainThreadMarker,
         ) -> Retained<NSUserDefaultsController>;
 
+        /// # Safety
+        ///
+        /// `initial_values` generic should be of the correct type.
         #[unsafe(method(initWithDefaults:initialValues:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefaults_initialValues(
@@ -71,6 +74,10 @@ impl NSUserDefaultsController {
         /// Setter for [`initialValues`][Self::initialValues].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `initial_values` generic should be of the correct type.
         #[unsafe(method(setInitialValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialValues(
@@ -95,14 +102,23 @@ impl NSUserDefaultsController {
         #[unsafe(method_family = none)]
         pub unsafe fn values(&self) -> Retained<AnyObject>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(revert:))]
         #[unsafe(method_family = none)]
         pub unsafe fn revert(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(save:))]
         #[unsafe(method_family = none)]
         pub unsafe fn save(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(revertToInitialValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn revertToInitialValues(&self, sender: Option<&AnyObject>);

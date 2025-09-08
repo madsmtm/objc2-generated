@@ -876,6 +876,10 @@ impl MTLRenderPassDescriptor {
         /// Parameter `positions`: The source array for custom sample position data.
         ///
         /// Parameter `count`: Specifies the length of the positions array, and must be a valid sample count or 0 (to disable custom sample positions).
+        ///
+        /// # Safety
+        ///
+        /// `positions` must be a valid pointer or null.
         #[unsafe(method(setSamplePositions:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSamplePositions_count(
@@ -892,6 +896,10 @@ impl MTLRenderPassDescriptor {
         /// Parameter `count`: Specifies the length of the positions array, which must be large enough to hold all configured sample positions.
         ///
         /// Returns: The number of previously configured custom sample positions.
+        ///
+        /// # Safety
+        ///
+        /// `positions` must be a valid pointer or null.
         #[unsafe(method(getSamplePositions:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSamplePositions_count(

@@ -88,6 +88,9 @@ impl NSAppleEventDescriptor {
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer or null.
         #[unsafe(method(descriptorWithDescriptorType:bytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithDescriptorType_bytes_length(
@@ -192,6 +195,9 @@ impl NSAppleEventDescriptor {
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `ae_desc` must be a valid pointer.
         #[unsafe(method(initWithAEDescNoCopy:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAEDescNoCopy(
@@ -201,6 +207,9 @@ impl NSAppleEventDescriptor {
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer or null.
         #[unsafe(method(initWithDescriptorType:bytes:length:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDescriptorType_bytes_length(

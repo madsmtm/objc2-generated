@@ -52,6 +52,11 @@ extern_protocol!(
         ///
         ///
         /// Parameter `element`: The element that has been modified.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(elementValueDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn elementValueDidChangeHandler(
@@ -136,6 +141,10 @@ extern_protocol!(
         /// }
         /// }
         /// };
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(inputStateAvailableHandler))]
         #[unsafe(method_family = none)]
         unsafe fn inputStateAvailableHandler(

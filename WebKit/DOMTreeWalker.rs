@@ -64,6 +64,10 @@ impl DOMTreeWalker {
 
         #[cfg(feature = "DOMNode")]
         /// Setter for [`currentNode`][Self::currentNode].
+        ///
+        /// # Safety
+        ///
+        /// `current_node` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setCurrentNode:))]
         #[unsafe(method_family = none)]

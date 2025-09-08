@@ -49,6 +49,9 @@ impl MPMediaEntity {
             block: &block2::DynBlock<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
         );
 
+        /// # Safety
+        ///
+        /// `key` should be of the correct type.
         #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(

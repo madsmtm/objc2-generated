@@ -26,6 +26,10 @@ extern_conformance!(
 impl GKSession {
     extern_methods!(
         #[cfg(feature = "GKPublicConstants")]
+        /// # Safety
+        ///
+        /// - `session_id` might not allow `None`.
+        /// - `name` might not allow `None`.
         #[deprecated = "No longer available"]
         #[unsafe(method(initWithSessionID:displayName:sessionMode:))]
         #[unsafe(method_family = init)]
@@ -46,6 +50,10 @@ impl GKSession {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `delegate` might not allow `None`.
         #[deprecated = "No longer supported."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -97,6 +105,10 @@ impl GKSession {
         pub unsafe fn setDisconnectTimeout(&self, disconnect_timeout: NSTimeInterval);
 
         /// Return the application chosen name of a specific peer
+        ///
+        /// # Safety
+        ///
+        /// `peer_id` might not allow `None`.
         #[deprecated]
         #[unsafe(method(displayNameForPeer:))]
         #[unsafe(method_family = none)]
@@ -107,6 +119,12 @@ impl GKSession {
 
         #[cfg(feature = "GKPublicConstants")]
         /// Asynchronous delivery of data to one or more peers.  Returns YES if delivery started, NO if unable to start sending, and error will be set.  Delivery will be reliable or unreliable as set by mode.
+        ///
+        /// # Safety
+        ///
+        /// - `data` might not allow `None`.
+        /// - `peers` generic should be of the correct type.
+        /// - `peers` might not allow `None`.
         #[deprecated = "No longer supported."]
         #[unsafe(method(sendData:toPeers:withDataMode:error:))]
         #[unsafe(method_family = none)]
@@ -120,6 +138,10 @@ impl GKSession {
 
         #[cfg(feature = "GKPublicConstants")]
         /// Asynchronous delivery to all peers.  Returns YES if delivery started, NO if unable to start sending, and error will be set.  Delivery will be reliable or unreliable as set by mode.
+        ///
+        /// # Safety
+        ///
+        /// `data` might not allow `None`.
         #[deprecated = "No longer supported."]
         #[unsafe(method(sendDataToAllPeers:withDataMode:error:))]
         #[unsafe(method_family = none)]
@@ -131,6 +153,10 @@ impl GKSession {
         ) -> bool;
 
         /// Set the handler to receive data sent from remote peers.
+        ///
+        /// # Safety
+        ///
+        /// `context` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(setDataReceiveHandler:withContext:))]
         #[unsafe(method_family = none)]
@@ -144,6 +170,10 @@ impl GKSession {
         ///
         /// Success results in a call to delegate -session:peer:didChangeState: GKPeerStateConnected
         /// Failure results in a call to delegate -session:connectionWithPeerFailed:withError:
+        ///
+        /// # Safety
+        ///
+        /// `peer_id` might not allow `None`.
         #[deprecated]
         #[unsafe(method(connectToPeer:withTimeout:))]
         #[unsafe(method_family = none)]
@@ -153,12 +183,19 @@ impl GKSession {
             timeout: NSTimeInterval,
         );
 
+        /// # Safety
+        ///
+        /// `peer_id` might not allow `None`.
         #[deprecated]
         #[unsafe(method(cancelConnectToPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelConnectToPeer(&self, peer_id: Option<&NSString>);
 
         /// Methods to accept or deny a prior connection request from -session:didReceiveConnectionRequestFromPeer:
+        ///
+        /// # Safety
+        ///
+        /// `peer_id` might not allow `None`.
         #[deprecated]
         #[unsafe(method(acceptConnectionFromPeer:error:))]
         #[unsafe(method_family = none)]
@@ -168,12 +205,19 @@ impl GKSession {
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `peer_id` might not allow `None`.
         #[deprecated]
         #[unsafe(method(denyConnectionFromPeer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn denyConnectionFromPeer(&self, peer_id: Option<&NSString>);
 
         /// Disconnect a peer from the session (the peer gets disconnected from all connected peers).
+        ///
+        /// # Safety
+        ///
+        /// `peer_id` might not allow `None`.
         #[deprecated]
         #[unsafe(method(disconnectPeerFromAllPeers:))]
         #[unsafe(method_family = none)]

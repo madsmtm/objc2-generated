@@ -37,6 +37,9 @@ impl NSUserScriptTask {
         pub unsafe fn scriptURL(&self) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(executeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithCompletionHandler(
@@ -115,6 +118,9 @@ impl NSUserUnixTask {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(executeWithArguments:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithArguments_completionHandler(
@@ -178,6 +184,9 @@ impl NSUserAppleScriptTask {
             feature = "NSError",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(executeWithAppleEvent:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithAppleEvent_completionHandler(
@@ -241,11 +250,18 @@ impl NSUserAutomatorTask {
         /// Setter for [`variables`][Self::variables].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `variables` generic should be of the correct type.
         #[unsafe(method(setVariables:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(executeWithInput:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInput_completionHandler(

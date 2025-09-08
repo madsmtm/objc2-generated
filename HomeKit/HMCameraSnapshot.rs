@@ -33,6 +33,10 @@ impl HMCameraSnapshot {
         /// Time corresponding to the snapshot request.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(captureDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureDate(&self) -> Retained<NSDate>;

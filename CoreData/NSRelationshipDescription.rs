@@ -72,6 +72,10 @@ impl NSRelationshipDescription {
 
         #[cfg(feature = "NSEntityDescription")]
         /// Setter for [`destinationEntity`][Self::destinationEntity].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDestinationEntity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestinationEntity(&self, destination_entity: Option<&NSEntityDescription>);
@@ -84,6 +88,10 @@ impl NSRelationshipDescription {
         pub unsafe fn inverseRelationship(&self) -> Option<Retained<NSRelationshipDescription>>;
 
         /// Setter for [`inverseRelationship`][Self::inverseRelationship].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setInverseRelationship:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInverseRelationship(

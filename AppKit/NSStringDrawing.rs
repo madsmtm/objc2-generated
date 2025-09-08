@@ -68,6 +68,9 @@ pub unsafe trait NSStringDrawing:
 {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `attrs` generic should be of the correct type.
         #[unsafe(method(sizeWithAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn sizeWithAttributes(
@@ -76,6 +79,9 @@ pub unsafe trait NSStringDrawing:
         ) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `attrs` generic should be of the correct type.
         #[unsafe(method(drawAtPoint:withAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn drawAtPoint_withAttributes(
@@ -85,6 +91,9 @@ pub unsafe trait NSStringDrawing:
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `attrs` generic should be of the correct type.
         #[unsafe(method(drawInRect:withAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn drawInRect_withAttributes(
@@ -171,6 +180,9 @@ pub unsafe trait NSStringNSExtendedStringDrawing:
 {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(drawWithRect:options:attributes:context:))]
         #[unsafe(method_family = none)]
         unsafe fn drawWithRect_options_attributes_context(
@@ -182,6 +194,9 @@ pub unsafe trait NSStringNSExtendedStringDrawing:
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(boundingRectWithSize:options:attributes:context:))]
         #[unsafe(method_family = none)]
         unsafe fn boundingRectWithSize_options_attributes_context(
@@ -243,6 +258,9 @@ pub unsafe trait NSStringDrawingDeprecated:
     ClassType + Sized + private_NSStringDrawingDeprecated::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(drawWithRect:options:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn drawWithRect_options_attributes(
@@ -252,6 +270,9 @@ pub unsafe trait NSStringDrawingDeprecated:
             attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(boundingRectWithSize:options:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn boundingRectWithSize_options_attributes(

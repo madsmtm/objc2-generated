@@ -39,6 +39,11 @@ extern "C-unwind" {
     /// Returns: errAuthorizationSuccess 0 No error.
     ///
     /// errAuthorizationDenied -60005 No definition found.
+    ///
+    /// # Safety
+    ///
+    /// - `right_name` must be a valid pointer.
+    /// - `right_definition` must be a valid pointer or null.
     pub fn AuthorizationRightGet(
         right_name: NonNull<c_char>,
         right_definition: *mut *const CFDictionary,
@@ -69,6 +74,12 @@ extern "C-unwind" {
     /// errAuthorizationCanceled -60006 Authorization was canceled by user.
     ///
     /// errAuthorizationInteractionNotAllowed -60007 Interaction was required but not possible.
+    ///
+    /// # Safety
+    ///
+    /// - `auth_ref` must be a valid pointer.
+    /// - `right_name` must be a valid pointer.
+    /// - `right_definition` should be of the correct type.
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationRightSet(
         auth_ref: AuthorizationRef,
@@ -87,6 +98,11 @@ extern "C-unwind" {
     /// Parameter `authRef`: (input) authRef, to be used to authorize this action.
     ///
     /// Parameter `rightName`: (input) the rightname (ASCII).  Wildcard rightnames are not okay.
+    ///
+    /// # Safety
+    ///
+    /// - `auth_ref` must be a valid pointer.
+    /// - `right_name` must be a valid pointer.
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationRightRemove(
         auth_ref: AuthorizationRef,

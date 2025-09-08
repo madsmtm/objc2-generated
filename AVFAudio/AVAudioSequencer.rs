@@ -340,6 +340,10 @@ impl AVAudioSequencer {
         /// The same callback is called for events which occur on any track in the sequencer.
         ///
         /// Set the block to nil to disable it.
+        ///
+        /// # Safety
+        ///
+        /// `user_callback` must be a valid pointer or null.
         #[unsafe(method(setUserCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserCallback(&self, user_callback: AVAudioSequencerUserCallback);
@@ -827,6 +831,10 @@ impl AVMusicTrack {
         ///
         /// The event objects returned via the block will not be the same instances
         /// which were added to the AVMusicTrack, though their contents will be identical.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(enumerateEventsInRange:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateEventsInRange_usingBlock(

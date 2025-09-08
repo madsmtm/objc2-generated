@@ -161,6 +161,10 @@ impl WebView {
         /// Parameter `MIMEType`: The MIME type to check.
         ///
         /// Returns: YES if the WebKit can show content with MIMEtype.
+        ///
+        /// # Safety
+        ///
+        /// `mime_type` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(canShowMIMEType:))]
         #[unsafe(method_family = none)]
@@ -171,6 +175,10 @@ impl WebView {
         /// Parameter `MIMEType`: The MIME type to check.
         ///
         /// Returns: YES if the MIMEtype in an HTML type.
+        ///
+        /// # Safety
+        ///
+        /// `mime_type` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(canShowMIMETypeAsHTML:))]
         #[unsafe(method_family = none)]
@@ -190,6 +198,11 @@ impl WebView {
         /// attempt to render as HTML.  Typically you will retrieve the built-in
         /// array using MIMETypesShownAsHTML and add additional MIME types to that
         /// array.
+        ///
+        /// # Safety
+        ///
+        /// - `mime_types` generic should be of the correct type.
+        /// - `mime_types` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setMIMETypesShownAsHTML:))]
         #[unsafe(method_family = none)]
@@ -203,6 +216,10 @@ impl WebView {
         ///
         /// This method differs than NSURL's URLFromPasteboard method in that it tries multiple pasteboard types
         /// including NSURLPboardType to find a URL on the pasteboard.
+        ///
+        /// # Safety
+        ///
+        /// `pasteboard` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(URLFromPasteboard:))]
         #[unsafe(method_family = none)]
@@ -219,6 +236,10 @@ impl WebView {
         ///
         /// This method returns a title that refers a URL on the pasteboard. An example of this is the link label
         /// which is the text inside the anchor tag.
+        ///
+        /// # Safety
+        ///
+        /// `pasteboard` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(URLTitleFromPasteboard:))]
         #[unsafe(method_family = none)]
@@ -230,6 +251,10 @@ impl WebView {
         /// Adds the scheme to the list of schemes to be treated as local.
         ///
         /// Parameter `scheme`: The scheme to register
+        ///
+        /// # Safety
+        ///
+        /// `scheme` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(registerURLSchemeAsLocal:))]
         #[unsafe(method_family = none)]
@@ -249,6 +274,11 @@ impl WebView {
         /// Parameter `groupName`: The name of the webView set to which this webView will be added.  May be nil.
         ///
         /// Returns: Returns an initialized WebView.
+        ///
+        /// # Safety
+        ///
+        /// - `frame_name` might not allow `None`.
+        /// - `group_name` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(initWithFrame:frameName:groupName:))]
         #[unsafe(method_family = init)]
@@ -299,6 +329,10 @@ impl WebView {
 
         #[cfg(feature = "WebUIDelegate")]
         /// Setter for [`UIDelegate`][Self::UIDelegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setUIDelegate:))]
         #[unsafe(method_family = none)]
@@ -319,6 +353,10 @@ impl WebView {
 
         #[cfg(feature = "WebResourceLoadDelegate")]
         /// Setter for [`resourceLoadDelegate`][Self::resourceLoadDelegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setResourceLoadDelegate:))]
         #[unsafe(method_family = none)]
@@ -342,6 +380,10 @@ impl WebView {
 
         #[cfg(feature = "WebDownload")]
         /// Setter for [`downloadDelegate`][Self::downloadDelegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setDownloadDelegate:))]
         #[unsafe(method_family = none)]
@@ -365,6 +407,10 @@ impl WebView {
 
         #[cfg(feature = "WebFrameLoadDelegate")]
         /// Setter for [`frameLoadDelegate`][Self::frameLoadDelegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setFrameLoadDelegate:))]
         #[unsafe(method_family = none)]
@@ -388,6 +434,10 @@ impl WebView {
 
         #[cfg(feature = "WebPolicyDelegate")]
         /// Setter for [`policyDelegate`][Self::policyDelegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setPolicyDelegate:))]
         #[unsafe(method_family = none)]
@@ -450,6 +500,10 @@ impl WebView {
         /// Go back or forward to an item in the backforward list.
         ///
         /// Returns: YES if able to go to the item, NO otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `item` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(goToBackForwardItem:))]
         #[unsafe(method_family = none)]
@@ -508,6 +562,10 @@ impl WebView {
         /// Parameter `URL`: The URL.
         ///
         /// Returns: The user-agent string for the supplied URL.
+        ///
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(userAgentForURL:))]
         #[unsafe(method_family = none)]
@@ -563,6 +621,10 @@ impl WebView {
         /// Parameter `script`: The text of the JavaScript.
         ///
         /// Returns: The result of the script, converted to a string, or nil for failure.
+        ///
+        /// # Safety
+        ///
+        /// `script` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(stringByEvaluatingJavaScriptFromString:))]
         #[unsafe(method_family = none)]
@@ -591,6 +653,10 @@ impl WebView {
 
         #[cfg(feature = "WebPreferences")]
         /// Setter for [`preferences`][Self::preferences].
+        ///
+        /// # Safety
+        ///
+        /// `preferences` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setPreferences:))]
         #[unsafe(method_family = none)]
@@ -623,6 +689,10 @@ impl WebView {
         pub unsafe fn hostWindow(&self) -> Option<Retained<NSWindow>>;
 
         /// Setter for [`hostWindow`][Self::hostWindow].
+        ///
+        /// # Safety
+        ///
+        /// `host_window` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setHostWindow:))]
         #[unsafe(method_family = none)]
@@ -638,6 +708,10 @@ impl WebView {
         /// Parameter `caseFlag`: YES to for case-sensitive search, NO for case-insensitive search.
         ///
         /// Returns: YES if found, NO if not found.
+        ///
+        /// # Safety
+        ///
+        /// `string` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(searchFor:direction:caseSensitive:wrap:))]
         #[unsafe(method_family = none)]
@@ -660,6 +734,14 @@ impl WebView {
         /// Parameter `representationClass`: The WebDocumentRepresentation class to use to represent data of the given MIME type.
         ///
         /// Parameter `MIMEType`: The MIME type to represent with an object of the given class.
+        ///
+        /// # Safety
+        ///
+        /// - `view_class` probably has further requirements.
+        /// - `view_class` might not allow `None`.
+        /// - `representation_class` probably has further requirements.
+        /// - `representation_class` might not allow `None`.
+        /// - `mime_type` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(registerViewClass:representationClass:forMIMEType:))]
         #[unsafe(method_family = none)]
@@ -723,6 +805,12 @@ impl WebView {
         /// Parameter `types`: The types that WebView will write to the pasteboard
         ///
         /// Parameter `pasteboard`: The pasteboard to write to
+        ///
+        /// # Safety
+        ///
+        /// - `types` generic should be of the correct type.
+        /// - `types` might not allow `None`.
+        /// - `pasteboard` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(writeSelectionWithPasteboardTypes:toPasteboard:))]
         #[unsafe(method_family = none)]
@@ -735,6 +823,11 @@ impl WebView {
         /// Returns the pasteboard types that WebView can use for an element
         ///
         /// Parameter `element`: The element
+        ///
+        /// # Safety
+        ///
+        /// - `element` generic should be of the correct type.
+        /// - `element` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(pasteboardTypesForElement:))]
         #[unsafe(method_family = none)]
@@ -750,6 +843,14 @@ impl WebView {
         /// Parameter `types`: The types that WebView will write to the pasteboard
         ///
         /// Parameter `pasteboard`: The pasteboard to write to
+        ///
+        /// # Safety
+        ///
+        /// - `element` generic should be of the correct type.
+        /// - `element` might not allow `None`.
+        /// - `types` generic should be of the correct type.
+        /// - `types` might not allow `None`.
+        /// - `pasteboard` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(writeElement:withPasteboardTypes:toPasteboard:))]
         #[unsafe(method_family = none)]
@@ -889,21 +990,33 @@ impl WebView {
 #[cfg(target_os = "macos")]
 impl WebView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(takeStringURLFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeStringURLFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(stopLoading:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopLoading(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(reload:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reload(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(reloadFromOrigin:))]
         #[unsafe(method_family = none)]
@@ -914,6 +1027,9 @@ impl WebView {
         #[unsafe(method_family = none)]
         pub unsafe fn canGoBack(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(goBack:))]
         #[unsafe(method_family = none)]
@@ -924,6 +1040,9 @@ impl WebView {
         #[unsafe(method_family = none)]
         pub unsafe fn canGoForward(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(goForward:))]
         #[unsafe(method_family = none)]
@@ -934,6 +1053,9 @@ impl WebView {
         #[unsafe(method_family = none)]
         pub unsafe fn canMakeTextLarger(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(makeTextLarger:))]
         #[unsafe(method_family = none)]
@@ -944,6 +1066,9 @@ impl WebView {
         #[unsafe(method_family = none)]
         pub unsafe fn canMakeTextSmaller(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(makeTextSmaller:))]
         #[unsafe(method_family = none)]
@@ -954,16 +1079,25 @@ impl WebView {
         #[unsafe(method_family = none)]
         pub unsafe fn canMakeTextStandardSize(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(makeTextStandardSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeTextStandardSize(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(toggleContinuousSpellChecking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleContinuousSpellChecking(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(toggleSmartInsertDelete:))]
         #[unsafe(method_family = none)]
@@ -1020,6 +1154,10 @@ impl WebView {
             feature = "DOMObject",
             feature = "WebScriptObject"
         ))]
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `pseudo_element` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(computedStyleForElement:pseudoElement:))]
         #[unsafe(method_family = none)]
@@ -1053,6 +1191,9 @@ impl WebView {
             feature = "DOMRange",
             feature = "WebScriptObject"
         ))]
+        /// # Safety
+        ///
+        /// `range` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setSelectedDOMRange:affinity:))]
         #[unsafe(method_family = none)]
@@ -1109,6 +1250,10 @@ impl WebView {
             feature = "WebScriptObject"
         ))]
         /// Setter for [`typingStyle`][Self::typingStyle].
+        ///
+        /// # Safety
+        ///
+        /// `typing_style` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setTypingStyle:))]
         #[unsafe(method_family = none)]
@@ -1162,6 +1307,10 @@ impl WebView {
 
         #[cfg(feature = "WebEditingDelegate")]
         /// Setter for [`editingDelegate`][Self::editingDelegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setEditingDelegate:))]
         #[unsafe(method_family = none)]
@@ -1175,6 +1324,9 @@ impl WebView {
             feature = "DOMObject",
             feature = "WebScriptObject"
         ))]
+        /// # Safety
+        ///
+        /// `text` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(styleDeclarationWithText:))]
         #[unsafe(method_family = none)]
@@ -1196,22 +1348,34 @@ impl WebView {
             feature = "DOMObject",
             feature = "WebScriptObject"
         ))]
+        /// # Safety
+        ///
+        /// `node` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(replaceSelectionWithNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceSelectionWithNode(&self, node: Option<&DOMNode>);
 
+        /// # Safety
+        ///
+        /// `text` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(replaceSelectionWithText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceSelectionWithText(&self, text: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// `markup_string` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(replaceSelectionWithMarkupString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceSelectionWithMarkupString(&self, markup_string: Option<&NSString>);
 
         #[cfg(feature = "WebArchive")]
+        /// # Safety
+        ///
+        /// `archive` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(replaceSelectionWithArchive:))]
         #[unsafe(method_family = none)]
@@ -1227,6 +1391,9 @@ impl WebView {
             feature = "DOMObject",
             feature = "WebScriptObject"
         ))]
+        /// # Safety
+        ///
+        /// `style` might not allow `None`.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(applyStyle:))]
         #[unsafe(method_family = none)]
@@ -1240,116 +1407,185 @@ impl WebView {
 #[cfg(target_os = "macos")]
 impl WebView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(copy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copy(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(cut:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cut(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(paste:))]
         #[unsafe(method_family = none)]
         pub unsafe fn paste(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(copyFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copyFont(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(pasteFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteFont(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(delete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn delete(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(pasteAsPlainText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteAsPlainText(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(pasteAsRichText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteAsRichText(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(changeFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeFont(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(changeAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeAttributes(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(changeDocumentBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeDocumentBackgroundColor(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(changeColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeColor(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(alignCenter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignCenter(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(alignJustified:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignJustified(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(alignLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignLeft(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(alignRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignRight(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(checkSpelling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkSpelling(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(showGuessPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showGuessPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(performFindPanelAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performFindPanelAction(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(startSpeaking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startSpeaking(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(stopSpeaking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopSpeaking(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(moveToBeginningOfSentence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveToBeginningOfSentence(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(moveToBeginningOfSentenceAndModifySelection:))]
         #[unsafe(method_family = none)]
@@ -1358,21 +1594,33 @@ impl WebView {
             sender: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(moveToEndOfSentence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveToEndOfSentence(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(moveToEndOfSentenceAndModifySelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveToEndOfSentenceAndModifySelection(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(selectSentence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectSentence(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(overWrite:))]
         #[unsafe(method_family = none)]

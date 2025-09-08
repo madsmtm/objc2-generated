@@ -240,6 +240,9 @@ impl NSCollectionViewCompositionalLayout {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `section_provider` must be a valid pointer.
         #[unsafe(method(initWithSectionProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSectionProvider(
@@ -248,6 +251,9 @@ impl NSCollectionViewCompositionalLayout {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `section_provider` must be a valid pointer.
         #[unsafe(method(initWithSectionProvider:configuration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSectionProvider_configuration(
@@ -421,6 +427,10 @@ impl NSCollectionLayoutSection {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(visibleItemsInvalidationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn visibleItemsInvalidationHandler(
@@ -431,6 +441,10 @@ impl NSCollectionLayoutSection {
         /// Setter for [`visibleItemsInvalidationHandler`][Self::visibleItemsInvalidationHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `visible_items_invalidation_handler` must be a valid pointer or null.
         #[unsafe(method(setVisibleItemsInvalidationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisibleItemsInvalidationHandler(
@@ -642,6 +656,9 @@ impl NSCollectionLayoutGroup {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `item_provider` must be a valid pointer.
         #[unsafe(method(customGroupWithLayoutSize:itemProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customGroupWithLayoutSize_itemProvider(

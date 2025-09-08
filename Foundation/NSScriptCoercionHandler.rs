@@ -23,6 +23,10 @@ impl NSScriptCoercionHandler {
         #[unsafe(method_family = none)]
         pub unsafe fn sharedCoercionHandler() -> Retained<NSScriptCoercionHandler>;
 
+        /// # Safety
+        ///
+        /// - `value` should be of the correct type.
+        /// - `to_class` probably has further requirements.
         #[unsafe(method(coerceValue:toClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn coerceValue_toClass(
@@ -31,6 +35,11 @@ impl NSScriptCoercionHandler {
             to_class: &AnyClass,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `from_class` probably has further requirements.
+        /// - `to_class` probably has further requirements.
         #[unsafe(method(registerCoercer:selector:toConvertFromClass:toClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerCoercer_selector_toConvertFromClass_toClass(

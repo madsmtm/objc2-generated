@@ -250,6 +250,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingclient?language=objc)
     #[cfg(feature = "NSTextInputClient")]
     pub unsafe trait NSTextCheckingClient: NSTextInputClient + NSTextInputTraits {
+        /// # Safety
+        ///
+        /// `actual_range` must be a valid pointer or null.
         #[unsafe(method(annotatedSubstringForProposedRange:actualRange:))]
         #[unsafe(method_family = none)]
         unsafe fn annotatedSubstringForProposedRange_actualRange(
@@ -295,6 +298,10 @@ extern_protocol!(
         unsafe fn selectAndShowRange(&self, range: NSRange);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// - `first_rect` must be a valid pointer or null.
+        /// - `actual_range` must be a valid pointer or null.
         #[unsafe(method(viewForRange:firstRect:actualRange:))]
         #[unsafe(method_family = none)]
         unsafe fn viewForRange_firstRect_actualRange(

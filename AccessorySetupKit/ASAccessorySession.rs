@@ -34,6 +34,10 @@ impl ASAccessorySession {
         /// To monitor for changes in this list, use your event handler to watch for the events ``ASAccessoryEventType/accessoryAdded``, ``ASAccessoryEventType/accessoryChanged``, and ``ASAccessoryEventType/accessoryRemoved``.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<ASAccessory>>;

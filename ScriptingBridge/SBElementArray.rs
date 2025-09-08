@@ -102,6 +102,10 @@ impl<ObjectType: Message> SBElementArray<ObjectType> {
         ///
         /// - Returns: A reference to the identified object or `nil` if could not be
         /// found.
+        ///
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(objectWithID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectWithID(&self, identifier: &AnyObject) -> Retained<ObjectType>;
@@ -127,6 +131,10 @@ impl<ObjectType: Message> SBElementArray<ObjectType> {
         ///
         /// - Returns: A reference to the ``SBObject`` object identified by `loc` or
         /// `nil` if the object couldn’t be located.
+        ///
+        /// # Safety
+        ///
+        /// `location` should be of the correct type.
         #[unsafe(method(objectAtLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtLocation(&self, location: &AnyObject) -> Retained<ObjectType>;
@@ -146,6 +154,10 @@ impl<ObjectType: Message> SBElementArray<ObjectType> {
         /// - Returns: A new array containing the results of sending the `selector`
         /// message to each object in the receiver, starting with the first object and
         /// continuing through the element array to the last object.
+        ///
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(arrayByApplyingSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayByApplyingSelector(&self, selector: Sel)
@@ -169,6 +181,11 @@ impl<ObjectType: Message> SBElementArray<ObjectType> {
         /// - Returns: A new array containing the results of sending the `selector`
         /// message to each object in the receiver, starting with the first object and
         /// continuing through the element array to the last object.
+        ///
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `argument` should be of the correct type.
         #[unsafe(method(arrayByApplyingSelector:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayByApplyingSelector_withObject(
@@ -218,6 +235,9 @@ impl<ObjectType: Message> SBElementArray<ObjectType> {
 /// Methods declared on superclass `NSArray`.
 impl<ObjectType: Message> SBElementArray<ObjectType> {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(initWithObjects:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(

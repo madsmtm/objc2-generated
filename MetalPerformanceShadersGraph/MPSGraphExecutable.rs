@@ -72,12 +72,21 @@ impl MPSGraphExecutableExecutionDescriptor {
         /// A notification that appears when graph-executable execution is scheduled.
         ///
         /// Default value is nil.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(scheduledHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledHandler(&self) -> MPSGraphExecutableScheduledHandler;
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
         /// Setter for [`scheduledHandler`][Self::scheduledHandler].
+        ///
+        /// # Safety
+        ///
+        /// `scheduled_handler` must be a valid pointer.
         #[unsafe(method(setScheduledHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScheduledHandler(
@@ -89,12 +98,21 @@ impl MPSGraphExecutableExecutionDescriptor {
         /// A notification that appears when graph-executable execution is finished.
         ///
         /// Default value is nil.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> MPSGraphExecutableCompletionHandler;
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
         /// Setter for [`completionHandler`][Self::completionHandler].
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(

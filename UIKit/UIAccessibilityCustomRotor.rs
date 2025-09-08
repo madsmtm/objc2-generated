@@ -132,6 +132,10 @@ pub unsafe trait NSObjectUIAccessibilityCustomRotor:
         /// Setter for [`accessibilityCustomRotorsBlock`][Self::accessibilityCustomRotorsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_custom_rotors_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityCustomRotorsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomRotorsBlock(
@@ -210,6 +214,9 @@ extern_conformance!(
 impl UIAccessibilityCustomRotor {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `item_search_block` must be a valid pointer.
         #[unsafe(method(initWithName:itemSearchBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_itemSearchBlock(
@@ -219,6 +226,9 @@ impl UIAccessibilityCustomRotor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `item_search_block` must be a valid pointer.
         #[unsafe(method(initWithAttributedName:itemSearchBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedName_itemSearchBlock(
@@ -228,6 +238,9 @@ impl UIAccessibilityCustomRotor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `item_search_block` must be a valid pointer.
         #[unsafe(method(initWithSystemType:itemSearchBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSystemType_itemSearchBlock(
@@ -259,6 +272,9 @@ impl UIAccessibilityCustomRotor {
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(itemSearchBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemSearchBlock(&self) -> UIAccessibilityCustomRotorSearch;
@@ -267,6 +283,10 @@ impl UIAccessibilityCustomRotor {
         /// Setter for [`itemSearchBlock`][Self::itemSearchBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `item_search_block` must be a valid pointer.
         #[unsafe(method(setItemSearchBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSearchBlock(

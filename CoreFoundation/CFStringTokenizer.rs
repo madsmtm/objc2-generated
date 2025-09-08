@@ -190,6 +190,12 @@ impl CFStringTokenizer {
     /// NULL if you want tokenizer to identify the locale automatically.
     ///
     /// Returns: A reference to the new CFStringTokenizer.
+    ///
+    /// # Safety
+    ///
+    /// - `alloc` might not allow `None`.
+    /// - `string` might not allow `None`.
+    /// - `locale` might not allow `None`.
     #[doc(alias = "CFStringTokenizerCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -222,6 +228,10 @@ impl CFStringTokenizer {
     ///
     /// Parameter `range`: The range of characters within the string to be tokenized. The
     /// specified range must not exceed the length of the string.
+    ///
+    /// # Safety
+    ///
+    /// `string` might not allow `None`.
     #[doc(alias = "CFStringTokenizerSetString")]
     #[inline]
     pub unsafe fn set_string(&self, string: Option<&CFString>, range: CFRange) {
@@ -364,6 +374,12 @@ impl CFStringTokenizer {
     /// The derivedSubTokens array will have sub tokens added even when the sub token is a
     /// substring of the token. If token type is kCFStringTokenizerTokenHasSubTokensMask,
     /// the ordinary non-derived subtokens are added to the derivedSubTokens array.
+    ///
+    /// # Safety
+    ///
+    /// - `ranges` must be a valid pointer.
+    /// - `derived_sub_tokens` generic must be of the correct type.
+    /// - `derived_sub_tokens` might not allow `None`.
     #[doc(alias = "CFStringTokenizerGetCurrentSubTokens")]
     #[cfg(feature = "CFArray")]
     #[inline]

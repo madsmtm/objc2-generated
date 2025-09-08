@@ -109,6 +109,10 @@ impl NSViewController {
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
+        ///
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[unsafe(method(setRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
@@ -148,6 +152,10 @@ impl NSViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn loadViewIfNeeded(&self);
 
+        /// # Safety
+        ///
+        /// - `did_commit_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(commitEditingWithDelegate:didCommitSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(
@@ -248,6 +256,9 @@ impl NSViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn dismissViewController(&self, view_controller: &NSViewController);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(dismissController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);

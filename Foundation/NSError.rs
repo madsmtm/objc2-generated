@@ -172,6 +172,9 @@ extern_conformance!(
 impl NSError {
     extern_methods!(
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithDomain:code:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDomain_code_userInfo(
@@ -182,6 +185,9 @@ impl NSError {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(errorWithDomain:code:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorWithDomain_code_userInfo(
@@ -239,6 +245,9 @@ impl NSError {
         pub unsafe fn underlyingErrors(&self) -> Retained<NSArray<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `provider` block must be sendable.
         #[unsafe(method(setUserInfoValueProviderForDomain:provider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
@@ -251,6 +260,9 @@ impl NSError {
         );
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(userInfoValueProviderForDomain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfoValueProviderForDomain(
@@ -280,6 +292,10 @@ pub unsafe trait NSObjectNSErrorRecoveryAttempting:
     ClassType + Sized + private_NSObjectNSErrorRecoveryAttempting::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `did_recover_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo(

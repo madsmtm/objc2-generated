@@ -63,11 +63,18 @@ impl NSUserActivity {
         /// Setter for [`userInfo`][Self::userInfo].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(feature = "NSDictionary")]
+        /// # Safety
+        ///
+        /// `other_dictionary` generic should be of the correct type.
         #[unsafe(method(addUserInfoEntriesFromDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addUserInfoEntriesFromDictionary(&self, other_dictionary: &NSDictionary);
@@ -203,6 +210,9 @@ impl NSUserActivity {
         pub unsafe fn invalidate(&self);
 
         #[cfg(all(feature = "NSError", feature = "NSStream", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getContinuationStreamsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getContinuationStreamsWithCompletionHandler(
@@ -267,6 +277,9 @@ impl NSUserActivity {
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
@@ -275,6 +288,9 @@ impl NSUserActivity {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(deleteAllSavedUserActivitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAllSavedUserActivitiesWithCompletionHandler(

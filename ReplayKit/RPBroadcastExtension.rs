@@ -36,6 +36,9 @@ pub unsafe trait NSExtensionContextRPBroadcastExtension:
             handler: &block2::DynBlock<dyn Fn(NonNull<NSString>, NonNull<NSString>, *mut NSImage)>,
         );
 
+        /// # Safety
+        ///
+        /// `setup_info` generic must implement NSCoding.
         #[unsafe(method(completeRequestWithBroadcastURL:setupInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn completeRequestWithBroadcastURL_setupInfo(
@@ -71,6 +74,10 @@ impl RPBroadcastHandler {
         /// Call this method, supplying it with a dictionary defined by the service, to populate the serviceInfo property on RPBroadcastController. This can be used to communicate viewing stats or messages back to the broadcasting app.
         ///
         /// Parameter `serviceInfo`: Dictionary that can be passed back to the broadcasting app that may contain information about the ongoing broadcast.
+        ///
+        /// # Safety
+        ///
+        /// `service_info` generic must implement NSCoding.
         #[unsafe(method(updateServiceInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateServiceInfo(&self, service_info: &NSDictionary<NSString, NSObject>);
@@ -184,6 +191,10 @@ impl RPBroadcastSampleHandler {
         /// Method is called when broadcast is started from Control Center and provides extension information about the first application opened or used during the broadcast.
         ///
         /// Parameter `applicationInfo`: Dictionary that contains information about the first application opened or used buring the broadcast.
+        ///
+        /// # Safety
+        ///
+        /// `application_info` generic should be of the correct type.
         #[unsafe(method(broadcastAnnotatedWithApplicationInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn broadcastAnnotatedWithApplicationInfo(&self, application_info: &NSDictionary);

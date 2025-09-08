@@ -154,6 +154,11 @@ impl IKFilterBrowserPanel {
         /// Parameter `didEndSelector`: See discussion below
         ///
         /// Parameter `contextInfo`: See discussion below
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginWithOptions:modelessDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginWithOptions_modelessDelegate_didEndSelector_contextInfo(
@@ -182,6 +187,11 @@ impl IKFilterBrowserPanel {
         /// Parameter `didEndSelector`: See discussion below
         ///
         /// Parameter `contextInfo`: See discussion below
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginSheetWithOptions:modalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetWithOptions_modalForWindow_modalDelegate_didEndSelector_contextInfo(
@@ -198,6 +208,11 @@ impl IKFilterBrowserPanel {
         /// Use this method to run the IKFilterBrowser in a modal dialog. The value passed as returnCode will be either NSCancelButton or NSOKButton.
         ///
         /// Parameter `inOptions`: A dictionary describing the desired UI configuration for the IKFilterBrowser
+        ///
+        /// # Safety
+        ///
+        /// - `in_options` generic should be of the correct type.
+        /// - `in_options` might not allow `None`.
         #[unsafe(method(runModalWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalWithOptions(&self, in_options: Option<&NSDictionary>) -> c_int;
@@ -208,6 +223,11 @@ impl IKFilterBrowserPanel {
         /// Use this method to run the IKFilterBrowser in your own UI. To dismiss it, invoke the finish action as described below.
         ///
         /// Parameter `inOptions`: A dictionary describing the desired UI configuration for the IKFilterBrowser
+        ///
+        /// # Safety
+        ///
+        /// - `in_options` generic should be of the correct type.
+        /// - `in_options` might not allow `None`.
         #[unsafe(method(filterBrowserViewWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterBrowserViewWithOptions(
@@ -218,6 +238,11 @@ impl IKFilterBrowserPanel {
         /// Closes the IKFilterBrowser.
         ///
         /// Invoke this action for instance from your OK or Cancel button when you are running the IKFilterBrowserView modal in your own UI.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(finish:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finish(&self, sender: Option<&AnyObject>);

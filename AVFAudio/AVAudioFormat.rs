@@ -82,6 +82,10 @@ impl AVAudioFormat {
         /// Parameter `asbd`: the AudioStreamBasicDescription
         ///
         /// If the format specifies more than 2 channels, this method fails (returns nil).
+        ///
+        /// # Safety
+        ///
+        /// `asbd` must be a valid pointer.
         #[unsafe(method(initWithStreamDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStreamDescription(
@@ -98,6 +102,10 @@ impl AVAudioFormat {
         ///
         /// If the format specifies more than 2 channels, this method fails (returns nil) unless layout
         /// is non-nil.
+        ///
+        /// # Safety
+        ///
+        /// `asbd` must be a valid pointer.
         #[unsafe(method(initWithStreamDescription:channelLayout:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStreamDescription_channelLayout(
@@ -189,6 +197,10 @@ impl AVAudioFormat {
         /// - AVLinearPCMBitDepthKey for linear PCM format specifies less than 8 or greater
         /// than 32 bits
         /// - values for the keys are not of the expected types
+        ///
+        /// # Safety
+        ///
+        /// `settings` generic should be of the correct type.
         #[unsafe(method(initWithSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSettings(
@@ -219,6 +231,10 @@ impl AVAudioFormat {
         /// and can be interpreted as either high- or low-aligned.)
         /// For AVAudioChannelLayout, a layout with standard mono/stereo tag is considered to be
         /// equivalent to a nil layout. Otherwise, the layouts are compared for equality.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isEqual:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;

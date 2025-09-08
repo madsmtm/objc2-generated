@@ -180,6 +180,10 @@ impl IOBluetoothL2CAPChannel {
         /// object.  If an error is encountered creating the notification, nil is returned.  The returned
         /// IOBluetoothUserNotification will be valid for as long as the notification is registered.  It is
         /// not necessary to retain the result.  Once -unregister is called on it, it will no longer be valid.
+        ///
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(registerForChannelOpenNotifications:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelOpenNotifications_selector(
@@ -213,6 +217,10 @@ impl IOBluetoothL2CAPChannel {
         /// object.  If an error is encountered creating the notification, nil is returned.  The returned
         /// IOBluetoothUserNotification will be valid for as long as the notification is registered.  It is
         /// not necessary to retain the result.  Once -unregister is called on it, it will no longer be valid.
+        ///
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(registerForChannelOpenNotifications:selector:withPSM:direction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelOpenNotifications_selector_withPSM_direction(
@@ -310,6 +318,11 @@ impl IOBluetoothL2CAPChannel {
         /// Parameter `refcon`: User supplied value that gets passed to the write callback.
         ///
         /// Returns: Returns kIOReturnSuccess if the data was buffered successfully.
+        ///
+        /// # Safety
+        ///
+        /// - `data` must be a valid pointer.
+        /// - `refcon` must be a valid pointer.
         #[unsafe(method(writeAsyncTrap:length:refcon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeAsyncTrap_length_refcon(
@@ -335,6 +348,11 @@ impl IOBluetoothL2CAPChannel {
         /// Parameter `refcon`: User supplied value that gets passed to the write callback.
         ///
         /// Returns: Returns kIOReturnSuccess if the data was buffered successfully.
+        ///
+        /// # Safety
+        ///
+        /// - `data` must be a valid pointer.
+        /// - `refcon` must be a valid pointer.
         #[unsafe(method(writeAsync:length:refcon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeAsync_length_refcon(
@@ -357,6 +375,10 @@ impl IOBluetoothL2CAPChannel {
         /// Parameter `length`: The length of the given data buffer.
         ///
         /// Returns: Returns kIOReturnSuccess if the data was written successfully.
+        ///
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer.
         #[unsafe(method(writeSync:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeSync_length(&self, data: *mut c_void, length: u16) -> IOReturn;
@@ -376,6 +398,11 @@ impl IOBluetoothL2CAPChannel {
         /// Parameter `channelDelegate`: the object that will play the role of channel delegate [NOTE the l2cap channel will retain the delegate].
         ///
         /// Returns: Returns kIOReturnSuccess if the delegate is successfully registered.
+        ///
+        /// # Safety
+        ///
+        /// - `channel_delegate` should be of the correct type.
+        /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, channel_delegate: Option<&AnyObject>) -> IOReturn;
@@ -399,6 +426,13 @@ impl IOBluetoothL2CAPChannel {
         /// the channel.
         ///
         /// Returns: Returns kIOReturnSuccess if the delegate is successfully registered.
+        ///
+        /// # Safety
+        ///
+        /// - `channel_delegate` should be of the correct type.
+        /// - `channel_delegate` might not allow `None`.
+        /// - `channel_configuration` generic should be of the correct type.
+        /// - `channel_configuration` might not allow `None`.
         #[unsafe(method(setDelegate:withConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_withConfiguration(
@@ -512,6 +546,10 @@ impl IOBluetoothL2CAPChannel {
         /// Returns: Returns an IOBluetoothUserNotification representing the outstanding L2CAP channel close notification.
         /// To unregister the notification, call -unregister of the returned IOBluetoothUserNotification
         /// object.  If an error is encountered creating the notification, nil is returned.
+        ///
+        /// # Safety
+        ///
+        /// `in_selector` must be a valid selector.
         #[unsafe(method(registerForChannelCloseNotification:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelCloseNotification_selector(
@@ -540,6 +578,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchanneldelegate?language=objc)
     pub unsafe trait IOBluetoothL2CAPChannelDelegate {
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `data_pointer` must be a valid pointer.
         #[optional]
         #[unsafe(method(l2capChannelData:data:length:))]
         #[unsafe(method_family = none)]
@@ -551,6 +592,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `l2cap_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(l2capChannelOpenComplete:status:))]
         #[unsafe(method_family = none)]
@@ -561,18 +605,27 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `l2cap_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(l2capChannelClosed:))]
         #[unsafe(method_family = none)]
         unsafe fn l2capChannelClosed(&self, l2cap_channel: Option<&IOBluetoothL2CAPChannel>);
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `l2cap_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(l2capChannelReconfigured:))]
         #[unsafe(method_family = none)]
         unsafe fn l2capChannelReconfigured(&self, l2cap_channel: Option<&IOBluetoothL2CAPChannel>);
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `refcon` must be a valid pointer.
         #[optional]
         #[unsafe(method(l2capChannelWriteComplete:refcon:status:))]
         #[unsafe(method_family = none)]
@@ -584,6 +637,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `l2cap_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(l2capChannelQueueSpaceAvailable:))]
         #[unsafe(method_family = none)]

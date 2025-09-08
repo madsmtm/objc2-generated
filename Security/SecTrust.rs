@@ -266,6 +266,10 @@ impl SecTrust {
     ///
     /// If multiple policies are passed in, all policies must verify
     /// for the chain to be considered valid.
+    ///
+    /// # Safety
+    ///
+    /// `trust` must be a valid pointer.
     #[doc(alias = "SecTrustCreateWithCertificates")]
     #[inline]
     pub unsafe fn create_with_certificates(
@@ -294,6 +298,10 @@ impl SecTrust {
     ///
     /// This function will invalidate the existing trust result,
     /// requiring a fresh evaluation for the newly-set policies.
+    ///
+    /// # Safety
+    ///
+    /// `policies` should be of the correct type.
     #[doc(alias = "SecTrustSetPolicies")]
     #[inline]
     pub unsafe fn set_policies(&self, policies: &CFType) -> OSStatus {
@@ -311,6 +319,10 @@ impl SecTrust {
     /// Call the CFRelease function to release this reference.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `policies` must be a valid pointer.
     #[doc(alias = "SecTrustCopyPolicies")]
     #[inline]
     pub unsafe fn copy_policies(&self, policies: NonNull<*const CFArray>) -> OSStatus {
@@ -358,6 +370,10 @@ impl SecTrust {
     ///
     /// By default, network fetch of missing certificates is enabled if
     /// the trust evaluation includes the SSL policy, otherwise it is disabled.
+    ///
+    /// # Safety
+    ///
+    /// `allow_fetch` must be a valid pointer.
     #[doc(alias = "SecTrustGetNetworkFetchAllowed")]
     #[inline]
     pub unsafe fn network_fetch_allowed(&self, allow_fetch: NonNull<Boolean>) -> OSStatus {
@@ -382,6 +398,10 @@ impl SecTrust {
     /// Calling this function without also calling
     /// SecTrustSetAnchorCertificatesOnly() will disable trusting any
     /// anchors other than the ones in anchorCertificates.
+    ///
+    /// # Safety
+    ///
+    /// `anchor_certificates` generic must be of the correct type.
     #[doc(alias = "SecTrustSetAnchorCertificates")]
     #[inline]
     pub unsafe fn set_anchor_certificates(
@@ -430,6 +450,10 @@ impl SecTrust {
     /// the CFRelease function to release this reference.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `anchors` must be a valid pointer.
     #[doc(alias = "SecTrustCopyCustomAnchorCertificates")]
     #[inline]
     pub unsafe fn copy_custom_anchor_certificates(
@@ -501,6 +525,10 @@ impl SecTrust {
     /// operations, you should call it from within a function that is placed on a
     /// dispatch queue, or in a separate thread from your application's main
     /// run loop. Alternatively, you can use the SecTrustEvaluateAsync function.
+    ///
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[doc(alias = "SecTrustEvaluate")]
     #[deprecated]
     #[inline]
@@ -533,6 +561,10 @@ impl SecTrust {
     /// serious problem and the type of error. The underlying error contains a localized
     /// description of each certificate in the chain that had an error and all errors found
     /// with that certificate.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecTrustEvaluateWithError")]
     #[must_use]
     #[inline]
@@ -568,6 +600,10 @@ impl SecTrust {
     ///
     /// This function replaces SecTrustGetResult for the purpose of
     /// obtaining the current evaluation result of a given trust reference.
+    ///
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[doc(alias = "SecTrustGetTrustResult")]
     #[inline]
     pub unsafe fn trust_result(&self, result: NonNull<SecTrustResultType>) -> OSStatus {
@@ -795,6 +831,10 @@ impl SecTrust {
     /// obtained during a TLS/SSL handshake, per RFC 3546) as input to a trust
     /// evaluation. If this data is available, it can obviate the need to contact
     /// an OCSP server for current revocation information.
+    ///
+    /// # Safety
+    ///
+    /// `response_data` should be of the correct type.
     #[doc(alias = "SecTrustSetOCSPResponse")]
     #[inline]
     pub unsafe fn set_ocsp_response(&self, response_data: Option<&CFType>) -> OSStatus {
@@ -818,6 +858,10 @@ impl SecTrust {
     /// Allows the caller to provide SCT data (which may be
     /// obtained during a TLS/SSL handshake, per RFC 6962) as input to a trust
     /// evaluation.
+    ///
+    /// # Safety
+    ///
+    /// `sct_array` generic must be of the correct type.
     #[doc(alias = "SecTrustSetSignedCertificateTimestamps")]
     #[inline]
     pub unsafe fn set_signed_certificate_timestamps(
@@ -975,6 +1019,10 @@ impl SecTrust {
     /// the keychains that are searched, callers must use SecKeychainSetSearchList to
     /// change the user's keychain search list.
     /// Note: this function was never applicable to iOS.
+    ///
+    /// # Safety
+    ///
+    /// `keychain_or_array` should be of the correct type.
     #[doc(alias = "SecTrustSetKeychains")]
     #[deprecated]
     #[inline]
@@ -1010,6 +1058,12 @@ impl SecTrust {
     /// To get detailed status information for each certificate, use
     /// SecTrustCopyProperties. To get the overall trust result for the evaluation,
     /// use SecTrustGetTrustResult.
+    ///
+    /// # Safety
+    ///
+    /// - `result` must be a valid pointer or null.
+    /// - `cert_chain` must be a valid pointer or null.
+    /// - `status_chain` must be a valid pointer or null.
     #[doc(alias = "SecTrustGetResult")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -1049,6 +1103,10 @@ impl SecTrust {
     /// To get detailed status information for each certificate, use
     /// SecTrustCopyProperties. To get the overall trust result for the evaluation,
     /// use SecTrustGetTrustResult.
+    ///
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[doc(alias = "SecTrustGetCssmResult")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1084,6 +1142,10 @@ impl SecTrust {
     /// To get detailed status information for each certificate, use
     /// SecTrustCopyProperties. To get the overall trust result for the evaluation,
     /// use SecTrustGetTrustResult.
+    ///
+    /// # Safety
+    ///
+    /// `result_code` must be a valid pointer.
     #[doc(alias = "SecTrustGetCssmResultCode")]
     #[deprecated]
     #[inline]
@@ -1106,6 +1168,10 @@ impl SecTrust {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in OS X 10.7 and later.
+    ///
+    /// # Safety
+    ///
+    /// `handle` must be a valid pointer.
     #[doc(alias = "SecTrustGetTPHandle")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1127,6 +1193,10 @@ impl SecTrust {
     ///
     /// This function is not available on iOS, as certificate data
     /// for system-trusted roots is currently unavailable on that platform.
+    ///
+    /// # Safety
+    ///
+    /// `anchors` must be a valid pointer.
     #[doc(alias = "SecTrustCopyAnchorCertificates")]
     #[inline]
     pub unsafe fn copy_anchor_certificates(anchors: NonNull<*const CFArray>) -> OSStatus {

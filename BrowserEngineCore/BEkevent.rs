@@ -5,6 +5,10 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `changelist` must be a valid pointer.
+    /// - `eventlist` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn be_kevent(
         kq: c_int,
@@ -17,6 +21,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `changelist` must be a valid pointer.
+    /// - `eventlist` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn be_kevent64(
         kq: c_int,

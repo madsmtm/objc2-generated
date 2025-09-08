@@ -126,6 +126,10 @@ impl NSCachedURLResponse {
         /// Parameter `storagePolicy`: an NSURLCacheStoragePolicy constant.
         ///
         /// Returns: an initialized NSCachedURLResponse.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(initWithResponse:data:userInfo:storagePolicy:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResponse_data_userInfo_storagePolicy(
@@ -431,6 +435,9 @@ impl NSURLCache {
         );
 
         #[cfg(all(feature = "NSURLSession", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCachedResponseForDataTask:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCachedResponseForDataTask_completionHandler(

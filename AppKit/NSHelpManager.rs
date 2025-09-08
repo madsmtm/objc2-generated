@@ -46,6 +46,9 @@ impl NSHelpManager {
             mtm: MainThreadMarker,
         );
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(setContextHelp:forObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContextHelp_forObject(
@@ -54,10 +57,16 @@ impl NSHelpManager {
             object: &AnyObject,
         );
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(removeContextHelpForObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeContextHelpForObject(&self, object: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(contextHelpForObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextHelpForObject(
@@ -65,6 +74,9 @@ impl NSHelpManager {
             object: &AnyObject,
         ) -> Option<Retained<NSAttributedString>>;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(showContextHelpForObject:locationHint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showContextHelpForObject_locationHint(
@@ -139,10 +151,16 @@ unsafe impl NSBundleHelpExtension for NSBundle {}
 #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
 impl NSApplication {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(activateContextHelpMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activateContextHelpMode(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showHelp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showHelp(&self, sender: Option<&AnyObject>);

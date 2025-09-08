@@ -169,6 +169,10 @@ impl GCExtendedGamepadSnapshotData {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    ///
+    /// # Safety
+    ///
+    /// `snapshot_data` must be a valid pointer or null.
     #[doc(alias = "GCExtendedGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
@@ -191,6 +195,10 @@ impl GCExtendedGamepadSnapshotData {
 ///
 ///
 /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
+///
+/// # Safety
+///
+/// `snapshot_data` must be a valid pointer or null.
 #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapshotData(
@@ -260,6 +268,10 @@ impl GCExtendedGamepadSnapShotDataV100 {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    ///
+    /// # Safety
+    ///
+    /// `snapshot_data` must be a valid pointer or null.
     #[doc(alias = "GCExtendedGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
@@ -282,6 +294,10 @@ impl GCExtendedGamepadSnapShotDataV100 {
 ///
 ///
 /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
+///
+/// # Safety
+///
+/// `snapshot_data` must be a valid pointer or null.
 #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapShotDataV100(

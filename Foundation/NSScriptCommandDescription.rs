@@ -28,6 +28,9 @@ impl NSScriptCommandDescription {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `command_declaration` generic should be of the correct type.
         #[unsafe(method(initWithSuiteName:commandName:dictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSuiteName_commandName_dictionary(
@@ -109,6 +112,9 @@ impl NSScriptCommandDescription {
         pub unsafe fn createCommandInstance(&self) -> Retained<NSScriptCommand>;
 
         #[cfg(all(feature = "NSScriptCommand", feature = "NSZone"))]
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(createCommandInstanceWithZone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createCommandInstanceWithZone(

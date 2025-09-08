@@ -291,6 +291,10 @@ impl CXProvider {
 
         #[cfg(feature = "block2")]
         /// From within a Notification Service Extension, request the containing application be launched to handle an incoming VoIP call. The application's PKPushRegistryDelegate must handle the push upon launch.
+        ///
+        /// # Safety
+        ///
+        /// `dictionary_payload` generic should be of the correct type.
         #[unsafe(method(reportNewIncomingVoIPPushPayload:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportNewIncomingVoIPPushPayload_completion(
@@ -325,6 +329,10 @@ impl CXProvider {
 
         #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
         /// Returns subset of call actions contained in any transaction in -pendingTransactions of the specified class and with the specified call UUID.
+        ///
+        /// # Safety
+        ///
+        /// `call_action_class` probably has further requirements.
         #[unsafe(method(pendingCallActionsOfClass:withCallUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pendingCallActionsOfClass_withCallUUID(

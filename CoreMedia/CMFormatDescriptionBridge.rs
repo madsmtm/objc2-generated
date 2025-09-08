@@ -74,6 +74,11 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMVideoFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// - `image_description_data` must be a valid pointer.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -98,6 +103,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMVideoFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -126,6 +135,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ImageDescription data structure in big-endian byte ordering.
+    ///
+    /// # Safety
+    ///
+    /// `block_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -143,6 +156,10 @@ extern "C-unwind" {
     /// Parameter `imageDescriptionData`: ImageDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
     ///
     /// Parameter `imageDescriptionSize`: Size of ImageDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `image_description_data` must be a valid pointer.
     pub fn CMSwapBigEndianImageDescriptionToHost(
         image_description_data: NonNull<u8>,
         image_description_size: usize,
@@ -156,6 +173,10 @@ extern "C-unwind" {
     /// Parameter `imageDescriptionData`: ImageDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
     ///
     /// Parameter `imageDescriptionSize`: Size of ImageDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `image_description_data` must be a valid pointer.
     pub fn CMSwapHostEndianImageDescriptionToBig(
         image_description_data: NonNull<u8>,
         image_description_size: usize,
@@ -215,6 +236,11 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// - `sound_description_data` must be a valid pointer.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -236,6 +262,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -261,6 +291,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
+    ///
+    /// # Safety
+    ///
+    /// `block_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -304,6 +338,10 @@ extern "C-unwind" {
     /// Parameter `soundDescriptionData`: SoundDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
     ///
     /// Parameter `soundDescriptionSize`: Size of SoundDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `sound_description_data` must be a valid pointer.
     pub fn CMSwapBigEndianSoundDescriptionToHost(
         sound_description_data: NonNull<u8>,
         sound_description_size: usize,
@@ -317,6 +355,10 @@ extern "C-unwind" {
     /// Parameter `soundDescriptionData`: SoundDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
     ///
     /// Parameter `soundDescriptionSize`: Size of SoundDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `sound_description_data` must be a valid pointer.
     pub fn CMSwapHostEndianSoundDescriptionToBig(
         sound_description_data: NonNull<u8>,
         sound_description_size: usize,
@@ -342,6 +384,11 @@ extern "C-unwind" {
     /// Parameter `mediaType`: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// - `text_description_data` must be a valid pointer.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -366,6 +413,10 @@ extern "C-unwind" {
     /// Parameter `mediaType`: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -392,6 +443,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TextDescription data structure in big-endian byte ordering.
+    ///
+    /// # Safety
+    ///
+    /// `block_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -408,6 +463,10 @@ extern "C-unwind" {
     /// Parameter `textDescriptionData`: TextDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
     ///
     /// Parameter `textDescriptionSize`: Size of TextDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `text_description_data` must be a valid pointer.
     pub fn CMSwapBigEndianTextDescriptionToHost(
         text_description_data: NonNull<u8>,
         text_description_size: usize,
@@ -421,6 +480,10 @@ extern "C-unwind" {
     /// Parameter `textDescriptionData`: TextDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
     ///
     /// Parameter `textDescriptionSize`: Size of TextDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `text_description_data` must be a valid pointer.
     pub fn CMSwapHostEndianTextDescriptionToBig(
         text_description_data: NonNull<u8>,
         text_description_size: usize,
@@ -444,6 +507,11 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// - `closed_caption_description_data` must be a valid pointer.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -465,6 +533,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -490,6 +562,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ClosedCaptionDescription data structure in big-endian byte ordering.
+    ///
+    /// # Safety
+    ///
+    /// `block_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -506,6 +582,10 @@ extern "C-unwind" {
     /// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
     ///
     /// Parameter `closedCaptionDescriptionSize`: Size of ClosedCaptionDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `closed_caption_description_data` must be a valid pointer.
     pub fn CMSwapBigEndianClosedCaptionDescriptionToHost(
         closed_caption_description_data: NonNull<u8>,
         closed_caption_description_size: usize,
@@ -519,6 +599,10 @@ extern "C-unwind" {
     /// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
     ///
     /// Parameter `closedCaptionDescriptionSize`: Size of ClosedCaptionDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `closed_caption_description_data` must be a valid pointer.
     pub fn CMSwapHostEndianClosedCaptionDescriptionToBig(
         closed_caption_description_data: NonNull<u8>,
         closed_caption_description_size: usize,
@@ -542,6 +626,11 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// - `time_code_description_data` must be a valid pointer.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -563,6 +652,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
+    ///
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -588,6 +681,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TimeCodeDescription data structure in big-endian byte ordering.
+    ///
+    /// # Safety
+    ///
+    /// `block_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -604,6 +701,10 @@ extern "C-unwind" {
     /// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
     ///
     /// Parameter `timeCodeDescriptionSize`: Size of TimeCodeDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `time_code_description_data` must be a valid pointer.
     pub fn CMSwapBigEndianTimeCodeDescriptionToHost(
         time_code_description_data: NonNull<u8>,
         time_code_description_size: usize,
@@ -617,6 +718,10 @@ extern "C-unwind" {
     /// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
     ///
     /// Parameter `timeCodeDescriptionSize`: Size of TimeCodeDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `time_code_description_data` must be a valid pointer.
     pub fn CMSwapHostEndianTimeCodeDescriptionToBig(
         time_code_description_data: NonNull<u8>,
         time_code_description_size: usize,
@@ -640,6 +745,11 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
+    ///
+    /// # Safety
+    ///
+    /// - `metadata_description_data` must be a valid pointer.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -661,6 +771,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
+    ///
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -686,6 +800,10 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing MetadataDescription data structure in big-endian byte ordering.
+    ///
+    /// # Safety
+    ///
+    /// `block_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -702,6 +820,10 @@ extern "C-unwind" {
     /// Parameter `metadataDescriptionData`: MetadataDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
     ///
     /// Parameter `metadataDescriptionSize`: Size of MetadataDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `metadata_description_data` must be a valid pointer.
     pub fn CMSwapBigEndianMetadataDescriptionToHost(
         metadata_description_data: NonNull<u8>,
         metadata_description_size: usize,
@@ -715,6 +837,10 @@ extern "C-unwind" {
     /// Parameter `metadataDescriptionData`: MetadataDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
     ///
     /// Parameter `metadataDescriptionSize`: Size of MetadataDescription data structure.
+    ///
+    /// # Safety
+    ///
+    /// `metadata_description_data` must be a valid pointer.
     pub fn CMSwapHostEndianMetadataDescriptionToBig(
         metadata_description_data: NonNull<u8>,
         metadata_description_size: usize,

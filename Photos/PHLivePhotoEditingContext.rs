@@ -75,6 +75,11 @@ impl PHLivePhotoEditingContext {
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
         /// A block that can be set to process each frame of the live photo
         /// Note that the context uses a copy of the processor block during processing
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(frameProcessor))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameProcessor(&self) -> PHLivePhotoFrameProcessingBlock;
@@ -83,6 +88,10 @@ impl PHLivePhotoEditingContext {
         /// Setter for [`frameProcessor`][Self::frameProcessor].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `frame_processor` must be a valid pointer or null.
         #[unsafe(method(setFrameProcessor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrameProcessor(&self, frame_processor: PHLivePhotoFrameProcessingBlock);
@@ -111,6 +120,10 @@ impl PHLivePhotoEditingContext {
         ))]
         /// Asynchronously generate a new live photo suitable for playback in a PHLivePhotoView of the specified target size
         /// The options dictionary can contain additional options, see below
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareLivePhotoForPlaybackWithTargetSize_options_completionHandler(
@@ -123,6 +136,10 @@ impl PHLivePhotoEditingContext {
         #[cfg(all(feature = "PHContentEditingOutput", feature = "block2"))]
         /// Asynchronously process and save the edited live photo to the specified content editing output
         /// Options dictionary should be nil, reserved for future expansion
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(saveLivePhotoToOutput:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveLivePhotoToOutput_options_completionHandler(

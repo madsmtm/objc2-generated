@@ -145,6 +145,9 @@ impl PHPhotoLibrary {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `change_block` must be a valid pointer.
         #[unsafe(method(performChanges:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChanges_completionHandler(
@@ -154,6 +157,9 @@ impl PHPhotoLibrary {
         );
 
         #[cfg(feature = "dispatch2")]
+        /// # Safety
+        ///
+        /// `change_block` must be a valid pointer.
         #[unsafe(method(performChangesAndWait:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChangesAndWait_error(
@@ -188,6 +194,10 @@ impl PHPhotoLibrary {
 
         #[cfg(feature = "PHPersistentChangeToken")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(currentChangeToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentChangeToken(&self) -> Retained<PHPersistentChangeToken>;

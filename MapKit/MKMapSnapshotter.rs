@@ -36,6 +36,9 @@ impl MKMapSnapshotter {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
@@ -44,6 +47,9 @@ impl MKMapSnapshotter {
         );
 
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(startWithQueue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithQueue_completionHandler(

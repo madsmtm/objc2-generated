@@ -353,6 +353,10 @@ impl MPSImageDilate {
         /// The values are copied into the filter. To avoid
         /// image ligthening or darkening, the center value should
         /// be 0.0f.
+        ///
+        /// # Safety
+        ///
+        /// `values` must be a valid pointer.
         #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:values:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_values(
@@ -512,6 +516,10 @@ impl MPSImageErode {
         /// The values are copied into the filter. To avoid
         /// image ligthening or darkening, the center value should
         /// be 0.0f.
+        ///
+        /// # Safety
+        ///
+        /// `values` must be a valid pointer.
         #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:values:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_values(

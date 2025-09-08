@@ -327,6 +327,10 @@ impl CAEmitterCell {
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
+        ///
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
@@ -402,6 +406,10 @@ impl CAEmitterCell {
         /// Setter for [`style`][Self::style].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `style` generic should be of the correct type.
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);

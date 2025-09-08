@@ -33,6 +33,9 @@ impl CLGeocoder {
         pub unsafe fn isGeocoding(&self) -> bool;
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(reverseGeocodeLocation:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseGeocodeLocation_completionHandler(
@@ -42,6 +45,9 @@ impl CLGeocoder {
         );
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(reverseGeocodeLocation:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseGeocodeLocation_preferredLocale_completionHandler(
@@ -52,6 +58,9 @@ impl CLGeocoder {
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use -geocodePostalAddress:completionHandler:"]
         #[unsafe(method(geocodeAddressDictionary:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -62,6 +71,9 @@ impl CLGeocoder {
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(geocodeAddressString:inRegion:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_inRegion_completionHandler(
@@ -72,6 +84,9 @@ impl CLGeocoder {
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(geocodeAddressString:inRegion:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_inRegion_preferredLocale_completionHandler(
@@ -83,6 +98,9 @@ impl CLGeocoder {
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(geocodeAddressString:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_completionHandler(
@@ -119,6 +137,9 @@ impl CLGeocoder {
             feature = "objc2-contacts"
         ))]
         #[cfg(not(target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(geocodePostalAddress:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodePostalAddress_completionHandler(
@@ -133,6 +154,9 @@ impl CLGeocoder {
             feature = "objc2-contacts"
         ))]
         #[cfg(not(target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(geocodePostalAddress:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodePostalAddress_preferredLocale_completionHandler(

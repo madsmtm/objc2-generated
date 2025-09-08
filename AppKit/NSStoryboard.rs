@@ -46,6 +46,9 @@ impl NSStoryboard {
         pub unsafe fn instantiateInitialController(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer or null.
         #[unsafe(method(instantiateInitialControllerWithCreator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateInitialControllerWithCreator(
@@ -61,6 +64,9 @@ impl NSStoryboard {
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer or null.
         #[unsafe(method(instantiateControllerWithIdentifier:creator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateControllerWithIdentifier_creator(

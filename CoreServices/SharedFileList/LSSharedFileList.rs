@@ -167,6 +167,9 @@ unsafe impl ConcreteType for LSSharedFileListItem {
 }
 
 impl LSSharedFileList {
+    /// # Safety
+    ///
+    /// `list_options` should be of the correct type.
     #[doc(alias = "LSSharedFileListCreate")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -186,6 +189,9 @@ impl LSSharedFileList {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_authorization` must be a valid pointer.
     #[doc(alias = "LSSharedFileListSetAuthorization")]
     #[cfg(feature = "objc2-security")]
     #[deprecated = "No longer supported"]
@@ -200,6 +206,10 @@ impl LSSharedFileList {
         unsafe { LSSharedFileListSetAuthorization(self, in_authorization) }
     }
 
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListAddObserver")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -224,6 +234,10 @@ impl LSSharedFileList {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListRemoveObserver")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -272,6 +286,9 @@ impl LSSharedFileList {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_property_data` should be of the correct type.
     #[doc(alias = "LSSharedFileListSetProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -290,6 +307,9 @@ impl LSSharedFileList {
         unsafe { LSSharedFileListSetProperty(self, in_property_name, in_property_data) }
     }
 
+    /// # Safety
+    ///
+    /// `out_snapshot_seed` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListCopySnapshot")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -304,6 +324,11 @@ impl LSSharedFileList {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_icon_ref` must be a valid pointer or null.
+    /// - `in_properties_to_set` generics must be of the correct type.
+    /// - `in_properties_to_clear` generic must be of the correct type.
     #[doc(alias = "LSSharedFileListInsertItemURL")]
     #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
     #[deprecated = "No longer supported"]
@@ -342,6 +367,12 @@ impl LSSharedFileList {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_icon_ref` must be a valid pointer or null.
+    /// - `in_fs_ref` must be a valid pointer.
+    /// - `in_properties_to_set` generics must be of the correct type.
+    /// - `in_properties_to_clear` generic must be of the correct type.
     #[doc(alias = "LSSharedFileListInsertItemFSRef")]
     #[cfg(all(
         feature = "CarbonCore",
@@ -468,6 +499,10 @@ impl LSSharedFileListItem {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// - `out_url` must be a valid pointer or null.
+    /// - `out_ref` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListItemResolve")]
     #[cfg(all(feature = "CarbonCore", feature = "Files"))]
     #[deprecated]
@@ -489,6 +524,9 @@ impl LSSharedFileListItem {
         unsafe { LSSharedFileListItemResolve(self, in_flags, out_url, out_ref) }
     }
 
+    /// # Safety
+    ///
+    /// `out_error` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListItemCopyResolvedURL")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -522,6 +560,9 @@ impl LSSharedFileListItem {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_property_data` should be of the correct type.
     #[doc(alias = "LSSharedFileListItemSetProperty")]
     #[deprecated = "No longer supported"]
     #[inline]

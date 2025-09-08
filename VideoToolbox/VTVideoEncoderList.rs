@@ -11,6 +11,11 @@ extern "C-unwind" {
     /// Builds a list of available video encoders.
     ///
     /// The caller must CFRelease the returned list.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `list_of_video_encoders_out` must be a valid pointer.
     pub fn VTCopyVideoEncoderList(
         options: Option<&CFDictionary>,
         list_of_video_encoders_out: NonNull<*const CFArray>,
@@ -91,6 +96,12 @@ extern "C-unwind" {
     /// Builds a list of supported properties and encoder ID for an encoder
     ///
     /// The caller must CFRelease the returned supported properties and encoder ID.
+    ///
+    /// # Safety
+    ///
+    /// - `encoder_specification` generics must be of the correct type.
+    /// - `encoder_id_out` must be a valid pointer or null.
+    /// - `supported_properties_out` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopySupportedPropertyDictionaryForEncoder(
         width: i32,

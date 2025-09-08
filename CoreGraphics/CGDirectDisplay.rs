@@ -41,6 +41,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `displays` must be a valid pointer or null.
+    /// - `matching_display_count` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplaysWithPoint(
         point: CGPoint,
@@ -51,6 +55,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `displays` must be a valid pointer or null.
+    /// - `matching_display_count` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplaysWithRect(
         rect: CGRect,
@@ -61,6 +69,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `displays` must be a valid pointer or null.
+    /// - `matching_display_count` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplaysWithOpenGLDisplayMask(
         mask: CGOpenGLDisplayMask,
@@ -71,6 +83,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `active_displays` must be a valid pointer or null.
+    /// - `display_count` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetActiveDisplayList(
         max_displays: u32,
@@ -80,6 +96,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `online_displays` must be a valid pointer or null.
+    /// - `display_count` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetOnlineDisplayList(
         max_displays: u32,
@@ -108,6 +128,9 @@ extern "C-unwind" {
     pub fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usize;
 }
 
+/// # Safety
+///
+/// `options` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayCopyAllDisplayModes(
     display: CGDirectDisplayID,
@@ -140,6 +163,9 @@ pub unsafe extern "C-unwind" fn CGDisplayCopyDisplayMode(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[cfg(feature = "CGError")]
     pub fn CGDisplaySetDisplayMode(
         display: CGDirectDisplayID,
@@ -268,6 +294,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `red_min` must be a valid pointer or null.
+    /// - `red_max` must be a valid pointer or null.
+    /// - `red_gamma` must be a valid pointer or null.
+    /// - `green_min` must be a valid pointer or null.
+    /// - `green_max` must be a valid pointer or null.
+    /// - `green_gamma` must be a valid pointer or null.
+    /// - `blue_min` must be a valid pointer or null.
+    /// - `blue_max` must be a valid pointer or null.
+    /// - `blue_gamma` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplayTransferByFormula(
         display: CGDirectDisplayID,
@@ -288,6 +325,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `red_table` must be a valid pointer or null.
+    /// - `green_table` must be a valid pointer or null.
+    /// - `blue_table` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGSetDisplayTransferByTable(
         display: CGDirectDisplayID,
@@ -299,6 +341,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `red_table` must be a valid pointer or null.
+    /// - `green_table` must be a valid pointer or null.
+    /// - `blue_table` must be a valid pointer or null.
+    /// - `sample_count` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplayTransferByTable(
         display: CGDirectDisplayID,
@@ -311,6 +359,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `red_table` must be a valid pointer.
+    /// - `green_table` must be a valid pointer.
+    /// - `blue_table` must be a valid pointer.
     #[cfg(feature = "CGError")]
     pub fn CGSetDisplayTransferByByteTable(
         display: CGDirectDisplayID,
@@ -450,6 +503,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `delta_x` must be a valid pointer or null.
+    /// - `delta_y` must be a valid pointer or null.
     pub fn CGGetLastMouseDelta(delta_x: *mut i32, delta_y: *mut i32);
 }
 
@@ -484,6 +541,9 @@ pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// # Safety
+///
+/// `exact_match` must be a valid pointer or null.
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -509,6 +569,9 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// # Safety
+///
+/// `exact_match` must be a valid pointer or null.
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -556,6 +619,9 @@ pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `mode` generics must be of the correct type.
     #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplaySwitchToMode(

@@ -319,6 +319,9 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `data` should be of the correct type.
     #[doc(alias = "CGColorSpaceCreateWithICCData")]
     #[inline]
     pub unsafe fn with_icc_data(data: Option<&CFType>) -> Option<CFRetained<CGColorSpace>> {
@@ -331,6 +334,9 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `range` must be a valid pointer or null.
     #[doc(alias = "CGColorSpaceCreateICCBased")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
@@ -352,6 +358,9 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `color_table` must be a valid pointer or null.
     #[doc(alias = "CGColorSpaceCreateIndexed")]
     #[inline]
     pub unsafe fn new_indexed(
@@ -490,6 +499,9 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetColorTableCount(space) }
     }
 
+    /// # Safety
+    ///
+    /// `table` must be a valid pointer or null.
     #[doc(alias = "CGColorSpaceGetColorTable")]
     #[inline]
     pub unsafe fn color_table(space: Option<&CGColorSpace>, table: *mut u8) {
@@ -575,6 +587,9 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `plist` should be of the correct type.
     #[doc(alias = "CGColorSpaceCreateWithPropertyList")]
     #[inline]
     pub unsafe fn with_property_list(plist: &CFPropertyList) -> Option<CFRetained<CGColorSpace>> {
@@ -666,6 +681,9 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `ref` must be a valid pointer or null.
     #[doc(alias = "CGColorSpaceCreateWithPlatformColorSpace")]
     #[deprecated = "No longer supported"]
     #[inline]

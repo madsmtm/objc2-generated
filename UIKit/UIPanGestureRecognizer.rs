@@ -130,6 +130,9 @@ impl UIPanGestureRecognizer {
 #[cfg(feature = "UIGestureRecognizer")]
 impl UIPanGestureRecognizer {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(

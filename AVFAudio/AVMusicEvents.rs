@@ -1025,6 +1025,10 @@ impl AVAUPresetEvent {
         ///
         /// The dictionary passed to this initializer will be copied and is not editable once the event is
         /// created.
+        ///
+        /// # Safety
+        ///
+        /// `preset_dictionary` generic should be of the correct type.
         #[unsafe(method(initWithScope:element:dictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithScope_element_dictionary(

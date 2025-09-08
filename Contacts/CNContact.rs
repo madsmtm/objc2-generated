@@ -266,6 +266,11 @@ impl CNContact {
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
         /// The contact comparator for a given sort order.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(comparatorForNameSortOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;

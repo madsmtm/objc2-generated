@@ -65,6 +65,10 @@ extern_conformance!(
 impl VSUserAccount {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(updateURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateURL(&self) -> Option<Retained<NSURL>>;
@@ -72,26 +76,46 @@ impl VSUserAccount {
         /// Setter for [`updateURL`][Self::updateURL].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setUpdateURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateURL(&self, update_url: Option<&NSURL>);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(requiresSystemTrust))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSystemTrust(&self) -> bool;
 
         /// Setter for [`requiresSystemTrust`][Self::requiresSystemTrust].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRequiresSystemTrust:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresSystemTrust(&self, requires_system_trust: bool);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accountProviderIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountProviderIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accountProviderIdentifier`][Self::accountProviderIdentifier].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAccountProviderIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountProviderIdentifier(
@@ -100,6 +124,10 @@ impl VSUserAccount {
         );
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
@@ -107,31 +135,55 @@ impl VSUserAccount {
         /// Setter for [`identifier`][Self::identifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accountType))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountType(&self) -> VSUserAccountType;
 
         /// Setter for [`accountType`][Self::accountType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAccountType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountType(&self, account_type: VSUserAccountType);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isSignedOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSignedOut(&self) -> bool;
 
         /// Setter for [`isSignedOut`][Self::isSignedOut].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSignedOut:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSignedOut(&self, signed_out: bool);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subscriptionBillingCycleEndDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionBillingCycleEndDate(&self) -> Option<Retained<NSDate>>;
@@ -139,6 +191,10 @@ impl VSUserAccount {
         /// Setter for [`subscriptionBillingCycleEndDate`][Self::subscriptionBillingCycleEndDate].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSubscriptionBillingCycleEndDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionBillingCycleEndDate(
@@ -147,6 +203,10 @@ impl VSUserAccount {
         );
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(tierIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn tierIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -154,11 +214,19 @@ impl VSUserAccount {
         /// Setter for [`tierIdentifiers`][Self::tierIdentifiers].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setTierIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTierIdentifiers(&self, tier_identifiers: Option<&NSArray<NSString>>);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(billingIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn billingIdentifier(&self) -> Option<Retained<NSString>>;
@@ -166,11 +234,19 @@ impl VSUserAccount {
         /// Setter for [`billingIdentifier`][Self::billingIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBillingIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBillingIdentifier(&self, billing_identifier: Option<&NSString>);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(authenticationData))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticationData(&self) -> Option<Retained<NSString>>;
@@ -178,28 +254,48 @@ impl VSUserAccount {
         /// Setter for [`authenticationData`][Self::authenticationData].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAuthenticationData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationData(&self, authentication_data: Option<&NSString>);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isFromCurrentDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFromCurrentDevice(&self) -> bool;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(deviceCategory))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceCategory(&self) -> VSOriginatingDeviceCategory;
 
         #[cfg(feature = "VSAppleSubscription")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(appleSubscription))]
         #[unsafe(method_family = none)]
         pub unsafe fn appleSubscription(&self) -> Option<Retained<VSAppleSubscription>>;
 
         #[cfg(feature = "VSAppleSubscription")]
         /// Setter for [`appleSubscription`][Self::appleSubscription].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAppleSubscription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppleSubscription(&self, apple_subscription: Option<&VSAppleSubscription>);

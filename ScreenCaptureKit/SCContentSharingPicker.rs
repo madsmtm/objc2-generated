@@ -167,6 +167,10 @@ impl SCContentSharingPicker {
         /// Setter for [`defaultConfiguration`][Self::defaultConfiguration].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `default_configuration` generic should be of the correct type.
         #[unsafe(method(setDefaultConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultConfiguration(
@@ -226,6 +230,10 @@ impl SCContentSharingPicker {
         /// Parameter `stream`: stream for optional picking configuration
         ///
         /// Sets optional configuration for the picker for a specific stream. If this is not set, the stream will use the defaultConfiguration instead
+        ///
+        /// # Safety
+        ///
+        /// `picker_config` generic should be of the correct type.
         #[unsafe(method(setConfiguration:forStream:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration_forStream(

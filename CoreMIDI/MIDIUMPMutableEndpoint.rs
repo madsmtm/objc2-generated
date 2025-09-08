@@ -92,6 +92,10 @@ impl MIDIUMPMutableEndpoint {
         ///
         /// This operation will fail if the device ID information is malformed or if virtual MIDI endpoint creation
         /// is not allowed (for example, on iOS, if your app doesn't list 'audio' in UIBackgroundModes).
+        ///
+        /// # Safety
+        ///
+        /// `destination_callback` must be a valid pointer.
         #[unsafe(method(initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_deviceInfo_productInstanceID_MIDIProtocol_destinationCallback(

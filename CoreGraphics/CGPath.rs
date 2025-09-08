@@ -124,6 +124,9 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateCopyByTransformingPath")]
     #[inline]
     pub unsafe fn new_copy_by_transforming_path(
@@ -152,6 +155,9 @@ impl CGMutablePath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateMutableCopyByTransformingPath")]
     #[inline]
     pub unsafe fn new_copy_by_transforming_path(
@@ -170,6 +176,9 @@ impl CGMutablePath {
 }
 
 impl CGPath {
+    /// # Safety
+    ///
+    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateWithRect")]
     #[inline]
     pub unsafe fn with_rect(
@@ -188,6 +197,9 @@ impl CGPath {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateWithEllipseInRect")]
     #[inline]
     pub unsafe fn with_ellipse_in_rect(
@@ -206,6 +218,9 @@ impl CGPath {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateWithRoundedRect")]
     #[inline]
     pub unsafe fn with_rounded_rect(
@@ -231,6 +246,9 @@ impl CGPath {
 }
 
 impl CGMutablePath {
+    /// # Safety
+    ///
+    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathAddRoundedRect")]
     #[inline]
     pub unsafe fn add_rounded_rect(
@@ -254,6 +272,10 @@ impl CGMutablePath {
 }
 
 impl CGPath {
+    /// # Safety
+    ///
+    /// - `transform` must be a valid pointer or null.
+    /// - `lengths` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateCopyByDashingPath")]
     #[inline]
     pub unsafe fn new_copy_by_dashing_path(
@@ -276,6 +298,9 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateCopyByStrokingPath")]
     #[inline]
     pub unsafe fn new_copy_by_stroking_path(
@@ -321,6 +346,10 @@ impl CGPath {
 
 impl CGMutablePath {
     /// * Path construction functions. **
+    ///
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathMoveToPoint")]
     #[inline]
     pub unsafe fn move_to_point(
@@ -340,6 +369,9 @@ impl CGMutablePath {
         unsafe { CGPathMoveToPoint(path, m, x, y) }
     }
 
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddLineToPoint")]
     #[inline]
     pub unsafe fn add_line_to_point(
@@ -359,6 +391,9 @@ impl CGMutablePath {
         unsafe { CGPathAddLineToPoint(path, m, x, y) }
     }
 
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddQuadCurveToPoint")]
     #[inline]
     pub unsafe fn add_quad_curve_to_point(
@@ -382,6 +417,9 @@ impl CGMutablePath {
         unsafe { CGPathAddQuadCurveToPoint(path, m, cpx, cpy, x, y) }
     }
 
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddCurveToPoint")]
     #[inline]
     pub unsafe fn add_curve_to_point(
@@ -419,6 +457,10 @@ impl CGMutablePath {
     }
 
     /// * Path construction convenience functions. **
+    ///
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddRect")]
     #[inline]
     pub unsafe fn add_rect(
@@ -436,6 +478,10 @@ impl CGMutablePath {
         unsafe { CGPathAddRect(path, m, rect) }
     }
 
+    /// # Safety
+    ///
+    /// - `m` must be a valid pointer or null.
+    /// - `rects` must be a valid pointer or null.
     #[doc(alias = "CGPathAddRects")]
     #[inline]
     pub unsafe fn add_rects(
@@ -455,6 +501,10 @@ impl CGMutablePath {
         unsafe { CGPathAddRects(path, m, rects, count) }
     }
 
+    /// # Safety
+    ///
+    /// - `m` must be a valid pointer or null.
+    /// - `points` must be a valid pointer or null.
     #[doc(alias = "CGPathAddLines")]
     #[inline]
     pub unsafe fn add_lines(
@@ -474,6 +524,9 @@ impl CGMutablePath {
         unsafe { CGPathAddLines(path, m, points, count) }
     }
 
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddEllipseInRect")]
     #[inline]
     pub unsafe fn add_ellipse_in_rect(
@@ -491,6 +544,9 @@ impl CGMutablePath {
         unsafe { CGPathAddEllipseInRect(path, m, rect) }
     }
 
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CGPathAddRelativeArc")]
     #[inline]
     pub unsafe fn add_relative_arc(
@@ -516,6 +572,9 @@ impl CGMutablePath {
         unsafe { CGPathAddRelativeArc(path, matrix, x, y, radius, start_angle, delta) }
     }
 
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddArc")]
     #[inline]
     pub unsafe fn add_arc(
@@ -543,6 +602,9 @@ impl CGMutablePath {
         unsafe { CGPathAddArc(path, m, x, y, radius, start_angle, end_angle, clockwise) }
     }
 
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddArcToPoint")]
     #[inline]
     pub unsafe fn add_arc_to_point(
@@ -568,6 +630,9 @@ impl CGMutablePath {
         unsafe { CGPathAddArcToPoint(path, m, x1, y1, x2, y2, radius) }
     }
 
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddPath")]
     #[inline]
     pub unsafe fn add_path(
@@ -597,6 +662,9 @@ impl CGPath {
         unsafe { CGPathIsEmpty(path) }
     }
 
+    /// # Safety
+    ///
+    /// `rect` must be a valid pointer or null.
     #[doc(alias = "CGPathIsRect")]
     #[inline]
     pub unsafe fn is_rect(path: Option<&CGPath>, rect: *mut CGRect) -> bool {
@@ -633,6 +701,9 @@ impl CGPath {
         unsafe { CGPathGetPathBoundingBox(path) }
     }
 
+    /// # Safety
+    ///
+    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathContainsPoint")]
     #[inline]
     pub unsafe fn contains_point(
@@ -707,6 +778,10 @@ pub type CGPathApplierFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGPathElement>)>;
 
 impl CGPath {
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `function` must be implemented correctly.
     #[doc(alias = "CGPathApply")]
     #[inline]
     pub unsafe fn apply(path: Option<&CGPath>, info: *mut c_void, function: CGPathApplierFunction) {
@@ -726,6 +801,9 @@ impl CGPath {
 pub type CGPathApplyBlock = *mut block2::DynBlock<dyn Fn(NonNull<CGPathElement>)>;
 
 impl CGPath {
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "CGPathApplyWithBlock")]
     #[cfg(feature = "block2")]
     #[inline]

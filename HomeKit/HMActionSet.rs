@@ -34,6 +34,10 @@ impl HMActionSet {
         /// The name of the action set.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -42,6 +46,10 @@ impl HMActionSet {
         /// Set of HMAction objects that represent the individual items of the action set.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(actions))]
         #[unsafe(method_family = none)]
         pub unsafe fn actions(&self) -> Retained<NSSet<HMAction>>;
@@ -49,6 +57,10 @@ impl HMActionSet {
         /// Specifies whether the action set is currently executing or not.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isExecuting))]
         #[unsafe(method_family = none)]
         pub unsafe fn isExecuting(&self) -> bool;
@@ -58,6 +70,10 @@ impl HMActionSet {
         /// be executed, renamed or associated with another trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(actionSetType))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionSetType(&self) -> Retained<NSString>;
@@ -65,6 +81,10 @@ impl HMActionSet {
         /// A unique identifier for the action set.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
@@ -72,6 +92,10 @@ impl HMActionSet {
         /// Specifies the last execution date for the action set.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(lastExecutionDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lastExecutionDate(&self) -> Option<Retained<NSDate>>;
@@ -86,6 +110,10 @@ impl HMActionSet {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[unsafe(method(updateName:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
@@ -104,6 +132,10 @@ impl HMActionSet {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[unsafe(method(addAction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAction_completionHandler(
@@ -122,6 +154,10 @@ impl HMActionSet {
         /// Parameter `completion`: Block that is invoked once the request is processed.
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
+        ///
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[unsafe(method(removeAction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAction_completionHandler(

@@ -80,6 +80,10 @@ impl HMSignificantTimeEvent {
         /// significantEvent The significant event for the trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(significantEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn significantEvent(&self) -> Retained<HMSignificantEvent>;
@@ -89,6 +93,10 @@ impl HMSignificantTimeEvent {
         /// 'minute' property must be set to -30.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> Option<Retained<NSDateComponents>>;
@@ -154,12 +162,20 @@ impl HMMutableSignificantTimeEvent {
         /// significantEvent The significant event for the trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(significantEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn significantEvent(&self) -> Retained<HMSignificantEvent>;
 
         #[cfg(feature = "HMSignificantEvents")]
         /// Setter for [`significantEvent`][Self::significantEvent].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSignificantEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSignificantEvent(&self, significant_event: &HMSignificantEvent);
@@ -169,11 +185,19 @@ impl HMMutableSignificantTimeEvent {
         /// 'minute' property must be set to -30.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> Retained<NSDateComponents>;
 
         /// Setter for [`offset`][Self::offset].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: &NSDateComponents);

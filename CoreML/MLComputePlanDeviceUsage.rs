@@ -37,6 +37,10 @@ impl MLComputePlanDeviceUsage {
         /// The compute devices that can execute the layer/operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(supportedComputeDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedComputeDevices(
@@ -47,6 +51,10 @@ impl MLComputePlanDeviceUsage {
         /// The compute device that the framework prefers to execute the layer/operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(preferredComputeDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredComputeDevice(

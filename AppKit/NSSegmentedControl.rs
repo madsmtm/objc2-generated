@@ -453,6 +453,10 @@ impl NSSegmentedControl {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized segmented control.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(segmentedControlWithLabels:trackingMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
@@ -475,6 +479,10 @@ impl NSSegmentedControl {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized segmented control.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(segmentedControlWithImages:trackingMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(

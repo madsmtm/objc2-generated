@@ -32,6 +32,10 @@ impl ODNode {
         ///
         /// Autoreleased instance of an ODNode with a provided ODSession and ODNodeType.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `in_session` might not allow `None`.
         #[unsafe(method(nodeWithSession:type:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSession_type_error(
@@ -45,6 +49,11 @@ impl ODNode {
         ///
         /// autoreleased instance of an ODNode with a provided ODSession and node name.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// - `in_session` might not allow `None`.
+        /// - `in_name` might not allow `None`.
         #[unsafe(method(nodeWithSession:name:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSession_name_error(
@@ -62,6 +71,10 @@ impl ODNode {
         ///
         /// initialize instance of an ODNode with a provided ODSession and ODNodeType.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `in_session` might not allow `None`.
         #[unsafe(method(initWithSession:type:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_type_error(
@@ -76,6 +89,11 @@ impl ODNode {
         ///
         /// initialize instance of an ODNode with a provided ODSession and node name.  outError is optional
         /// parameter, nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// - `in_session` might not allow `None`.
+        /// - `in_name` might not allow `None`.
         #[unsafe(method(initWithSession:name:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_name_error(
@@ -121,6 +139,11 @@ impl ODNode {
         /// Returns a dictionary of information about the instance of ODNode.  Details such as Trust information
         /// (kODAttributeTypeTrustInformation) or other Node details can be retrieved.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// - `in_keys` generic should be of the correct type.
+        /// - `in_keys` might not allow `None`.
         #[unsafe(method(nodeDetailsForKeys:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeDetailsForKeys_error(
@@ -147,6 +170,10 @@ impl ODNode {
         /// Will return a list of attribute types supported for that attribute if possible.  If no specific
         /// types are available, then all possible values will be returned instead.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `in_record_type` might not allow `None`.
         #[unsafe(method(supportedAttributesForRecordType:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedAttributesForRecordType_error(
@@ -162,6 +189,12 @@ impl ODNode {
         /// to query or change data.  Setting the credentials on a node referenced by other OD object types will
         /// change the credentials for all for all references.  outError is optional parameter, nil can be passed if error
         /// details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// - `in_record_type` might not allow `None`.
+        /// - `in_record_name` might not allow `None`.
+        /// - `in_password` might not allow `None`.
         #[unsafe(method(setCredentialsWithRecordType:recordName:password:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsWithRecordType_recordName_password_error(
@@ -179,6 +212,13 @@ impl ODNode {
         /// require response-request loops, etc.  Not all OD plugins will support this call, look for
         /// kODErrorCredentialsMethodNotSupported in outError.  outError is optional parameter, nil can be passed if
         /// error details is not needed.
+        ///
+        /// # Safety
+        ///
+        /// - `in_record_type` might not allow `None`.
+        /// - `in_type` might not allow `None`.
+        /// - `in_items` generic should be of the correct type.
+        /// - `in_items` might not allow `None`.
         #[unsafe(method(setCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
@@ -194,6 +234,10 @@ impl ODNode {
         /// Unsupported method.
         ///
         /// Unsupported method.
+        ///
+        /// # Safety
+        ///
+        /// `in_cache_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setCredentialsUsingKerberosCache:error:))]
         #[unsafe(method_family = none)]
@@ -213,6 +257,13 @@ impl ODNode {
         /// Takes all the provided attributes and type to create an entire record.  The function will assign a
         /// UUID to the record automatically.  This UUID can be overwritten by the client by passing with the
         /// other attributes.  inAttributes is optional, nil can be passed if no other attributes are to be set.
+        ///
+        /// # Safety
+        ///
+        /// - `in_record_type` might not allow `None`.
+        /// - `in_record_name` might not allow `None`.
+        /// - `in_attributes` generic should be of the correct type.
+        /// - `in_attributes` might not allow `None`.
         #[unsafe(method(createRecordWithRecordType:name:attributes:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createRecordWithRecordType_name_attributes_error(
@@ -233,6 +284,13 @@ impl ODNode {
         /// Returns an ODRecord object that references the requested type and name.  The record will have cached the
         /// attributes requested.  Further attributes can be requested via ODRecord APIs.  For performance it is best
         /// to ask for as many attributes that are needed as possible up front.
+        ///
+        /// # Safety
+        ///
+        /// - `in_record_type` might not allow `None`.
+        /// - `in_record_name` might not allow `None`.
+        /// - `in_attributes` should be of the correct type.
+        /// - `in_attributes` might not allow `None`.
         #[unsafe(method(recordWithRecordType:name:attributes:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordWithRecordType_name_attributes_error(
@@ -247,6 +305,10 @@ impl ODNode {
         ///
         /// Sends a custom code to the node; input and output data formats are specific to the call.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `in_send_data` might not allow `None`.
         #[unsafe(method(customCall:sendData:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customCall_sendData_error(
@@ -261,6 +323,12 @@ impl ODNode {
         /// Sends a custom function call to the node; data is a type specific to the call.  'error' is an
         /// optional parameter therefore nil can be passed if error details are not needed.  Return type is
         /// defined by the custom function requested.
+        ///
+        /// # Safety
+        ///
+        /// - `function` might not allow `None`.
+        /// - `payload` should be of the correct type.
+        /// - `payload` might not allow `None`.
         #[unsafe(method(customFunction:payload:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customFunction_payload_error(
@@ -306,6 +374,11 @@ impl ODNode {
         /// This will set the policy for the node.
         ///
         /// This will set the policy for the node.  Policies are evaluated in combination with record-level policies.
+        ///
+        /// # Safety
+        ///
+        /// - `policies` generic should be of the correct type.
+        /// - `policies` might not allow `None`.
         #[deprecated = "use setAccountPolicies:error:"]
         #[unsafe(method(setPolicies:error:))]
         #[unsafe(method_family = none)]
@@ -319,6 +392,12 @@ impl ODNode {
         /// This will set a specific policy setting for the node.
         ///
         /// This will set a specific policy setting for the node.
+        ///
+        /// # Safety
+        ///
+        /// - `policy` might not allow `None`.
+        /// - `value` should be of the correct type.
+        /// - `value` might not allow `None`.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
         #[unsafe(method(setPolicy:value:error:))]
         #[unsafe(method_family = none)]
@@ -333,6 +412,10 @@ impl ODNode {
         /// This will remove a specific policy setting from the node.
         ///
         /// This will remove a specific policy setting from the node.
+        ///
+        /// # Safety
+        ///
+        /// `policy` might not allow `None`.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
         #[unsafe(method(removePolicy:error:))]
         #[unsafe(method_family = none)]
@@ -364,6 +447,12 @@ impl ODNode {
         /// Parameter `error`: an optional NSError reference for error details.
         ///
         /// Returns: a BOOL which signifies if the policy addition succeeded, otherwise error is set.
+        ///
+        /// # Safety
+        ///
+        /// - `policy` generic should be of the correct type.
+        /// - `policy` might not allow `None`.
+        /// - `category` might not allow `None`.
         #[unsafe(method(addAccountPolicy:toCategory:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccountPolicy_toCategory_error(
@@ -386,6 +475,12 @@ impl ODNode {
         /// Parameter `error`: an optional NSError reference for error details.
         ///
         /// Returns: a BOOL which signifies if the policy removal succeeded, otherwise error is set.
+        ///
+        /// # Safety
+        ///
+        /// - `policy` generic should be of the correct type.
+        /// - `policy` might not allow `None`.
+        /// - `category` might not allow `None`.
         #[unsafe(method(removeAccountPolicy:fromCategory:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
@@ -416,6 +511,11 @@ impl ODNode {
         /// Parameter `error`: an optional NSError reference for error details.
         ///
         /// Returns: a BOOL which signifies if the policy set succeeded, otherwise error is set.
+        ///
+        /// # Safety
+        ///
+        /// - `policies` generic should be of the correct type.
+        /// - `policies` might not allow `None`.
         #[unsafe(method(setAccountPolicies:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountPolicies_error(
@@ -460,6 +560,11 @@ impl ODNode {
         /// Parameter `error`: an optional NSError reference for error details.
         ///
         /// Returns: a bool which signifies if the password passes all content policies, otherwise error is set.
+        ///
+        /// # Safety
+        ///
+        /// - `password` might not allow `None`.
+        /// - `record_name` might not allow `None`.
         #[unsafe(method(passwordContentCheck:forRecordName:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordContentCheck_forRecordName_error(

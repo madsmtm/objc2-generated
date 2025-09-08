@@ -275,6 +275,11 @@ impl CFRunLoop {
         unsafe { CFRunLoopStop(self) }
     }
 
+    /// # Safety
+    ///
+    /// - `mode` should be of the correct type.
+    /// - `mode` might not allow `None`.
+    /// - `block` might not allow `None`.
     #[doc(alias = "CFRunLoopPerformBlock")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -526,6 +531,9 @@ unsafe impl ConcreteType for CFRunLoopSource {
 }
 
 impl CFRunLoopSource {
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopSourceCreate")]
     #[inline]
     pub unsafe fn new(
@@ -572,6 +580,9 @@ impl CFRunLoopSource {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopSourceGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFRunLoopSourceContext) {
@@ -641,6 +652,10 @@ unsafe impl ConcreteType for CFRunLoopObserver {
 }
 
 impl CFRunLoopObserver {
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopObserverCreate")]
     #[inline]
     pub unsafe fn new(
@@ -667,6 +682,10 @@ impl CFRunLoopObserver {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `block` might not allow `None`.
     #[doc(alias = "CFRunLoopObserverCreateWithHandler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -739,6 +758,9 @@ impl CFRunLoopObserver {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopObserverGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFRunLoopObserverContext) {
@@ -799,6 +821,10 @@ unsafe impl ConcreteType for CFRunLoopTimer {
 }
 
 impl CFRunLoopTimer {
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopTimerCreate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -830,6 +856,10 @@ impl CFRunLoopTimer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `block` might not allow `None`.
     #[doc(alias = "CFRunLoopTimerCreateWithHandler")]
     #[cfg(all(feature = "CFDate", feature = "block2"))]
     #[inline]
@@ -925,6 +955,9 @@ impl CFRunLoopTimer {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopTimerGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFRunLoopTimerContext) {

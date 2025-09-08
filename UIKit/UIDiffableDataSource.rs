@@ -333,12 +333,20 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
 {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sectionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifier(&self) -> Retained<SectionIdentifierType>;
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(initialSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialSnapshot(
@@ -347,6 +355,10 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(finalSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn finalSnapshot(
@@ -354,6 +366,10 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(difference))]
         #[unsafe(method_family = none)]
         pub unsafe fn difference(
@@ -418,6 +434,10 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
 {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(initialSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialSnapshot(
@@ -425,6 +445,10 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(finalSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn finalSnapshot(
@@ -432,6 +456,10 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(difference))]
         #[unsafe(method_family = none)]
         pub unsafe fn difference(
@@ -439,6 +467,10 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ) -> Retained<NSOrderedCollectionDifference<ItemIdentifierType>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sectionTransactions))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionTransactions(
@@ -521,6 +553,9 @@ impl<SectionType: Message, ItemType: Message>
 {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(canReorderItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn canReorderItemHandler(
@@ -539,6 +574,9 @@ impl<SectionType: Message, ItemType: Message>
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(willReorderHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn willReorderHandler(
@@ -563,6 +601,9 @@ impl<SectionType: Message, ItemType: Message>
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(didReorderHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn didReorderHandler(
@@ -652,6 +693,9 @@ extern_conformance!(
 impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemType> {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(shouldExpandItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldExpandItemHandler(
@@ -672,6 +716,9 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(willExpandItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn willExpandItemHandler(
@@ -690,6 +737,9 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(shouldCollapseItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldCollapseItemHandler(
@@ -710,6 +760,9 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(willCollapseItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn willCollapseItemHandler(
@@ -728,6 +781,10 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         );
 
         #[cfg(all(feature = "NSDiffableDataSourceSectionSnapshot", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(snapshotForExpandingParentItemHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotForExpandingParentItemHandler(
@@ -743,6 +800,10 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
         /// Setter for [`snapshotForExpandingParentItemHandler`][Self::snapshotForExpandingParentItemHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `snapshot_for_expanding_parent_item_handler` block's return must be a valid pointer.
         #[unsafe(method(setSnapshotForExpandingParentItemHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSnapshotForExpandingParentItemHandler(
@@ -831,6 +892,9 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             feature = "UIView",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `cell_provider` must be a valid pointer.
         #[unsafe(method(initWithCollectionView:cellProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCollectionView_cellProvider(
@@ -855,6 +919,11 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             feature = "UIView",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(supplementaryViewProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn supplementaryViewProvider(
@@ -872,6 +941,10 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         /// Setter for [`supplementaryViewProvider`][Self::supplementaryViewProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `supplementary_view_provider` must be a valid pointer or null.
         #[unsafe(method(setSupplementaryViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupplementaryViewProvider(
@@ -1091,6 +1164,9 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             feature = "UIView",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `cell_provider` must be a valid pointer.
         #[unsafe(method(initWithTableView:cellProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTableView_cellProvider(

@@ -165,6 +165,11 @@ impl PHImageRequestOptions {
         pub unsafe fn setSynchronous(&self, synchronous: bool);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer.
+        /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
@@ -173,6 +178,10 @@ impl PHImageRequestOptions {
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `progress_handler` must be a valid pointer or null.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
@@ -250,6 +259,11 @@ impl PHLivePhotoRequestOptions {
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer.
+        /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
@@ -258,6 +272,10 @@ impl PHLivePhotoRequestOptions {
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `progress_handler` must be a valid pointer or null.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
@@ -375,6 +393,11 @@ impl PHVideoRequestOptions {
         pub unsafe fn setDeliveryMode(&self, delivery_mode: PHVideoRequestOptionsDeliveryMode);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer.
+        /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> PHAssetVideoProgressHandler;
@@ -383,6 +406,10 @@ impl PHVideoRequestOptions {
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `progress_handler` must be a valid pointer or null.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetVideoProgressHandler);

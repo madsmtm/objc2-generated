@@ -161,6 +161,10 @@ impl UIBackgroundConfiguration {
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the background color. A nil value means the `backgroundColor` is used as-is.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(backgroundColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColorTransformer(&self) -> UIConfigurationColorTransformer;
@@ -173,6 +177,10 @@ impl UIBackgroundConfiguration {
         /// Setter for [`backgroundColorTransformer`][Self::backgroundColorTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `background_color_transformer` must be a valid pointer or null.
         #[unsafe(method(setBackgroundColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColorTransformer(
@@ -245,6 +253,10 @@ impl UIBackgroundConfiguration {
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the stroke color. A nil value means the `strokeColor` is used as-is.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(strokeColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColorTransformer(&self) -> UIConfigurationColorTransformer;
@@ -257,6 +269,10 @@ impl UIBackgroundConfiguration {
         /// Setter for [`strokeColorTransformer`][Self::strokeColorTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `stroke_color_transformer` must be a valid pointer or null.
         #[unsafe(method(setStrokeColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColorTransformer(

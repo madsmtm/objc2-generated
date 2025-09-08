@@ -40,112 +40,178 @@ extern_protocol!(
     pub unsafe trait UIResponderStandardEditActions:
         NSObjectProtocol + MainThreadOnly
     {
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(cut:))]
         #[unsafe(method_family = none)]
         unsafe fn cut(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(copy:))]
         #[unsafe(method_family = none)]
         unsafe fn copy(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(paste:))]
         #[unsafe(method_family = none)]
         unsafe fn paste(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(pasteAndMatchStyle:))]
         #[unsafe(method_family = none)]
         unsafe fn pasteAndMatchStyle(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(pasteAndGo:))]
         #[unsafe(method_family = none)]
         unsafe fn pasteAndGo(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(pasteAndSearch:))]
         #[unsafe(method_family = none)]
         unsafe fn pasteAndSearch(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(select:))]
         #[unsafe(method_family = none)]
         unsafe fn select(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(selectAll:))]
         #[unsafe(method_family = none)]
         unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(delete:))]
         #[unsafe(method_family = none)]
         unsafe fn delete(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(makeTextWritingDirectionLeftToRight:))]
         #[unsafe(method_family = none)]
         unsafe fn makeTextWritingDirectionLeftToRight(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(makeTextWritingDirectionRightToLeft:))]
         #[unsafe(method_family = none)]
         unsafe fn makeTextWritingDirectionRightToLeft(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(toggleBoldface:))]
         #[unsafe(method_family = none)]
         unsafe fn toggleBoldface(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(toggleItalics:))]
         #[unsafe(method_family = none)]
         unsafe fn toggleItalics(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(toggleUnderline:))]
         #[unsafe(method_family = none)]
         unsafe fn toggleUnderline(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(increaseSize:))]
         #[unsafe(method_family = none)]
         unsafe fn increaseSize(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(decreaseSize:))]
         #[unsafe(method_family = none)]
         unsafe fn decreaseSize(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(find:))]
         #[unsafe(method_family = none)]
         unsafe fn find(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(findAndReplace:))]
         #[unsafe(method_family = none)]
         unsafe fn findAndReplace(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(findNext:))]
         #[unsafe(method_family = none)]
         unsafe fn findNext(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(findPrevious:))]
         #[unsafe(method_family = none)]
         unsafe fn findPrevious(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(useSelectionForFind:))]
         #[unsafe(method_family = none)]
         unsafe fn useSelectionForFind(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `conversion_handler` must be a valid pointer.
         #[optional]
         #[unsafe(method(updateTextAttributesWithConversionHandler:))]
         #[unsafe(method_family = none)]
@@ -154,31 +220,49 @@ extern_protocol!(
             conversion_handler: UITextAttributesConversionHandler,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(print:))]
         #[unsafe(method_family = none)]
         unsafe fn print(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(rename:))]
         #[unsafe(method_family = none)]
         unsafe fn rename(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(duplicate:))]
         #[unsafe(method_family = none)]
         unsafe fn duplicate(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(move:))]
         #[unsafe(method_family = none)]
         unsafe fn r#move(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(export:))]
         #[unsafe(method_family = none)]
         unsafe fn export(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(showWritingTools:))]
         #[unsafe(method_family = none)]
@@ -329,6 +413,10 @@ impl UIResponder {
         #[unsafe(method_family = none)]
         pub unsafe fn remoteControlReceivedWithEvent(&self, event: Option<&UIEvent>);
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[unsafe(method(canPerformAction:withSender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPerformAction_withSender(
@@ -337,6 +425,10 @@ impl UIResponder {
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[unsafe(method(targetForAction:withSender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetForAction_withSender(
@@ -590,6 +682,9 @@ extern_conformance!(
 /// UICaptureTextFromCameraSupporting.
 impl UIResponder {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(captureTextFromCamera:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureTextFromCamera(&self, sender: Option<&AnyObject>);

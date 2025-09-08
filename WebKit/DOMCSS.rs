@@ -19,6 +19,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn azimuth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `azimuth` might not allow `None`.
         #[unsafe(method(setAzimuth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAzimuth(&self, azimuth: Option<&NSString>);
@@ -27,6 +30,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn background(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `background` might not allow `None`.
         #[unsafe(method(setBackground:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackground(&self, background: Option<&NSString>);
@@ -35,6 +41,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundAttachment(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `background_attachment` might not allow `None`.
         #[unsafe(method(setBackgroundAttachment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundAttachment(&self, background_attachment: Option<&NSString>);
@@ -43,6 +52,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `background_color` might not allow `None`.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSString>);
@@ -51,6 +63,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `background_image` might not allow `None`.
         #[unsafe(method(setBackgroundImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage(&self, background_image: Option<&NSString>);
@@ -59,6 +74,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundPosition(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `background_position` might not allow `None`.
         #[unsafe(method(setBackgroundPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundPosition(&self, background_position: Option<&NSString>);
@@ -67,6 +85,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundRepeat(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `background_repeat` might not allow `None`.
         #[unsafe(method(setBackgroundRepeat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundRepeat(&self, background_repeat: Option<&NSString>);
@@ -75,6 +96,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn border(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border` might not allow `None`.
         #[unsafe(method(setBorder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorder(&self, border: Option<&NSString>);
@@ -83,6 +107,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderCollapse(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_collapse` might not allow `None`.
         #[unsafe(method(setBorderCollapse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderCollapse(&self, border_collapse: Option<&NSString>);
@@ -91,6 +118,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderColor(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_color` might not allow `None`.
         #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor(&self, border_color: Option<&NSString>);
@@ -99,6 +129,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderSpacing(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_spacing` might not allow `None`.
         #[unsafe(method(setBorderSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderSpacing(&self, border_spacing: Option<&NSString>);
@@ -107,6 +140,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderStyle(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_style` might not allow `None`.
         #[unsafe(method(setBorderStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderStyle(&self, border_style: Option<&NSString>);
@@ -115,6 +151,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderTop(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_top` might not allow `None`.
         #[unsafe(method(setBorderTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTop(&self, border_top: Option<&NSString>);
@@ -123,6 +162,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderRight(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_right` might not allow `None`.
         #[unsafe(method(setBorderRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderRight(&self, border_right: Option<&NSString>);
@@ -131,6 +173,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderBottom(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_bottom` might not allow `None`.
         #[unsafe(method(setBorderBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderBottom(&self, border_bottom: Option<&NSString>);
@@ -139,6 +184,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderLeft(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_left` might not allow `None`.
         #[unsafe(method(setBorderLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderLeft(&self, border_left: Option<&NSString>);
@@ -147,6 +195,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderTopColor(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_top_color` might not allow `None`.
         #[unsafe(method(setBorderTopColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTopColor(&self, border_top_color: Option<&NSString>);
@@ -155,6 +206,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderRightColor(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_right_color` might not allow `None`.
         #[unsafe(method(setBorderRightColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderRightColor(&self, border_right_color: Option<&NSString>);
@@ -163,6 +217,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderBottomColor(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_bottom_color` might not allow `None`.
         #[unsafe(method(setBorderBottomColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderBottomColor(&self, border_bottom_color: Option<&NSString>);
@@ -171,6 +228,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderLeftColor(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_left_color` might not allow `None`.
         #[unsafe(method(setBorderLeftColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderLeftColor(&self, border_left_color: Option<&NSString>);
@@ -179,6 +239,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderTopStyle(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_top_style` might not allow `None`.
         #[unsafe(method(setBorderTopStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTopStyle(&self, border_top_style: Option<&NSString>);
@@ -187,6 +250,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderRightStyle(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_right_style` might not allow `None`.
         #[unsafe(method(setBorderRightStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderRightStyle(&self, border_right_style: Option<&NSString>);
@@ -195,6 +261,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderBottomStyle(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_bottom_style` might not allow `None`.
         #[unsafe(method(setBorderBottomStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderBottomStyle(&self, border_bottom_style: Option<&NSString>);
@@ -203,6 +272,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderLeftStyle(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_left_style` might not allow `None`.
         #[unsafe(method(setBorderLeftStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderLeftStyle(&self, border_left_style: Option<&NSString>);
@@ -211,6 +283,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderTopWidth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_top_width` might not allow `None`.
         #[unsafe(method(setBorderTopWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderTopWidth(&self, border_top_width: Option<&NSString>);
@@ -219,6 +294,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderRightWidth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_right_width` might not allow `None`.
         #[unsafe(method(setBorderRightWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderRightWidth(&self, border_right_width: Option<&NSString>);
@@ -227,6 +305,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderBottomWidth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_bottom_width` might not allow `None`.
         #[unsafe(method(setBorderBottomWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderBottomWidth(&self, border_bottom_width: Option<&NSString>);
@@ -235,6 +316,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderLeftWidth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_left_width` might not allow `None`.
         #[unsafe(method(setBorderLeftWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderLeftWidth(&self, border_left_width: Option<&NSString>);
@@ -243,6 +327,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn borderWidth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `border_width` might not allow `None`.
         #[unsafe(method(setBorderWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderWidth(&self, border_width: Option<&NSString>);
@@ -251,6 +338,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn bottom(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `bottom` might not allow `None`.
         #[unsafe(method(setBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBottom(&self, bottom: Option<&NSString>);
@@ -259,6 +349,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn captionSide(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `caption_side` might not allow `None`.
         #[unsafe(method(setCaptionSide:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCaptionSide(&self, caption_side: Option<&NSString>);
@@ -267,6 +360,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn clear(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `clear` might not allow `None`.
         #[unsafe(method(setClear:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClear(&self, clear: Option<&NSString>);
@@ -275,6 +371,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn clip(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `clip` might not allow `None`.
         #[unsafe(method(setClip:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClip(&self, clip: Option<&NSString>);
@@ -283,6 +382,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `color` might not allow `None`.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&NSString>);
@@ -291,6 +393,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `content` might not allow `None`.
         #[unsafe(method(setContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContent(&self, content: Option<&NSString>);
@@ -299,6 +404,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn counterIncrement(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `counter_increment` might not allow `None`.
         #[unsafe(method(setCounterIncrement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCounterIncrement(&self, counter_increment: Option<&NSString>);
@@ -307,6 +415,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn counterReset(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `counter_reset` might not allow `None`.
         #[unsafe(method(setCounterReset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCounterReset(&self, counter_reset: Option<&NSString>);
@@ -315,6 +426,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn cue(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `cue` might not allow `None`.
         #[unsafe(method(setCue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCue(&self, cue: Option<&NSString>);
@@ -323,6 +437,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn cueAfter(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `cue_after` might not allow `None`.
         #[unsafe(method(setCueAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCueAfter(&self, cue_after: Option<&NSString>);
@@ -331,6 +448,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn cueBefore(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `cue_before` might not allow `None`.
         #[unsafe(method(setCueBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCueBefore(&self, cue_before: Option<&NSString>);
@@ -339,6 +459,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn cursor(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `cursor` might not allow `None`.
         #[unsafe(method(setCursor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursor(&self, cursor: Option<&NSString>);
@@ -347,6 +470,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `direction` might not allow `None`.
         #[unsafe(method(setDirection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirection(&self, direction: Option<&NSString>);
@@ -355,6 +481,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn display(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `display` might not allow `None`.
         #[unsafe(method(setDisplay:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplay(&self, display: Option<&NSString>);
@@ -363,6 +492,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn elevation(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `elevation` might not allow `None`.
         #[unsafe(method(setElevation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setElevation(&self, elevation: Option<&NSString>);
@@ -371,6 +503,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn emptyCells(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `empty_cells` might not allow `None`.
         #[unsafe(method(setEmptyCells:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmptyCells(&self, empty_cells: Option<&NSString>);
@@ -379,6 +514,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn cssFloat(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `css_float` might not allow `None`.
         #[unsafe(method(setCssFloat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCssFloat(&self, css_float: Option<&NSString>);
@@ -387,6 +525,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `font` might not allow `None`.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSString>);
@@ -395,6 +536,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn fontFamily(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `font_family` might not allow `None`.
         #[unsafe(method(setFontFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontFamily(&self, font_family: Option<&NSString>);
@@ -403,6 +547,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn fontSize(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `font_size` might not allow `None`.
         #[unsafe(method(setFontSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontSize(&self, font_size: Option<&NSString>);
@@ -411,6 +558,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn fontSizeAdjust(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `font_size_adjust` might not allow `None`.
         #[unsafe(method(setFontSizeAdjust:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontSizeAdjust(&self, font_size_adjust: Option<&NSString>);
@@ -419,6 +569,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn fontStretch(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `font_stretch` might not allow `None`.
         #[unsafe(method(setFontStretch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontStretch(&self, font_stretch: Option<&NSString>);
@@ -427,6 +580,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn fontStyle(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `font_style` might not allow `None`.
         #[unsafe(method(setFontStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontStyle(&self, font_style: Option<&NSString>);
@@ -435,6 +591,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn fontVariant(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `font_variant` might not allow `None`.
         #[unsafe(method(setFontVariant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontVariant(&self, font_variant: Option<&NSString>);
@@ -443,6 +602,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn fontWeight(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `font_weight` might not allow `None`.
         #[unsafe(method(setFontWeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFontWeight(&self, font_weight: Option<&NSString>);
@@ -451,6 +613,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `height` might not allow `None`.
         #[unsafe(method(setHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: Option<&NSString>);
@@ -459,6 +624,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn left(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `left` might not allow `None`.
         #[unsafe(method(setLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeft(&self, left: Option<&NSString>);
@@ -467,6 +635,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn letterSpacing(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `letter_spacing` might not allow `None`.
         #[unsafe(method(setLetterSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLetterSpacing(&self, letter_spacing: Option<&NSString>);
@@ -475,6 +646,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn lineHeight(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `line_height` might not allow `None`.
         #[unsafe(method(setLineHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineHeight(&self, line_height: Option<&NSString>);
@@ -483,6 +657,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn listStyle(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `list_style` might not allow `None`.
         #[unsafe(method(setListStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListStyle(&self, list_style: Option<&NSString>);
@@ -491,6 +668,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn listStyleImage(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `list_style_image` might not allow `None`.
         #[unsafe(method(setListStyleImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListStyleImage(&self, list_style_image: Option<&NSString>);
@@ -499,6 +679,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn listStylePosition(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `list_style_position` might not allow `None`.
         #[unsafe(method(setListStylePosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListStylePosition(&self, list_style_position: Option<&NSString>);
@@ -507,6 +690,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn listStyleType(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `list_style_type` might not allow `None`.
         #[unsafe(method(setListStyleType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setListStyleType(&self, list_style_type: Option<&NSString>);
@@ -515,6 +701,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn margin(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `margin` might not allow `None`.
         #[unsafe(method(setMargin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMargin(&self, margin: Option<&NSString>);
@@ -523,6 +712,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn marginTop(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `margin_top` might not allow `None`.
         #[unsafe(method(setMarginTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarginTop(&self, margin_top: Option<&NSString>);
@@ -531,6 +723,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn marginRight(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `margin_right` might not allow `None`.
         #[unsafe(method(setMarginRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarginRight(&self, margin_right: Option<&NSString>);
@@ -539,6 +734,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn marginBottom(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `margin_bottom` might not allow `None`.
         #[unsafe(method(setMarginBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarginBottom(&self, margin_bottom: Option<&NSString>);
@@ -547,6 +745,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn marginLeft(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `margin_left` might not allow `None`.
         #[unsafe(method(setMarginLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarginLeft(&self, margin_left: Option<&NSString>);
@@ -555,6 +756,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn markerOffset(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `marker_offset` might not allow `None`.
         #[unsafe(method(setMarkerOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkerOffset(&self, marker_offset: Option<&NSString>);
@@ -563,6 +767,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn marks(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `marks` might not allow `None`.
         #[unsafe(method(setMarks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarks(&self, marks: Option<&NSString>);
@@ -571,6 +778,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn maxHeight(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `max_height` might not allow `None`.
         #[unsafe(method(setMaxHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxHeight(&self, max_height: Option<&NSString>);
@@ -579,6 +789,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn maxWidth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `max_width` might not allow `None`.
         #[unsafe(method(setMaxWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxWidth(&self, max_width: Option<&NSString>);
@@ -587,6 +800,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn minHeight(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `min_height` might not allow `None`.
         #[unsafe(method(setMinHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinHeight(&self, min_height: Option<&NSString>);
@@ -595,6 +811,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn minWidth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `min_width` might not allow `None`.
         #[unsafe(method(setMinWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinWidth(&self, min_width: Option<&NSString>);
@@ -603,6 +822,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn orphans(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `orphans` might not allow `None`.
         #[unsafe(method(setOrphans:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrphans(&self, orphans: Option<&NSString>);
@@ -611,6 +833,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn outline(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `outline` might not allow `None`.
         #[unsafe(method(setOutline:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutline(&self, outline: Option<&NSString>);
@@ -619,6 +844,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn outlineColor(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `outline_color` might not allow `None`.
         #[unsafe(method(setOutlineColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutlineColor(&self, outline_color: Option<&NSString>);
@@ -627,6 +855,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn outlineStyle(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `outline_style` might not allow `None`.
         #[unsafe(method(setOutlineStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutlineStyle(&self, outline_style: Option<&NSString>);
@@ -635,6 +866,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn outlineWidth(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `outline_width` might not allow `None`.
         #[unsafe(method(setOutlineWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutlineWidth(&self, outline_width: Option<&NSString>);
@@ -643,6 +877,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn overflow(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `overflow` might not allow `None`.
         #[unsafe(method(setOverflow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverflow(&self, overflow: Option<&NSString>);
@@ -651,6 +888,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn padding(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `padding` might not allow `None`.
         #[unsafe(method(setPadding:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPadding(&self, padding: Option<&NSString>);
@@ -659,6 +899,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn paddingTop(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `padding_top` might not allow `None`.
         #[unsafe(method(setPaddingTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingTop(&self, padding_top: Option<&NSString>);
@@ -667,6 +910,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn paddingRight(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `padding_right` might not allow `None`.
         #[unsafe(method(setPaddingRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingRight(&self, padding_right: Option<&NSString>);
@@ -675,6 +921,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn paddingBottom(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `padding_bottom` might not allow `None`.
         #[unsafe(method(setPaddingBottom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingBottom(&self, padding_bottom: Option<&NSString>);
@@ -683,6 +932,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn paddingLeft(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `padding_left` might not allow `None`.
         #[unsafe(method(setPaddingLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPaddingLeft(&self, padding_left: Option<&NSString>);
@@ -691,6 +943,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn page(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `page` might not allow `None`.
         #[unsafe(method(setPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPage(&self, page: Option<&NSString>);
@@ -699,6 +954,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn pageBreakAfter(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `page_break_after` might not allow `None`.
         #[unsafe(method(setPageBreakAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPageBreakAfter(&self, page_break_after: Option<&NSString>);
@@ -707,6 +965,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn pageBreakBefore(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `page_break_before` might not allow `None`.
         #[unsafe(method(setPageBreakBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPageBreakBefore(&self, page_break_before: Option<&NSString>);
@@ -715,6 +976,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn pageBreakInside(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `page_break_inside` might not allow `None`.
         #[unsafe(method(setPageBreakInside:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPageBreakInside(&self, page_break_inside: Option<&NSString>);
@@ -723,6 +987,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `pause` might not allow `None`.
         #[unsafe(method(setPause:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPause(&self, pause: Option<&NSString>);
@@ -731,6 +998,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn pauseAfter(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `pause_after` might not allow `None`.
         #[unsafe(method(setPauseAfter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPauseAfter(&self, pause_after: Option<&NSString>);
@@ -739,6 +1009,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn pauseBefore(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `pause_before` might not allow `None`.
         #[unsafe(method(setPauseBefore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPauseBefore(&self, pause_before: Option<&NSString>);
@@ -747,6 +1020,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `pitch` might not allow `None`.
         #[unsafe(method(setPitch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPitch(&self, pitch: Option<&NSString>);
@@ -755,6 +1031,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn pitchRange(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `pitch_range` might not allow `None`.
         #[unsafe(method(setPitchRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPitchRange(&self, pitch_range: Option<&NSString>);
@@ -763,6 +1042,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn playDuring(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `play_during` might not allow `None`.
         #[unsafe(method(setPlayDuring:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayDuring(&self, play_during: Option<&NSString>);
@@ -771,6 +1053,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `position` might not allow `None`.
         #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: Option<&NSString>);
@@ -779,6 +1064,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn quotes(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `quotes` might not allow `None`.
         #[unsafe(method(setQuotes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQuotes(&self, quotes: Option<&NSString>);
@@ -787,6 +1075,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn richness(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `richness` might not allow `None`.
         #[unsafe(method(setRichness:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRichness(&self, richness: Option<&NSString>);
@@ -795,6 +1086,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn right(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `right` might not allow `None`.
         #[unsafe(method(setRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRight(&self, right: Option<&NSString>);
@@ -803,6 +1097,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `size` might not allow `None`.
         #[unsafe(method(setSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
@@ -811,6 +1108,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn speak(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `speak` might not allow `None`.
         #[unsafe(method(setSpeak:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeak(&self, speak: Option<&NSString>);
@@ -819,6 +1119,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn speakHeader(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `speak_header` might not allow `None`.
         #[unsafe(method(setSpeakHeader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeakHeader(&self, speak_header: Option<&NSString>);
@@ -827,6 +1130,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn speakNumeral(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `speak_numeral` might not allow `None`.
         #[unsafe(method(setSpeakNumeral:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeakNumeral(&self, speak_numeral: Option<&NSString>);
@@ -835,6 +1141,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn speakPunctuation(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `speak_punctuation` might not allow `None`.
         #[unsafe(method(setSpeakPunctuation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeakPunctuation(&self, speak_punctuation: Option<&NSString>);
@@ -843,6 +1152,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn speechRate(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `speech_rate` might not allow `None`.
         #[unsafe(method(setSpeechRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeechRate(&self, speech_rate: Option<&NSString>);
@@ -851,6 +1163,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn stress(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `stress` might not allow `None`.
         #[unsafe(method(setStress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStress(&self, stress: Option<&NSString>);
@@ -859,6 +1174,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn tableLayout(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `table_layout` might not allow `None`.
         #[unsafe(method(setTableLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTableLayout(&self, table_layout: Option<&NSString>);
@@ -867,6 +1185,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn textAlign(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `text_align` might not allow `None`.
         #[unsafe(method(setTextAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAlign(&self, text_align: Option<&NSString>);
@@ -875,6 +1196,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn textDecoration(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `text_decoration` might not allow `None`.
         #[unsafe(method(setTextDecoration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextDecoration(&self, text_decoration: Option<&NSString>);
@@ -883,6 +1207,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn textIndent(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `text_indent` might not allow `None`.
         #[unsafe(method(setTextIndent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextIndent(&self, text_indent: Option<&NSString>);
@@ -891,6 +1218,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn textShadow(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `text_shadow` might not allow `None`.
         #[unsafe(method(setTextShadow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextShadow(&self, text_shadow: Option<&NSString>);
@@ -899,6 +1229,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn textTransform(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `text_transform` might not allow `None`.
         #[unsafe(method(setTextTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextTransform(&self, text_transform: Option<&NSString>);
@@ -907,6 +1240,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn top(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `top` might not allow `None`.
         #[unsafe(method(setTop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTop(&self, top: Option<&NSString>);
@@ -915,6 +1251,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn unicodeBidi(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `unicode_bidi` might not allow `None`.
         #[unsafe(method(setUnicodeBidi:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUnicodeBidi(&self, unicode_bidi: Option<&NSString>);
@@ -923,6 +1262,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn verticalAlign(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `vertical_align` might not allow `None`.
         #[unsafe(method(setVerticalAlign:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVerticalAlign(&self, vertical_align: Option<&NSString>);
@@ -931,6 +1273,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn visibility(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `visibility` might not allow `None`.
         #[unsafe(method(setVisibility:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVisibility(&self, visibility: Option<&NSString>);
@@ -939,6 +1284,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn voiceFamily(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `voice_family` might not allow `None`.
         #[unsafe(method(setVoiceFamily:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceFamily(&self, voice_family: Option<&NSString>);
@@ -947,6 +1295,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `volume` might not allow `None`.
         #[unsafe(method(setVolume:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: Option<&NSString>);
@@ -955,6 +1306,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn whiteSpace(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `white_space` might not allow `None`.
         #[unsafe(method(setWhiteSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWhiteSpace(&self, white_space: Option<&NSString>);
@@ -963,6 +1317,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn widows(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `widows` might not allow `None`.
         #[unsafe(method(setWidows:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidows(&self, widows: Option<&NSString>);
@@ -971,6 +1328,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `width` might not allow `None`.
         #[unsafe(method(setWidth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
@@ -979,6 +1339,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn wordSpacing(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `word_spacing` might not allow `None`.
         #[unsafe(method(setWordSpacing:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWordSpacing(&self, word_spacing: Option<&NSString>);
@@ -987,6 +1350,9 @@ impl DOMCSSStyleDeclaration {
         #[unsafe(method_family = none)]
         pub unsafe fn zIndex(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `z_index` might not allow `None`.
         #[unsafe(method(setZIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setZIndex(&self, z_index: Option<&NSString>);

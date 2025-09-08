@@ -122,6 +122,10 @@ impl AVPlayerLayer {
         /// Setter for [`pixelBufferAttributes`][Self::pixelBufferAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `pixel_buffer_attributes` generic should be of the correct type.
         #[unsafe(method(setPixelBufferAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPixelBufferAttributes(
@@ -155,6 +159,9 @@ impl AVPlayerLayer {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;

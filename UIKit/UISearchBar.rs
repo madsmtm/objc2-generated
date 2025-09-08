@@ -321,6 +321,10 @@ impl UISearchBar {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
+        ///
+        /// # Safety
+        ///
+        /// `tint_color` might not allow `None`.
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
@@ -525,6 +529,9 @@ impl UISearchBar {
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIControl")]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(setScopeBarButtonTitleTextAttributes:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScopeBarButtonTitleTextAttributes_forState(

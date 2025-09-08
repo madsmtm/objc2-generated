@@ -36,6 +36,10 @@ impl LAEnvironmentMechanismBiometry {
         /// `isUsable`property to see if it is available for use.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(biometryType))]
         #[unsafe(method_family = none)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
@@ -46,6 +50,10 @@ impl LAEnvironmentMechanismBiometry {
         /// `isUsable`property to see if it is available for use.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isEnrolled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnrolled(&self) -> bool;
@@ -57,6 +65,10 @@ impl LAEnvironmentMechanismBiometry {
         /// (e.g. during device ulock).
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isLockedOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLockedOut(&self) -> bool;
@@ -69,6 +81,10 @@ impl LAEnvironmentMechanismBiometry {
         /// It also returns different values to different apps to prevent tracking of user identity.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Retained<NSData>;
@@ -80,6 +96,10 @@ impl LAEnvironmentMechanismBiometry {
         /// has Touch ID.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(builtInSensorInaccessible))]
         #[unsafe(method_family = none)]
         pub unsafe fn builtInSensorInaccessible(&self) -> bool;

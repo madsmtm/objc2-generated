@@ -49,6 +49,10 @@ impl VNTrackTranslationalImageRegistrationRequest {
         /// Create a new request that can statefully track the translational registration of two images.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
@@ -81,6 +85,10 @@ impl VNTrackTranslationalImageRegistrationRequest {
         /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(

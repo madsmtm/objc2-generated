@@ -501,6 +501,10 @@ impl MPSAccelerationStructure {
         /// the vertex buffer, index buffer, etc. must be completed (and, for managed buffers,
         /// synchronized). Any prior intersection tests must also be completed before the acceleration
         /// structure can be rebuilt.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(rebuildWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -543,6 +547,10 @@ impl MPSAccelerationStructure {
         /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
         ///
         /// Parameter `device`: New Metal device
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
@@ -566,6 +574,10 @@ impl MPSAccelerationStructure {
         /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
         ///
         /// Parameter `group`: New acceleration structure group
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(copyWithZone:group:))]
         #[unsafe(method_family = copy)]

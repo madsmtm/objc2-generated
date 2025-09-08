@@ -843,6 +843,10 @@ impl SCNParticleSystem {
         pub unsafe fn particleImage(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`particleImage`][Self::particleImage].
+        ///
+        /// # Safety
+        ///
+        /// `particle_image` should be of the correct type.
         #[unsafe(method(setParticleImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParticleImage(&self, particle_image: Option<&AnyObject>);
@@ -1245,6 +1249,9 @@ impl SCNParticleSystem {
         pub unsafe fn reset(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(handleEvent:forProperties:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleEvent_forProperties_withBlock(
@@ -1255,6 +1262,9 @@ impl SCNParticleSystem {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(addModifierForProperties:atStage:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addModifierForProperties_atStage_withBlock(

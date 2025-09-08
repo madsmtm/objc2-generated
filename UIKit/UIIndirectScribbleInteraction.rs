@@ -98,6 +98,10 @@ extern_protocol!(
         /// Parameter `elementIdentifier`: The identifier of the element the interaction is asking about.
         ///
         /// Returns: Return YES if the element is the one currently focused.
+        ///
+        /// # Safety
+        ///
+        /// `element_identifier` should be of the correct type.
         #[unsafe(method(indirectScribbleInteraction:isElementFocused:))]
         #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_isElementFocused(
@@ -114,6 +118,10 @@ extern_protocol!(
         /// Parameter `elementIdentifier`: The identifier of the element the interaction is asking about.
         ///
         /// Returns: Frame for the element, in the interactions's view coordinate system.
+        ///
+        /// # Safety
+        ///
+        /// `element_identifier` should be of the correct type.
         #[unsafe(method(indirectScribbleInteraction:frameForElement:))]
         #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_frameForElement(
@@ -138,6 +146,10 @@ extern_protocol!(
         /// Parameter `elementIdentifier`: The identifier of the element that should be focused.
         ///
         /// Parameter `completion`: You must always call the completion handler, either synchronously or asynchronously. On success, the first parameter should be the text input that became first responder and that will handle text operations for this element. On failure, call the completion with a nil parameter.
+        ///
+        /// # Safety
+        ///
+        /// `element_identifier` should be of the correct type.
         #[unsafe(method(indirectScribbleInteraction:focusElementIfNeeded:referencePoint:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion(
@@ -156,6 +168,10 @@ extern_protocol!(
         /// Parameter `elementIdentifier`: The identifier of the element the interaction is asking about.
         ///
         /// Returns: Return YES to delay focusing the element.
+        ///
+        /// # Safety
+        ///
+        /// `element_identifier` should be of the correct type.
         #[optional]
         #[unsafe(method(indirectScribbleInteraction:shouldDelayFocusForElement:))]
         #[unsafe(method_family = none)]
@@ -170,6 +186,10 @@ extern_protocol!(
         /// Parameter `interaction`: The interaction notifying about writing state changes.
         ///
         /// Parameter `elementIdentifier`: The identifier of the element the user is writing into.
+        ///
+        /// # Safety
+        ///
+        /// `element_identifier` should be of the correct type.
         #[optional]
         #[unsafe(method(indirectScribbleInteraction:willBeginWritingInElement:))]
         #[unsafe(method_family = none)]
@@ -184,6 +204,10 @@ extern_protocol!(
         /// Parameter `interaction`: The interaction notifying about writing state changes.
         ///
         /// Parameter `elementIdentifier`: The identifier of the element the user finished writing into.
+        ///
+        /// # Safety
+        ///
+        /// `element_identifier` should be of the correct type.
         #[optional]
         #[unsafe(method(indirectScribbleInteraction:didFinishWritingInElement:))]
         #[unsafe(method_family = none)]

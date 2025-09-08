@@ -115,6 +115,11 @@ impl HKStatisticsCollectionQuery {
 
         #[cfg(feature = "block2")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block must be sendable.
+        /// - This might not be thread-safe.
         #[unsafe(method(initialResultsHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialResultsHandler(
@@ -127,6 +132,11 @@ impl HKStatisticsCollectionQuery {
         /// Setter for [`initialResultsHandler`][Self::initialResultsHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// - `initial_results_handler` block must be sendable.
+        /// - This might not be thread-safe.
         #[unsafe(method(setInitialResultsHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialResultsHandler(
@@ -144,6 +154,11 @@ impl HKStatisticsCollectionQuery {
 
         #[cfg(all(feature = "HKStatistics", feature = "block2"))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block must be sendable.
+        /// - This might not be thread-safe.
         #[unsafe(method(statisticsUpdateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsUpdateHandler(
@@ -161,6 +176,11 @@ impl HKStatisticsCollectionQuery {
         /// Setter for [`statisticsUpdateHandler`][Self::statisticsUpdateHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// - `statistics_update_handler` block must be sendable.
+        /// - This might not be thread-safe.
         #[unsafe(method(setStatisticsUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStatisticsUpdateHandler(

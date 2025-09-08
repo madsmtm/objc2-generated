@@ -202,6 +202,9 @@ extern_protocol!(
             error: Option<&NSError>,
         );
 
+        /// # Safety
+        ///
+        /// `service_info` generic must implement NSCoding.
         #[optional]
         #[unsafe(method(broadcastController:didUpdateServiceInfo:))]
         #[unsafe(method_family = none)]

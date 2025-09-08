@@ -184,6 +184,10 @@ impl UITabBarItem {
 
         #[cfg(feature = "UIControl")]
         /// Provide text attributes to use to draw the badge text for the given singular control state (Normal, Disabled, Focused, Selected, or Highlighted). Default values will be supplied for keys that are not provided by this dictionary. See NSAttributedString.h for details on what keys are available.
+        ///
+        /// # Safety
+        ///
+        /// `text_attributes` generic should be of the correct type.
         #[unsafe(method(setBadgeTextAttributes:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBadgeTextAttributes_forState(

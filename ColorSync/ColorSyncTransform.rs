@@ -37,6 +37,10 @@ unsafe impl ConcreteType for ColorSyncTransform {
 }
 
 impl ColorSyncTransform {
+    /// # Safety
+    ///
+    /// - `profile_sequence` generic must be of the correct type.
+    /// - `options` generics must be of the correct type.
     #[doc(alias = "ColorSyncTransformCreate")]
     #[inline]
     pub unsafe fn new(
@@ -53,6 +57,9 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "ColorSyncTransformCopyProperty")]
     #[inline]
     pub unsafe fn property(
@@ -71,6 +78,10 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `key` should be of the correct type.
+    /// - `property` should be of the correct type.
     #[doc(alias = "ColorSyncTransformSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFType, property: Option<&CFType>) {
@@ -180,6 +191,11 @@ pub const kColorSyncByteOrder32Big: c_uint = 4 << 12;
 pub type ColorSyncDataLayout = u32;
 
 impl ColorSyncTransform {
+    /// # Safety
+    ///
+    /// - `dst` must be a valid pointer.
+    /// - `src` must be a valid pointer.
+    /// - `options` generics must be of the correct type.
     #[doc(alias = "ColorSyncTransformConvert")]
     #[inline]
     pub unsafe fn convert(
@@ -481,6 +497,10 @@ extern "C" {
     pub static kColorSyncFixedPointRange: &'static CFString;
 }
 
+/// # Safety
+///
+/// - `profile_sequence` generic must be of the correct type.
+/// - `options` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn ColorSyncCreateCodeFragment(
     profile_sequence: &CFArray,

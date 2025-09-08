@@ -275,6 +275,10 @@ impl HKStateOfMind {
         /// might be in response to 'how have you been feeling today?'.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(kind))]
         #[unsafe(method_family = none)]
         pub unsafe fn kind(&self) -> HKStateOfMindKind;
@@ -282,6 +286,10 @@ impl HKStateOfMind {
         /// A signed, self-reported measure of how positive or negative one is feeling, on a continuous scale from -1 to +1.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(valence))]
         #[unsafe(method_family = none)]
         pub unsafe fn valence(&self) -> c_double;
@@ -289,6 +297,10 @@ impl HKStateOfMind {
         /// A general region of pleasantness based on this sample's valence value.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(valenceClassification))]
         #[unsafe(method_family = none)]
         pub unsafe fn valenceClassification(&self) -> HKStateOfMindValenceClassification;
@@ -296,6 +308,10 @@ impl HKStateOfMind {
         /// Zero or more specific sentiments selected to represent a felt experience.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(labels))]
         #[unsafe(method_family = none)]
         pub unsafe fn labels(&self) -> Retained<NSArray<NSNumber>>;
@@ -303,6 +319,10 @@ impl HKStateOfMind {
         /// Zero or more facets of life with which this felt experience is associated.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(associations))]
         #[unsafe(method_family = none)]
         pub unsafe fn associations(&self) -> Retained<NSArray<NSNumber>>;
@@ -319,6 +339,10 @@ impl HKStateOfMind {
         ) -> Retained<Self>;
 
         /// Creates a new log describing an experienced emotion at a moment in time.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(stateOfMindWithDate:kind:valence:labels:associations:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations_metadata(

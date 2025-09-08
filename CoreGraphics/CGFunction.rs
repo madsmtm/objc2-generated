@@ -71,6 +71,12 @@ unsafe impl ConcreteType for CGFunction {
 }
 
 impl CGFunction {
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `domain` must be a valid pointer or null.
+    /// - `range` must be a valid pointer or null.
+    /// - `callbacks` must be a valid pointer or null.
     #[doc(alias = "CGFunctionCreate")]
     #[inline]
     pub unsafe fn new(

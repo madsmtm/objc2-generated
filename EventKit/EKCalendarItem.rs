@@ -38,6 +38,10 @@ impl EKCalendarItem {
 
         #[cfg(feature = "EKCalendar")]
         /// Setter for [`calendar`][Self::calendar].
+        ///
+        /// # Safety
+        ///
+        /// `calendar` might not allow `None`.
         #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&EKCalendar>);

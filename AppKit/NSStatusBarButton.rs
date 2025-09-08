@@ -183,6 +183,10 @@ impl NSStatusBarButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithTitle:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_image_target_action(
@@ -202,6 +206,10 @@ impl NSStatusBarButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_target_action(
@@ -221,6 +229,10 @@ impl NSStatusBarButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithImage:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithImage_target_action(
@@ -239,6 +251,10 @@ impl NSStatusBarButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(checkboxWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkboxWithTitle_target_action(
@@ -257,6 +273,10 @@ impl NSStatusBarButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(radioButtonWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn radioButtonWithTitle_target_action(

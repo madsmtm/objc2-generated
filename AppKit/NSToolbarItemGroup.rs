@@ -87,6 +87,10 @@ impl NSToolbarItemGroup {
         /// The item returned will have a custom view for representing the control and automatically create subitems for the group.
         /// The labels array, if not nil, will be used to provide individual labels under the item for each segment of the control.
         /// When space in the toolbar is tight, the control may switch to a smaller alternate representation as necessary to remain in the toolbar.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(groupWithItemIdentifier:titles:selectionMode:labels:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
@@ -100,6 +104,9 @@ impl NSToolbarItemGroup {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSImage", feature = "NSToolbar"))]
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(groupWithItemIdentifier:images:selectionMode:labels:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupWithItemIdentifier_images_selectionMode_labels_target_action(

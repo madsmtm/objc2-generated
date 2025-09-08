@@ -14,6 +14,9 @@ extern_protocol!(
         unsafe fn remoteObjectProxy(&self) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(remoteObjectProxyWithErrorHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn remoteObjectProxyWithErrorHandler(
@@ -116,6 +119,10 @@ impl NSXPCConnection {
         pub unsafe fn exportedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`exportedObject`][Self::exportedObject].
+        ///
+        /// # Safety
+        ///
+        /// `exported_object` should be of the correct type.
         #[unsafe(method(setExportedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExportedObject(&self, exported_object: Option<&AnyObject>);
@@ -361,6 +368,9 @@ extern_conformance!(
 
 impl NSXPCInterface {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `protocol` possibly has further requirements.
         #[unsafe(method(interfaceWithProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceWithProtocol(protocol: &AnyProtocol) -> Retained<NSXPCInterface>;
@@ -373,11 +383,18 @@ impl NSXPCInterface {
         pub unsafe fn protocol(&self) -> Retained<AnyProtocol>;
 
         /// Setter for [`protocol`][Self::protocol].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtocol(&self, protocol: &AnyProtocol);
 
         #[cfg(feature = "NSSet")]
+        /// # Safety
+        ///
+        /// `sel` must be a valid selector.
         #[unsafe(method(setClasses:forSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClasses_forSelector_argumentIndex_ofReply(
@@ -389,6 +406,9 @@ impl NSXPCInterface {
         );
 
         #[cfg(feature = "NSSet")]
+        /// # Safety
+        ///
+        /// `sel` must be a valid selector.
         #[unsafe(method(classesForSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn classesForSelector_argumentIndex_ofReply(
@@ -398,6 +418,9 @@ impl NSXPCInterface {
             of_reply: bool,
         ) -> Retained<NSSet<AnyClass>>;
 
+        /// # Safety
+        ///
+        /// `sel` must be a valid selector.
         #[unsafe(method(setInterface:forSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInterface_forSelector_argumentIndex_ofReply(
@@ -408,6 +431,9 @@ impl NSXPCInterface {
             of_reply: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sel` must be a valid selector.
         #[unsafe(method(interfaceForSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceForSelector_argumentIndex_ofReply(

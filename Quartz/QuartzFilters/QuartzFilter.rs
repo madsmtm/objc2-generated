@@ -22,16 +22,27 @@ extern_conformance!(
 
 impl QuartzFilter {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `a_url` might not allow `None`.
         #[unsafe(method(quartzFilterWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quartzFilterWithURL(a_url: Option<&NSURL>) -> Option<Retained<QuartzFilter>>;
 
+        /// # Safety
+        ///
+        /// - `properties` generic should be of the correct type.
+        /// - `properties` might not allow `None`.
         #[unsafe(method(quartzFilterWithProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quartzFilterWithProperties(
             properties: Option<&NSDictionary>,
         ) -> Option<Retained<QuartzFilter>>;
 
+        /// # Safety
+        ///
+        /// - `output_intents` generic should be of the correct type.
+        /// - `output_intents` might not allow `None`.
         #[unsafe(method(quartzFilterWithOutputIntents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn quartzFilterWithOutputIntents(
@@ -51,11 +62,17 @@ impl QuartzFilter {
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `a_context` might not allow `None`.
         #[unsafe(method(applyToContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyToContext(&self, a_context: Option<&CGContext>) -> bool;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `a_context` might not allow `None`.
         #[unsafe(method(removeFromContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromContext(&self, a_context: Option<&CGContext>);

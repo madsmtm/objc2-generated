@@ -46,6 +46,9 @@ pub unsafe trait NSObjectNSAccessibility:
         ) -> bool;
 
         #[cfg(feature = "NSAccessibilityConstants")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[unsafe(method(accessibilitySetValue:forAttribute:))]
         #[unsafe(method_family = none)]
@@ -64,6 +67,9 @@ pub unsafe trait NSObjectNSAccessibility:
         ) -> Retained<NSArray<NSAccessibilityParameterizedAttributeName>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
+        /// # Safety
+        ///
+        /// `parameter` should be of the correct type.
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[unsafe(method(accessibilityAttributeValue:forParameter:))]
         #[unsafe(method_family = none)]
@@ -107,6 +113,9 @@ pub unsafe trait NSObjectNSAccessibility:
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFocusedUIElement(&self) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `child` should be of the correct type.
         #[unsafe(method(accessibilityIndexOfChild:))]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityIndexOfChild(&self, child: &AnyObject) -> NSUInteger;
@@ -218,6 +227,9 @@ pub unsafe extern "C-unwind" fn NSAccessibilityRoleDescription(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// # Safety
+///
+/// `element` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSAccessibilityRoleDescriptionForUIElement(
     element: &AnyObject,
@@ -242,6 +254,13 @@ pub unsafe extern "C-unwind" fn NSAccessibilityActionDescription(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `element` should be of the correct type.
+    /// - `element` might not allow `None`.
+    /// - `attribute` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
     #[cfg(feature = "NSAccessibilityConstants")]
     #[deprecated = "Exceptions are no longer appropriate for indicating errors in accessibility API. Unexpected values should be handled through appropriate type checking."]
     pub fn NSAccessibilityRaiseBadArgumentException(
@@ -252,6 +271,10 @@ extern "C-unwind" {
 }
 
 /// * Ignored UIElements Utilities **
+///
+/// # Safety
+///
+/// `element` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
     element: &AnyObject,
@@ -263,6 +286,9 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// # Safety
+///
+/// `element` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredDescendant(
     element: &AnyObject,
@@ -274,6 +300,9 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredDescendant(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// # Safety
+///
+/// `original_children` generic should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildren(
     original_children: &NSArray,
@@ -286,6 +315,9 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildren(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// `original_child` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
     original_child: &AnyObject,
@@ -301,6 +333,10 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
 
 extern "C-unwind" {
     /// * Posting Notifications **
+    ///
+    /// # Safety
+    ///
+    /// `element` should be of the correct type.
     #[cfg(feature = "NSAccessibilityConstants")]
     pub fn NSAccessibilityPostNotification(
         element: &AnyObject,

@@ -145,6 +145,10 @@ impl CFTree {
     /// version number, the result is undefined.
     ///
     /// Returns: A reference to the new CFTree.
+    ///
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFTreeCreate")]
     #[inline]
     pub unsafe fn new(
@@ -219,6 +223,10 @@ impl CFTree {
     /// pointer to a CFTreeContext structure-sized block of storage, the
     /// result is undefined.  If the version number of the storage is not
     /// a valid CFTreeContext version number, the result is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFTreeGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFTreeContext) {
@@ -271,6 +279,10 @@ impl CFTree {
     /// Parameter `children`: A C array of pointer-sized values to be filled with
     /// children from the tree.  If this parameter is not a valid pointer to a
     /// C array of at least CFTreeGetChildCount() pointers, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `children` must be a valid pointer.
     #[doc(alias = "CFTreeGetChildren")]
     #[inline]
     pub unsafe fn children(&self, children: *mut *mut CFTree) {
@@ -298,6 +310,11 @@ impl CFTree {
     /// otherwise unused by this function.  If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `applier` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFTreeApplyFunctionToChildren")]
     #[inline]
     pub unsafe fn apply_function_to_children(
@@ -344,6 +361,10 @@ impl CFTree {
     /// structure-sized block of storage, the result is undefined.
     /// If the version number of the storage is not a valid CFTreeContext
     /// version number, the result is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFTreeSetContext")]
     #[inline]
     pub unsafe fn set_context(&self, context: *const CFTreeContext) {
@@ -362,6 +383,10 @@ impl CFTree {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `new_child` might not allow `None`.
     #[doc(alias = "CFTreePrependChild")]
     #[inline]
     pub unsafe fn prepend_child(&self, new_child: Option<&CFTree>) {
@@ -380,6 +405,10 @@ impl CFTree {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `new_child` might not allow `None`.
     #[doc(alias = "CFTreeAppendChild")]
     #[inline]
     pub unsafe fn append_child(&self, new_child: Option<&CFTree>) {
@@ -400,6 +429,10 @@ impl CFTree {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `new_sibling` might not allow `None`.
     #[doc(alias = "CFTreeInsertSibling")]
     #[inline]
     pub unsafe fn insert_sibling(&self, new_sibling: Option<&CFTree>) {
@@ -452,6 +485,11 @@ impl CFTree {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the comparator function, the behavior is
     /// undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `comparator` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFTreeSortChildren")]
     #[inline]
     pub unsafe fn sort_children(&self, comparator: CFComparatorFunction, context: *mut c_void) {

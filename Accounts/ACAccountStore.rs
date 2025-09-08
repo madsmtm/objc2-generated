@@ -67,6 +67,9 @@ impl ACAccountStore {
         pub unsafe fn accounts(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "ACAccount")]
+        /// # Safety
+        ///
+        /// `identifier` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(accountWithIdentifier:))]
         #[unsafe(method_family = none)]
@@ -76,6 +79,9 @@ impl ACAccountStore {
         ) -> Option<Retained<ACAccount>>;
 
         #[cfg(feature = "ACAccountType")]
+        /// # Safety
+        ///
+        /// `type_identifier` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(accountTypeWithAccountTypeIdentifier:))]
         #[unsafe(method_family = none)]
@@ -85,6 +91,9 @@ impl ACAccountStore {
         ) -> Option<Retained<ACAccountType>>;
 
         #[cfg(feature = "ACAccountType")]
+        /// # Safety
+        ///
+        /// `account_type` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(accountsWithAccountType:))]
         #[unsafe(method_family = none)]
@@ -94,6 +103,9 @@ impl ACAccountStore {
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "ACAccount", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(saveAccount:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -104,6 +116,9 @@ impl ACAccountStore {
         );
 
         #[cfg(all(feature = "ACAccountType", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(requestAccessToAccountsWithType:withCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -114,6 +129,9 @@ impl ACAccountStore {
         );
 
         #[cfg(all(feature = "ACAccountType", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(requestAccessToAccountsWithType:options:completion:))]
         #[unsafe(method_family = none)]
@@ -125,6 +143,9 @@ impl ACAccountStore {
         );
 
         #[cfg(all(feature = "ACAccount", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(renewCredentialsForAccount:completion:))]
         #[unsafe(method_family = none)]
@@ -135,6 +156,9 @@ impl ACAccountStore {
         );
 
         #[cfg(all(feature = "ACAccount", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(removeAccount:withCompletionHandler:))]
         #[unsafe(method_family = none)]

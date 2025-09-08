@@ -89,6 +89,9 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_rect` must be a valid pointer.
     #[doc(alias = "HIShapeCreateWithRect")]
     #[inline]
     pub unsafe fn with_rect(in_rect: *const CGRect) -> Option<CFRetained<HIShape>> {
@@ -109,6 +112,9 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_shape2` might not allow `None`.
     #[doc(alias = "HIShapeCreateIntersection")]
     #[inline]
     pub unsafe fn intersection(&self, in_shape2: Option<&HIShape>) -> Option<CFRetained<HIShape>> {
@@ -122,6 +128,9 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_shape2` might not allow `None`.
     #[doc(alias = "HIShapeCreateDifference")]
     #[inline]
     pub unsafe fn create_difference(
@@ -138,6 +147,9 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_shape2` might not allow `None`.
     #[doc(alias = "HIShapeCreateUnion")]
     #[inline]
     pub unsafe fn create_union(&self, in_shape2: Option<&HIShape>) -> Option<CFRetained<HIShape>> {
@@ -151,6 +163,9 @@ impl HIShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_shape2` might not allow `None`.
     #[doc(alias = "HIShapeCreateXor")]
     #[inline]
     pub unsafe fn create_xor(&self, in_shape2: Option<&HIShape>) -> Option<CFRetained<HIShape>> {
@@ -184,6 +199,9 @@ impl HIShape {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `in_point` must be a valid pointer.
     #[doc(alias = "HIShapeContainsPoint")]
     #[inline]
     pub unsafe fn contains_point(&self, in_point: *const CGPoint) -> bool {
@@ -194,6 +212,9 @@ impl HIShape {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `in_rect` must be a valid pointer.
     #[doc(alias = "HIShapeIntersectsRect")]
     #[inline]
     pub unsafe fn intersects_rect(&self, in_rect: *const CGRect) -> bool {
@@ -204,6 +225,9 @@ impl HIShape {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `out_rect` must be a valid pointer.
     #[doc(alias = "HIShapeGetBounds")]
     #[inline]
     pub unsafe fn bounds(&self, out_rect: *mut CGRect) -> *mut CGRect {
@@ -213,6 +237,9 @@ impl HIShape {
         unsafe { HIShapeGetBounds(self, out_rect) }
     }
 
+    /// # Safety
+    ///
+    /// `in_context` might not allow `None`.
     #[doc(alias = "HIShapeReplacePathInCGContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -226,6 +253,10 @@ impl HIShape {
         unsafe { HIShapeReplacePathInCGContext(self, in_context) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_refcon` must be a valid pointer.
     #[doc(alias = "HIShapeEnumerate")]
     #[inline]
     pub unsafe fn enumerate(
@@ -267,6 +298,9 @@ impl HIMutableShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_rect` must be a valid pointer.
     #[doc(alias = "HIShapeCreateMutableWithRect")]
     #[inline]
     pub unsafe fn with_rect(in_rect: *const CGRect) -> Option<CFRetained<HIMutableShape>> {
@@ -279,6 +313,9 @@ impl HIMutableShape {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_shape` might not allow `None`.
     #[doc(alias = "HIShapeSetEmpty")]
     #[inline]
     pub unsafe fn set_empty(in_shape: Option<&HIMutableShape>) -> OSStatus {
@@ -288,6 +325,10 @@ impl HIMutableShape {
         unsafe { HIShapeSetEmpty(in_shape) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_dest_shape` might not allow `None`.
+    /// - `in_src_shape` might not allow `None`.
     #[doc(alias = "HIShapeSetWithShape")]
     #[inline]
     pub unsafe fn set_with_shape(
@@ -305,6 +346,10 @@ impl HIMutableShape {
 }
 
 impl HIShape {
+    /// # Safety
+    ///
+    /// - `in_shape2` might not allow `None`.
+    /// - `out_result` might not allow `None`.
     #[doc(alias = "HIShapeIntersect")]
     #[inline]
     pub unsafe fn intersect(
@@ -322,6 +367,10 @@ impl HIShape {
         unsafe { HIShapeIntersect(self, in_shape2, out_result) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_shape2` might not allow `None`.
+    /// - `out_result` might not allow `None`.
     #[doc(alias = "HIShapeDifference")]
     #[inline]
     pub unsafe fn difference(
@@ -339,6 +388,10 @@ impl HIShape {
         unsafe { HIShapeDifference(self, in_shape2, out_result) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_shape2` might not allow `None`.
+    /// - `out_result` might not allow `None`.
     #[doc(alias = "HIShapeUnion")]
     #[inline]
     pub unsafe fn union(
@@ -356,6 +409,10 @@ impl HIShape {
         unsafe { HIShapeUnion(self, in_shape2, out_result) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_shape2` might not allow `None`.
+    /// - `out_result` might not allow `None`.
     #[doc(alias = "HIShapeXor")]
     #[inline]
     pub unsafe fn xor(
@@ -375,6 +432,9 @@ impl HIShape {
 }
 
 impl HIMutableShape {
+    /// # Safety
+    ///
+    /// `in_shape` might not allow `None`.
     #[doc(alias = "HIShapeOffset")]
     #[inline]
     pub unsafe fn offset(
@@ -392,6 +452,9 @@ impl HIMutableShape {
         unsafe { HIShapeOffset(in_shape, in_dx, in_dy) }
     }
 
+    /// # Safety
+    ///
+    /// `in_shape` might not allow `None`.
     #[doc(alias = "HIShapeInset")]
     #[inline]
     pub unsafe fn inset(
@@ -409,6 +472,9 @@ impl HIMutableShape {
         unsafe { HIShapeInset(in_shape, in_dx, in_dy) }
     }
 
+    /// # Safety
+    ///
+    /// `in_rect` must be a valid pointer.
     #[doc(alias = "HIShapeUnionWithRect")]
     #[inline]
     pub unsafe fn union_with_rect(

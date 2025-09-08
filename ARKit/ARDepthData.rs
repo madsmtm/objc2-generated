@@ -68,7 +68,8 @@ impl ARDepthData {
         ///
         /// # Safety
         ///
-        /// This is not retained internally, you must ensure the object is still alive.
+        /// - This is not retained internally, you must ensure the object is still alive.
+        /// - This might not be thread-safe.
         #[unsafe(method(depthMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthMap(&self) -> Retained<CVPixelBuffer>;
@@ -82,7 +83,8 @@ impl ARDepthData {
         ///
         /// # Safety
         ///
-        /// This is not retained internally, you must ensure the object is still alive.
+        /// - This is not retained internally, you must ensure the object is still alive.
+        /// - This might not be thread-safe.
         #[unsafe(method(confidenceMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidenceMap(&self) -> Option<Retained<CVPixelBuffer>>;

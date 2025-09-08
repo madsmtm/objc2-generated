@@ -42,6 +42,9 @@ extern_conformance!(
 impl GCMouseInput {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(mouseMovedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn mouseMovedHandler(&self) -> GCMouseMoved;
@@ -50,6 +53,10 @@ impl GCMouseInput {
         /// Setter for [`mouseMovedHandler`][Self::mouseMovedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `mouse_moved_handler` must be a valid pointer or null.
         #[unsafe(method(setMouseMovedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMouseMovedHandler(&self, mouse_moved_handler: GCMouseMoved);

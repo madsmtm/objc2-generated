@@ -25,6 +25,9 @@ impl NSExtensionContext {
         pub unsafe fn inputItems(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(completeRequestReturningItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
@@ -39,6 +42,9 @@ impl NSExtensionContext {
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
 
         #[cfg(all(feature = "NSURL", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(openURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openURL_completionHandler(

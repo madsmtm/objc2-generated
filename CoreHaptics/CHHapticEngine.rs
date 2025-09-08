@@ -203,6 +203,10 @@ impl CHHapticEngine {
 
         #[cfg(feature = "block2")]
         /// Setter for [`stoppedHandler`][Self::stoppedHandler].
+        ///
+        /// # Safety
+        ///
+        /// `stopped_handler` must be a valid pointer.
         #[unsafe(method(setStoppedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStoppedHandler(&self, stopped_handler: CHHapticEngineStoppedHandler);
@@ -220,6 +224,10 @@ impl CHHapticEngine {
 
         #[cfg(feature = "block2")]
         /// Setter for [`resetHandler`][Self::resetHandler].
+        ///
+        /// # Safety
+        ///
+        /// `reset_handler` must be a valid pointer.
         #[unsafe(method(setResetHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResetHandler(&self, reset_handler: CHHapticEngineResetHandler);
@@ -331,6 +339,10 @@ impl CHHapticEngine {
         /// Asynchronously start the engine. The handler will be called when the operation completes.
         ///
         /// The handler is guaranteed to be called on either success or failure.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
@@ -349,6 +361,10 @@ impl CHHapticEngine {
         /// Asynchronously stop the engine.  The handler will be called when the operation completes.
         ///
         /// The handler is guaranteed to be called on either success or failure.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(stopWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithCompletionHandler(
@@ -365,6 +381,10 @@ impl CHHapticEngine {
         ///
         /// If additional players are started after this call is made, they will delay the callback.
         /// If no players are active or the engine is stopped, the callback will happen immediately.
+        ///
+        /// # Safety
+        ///
+        /// `finished_handler` must be a valid pointer.
         #[unsafe(method(notifyWhenPlayersFinished:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notifyWhenPlayersFinished(

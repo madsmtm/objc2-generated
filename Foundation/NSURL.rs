@@ -1125,6 +1125,9 @@ impl NSURL {
         #[unsafe(method_family = none)]
         pub unsafe fn fileURLWithPath(path: &NSString) -> Retained<NSURL>;
 
+        /// # Safety
+        ///
+        /// `path` must be a valid pointer.
         #[unsafe(method(initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initFileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
@@ -1134,6 +1137,9 @@ impl NSURL {
             base_url: Option<&NSURL>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `path` must be a valid pointer.
         #[unsafe(method(fileURLWithFileSystemRepresentation:isDirectory:relativeToURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
@@ -1322,6 +1328,9 @@ impl NSURL {
         #[unsafe(method_family = none)]
         pub unsafe fn hasDirectoryPath(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(getFileSystemRepresentation:maxLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFileSystemRepresentation_maxLength(
@@ -1377,6 +1386,9 @@ impl NSURL {
         ) -> Result<Retained<NSDictionary<NSURLResourceKey, AnyObject>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setResourceValue:forKey:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResourceValue_forKey_error(
@@ -1386,6 +1398,9 @@ impl NSURL {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `keyed_values` generic should be of the correct type.
         #[unsafe(method(setResourceValues:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResourceValues_error(
@@ -1403,6 +1418,9 @@ impl NSURL {
         pub unsafe fn removeAllCachedResourceValues(&self);
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setTemporaryResourceValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTemporaryResourceValue_forKey(
@@ -1427,6 +1445,9 @@ impl NSURL {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// # Safety
+        ///
+        /// `is_stale` must be a valid pointer or null.
         #[unsafe(method(initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
@@ -1438,6 +1459,9 @@ impl NSURL {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// # Safety
+        ///
+        /// `is_stale` must be a valid pointer or null.
         #[unsafe(method(URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
@@ -2236,6 +2260,9 @@ impl NSURL {
             should_use_cache: bool,
         ) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// `client` should be of the correct type.
         #[deprecated = "Use NSURLConnection instead"]
         #[unsafe(method(loadResourceDataNotifyingClient:usingCache:))]
         #[unsafe(method_family = none)]
@@ -2259,6 +2286,9 @@ impl NSURL {
         pub unsafe fn setResourceData(&self, data: &NSData) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `property` should be of the correct type.
         #[deprecated = "Use NSURLConnection instead"]
         #[unsafe(method(setProperty:forKey:))]
         #[unsafe(method_family = none)]

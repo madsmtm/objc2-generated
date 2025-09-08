@@ -126,12 +126,21 @@ impl CPListImageRowItem {
         pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// # Safety
+        ///
+        /// `user_info` should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);
 
         #[cfg(all(feature = "CPListItemTypes", feature = "block2", feature = "dispatch2"))]
         /// An optional action block, fired when the user selects this item in a list template.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(
@@ -233,6 +242,11 @@ impl CPListImageRowItem {
         ///
         /// The user may also select the cell itself - for that event, specify a
         /// `handler.`
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(listImageRowHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn listImageRowHandler(

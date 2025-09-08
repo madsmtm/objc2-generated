@@ -118,6 +118,11 @@ impl CFError {
     /// If no userInfo dictionary is desired, NULL may be passed in as a convenience, in which case an empty userInfo dictionary will be assigned.
     ///
     /// Returns: A reference to the new CFError.
+    ///
+    /// # Safety
+    ///
+    /// - `user_info` generics must be of the correct type.
+    /// - `user_info` might not allow `None`.
     #[doc(alias = "CFErrorCreate")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -155,6 +160,11 @@ impl CFError {
     /// Parameter `numUserInfoValues`: CFIndex representing the number of keys and values in the userInfoKeys and userInfoValues arrays.
     ///
     /// Returns: A reference to the new CFError. numUserInfoValues CF types are gathered from each of userInfoKeys and userInfoValues to create the userInfo dictionary.
+    ///
+    /// # Safety
+    ///
+    /// - `user_info_keys` must be a valid pointer.
+    /// - `user_info_values` must be a valid pointer.
     #[doc(alias = "CFErrorCreateWithUserInfoKeysAndValues")]
     #[inline]
     pub unsafe fn with_user_info_keys_and_values(

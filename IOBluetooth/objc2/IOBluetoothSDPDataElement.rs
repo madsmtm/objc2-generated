@@ -95,6 +95,10 @@ impl IOBluetoothSDPDataElement {
         /// value.  The returned IOBluetoothSDPDataElement object has been autoreleased, so it is not necessary
         /// for the caller to release it.  If the object is to be referenced and kept around, retain should be
         /// called.
+        ///
+        /// # Safety
+        ///
+        /// `element` might not allow `None`.
         #[unsafe(method(withElementValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withElementValue(element: Option<&NSObject>) -> Option<Retained<Self>>;
@@ -119,6 +123,10 @@ impl IOBluetoothSDPDataElement {
         /// due to the limited error checking currently done).  The returned IOBluetoothSDPDataElement
         /// object has been autoreleased, so it is not necessary for the caller to release it.  If the
         /// object is to be referenced and kept around, retain should be called.
+        ///
+        /// # Safety
+        ///
+        /// `new_value` might not allow `None`.
         #[unsafe(method(withType:sizeDescriptor:size:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withType_sizeDescriptor_size_value(
@@ -134,6 +142,10 @@ impl IOBluetoothSDPDataElement {
         /// Parameter `sdpDataElementRef`: IOBluetoothSDPDataElementRef for which an IOBluetoothSDPDataElement * is desired.
         ///
         /// Returns: Returns the IOBluetoothSDPDataElement * for the given IOBluetoothSDPDataElementRef.
+        ///
+        /// # Safety
+        ///
+        /// `sdp_data_element_ref` might not allow `None`.
         #[unsafe(method(withSDPDataElementRef:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withSDPDataElementRef(
@@ -148,6 +160,10 @@ impl IOBluetoothSDPDataElement {
         /// Parameter `element`: The data element value of one of the specified types.
         ///
         /// Returns: Returns self if successful.  Returns nil if there was an error parsing the element value.
+        ///
+        /// # Safety
+        ///
+        /// `element` might not allow `None`.
         #[unsafe(method(initWithElementValue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElementValue(
@@ -173,6 +189,10 @@ impl IOBluetoothSDPDataElement {
         ///
         /// Returns: Returns self if successful.  Returns nil if an error is encountered (not likely
         /// due to the limited error checking currently done).
+        ///
+        /// # Safety
+        ///
+        /// `new_value` might not allow `None`.
         #[unsafe(method(initWithType:sizeDescriptor:size:value:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_sizeDescriptor_size_value(
@@ -288,6 +308,10 @@ impl IOBluetoothSDPDataElement {
         /// Parameter `dataElement`: The data element to compare with (and search for).
         ///
         /// Returns: Returns TRUE if the target either matches the given data element or if it contains the given data element.
+        ///
+        /// # Safety
+        ///
+        /// `data_element` might not allow `None`.
         #[unsafe(method(containsDataElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsDataElement(
@@ -303,6 +327,10 @@ impl IOBluetoothSDPDataElement {
         /// Parameter `cmpValue`: The value to compare with (and search for).
         ///
         /// Returns: Returns TRUE if the target's value either matches the given value or if it contains the given value.
+        ///
+        /// # Safety
+        ///
+        /// `cmp_value` might not allow `None`.
         #[unsafe(method(containsValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsValue(&self, cmp_value: Option<&NSObject>) -> bool;

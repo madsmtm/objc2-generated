@@ -41,6 +41,10 @@ impl ARSkeleton {
         /// Skeleton definition.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(definition))]
         #[unsafe(method_family = none)]
         pub unsafe fn definition(&self) -> Retained<ARSkeletonDefinition>;
@@ -48,6 +52,10 @@ impl ARSkeleton {
         /// The number of joints.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(jointCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn jointCount(&self) -> NSUInteger;

@@ -64,6 +64,10 @@ impl NSController {
         #[unsafe(method_family = none)]
         pub unsafe fn commitEditing(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// - `did_commit_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(commitEditingWithDelegate:didCommitSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commitEditingWithDelegate_didCommitSelector_contextInfo(

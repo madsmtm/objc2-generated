@@ -37,30 +37,50 @@ impl SKPaymentDiscount {
         ) -> Retained<Self>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(keyIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(nonce))]
         #[unsafe(method_family = none)]
         pub unsafe fn nonce(&self) -> Retained<NSUUID>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(signature))]
         #[unsafe(method_family = none)]
         pub unsafe fn signature(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]

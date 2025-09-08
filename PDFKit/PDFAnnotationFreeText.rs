@@ -51,6 +51,9 @@ impl PDFAnnotationFreeText {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `font` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
@@ -65,6 +68,9 @@ impl PDFAnnotationFreeText {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `color` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFontColor:))]
         #[unsafe(method_family = none)]
@@ -90,6 +96,9 @@ impl PDFAnnotationFreeText {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationFreeText {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

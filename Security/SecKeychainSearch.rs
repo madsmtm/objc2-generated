@@ -37,6 +37,11 @@ impl SecKeychainSearch {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later; to find keychain items which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
+    ///
+    /// # Safety
+    ///
+    /// - `attr_list` must be a valid pointer or null.
+    /// - `search_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainSearchCreateFromAttributes")]
     #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
     #[deprecated = "SecKeychainSearch is not supported"]
@@ -74,6 +79,10 @@ impl SecKeychainSearch {
     /// Returns: A result code.  When there are no more items that match the parameters specified to SecPolicySearchCreate, errSecItemNotFound is returned. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later; to find keychain items which match specified attributes, please use the SecItemCopyMatching API (see SecItem.h).
+    ///
+    /// # Safety
+    ///
+    /// `item_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainSearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychainSearch is not supported"]

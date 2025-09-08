@@ -46,6 +46,9 @@ extern_conformance!(
 
 impl AMAction {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithDefinition:fromArchive:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefinition_fromArchive(
@@ -98,6 +101,9 @@ impl AMAction {
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressValue(&self, progress_value: CGFloat);
 
+        /// # Safety
+        ///
+        /// `input` should be of the correct type.
         #[deprecated]
         #[unsafe(method(runWithInput:fromAction:error:))]
         #[unsafe(method_family = none)]
@@ -108,6 +114,9 @@ impl AMAction {
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `input` should be of the correct type.
         #[unsafe(method(runWithInput:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithInput_error(
@@ -115,6 +124,9 @@ impl AMAction {
             input: Option<&AnyObject>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `input` should be of the correct type.
         #[unsafe(method(runAsynchronouslyWithInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runAsynchronouslyWithInput(&self, input: Option<&AnyObject>);
@@ -123,6 +135,9 @@ impl AMAction {
         #[unsafe(method_family = none)]
         pub unsafe fn willFinishRunning(&self);
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(didFinishRunningWithError:))]
         #[unsafe(method_family = none)]
@@ -140,6 +155,10 @@ impl AMAction {
         pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`output`][Self::output].
+        ///
+        /// # Safety
+        ///
+        /// `output` should be of the correct type.
         #[unsafe(method(setOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutput(&self, output: Option<&AnyObject>);
@@ -152,6 +171,9 @@ impl AMAction {
         #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
+        /// # Safety
+        ///
+        /// `dictionary` generic should be of the correct type.
         #[unsafe(method(writeToDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToDictionary(

@@ -139,6 +139,10 @@ impl NSEntityDescription {
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
@@ -219,6 +223,10 @@ impl NSEntityDescription {
         pub unsafe fn uniquenessConstraints(&self) -> Retained<NSArray<NSArray<AnyObject>>>;
 
         /// Setter for [`uniquenessConstraints`][Self::uniquenessConstraints].
+        ///
+        /// # Safety
+        ///
+        /// `uniqueness_constraints` generic generic should be of the correct type.
         #[unsafe(method(setUniquenessConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniquenessConstraints(
@@ -232,6 +240,10 @@ impl NSEntityDescription {
         pub unsafe fn compoundIndexes(&self) -> Retained<NSArray<NSArray<AnyObject>>>;
 
         /// Setter for [`compoundIndexes`][Self::compoundIndexes].
+        ///
+        /// # Safety
+        ///
+        /// `compound_indexes` generic generic should be of the correct type.
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[unsafe(method(setCompoundIndexes:))]
         #[unsafe(method_family = none)]

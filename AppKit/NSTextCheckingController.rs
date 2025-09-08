@@ -58,6 +58,9 @@ impl NSTextCheckingController {
         pub unsafe fn considerTextCheckingForRange(&self, range: NSRange);
 
         #[cfg(feature = "NSSpellChecker")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(checkTextInRange:types:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInRange_types_options(
@@ -67,30 +70,51 @@ impl NSTextCheckingController {
             options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(checkTextInSelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInSelection(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(checkTextInDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInDocument(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontSubstitutionsPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontSubstitutionsPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(checkSpelling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkSpelling(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showGuessPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showGuessPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(changeSpelling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeSpelling(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(ignoreSpelling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ignoreSpelling(&self, sender: Option<&AnyObject>);
@@ -104,6 +128,9 @@ impl NSTextCheckingController {
         pub unsafe fn validAnnotations(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
         #[cfg(feature = "NSMenu")]
+        /// # Safety
+        ///
+        /// `effective_range` must be a valid pointer.
         #[unsafe(method(menuAtIndex:clickedOnSelection:effectiveRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn menuAtIndex_clickedOnSelection_effectiveRange(

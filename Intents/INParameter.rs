@@ -48,6 +48,9 @@ extern_conformance!(
 
 impl INParameter {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `a_class` probably has further requirements.
         #[unsafe(method(parameterForClass:keyPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn parameterForClass_keyPath(

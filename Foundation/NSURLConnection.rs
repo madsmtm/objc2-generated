@@ -104,6 +104,9 @@ extern_conformance!(
 impl NSURLConnection {
     extern_methods!(
         #[cfg(feature = "NSURLRequest")]
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[unsafe(method(initWithRequest:delegate:startImmediately:))]
         #[unsafe(method_family = init)]
@@ -115,6 +118,9 @@ impl NSURLConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[unsafe(method(initWithRequest:delegate:))]
         #[unsafe(method_family = init)]
@@ -125,6 +131,9 @@ impl NSURLConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
         #[unsafe(method(connectionWithRequest:delegate:))]
         #[unsafe(method_family = none)]

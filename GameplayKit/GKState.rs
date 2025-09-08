@@ -63,6 +63,10 @@ impl GKState {
         /// Parameter `stateClass`: the class to be checked
         ///
         /// Returns: YES if the class is kind of GKState and the state transition is valid, else NO.
+        ///
+        /// # Safety
+        ///
+        /// `state_class` probably has further requirements.
         #[unsafe(method(isValidNextState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isValidNextState(&self, state_class: &AnyClass) -> bool;

@@ -232,6 +232,10 @@ impl NSPrintOperation {
         pub unsafe fn setPageOrder(&self, page_order: NSPrintingPageOrder);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+        /// # Safety
+        ///
+        /// - `did_run_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(runOperationModalForWindow:delegate:didRunSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runOperationModalForWindow_delegate_didRunSelector_contextInfo(

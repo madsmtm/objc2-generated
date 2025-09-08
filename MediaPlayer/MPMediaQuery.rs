@@ -252,6 +252,9 @@ extern_conformance!(
 
 impl MPMediaPropertyPredicate {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(predicateWithValue:forProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithValue_forProperty(
@@ -259,6 +262,9 @@ impl MPMediaPropertyPredicate {
             property: &NSString,
         ) -> Retained<MPMediaPropertyPredicate>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(predicateWithValue:forProperty:comparisonType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithValue_forProperty_comparisonType(

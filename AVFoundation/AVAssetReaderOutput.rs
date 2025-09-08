@@ -205,6 +205,10 @@ impl AVAssetReaderTrackOutput {
         /// ProRes encoded media can contain up to 12bits/ch. If your source is ProRes encoded and you wish to preserve more than 8bits/ch during decompression then use one of the following pixel formats: kCVPixelFormatType_4444AYpCbCr16, kCVPixelFormatType_422YpCbCr16, kCVPixelFormatType_422YpCbCr10, or kCVPixelFormatType_64ARGB.  AVAssetReader does not support scaling with any of these high bit depth pixel formats. If you use them then do not specify kCVPixelBufferWidthKey or kCVPixelBufferHeightKey in your outputSettings dictionary. If you plan to append these sample buffers to an AVAssetWriterInput then note that only the ProRes encoders support these pixel formats.
         ///
         /// ProRes 4444 encoded media can contain a mathematically lossless alpha channel. To preserve the alpha channel during decompression use a pixel format with an alpha component such as kCVPixelFormatType_4444AYpCbCr16 or kCVPixelFormatType_64ARGB. To test whether your source contains an alpha channel check that the track's format description has kCMFormatDescriptionExtension_Depth and that its value is 32.
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(assetReaderTrackOutputWithTrack:outputSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderTrackOutputWithTrack_outputSettings(
@@ -248,6 +252,10 @@ impl AVAssetReaderTrackOutput {
         /// - the output settings dictionary does not contain any recognized key
         /// - output settings are not compatible with track's media type
         /// - track output settings would cause the output to yield compressed samples
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(initWithTrack:outputSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTrack_outputSettings(
@@ -343,6 +351,10 @@ impl AVAssetReaderAudioMixOutput {
         /// For non-nil values of audioSettings, the audio settings dictionary must contain values for keys in AVAudioSettings.h (linear PCM only). Initialization will fail if the audio settings cannot be used with the specified tracks. AVSampleRateConverterAudioQualityKey is not supported.
         ///
         /// A value of nil for audioSettings configures the output to return samples in a convenient uncompressed format, with sample rate and other properties determined according to the properties of the specified audio tracks as well as other considerations that may vary according to device capabilities, operating system version, and other factors. Therefore if you wish to perform any processing on the output, you must examine the CMAudioFormatDescription of the CMSampleBuffers that are provided in order to ensure that your processing is appropriately configured for the output format.
+        ///
+        /// # Safety
+        ///
+        /// `audio_settings` generic should be of the correct type.
         #[unsafe(method(assetReaderAudioMixOutputWithAudioTracks:audioSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderAudioMixOutputWithAudioTracks_audioSettings(
@@ -372,6 +384,10 @@ impl AVAssetReaderAudioMixOutput {
         /// - an audio track belongs to a different AVAsset
         /// - the audio settings contains an AVSampleRateConverterAudioQualityKey
         /// - the output would be compressed
+        ///
+        /// # Safety
+        ///
+        /// `audio_settings` generic should be of the correct type.
         #[unsafe(method(initWithAudioTracks:audioSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioTracks_audioSettings(
@@ -489,6 +505,10 @@ impl AVAssetReaderVideoCompositionOutput {
         /// AVVideoCleanApertureKey
         /// AVVideoPixelAspectRatioKey
         /// AVVideoScalingModeKey
+        ///
+        /// # Safety
+        ///
+        /// `video_settings` generic should be of the correct type.
         #[unsafe(method(assetReaderVideoCompositionOutputWithVideoTracks:videoSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetReaderVideoCompositionOutputWithVideoTracks_videoSettings(
@@ -523,6 +543,10 @@ impl AVAssetReaderVideoCompositionOutput {
         /// - AVVideoPixelAspectRatioKey
         /// - AVVideoScalingModeKey
         /// - AVVideoDecompressionPropertiesKey
+        ///
+        /// # Safety
+        ///
+        /// `video_settings` generic should be of the correct type.
         #[unsafe(method(initWithVideoTracks:videoSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithVideoTracks_videoSettings(

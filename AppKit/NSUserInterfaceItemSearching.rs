@@ -20,10 +20,16 @@ extern_protocol!(
             handle_matched_items: &block2::DynBlock<dyn Fn(NonNull<NSArray>)>,
         );
 
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[unsafe(method(localizedTitlesForItem:))]
         #[unsafe(method_family = none)]
         unsafe fn localizedTitlesForItem(&self, item: &AnyObject) -> Retained<NSArray<NSString>>;
 
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(performActionForItem:))]
         #[unsafe(method_family = none)]
@@ -54,6 +60,9 @@ impl NSApplication {
             handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
+        /// # Safety
+        ///
+        /// `found_range` must be a valid pointer or null.
         #[unsafe(method(searchString:inUserInterfaceItemString:searchRange:foundRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn searchString_inUserInterfaceItemString_searchRange_foundRange(

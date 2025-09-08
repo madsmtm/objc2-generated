@@ -107,18 +107,30 @@ impl OSAScriptController {
         #[unsafe(method_family = none)]
         pub unsafe fn isCompiling(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(compileScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileScript(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(recordScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordScript(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(runScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runScript(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(stopScript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopScript(&self, sender: Option<&AnyObject>);

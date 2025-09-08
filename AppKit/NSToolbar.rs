@@ -164,6 +164,10 @@ impl NSToolbar {
         /// Customizable toolbars (those with delegates) can show a palette which allows users to populate the toolbar with individual items or to reset the toolbar to some default set of items.
         /// The items and item sets in the palette are specified by the delegate (`-toolbarAllowedItemIdentifiers:` and `-toolbarDefaultItemIdentifiers:`).
         /// When the user is done configuring, they will dismiss the palette.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(runCustomizationPalette:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runCustomizationPalette(&self, sender: Option<&AnyObject>);
@@ -540,6 +544,9 @@ impl NSToolbar {
         pub unsafe fn configurationDictionary(&self)
             -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `config_dict` generic should be of the correct type.
         #[deprecated = "Use -setItemIdentifiers: and -setDisplayMode: instead."]
         #[unsafe(method(setConfigurationFromDictionary:))]
         #[unsafe(method_family = none)]

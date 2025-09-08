@@ -93,6 +93,9 @@ pub unsafe trait NSAttributedStringAdaptiveImageGlyphConveniences:
     ClassType + Sized + private_NSAttributedStringAdaptiveImageGlyphConveniences::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(attributedStringWithAdaptiveImageGlyph:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn attributedStringWithAdaptiveImageGlyph_attributes(

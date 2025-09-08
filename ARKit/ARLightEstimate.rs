@@ -42,6 +42,10 @@ impl ARLightEstimate {
         /// In a well lit environment, this value is close to 1000. It typically ranges from 0 (very dark) to around 2000 (very bright).
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(ambientIntensity))]
         #[unsafe(method_family = none)]
         pub unsafe fn ambientIntensity(&self) -> CGFloat;
@@ -53,6 +57,10 @@ impl ARLightEstimate {
         /// This specifies the ambient color temperature of the lighting in Kelvin (6500 corresponds to pure white).
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(ambientColorTemperature))]
         #[unsafe(method_family = none)]
         pub unsafe fn ambientColorTemperature(&self) -> CGFloat;
@@ -101,6 +109,10 @@ impl ARDirectionalLightEstimate {
         /// corresponding to the red, green, and blue sets of coefficients.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sphericalHarmonicsCoefficients))]
         #[unsafe(method_family = none)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Retained<NSData>;
@@ -109,6 +121,10 @@ impl ARDirectionalLightEstimate {
         /// The intensity of light in the primary direction.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(primaryLightIntensity))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryLightIntensity(&self) -> CGFloat;

@@ -19,6 +19,9 @@ extern_conformance!(
 
 impl NSClassDescription {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `a_class` probably has further requirements.
         #[unsafe(method(registerClassDescription:forClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClassDescription_forClass(
@@ -30,6 +33,9 @@ impl NSClassDescription {
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateClassDescriptionCache();
 
+        /// # Safety
+        ///
+        /// `a_class` probably has further requirements.
         #[unsafe(method(classDescriptionForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn classDescriptionForClass(

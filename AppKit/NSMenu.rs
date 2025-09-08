@@ -189,6 +189,10 @@ impl NSMenu {
         pub unsafe fn supermenu(&self) -> Option<Retained<NSMenu>>;
 
         /// Setter for [`supermenu`][Self::supermenu].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setSupermenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupermenu(&self, supermenu: Option<&NSMenu>);
@@ -204,6 +208,9 @@ impl NSMenu {
         pub fn addItem(&self, new_item: &NSMenuItem);
 
         #[cfg(feature = "NSMenuItem")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(insertItemWithTitle:action:keyEquivalent:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertItemWithTitle_action_keyEquivalent_atIndex(
@@ -215,6 +222,9 @@ impl NSMenu {
         ) -> Retained<NSMenuItem>;
 
         #[cfg(feature = "NSMenuItem")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(addItemWithTitle:action:keyEquivalent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemWithTitle_action_keyEquivalent(
@@ -277,6 +287,9 @@ impl NSMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithTag(&self, tag: NSInteger) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(indexOfItemWithRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithRepresentedObject(
@@ -288,6 +301,9 @@ impl NSMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithSubmenu(&self, submenu: Option<&NSMenu>) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `action_selector` must be a valid selector.
         #[unsafe(method(indexOfItemWithTarget:andAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithTarget_andAction(
@@ -384,6 +400,10 @@ impl NSMenu {
 
         #[cfg(feature = "NSFont")]
         /// Setter for [`font`][Self::font].
+        ///
+        /// # Safety
+        ///
+        /// `font` might not allow `None`.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
@@ -540,6 +560,9 @@ impl NSMenu {
 /// NSSubmenuAction.
 impl NSMenu {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(submenuAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn submenuAction(&self, sender: Option<&AnyObject>);
@@ -686,6 +709,10 @@ extern "C" {
 /// NSDeprecated.
 impl NSMenu {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `menu_rep` should be of the correct type.
+        /// - `menu_rep` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setMenuRepresentation:))]
         #[unsafe(method_family = none)]
@@ -696,6 +723,10 @@ impl NSMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn menuRepresentation(&self) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// - `menu_rep` should be of the correct type.
+        /// - `menu_rep` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setContextMenuRepresentation:))]
         #[unsafe(method_family = none)]
@@ -706,6 +737,10 @@ impl NSMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn contextMenuRepresentation(&self) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// - `menu_rep` should be of the correct type.
+        /// - `menu_rep` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setTearOffMenuRepresentation:))]
         #[unsafe(method_family = none)]
@@ -721,6 +756,9 @@ impl NSMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn menuZone(mtm: MainThreadMarker) -> *mut NSZone;
 
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(setMenuZone:))]
         #[unsafe(method_family = none)]
@@ -741,6 +779,9 @@ impl NSMenu {
         #[unsafe(method_family = none)]
         pub unsafe fn sizeToFit(&self);
 
+        /// # Safety
+        ///
+        /// `submenu` might not allow `None`.
         #[deprecated]
         #[unsafe(method(locationForSubmenu:))]
         #[unsafe(method_family = none)]

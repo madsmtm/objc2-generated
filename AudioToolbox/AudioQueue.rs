@@ -688,6 +688,13 @@ extern "C-unwind" {
     /// object.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_format` must be a valid pointer.
+    /// - `in_callback_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer or null.
+    /// - `out_aq` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewOutput(
         in_format: NonNull<AudioStreamBasicDescription>,
@@ -734,6 +741,13 @@ extern "C-unwind" {
     /// object.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_format` must be a valid pointer.
+    /// - `in_callback_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer or null.
+    /// - `out_aq` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewInput(
         in_format: NonNull<AudioStreamBasicDescription>,
@@ -769,6 +783,12 @@ extern "C-unwind" {
     /// a buffer.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `out_aq` must be a valid pointer.
+    /// - `in_format` must be a valid pointer.
+    /// - `in_callback_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -808,6 +828,12 @@ extern "C-unwind" {
     /// a buffer.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `out_aq` must be a valid pointer.
+    /// - `in_format` must be a valid pointer.
+    /// - `in_callback_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -839,6 +865,10 @@ extern "C-unwind" {
 /// listener, you may receive further callbacks afterwards.
 ///
 /// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn AudioQueueDispose(
     in_aq: AudioQueueRef,
@@ -867,6 +897,11 @@ extern "C-unwind" {
     /// audio queue buffer structure, AudioQueueBuffer, is initially set to 0.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `out_buffer` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueAllocateBuffer(
         in_aq: AudioQueueRef,
@@ -894,6 +929,11 @@ extern "C-unwind" {
     /// audio queue buffer structure, AudioQueueBuffer, is initially set to 0.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `out_buffer` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueAllocateBufferWithPacketDescriptions(
         in_aq: AudioQueueRef,
@@ -918,6 +958,11 @@ extern "C-unwind" {
     /// Parameter `inBuffer`: The buffer to be disposed.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_buffer` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueFreeBuffer(in_aq: AudioQueueRef, in_buffer: AudioQueueBufferRef) -> OSStatus;
 }
@@ -947,6 +992,12 @@ extern "C-unwind" {
     /// descriptions are required).
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_buffer` must be a valid pointer.
+    /// - `in_packet_descs` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueEnqueueBuffer(
         in_aq: AudioQueueRef,
@@ -1016,6 +1067,15 @@ extern "C-unwind" {
     /// actually play.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_buffer` must be a valid pointer.
+    /// - `in_packet_descs` must be a valid pointer or null.
+    /// - `in_param_values` must be a valid pointer or null.
+    /// - `in_start_time` must be a valid pointer or null.
+    /// - `out_actual_start_time` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueEnqueueBufferWithParameters(
         in_aq: AudioQueueRef,
@@ -1044,6 +1104,11 @@ extern "C-unwind" {
     /// referenced to the sample frame timeline of the associated audio device. May be NULL.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_start_time` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueStart(in_aq: AudioQueueRef, in_start_time: *const AudioTimeStamp) -> OSStatus;
 }
@@ -1074,6 +1139,11 @@ extern "C-unwind" {
     /// for playback.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `out_number_of_frames_prepared` must be a valid pointer or null.
     pub fn AudioQueuePrime(
         in_aq: AudioQueueRef,
         in_number_of_frames_to_prepare: u32,
@@ -1105,6 +1175,10 @@ extern "C-unwind" {
 /// AudioQueueStop returns.
 ///
 /// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `in_aq` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn AudioQueueStop(
     in_aq: AudioQueueRef,
@@ -1126,6 +1200,10 @@ extern "C-unwind" {
     /// Parameter `inAQ`: The queue to be paused.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `in_aq` must be a valid pointer.
     pub fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus;
 }
 
@@ -1148,6 +1226,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `in_aq` must be a valid pointer.
     pub fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus;
 }
 
@@ -1171,6 +1253,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `in_aq` must be a valid pointer.
     pub fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus;
 }
 
@@ -1190,6 +1276,11 @@ extern "C-unwind" {
     /// Parameter `outValue`: On return, points to the current value of the specified parameter.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `out_value` must be a valid pointer.
     pub fn AudioQueueGetParameter(
         in_aq: AudioQueueRef,
         in_param_id: AudioQueueParameterID,
@@ -1207,6 +1298,10 @@ extern "C-unwind" {
     /// Parameter `inValue`: The parameter value to set.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `in_aq` must be a valid pointer.
     pub fn AudioQueueSetParameter(
         in_aq: AudioQueueRef,
         in_param_id: AudioQueueParameterID,
@@ -1227,6 +1322,12 @@ extern "C-unwind" {
     /// space the caller expects to receive. On return, points to the actual data size.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
+    /// - `io_data_size` must be a valid pointer.
     pub fn AudioQueueGetProperty(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1248,6 +1349,11 @@ extern "C-unwind" {
     /// Parameter `inDataSize`: The size of the property data.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_data` must be a valid pointer.
     pub fn AudioQueueSetProperty(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1267,6 +1373,11 @@ extern "C-unwind" {
     /// Parameter `outDataSize`: On return, points to the size of the specified property value.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `out_data_size` must be a valid pointer.
     pub fn AudioQueueGetPropertySize(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1292,6 +1403,12 @@ extern "C-unwind" {
     /// Parameter `inUserData`: A value to be passed to the listener callback when it is called.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer or null.
     pub fn AudioQueueAddPropertyListener(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1312,6 +1429,12 @@ extern "C-unwind" {
     /// Parameter `inUserData`: The same inUserData value that was previously passed to AudioQueueAddPropertyListener.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer or null.
     pub fn AudioQueueRemovePropertyListener(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1332,6 +1455,11 @@ extern "C-unwind" {
     /// Parameter `outTimeline`: On return, points to the newly created timeline object.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `out_timeline` must be a valid pointer.
     pub fn AudioQueueCreateTimeline(
         in_aq: AudioQueueRef,
         out_timeline: NonNull<AudioQueueTimelineRef>,
@@ -1351,6 +1479,11 @@ extern "C-unwind" {
     /// Parameter `inTimeline`: The timeline object to dispose of.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_timeline` must be a valid pointer.
     pub fn AudioQueueDisposeTimeline(
         in_aq: AudioQueueRef,
         in_timeline: AudioQueueTimelineRef,
@@ -1381,6 +1514,13 @@ extern "C-unwind" {
     /// late.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_timeline` must be a valid pointer or null.
+    /// - `out_time_stamp` must be a valid pointer or null.
+    /// - `out_timeline_discontinuity` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueGetCurrentTime(
         in_aq: AudioQueueRef,
@@ -1405,6 +1545,11 @@ extern "C-unwind" {
     /// associated with the audio queue.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `out_time_stamp` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceGetCurrentTime(
         in_aq: AudioQueueRef,
@@ -1437,6 +1582,12 @@ extern "C-unwind" {
     /// of the requested translated fields were successfully populated.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_time` must be a valid pointer.
+    /// - `out_time` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceTranslateTime(
         in_aq: AudioQueueRef,
@@ -1455,6 +1606,11 @@ extern "C-unwind" {
     /// Parameter `inFlags`: Reserved for future use. Pass 0.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `io_requested_start_time` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceGetNearestStartTime(
         in_aq: AudioQueueRef,
@@ -1481,6 +1637,12 @@ extern "C-unwind" {
     /// Parameter `inLayout`: The desired channel layout for offline rendering; also NULL when disabling offline rendering.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_format` must be a valid pointer or null.
+    /// - `in_layout` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueSetOfflineRenderFormat(
         in_aq: AudioQueueRef,
@@ -1503,6 +1665,12 @@ extern "C-unwind" {
     /// This can happen if insufficient data was enqueued.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_timestamp` must be a valid pointer.
+    /// - `io_buffer` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueOfflineRender(
         in_aq: AudioQueueRef,
@@ -1564,6 +1732,15 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
+    /// - `out_max_frames` must be a valid pointer.
+    /// - `out_processing_format` must be a valid pointer.
+    /// - `out_aq_tap` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueProcessingTapNew(
         in_aq: AudioQueueRef,
@@ -1587,6 +1764,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `in_aq_tap` must be a valid pointer.
     pub fn AudioQueueProcessingTapDispose(in_aq_tap: AudioQueueProcessingTapRef) -> OSStatus;
 }
 
@@ -1619,6 +1800,14 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq_tap` must be a valid pointer.
+    /// - `io_time_stamp` must be a valid pointer.
+    /// - `out_flags` must be a valid pointer.
+    /// - `out_number_frames` must be a valid pointer.
+    /// - `io_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueProcessingTapGetSourceAudio(
         in_aq_tap: AudioQueueProcessingTapRef,
@@ -1651,6 +1840,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_aq_tap` must be a valid pointer.
+    /// - `out_queue_sample_time` must be a valid pointer.
+    /// - `out_queue_frame_count` must be a valid pointer.
     pub fn AudioQueueProcessingTapGetQueueTime(
         in_aq_tap: AudioQueueProcessingTapRef,
         out_queue_sample_time: NonNull<f64>,

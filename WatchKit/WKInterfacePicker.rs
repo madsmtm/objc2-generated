@@ -40,6 +40,9 @@ impl WKInterfacePicker {
         pub unsafe fn setItems(&self, items: Option<&NSArray<WKPickerItem>>);
 
         #[cfg(feature = "WKInterfaceImage")]
+        /// # Safety
+        ///
+        /// `coordinated_animations` generic must implement WKImageAnimatable.
         #[unsafe(method(setCoordinatedAnimations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCoordinatedAnimations(

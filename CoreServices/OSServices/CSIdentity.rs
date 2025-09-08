@@ -75,6 +75,12 @@ unsafe impl ConcreteType for CSIdentity {
 }
 
 impl CSIdentity {
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `full_name` might not allow `None`.
+    /// - `posix_name` might not allow `None`.
+    /// - `authority` might not allow `None`.
     #[doc(alias = "CSIdentityCreate")]
     #[cfg(feature = "CSIdentityAuthority")]
     #[inline]
@@ -109,6 +115,10 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `identity` might not allow `None`.
     #[doc(alias = "CSIdentityCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -237,6 +247,9 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `group` might not allow `None`.
     #[doc(alias = "CSIdentityIsMemberOfGroup")]
     #[inline]
     pub unsafe fn is_member_of_group(&self, group: Option<&CSIdentity>) -> bool {
@@ -260,6 +273,10 @@ impl CSIdentity {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `identity` might not allow `None`.
     #[doc(alias = "CSIdentityCreatePersistentReference")]
     #[inline]
     pub unsafe fn new_persistent_reference(
@@ -286,6 +303,9 @@ impl CSIdentity {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `password` might not allow `None`.
     #[doc(alias = "CSIdentityAuthenticateUsingPassword")]
     #[inline]
     pub unsafe fn authenticate_using_password(&self, password: Option<&CFString>) -> bool {
@@ -310,6 +330,10 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `group` might not allow `None`.
     #[doc(alias = "CSIdentityCreateGroupMembershipQuery")]
     #[inline]
     pub unsafe fn new_group_membership_query(
@@ -326,6 +350,9 @@ impl CSIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `full_name` might not allow `None`.
     #[doc(alias = "CSIdentitySetFullName")]
     #[inline]
     pub unsafe fn set_full_name(&self, full_name: Option<&CFString>) {
@@ -335,6 +362,9 @@ impl CSIdentity {
         unsafe { CSIdentitySetFullName(self, full_name) }
     }
 
+    /// # Safety
+    ///
+    /// `email_address` might not allow `None`.
     #[doc(alias = "CSIdentitySetEmailAddress")]
     #[inline]
     pub unsafe fn set_email_address(&self, email_address: Option<&CFString>) {
@@ -344,6 +374,9 @@ impl CSIdentity {
         unsafe { CSIdentitySetEmailAddress(self, email_address) }
     }
 
+    /// # Safety
+    ///
+    /// `url` might not allow `None`.
     #[doc(alias = "CSIdentitySetImageURL")]
     #[inline]
     pub unsafe fn set_image_url(&self, url: Option<&CFURL>) {
@@ -353,6 +386,10 @@ impl CSIdentity {
         unsafe { CSIdentitySetImageURL(self, url) }
     }
 
+    /// # Safety
+    ///
+    /// - `image_data` might not allow `None`.
+    /// - `image_data_type` might not allow `None`.
     #[doc(alias = "CSIdentitySetImageData")]
     #[inline]
     pub unsafe fn set_image_data(
@@ -370,6 +407,9 @@ impl CSIdentity {
         unsafe { CSIdentitySetImageData(self, image_data, image_data_type) }
     }
 
+    /// # Safety
+    ///
+    /// `alias` might not allow `None`.
     #[doc(alias = "CSIdentityAddAlias")]
     #[inline]
     pub unsafe fn add_alias(&self, alias: Option<&CFString>) {
@@ -379,6 +419,9 @@ impl CSIdentity {
         unsafe { CSIdentityAddAlias(self, alias) }
     }
 
+    /// # Safety
+    ///
+    /// `alias` might not allow `None`.
     #[doc(alias = "CSIdentityRemoveAlias")]
     #[inline]
     pub unsafe fn remove_alias(&self, alias: Option<&CFString>) {
@@ -388,6 +431,9 @@ impl CSIdentity {
         unsafe { CSIdentityRemoveAlias(self, alias) }
     }
 
+    /// # Safety
+    ///
+    /// `member` might not allow `None`.
     #[doc(alias = "CSIdentityAddMember")]
     #[inline]
     pub unsafe fn add_member(&self, member: Option<&CSIdentity>) {
@@ -397,6 +443,9 @@ impl CSIdentity {
         unsafe { CSIdentityAddMember(self, member) }
     }
 
+    /// # Safety
+    ///
+    /// `member` might not allow `None`.
     #[doc(alias = "CSIdentityRemoveMember")]
     #[inline]
     pub unsafe fn remove_member(&self, member: Option<&CSIdentity>) {
@@ -415,6 +464,9 @@ impl CSIdentity {
         unsafe { CSIdentitySetIsEnabled(self, is_enabled as _) }
     }
 
+    /// # Safety
+    ///
+    /// `password` might not allow `None`.
     #[doc(alias = "CSIdentitySetPassword")]
     #[inline]
     pub unsafe fn set_password(&self, password: Option<&CFString>) {
@@ -424,6 +476,9 @@ impl CSIdentity {
         unsafe { CSIdentitySetPassword(self, password) }
     }
 
+    /// # Safety
+    ///
+    /// `certificate` might not allow `None`.
     #[doc(alias = "CSIdentitySetCertificate")]
     #[cfg(feature = "objc2-security")]
     #[inline]
@@ -443,6 +498,10 @@ impl CSIdentity {
         unsafe { CSIdentityDelete(self) }
     }
 
+    /// # Safety
+    ///
+    /// - `authorization` must be a valid pointer.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CSIdentityCommit")]
     #[cfg(feature = "objc2-security")]
     #[inline]
@@ -500,6 +559,12 @@ unsafe impl RefEncode for CSIdentityClientContext {
 }
 
 impl CSIdentity {
+    /// # Safety
+    ///
+    /// - `client_context` must be a valid pointer.
+    /// - `run_loop` might not allow `None`.
+    /// - `run_loop_mode` might not allow `None`.
+    /// - `authorization` must be a valid pointer.
     #[doc(alias = "CSIdentityCommitAsynchronously")]
     #[cfg(feature = "objc2-security")]
     #[inline]

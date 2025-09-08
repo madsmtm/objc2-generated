@@ -31,6 +31,10 @@ impl SecIdentity {
     /// Parameter `identityRef`: On return, an identity reference. You are responsible for releasing this reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `identity_ref` must be a valid pointer.
     #[doc(alias = "SecIdentityCreateWithCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -61,6 +65,10 @@ impl SecIdentity {
     /// the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `certificate_ref` must be a valid pointer.
     #[doc(alias = "SecIdentityCopyCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -86,6 +94,10 @@ impl SecIdentity {
     /// You are responsible for releasing this reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `private_key_ref` must be a valid pointer.
     #[doc(alias = "SecIdentityCopyPrivateKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -112,6 +124,11 @@ impl SecIdentity {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecIdentityCopyPreferred API instead.
+    ///
+    /// # Safety
+    ///
+    /// - `valid_issuers` generic must be of the correct type.
+    /// - `identity` must be a valid pointer.
     #[doc(alias = "SecIdentityCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -144,6 +161,11 @@ impl SecIdentity {
     /// Returns: An identity or NULL, if the preferred identity has not been set. Your code should then typically perform a search for possible identities using the SecItem APIs.
     ///
     /// If a preferred identity has not been set for the supplied name, the returned identity reference will be NULL. Your code should then perform a search for possible identities, using the SecItemCopyMatching API. Note: in versions of macOS prior to 11.3, identity preferences are shared between processes running as the same user. Starting in 11.3, URI names are considered per-application preferences. An identity preference for a URI name may not be found if the calling application is different from the one which set the preference with SecIdentitySetPreferred.
+    ///
+    /// # Safety
+    ///
+    /// - `key_usage` generic must be of the correct type.
+    /// - `valid_issuers` generic must be of the correct type.
     #[doc(alias = "SecIdentityCopyPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -200,6 +222,10 @@ impl SecIdentity {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// Note: in versions of macOS prior to 11.3, identity preferences are shared between processes running as the same user. Starting in 11.3, URI names are considered per-application preferences. An identity preference for a URI name will be scoped to the application which created it, such that a subsequent call to SecIdentityCopyPreferred will only return it for that same application.
+    ///
+    /// # Safety
+    ///
+    /// `key_usage` generic must be of the correct type.
     #[doc(alias = "SecIdentitySetPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -238,6 +264,11 @@ impl SecIdentity {
     /// domain, a domain-specific alternate may be returned
     /// instead, typically (but not exclusively) the
     /// kSecIdentityDomainDefault SecIdentityRef.
+    ///
+    /// # Safety
+    ///
+    /// - `id_ref` must be a valid pointer.
+    /// - `actual_domain` must be a valid pointer or null.
     #[doc(alias = "SecIdentityCopySystemIdentity")]
     #[cfg(feature = "SecBase")]
     #[inline]

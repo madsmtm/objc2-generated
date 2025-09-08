@@ -374,6 +374,10 @@ impl MIDIThruConnectionParams {
     /// This convenience function fills the connection structure with default values: no endpoints,
     /// no transformations (mostly zeroes except for the channel map). Then, just filling in the
     /// source and adding one destination will create a simple, unmodified thru connection.
+    ///
+    /// # Safety
+    ///
+    /// `in_connection_params` must be a valid pointer.
     #[doc(alias = "MIDIThruConnectionParamsInitialize")]
     #[cfg(feature = "MIDIServices")]
     #[inline]
@@ -399,6 +403,10 @@ extern "C-unwind" {
     /// Parameter `outConnection`: On successful return, a reference to the newly-created connection.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_connection` must be a valid pointer.
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIThruConnectionCreate(
         in_persistent_owner_id: Option<&CFString>,
@@ -428,6 +436,10 @@ extern "C-unwind" {
     ///
     /// The returned CFDataRef contains a MIDIThruConnectionParams structure. The caller is responsible
     /// for releasing it.
+    ///
+    /// # Safety
+    ///
+    /// `out_connection_params` must be a valid pointer.
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIThruConnectionGetParams(
         connection: MIDIThruConnectionRef,
@@ -458,6 +470,10 @@ extern "C-unwind" {
     /// Parameter `outConnectionList`: On successful return, a CFDataRef containing an array of MIDIThruConnectionRef's.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_connection_list` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIThruConnectionFind(
         in_persistent_owner_id: &CFString,

@@ -39,6 +39,10 @@ impl UIBarButtonItemStateAppearance {
         /// Setter for [`titleTextAttributes`][Self::titleTextAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `title_text_attributes` generic should be of the correct type.
         #[unsafe(method(setTitleTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributes(

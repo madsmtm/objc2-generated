@@ -82,6 +82,11 @@ impl ODSession {
         /// ODSessionProxyPort           NSNumber(IP port, should not be set as it will default)
         /// ODSessionProxyUsername       NSString(username)
         /// ODSessionProxyPassword       NSString(password)
+        ///
+        /// # Safety
+        ///
+        /// - `in_options` generic should be of the correct type.
+        /// - `in_options` might not allow `None`.
         #[unsafe(method(sessionWithOptions:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithOptions_error(
@@ -101,6 +106,11 @@ impl ODSession {
         /// ODSessionProxyPort           NSNumber(IP port, should not be set as it will default)
         /// ODSessionProxyUsername       NSString(username)
         /// ODSessionProxyPassword       NSString(password)
+        ///
+        /// # Safety
+        ///
+        /// - `in_options` generic should be of the correct type.
+        /// - `in_options` might not allow `None`.
         #[unsafe(method(initWithOptions:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions_error(
@@ -158,6 +168,10 @@ impl ODSession {
         ///
         ///
         /// Reads the configuration for a given nodename.
+        ///
+        /// # Safety
+        ///
+        /// `nodename` might not allow `None`.
         #[unsafe(method(configurationForNodename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationForNodename(
@@ -170,6 +184,11 @@ impl ODSession {
         ///
         ///
         /// Adds a new configuration to the existing ODSession.  An SFAuthorization can be provided if necessary.
+        ///
+        /// # Safety
+        ///
+        /// - `configuration` might not allow `None`.
+        /// - `authorization` might not allow `None`.
         #[unsafe(method(addConfiguration:authorization:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addConfiguration_authorization_error(
@@ -184,6 +203,11 @@ impl ODSession {
         ///
         ///
         /// Deletes an existing configuration from the ODSession.  An authorization can be provided if necessary.
+        ///
+        /// # Safety
+        ///
+        /// - `configuration` might not allow `None`.
+        /// - `authorization` might not allow `None`.
         #[unsafe(method(deleteConfiguration:authorization:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteConfiguration_authorization_error(
@@ -198,6 +222,11 @@ impl ODSession {
         ///
         ///
         /// Deletes an existing configuration from the ODSession.  An authorization can be provided if necessary.
+        ///
+        /// # Safety
+        ///
+        /// - `nodename` might not allow `None`.
+        /// - `authorization` might not allow `None`.
         #[unsafe(method(deleteConfigurationWithNodename:authorization:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteConfigurationWithNodename_authorization_error(

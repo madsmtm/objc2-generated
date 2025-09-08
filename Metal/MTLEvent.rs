@@ -91,6 +91,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedevent?language=objc)
     pub unsafe trait MTLSharedEvent: MTLEvent {
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(notifyListener:atValue:block:))]
         #[unsafe(method_family = none)]
         unsafe fn notifyListener_atValue_block(

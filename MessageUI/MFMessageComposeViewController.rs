@@ -380,6 +380,10 @@ impl MFMessageComposeViewController {
 #[cfg(feature = "objc2-ui-kit")]
 impl MFMessageComposeViewController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `navigation_bar_class` probably has further requirements.
+        /// - `toolbar_class` probably has further requirements.
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(

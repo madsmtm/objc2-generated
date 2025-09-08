@@ -37,6 +37,10 @@ impl MLModelStructureProgramArgument {
         /// The array of bindings.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bindings))]
         #[unsafe(method_family = none)]
         pub unsafe fn bindings(&self) -> Retained<NSArray<MLModelStructureProgramBinding>>;

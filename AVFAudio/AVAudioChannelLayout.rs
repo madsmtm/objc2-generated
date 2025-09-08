@@ -65,6 +65,10 @@ impl AVAudioChannelLayout {
         ///
         /// If the provided layout's tag is kAudioChannelLayoutTag_UseChannelDescriptions, this
         /// initializer attempts to convert it to a more specific tag.
+        ///
+        /// # Safety
+        ///
+        /// `layout` must be a valid pointer.
         #[unsafe(method(initWithLayout:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayout(
@@ -77,6 +81,10 @@ impl AVAudioChannelLayout {
         /// Parameter `object`: The AVAudioChannelLayout to compare against.
         ///
         /// The underlying AudioChannelLayoutTag and AudioChannelLayout are compared for equality.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isEqual:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
@@ -89,6 +97,10 @@ impl AVAudioChannelLayout {
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// Create from an AudioChannelLayout
+        ///
+        /// # Safety
+        ///
+        /// `layout` must be a valid pointer.
         #[unsafe(method(layoutWithLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutWithLayout(layout: NonNull<AudioChannelLayout>) -> Retained<Self>;
@@ -97,6 +109,10 @@ impl AVAudioChannelLayout {
         /// The layout's tag.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(layoutTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutTag(&self) -> AudioChannelLayoutTag;
@@ -105,6 +121,10 @@ impl AVAudioChannelLayout {
         /// The underlying AudioChannelLayout.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(layout))]
         #[unsafe(method_family = none)]
         pub unsafe fn layout(&self) -> NonNull<AudioChannelLayout>;
@@ -113,6 +133,10 @@ impl AVAudioChannelLayout {
         /// The number of channels of audio data.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> AVAudioChannelCount;

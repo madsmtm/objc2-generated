@@ -75,6 +75,9 @@ impl NSFileHandle {
         pub unsafe fn writeData_error(&self, data: &NSData) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// # Safety
+        ///
+        /// `offset_in_file` must be a valid pointer.
         #[unsafe(method(getOffset:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getOffset_error(
@@ -83,6 +86,9 @@ impl NSFileHandle {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
+        /// # Safety
+        ///
+        /// `offset_in_file` must be a valid pointer or null.
         #[unsafe(method(seekToEndReturningOffset:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToEndReturningOffset_error(
@@ -289,6 +295,9 @@ impl NSFileHandle {
         pub unsafe fn waitForDataInBackgroundAndNotify(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(readabilityHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn readabilityHandler(
@@ -299,6 +308,10 @@ impl NSFileHandle {
         /// Setter for [`readabilityHandler`][Self::readabilityHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `readability_handler` block must be sendable.
         #[unsafe(method(setReadabilityHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setReadabilityHandler(
@@ -307,6 +320,9 @@ impl NSFileHandle {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(writeabilityHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeabilityHandler(
@@ -317,6 +333,10 @@ impl NSFileHandle {
         /// Setter for [`writeabilityHandler`][Self::writeabilityHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `writeability_handler` block must be sendable.
         #[unsafe(method(setWriteabilityHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWriteabilityHandler(

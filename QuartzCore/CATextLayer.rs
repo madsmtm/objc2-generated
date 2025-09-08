@@ -57,6 +57,10 @@ impl CATextLayer {
         /// Setter for [`string`][Self::string].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `string` should be of the correct type.
         #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: Option<&AnyObject>);
@@ -68,6 +72,10 @@ impl CATextLayer {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`font`][Self::font].
+        ///
+        /// # Safety
+        ///
+        /// `font` should be of the correct type.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&CFType>);
@@ -152,6 +160,9 @@ impl CATextLayer {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;

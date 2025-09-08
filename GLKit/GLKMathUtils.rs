@@ -12,6 +12,9 @@ use crate::*;
 // TODO: pub fn GLKMathRadiansToDegrees(radians: c_float,) -> c_float;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `viewport` must be a valid pointer.
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKMathProject(
         object: GLKVector3,
@@ -22,6 +25,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `viewport` must be a valid pointer.
+    /// - `success` must be a valid pointer or null.
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKMathUnproject(
         window: GLKVector3,

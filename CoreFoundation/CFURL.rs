@@ -63,6 +63,10 @@ unsafe impl ConcreteType for CFURL {
 }
 
 impl CFURL {
+    /// # Safety
+    ///
+    /// - `url_bytes` must be a valid pointer.
+    /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateWithBytes")]
     #[cfg(feature = "CFString")]
     #[inline]
@@ -125,6 +129,10 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `relative_url_bytes` must be a valid pointer.
+    /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateAbsoluteURLWithBytes")]
     #[cfg(feature = "CFString")]
     #[inline]
@@ -181,6 +189,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFURLCreateFromFileSystemRepresentation")]
     #[inline]
     pub unsafe fn from_file_system_representation(
@@ -233,6 +244,10 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `buffer` must be a valid pointer.
+    /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateFromFileSystemRepresentationRelativeToBase")]
     #[inline]
     pub unsafe fn from_file_system_representation_relative_to_base(
@@ -263,6 +278,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFURLGetFileSystemRepresentation")]
     #[inline]
     pub unsafe fn file_system_representation(
@@ -355,6 +373,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `is_absolute` must be a valid pointer.
     #[doc(alias = "CFURLCopyStrictPath")]
     #[inline]
     pub unsafe fn strict_path(&self, is_absolute: *mut Boolean) -> Option<CFRetained<CFString>> {
@@ -581,6 +602,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFURLGetBytes")]
     #[inline]
     pub unsafe fn bytes(&self, buffer: *mut u8, buffer_length: CFIndex) -> CFIndex {
@@ -634,6 +658,9 @@ unsafe impl RefEncode for CFURLComponentType {
 }
 
 impl CFURL {
+    /// # Safety
+    ///
+    /// `range_including_separators` must be a valid pointer.
     #[doc(alias = "CFURLGetByteRangeForComponent")]
     #[inline]
     pub unsafe fn byte_range_for_component(
@@ -675,6 +702,11 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `orig_string` might not allow `None`.
+    /// - `chars_to_leave_escaped` might not allow `None`.
     #[doc(alias = "CFURLCreateStringByReplacingPercentEscapesUsingEncoding")]
     #[cfg(feature = "CFString")]
     #[deprecated = "Use [NSString stringByRemovingPercentEncoding] or CFURLCreateStringByReplacingPercentEscapes() instead, which always uses the recommended UTF-8 encoding."]
@@ -704,6 +736,12 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `original_string` might not allow `None`.
+    /// - `characters_to_leave_unescaped` might not allow `None`.
+    /// - `legal_url_characters_to_be_escaped` might not allow `None`.
     #[doc(alias = "CFURLCreateStringByAddingPercentEscapes")]
     #[cfg(feature = "CFString")]
     #[deprecated = "Use [NSString stringByAddingPercentEncodingWithAllowedCharacters:] instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent (since each URL component or subcomponent has different rules for what characters are valid)."]
@@ -746,6 +784,9 @@ impl CFURL {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateFileReferenceURL")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -765,6 +806,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateFilePathURL")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -784,6 +828,10 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `property_value_type_ref_ptr` must be a valid pointer.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCopyResourcePropertyForKey")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -807,6 +855,11 @@ impl CFURL {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `keys` generic must be of the correct type.
+    /// - `keys` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCopyResourcePropertiesForKeys")]
     #[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "CFError"))]
     #[inline]
@@ -826,6 +879,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLSetResourcePropertyForKey")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -847,6 +903,11 @@ impl CFURL {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `keyed_property_values` generics must be of the correct type.
+    /// - `keyed_property_values` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLSetResourcePropertiesForKeys")]
     #[cfg(all(feature = "CFDictionary", feature = "CFError"))]
     #[inline]
@@ -908,6 +969,9 @@ impl CFURL {
         unsafe { CFURLSetTemporaryResourcePropertyForKey(self, key, property_value) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFURLResourceIsReachable")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -1646,6 +1710,12 @@ unsafe impl RefEncode for CFURLBookmarkResolutionOptions {
 pub type CFURLBookmarkFileCreationOptions = CFOptionFlags;
 
 impl CFURL {
+    /// # Safety
+    ///
+    /// - `resource_properties_to_include` generic must be of the correct type.
+    /// - `resource_properties_to_include` might not allow `None`.
+    /// - `relative_to_url` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateBookmarkData")]
     #[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFError"))]
     #[inline]
@@ -1680,6 +1750,12 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `resource_properties_to_include` generic must be of the correct type.
+    /// - `resource_properties_to_include` might not allow `None`.
+    /// - `is_stale` must be a valid pointer.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateByResolvingBookmarkData")]
     #[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFError"))]
     #[inline]
@@ -1717,6 +1793,11 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `resource_properties_to_return` generic must be of the correct type.
+    /// - `resource_properties_to_return` might not allow `None`.
+    /// - `bookmark` might not allow `None`.
     #[doc(alias = "CFURLCreateResourcePropertiesForKeysFromBookmarkData")]
     #[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFDictionary"))]
     #[inline]
@@ -1742,6 +1823,11 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `resource_property_key` might not allow `None`.
+    /// - `bookmark` might not allow `None`.
     #[doc(alias = "CFURLCreateResourcePropertyForKeyFromBookmarkData")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -1767,6 +1853,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `error_ref` must be a valid pointer.
     #[doc(alias = "CFURLCreateBookmarkDataFromFile")]
     #[cfg(all(feature = "CFData", feature = "CFError"))]
     #[inline]
@@ -1786,6 +1875,9 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `error_ref` must be a valid pointer.
     #[doc(alias = "CFURLWriteBookmarkDataToFile")]
     #[cfg(all(feature = "CFData", feature = "CFError"))]
     #[inline]
@@ -1808,6 +1900,10 @@ impl CFURL {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `allocator_ref` might not allow `None`.
+    /// - `alias_record_data_ref` might not allow `None`.
     #[doc(alias = "CFURLCreateBookmarkDataFromAliasRecord")]
     #[cfg(feature = "CFData")]
     #[deprecated = "The Carbon Alias Manager is deprecated. This function should only be used to convert Carbon AliasRecords to bookmark data."]

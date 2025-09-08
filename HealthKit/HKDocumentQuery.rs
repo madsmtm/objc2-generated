@@ -82,6 +82,10 @@ impl HKDocumentQuery {
         /// query will prompt the user to authorize your app to read individual documents.  The query will then
         /// return the documents that your app is authorized to read. The user will only be asked to authorize your
         /// app to read documents that are new since the last time an HKDocumentQuery was executed.
+        ///
+        /// # Safety
+        ///
+        /// `results_handler` block must be sendable.
         #[unsafe(method(initWithDocumentType:predicate:limit:sortDescriptors:includeDocumentData:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDocumentType_predicate_limit_sortDescriptors_includeDocumentData_resultsHandler(

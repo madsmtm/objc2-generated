@@ -233,6 +233,10 @@ impl AVCoordinatedPlaybackParticipant {
         /// The reason, if any, this participant is currently not participating in coordinated playback.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(suspensionReasons))]
         #[unsafe(method_family = none)]
         pub unsafe fn suspensionReasons(
@@ -242,6 +246,10 @@ impl AVCoordinatedPlaybackParticipant {
         /// YES if the participant is ready to play.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isReadyToPlay))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReadyToPlay(&self) -> bool;
@@ -251,6 +259,10 @@ impl AVCoordinatedPlaybackParticipant {
         /// Use this identifier to distinguish participants.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
@@ -624,6 +636,10 @@ extern_protocol!(
         ///
         /// Parameter `completionHandler`: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability
         /// to handle the command by beginning a suspension with an appropriate reason.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(playbackCoordinator:didIssuePlayCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssuePlayCommand_completionHandler(
@@ -644,6 +660,10 @@ extern_protocol!(
         /// Parameter `completionHandler`: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability
         /// to handle the command by beginning a suspension with an appropriate reason.
         /// If the command's shouldBufferInAnticipationOfPlayback is YES, the completion handler should also only be called once the playback object is ready to receive a subsequent play command.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(playbackCoordinator:didIssuePauseCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssuePauseCommand_completionHandler(
@@ -666,6 +686,10 @@ extern_protocol!(
         /// Parameter `completionHandler`: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability
         /// to handle the command by beginning a suspension with an appropriate reason.
         /// If the command's shouldBufferInAnticipationOfPlayback is YES, the completion handler should also only be called once the playback object is ready to receive a subsequent play command.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(playbackCoordinator:didIssueSeekCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssueSeekCommand_completionHandler(
@@ -690,6 +714,10 @@ extern_protocol!(
         /// Parameter `completionHandler`: The receiver must call the completion handler when done, either when the command has been handled succesfully or when the receiver has indicated its inability
         /// to handle the command by beginning a suspension with an appropriate reason.
         /// For buffering commands, the command should only be considered complete once the playback object is ready to receive a subsequent play command.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(playbackCoordinator:didIssueBufferingCommand:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn playbackCoordinator_didIssueBufferingCommand_completionHandler(
@@ -738,6 +766,10 @@ impl AVDelegatingPlaybackCoordinatorPlaybackControlCommand {
         /// If the originator is non-nil, it may be appropriate to show UI indicating someone else's action.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(originator))]
         #[unsafe(method_family = none)]
         pub unsafe fn originator(&self) -> Option<Retained<AVCoordinatedPlaybackParticipant>>;
@@ -748,6 +780,10 @@ impl AVDelegatingPlaybackCoordinatorPlaybackControlCommand {
         /// If it doesn't this command is obsolete and should be ignored. Note that any completion handler of the delegate method issuing the command must still be invoked.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(expectedCurrentItemIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedCurrentItemIdentifier(&self) -> Retained<NSString>;
@@ -786,6 +822,10 @@ impl AVDelegatingPlaybackCoordinatorPlayCommand {
         /// Playback rate. Will always be non-zero.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rate))]
         #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
@@ -799,6 +839,10 @@ impl AVDelegatingPlaybackCoordinatorPlayCommand {
         /// If data for the requested time cannot be loaded, or playback stalls later, the command handler may want to indicate this to the coordinator by beginning a suspension with AVCoordinatedPlaybackSuspensionReasonStallRecovery.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(itemTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemTime(&self) -> CMTime;
@@ -807,6 +851,10 @@ impl AVDelegatingPlaybackCoordinatorPlayCommand {
         /// This is the host clock time (see CMClockGetHostTimeClock()) defining when playback should start (or should have started) at the given itemTime.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(hostClockTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn hostClockTime(&self) -> CMTime;
@@ -850,6 +898,10 @@ impl AVDelegatingPlaybackCoordinatorBufferingCommand {
         /// The command should only be considered complete once the player is ready to receive an AVDelegatingPlaybackCoordinatorPlayCommand with the indicated rate.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(anticipatedPlaybackRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn anticipatedPlaybackRate(&self) -> c_float;
@@ -862,6 +914,10 @@ impl AVDelegatingPlaybackCoordinatorBufferingCommand {
         /// Completing the command after this date means that the coordinator will likely send a play command for a later time than the receiver buffered for.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(completionDueDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionDueDate(&self) -> Option<Retained<NSDate>>;
@@ -904,6 +960,10 @@ impl AVDelegatingPlaybackCoordinatorPauseCommand {
         /// If YES, the command should only be considered complete once the player is ready to receive an AVDelegatingPlaybackCoordinatorPlayCommand with the indicated rate.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(shouldBufferInAnticipationOfPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldBufferInAnticipationOfPlayback(&self) -> bool;
@@ -911,6 +971,10 @@ impl AVDelegatingPlaybackCoordinatorPauseCommand {
         /// The rate to prepare for if shouldBufferInAnticipationOfPlayback is YES.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(anticipatedPlaybackRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn anticipatedPlaybackRate(&self) -> c_float;
@@ -954,6 +1018,10 @@ impl AVDelegatingPlaybackCoordinatorSeekCommand {
         /// Playback should never automatically resume after seeking to this time. The coordinator will issue a new PlayCommand when everyone else is ready to resume.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(itemTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemTime(&self) -> CMTime;
@@ -965,6 +1033,10 @@ impl AVDelegatingPlaybackCoordinatorSeekCommand {
         /// If YES, the command should only be considered complete once the player is ready to receive an AVDelegatingPlaybackCoordinatorPlayCommand with the indicated rate.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(shouldBufferInAnticipationOfPlayback))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldBufferInAnticipationOfPlayback(&self) -> bool;
@@ -972,6 +1044,10 @@ impl AVDelegatingPlaybackCoordinatorSeekCommand {
         /// The rate to prepare for if shouldBufferInAnticipationOfPlayback is YES.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(anticipatedPlaybackRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn anticipatedPlaybackRate(&self) -> c_float;
@@ -985,6 +1061,10 @@ impl AVDelegatingPlaybackCoordinatorSeekCommand {
         /// Completing the command after this date means that the coordinator will likely send a play command for a later time than the receiver buffered for.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(completionDueDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionDueDate(&self) -> Option<Retained<NSDate>>;

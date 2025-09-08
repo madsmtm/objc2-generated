@@ -32,6 +32,11 @@ impl SecTrustedApplication {
     /// Parameter `app`: On return, a pointer to the trusted application reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `path` must be a valid pointer or null.
+    /// - `app` must be a valid pointer.
     #[doc(alias = "SecTrustedApplicationCreateFromPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -56,6 +61,10 @@ impl SecTrustedApplication {
     /// Parameter `data`: On return, a pointer to a data reference of the trusted application.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `data` must be a valid pointer.
     #[doc(alias = "SecTrustedApplicationCopyData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

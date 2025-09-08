@@ -111,6 +111,10 @@ impl UIVideoEditorController {
         >;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -161,6 +165,10 @@ impl UIVideoEditorController {
 ))]
 impl UIVideoEditorController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `navigation_bar_class` probably has further requirements.
+        /// - `toolbar_class` probably has further requirements.
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(

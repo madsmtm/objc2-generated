@@ -347,6 +347,10 @@ impl SCNSceneSource {
         /// Parameter `url`: The URL to read scenes from.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(sceneSourceWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneSourceWithURL_options(
@@ -359,6 +363,10 @@ impl SCNSceneSource {
         /// Parameter `data`: The scene data.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(sceneSourceWithData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneSourceWithData_options(
@@ -371,6 +379,10 @@ impl SCNSceneSource {
         /// Parameter `url`: The URL to read scenes from.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
@@ -384,6 +396,10 @@ impl SCNSceneSource {
         /// Parameter `data`: The data to read scenes from.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
@@ -412,6 +428,10 @@ impl SCNSceneSource {
         /// - The second argument, status, tells you what the source is currently doing. It takes one of the values in the SCNSceneSourceStatus enum. New values might be added to this enum in the future.
         /// - If status == SCNSceneStatusError, then error will contain more information about the failure, and the method will return nil after having called the block. Otherwise error will be nil.
         /// - Set *stop to YES if you want the source to abort the loading operation.
+        ///
+        /// # Safety
+        ///
+        /// `status_handler` must be a valid pointer or null.
         #[unsafe(method(sceneWithOptions:statusHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithOptions_statusHandler(
@@ -429,6 +449,10 @@ impl SCNSceneSource {
         ///
         /// This simpler version is equivalent to providing a block to sceneWithOptions:statusHandler: and checking the "error"
         /// parameter of the block if the status is SCNSceneStatusError.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(sceneWithOptions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithOptions_error(
@@ -450,6 +474,10 @@ impl SCNSceneSource {
         /// Parameter `entryClass`: Specifies the type of the object to be returned. It can be one of the following classes: SCNMaterial, SCNGeometry, SCNScene, SCNNode, CAAnimation, SCNLight, SCNCamera, SCNSkinner, SCNMorpher, NSImage
         ///
         /// Returns NULL if the receiver's library doesn't contains such an uid for the specified type.
+        ///
+        /// # Safety
+        ///
+        /// `entry_class` probably has further requirements.
         #[unsafe(method(entryWithIdentifier:withClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn entryWithIdentifier_withClass(
@@ -461,6 +489,10 @@ impl SCNSceneSource {
         /// Returns the IDs found in the receiver's library for the class "entryClass".
         ///
         /// Parameter `entryClass`: Specifies the type of the object referenced by the returned IDs. It can be one of the following classes: SCNMaterial, SCNScene, SCNGeometry, SCNNode, CAAnimation, SCNLight, SCNCamera, SCNSkinner, SCNMorpher, NSImage
+        ///
+        /// # Safety
+        ///
+        /// `entry_class` probably has further requirements.
         #[unsafe(method(identifiersOfEntriesWithClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifiersOfEntriesWithClass(

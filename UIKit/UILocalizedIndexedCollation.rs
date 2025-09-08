@@ -39,6 +39,9 @@ impl UILocalizedIndexedCollation {
             index_title_index: NSInteger,
         ) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(sectionForObject:collationStringSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionForObject_collationStringSelector(
@@ -47,6 +50,9 @@ impl UILocalizedIndexedCollation {
             selector: Sel,
         ) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(sortedArrayFromArray:collationStringSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayFromArray_collationStringSelector(

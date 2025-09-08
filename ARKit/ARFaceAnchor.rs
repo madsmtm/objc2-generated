@@ -393,6 +393,10 @@ impl ARFaceAnchor {
         /// The face geometry updated based on the computed blend shapes.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Retained<ARFaceGeometry>;
@@ -403,6 +407,10 @@ impl ARFaceAnchor {
         /// Blend shapes coefficients define the amount of displacement of a neutral shape at a specific location on the face.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(blendShapes))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendShapes(&self) -> Retained<NSDictionary<ARBlendShapeLocation, NSNumber>>;

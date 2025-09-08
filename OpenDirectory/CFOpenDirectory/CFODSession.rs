@@ -53,6 +53,12 @@ impl ODSessionRef {
     ///
     /// Returns: a valid ODSessionRef object or NULL if it cannot be created. Pass reference to CFErrorRef to
     /// get error details
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `options` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODSessionCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -83,6 +89,10 @@ impl ODSessionRef {
     /// Parameter `error`: an optional CFErrorRef reference for error details
     ///
     /// Returns: a valid CFArrayRef of node names that can be opened on the session reference
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODSessionCopyNodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

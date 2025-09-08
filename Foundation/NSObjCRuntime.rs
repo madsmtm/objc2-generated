@@ -187,6 +187,9 @@ pub type NSRunLoopMode = NSString;
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// # Safety
+    ///
+    /// `a_selector` must be a valid selector.
     #[doc(alias = "NSStringFromSelector")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -227,6 +230,9 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// # Safety
+    ///
+    /// `proto` possibly has further requirements.
     #[doc(alias = "NSStringFromProtocol")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -252,6 +258,11 @@ pub unsafe extern "C-unwind" fn NSProtocolFromString(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// # Safety
+///
+/// - `type_ptr` must be a valid pointer.
+/// - `sizep` must be a valid pointer or null.
+/// - `alignp` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSGetSizeAndAlignment(
     type_ptr: NonNull<c_char>,

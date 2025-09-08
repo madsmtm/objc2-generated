@@ -32,6 +32,10 @@ impl UIScreenMode {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(pixelAspectRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelAspectRatio(&self) -> CGFloat;

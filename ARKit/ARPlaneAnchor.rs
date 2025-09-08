@@ -155,6 +155,10 @@ impl ARPlaneExtent {
         /// The rotation angle in radians of the extents around the y-axis in the anchor’s coordinate space.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rotationOnYAxis))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotationOnYAxis(&self) -> c_float;
@@ -162,6 +166,10 @@ impl ARPlaneExtent {
         /// The width of the plane. Corresponds to the length of the plane along the x-axis prior to applying .rotationOnYAxis.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> c_float;
@@ -169,6 +177,10 @@ impl ARPlaneExtent {
         /// The height the plane. Corresponds to the length of the plane along the z-axis prior to applying .rotationOnYAxis.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> c_float;
@@ -249,6 +261,10 @@ impl ARPlaneAnchor {
         /// The alignment of the plane.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> ARPlaneAnchorAlignment;
@@ -256,6 +272,10 @@ impl ARPlaneAnchor {
         /// The extent of the plane in the anchor’s coordinate space.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(planeExtent))]
         #[unsafe(method_family = none)]
         pub unsafe fn planeExtent(&self) -> Retained<ARPlaneExtent>;
@@ -264,6 +284,10 @@ impl ARPlaneAnchor {
         /// Geometry of the plane in the anchor's coordinate space.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Retained<ARPlaneGeometry>;
@@ -271,6 +295,10 @@ impl ARPlaneAnchor {
         /// Classification status of the plane.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(classificationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn classificationStatus(&self) -> ARPlaneClassificationStatus;
@@ -278,6 +306,10 @@ impl ARPlaneAnchor {
         /// Classification of the plane.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(classification))]
         #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> ARPlaneClassification;

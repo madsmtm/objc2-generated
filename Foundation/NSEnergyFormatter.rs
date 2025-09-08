@@ -116,6 +116,9 @@ impl NSEnergyFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `unitp` must be a valid pointer or null.
         #[unsafe(method(unitStringFromJoules:usedUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromJoules_usedUnit(

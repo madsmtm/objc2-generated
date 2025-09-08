@@ -99,6 +99,9 @@ impl NSManagedObjectModel {
         );
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
+        /// # Safety
+        ///
+        /// `fetch_request_template` generic should be of the correct type.
         #[unsafe(method(setFetchRequestTemplate:forName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRequestTemplate_forName(
@@ -116,6 +119,9 @@ impl NSManagedObjectModel {
         ) -> Option<Retained<NSFetchRequest>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
+        /// # Safety
+        ///
+        /// `variables` generic should be of the correct type.
         #[unsafe(method(fetchRequestFromTemplateWithName:substitutionVariables:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequestFromTemplateWithName_substitutionVariables(
@@ -138,6 +144,9 @@ impl NSManagedObjectModel {
             localization_dictionary: Option<&NSDictionary<NSString, NSString>>,
         );
 
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(mergedModelFromBundles:forStoreMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mergedModelFromBundles_forStoreMetadata(
@@ -145,6 +154,9 @@ impl NSManagedObjectModel {
             metadata: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Retained<NSManagedObjectModel>>;
 
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(modelByMergingModels:forStoreMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn modelByMergingModels_forStoreMetadata(
@@ -166,10 +178,17 @@ impl NSManagedObjectModel {
         /// Setter for [`versionIdentifiers`][Self::versionIdentifiers].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `version_identifiers` generic should be of the correct type.
         #[unsafe(method(setVersionIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersionIdentifiers(&self, version_identifiers: &NSSet);
 
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(isConfiguration:compatibleWithStoreMetadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isConfiguration_compatibleWithStoreMetadata(

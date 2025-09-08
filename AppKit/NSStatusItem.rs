@@ -138,6 +138,10 @@ impl NSStatusItem {
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated = "Use the receiver's button.action instead"]
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
@@ -149,6 +153,10 @@ impl NSStatusItem {
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
+        ///
+        /// # Safety
+        ///
+        /// `double_action` must be a valid selector.
         #[deprecated = "Use the receiver's button.doubleAction instead"]
         #[unsafe(method(setDoubleAction:))]
         #[unsafe(method_family = none)]
@@ -162,6 +170,10 @@ impl NSStatusItem {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[deprecated = "Use the receiver's button.target instead"]
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]

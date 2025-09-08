@@ -332,6 +332,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepickercelldelegate?language=objc)
     pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
+        /// # Safety
+        ///
+        /// `proposed_time_interval` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(datePickerCell:validateProposedDateValue:timeInterval:))]
         #[unsafe(method_family = none)]

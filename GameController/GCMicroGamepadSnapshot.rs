@@ -141,6 +141,10 @@ impl GCMicroGamepadSnapshotData {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    ///
+    /// # Safety
+    ///
+    /// `snapshot_data` must be a valid pointer or null.
     #[doc(alias = "GCMicroGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[inline]
@@ -163,6 +167,10 @@ impl GCMicroGamepadSnapshotData {
 ///
 ///
 /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCGamepadSnapshot.snapshotData
+///
+/// # Safety
+///
+/// `snapshot_data` must be a valid pointer or null.
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapshotData(
@@ -212,6 +220,10 @@ impl GCMicroGamepadSnapShotDataV100 {
     ///
     ///
     /// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
+    ///
+    /// # Safety
+    ///
+    /// `snapshot_data` must be a valid pointer or null.
     #[doc(alias = "GCMicroGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[inline]
@@ -234,6 +246,10 @@ impl GCMicroGamepadSnapShotDataV100 {
 ///
 ///
 /// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCGamepadSnapshot.snapshotData
+///
+/// # Safety
+///
+/// `snapshot_data` must be a valid pointer or null.
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapShotDataV100(

@@ -7,11 +7,20 @@ use crate::*;
 
 extern "C-unwind" {
     /// Print the internal state of an object to os_log.
+    ///
+    /// # Safety
+    ///
+    /// `in_object` must be a valid pointer.
     pub fn CAShow(in_object: NonNull<c_void>);
 }
 
 extern "C-unwind" {
     /// Print the internal state of an object to the supplied FILE*.
+    ///
+    /// # Safety
+    ///
+    /// - `in_object` must be a valid pointer.
+    /// - `in_file` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn CAShowFile(in_object: NonNull<c_void>, in_file: NonNull<libc::FILE>);
 }

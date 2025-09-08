@@ -54,6 +54,10 @@ impl AVCaptureStillImageOutput {
         /// Setter for [`outputSettings`][Self::outputSettings].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
         #[unsafe(method(setOutputSettings:))]
         #[unsafe(method_family = none)]

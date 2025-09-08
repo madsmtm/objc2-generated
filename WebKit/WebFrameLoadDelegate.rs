@@ -30,6 +30,11 @@ extern_protocol!(
         ///
         /// This method is called after the provisional data source of a frame
         /// has started to load.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didStartProvisionalLoadForFrame:))]
@@ -47,6 +52,11 @@ extern_protocol!(
         /// Parameter `sender`: The WebView sending the message
         ///
         /// Parameter `frame`: The frame for which the redirect occurred
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didReceiveServerRedirectForProvisionalLoadForFrame:))]
@@ -69,6 +79,12 @@ extern_protocol!(
         ///
         /// This method is called after the provisional data source has failed to load.
         /// The frame will continue to display the contents of the committed data source if there is one.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `error` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didFailProvisionalLoadWithError:forFrame:))]
@@ -95,6 +111,11 @@ extern_protocol!(
         /// in the case of multipart/x-mixed-replace, also known as "server push". In this case,
         /// a single location change leads to multiple documents that are loaded in sequence. When
         /// this happens, a new commit will be sent for each document.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didCommitLoadForFrame:))]
@@ -116,6 +137,12 @@ extern_protocol!(
         /// Parameter `frame`: The frame for which the title has been received
         ///
         /// The title may update during loading; clients should be prepared for this.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `title` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didReceiveTitle:forFrame:))]
@@ -136,6 +163,12 @@ extern_protocol!(
         /// Parameter `image`: The icon image. Also known as a "favicon".
         ///
         /// Parameter `frame`: The frame for which a page icon has been received
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `image` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didReceiveIcon:forFrame:))]
@@ -158,6 +191,11 @@ extern_protocol!(
         /// This method is called after the committed data source of a frame has successfully loaded
         /// and will only be called when all subresources such as images and stylesheets are done loading.
         /// Plug-In content and JavaScript-requested loads may occur after this method is called.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didFinishLoadForFrame:))]
@@ -179,6 +217,12 @@ extern_protocol!(
         /// Parameter `frame`: The frame that failed to load
         ///
         /// This method is called after a data source has committed but failed to completely load.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `error` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didFailLoadWithError:forFrame:))]
@@ -199,6 +243,11 @@ extern_protocol!(
         /// Parameter `frame`: The frame that scrolled
         ///
         /// This method is called when anchors within a page have been clicked.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didChangeLocationWithinPageForFrame:))]
@@ -225,6 +274,13 @@ extern_protocol!(
         ///
         /// This method can be used to continue progress feedback while a client-side
         /// redirect is pending.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `url` might not allow `None`.
+        /// - `date` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:willPerformClientRedirectToURL:delay:fireDate:forFrame:))]
@@ -247,6 +303,11 @@ extern_protocol!(
         /// Parameter `frame`: The frame for which the pending redirect was cancelled
         ///
         /// A client-side redirect can be cancelled if a frame changes location before the timeout.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didCancelClientRedirectForFrame:))]
@@ -267,6 +328,11 @@ extern_protocol!(
         ///
         /// This method is called right before WebKit is done with the frame
         /// and the objects that it contains.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:willCloseFrame:))]
@@ -294,6 +360,12 @@ extern_protocol!(
         /// and webView:windowScriptObjectAvailable:, only webView:didClearWindowObject:forFrame:
         /// will be invoked. This enables a delegate to implement both methods for backwards
         /// compatibility with older versions of WebKit.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `window_object` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didClearWindowObject:forFrame:))]
@@ -320,6 +392,11 @@ extern_protocol!(
         ///
         /// This method is deprecated. Consider using webView:didClearWindowObject:forFrame:
         /// instead.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `window_script_object` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:windowScriptObjectAvailable:))]
@@ -349,6 +426,12 @@ extern_protocol!(
         /// webView:didClearWindowObject:forFrame: or webView:windowScriptObjectAvailable:, only
         /// webView:didCreateJavaScriptContext:forFrame will be invoked. This enables a delegate to implement
         /// multiple versions to maintain backwards compatibility with older versions of WebKit.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `context` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:didCreateJavaScriptContext:forFrame:))]

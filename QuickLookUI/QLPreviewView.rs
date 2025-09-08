@@ -143,6 +143,10 @@ impl QLPreviewView {
 
         #[cfg(feature = "QLPreviewItem")]
         /// Setter for [`previewItem`][Self::previewItem].
+        ///
+        /// # Safety
+        ///
+        /// `preview_item` might not allow `None`.
         #[unsafe(method(setPreviewItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewItem(
@@ -176,6 +180,11 @@ impl QLPreviewView {
         pub unsafe fn displayState(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`displayState`][Self::displayState].
+        ///
+        /// # Safety
+        ///
+        /// - `display_state` should be of the correct type.
+        /// - `display_state` might not allow `None`.
         #[unsafe(method(setDisplayState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayState(&self, display_state: Option<&AnyObject>);

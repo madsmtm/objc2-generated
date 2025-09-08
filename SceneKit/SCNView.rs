@@ -186,6 +186,10 @@ impl SCNView {
         /// Parameter `frame`: The frame rectangle for the created view object.
         ///
         /// Parameter `options`: An optional dictionary. See "View initialization options" above.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithFrame:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_options(
@@ -277,6 +281,10 @@ impl SCNView {
         /// Parameter `sender`: The object (such as a button or menu item) sending the message to play the scene.
         ///
         /// This method does not do anything if the scene is already playing.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(play:))]
         #[unsafe(method_family = none)]
         pub unsafe fn play(&self, sender: Option<&AnyObject>);
@@ -286,6 +294,10 @@ impl SCNView {
         /// Parameter `sender`: The object (such as a button or menu item) sending the message to pause the scene.
         ///
         /// This method does not do anything if the scene is already paused.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(pause:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self, sender: Option<&AnyObject>);
@@ -293,6 +305,10 @@ impl SCNView {
         /// This action method stops the scene playback and resets the current time to the start time of the scene.
         ///
         /// Parameter `sender`: The object (such as a button or menu item) sending the message to stop playing the scene.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(stop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stop(&self, sender: Option<&AnyObject>);

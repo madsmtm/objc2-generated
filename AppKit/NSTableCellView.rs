@@ -75,6 +75,10 @@ impl NSTableCellView {
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
+        ///
+        /// # Safety
+        ///
+        /// `object_value` should be of the correct type.
         #[unsafe(method(setObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
@@ -89,6 +93,10 @@ impl NSTableCellView {
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
         /// Setter for [`textField`][Self::textField].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setTextField:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
@@ -103,6 +111,10 @@ impl NSTableCellView {
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
         /// Setter for [`imageView`][Self::imageView].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setImageView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);

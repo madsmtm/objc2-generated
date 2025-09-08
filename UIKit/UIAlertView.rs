@@ -144,6 +144,10 @@ impl UIAlertView {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

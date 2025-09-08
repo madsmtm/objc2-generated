@@ -93,6 +93,10 @@ impl AVMovie {
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithURL_options(
@@ -111,6 +115,10 @@ impl AVMovie {
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
@@ -129,6 +137,10 @@ impl AVMovie {
         ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithData_options(
@@ -147,6 +159,10 @@ impl AVMovie {
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
@@ -348,6 +364,10 @@ impl AVMovie {
         /// Parameter `trackID`: The trackID of the requested AVMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
@@ -389,6 +409,10 @@ impl AVMovie {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
@@ -430,6 +454,10 @@ impl AVMovie {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
@@ -499,6 +527,10 @@ impl AVMutableMovie {
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithURL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithURL_options_error(
@@ -519,6 +551,10 @@ impl AVMutableMovie {
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options_error(
@@ -540,6 +576,10 @@ impl AVMutableMovie {
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithData:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithData_options_error(
@@ -560,6 +600,10 @@ impl AVMutableMovie {
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options_error(
@@ -580,6 +624,10 @@ impl AVMutableMovie {
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithSettingsFromMovie:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithSettingsFromMovie_options_error(
@@ -599,6 +647,10 @@ impl AVMutableMovie {
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithSettingsFromMovie:options:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSettingsFromMovie_options_error(
@@ -681,6 +733,10 @@ impl AVMutableMovie {
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithURL_options(
@@ -699,6 +755,10 @@ impl AVMutableMovie {
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
@@ -717,6 +777,10 @@ impl AVMutableMovie {
         ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithData_options(
@@ -735,6 +799,10 @@ impl AVMutableMovie {
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
@@ -928,6 +996,10 @@ impl AVMutableMovie {
         /// The trackID of the newly added track is a property of the returned instance of AVMutableMovieTrack.
         /// This method throws an exception if media type is not equal to the track's media type, or if any option is invalid.
         /// Note that metadata will not be automatically copied.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(addMutableTrackWithMediaType:copySettingsFromTrack:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMutableTrackWithMediaType_copySettingsFromTrack_options(
@@ -948,6 +1020,10 @@ impl AVMutableMovie {
         ///
         /// This method creates one or more empty tracks in the target movie and configures those tracks with settings (such as track userdata and metadata, width, height, and preferred volume) copied from the source tracks in the existingTracks array. Also, properties involving pairs of tracks (such as track references) are copied from the source tracks to the target tracks.
         /// This method throws an exception if any option is invalid.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(addMutableTracksCopyingSettingsFromTracks:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMutableTracksCopyingSettingsFromTracks_options(
@@ -1024,6 +1100,10 @@ impl AVMutableMovie {
         /// Parameter `trackID`: The trackID of the requested AVMutableMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
@@ -1064,6 +1144,10 @@ impl AVMutableMovie {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVMutableMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
@@ -1106,6 +1190,10 @@ impl AVMutableMovie {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVMutableMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
@@ -1154,6 +1242,10 @@ impl AVMediaDataStorage {
         /// Parameter `options`: An NSDictionary object that contains keys for specifying options for the initialization of the AVMediaDataStorage object. Currently no keys are defined.
         ///
         /// Returns: An AVMediaDataStorage object
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
@@ -1234,6 +1326,10 @@ impl AVFragmentedMovie {
         /// The value of this property is an array of tracks the movie contains; the tracks are of type AVFragmentedMovieTrack.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedMovieTrack>>;
@@ -1255,6 +1351,10 @@ impl AVFragmentedMovie {
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithURL_options(
@@ -1273,6 +1373,10 @@ impl AVFragmentedMovie {
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties
         /// to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
@@ -1291,6 +1395,10 @@ impl AVFragmentedMovie {
         ///
         /// You can use this method to operate on movie headers that are not stored in files; this might include movie headers on the pasteboard (which do not contain media data). In general you should avoid loading an entire movie file with its media data into an instance of NSData! By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil.
         /// If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(movieWithData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn movieWithData_options(
@@ -1309,6 +1417,10 @@ impl AVFragmentedMovie {
         /// You can use this method to operate on movie headers that are not stored in files. In general you should avoid loading an entire movie file with its media data into an instance of NSData!
         ///
         /// By default, the defaultMediaDataStorage property will be nil and each associated AVMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from an NSData object and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
@@ -1387,6 +1499,10 @@ impl AVFragmentedMovie {
         /// Parameter `trackID`: The trackID of the requested AVFragmentedMovieTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
@@ -1430,6 +1546,10 @@ impl AVFragmentedMovie {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVFragmentedMovieTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
@@ -1473,6 +1593,10 @@ impl AVFragmentedMovie {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVFragmentedMovieTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
@@ -1576,6 +1700,10 @@ impl AVFragmentedMovieMinder {
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
         ///
         /// Returns: A new instance of AVFragmentedAssetMinder.
+        ///
+        /// # Safety
+        ///
+        /// `asset` must implement AVFragmentMinding.
         #[unsafe(method(fragmentedAssetMinderWithAsset:mindingInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentedAssetMinderWithAsset_mindingInterval(
@@ -1590,6 +1718,10 @@ impl AVFragmentedMovieMinder {
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
         ///
         /// Returns: A new instance of AVFragmentedAssetMinder.
+        ///
+        /// # Safety
+        ///
+        /// `asset` must implement AVFragmentMinding.
         #[unsafe(method(initWithAsset:mindingInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_mindingInterval(

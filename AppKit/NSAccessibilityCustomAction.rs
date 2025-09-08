@@ -29,6 +29,9 @@ impl NSAccessibilityCustomAction {
             handler: Option<&block2::DynBlock<dyn Fn() -> Bool>>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(initWithName:target:selector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_target_selector(
@@ -78,6 +81,10 @@ impl NSAccessibilityCustomAction {
         pub unsafe fn selector(&self) -> Option<Sel>;
 
         /// Setter for [`selector`][Self::selector].
+        ///
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(setSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelector(&self, selector: Option<Sel>);

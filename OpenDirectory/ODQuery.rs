@@ -18,6 +18,12 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerydelegate?language=objc)
     pub unsafe trait ODQueryDelegate: NSObjectProtocol {
+        /// # Safety
+        ///
+        /// - `in_query` might not allow `None`.
+        /// - `in_results` generic should be of the correct type.
+        /// - `in_results` might not allow `None`.
+        /// - `in_error` might not allow `None`.
         #[unsafe(method(query:foundResults:error:))]
         #[unsafe(method_family = none)]
         unsafe fn query_foundResults_error(
@@ -65,6 +71,17 @@ impl ODQuery {
         /// can either be NSString or NSData or an NSArray of either NSString or NSData.  Passing nil for
         /// returnAttributes is equivalent to passing kODAttributeTypeStandardOnly.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// - `in_node` might not allow `None`.
+        /// - `in_record_type_or_list` should be of the correct type.
+        /// - `in_record_type_or_list` might not allow `None`.
+        /// - `in_attribute` might not allow `None`.
+        /// - `in_query_value_or_list` should be of the correct type.
+        /// - `in_query_value_or_list` might not allow `None`.
+        /// - `in_return_attribute_or_list` should be of the correct type.
+        /// - `in_return_attribute_or_list` might not allow `None`.
         #[unsafe(method(queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
@@ -89,6 +106,17 @@ impl ODQuery {
         /// can either be NSString or NSData or an NSArray of either NSString or NSData.  Passing nil for
         /// returnAttributes is equivalent to passing kODAttributeTypeStandardOnly. outError is optional parameter,
         /// nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// - `in_node` might not allow `None`.
+        /// - `in_record_type_or_list` should be of the correct type.
+        /// - `in_record_type_or_list` might not allow `None`.
+        /// - `in_attribute` might not allow `None`.
+        /// - `in_query_value_or_list` should be of the correct type.
+        /// - `in_query_value_or_list` might not allow `None`.
+        /// - `in_return_attribute_or_list` should be of the correct type.
+        /// - `in_return_attribute_or_list` might not allow `None`.
         #[unsafe(method(initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
@@ -129,6 +157,10 @@ impl ODQuery {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ODQueryDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn ODQueryDelegate>>);
@@ -137,6 +169,11 @@ impl ODQuery {
         ///
         /// Adds the query object to the specified NSRunLoop to receive asynchronous results.  A delegate must be set
         /// in advance otherwise results may be lost due to the lack of a receiver.
+        ///
+        /// # Safety
+        ///
+        /// - `in_run_loop` might not allow `None`.
+        /// - `in_mode` might not allow `None`.
         #[unsafe(method(scheduleInRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleInRunLoop_forMode(
@@ -148,6 +185,11 @@ impl ODQuery {
         /// Removes the query object from the specified NSRunLoop
         ///
         /// Removes the query object from the specified NSRunLoop.
+        ///
+        /// # Safety
+        ///
+        /// - `in_run_loop` might not allow `None`.
+        /// - `in_mode` might not allow `None`.
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(
@@ -174,6 +216,10 @@ impl ODQuery {
         pub unsafe fn operationQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`operationQueue`][Self::operationQueue].
+        ///
+        /// # Safety
+        ///
+        /// `operation_queue` might not allow `None`.
         #[unsafe(method(setOperationQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);

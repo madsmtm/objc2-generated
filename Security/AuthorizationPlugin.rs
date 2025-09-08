@@ -341,6 +341,12 @@ extern "C-unwind" {
     /// Parameter `outPlugin`: (output) On successful completion should contain a valid AuthorizationPluginRef.  This will be passed in to any subsequent calls the engine makes to  outPluginInterface->MechanismCreate and outPluginInterface->PluginDestroy.
     ///
     /// Parameter `outPluginInterface`: (output) On successful completion should contain a pointer to a AuthorizationPluginInterface that will stay valid until outPluginInterface->PluginDestroy is called.
+    ///
+    /// # Safety
+    ///
+    /// - `callbacks` must be a valid pointer.
+    /// - `out_plugin` must be a valid pointer.
+    /// - `out_plugin_interface` must be a valid pointer.
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationPluginCreate(
         callbacks: NonNull<AuthorizationCallbacks>,

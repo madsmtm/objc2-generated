@@ -49,6 +49,10 @@ impl AVCaptureFileOutput {
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureFileOutputDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -558,6 +562,10 @@ impl AVCaptureMovieFileOutput {
         /// On iOS, your outputSettings dictionary may only contain keys listed in - supportedOutputSettingsKeysForConnection:. If you specify any other key, an NSInvalidArgumentException will be thrown. Further restrictions may be imposed on the AVVideoCodecTypeKey. Its value should be present in the -availableVideoCodecTypes array. If AVVideoCompressionPropertiesKey is specified, you must also specify a valid value for AVVideoCodecKey. On iOS versions prior to 12.0, the only settable key for video connections is AVVideoCodecTypeKey. On iOS 12.0 and later, video connections gain support for AVVideoCompressionPropertiesKey.
         ///
         /// On iOS, -outputSettingsForConnection: always provides a fully populated dictionary. If you call -outputSettingsForConnection: with the intent of overriding a few of the values, you must take care to exclude keys that are not supported before calling -setOutputSettings:forConnection:. When providing an AVVideoCompressionPropertiesKey sub dictionary, you may specify a sparse dictionary. AVCaptureMovieFileOutput will always fill in missing keys with default values for the current AVCaptureSession configuration.
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(setOutputSettings:forConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputSettings_forConnection(
@@ -778,6 +786,10 @@ impl AVCaptureAudioFileOutput {
         /// Setter for [`audioSettings`][Self::audioSettings].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `audio_settings` generic should be of the correct type.
         #[unsafe(method(setAudioSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAudioSettings(

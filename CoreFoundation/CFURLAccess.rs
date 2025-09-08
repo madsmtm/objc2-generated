@@ -8,6 +8,13 @@ use crate::*;
 
 #[cfg(feature = "CFURL")]
 impl CFURL {
+    /// # Safety
+    ///
+    /// - `resource_data` must be a valid pointer.
+    /// - `properties` must be a valid pointer.
+    /// - `desired_properties` generic must be of the correct type.
+    /// - `desired_properties` might not allow `None`.
+    /// - `error_code` must be a valid pointer.
     #[doc(alias = "CFURLCreateDataAndPropertiesFromResource")]
     #[cfg(all(
         feature = "CFArray",
@@ -48,6 +55,11 @@ impl CFURL {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `properties_to_write` generics must be of the correct type.
+    /// - `properties_to_write` might not allow `None`.
+    /// - `error_code` must be a valid pointer.
     #[doc(alias = "CFURLWriteDataAndPropertiesToResource")]
     #[cfg(all(feature = "CFData", feature = "CFDictionary", feature = "CFURL"))]
     #[deprecated = "For resource data, use the CFWriteStream API. For file resource properties, use CFURLSetResourcePropertiesForKeys."]
@@ -77,6 +89,9 @@ impl CFURL {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error_code` must be a valid pointer.
     #[doc(alias = "CFURLDestroyResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "Use CFURLGetFileSystemRepresentation and removefile(3) instead."]
@@ -89,6 +104,9 @@ impl CFURL {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error_code` must be a valid pointer.
     #[doc(alias = "CFURLCreatePropertyFromResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]

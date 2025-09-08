@@ -291,6 +291,10 @@ impl SHMediaItem {
         /// `SHMediaItemProperty`and their values
         ///
         /// You may add your own keys here to return custom data, custom data should conform to NSCoding
+        ///
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(mediaItemWithProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaItemWithProperties(
@@ -303,6 +307,10 @@ impl SHMediaItem {
         ///
         /// The completionHandler will contain a
         /// `SHMediaItem`if the ShazamID is valid, otherwise nil and an error
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchMediaItemWithShazamID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchMediaItemWithShazamID_completionHandler(

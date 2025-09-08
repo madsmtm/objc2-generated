@@ -375,6 +375,9 @@ impl NSCollectionViewLayout {
             context: &NSCollectionViewLayoutInvalidationContext,
         );
 
+        /// # Safety
+        ///
+        /// `view_class` probably has further requirements.
         #[unsafe(method(registerClass:forDecorationViewOfKind:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forDecorationViewOfKind(

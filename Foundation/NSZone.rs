@@ -33,14 +33,23 @@ pub unsafe extern "C-unwind" fn NSCreateZone(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `zone` must be a valid pointer.
     pub fn NSRecycleZone(zone: NonNull<NSZone>);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `zone` must be a valid pointer or null.
     #[cfg(feature = "NSString")]
     pub fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
 }
 
+/// # Safety
+///
+/// `zone` must be a valid pointer or null.
 #[cfg(feature = "NSString")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSZoneName(zone: *mut NSZone) -> Retained<NSString> {
@@ -53,9 +62,15 @@ pub unsafe extern "C-unwind" fn NSZoneName(zone: *mut NSZone) -> Retained<NSStri
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ptr` must be a valid pointer.
     pub fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
 }
 
+/// # Safety
+///
+/// `zone` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSZoneMalloc(
     zone: *mut NSZone,
@@ -68,6 +83,9 @@ pub unsafe extern "C-unwind" fn NSZoneMalloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// `zone` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSZoneCalloc(
     zone: *mut NSZone,
@@ -85,6 +103,10 @@ pub unsafe extern "C-unwind" fn NSZoneCalloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// - `zone` must be a valid pointer or null.
+/// - `ptr` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSZoneRealloc(
     zone: *mut NSZone,
@@ -103,6 +125,10 @@ pub unsafe extern "C-unwind" fn NSZoneRealloc(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `zone` must be a valid pointer or null.
+    /// - `ptr` must be a valid pointer.
     pub fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
 }
 
@@ -123,6 +149,9 @@ pub unsafe extern "C-unwind" fn NSAllocateCollectable(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// `ptr` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSReallocateCollectable(
     ptr: *mut c_void,
@@ -166,10 +195,17 @@ pub unsafe extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonN
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ptr` must be a valid pointer.
     pub fn NSDeallocateMemoryPages(ptr: NonNull<c_void>, bytes: NSUInteger);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `source` must be a valid pointer.
+    /// - `dest` must be a valid pointer.
     pub fn NSCopyMemoryPages(source: NonNull<c_void>, dest: NonNull<c_void>, bytes: NSUInteger);
 }
 

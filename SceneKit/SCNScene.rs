@@ -123,6 +123,10 @@ impl SCNScene {
         /// Parameter `attribute`: An object that specifies the value of the attribute to be written.
         ///
         /// Parameter `key`: An NSString object that specifies the attribute to be written
+        ///
+        /// # Safety
+        ///
+        /// `attribute` should be of the correct type.
         #[unsafe(method(setAttribute:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttribute_forKey(&self, attribute: Option<&AnyObject>, key: &NSString);
@@ -168,6 +172,10 @@ impl SCNScene {
         /// Parameter `options`: An options dictionary. The relevant keys are documented in the SCNSceneSource class.
         ///
         /// This method initializes with no options and does not check for errors. The resulting object is not cached.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(sceneNamed:inDirectory:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneNamed_inDirectory_options(
@@ -187,6 +195,10 @@ impl SCNScene {
         ///
         /// This method is here for convenience. It is equivalent to initializing a SCNSceneSource with the specified
         /// url and options, and asking it for its scene with the same options.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(sceneWithURL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithURL_options_error(
@@ -211,6 +223,10 @@ impl SCNScene {
         /// macOS 10.10 and lower only supports exporting to .dae files.
         /// Starting macOS 10.11 exporting supports .dae, .scn as well as file all formats supported by Model I/O.
         /// Starting iOS 10 exporting supports .scn as well as all file formats supported by Model I/O.
+        ///
+        /// # Safety
+        ///
+        /// `progress_handler` must be a valid pointer or null.
         #[unsafe(method(writeToURL:options:delegate:progressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_options_delegate_progressHandler(
@@ -267,6 +283,10 @@ impl SCNScene {
         pub unsafe fn fogColor(&self) -> Retained<AnyObject>;
 
         /// Setter for [`fogColor`][Self::fogColor].
+        ///
+        /// # Safety
+        ///
+        /// `fog_color` should be of the correct type.
         #[unsafe(method(setFogColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFogColor(&self, fog_color: &AnyObject);

@@ -49,6 +49,10 @@ impl MDLMeshBufferMap {
         #[cfg(feature = "block2")]
         /// Called by implementor of MDLMeshBuffer protocol to create the map
         /// and arrange for unmapping on deallocation.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(initWithBytes:deallocator:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_deallocator(

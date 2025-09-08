@@ -46,6 +46,9 @@ extern_protocol!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `rect` must be a valid pointer.
         #[optional]
         #[unsafe(method(popoverPresentationController:willRepositionPopoverToRect:inView:))]
         #[unsafe(method_family = none)]
@@ -234,6 +237,10 @@ impl UIPopoverPresentationController {
 
         #[cfg(feature = "UIPopoverBackgroundView")]
         /// Setter for [`popoverBackgroundViewClass`][Self::popoverBackgroundViewClass].
+        ///
+        /// # Safety
+        ///
+        /// `popover_background_view_class` must implement UIPopoverBackgroundViewMethods.
         #[unsafe(method(setPopoverBackgroundViewClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPopoverBackgroundViewClass(

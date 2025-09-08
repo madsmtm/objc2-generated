@@ -55,6 +55,10 @@ impl HKAttachmentStore {
         ///
         /// Parameter `completion`: Called with an HKAttachment instance once the file was successfully saved and attached,
         /// otherwise called with an error.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(addAttachmentToObject:name:contentType:URL:metadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAttachmentToObject_name_contentType_URL_metadata_completion(

@@ -182,6 +182,10 @@ impl DOMDocument {
 
         #[cfg(all(feature = "DOMElement", feature = "DOMHTMLElement"))]
         /// Setter for [`body`][Self::body].
+        ///
+        /// # Safety
+        ///
+        /// `body` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setBody:))]
         #[unsafe(method_family = none)]
@@ -265,6 +269,9 @@ impl DOMDocument {
         pub unsafe fn activeElement(&self) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMElement")]
+        /// # Safety
+        ///
+        /// `tag_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createElement:))]
         #[unsafe(method_family = none)]
@@ -280,12 +287,18 @@ impl DOMDocument {
         pub unsafe fn createDocumentFragment(&self) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMText"))]
+        /// # Safety
+        ///
+        /// `data` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createTextNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createTextNode(&self, data: Option<&NSString>) -> Option<Retained<DOMText>>;
 
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMComment"))]
+        /// # Safety
+        ///
+        /// `data` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createComment:))]
         #[unsafe(method_family = none)]
@@ -297,6 +310,9 @@ impl DOMDocument {
             feature = "DOMCharacterData",
             feature = "DOMText"
         ))]
+        /// # Safety
+        ///
+        /// `data` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createCDATASection:))]
         #[unsafe(method_family = none)]
@@ -306,6 +322,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMCDATASection>>;
 
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMProcessingInstruction"))]
+        /// # Safety
+        ///
+        /// - `target` might not allow `None`.
+        /// - `data` might not allow `None`.
         #[unsafe(method(createProcessingInstruction:data:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createProcessingInstruction_data(
@@ -315,12 +335,18 @@ impl DOMDocument {
         ) -> Option<Retained<DOMProcessingInstruction>>;
 
         #[cfg(feature = "DOMAttr")]
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createAttribute(&self, name: Option<&NSString>) -> Option<Retained<DOMAttr>>;
 
         #[cfg(feature = "DOMEntityReference")]
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createEntityReference:))]
         #[unsafe(method_family = none)]
@@ -330,6 +356,9 @@ impl DOMDocument {
         ) -> Option<Retained<DOMEntityReference>>;
 
         #[cfg(feature = "DOMNodeList")]
+        /// # Safety
+        ///
+        /// `tagname` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getElementsByTagName:))]
         #[unsafe(method_family = none)]
@@ -338,6 +367,9 @@ impl DOMDocument {
             tagname: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
 
+        /// # Safety
+        ///
+        /// `imported_node` might not allow `None`.
         #[unsafe(method(importNode:deep:))]
         #[unsafe(method_family = none)]
         pub unsafe fn importNode_deep(
@@ -347,6 +379,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMElement")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `qualified_name` might not allow `None`.
         #[unsafe(method(createElementNS:qualifiedName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createElementNS_qualifiedName(
@@ -356,6 +392,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMAttr")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `qualified_name` might not allow `None`.
         #[unsafe(method(createAttributeNS:qualifiedName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createAttributeNS_qualifiedName(
@@ -365,6 +405,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMAttr>>;
 
         #[cfg(feature = "DOMNodeList")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `local_name` might not allow `None`.
         #[unsafe(method(getElementsByTagNameNS:localName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getElementsByTagNameNS_localName(
@@ -373,11 +417,17 @@ impl DOMDocument {
             local_name: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
 
+        /// # Safety
+        ///
+        /// `source` might not allow `None`.
         #[unsafe(method(adoptNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn adoptNode(&self, source: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMEvent")]
+        /// # Safety
+        ///
+        /// `event_type` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createEvent:))]
         #[unsafe(method_family = none)]
@@ -393,6 +443,10 @@ impl DOMDocument {
         pub unsafe fn createRange(&self) -> Option<Retained<DOMRange>>;
 
         #[cfg(all(feature = "DOMNodeFilter", feature = "DOMNodeIterator"))]
+        /// # Safety
+        ///
+        /// - `root` might not allow `None`.
+        /// - `filter` might not allow `None`.
         #[unsafe(method(createNodeIterator:whatToShow:filter:expandEntityReferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createNodeIterator_whatToShow_filter_expandEntityReferences(
@@ -404,6 +458,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMNodeIterator>>;
 
         #[cfg(all(feature = "DOMNodeFilter", feature = "DOMTreeWalker"))]
+        /// # Safety
+        ///
+        /// - `root` might not allow `None`.
+        /// - `filter` might not allow `None`.
         #[unsafe(method(createTreeWalker:whatToShow:filter:expandEntityReferences:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createTreeWalker_whatToShow_filter_expandEntityReferences(
@@ -415,6 +473,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMTreeWalker>>;
 
         #[cfg(all(feature = "DOMCSSStyleDeclaration", feature = "DOMElement"))]
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `pseudo_element` might not allow `None`.
         #[unsafe(method(getOverrideStyle:pseudoElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getOverrideStyle_pseudoElement(
@@ -424,6 +486,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[cfg(all(feature = "DOMXPathExpression", feature = "DOMXPathNSResolver"))]
+        /// # Safety
+        ///
+        /// - `expression` might not allow `None`.
+        /// - `resolver` might not allow `None`.
         #[unsafe(method(createExpression:resolver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createExpression_resolver(
@@ -433,6 +499,9 @@ impl DOMDocument {
         ) -> Option<Retained<DOMXPathExpression>>;
 
         #[cfg(feature = "DOMXPathNSResolver")]
+        /// # Safety
+        ///
+        /// `node_resolver` might not allow `None`.
         #[unsafe(method(createNSResolver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createNSResolver(
@@ -441,6 +510,12 @@ impl DOMDocument {
         ) -> Option<Retained<ProtocolObject<dyn DOMXPathNSResolver>>>;
 
         #[cfg(all(feature = "DOMXPathNSResolver", feature = "DOMXPathResult"))]
+        /// # Safety
+        ///
+        /// - `expression` might not allow `None`.
+        /// - `context_node` might not allow `None`.
+        /// - `resolver` might not allow `None`.
+        /// - `in_result` might not allow `None`.
         #[unsafe(method(evaluate:contextNode:resolver:type:inResult:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluate_contextNode_resolver_type_inResult(
@@ -452,6 +527,10 @@ impl DOMDocument {
             in_result: Option<&DOMXPathResult>,
         ) -> Option<Retained<DOMXPathResult>>;
 
+        /// # Safety
+        ///
+        /// - `command` might not allow `None`.
+        /// - `value` might not allow `None`.
         #[unsafe(method(execCommand:userInterface:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn execCommand_userInterface_value(
@@ -461,6 +540,9 @@ impl DOMDocument {
             value: Option<&NSString>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `command` might not allow `None`.
         #[unsafe(method(execCommand:userInterface:))]
         #[unsafe(method_family = none)]
         pub unsafe fn execCommand_userInterface(
@@ -469,26 +551,44 @@ impl DOMDocument {
             user_interface: bool,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `command` might not allow `None`.
         #[unsafe(method(execCommand:))]
         #[unsafe(method_family = none)]
         pub unsafe fn execCommand(&self, command: Option<&NSString>) -> bool;
 
+        /// # Safety
+        ///
+        /// `command` might not allow `None`.
         #[unsafe(method(queryCommandEnabled:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryCommandEnabled(&self, command: Option<&NSString>) -> bool;
 
+        /// # Safety
+        ///
+        /// `command` might not allow `None`.
         #[unsafe(method(queryCommandIndeterm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryCommandIndeterm(&self, command: Option<&NSString>) -> bool;
 
+        /// # Safety
+        ///
+        /// `command` might not allow `None`.
         #[unsafe(method(queryCommandState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryCommandState(&self, command: Option<&NSString>) -> bool;
 
+        /// # Safety
+        ///
+        /// `command` might not allow `None`.
         #[unsafe(method(queryCommandSupported:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryCommandSupported(&self, command: Option<&NSString>) -> bool;
 
+        /// # Safety
+        ///
+        /// `command` might not allow `None`.
         #[unsafe(method(queryCommandValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryCommandValue(
@@ -497,6 +597,9 @@ impl DOMDocument {
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "DOMNodeList")]
+        /// # Safety
+        ///
+        /// `element_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getElementsByName:))]
         #[unsafe(method_family = none)]
@@ -517,6 +620,10 @@ impl DOMDocument {
         pub unsafe fn createCSSStyleDeclaration(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[cfg(all(feature = "DOMCSSStyleDeclaration", feature = "DOMElement"))]
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `pseudo_element` might not allow `None`.
         #[unsafe(method(getComputedStyle:pseudoElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getComputedStyle_pseudoElement(
@@ -526,6 +633,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[cfg(all(feature = "DOMCSSRuleList", feature = "DOMElement"))]
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `pseudo_element` might not allow `None`.
         #[unsafe(method(getMatchedCSSRules:pseudoElement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMatchedCSSRules_pseudoElement(
@@ -535,6 +646,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMCSSRuleList>>;
 
         #[cfg(all(feature = "DOMCSSRuleList", feature = "DOMElement"))]
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `pseudo_element` might not allow `None`.
         #[unsafe(method(getMatchedCSSRules:pseudoElement:authorOnly:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getMatchedCSSRules_pseudoElement_authorOnly(
@@ -545,6 +660,9 @@ impl DOMDocument {
         ) -> Option<Retained<DOMCSSRuleList>>;
 
         #[cfg(feature = "DOMNodeList")]
+        /// # Safety
+        ///
+        /// `class_names` might not allow `None`.
         #[unsafe(method(getElementsByClassName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getElementsByClassName(
@@ -561,6 +679,9 @@ impl DOMDocument {
         pub unsafe fn webkitCancelFullScreen(&self);
 
         #[cfg(feature = "DOMElement")]
+        /// # Safety
+        ///
+        /// `element_id` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getElementById:))]
         #[unsafe(method_family = none)]
@@ -570,6 +691,9 @@ impl DOMDocument {
         ) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMElement")]
+        /// # Safety
+        ///
+        /// `selectors` might not allow `None`.
         #[unsafe(method(querySelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn querySelector(
@@ -578,6 +702,9 @@ impl DOMDocument {
         ) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMNodeList")]
+        /// # Safety
+        ///
+        /// `selectors` might not allow `None`.
         #[unsafe(method(querySelectorAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn querySelectorAll(
@@ -626,6 +753,10 @@ impl DOMDocument {
 impl DOMDocument {
     extern_methods!(
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMProcessingInstruction"))]
+        /// # Safety
+        ///
+        /// - `target` might not allow `None`.
+        /// - `data` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createProcessingInstruction::))]
         #[unsafe(method_family = none)]
@@ -635,6 +766,9 @@ impl DOMDocument {
             data: Option<&NSString>,
         ) -> Option<Retained<DOMProcessingInstruction>>;
 
+        /// # Safety
+        ///
+        /// `imported_node` might not allow `None`.
         #[deprecated]
         #[unsafe(method(importNode::))]
         #[unsafe(method_family = none)]
@@ -645,6 +779,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMElement")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `qualified_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createElementNS::))]
         #[unsafe(method_family = none)]
@@ -655,6 +793,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMAttr")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `qualified_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createAttributeNS::))]
         #[unsafe(method_family = none)]
@@ -665,6 +807,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMAttr>>;
 
         #[cfg(feature = "DOMNodeList")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `local_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getElementsByTagNameNS::))]
         #[unsafe(method_family = none)]
@@ -675,6 +821,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMNodeList>>;
 
         #[cfg(all(feature = "DOMNodeFilter", feature = "DOMNodeIterator"))]
+        /// # Safety
+        ///
+        /// - `root` might not allow `None`.
+        /// - `filter` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createNodeIterator::::))]
         #[unsafe(method_family = none)]
@@ -687,6 +837,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMNodeIterator>>;
 
         #[cfg(all(feature = "DOMNodeFilter", feature = "DOMTreeWalker"))]
+        /// # Safety
+        ///
+        /// - `root` might not allow `None`.
+        /// - `filter` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createTreeWalker::::))]
         #[unsafe(method_family = none)]
@@ -699,6 +853,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMTreeWalker>>;
 
         #[cfg(all(feature = "DOMCSSStyleDeclaration", feature = "DOMElement"))]
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `pseudo_element` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getOverrideStyle::))]
         #[unsafe(method_family = none)]
@@ -709,6 +867,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[cfg(all(feature = "DOMXPathExpression", feature = "DOMXPathNSResolver"))]
+        /// # Safety
+        ///
+        /// - `expression` might not allow `None`.
+        /// - `resolver` might not allow `None`.
         #[deprecated]
         #[unsafe(method(createExpression::))]
         #[unsafe(method_family = none)]
@@ -719,6 +881,12 @@ impl DOMDocument {
         ) -> Option<Retained<DOMXPathExpression>>;
 
         #[cfg(all(feature = "DOMXPathNSResolver", feature = "DOMXPathResult"))]
+        /// # Safety
+        ///
+        /// - `expression` might not allow `None`.
+        /// - `context_node` might not allow `None`.
+        /// - `resolver` might not allow `None`.
+        /// - `in_result` might not allow `None`.
         #[deprecated]
         #[unsafe(method(evaluate:::::))]
         #[unsafe(method_family = none)]
@@ -732,6 +900,10 @@ impl DOMDocument {
         ) -> Option<Retained<DOMXPathResult>>;
 
         #[cfg(all(feature = "DOMCSSStyleDeclaration", feature = "DOMElement"))]
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `pseudo_element` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getComputedStyle::))]
         #[unsafe(method_family = none)]

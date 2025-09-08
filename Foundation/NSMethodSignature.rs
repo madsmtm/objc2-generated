@@ -19,6 +19,9 @@ extern_conformance!(
 
 impl NSMethodSignature {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `types` must be a valid pointer.
         #[unsafe(method(signatureWithObjCTypes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn signatureWithObjCTypes(

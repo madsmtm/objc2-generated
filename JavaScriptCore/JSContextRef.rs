@@ -35,6 +35,10 @@ impl JSContext {
     /// Parameter `group`: The JSContextGroup to retain.
     ///
     /// Returns: A JSContextGroup that is the same as group.
+    ///
+    /// # Safety
+    ///
+    /// `group` must be a valid pointer.
     #[doc(alias = "JSContextGroupRetain")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -48,6 +52,10 @@ impl JSContext {
     /// Releases a JavaScript context group.
     ///
     /// Parameter `group`: The JSContextGroup to release.
+    ///
+    /// # Safety
+    ///
+    /// `group` must be a valid pointer.
     #[doc(alias = "JSContextGroupRelease")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -73,6 +81,10 @@ extern "C-unwind" {
     /// NULL to use the default object class.
     ///
     /// Returns: A JSGlobalContext with a global object of class globalObjectClass.
+    ///
+    /// # Safety
+    ///
+    /// `global_object_class` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCreate(global_object_class: JSClassRef) -> JSGlobalContextRef;
 }
@@ -91,6 +103,11 @@ extern "C-unwind" {
     ///
     /// Returns: A JSGlobalContext with a global object of class globalObjectClass and a context
     /// group equal to group.
+    ///
+    /// # Safety
+    ///
+    /// - `group` must be a valid pointer.
+    /// - `global_object_class` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCreateInGroup(
         group: JSContextGroupRef,
@@ -104,6 +121,10 @@ extern "C-unwind" {
     /// Parameter `ctx`: The JSGlobalContext to retain.
     ///
     /// Returns: A JSGlobalContext that is the same as ctx.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextRetain(ctx: JSGlobalContextRef) -> JSGlobalContextRef;
 }
@@ -112,6 +133,10 @@ extern "C-unwind" {
     /// Releases a global JavaScript execution context.
     ///
     /// Parameter `ctx`: The JSGlobalContext to release.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextRelease(ctx: JSGlobalContextRef);
 }
@@ -123,6 +148,10 @@ impl JSContext {
     /// Parameter `ctx`: The JSContext whose global object you want to get.
     ///
     /// Returns: ctx's global object.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[doc(alias = "JSContextGetGlobalObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -138,6 +167,10 @@ impl JSContext {
     /// Parameter `ctx`: The JSContext whose group you want to get.
     ///
     /// Returns: ctx's group.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[doc(alias = "JSContextGetGroup")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -153,6 +186,10 @@ impl JSContext {
     /// Parameter `ctx`: The JSContext whose global context you want to get.
     ///
     /// Returns: ctx's global context.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[doc(alias = "JSContextGetGlobalContext")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -172,6 +209,10 @@ extern "C-unwind" {
     /// Returns: The name for ctx.
     ///
     /// A JSGlobalContext's name is exposed when inspecting the context to make it easier to identify the context you would like to inspect.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCopyName(ctx: JSGlobalContextRef) -> JSStringRef;
 }
@@ -182,6 +223,11 @@ extern "C-unwind" {
     /// Parameter `ctx`: The JSGlobalContext that you want to name.
     ///
     /// Parameter `name`: The name to set on the context.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `name` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextSetName(ctx: JSGlobalContextRef, name: JSStringRef);
 }
@@ -192,6 +238,10 @@ extern "C-unwind" {
     /// Parameter `ctx`: The JSGlobalContext that you want to change the inspectability of.
     ///
     /// Returns: Whether the context is inspectable in Web Inspector.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextIsInspectable(ctx: JSGlobalContextRef) -> bool;
 }
@@ -202,6 +252,10 @@ extern "C-unwind" {
     /// Parameter `ctx`: The JSGlobalContext that you want to change the inspectability of.
     ///
     /// Parameter `inspectable`: YES to allow Web Inspector to connect to the context, otherwise NO.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextSetInspectable(ctx: JSGlobalContextRef, inspectable: bool);
 }

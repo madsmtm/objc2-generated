@@ -75,6 +75,12 @@ impl SFChooseIdentityPanel {
         /// /SecIdentitySearch.h>).
         ///
         /// Parameter `message`: Client-defined message string to display in the panel.
+        ///
+        /// # Safety
+        ///
+        /// - `identities` generic should be of the correct type.
+        /// - `identities` might not allow `None`.
+        /// - `message` might not allow `None`.
         #[unsafe(method(runModalForIdentities:message:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForIdentities_message(
@@ -101,6 +107,14 @@ impl SFChooseIdentityPanel {
         ///
         /// The didEndSelector method should have the following signature:
         /// - (void)chooseIdentitySheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
+        /// - `identities` generic should be of the correct type.
+        /// - `identities` might not allow `None`.
+        /// - `message` might not allow `None`.
         #[unsafe(method(beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:identities:message:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetForWindow_modalDelegate_didEndSelector_contextInfo_identities_message(
@@ -127,6 +141,11 @@ impl SFChooseIdentityPanel {
         ///
         /// Applications will typically display a SFChooseIdentityPanel in the context of a specific usage, such as SSL or S/MIME.
         /// You should set only the policy references which apply to your intended usage.
+        ///
+        /// # Safety
+        ///
+        /// - `policies` should be of the correct type.
+        /// - `policies` might not allow `None`.
         #[unsafe(method(setPolicies:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolicies(&self, policies: Option<&AnyObject>);
@@ -141,6 +160,10 @@ impl SFChooseIdentityPanel {
         /// Customizes the title of the default button.
         ///
         /// Parameter `title`: The new title for the default button.
+        ///
+        /// # Safety
+        ///
+        /// `title` might not allow `None`.
         #[unsafe(method(setDefaultButtonTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultButtonTitle(&self, title: Option<&NSString>);
@@ -148,6 +171,10 @@ impl SFChooseIdentityPanel {
         /// Customizes the title of the alternate button.
         ///
         /// Parameter `title`: The new title for the alternate button. If title is set to nil, the button will not be shown.
+        ///
+        /// # Safety
+        ///
+        /// `title` might not allow `None`.
         #[unsafe(method(setAlternateButtonTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlternateButtonTitle(&self, title: Option<&NSString>);
@@ -160,6 +187,9 @@ impl SFChooseIdentityPanel {
         #[unsafe(method_family = none)]
         pub unsafe fn showsHelp(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `anchor` might not allow `None`.
         #[unsafe(method(setHelpAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHelpAnchor(&self, anchor: Option<&NSString>);
@@ -173,6 +203,10 @@ impl SFChooseIdentityPanel {
         /// Parameter `informativeText`: The informative text to display in the panel.
         ///
         /// Call this method to set the informative text to be displayed.
+        ///
+        /// # Safety
+        ///
+        /// `informative_text` might not allow `None`.
         #[unsafe(method(setInformativeText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInformativeText(&self, informative_text: Option<&NSString>);
@@ -188,6 +222,10 @@ impl SFChooseIdentityPanel {
         ///
         /// Call this method to associate a domain with the chosen identity.
         /// If the user chooses an identity and a domain has been set, an identity preference item will be created in the default keychain. Subsequently, calling SecIdentitySearchCreateWithPolicy and SecIdentitySearchCopyNext will return the preferred identity for this domain first.
+        ///
+        /// # Safety
+        ///
+        /// `domain_string` might not allow `None`.
         #[unsafe(method(setDomain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDomain(&self, domain_string: Option<&NSString>);
@@ -264,6 +302,9 @@ pub unsafe trait NSObjectSFChooseIdentityPanelDelegate:
     ClassType + Sized + private_NSObjectSFChooseIdentityPanelDelegate::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[unsafe(method(chooseIdentityPanelShowHelp:))]
         #[unsafe(method_family = none)]
         unsafe fn chooseIdentityPanelShowHelp(

@@ -330,6 +330,9 @@ impl CGContext {
         unsafe { CGContextSetMiterLimit(c, limit) }
     }
 
+    /// # Safety
+    ///
+    /// `lengths` must be a valid pointer or null.
     #[doc(alias = "CGContextSetLineDash")]
     #[inline]
     pub unsafe fn set_line_dash(
@@ -469,6 +472,9 @@ impl CGContext {
         unsafe { CGContextAddRect(c, rect) }
     }
 
+    /// # Safety
+    ///
+    /// `rects` must be a valid pointer or null.
     #[doc(alias = "CGContextAddRects")]
     #[inline]
     pub unsafe fn add_rects(c: Option<&CGContext>, rects: *const CGRect, count: usize) {
@@ -478,6 +484,9 @@ impl CGContext {
         unsafe { CGContextAddRects(c, rects, count) }
     }
 
+    /// # Safety
+    ///
+    /// `points` must be a valid pointer or null.
     #[doc(alias = "CGContextAddLines")]
     #[inline]
     pub unsafe fn add_lines(c: Option<&CGContext>, points: *const CGPoint, count: usize) {
@@ -666,6 +675,9 @@ impl CGContext {
         unsafe { CGContextFillRect(c, rect) }
     }
 
+    /// # Safety
+    ///
+    /// `rects` must be a valid pointer or null.
     #[doc(alias = "CGContextFillRects")]
     #[inline]
     pub unsafe fn fill_rects(c: Option<&CGContext>, rects: *const CGRect, count: usize) {
@@ -720,6 +732,9 @@ impl CGContext {
         unsafe { CGContextStrokeEllipseInRect(c, rect) }
     }
 
+    /// # Safety
+    ///
+    /// `points` must be a valid pointer or null.
     #[doc(alias = "CGContextStrokeLineSegments")]
     #[inline]
     pub unsafe fn stroke_line_segments(
@@ -794,6 +809,9 @@ impl CGContext {
         unsafe { CGContextClipToRect(c, rect) }
     }
 
+    /// # Safety
+    ///
+    /// `rects` must be a valid pointer.
     #[doc(alias = "CGContextClipToRects")]
     #[inline]
     pub unsafe fn clip_to_rects(c: Option<&CGContext>, rects: NonNull<CGRect>, count: usize) {
@@ -846,6 +864,10 @@ impl CGContext {
     }
 
     /// Color functions. *
+    ///
+    /// # Safety
+    ///
+    /// `components` must be a valid pointer or null.
     #[doc(alias = "CGContextSetFillColor")]
     #[inline]
     pub unsafe fn set_fill_color(c: Option<&CGContext>, components: *const CGFloat) {
@@ -855,6 +877,9 @@ impl CGContext {
         unsafe { CGContextSetFillColor(c, components) }
     }
 
+    /// # Safety
+    ///
+    /// `components` must be a valid pointer or null.
     #[doc(alias = "CGContextSetStrokeColor")]
     #[inline]
     pub unsafe fn set_stroke_color(c: Option<&CGContext>, components: *const CGFloat) {
@@ -865,6 +890,10 @@ impl CGContext {
     }
 
     /// Pattern functions. *
+    ///
+    /// # Safety
+    ///
+    /// `components` must be a valid pointer or null.
     #[doc(alias = "CGContextSetFillPattern")]
     #[cfg(feature = "CGPattern")]
     #[inline]
@@ -883,6 +912,9 @@ impl CGContext {
         unsafe { CGContextSetFillPattern(c, pattern, components) }
     }
 
+    /// # Safety
+    ///
+    /// `components` must be a valid pointer or null.
     #[doc(alias = "CGContextSetStrokePattern")]
     #[cfg(feature = "CGPattern")]
     #[inline]
@@ -1071,6 +1103,9 @@ impl CGContext {
         unsafe { CGContextDrawTiledImage(c, rect, image) }
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGContextDrawImageApplyingToneMapping")]
     #[cfg(all(feature = "CGImage", feature = "CGToneMapping"))]
     #[inline]
@@ -1308,6 +1343,10 @@ impl CGContext {
         unsafe { CGContextSetFontSize(c, size) }
     }
 
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer or null.
+    /// - `lpositions` must be a valid pointer or null.
     #[doc(alias = "CGContextShowGlyphsAtPositions")]
     #[cfg(feature = "CGFont")]
     #[inline]
@@ -1340,6 +1379,10 @@ impl CGContext {
     }
 
     /// Output page functions. *
+    ///
+    /// # Safety
+    ///
+    /// `media_box` must be a valid pointer or null.
     #[doc(alias = "CGContextBeginPage")]
     #[inline]
     pub unsafe fn begin_page(c: Option<&CGContext>, media_box: *const CGRect) {
@@ -1473,6 +1516,10 @@ impl CGContext {
     }
 
     /// Transparency layer support. *
+    ///
+    /// # Safety
+    ///
+    /// `auxiliary_info` generics must be of the correct type.
     #[doc(alias = "CGContextBeginTransparencyLayer")]
     #[inline]
     pub unsafe fn begin_transparency_layer(
@@ -1488,6 +1535,9 @@ impl CGContext {
         unsafe { CGContextBeginTransparencyLayer(c, auxiliary_info) }
     }
 
+    /// # Safety
+    ///
+    /// `aux_info` generics must be of the correct type.
     #[doc(alias = "CGContextBeginTransparencyLayerWithRect")]
     #[inline]
     pub unsafe fn begin_transparency_layer_with_rect(
@@ -1581,6 +1631,9 @@ impl CGContext {
         unsafe { CGContextConvertRectToUserSpace(c, rect) }
     }
 
+    /// # Safety
+    ///
+    /// `name` must be a valid pointer or null.
     #[doc(alias = "CGContextSelectFont")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -1601,6 +1654,9 @@ impl CGContext {
         unsafe { CGContextSelectFont(c, name, size, text_encoding) }
     }
 
+    /// # Safety
+    ///
+    /// `string` must be a valid pointer or null.
     #[doc(alias = "CGContextShowText")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -1611,6 +1667,9 @@ impl CGContext {
         unsafe { CGContextShowText(c, string, length) }
     }
 
+    /// # Safety
+    ///
+    /// `string` must be a valid pointer or null.
     #[doc(alias = "CGContextShowTextAtPoint")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -1633,6 +1692,9 @@ impl CGContext {
         unsafe { CGContextShowTextAtPoint(c, x, y, string, length) }
     }
 
+    /// # Safety
+    ///
+    /// `g` must be a valid pointer or null.
     #[doc(alias = "CGContextShowGlyphs")]
     #[cfg(feature = "CGFont")]
     #[deprecated = "No longer supported"]
@@ -1644,6 +1706,9 @@ impl CGContext {
         unsafe { CGContextShowGlyphs(c, g, count) }
     }
 
+    /// # Safety
+    ///
+    /// `glyphs` must be a valid pointer or null.
     #[doc(alias = "CGContextShowGlyphsAtPoint")]
     #[cfg(feature = "CGFont")]
     #[deprecated = "No longer supported"]
@@ -1667,6 +1732,10 @@ impl CGContext {
         unsafe { CGContextShowGlyphsAtPoint(c, x, y, glyphs, count) }
     }
 
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer or null.
+    /// - `advances` must be a valid pointer or null.
     #[doc(alias = "CGContextShowGlyphsWithAdvances")]
     #[cfg(feature = "CGFont")]
     #[deprecated = "No longer supported"]

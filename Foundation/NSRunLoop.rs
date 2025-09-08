@@ -126,6 +126,10 @@ impl NSRunLoop {
         /// Schedules the execution of a block on the target run loop in given modes.
         /// - parameter: modes   An array of input modes for which the block may be executed.
         /// - parameter: block   The block to execute
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(performInModes:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performInModes_block(
@@ -137,6 +141,10 @@ impl NSRunLoop {
         #[cfg(feature = "block2")]
         /// Schedules the execution of a block on the target run loop.
         /// - parameter: block   The block to execute
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(performBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performBlock(&self, block: &block2::DynBlock<dyn Fn()>);
@@ -161,6 +169,10 @@ pub unsafe trait NSObjectNSDelayedPerforming:
             feature = "NSObjCRuntime",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `an_argument` should be of the correct type.
         #[unsafe(method(performSelector:withObject:afterDelay:inModes:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelector_withObject_afterDelay_inModes(
@@ -172,6 +184,10 @@ pub unsafe trait NSObjectNSDelayedPerforming:
         );
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `an_argument` should be of the correct type.
         #[unsafe(method(performSelector:withObject:afterDelay:))]
         #[unsafe(method_family = none)]
         unsafe fn performSelector_withObject_afterDelay(
@@ -181,6 +197,10 @@ pub unsafe trait NSObjectNSDelayedPerforming:
             delay: NSTimeInterval,
         );
 
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `an_argument` should be of the correct type.
         #[unsafe(method(cancelPreviousPerformRequestsWithTarget:selector:object:))]
         #[unsafe(method_family = none)]
         unsafe fn cancelPreviousPerformRequestsWithTarget_selector_object(
@@ -189,6 +209,9 @@ pub unsafe trait NSObjectNSDelayedPerforming:
             an_argument: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `a_target` should be of the correct type.
         #[unsafe(method(cancelPreviousPerformRequestsWithTarget:))]
         #[unsafe(method_family = none)]
         unsafe fn cancelPreviousPerformRequestsWithTarget(a_target: &AnyObject);
@@ -202,6 +225,11 @@ unsafe impl NSObjectNSDelayedPerforming for NSObject {}
 impl NSRunLoop {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `arg` should be of the correct type.
         #[unsafe(method(performSelector:target:argument:order:modes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performSelector_target_argument_order_modes(
@@ -213,6 +241,11 @@ impl NSRunLoop {
             modes: &NSArray<NSRunLoopMode>,
         );
 
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `arg` should be of the correct type.
         #[unsafe(method(cancelPerformSelector:target:argument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelPerformSelector_target_argument(
@@ -222,6 +255,9 @@ impl NSRunLoop {
             arg: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(cancelPerformSelectorsWithTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelPerformSelectorsWithTarget(&self, target: &AnyObject);

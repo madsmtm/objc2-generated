@@ -40,6 +40,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of frames that would have been displayed if no frames are dropped.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(totalNumberOfFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalNumberOfFrames(&self) -> NSInteger;
@@ -47,6 +51,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of frames dropped prior to decoding or dropped because a frame missed its display deadline.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfDroppedFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDroppedFrames(&self) -> NSInteger;
@@ -54,6 +62,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of corrupted frames that have been detected.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfCorruptedFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfCorruptedFrames(&self) -> NSInteger;
@@ -61,6 +73,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of full screen frames that were rendered in a special power-efficient mode that didn't require the frame to be composited with other UI elements.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfFramesDisplayedUsingOptimizedCompositing))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfFramesDisplayedUsingOptimizedCompositing(&self) -> NSInteger;
@@ -70,6 +86,10 @@ impl AVVideoPerformanceMetrics {
         /// This delay is always greater than or equal to zero since frames must never be displayed before their presentation time. Non-zero delays are a sign of playback jitter and possible loss of A/V sync.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(totalAccumulatedFrameDelay))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalAccumulatedFrameDelay(&self) -> NSTimeInterval;
@@ -77,6 +97,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of frames that would have been displayed if no frames are dropped. Same as totalNumberOfFrames.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(totalNumberOfVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalNumberOfVideoFrames(&self) -> c_ulong;
@@ -84,6 +108,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of frames dropped prior to decoding or dropped because a frame missed its display deadline. Same as numberOfDroppedFrames.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfDroppedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDroppedVideoFrames(&self) -> c_ulong;
@@ -91,6 +119,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of corrupted frames that have been detected. Same as numberOfCorruptedFrames.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfCorruptedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfCorruptedVideoFrames(&self) -> c_ulong;
@@ -98,6 +130,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of frames that were composited in detached mode.  Same as numberOfFramesDisplayedUsingOptimizedCompositing.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfDisplayCompositedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDisplayCompositedVideoFrames(&self) -> c_ulong;
@@ -105,6 +141,10 @@ impl AVVideoPerformanceMetrics {
         /// [SPI] The total number of frames that were composited in undetached mode.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfNonDisplayCompositedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfNonDisplayCompositedVideoFrames(&self) -> c_ulong;
@@ -114,6 +154,10 @@ impl AVVideoPerformanceMetrics {
         /// This delay is always greater than or equal to zero since frames must never be displayed before their presentation time. Non-zero delays are a sign of playback jitter and possible loss of A/V sync. Same as totalAccumulatedFrameDelay.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(totalFrameDelay))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalFrameDelay(&self) -> c_double;

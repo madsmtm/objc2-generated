@@ -84,6 +84,11 @@ impl IOBluetoothSDPServiceRecord {
         ///
         ///
         /// Parameter `serviceDict`: A dictionary containing the attributes for the new service
+        ///
+        /// # Safety
+        ///
+        /// - `service_dict` generic should be of the correct type.
+        /// - `service_dict` might not allow `None`.
         #[unsafe(method(publishedServiceRecordWithDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn publishedServiceRecordWithDictionary(
@@ -106,6 +111,12 @@ impl IOBluetoothSDPServiceRecord {
         /// a pointer to an IOBlueotothDevice if you wish to associate the record to a specific IOBluetoothDevice.
         ///
         /// Returns: Returns an IOBluetoothSDPServiceRecord * with the attributes specified in the provided dictionary.
+        ///
+        /// # Safety
+        ///
+        /// - `service_dict` generic should be of the correct type.
+        /// - `service_dict` might not allow `None`.
+        /// - `device` might not allow `None`.
         #[unsafe(method(withServiceDictionary:device:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withServiceDictionary_device(
@@ -122,6 +133,12 @@ impl IOBluetoothSDPServiceRecord {
         /// a pointer to an IOBlueotothDevice if you wish to associate the record to a specific IOBluetoothDevice.
         ///
         /// Returns: Returns an initialized IOBluetoothSDPServiceRecord * with the attributes specified in the provided dictionary.
+        ///
+        /// # Safety
+        ///
+        /// - `service_dict` generic should be of the correct type.
+        /// - `service_dict` might not allow `None`.
+        /// - `device` might not allow `None`.
         #[unsafe(method(initWithServiceDictionary:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServiceDictionary_device(
@@ -136,6 +153,10 @@ impl IOBluetoothSDPServiceRecord {
         /// Parameter `sdpServiceRecordRef`: IOBluetoothSDPServiceRecordRef for which an IOBluetoothSDPServiceRecord * is desired.
         ///
         /// Returns: Returns the IOBluetoothSDPServiceRecord * for the given IOBluetoothSDPServiceRecordRef.
+        ///
+        /// # Safety
+        ///
+        /// `sdp_service_record_ref` might not allow `None`.
         #[unsafe(method(withSDPServiceRecordRef:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withSDPServiceRecordRef(
@@ -224,6 +245,10 @@ impl IOBluetoothSDPServiceRecord {
         /// Parameter `rfcommChannelID`: A pointer to the location that will get the found RFCOMM channel ID.
         ///
         /// Returns: Returns kIOReturnSuccess if the channel ID is found.
+        ///
+        /// # Safety
+        ///
+        /// `rfcomm_channel_id` must be a valid pointer.
         #[unsafe(method(getRFCOMMChannelID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRFCOMMChannelID(
@@ -242,6 +267,10 @@ impl IOBluetoothSDPServiceRecord {
         /// Parameter `outPSM`: A pointer to the location that will get the found L2CAP PSM.
         ///
         /// Returns: Returns kIOReturnSuccess if the PSM is found.
+        ///
+        /// # Safety
+        ///
+        /// `out_psm` must be a valid pointer.
         #[unsafe(method(getL2CAPPSM:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getL2CAPPSM(&self, out_psm: *mut BluetoothL2CAPPSM) -> IOReturn;
@@ -257,6 +286,10 @@ impl IOBluetoothSDPServiceRecord {
         /// Parameter `outServiceRecordHandle`: A pointer to the location that will get the found service record handle.
         ///
         /// Returns: Returns kIOReturnSuccess if the service record handle is found.
+        ///
+        /// # Safety
+        ///
+        /// `out_service_record_handle` must be a valid pointer.
         #[unsafe(method(getServiceRecordHandle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getServiceRecordHandle(
@@ -288,6 +321,11 @@ impl IOBluetoothSDPServiceRecord {
         /// Parameter `array`: An NSArray of IOBluetoothSDPUUID objects to search for in the target service.
         ///
         /// Returns: Returns TRUE if all of the given UUIDs are present in the service.
+        ///
+        /// # Safety
+        ///
+        /// - `uuid_array` generic should be of the correct type.
+        /// - `uuid_array` might not allow `None`.
         #[unsafe(method(matchesUUIDArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchesUUIDArray(&self, uuid_array: Option<&NSArray>) -> bool;
@@ -306,6 +344,11 @@ impl IOBluetoothSDPServiceRecord {
         /// Parameter `array`: An NSArray of NSArrays of IOBluetoothSDPUUID objects.
         ///
         /// Returns: Returns TRUE if any of the UUID arrays match.
+        ///
+        /// # Safety
+        ///
+        /// - `search_array` generic should be of the correct type.
+        /// - `search_array` might not allow `None`.
         #[unsafe(method(matchesSearchArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchesSearchArray(&self, search_array: Option<&NSArray>) -> bool;
@@ -322,6 +365,11 @@ impl IOBluetoothSDPServiceRecord {
         /// Parameter `array`: An NSArray of IOBluetoothSDPUUID objects to search for in the target service.
         ///
         /// Returns: Returns TRUE if any of the given UUIDs are present in the service.
+        ///
+        /// # Safety
+        ///
+        /// - `array` generic should be of the correct type.
+        /// - `array` might not allow `None`.
         #[unsafe(method(hasServiceFromArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasServiceFromArray(&self, array: Option<&NSArray>) -> bool;

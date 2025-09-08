@@ -1151,6 +1151,10 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// `in_session_ref` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError;
 }
@@ -1171,6 +1175,11 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `out_is_connected` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionHasOpenOBEXConnection(
         in_session_ref: OBEXSessionRef,
@@ -1193,6 +1202,11 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `out_length` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionGetMaxPacketLength(
         in_session_ref: OBEXSessionRef,
@@ -1222,6 +1236,11 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `out_length` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionGetAvailableCommandPayloadLength(
         in_session_ref: OBEXSessionRef,
@@ -1254,6 +1273,11 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `out_length` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionGetAvailableCommandResponsePayloadLength(
         in_session_ref: OBEXSessionRef,
@@ -1292,6 +1316,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionConnect(
         in_session_ref: OBEXSessionRef,
@@ -1327,6 +1358,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionDisconnect(
         in_session_ref: OBEXSessionRef,
@@ -1366,6 +1404,14 @@ extern "C-unwind" {
 /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
 /// **        You should transition your code to Objective-C equivalents.
 /// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_headers_data` must be a valid pointer.
+/// - `in_body_data` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXSessionPut(
@@ -1427,6 +1473,13 @@ pub unsafe extern "C-unwind" fn OBEXSessionPut(
 /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
 /// **        You should transition your code to Objective-C equivalents.
 /// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_session_ref` must be a valid pointer.
+/// - `in_headers_data` must be a valid pointer.
+/// - `in_callback` must be implemented correctly.
+/// - `in_user_ref_con` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXSessionGet(
@@ -1482,6 +1535,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionAbort(
         in_session_ref: OBEXSessionRef,
@@ -1519,6 +1579,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionSetPath(
         in_session_ref: OBEXSessionRef,
@@ -1561,6 +1628,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionConnectResponse(
         in_session_ref: OBEXSessionRef,
@@ -1599,6 +1673,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionDisconnectResponse(
         in_session_ref: OBEXSessionRef,
@@ -1635,6 +1716,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionGetResponse(
         in_session_ref: OBEXSessionRef,
@@ -1671,6 +1759,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionPutResponse(
         in_session_ref: OBEXSessionRef,
@@ -1707,6 +1802,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionAbortResponse(
         in_session_ref: OBEXSessionRef,
@@ -1743,6 +1845,13 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_optional_headers` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionSetPathResponse(
         in_session_ref: OBEXSessionRef,
@@ -1772,6 +1881,12 @@ extern "C-unwind" {
     /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
     /// **        You should transition your code to Objective-C equivalents.
     /// **        This API may be removed any time in the future.
+    ///
+    /// # Safety
+    ///
+    /// - `in_session_ref` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_user_ref_con` must be a valid pointer.
     #[deprecated]
     pub fn OBEXSessionSetServerCallback(
         in_session_ref: OBEXSessionRef,
@@ -1846,6 +1961,23 @@ extern "C-unwind" {
 /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
 /// **        You should transition your code to Objective-C equivalents.
 /// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_first_name` must be a valid pointer.
+/// - `in_last_name` must be a valid pointer.
+/// - `in_friendly_name` must be a valid pointer.
+/// - `in_name_charset` must be a valid pointer.
+/// - `in_home_phone` must be a valid pointer.
+/// - `in_work_phone` must be a valid pointer.
+/// - `in_cell_phone` must be a valid pointer.
+/// - `in_fax_phone` must be a valid pointer.
+/// - `in_e_mail_address` must be a valid pointer.
+/// - `in_e_mail_address_charset` must be a valid pointer.
+/// - `in_organization` must be a valid pointer.
+/// - `in_organization_charset` must be a valid pointer.
+/// - `in_title` must be a valid pointer.
+/// - `in_title_charset` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -1994,6 +2126,18 @@ pub unsafe extern "C-unwind" fn OBEXCreateVCard(
 /// **        DEPRECATED IN BLUETOOTH 2.2 (Mac OS X 10.6)
 /// **        You should transition your code to Objective-C equivalents.
 /// **        This API may be removed any time in the future.
+///
+/// # Safety
+///
+/// - `in_charset` must be a valid pointer.
+/// - `in_encoding` must be a valid pointer.
+/// - `in_event_start_date` must be a valid pointer.
+/// - `in_event_end_date` must be a valid pointer.
+/// - `in_alarm_date` must be a valid pointer.
+/// - `in_category` must be a valid pointer.
+/// - `in_summary` must be a valid pointer.
+/// - `in_location` must be a valid pointer.
+/// - `in_xirmcluid` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -2245,6 +2389,10 @@ extern "C" {
 /// CFRelease( dictionary );
 /// }
 /// </pre>
+///
+/// # Safety
+///
+/// `in_data` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXGetHeaders(
@@ -2297,6 +2445,11 @@ pub unsafe extern "C-unwind" fn OBEXGetHeaders(
 ///
 /// // From here I can pass it to any OBEX command, such as OBEXPut...
 /// </pre>
+///
+/// # Safety
+///
+/// - `dictionary_of_headers` generics must be of the correct type.
+/// - `dictionary_of_headers` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXHeadersToBytes(
@@ -2321,6 +2474,11 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Name header - OBEX Spec, 2.2.2: (2-byte) Null terminated unicode string.
+    ///
+    /// # Safety
+    ///
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddNameHeader(
         name: Option<&CFString>,
@@ -2338,6 +2496,11 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Description header - OBEX Spec, 2.2.6: (2-byte) Null terminated unicode string.
+    ///
+    /// # Safety
+    ///
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddDescriptionHeader(
         description: Option<&CFString>,
@@ -2355,6 +2518,11 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Count header - OBEX Spec, 2.2.1: 4 byte unsigned integer
+    ///
+    /// # Safety
+    ///
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
 }
@@ -2369,6 +2537,11 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Time4Byte headers - OBEX Spec, 2.2.5: 4 Bytes
+    ///
+    /// # Safety
+    ///
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTime4ByteHeader(
         time4_byte: u32,
@@ -2386,6 +2559,11 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Length header - OBEX Spec, 2.2.4: 4 byte unsigned integer
+    ///
+    /// # Safety
+    ///
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddLengthHeader(length: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
 }
@@ -2400,6 +2578,11 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Type header - OBEX Spec, 2.2.3: 1-byte Null terminated ascii string.
+    ///
+    /// # Safety
+    ///
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTypeHeader(
         r#type: Option<&CFString>,
@@ -2417,6 +2600,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// TimeISO header - OBEX Spec, 2.2.5: Byte Sequence
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTimeISOHeader(
         in_header_data: *const c_void,
@@ -2437,6 +2626,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Target header - OBEX Spec, 2.2.7: Byte Sequence
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTargetHeader(
         in_header_data: *const c_void,
@@ -2457,6 +2652,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// HTTP header - OBEX Spec, 2.2.8: Byte Sequence
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddHTTPHeader(
         in_header_data: *const c_void,
@@ -2478,6 +2679,12 @@ extern "C-unwind" {
 /// Returns: Error code, kOBEXSuccess (0) if success.
 ///
 /// Body,EndOfBody headers - OBEX Spec, 2.2.9: Byte Sequence
+///
+/// # Safety
+///
+/// - `in_header_data` must be a valid pointer.
+/// - `dict_ref` generics must be of the correct type.
+/// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXAddBodyHeader(
@@ -2516,6 +2723,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Who headers - OBEX Spec, 2.2.10: Byte Sequence
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddWhoHeader(
         in_header_data: *const c_void,
@@ -2540,6 +2753,12 @@ extern "C-unwind" {
     /// ** IMPORTANT NOTE: In bluetooth 1.0, using this function will allow you to pass in any value.
     /// You should not pass more than 4 bytes ever. In later releases, if the length
     /// passed is not 4, a kOBEXBadArgumentError error will be returned. ***
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddConnectionIDHeader(
         in_header_data: *const c_void,
@@ -2560,6 +2779,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Application Request/Response Parameter headers - OBEX Spec, 2.2.11: Byte Sequence
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddApplicationParameterHeader(
         in_header_data: *const c_void,
@@ -2596,6 +2821,12 @@ extern "C-unwind" {
     /// >)>
     /// Also, note that LENGTH = (3 + n), (1 for HI, 2 for the 2 bytes of length information, plus your n bytes of custom data).
     /// Be careful here to not mess up these values, as it could adversely affect the ability of the remote-device's headers parser.
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddByteSequenceHeader(
         in_header_data: *const c_void,
@@ -2616,6 +2847,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Object Class header - OBEX Spec, 2.2.15: Byte sequence.
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddObjectClassHeader(
         in_header_data: *const c_void,
@@ -2636,6 +2873,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Authorization Challenge header - OBEX Spec, 2.2.13: Authorization Challenge.
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddAuthorizationChallengeHeader(
         in_header_data: *const c_void,
@@ -2656,6 +2899,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// Authorization Response header - OBEX Spec, 2.2.14: Authorization Response.
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddAuthorizationResponseHeader(
         in_header_data: *const c_void,
@@ -2676,6 +2925,12 @@ extern "C-unwind" {
     /// Returns: Error code, kOBEXSuccess (0) if success.
     ///
     /// User Defined header - OBEX Spec, 2.2.20: User Defined Headers.
+    ///
+    /// # Safety
+    ///
+    /// - `in_header_data` must be a valid pointer.
+    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddUserDefinedHeader(
         in_header_data: *const c_void,

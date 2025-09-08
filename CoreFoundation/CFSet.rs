@@ -284,6 +284,11 @@ impl CFSet {
     /// undefined.
     ///
     /// Returns: A reference to the new immutable CFSet.
+    ///
+    /// # Safety
+    ///
+    /// - `values` must be a valid pointer.
+    /// - `call_backs` must be a valid pointer.
     #[doc(alias = "CFSetCreate")]
     #[inline]
     pub unsafe fn new(
@@ -384,6 +389,10 @@ impl CFMutableSet {
     /// undefined.
     ///
     /// Returns: A reference to the new mutable CFSet.
+    ///
+    /// # Safety
+    ///
+    /// `call_backs` must be a valid pointer.
     #[doc(alias = "CFSetCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -430,6 +439,11 @@ impl CFMutableSet {
     /// not a valid CFSet, the behavior is undefined.
     ///
     /// Returns: A reference to the new mutable CFSet.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `the_set` might not allow `None`.
     #[doc(alias = "CFSetCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -480,6 +494,11 @@ impl CFSet {
     /// the behavior is undefined.
     ///
     /// Returns: The number of times the given value occurs in the set.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
@@ -502,6 +521,11 @@ impl CFSet {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the value is in the set, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetContainsValue")]
     #[inline]
     pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
@@ -524,6 +548,11 @@ impl CFSet {
     /// callback, the behavior is undefined.
     ///
     /// Returns: The value in the set with the given hash.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetGetValue")]
     #[inline]
     pub unsafe fn value(&self, value: *const c_void) -> *const c_void {
@@ -555,6 +584,12 @@ impl CFSet {
     /// whether or not the value was present).
     ///
     /// Returns: True if the value was present in the set, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `candidate` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetGetValueIfPresent")]
     #[inline]
     pub unsafe fn value_if_present(
@@ -583,6 +618,11 @@ impl CFSet {
     /// in the same order in which they appear in the set. If this
     /// parameter is not a valid pointer to a C array of at least
     /// CFSetGetCount() pointers, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `values` must be a valid pointer.
     #[doc(alias = "CFSetGetValues")]
     #[inline]
     pub unsafe fn values(&self, values: *mut *const c_void) {
@@ -609,6 +649,12 @@ impl CFSet {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `applier` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFSetApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(&self, applier: CFSetApplierFunction, context: *mut c_void) {
@@ -635,6 +681,12 @@ impl CFMutableSet {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `the_set` might not allow `None`.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetAddValue")]
     #[inline]
     pub unsafe fn add_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -659,6 +711,12 @@ impl CFMutableSet {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `the_set` might not allow `None`.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetReplaceValue")]
     #[inline]
     pub unsafe fn replace_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -684,6 +742,12 @@ impl CFMutableSet {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `the_set` might not allow `None`.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetSetValue")]
     #[inline]
     pub unsafe fn set_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -704,6 +768,12 @@ impl CFMutableSet {
     /// was NULL, pointer equality (in C, ==) is used. If a value, or
     /// any of the values in the set, are not understood by the equal()
     /// callback, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_set` generic must be of the correct type.
+    /// - `the_set` might not allow `None`.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetRemoveValue")]
     #[inline]
     pub unsafe fn remove_value(the_set: Option<&CFMutableSet>, value: *const c_void) {

@@ -90,6 +90,9 @@ impl NSValueTransformer {
         #[unsafe(method_family = none)]
         pub unsafe fn allowsReverseTransformation() -> bool;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(transformedValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn transformedValue(
@@ -97,6 +100,9 @@ impl NSValueTransformer {
             value: Option<&AnyObject>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(reverseTransformedValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseTransformedValue(

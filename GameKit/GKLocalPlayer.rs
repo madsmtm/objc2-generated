@@ -356,6 +356,10 @@ impl GKLocalPlayer {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(authenticateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticateHandler(

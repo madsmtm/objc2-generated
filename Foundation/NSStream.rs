@@ -104,6 +104,10 @@ impl NSStream {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSStreamDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSStreamDelegate>>);
@@ -117,6 +121,9 @@ impl NSStream {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `property` should be of the correct type.
         #[unsafe(method(setProperty:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperty_forKey(
@@ -196,10 +203,17 @@ extern_conformance!(
 
 impl NSInputStream {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(read:maxLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn read_maxLength(&self, buffer: NonNull<u8>, len: NSUInteger) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// - `buffer` must be a valid pointer.
+        /// - `len` must be a valid pointer.
         #[unsafe(method(getBuffer:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBuffer_length(
@@ -266,6 +280,9 @@ extern_conformance!(
 
 impl NSOutputStream {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(write:maxLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn write_maxLength(&self, buffer: NonNull<u8>, len: NSUInteger) -> NSInteger;
@@ -278,6 +295,9 @@ impl NSOutputStream {
         #[unsafe(method_family = init)]
         pub unsafe fn initToMemory(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(initToBuffer:capacity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initToBuffer_capacity(
@@ -394,6 +414,9 @@ impl NSOutputStream {
         #[unsafe(method_family = none)]
         pub unsafe fn outputStreamToMemory() -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(outputStreamToBuffer:capacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputStreamToBuffer_capacity(

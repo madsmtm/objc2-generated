@@ -80,6 +80,9 @@ impl NSPort {
         pub unsafe fn reservedSpaceLength(&self) -> NSUInteger;
 
         #[cfg(all(feature = "NSArray", feature = "NSDate"))]
+        /// # Safety
+        ///
+        /// `components` generic should be of the correct type.
         #[unsafe(method(sendBeforeDate:components:from:reserved:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendBeforeDate_components_from_reserved(
@@ -91,6 +94,9 @@ impl NSPort {
         ) -> bool;
 
         #[cfg(all(feature = "NSArray", feature = "NSDate"))]
+        /// # Safety
+        ///
+        /// `components` generic should be of the correct type.
         #[unsafe(method(sendBeforeDate:msgid:components:from:reserved:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendBeforeDate_msgid_components_from_reserved(
@@ -294,6 +300,9 @@ impl NSMachPort {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportdelegate?language=objc)
     pub unsafe trait NSMachPortDelegate: NSPortDelegate {
+        /// # Safety
+        ///
+        /// `msg` must be a valid pointer.
         #[optional]
         #[unsafe(method(handleMachMessage:))]
         #[unsafe(method_family = none)]

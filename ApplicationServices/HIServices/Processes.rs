@@ -223,6 +223,10 @@ extern "C-unwind" {
     /// Parameter `pPSN`: where the current processes process serial number is returned
     ///
     /// Returns: An operating system status code.
+    ///
+    /// # Safety
+    ///
+    /// `p_psn` must be a valid pointer.
     #[deprecated]
     pub fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
@@ -235,6 +239,10 @@ extern "C-unwind" {
     /// Parameter `pPSN`: where the front application process serial number is returned
     ///
     /// Returns: An operating system status code
+    ///
+    /// # Safety
+    ///
+    /// `p_psn` must be a valid pointer.
     #[deprecated]
     pub fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
@@ -250,10 +258,17 @@ extern "C-unwind" {
     /// Parameter `pPSN`: On input, a process serial number; on exit, the next process serial number or { 0, 0 }
     ///
     /// Returns: An operating system status code.  procNotFound signal the previous item was the last application in the array of running applications.
+    ///
+    /// # Safety
+    ///
+    /// `p_psn` must be a valid pointer.
     #[deprecated]
     pub fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
 
+/// # Safety
+///
+/// `psn` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn ProcessInformationCopyDictionary(
@@ -279,6 +294,10 @@ extern "C-unwind" {
     /// method of the appropriate NSRunningApplication object for that application.
     ///
     /// Parameter `pPSN`: the ProcessSerialNumber of the application to be made frontmost
+    ///
+    /// # Safety
+    ///
+    /// `p_psn` must be a valid pointer.
     #[deprecated]
     pub fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr;
 }
@@ -289,6 +308,9 @@ pub const kSetFrontProcessFrontWindowOnly: c_uint = 1 << 0;
 pub const kSetFrontProcessCausedByUser: c_uint = 1 << 1;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `in_process` must be a valid pointer.
     #[deprecated]
     pub fn SetFrontProcessWithOptions(
         in_process: *const ProcessSerialNumber,
@@ -297,11 +319,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `psn` must be a valid pointer.
     #[deprecated]
     pub fn WakeUpProcess(psn: *const ProcessSerialNumber) -> OSErr;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `psn1` must be a valid pointer.
+    /// - `psn2` must be a valid pointer.
+    /// - `result` must be a valid pointer.
     #[deprecated]
     pub fn SameProcess(
         psn1: *const ProcessSerialNumber,
@@ -316,23 +346,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `in_process` must be a valid pointer.
     #[deprecated]
     pub fn KillProcess(in_process: *const ProcessSerialNumber) -> OSErr;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `psn` must be a valid pointer.
+    /// - `name` must be a valid pointer.
     #[deprecated]
     pub fn CopyProcessName(psn: *const ProcessSerialNumber, name: *mut *const CFString)
         -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `psn` must be a valid pointer.
+    /// - `pid` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn GetProcessPID(psn: *const ProcessSerialNumber, pid: *mut libc::pid_t) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `psn` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn GetProcessForPID(pid: libc::pid_t, psn: *mut ProcessSerialNumber) -> OSStatus;
@@ -341,6 +385,10 @@ extern "C-unwind" {
 /// ***********************************************************************
 /// Process Visibility.
 /// ***********************************************************************
+///
+/// # Safety
+///
+/// `psn` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn IsProcessVisible(psn: *const ProcessSerialNumber) -> bool {
@@ -351,6 +399,9 @@ pub unsafe extern "C-unwind" fn IsProcessVisible(psn: *const ProcessSerialNumber
     ret != 0
 }
 
+/// # Safety
+///
+/// `psn` must be a valid pointer.
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn ShowHideProcess(
@@ -364,6 +415,9 @@ pub unsafe extern "C-unwind" fn ShowHideProcess(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `psn` must be a valid pointer.
     pub fn TransformProcessType(
         psn: *const ProcessSerialNumber,
         transform_state: ProcessApplicationTransformState,

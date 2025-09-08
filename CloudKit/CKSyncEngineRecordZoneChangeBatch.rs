@@ -40,6 +40,10 @@ impl CKSyncEngineRecordZoneChangeBatch {
         /// If you return `nil` from the record provider, this will skip to the next pending change.
         ///
         /// This will return `nil` if there are no pending changes to send.
+        ///
+        /// # Safety
+        ///
+        /// `record_provider` block must be sendable.
         #[unsafe(method(initWithPendingChanges:recordProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPendingChanges_recordProvider(

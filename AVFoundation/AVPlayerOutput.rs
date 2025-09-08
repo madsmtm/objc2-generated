@@ -69,6 +69,10 @@ impl AVPlayerVideoOutput {
         /// Returns: A tagged buffer group for the specified host time if a sample is available, and NULL otherwise.
         ///
         /// The client is responsible for releasing the returned CMTaggedBufferGroup.
+        ///
+        /// # Safety
+        ///
+        /// `presentation_time_stamp_out` must be a valid pointer or null.
         #[unsafe(method(copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyTaggedBufferGroupForHostTime_presentationTimeStamp_activeConfiguration(
@@ -120,6 +124,10 @@ extern "C-unwind" {
     /// Parameter `newCollectionOut`: Address of a location to the newly created CMTagCollection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: noErr if successful. Otherwise, an error describing why a tag collection could not be created.
+    ///
+    /// # Safety
+    ///
+    /// `new_collection_out` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMTagCollectionCreateWithVideoOutputPreset(
         allocator: Option<&CFAllocator>,
@@ -170,6 +178,10 @@ impl AVVideoOutputSpecification {
         /// This method throws an exception for the following reasons:
         /// - tagCollections is nil or has a count of 0.
         /// - tagCollections contains elements that are not of the type CMTagCollection.
+        ///
+        /// # Safety
+        ///
+        /// `tag_collections` generic should be of the correct type.
         #[unsafe(method(initWithTagCollections:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTagCollections(
@@ -190,6 +202,10 @@ impl AVVideoOutputSpecification {
         ///
         /// Note: Pixel buffer attributes are translated into output settings, therefore, the rules of `-setOutputSettings:forTagCollection` apply to this method as well.
         /// Namely, if you set pixel buffer attributes for a tag collection and then output settings for that same tag collection, your pixel buffer attributes will be overridden and vice-versa.
+        ///
+        /// # Safety
+        ///
+        /// `pixel_buffer_attributes` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(setOutputPixelBufferAttributes:forTagCollection:))]
         #[unsafe(method_family = none)]
@@ -217,6 +233,10 @@ impl AVVideoOutputSpecification {
         /// - The settings will yield compressed output
         /// - The settings do not honor the requirements list above for outputSettings.
         /// - tagCollection does not match with any tag collection in -preferredTagCollections.
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(setOutputSettings:forTagCollection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputSettings_forTagCollection(
@@ -251,6 +271,10 @@ impl AVVideoOutputSpecification {
         /// Setter for [`defaultPixelBufferAttributes`][Self::defaultPixelBufferAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `default_pixel_buffer_attributes` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(setDefaultPixelBufferAttributes:))]
         #[unsafe(method_family = none)]
@@ -284,6 +308,10 @@ impl AVVideoOutputSpecification {
         /// Setter for [`defaultOutputSettings`][Self::defaultOutputSettings].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `default_output_settings` generic should be of the correct type.
         #[unsafe(method(setDefaultOutputSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultOutputSettings(

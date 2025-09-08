@@ -271,6 +271,10 @@ extern "C-unwind" {
     /// Hints that the Mac OS X Bluetooth software should ignore a HID device that connects up.
     ///
     /// Parameter `device`: A Bluetooth Device to ignore.
+    ///
+    /// # Safety
+    ///
+    /// `device` might not allow `None`.
     pub fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>);
 }
 
@@ -278,6 +282,10 @@ extern "C-unwind" {
     /// The counterpart to the above IOBluetoothIgnoreHIDDevice() API.
     ///
     /// Parameter `device`: A Bluetooth Device to "un"ignore.
+    ///
+    /// # Safety
+    ///
+    /// `device` might not allow `None`.
     pub fn IOBluetoothRemoveIgnoredHIDDevice(device: Option<&IOBluetoothDeviceRef>);
 }
 
@@ -361,6 +369,11 @@ impl IOBluetoothL2CAPChannelRef {
     /// The returned IOBluetoothUserNotificationRef will be valid for as long as the notification is registered.
     /// It is not necessary to retain the result.  Once the notification is unregistered, it will no longer
     /// be valid.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `in_ref_con` must be a valid pointer.
     #[doc(alias = "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -393,6 +406,11 @@ extern "C-unwind" {
     /// Parameter `configDict`: Configuration dictionary containing a description of the audio controls to be attached to the driver.  Passing NULL will result in default controls
     ///
     /// Returns: Returns kIOReturnSuccess if the audio driver was successfully created, error if hardware does not support SCO or device is not paired. On 10.9 it will always return kIOReturnSuccess.
+    ///
+    /// # Safety
+    ///
+    /// - `config_dict` generics must be of the correct type.
+    /// - `config_dict` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn IOBluetoothAddSCOAudioDevice(
@@ -407,6 +425,10 @@ extern "C-unwind" {
     /// Parameter `device`: Bluetooth audio device to remove
     ///
     /// Returns: Returns kIOReturnSuccess if the audio driver was successfully removed. On 10.9 it will always return kIOReturnSuccess
+    ///
+    /// # Safety
+    ///
+    /// `device` might not allow `None`.
     #[deprecated]
     pub fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn;
 }

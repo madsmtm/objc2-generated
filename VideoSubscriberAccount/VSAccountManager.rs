@@ -97,6 +97,10 @@ impl VSAccountManager {
         /// Parameter `accessStatus`: The current state the application's access to the user's subscription information.
         ///
         /// Parameter `error`: If the user did not grant access to the app, this will contain an error describing the result of the operation.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(checkAccessStatusWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkAccessStatusWithOptions_completionHandler(

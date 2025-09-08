@@ -115,6 +115,10 @@ impl AVSampleBufferGenerator {
         /// Allows the client to get notified when the sample buffer data is ready, or as soon as an error has occured.
         ///
         /// Parameter `completionHandler`: The completionHandler will be called, when the sample buffer data is ready, or as soon as an error has occurred.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(notifyOfDataReadyForSampleBuffer:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notifyOfDataReadyForSampleBuffer_completionHandler(
@@ -319,6 +323,10 @@ impl AVSampleBufferGeneratorBatch {
         /// This can only be called once on a batch, an exception will be thrown otherwise.
         ///
         /// Parameter `completionHandler`: The completionHandler is called once, when all CMSampleBuffers in the batch are data-ready, or as soon as an error has occurred.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(makeDataReadyWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeDataReadyWithCompletionHandler(

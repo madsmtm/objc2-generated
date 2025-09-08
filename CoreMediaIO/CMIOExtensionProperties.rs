@@ -617,6 +617,10 @@ impl CMIOExtensionStreamFormat {
         ///
         /// A frame duration is the reciprocal of a frame rate.
         /// If a CMIOExtensionStreamFormat's validFrameDurations property is not nil and not empty, the frame duration are discrete and can only have a certain set of value. Current frame duration and maximum frame duration can be changed with the properties CMIOExtensionPropertyStreamFrameDuration and CMIOExtensionPropertyStreamMaxFrameDuration.
+        ///
+        /// # Safety
+        ///
+        /// `valid_frame_durations` generic generic should be of the correct type.
         #[unsafe(method(streamFormatWithFormatDescription:maxFrameDuration:minFrameDuration:validFrameDurations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamFormatWithFormatDescription_maxFrameDuration_minFrameDuration_validFrameDurations(
@@ -641,6 +645,10 @@ impl CMIOExtensionStreamFormat {
         ///
         /// A frame duration is the reciprocal of a frame rate.
         /// If a CMIOExtensionStreamFormat's validFrameDurations property is not nil and not empty, the frame duration are discrete and can only have a certain set of value. Current frame duration and maximum frame duration can be changed with the properties CMIOExtensionPropertyStreamFrameDuration and CMIOExtensionPropertyStreamMaxFrameDuration.
+        ///
+        /// # Safety
+        ///
+        /// `valid_frame_durations` generic generic should be of the correct type.
         #[unsafe(method(initWithFormatDescription:maxFrameDuration:minFrameDuration:validFrameDurations:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFormatDescription_maxFrameDuration_minFrameDuration_validFrameDurations(

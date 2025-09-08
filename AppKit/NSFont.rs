@@ -80,6 +80,9 @@ impl NSFont {
         ) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `font_matrix` must be a valid pointer.
         #[unsafe(method(fontWithName:matrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontWithName_matrix(
@@ -344,6 +347,10 @@ impl NSFont {
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// - `bounds` must be a valid pointer.
+        /// - `glyphs` must be a valid pointer.
         #[unsafe(method(getBoundingRects:forCGGlyphs:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBoundingRects_forCGGlyphs_count(
@@ -355,6 +362,10 @@ impl NSFont {
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// - `advancements` must be a valid pointer.
+        /// - `glyphs` must be a valid pointer.
         #[unsafe(method(getAdvancements:forCGGlyphs:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAdvancements_forCGGlyphs_count(
@@ -467,6 +478,10 @@ unsafe impl RefEncode for NSMultibyteGlyphPacking {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `gl_buf` must be a valid pointer.
+    /// - `packed_glyphs` must be a valid pointer.
     #[deprecated]
     pub fn NSConvertGlyphsToPackedGlyphs(
         gl_buf: NonNull<NSGlyph>,
@@ -491,6 +506,10 @@ impl NSFont {
         #[unsafe(method_family = none)]
         pub unsafe fn advancementForGlyph(&self, glyph: NSGlyph) -> NSSize;
 
+        /// # Safety
+        ///
+        /// - `bounds` must be a valid pointer.
+        /// - `glyphs` must be a valid pointer.
         #[unsafe(method(getBoundingRects:forGlyphs:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBoundingRects_forGlyphs_count(
@@ -500,6 +519,10 @@ impl NSFont {
             glyph_count: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// - `advancements` must be a valid pointer.
+        /// - `glyphs` must be a valid pointer.
         #[unsafe(method(getAdvancements:forGlyphs:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAdvancements_forGlyphs_count(
@@ -509,6 +532,10 @@ impl NSFont {
             glyph_count: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// - `advancements` must be a valid pointer.
+        /// - `packed_glyphs` must be a valid pointer.
         #[unsafe(method(getAdvancements:forPackedGlyphs:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAdvancements_forPackedGlyphs_length(
@@ -544,6 +571,9 @@ impl NSFont {
 impl NSFont {
     extern_methods!(
         #[cfg(feature = "NSFontDescriptor")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(preferredFontForTextStyle:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFontForTextStyle_options(

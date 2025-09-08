@@ -155,6 +155,10 @@ impl AVAudioPCMBuffer {
         ///
         /// The AudioBufferList passed to the deallocator is identical to the one which was passed to the initializer,
         /// in terms of the buffer count, and each buffer's mData and mDataByteSize members.
+        ///
+        /// # Safety
+        ///
+        /// `buffer_list` must be a valid pointer.
         #[unsafe(method(initWithPCMFormat:bufferListNoCopy:deallocator:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPCMFormat_bufferListNoCopy_deallocator(

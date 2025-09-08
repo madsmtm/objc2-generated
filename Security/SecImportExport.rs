@@ -222,6 +222,10 @@ unsafe impl RefEncode for SecItemImportExportKeyParameters {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
+    /// # Safety
+    ///
+    /// - `key_params` must be a valid pointer or null.
+    /// - `exported_data` must be a valid pointer.
     #[doc(alias = "SecKeychainItemExport")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -255,6 +259,10 @@ impl SecKeychainItem {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key_params` must be a valid pointer or null.
+    /// - `exported_data` must be a valid pointer.
     #[cfg(feature = "SecBase")]
     pub fn SecItemExport(
         sec_item_or_array: &CFType,
@@ -267,6 +275,12 @@ extern "C-unwind" {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
+    /// # Safety
+    ///
+    /// - `input_format` must be a valid pointer or null.
+    /// - `item_type` must be a valid pointer or null.
+    /// - `key_params` must be a valid pointer or null.
+    /// - `out_items` must be a valid pointer or null.
     #[doc(alias = "SecKeychainItemImport")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -309,6 +323,12 @@ impl SecKeychainItem {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `input_format` must be a valid pointer or null.
+    /// - `item_type` must be a valid pointer or null.
+    /// - `key_params` must be a valid pointer or null.
+    /// - `out_items` must be a valid pointer or null.
     #[cfg(feature = "SecBase")]
     pub fn SecItemImport(
         imported_data: &CFData,
@@ -410,6 +430,11 @@ extern "C-unwind" {
     /// by including kSecUseDataProtectionKeychain with a value of kCFBooleanTrue. Starting with
     /// macOS 15 and iOS 18, kSecImportToMemoryOnly (with a value of kCFBooleanTrue) allows you
     /// to skip importing to the keychain on macOS and explicitly specify iOS behavior.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `items` must be a valid pointer.
     pub fn SecPKCS12Import(
         pkcs12_data: &CFData,
         options: &CFDictionary,

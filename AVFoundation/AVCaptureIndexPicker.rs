@@ -70,6 +70,10 @@ impl AVCaptureIndexPicker {
         ///
         ///
         /// Suitable when you want to provide a title for each picked value lazily.
+        ///
+        /// # Safety
+        ///
+        /// `localized_title_transform` block's return must be a valid pointer.
         #[unsafe(method(initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform(

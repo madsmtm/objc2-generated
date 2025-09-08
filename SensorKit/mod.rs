@@ -689,6 +689,10 @@ extern_protocol!(
         ///
         ///
         /// Returns: The delegate should return YES if the fetch should continue, NO if the fetch should stop
+        ///
+        /// # Safety
+        ///
+        /// `result` generic should be of the correct type.
         #[optional]
         #[unsafe(method(sensorReader:fetchingRequest:didFetchResult:))]
         #[unsafe(method_family = none)]
@@ -1345,6 +1349,10 @@ impl SRSupplementalCategory {
         /// More information about what this category represents can be found in Apple's developer documentation
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -2693,6 +2701,10 @@ impl SRWristTemperature {
         /// Timestamp of when temperature measurement was taken.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
@@ -2700,6 +2712,10 @@ impl SRWristTemperature {
         /// Temperature sensor value in celsius
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSMeasurement<NSUnitTemperature>>;
@@ -2707,6 +2723,10 @@ impl SRWristTemperature {
         /// Indicate system conditions that may impact the temperature sample.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(condition))]
         #[unsafe(method_family = none)]
         pub unsafe fn condition(&self) -> SRWristTemperatureCondition;
@@ -2715,6 +2735,10 @@ impl SRWristTemperature {
         /// Error could be in either positive or negative direction.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(errorEstimate))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorEstimate(&self) -> Retained<NSMeasurement<NSUnitTemperature>>;
@@ -2765,6 +2789,10 @@ impl SRWristTemperatureSession {
         /// Indicates when temperatures were collected.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
@@ -2772,6 +2800,10 @@ impl SRWristTemperatureSession {
         /// Precise number of seconds temperatures were collected.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -2779,6 +2811,10 @@ impl SRWristTemperatureSession {
         /// Algorithm version.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
@@ -2786,6 +2822,10 @@ impl SRWristTemperatureSession {
         /// Enumerator which could be used to view calculated wrist temperatures, along with their reading accuracy.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(temperatures))]
         #[unsafe(method_family = none)]
         pub unsafe fn temperatures(&self) -> Retained<NSEnumerator<SRWristTemperature>>;
@@ -2851,6 +2891,10 @@ impl SRMediaEvent {
         /// Unique media identifier to track a specific media object.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mediaIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaIdentifier(&self) -> Retained<NSString>;
@@ -2861,6 +2905,10 @@ impl SRMediaEvent {
         /// Type of media event (e.g., media has been displayed on a screen).
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(eventType))]
         #[unsafe(method_family = none)]
         pub unsafe fn eventType(&self) -> SRMediaEventType;
@@ -2925,6 +2973,10 @@ impl SRSpeechExpression {
         /// `SRSpeechExpression`
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
@@ -2934,6 +2986,10 @@ impl SRSpeechExpression {
         /// result corresponds
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
@@ -2941,6 +2997,10 @@ impl SRSpeechExpression {
         /// The level of confidence normalized to [0, 1], where 1 is most confident
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> c_double;
@@ -2952,6 +3012,10 @@ impl SRSpeechExpression {
         /// sentiment, and positive scores indicate 'positive' sentiment.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mood))]
         #[unsafe(method_family = none)]
         pub unsafe fn mood(&self) -> c_double;
@@ -2963,6 +3027,10 @@ impl SRSpeechExpression {
         /// sentiment, and positive scores indicate 'positive' sentiment.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(valence))]
         #[unsafe(method_family = none)]
         pub unsafe fn valence(&self) -> c_double;
@@ -2974,6 +3042,10 @@ impl SRSpeechExpression {
         /// sentiment, and positive scores indicate 'positive' sentiment.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(activation))]
         #[unsafe(method_family = none)]
         pub unsafe fn activation(&self) -> c_double;
@@ -2985,6 +3057,10 @@ impl SRSpeechExpression {
         /// sentiment, and positive scores indicate 'positive' sentiment.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(dominance))]
         #[unsafe(method_family = none)]
         pub unsafe fn dominance(&self) -> c_double;
@@ -3037,6 +3113,10 @@ impl SRAudioLevel {
         /// result corresponds
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
@@ -3044,6 +3124,10 @@ impl SRAudioLevel {
         /// Measure of the audio level in decibels
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(loudness))]
         #[unsafe(method_family = none)]
         pub unsafe fn loudness(&self) -> c_double;
@@ -3127,11 +3211,19 @@ impl SRSpeechMetrics {
         /// Identifier of an audio session e.g., a Phone call or Siri utterance
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sessionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionIdentifier(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sessionFlags))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionFlags(&self) -> SRSpeechMetricsSessionFlags;
@@ -3139,6 +3231,10 @@ impl SRSpeechMetrics {
         /// The wall time when this sample was generated
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
@@ -3151,28 +3247,48 @@ impl SRSpeechMetrics {
         /// periodically. This field can be used to determine where each sample falls in the audio stream
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timeSinceAudioStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeSinceAudioStart(&self) -> NSTimeInterval;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(audioLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioLevel(&self) -> Option<Retained<SRAudioLevel>>;
 
         #[cfg(feature = "objc2-speech")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(speechRecognition))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechRecognition(&self) -> Option<Retained<SFSpeechRecognitionResult>>;
 
         #[cfg(feature = "objc2-sound-analysis")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(soundClassification))]
         #[unsafe(method_family = none)]
         pub unsafe fn soundClassification(&self) -> Option<Retained<SNClassificationResult>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(speechExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechExpression(&self) -> Option<Retained<SRSpeechExpression>>;
@@ -3247,6 +3363,10 @@ impl SRFaceMetricsExpression {
         /// More information about what this face expression represents can be found in Apple's developer documentation
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -3254,6 +3374,10 @@ impl SRFaceMetricsExpression {
         /// double value indicating the current position of the expression
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> c_double;
@@ -3304,6 +3428,10 @@ impl SRFaceMetrics {
         /// Algorithm version
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
@@ -3311,6 +3439,10 @@ impl SRFaceMetrics {
         /// Identifier of a camera session
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sessionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionIdentifier(&self) -> Retained<NSString>;
@@ -3318,12 +3450,20 @@ impl SRFaceMetrics {
         /// Indicates system context during a camera session, e.g., if the device was unlocked or (and) a messaging app was used
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> SRFaceMetricsContext;
 
         #[cfg(feature = "objc2-ar-kit")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(faceAnchor))]
         #[unsafe(method_family = none)]
         pub unsafe fn faceAnchor(&self) -> Retained<ARFaceAnchor>;
@@ -3331,6 +3471,10 @@ impl SRFaceMetrics {
         /// Detected whole face expressions
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(wholeFaceExpressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn wholeFaceExpressions(&self) -> Retained<NSArray<SRFaceMetricsExpression>>;
@@ -3338,6 +3482,10 @@ impl SRFaceMetrics {
         /// Detected partial face expressions
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(partialFaceExpressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn partialFaceExpressions(&self) -> Retained<NSArray<SRFaceMetricsExpression>>;
@@ -3442,6 +3590,10 @@ impl SRElectrocardiogramSession {
         /// The state of the ECG session when the sample was recorded
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> SRElectrocardiogramSessionState;
@@ -3449,6 +3601,10 @@ impl SRElectrocardiogramSession {
         /// The type of session guidance during the the ECG session
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sessionGuidance))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionGuidance(&self) -> SRElectrocardiogramSessionGuidance;
@@ -3457,6 +3613,10 @@ impl SRElectrocardiogramSession {
         /// `SRFetchResult`s to the same session
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -3538,6 +3698,10 @@ impl SRElectrocardiogramData {
         pub unsafe fn new() -> Retained<Self>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(flags))]
         #[unsafe(method_family = none)]
         pub unsafe fn flags(&self) -> SRElectrocardiogramDataFlags;
@@ -3545,6 +3709,10 @@ impl SRElectrocardiogramData {
         /// Value of the ECG AC data in microvolts
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSMeasurement<NSUnitElectricPotentialDifference>>;
@@ -3617,6 +3785,10 @@ impl SRElectrocardiogramSample {
         /// Date of the start of the batch of ECG data
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
@@ -3624,6 +3796,10 @@ impl SRElectrocardiogramSample {
         /// Frequency in hertz at which the ECG data was recorded
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(frequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn frequency(&self) -> Retained<NSMeasurement<NSUnitFrequency>>;
@@ -3631,16 +3807,28 @@ impl SRElectrocardiogramSample {
         /// The session to which this sample belongs
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(session))]
         #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Retained<SRElectrocardiogramSession>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(lead))]
         #[unsafe(method_family = none)]
         pub unsafe fn lead(&self) -> SRElectrocardiogramLead;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSArray<SRElectrocardiogramData>>;
@@ -3707,6 +3895,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// The index of the LED in use during the sample reading
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(emitter))]
         #[unsafe(method_family = none)]
         pub unsafe fn emitter(&self) -> NSInteger;
@@ -3714,6 +3906,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// The set of photodiodes in use during the sample reading
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(activePhotodiodeIndexes))]
         #[unsafe(method_family = none)]
         pub unsafe fn activePhotodiodeIndexes(&self) -> Retained<NSIndexSet>;
@@ -3728,6 +3924,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// different configurations.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(signalIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn signalIdentifier(&self) -> NSInteger;
@@ -3736,6 +3936,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// operating at a specific temperature
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(nominalWavelength))]
         #[unsafe(method_family = none)]
         pub unsafe fn nominalWavelength(&self) -> Retained<NSMeasurement<NSUnitLength>>;
@@ -3743,6 +3947,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// a temperature compensated wavelength in nanometers estimate that the emitter is producing
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(effectiveWavelength))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectiveWavelength(&self) -> Retained<NSMeasurement<NSUnitLength>>;
@@ -3750,6 +3958,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// Sampling frequency of PPG data in Hz
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(samplingFrequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplingFrequency(&self) -> Retained<NSMeasurement<NSUnitFrequency>>;
@@ -3759,6 +3971,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// specific optical sample
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(nanosecondsSinceStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn nanosecondsSinceStart(&self) -> i64;
@@ -3770,6 +3986,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// `nil`when the sensor data reading is invalid
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(normalizedReflectance))]
         #[unsafe(method_family = none)]
         pub unsafe fn normalizedReflectance(&self) -> Option<Retained<NSNumber>>;
@@ -3781,6 +4001,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// `nil`when the sensor data reading is invalid
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(whiteNoise))]
         #[unsafe(method_family = none)]
         pub unsafe fn whiteNoise(&self) -> Option<Retained<NSNumber>>;
@@ -3792,6 +4016,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// `nil`when the sensor data reading is invalid
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(pinkNoise))]
         #[unsafe(method_family = none)]
         pub unsafe fn pinkNoise(&self) -> Option<Retained<NSNumber>>;
@@ -3803,6 +4031,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// `nil`when the sensor data reading is invalid
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(backgroundNoise))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundNoise(&self) -> Option<Retained<NSNumber>>;
@@ -3817,6 +4049,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// `nil`when the sensor data reading is invalid
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(backgroundNoiseOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundNoiseOffset(&self) -> Option<Retained<NSNumber>>;
@@ -3829,6 +4065,10 @@ impl SRPhotoplethysmogramOpticalSample {
         /// that may influence how the recorded data should be treated.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(conditions))]
         #[unsafe(method_family = none)]
         pub unsafe fn conditions(
@@ -3883,6 +4123,10 @@ impl SRPhotoplethysmogramAccelerometerSample {
         /// accelerometer sample
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(nanosecondsSinceStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn nanosecondsSinceStart(&self) -> i64;
@@ -3890,6 +4134,10 @@ impl SRPhotoplethysmogramAccelerometerSample {
         /// Sampling frequency of accelerometer data in Hz
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(samplingFrequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplingFrequency(&self) -> Retained<NSMeasurement<NSUnitFrequency>>;
@@ -3897,6 +4145,10 @@ impl SRPhotoplethysmogramAccelerometerSample {
         /// X-axis acceleration in G's
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(x))]
         #[unsafe(method_family = none)]
         pub unsafe fn x(&self) -> Retained<NSMeasurement<NSUnitAcceleration>>;
@@ -3904,6 +4156,10 @@ impl SRPhotoplethysmogramAccelerometerSample {
         /// Y-axis acceleration in G's
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(y))]
         #[unsafe(method_family = none)]
         pub unsafe fn y(&self) -> Retained<NSMeasurement<NSUnitAcceleration>>;
@@ -3911,6 +4167,10 @@ impl SRPhotoplethysmogramAccelerometerSample {
         /// Z-axis acceleration in G's
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(z))]
         #[unsafe(method_family = none)]
         pub unsafe fn z(&self) -> Retained<NSMeasurement<NSUnitAcceleration>>;
@@ -4011,6 +4271,10 @@ impl SRPhotoplethysmogramSample {
         /// the start date of a data collection session
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
@@ -4018,6 +4282,10 @@ impl SRPhotoplethysmogramSample {
         /// nanoseconds since the start date of this specific sample
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(nanosecondsSinceStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn nanosecondsSinceStart(&self) -> i64;
@@ -4028,17 +4296,29 @@ impl SRPhotoplethysmogramSample {
         /// It is possible for these to occur in combination
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(usage))]
         #[unsafe(method_family = none)]
         pub unsafe fn usage(&self) -> Retained<NSArray<SRPhotoplethysmogramSampleUsage>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(opticalSamples))]
         #[unsafe(method_family = none)]
         pub unsafe fn opticalSamples(&self)
             -> Retained<NSArray<SRPhotoplethysmogramOpticalSample>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accelerometerSamples))]
         #[unsafe(method_family = none)]
         pub unsafe fn accelerometerSamples(
@@ -4052,6 +4332,10 @@ impl SRPhotoplethysmogramSample {
         /// `nil`when the sensor data reading is invalid or if is not supported by the hardware
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(temperature))]
         #[unsafe(method_family = none)]
         pub unsafe fn temperature(&self) -> Option<Retained<NSMeasurement<NSUnitTemperature>>>;

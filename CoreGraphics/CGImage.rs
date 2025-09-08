@@ -169,6 +169,9 @@ unsafe impl ConcreteType for CGImage {
 }
 
 impl CGImage {
+    /// # Safety
+    ///
+    /// `decode` must be a valid pointer or null.
     #[doc(alias = "CGImageCreate")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     #[inline]
@@ -218,6 +221,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `decode` must be a valid pointer or null.
     #[doc(alias = "CGImageMaskCreate")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
@@ -268,6 +274,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `decode` must be a valid pointer or null.
     #[doc(alias = "CGImageCreateWithJPEGDataProvider")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     #[inline]
@@ -291,6 +300,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `decode` must be a valid pointer or null.
     #[doc(alias = "CGImageCreateWithPNGDataProvider")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     #[inline]
@@ -345,6 +357,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `components` must be a valid pointer or null.
     #[doc(alias = "CGImageCreateWithMaskingColors")]
     #[inline]
     pub unsafe fn with_masking_colors(
@@ -378,6 +393,9 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `decode` must be a valid pointer or null.
     #[doc(alias = "CGImageCreateWithContentHeadroom")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     #[inline]

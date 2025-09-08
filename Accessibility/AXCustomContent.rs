@@ -137,6 +137,10 @@ extern_protocol!(
         /// Setter for [`accessibilityCustomContentBlock`][Self::accessibilityCustomContentBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_custom_content_block` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(setAccessibilityCustomContentBlock:))]
         #[unsafe(method_family = none)]

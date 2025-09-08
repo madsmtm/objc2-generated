@@ -115,6 +115,10 @@ impl UIListContentTextProperties {
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the color. A nil value means the `color` is used as-is.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(colorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorTransformer(&self) -> UIConfigurationColorTransformer;
@@ -127,6 +131,10 @@ impl UIListContentTextProperties {
         /// Setter for [`colorTransformer`][Self::colorTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `color_transformer` must be a valid pointer or null.
         #[unsafe(method(setColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorTransformer(

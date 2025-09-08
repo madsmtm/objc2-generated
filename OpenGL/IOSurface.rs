@@ -72,6 +72,10 @@ extern "C-unwind" {
     /// Parameter `ioSurface`: The IOSurfaceRef this texture is being bound to
     ///
     /// Parameter `plane`: Which plane of the IOSurface this texture is being bound to
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[cfg(all(feature = "CGLTypes", feature = "objc2-io-surface"))]
     pub fn CGLTexImageIOSurface2D(
         ctx: CGLContextObj,

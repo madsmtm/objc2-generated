@@ -54,6 +54,11 @@ extern "C-unwind" {
     /// `rnd`is unrecognized or unsupported,
     /// `kSecRandomDefault`is
     /// used.
+    ///
+    /// # Safety
+    ///
+    /// - `rnd` must be a valid pointer or null.
+    /// - `bytes` must be a valid pointer.
     #[must_use]
     pub fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int;
 }

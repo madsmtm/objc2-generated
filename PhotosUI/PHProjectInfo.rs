@@ -96,6 +96,10 @@ impl PHProjectInfo {
         /// Source from which the project was created.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(creationSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationSource(&self) -> PHProjectCreationSource;
@@ -105,6 +109,10 @@ impl PHProjectInfo {
         /// See PHProjectExtensionController.h for more information on configuring the options.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(projectType))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectType(&self) -> Retained<PHProjectType>;
@@ -112,6 +120,10 @@ impl PHProjectInfo {
         /// Array of project sections each containing one or more PHProjectSectionContent objects.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sections))]
         #[unsafe(method_family = none)]
         pub unsafe fn sections(&self) -> Retained<NSArray<PHProjectSection>>;
@@ -121,6 +133,10 @@ impl PHProjectInfo {
         /// YES if the source project had branding enabled.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(brandingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn brandingEnabled(&self) -> bool;
@@ -128,6 +144,10 @@ impl PHProjectInfo {
         /// YES if the source project had page numbers enabled.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(pageNumbersEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageNumbersEnabled(&self) -> bool;
@@ -135,6 +155,10 @@ impl PHProjectInfo {
         /// The product identifier of the originating Apple Print Product.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(productIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn productIdentifier(&self) -> Option<Retained<NSString>>;
@@ -142,6 +166,10 @@ impl PHProjectInfo {
         /// The product theme identifier of the originating Apple Print Product.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(themeIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn themeIdentifier(&self) -> Option<Retained<NSString>>;
@@ -229,6 +257,10 @@ impl PHProjectSection {
         /// individual content objects.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sectionContents))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionContents(&self) -> Retained<NSArray<PHProjectSectionContent>>;
@@ -236,6 +268,10 @@ impl PHProjectSection {
         /// The intended usage of the section (e.g., cover, content, auxiliary)
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sectionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionType(&self) -> PHProjectSectionType;
@@ -243,6 +279,10 @@ impl PHProjectSection {
         /// Title for the section (e.g., a Moment name or a general geographical location), might be an empty string.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
@@ -289,6 +329,10 @@ impl PHProjectSectionContent {
         /// Array of asset, text, or journal entry elements contained in the content.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
         pub unsafe fn elements(&self) -> Retained<NSArray<PHProjectElement>>;
@@ -299,6 +343,10 @@ impl PHProjectSectionContent {
         /// the specified numberOfColumns will always be 1.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfColumns))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
@@ -306,6 +354,10 @@ impl PHProjectSectionContent {
         /// Overall aspect ratio of the full content layout (width/height) to enable faithful replication in the project's layout.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(aspectRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn aspectRatio(&self) -> c_double;
@@ -315,6 +367,10 @@ impl PHProjectSectionContent {
         /// Convenience for getting a single array of all cloud asset identifiers referenced in the content without needing to enumerate elements.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(cloudAssetIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn cloudAssetIdentifiers(&self) -> Retained<NSArray<PHCloudIdentifier>>;
@@ -325,6 +381,10 @@ impl PHProjectSectionContent {
         /// This property is only used when the user creates a new project from an existing Apple Print Product
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
@@ -374,6 +434,10 @@ impl PHProjectElement {
         /// Default is 0.5.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_double;
@@ -386,6 +450,10 @@ impl PHProjectElement {
         /// creation, placement will contain CGRectNull.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(placement))]
         #[unsafe(method_family = none)]
         pub unsafe fn placement(&self) -> CGRect;
@@ -507,6 +575,10 @@ impl PHProjectAssetElement {
         /// before fetching, but if archiving the identifier in project data the provided PHCloudIdentifier should always be used.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(cloudAssetIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn cloudAssetIdentifier(&self) -> Retained<PHCloudIdentifier>;
@@ -514,6 +586,10 @@ impl PHProjectAssetElement {
         /// If a user has explicitly annotated an asset (e.g., caption) that value will be provided in this property.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(annotation))]
         #[unsafe(method_family = none)]
         pub unsafe fn annotation(&self) -> Retained<NSString>;
@@ -528,6 +604,10 @@ impl PHProjectAssetElement {
         /// Default value: {(0.0, 0.0), (1.0,1.0)}
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(cropRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn cropRect(&self) -> CGRect;
@@ -537,6 +617,10 @@ impl PHProjectAssetElement {
         /// of the user's full library. For example, random faces in a crowd.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(regionsOfInterest))]
         #[unsafe(method_family = none)]
         pub unsafe fn regionsOfInterest(&self) -> Retained<NSArray<PHProjectRegionOfInterest>>;
@@ -546,6 +630,10 @@ impl PHProjectAssetElement {
         /// YES if the asset was presented horizontally flipped in the originating project.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(horizontallyFlipped))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontallyFlipped(&self) -> bool;
@@ -553,6 +641,10 @@ impl PHProjectAssetElement {
         /// YES if the asset was presented vertically flipped in the originating project.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(verticallyFlipped))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticallyFlipped(&self) -> bool;
@@ -632,6 +724,10 @@ impl PHProjectTextElement {
         /// Unformatted, raw string for the text element
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
@@ -640,6 +736,10 @@ impl PHProjectTextElement {
         /// attributedText will provide access to those same attributes.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(attributedText))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
@@ -695,6 +795,10 @@ impl PHProjectJournalEntryElement {
         /// Date to which the provided asset and/or text pertain
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
@@ -702,6 +806,10 @@ impl PHProjectJournalEntryElement {
         /// Representative asset, if any, for that date.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(assetElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetElement(&self) -> Option<Retained<PHProjectAssetElement>>;
@@ -709,6 +817,10 @@ impl PHProjectJournalEntryElement {
         /// Descriptive text (e.g., "Mom's Birthday") for that date.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(textElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn textElement(&self) -> Option<Retained<PHProjectTextElement>>;
@@ -760,36 +872,60 @@ impl PHProjectMapElement {
         /// The type of the map in the project.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mapType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapType(&self) -> MKMapType;
 
         #[cfg(feature = "objc2-core-location")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(centerCoordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn centerCoordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(heading))]
         #[unsafe(method_family = none)]
         pub unsafe fn heading(&self) -> CLLocationDirection;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(pitch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-location")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(altitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-map-kit")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(annotations))]
         #[unsafe(method_family = none)]
         pub unsafe fn annotations(&self) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;

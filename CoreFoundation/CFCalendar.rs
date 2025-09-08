@@ -91,6 +91,9 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `locale` might not allow `None`.
     #[doc(alias = "CFCalendarSetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -275,6 +278,10 @@ impl CFCalendar {
         unsafe { CFCalendarGetOrdinalityOfUnit(self, smaller_unit, bigger_unit, at) }
     }
 
+    /// # Safety
+    ///
+    /// - `startp` must be a valid pointer.
+    /// - `tip` must be a valid pointer.
     #[doc(alias = "CFCalendarGetTimeRangeOfUnit")]
     #[cfg(feature = "CFDate")]
     #[inline]

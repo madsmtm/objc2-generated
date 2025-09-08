@@ -93,6 +93,10 @@ impl TVApplicationControllerContext {
         /// Setter for [`launchOptions`][Self::launchOptions].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `launch_options` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(setLaunchOptions:))]
         #[unsafe(method_family = none)]
@@ -130,6 +134,10 @@ extern_protocol!(
         );
 
         /// Tells the delegate that the application did finish launching.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[optional]
         #[unsafe(method(appController:didFinishLaunchingWithOptions:))]
@@ -152,6 +160,10 @@ extern_protocol!(
         );
 
         /// Tells the delegate that the application did stop.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[optional]
         #[unsafe(method(appController:didStopWithOptions:))]

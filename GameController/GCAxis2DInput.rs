@@ -28,6 +28,11 @@ extern_protocol!(
         /// Parameter `input`: the input that has been modified.
         ///
         /// Parameter `value`: the value the axis was set to at the time the valueChangedHandler fired.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(valueDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn valueDidChangeHandler(

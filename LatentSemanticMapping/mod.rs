@@ -163,6 +163,10 @@ pub const kLSMMapHashText: c_uint = 256;
 impl LSMMap {
     /// Set a dictionary of properties for the map. LSM makes its own copy
     /// of the properties, there's no need to retain them past this call.
+    ///
+    /// # Safety
+    ///
+    /// `properties` generics must be of the correct type.
     #[doc(alias = "LSMMapSetProperties")]
     #[inline]
     pub unsafe fn set_properties(&self, properties: &CFDictionary) {
@@ -279,6 +283,10 @@ impl LSMMap {
     /// Compute a set of clusters grouping similar categories or words.
     /// If subset is non-NULL, only perform clustering on the categories
     /// or words listed.
+    ///
+    /// # Safety
+    ///
+    /// `subset` generic must be of the correct type.
     #[doc(alias = "LSMMapCreateClusters")]
     #[inline]
     pub unsafe fn new_clusters(
@@ -315,6 +323,10 @@ pub const kLSMClusterAgglomerative: c_uint = 4;
 
 impl LSMMap {
     /// Group categories or words (tokens) into the specified sets of clusters.
+    ///
+    /// # Safety
+    ///
+    /// `clusters` generic must be of the correct type.
     #[doc(alias = "LSMMapApplyClusters")]
     #[inline]
     pub unsafe fn apply_clusters(&self, clusters: &CFArray) -> OSStatus {

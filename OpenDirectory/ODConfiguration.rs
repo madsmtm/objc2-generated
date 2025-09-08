@@ -82,6 +82,10 @@ impl ODConfiguration {
 
         #[cfg(feature = "ODMappings")]
         /// Setter for [`defaultMappings`][Self::defaultMappings].
+        ///
+        /// # Safety
+        ///
+        /// `default_mappings` might not allow `None`.
         #[unsafe(method(setDefaultMappings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultMappings(&self, default_mappings: Option<&ODMappings>);
@@ -104,6 +108,10 @@ impl ODConfiguration {
         /// Setter for [`virtualSubnodes`][Self::virtualSubnodes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `virtual_subnodes` generic should be of the correct type.
         #[unsafe(method(setVirtualSubnodes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVirtualSubnodes(&self, virtual_subnodes: Option<&NSArray>);
@@ -235,6 +243,10 @@ impl ODConfiguration {
         /// Setter for [`defaultModuleEntries`][Self::defaultModuleEntries].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `default_module_entries` generic should be of the correct type.
         #[unsafe(method(setDefaultModuleEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultModuleEntries(&self, default_module_entries: Option<&NSArray>);
@@ -246,6 +258,10 @@ impl ODConfiguration {
         /// Setter for [`authenticationModuleEntries`][Self::authenticationModuleEntries].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `authentication_module_entries` generic should be of the correct type.
         #[unsafe(method(setAuthenticationModuleEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationModuleEntries(
@@ -260,6 +276,10 @@ impl ODConfiguration {
         /// Setter for [`discoveryModuleEntries`][Self::discoveryModuleEntries].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `discovery_module_entries` generic should be of the correct type.
         #[unsafe(method(setDiscoveryModuleEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiscoveryModuleEntries(&self, discovery_module_entries: Option<&NSArray>);
@@ -271,6 +291,10 @@ impl ODConfiguration {
         /// Setter for [`generalModuleEntries`][Self::generalModuleEntries].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `general_module_entries` generic should be of the correct type.
         #[unsafe(method(setGeneralModuleEntries:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGeneralModuleEntries(&self, general_module_entries: Option<&NSArray>);
@@ -289,6 +313,10 @@ impl ODConfiguration {
         /// Returns a suggested name to use for a trust account.  This name will be derived from the hostname
         /// (if provided), otherwise it will be derived from the local hostname removing special characters
         /// that may not be allowed by many systems.
+        ///
+        /// # Safety
+        ///
+        /// `hostname` might not allow `None`.
         #[unsafe(method(suggestedTrustAccount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn suggestedTrustAccount(
@@ -308,6 +336,10 @@ impl ODConfiguration {
         ///
         ///
         /// Saves the configuration using the provided authorization.
+        ///
+        /// # Safety
+        ///
+        /// `authorization` might not allow `None`.
         #[unsafe(method(saveUsingAuthorization:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveUsingAuthorization_error(
@@ -323,6 +355,14 @@ impl ODConfiguration {
         /// request that the trust be forcibly created (replacing existing trust if found in directory).  A trust should be
         /// established only after enough configuration is available and the configuration been saved.  If the trust is
         /// required, then the configuration can be deleted if necessary upon failure.
+        ///
+        /// # Safety
+        ///
+        /// - `trust_type` might not allow `None`.
+        /// - `account` might not allow `None`.
+        /// - `account_password` might not allow `None`.
+        /// - `username` might not allow `None`.
+        /// - `password` might not allow `None`.
         #[unsafe(method(addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrustType_trustAccount_trustPassword_username_password_joinExisting_error(
@@ -340,6 +380,11 @@ impl ODConfiguration {
         ///
         ///
         /// Removes trust using the provided username and password.  The trust account will be removed from the directory only if requested.
+        ///
+        /// # Safety
+        ///
+        /// - `username` might not allow `None`.
+        /// - `password` might not allow `None`.
         #[unsafe(method(removeTrustUsingUsername:password:deleteTrustAccount:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrustUsingUsername_password_deleteTrustAccount_error(

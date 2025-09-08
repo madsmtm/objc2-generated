@@ -80,6 +80,10 @@ impl SBObject {
         ///
         /// - Returns: An `SBObject` object or `nil` if the object could not be
         /// initialized.
+        ///
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProperties(
@@ -100,6 +104,10 @@ impl SBObject {
         ///
         /// - Returns: An `SBObject` object or `nil` if the object could not be
         /// initialized.
+        ///
+        /// # Safety
+        ///
+        /// `data` should be of the correct type.
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &AnyObject) -> Retained<Self>;
@@ -163,6 +171,11 @@ impl SBObject {
         ///
         /// - Returns: An `SBObject` object or `nil` if the object could not be
         /// initialized.
+        ///
+        /// # Safety
+        ///
+        /// - `properties` generic should be of the correct type.
+        /// - `data` should be of the correct type.
         #[unsafe(method(initWithElementCode:properties:data:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElementCode_properties_data(
@@ -206,6 +219,10 @@ impl SBObject {
         ///
         /// - Returns: An instance of the designated `class` that represents the
         /// receiver’s property identified by `code`.
+        ///
+        /// # Safety
+        ///
+        /// `cls` probably has further requirements.
         #[unsafe(method(propertyWithClass:code:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyWithClass_code(
@@ -247,6 +264,10 @@ impl SBObject {
         /// ://com.apple.documentation/documentation/foundation/nsarray>,
         /// `SBObject`, or any other type of object supported by the Scripting Bridge
         /// framework.
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setTo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTo(&self, value: Option<&AnyObject>);

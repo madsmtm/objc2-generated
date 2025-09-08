@@ -93,6 +93,10 @@ impl AVSemanticSegmentationMatte {
         ///
         ///
         /// When using ImageIO framework's CGImageSource API to read from a HEIF or JPEG file containing a semantic segmentation matte, AVSemanticSegmentationMatte can be instantiated using the result of CGImageSourceCopyAuxiliaryDataInfoAtIndex, which returns a CFDictionary of primitive segmentation matte information.
+        ///
+        /// # Safety
+        ///
+        /// `image_source_auxiliary_data_info_dictionary` generic should be of the correct type.
         #[unsafe(method(semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationMatteFromImageSourceAuxiliaryDataType_dictionaryRepresentation_error(

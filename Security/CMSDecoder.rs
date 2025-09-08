@@ -67,6 +67,9 @@ unsafe impl RefEncode for CMSSignerStatus {
 }
 
 impl CMSDecoder {
+    /// # Safety
+    ///
+    /// `cms_decoder_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCreate")]
     #[inline]
     pub unsafe fn create(cms_decoder_out: NonNull<*mut CMSDecoder>) -> OSStatus {
@@ -76,6 +79,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCreate(cms_decoder_out) }
     }
 
+    /// # Safety
+    ///
+    /// `msg_bytes` must be a valid pointer.
     #[doc(alias = "CMSDecoderUpdateMessage")]
     #[inline]
     pub unsafe fn update_message(
@@ -114,6 +120,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderSetDetachedContent(self, detached_content) }
     }
 
+    /// # Safety
+    ///
+    /// `detached_content_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopyDetachedContent")]
     #[inline]
     pub unsafe fn copy_detached_content(
@@ -129,6 +138,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyDetachedContent(self, detached_content_out) }
     }
 
+    /// # Safety
+    ///
+    /// `keychain_or_array` should be of the correct type.
     #[doc(alias = "CMSDecoderSetSearchKeychain")]
     #[deprecated]
     #[inline]
@@ -142,6 +154,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderSetSearchKeychain(self, keychain_or_array) }
     }
 
+    /// # Safety
+    ///
+    /// `num_signers_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderGetNumSigners")]
     #[inline]
     pub unsafe fn num_signers(&self, num_signers_out: NonNull<usize>) -> OSStatus {
@@ -154,6 +169,11 @@ impl CMSDecoder {
         unsafe { CMSDecoderGetNumSigners(self, num_signers_out) }
     }
 
+    /// # Safety
+    ///
+    /// - `signer_status_out` must be a valid pointer or null.
+    /// - `sec_trust_out` must be a valid pointer or null.
+    /// - `cert_verify_result_code_out` must be a valid pointer or null.
     #[doc(alias = "CMSDecoderCopySignerStatus")]
     #[cfg(feature = "SecTrust")]
     #[inline]
@@ -190,6 +210,9 @@ impl CMSDecoder {
         }
     }
 
+    /// # Safety
+    ///
+    /// `signer_email_address_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerEmailAddress")]
     #[inline]
     pub unsafe fn copy_signer_email_address(
@@ -207,6 +230,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerEmailAddress(self, signer_index, signer_email_address_out) }
     }
 
+    /// # Safety
+    ///
+    /// `signer_cert_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerCert")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -225,6 +251,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerCert(self, signer_index, signer_cert_out) }
     }
 
+    /// # Safety
+    ///
+    /// `is_encrypted_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderIsContentEncrypted")]
     #[inline]
     pub unsafe fn is_content_encrypted(&self, is_encrypted_out: NonNull<Boolean>) -> OSStatus {
@@ -237,6 +266,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderIsContentEncrypted(self, is_encrypted_out) }
     }
 
+    /// # Safety
+    ///
+    /// `e_content_type_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopyEncapsulatedContentType")]
     #[inline]
     pub unsafe fn copy_encapsulated_content_type(
@@ -252,6 +284,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyEncapsulatedContentType(self, e_content_type_out) }
     }
 
+    /// # Safety
+    ///
+    /// `certs_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopyAllCerts")]
     #[inline]
     pub unsafe fn copy_all_certs(&self, certs_out: NonNull<*const CFArray>) -> OSStatus {
@@ -264,6 +299,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyAllCerts(self, certs_out) }
     }
 
+    /// # Safety
+    ///
+    /// `content_out` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopyContent")]
     #[inline]
     pub unsafe fn copy_content(&self, content_out: NonNull<*const CFData>) -> OSStatus {
@@ -276,6 +314,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyContent(self, content_out) }
     }
 
+    /// # Safety
+    ///
+    /// `signing_time` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerSigningTime")]
     #[inline]
     pub unsafe fn copy_signer_signing_time(
@@ -293,6 +334,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerSigningTime(self, signer_index, signing_time) }
     }
 
+    /// # Safety
+    ///
+    /// `timestamp` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerTimestamp")]
     #[inline]
     pub unsafe fn copy_signer_timestamp(
@@ -310,6 +354,9 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerTimestamp(self, signer_index, timestamp) }
     }
 
+    /// # Safety
+    ///
+    /// `timestamp` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerTimestampWithPolicy")]
     #[inline]
     pub unsafe fn copy_signer_timestamp_with_policy(
@@ -336,6 +383,9 @@ impl CMSDecoder {
         }
     }
 
+    /// # Safety
+    ///
+    /// `certificate_refs` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerTimestampCertificates")]
     #[inline]
     pub unsafe fn copy_signer_timestamp_certificates(

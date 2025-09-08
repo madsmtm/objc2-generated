@@ -55,6 +55,9 @@ unsafe impl ConcreteType for CFData {
 }
 
 impl CFData {
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "CFDataCreate")]
     #[inline]
     pub unsafe fn new(
@@ -73,6 +76,10 @@ impl CFData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `bytes` must be a valid pointer.
+    /// - `bytes_deallocator` might not allow `None`.
     #[doc(alias = "CFDataCreateWithBytesNoCopy")]
     #[inline]
     pub unsafe fn with_bytes_no_copy(
@@ -128,6 +135,10 @@ impl CFMutableData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `the_data` might not allow `None`.
     #[doc(alias = "CFDataCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -179,6 +190,9 @@ impl CFMutableData {
 }
 
 impl CFData {
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFDataGetBytes")]
     #[inline]
     pub unsafe fn bytes(&self, range: CFRange, buffer: *mut u8) {
@@ -208,6 +222,9 @@ impl CFMutableData {
         unsafe { CFDataIncreaseLength(the_data, extra_length) }
     }
 
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "CFDataAppendBytes")]
     #[inline]
     pub unsafe fn append_bytes(
@@ -225,6 +242,9 @@ impl CFMutableData {
         unsafe { CFDataAppendBytes(the_data, bytes, length) }
     }
 
+    /// # Safety
+    ///
+    /// `new_bytes` must be a valid pointer.
     #[doc(alias = "CFDataReplaceBytes")]
     #[inline]
     pub unsafe fn replace_bytes(
@@ -279,6 +299,9 @@ unsafe impl RefEncode for CFDataSearchFlags {
 }
 
 impl CFData {
+    /// # Safety
+    ///
+    /// `data_to_find` might not allow `None`.
     #[doc(alias = "CFDataFind")]
     #[inline]
     pub unsafe fn find(

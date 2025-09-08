@@ -95,6 +95,10 @@ impl MAFlashingLightsProcessor {
         /// Options dictionary for additional parameters.
         ///
         /// Returns: An object which indicates whether the surface was able to be processed, the amount of mitigation that was applied, and the intensitry level that was detected.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(processSurface:outSurface:timestamp:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processSurface_outSurface_timestamp_options(

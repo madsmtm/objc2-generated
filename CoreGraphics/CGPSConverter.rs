@@ -87,6 +87,11 @@ unsafe impl RefEncode for CGPSConverterCallbacks {
 }
 
 impl CGPSConverter {
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `callbacks` must be a valid pointer.
+    /// - `options` generics must be of the correct type.
     #[doc(alias = "CGPSConverterCreate")]
     #[inline]
     pub unsafe fn new(
@@ -105,6 +110,9 @@ impl CGPSConverter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGPSConverterConvert")]
     #[cfg(all(feature = "CGDataConsumer", feature = "CGDataProvider"))]
     #[inline]

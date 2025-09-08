@@ -45,6 +45,9 @@ unsafe impl RefEncode for SCNBufferFrequency {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferstream?language=objc)
     pub unsafe trait SCNBufferStream: NSObjectProtocol {
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(writeBytes:length:))]
         #[unsafe(method_family = none)]
         unsafe fn writeBytes_length(&self, bytes: NonNull<c_void>, length: NSUInteger);
@@ -114,6 +117,10 @@ extern_protocol!(
         /// Parameter `block`: The block to call to bind the specified symbol.
         ///
         /// This method can only be used with OpenGL and OpenGLES based programs.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(handleBindingOfSymbol:usingBlock:))]
         #[unsafe(method_family = none)]
@@ -131,6 +138,10 @@ extern_protocol!(
         /// Parameter `block`: The block to call to unbind the specified symbol.
         ///
         /// This method can only be used with OpenGL and OpenGLES based programs.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(handleUnbindingOfSymbol:usingBlock:))]
         #[unsafe(method_family = none)]
@@ -455,6 +466,10 @@ impl SCNProgram {
         /// Parameter `block`: The block that binds the buffer.
         ///
         /// This method can only be used with Metal based programs.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(handleBindingOfBufferNamed:frequency:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleBindingOfBufferNamed_frequency_usingBlock(
@@ -483,6 +498,10 @@ impl SCNProgram {
         /// Parameter `options`: An optional dictionary. See the 'Semantic options' above.
         ///
         /// Associates semantics handled by the SceneKit runtime to a symbol from the program. Supported semantics are listed in SCNGeometry.h and SCNNode.h.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(setSemantic:forSymbol:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSemantic_forSymbol_options(
@@ -509,6 +528,10 @@ impl SCNProgram {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SCNProgramDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SCNProgramDelegate>>);

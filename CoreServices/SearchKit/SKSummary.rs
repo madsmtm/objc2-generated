@@ -36,6 +36,9 @@ unsafe impl ConcreteType for SKSummary {
 }
 
 impl SKSummary {
+    /// # Safety
+    ///
+    /// `in_string` might not allow `None`.
     #[doc(alias = "SKSummaryCreateWithString")]
     #[inline]
     pub unsafe fn with_string(in_string: Option<&CFString>) -> Option<CFRetained<SKSummary>> {
@@ -124,6 +127,11 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `out_rank_order_of_sentences` must be a valid pointer.
+    /// - `out_sentence_index_of_sentences` must be a valid pointer.
+    /// - `out_paragraph_index_of_sentences` must be a valid pointer.
     #[doc(alias = "SKSummaryGetSentenceSummaryInfo")]
     #[inline]
     pub unsafe fn sentence_summary_info(
@@ -153,6 +161,10 @@ impl SKSummary {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `out_rank_order_of_paragraphs` must be a valid pointer.
+    /// - `out_paragraph_index_of_paragraphs` must be a valid pointer.
     #[doc(alias = "SKSummaryGetParagraphSummaryInfo")]
     #[inline]
     pub unsafe fn paragraph_summary_info(

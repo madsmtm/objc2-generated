@@ -92,6 +92,10 @@ impl CPBarButton {
 
         #[cfg(all(feature = "block2", feature = "objc2-ui-kit"))]
         /// Convenience initializer that creates a bar button that renders with an image.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(initWithImage:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_handler(
@@ -102,6 +106,10 @@ impl CPBarButton {
 
         #[cfg(feature = "block2")]
         /// Convenience initializer that creates a bar button that displays a text label.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(initWithTitle:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_handler(
@@ -175,6 +183,9 @@ impl CPBarButton {
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(initWithType:handler:))]
         #[unsafe(method_family = init)]

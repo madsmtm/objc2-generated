@@ -143,6 +143,9 @@ impl NSMatrix {
             cols_wide: NSInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `factory_id` probably has further requirements.
         #[unsafe(method(initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
@@ -162,6 +165,10 @@ impl NSMatrix {
         pub unsafe fn cellClass(&self) -> &'static AnyClass;
 
         /// Setter for [`cellClass`][Self::cellClass].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setCellClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellClass(&self, cell_class: &AnyClass);
@@ -206,6 +213,10 @@ impl NSMatrix {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `object` should be of the correct type.
         #[unsafe(method(sendAction:to:forAllCells:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendAction_to_forAllCells(
@@ -220,10 +231,17 @@ impl NSMatrix {
         #[unsafe(method_family = none)]
         pub unsafe fn cells(&self) -> Retained<NSArray<NSCell>>;
 
+        /// # Safety
+        ///
+        /// `comparator` must be a valid selector.
         #[unsafe(method(sortUsingSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortUsingSelector(&self, comparator: Sel);
 
+        /// # Safety
+        ///
+        /// - `compare` must be implemented correctly.
+        /// - `context` must be a valid pointer or null.
         #[unsafe(method(sortUsingFunction:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortUsingFunction_context(
@@ -285,6 +303,9 @@ impl NSMatrix {
         #[unsafe(method_family = none)]
         pub unsafe fn selectCellAtRow_column(&self, row: NSInteger, col: NSInteger);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
@@ -368,6 +389,10 @@ impl NSMatrix {
             col: NSInteger,
         );
 
+        /// # Safety
+        ///
+        /// - `row_count` must be a valid pointer or null.
+        /// - `col_count` must be a valid pointer or null.
         #[unsafe(method(getNumberOfRows:columns:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getNumberOfRows_columns(
@@ -398,6 +423,10 @@ impl NSMatrix {
         pub unsafe fn cellFrameAtRow_column(&self, row: NSInteger, col: NSInteger) -> NSRect;
 
         #[cfg(feature = "NSCell")]
+        /// # Safety
+        ///
+        /// - `row` must be a valid pointer.
+        /// - `col` must be a valid pointer.
         #[unsafe(method(getRow:column:ofCell:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRow_column_ofCell(
@@ -407,6 +436,10 @@ impl NSMatrix {
             cell: &NSCell,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// - `row` must be a valid pointer.
+        /// - `col` must be a valid pointer.
         #[unsafe(method(getRow:column:forPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRow_column_forPoint(
@@ -492,6 +525,10 @@ impl NSMatrix {
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
+        ///
+        /// # Safety
+        ///
+        /// `double_action` must be a valid selector.
         #[unsafe(method(setDoubleAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
@@ -589,6 +626,9 @@ impl NSMatrix {
         #[unsafe(method_family = none)]
         pub unsafe fn textDidChange(&self, notification: &NSNotification);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectText(&self, sender: Option<&AnyObject>);

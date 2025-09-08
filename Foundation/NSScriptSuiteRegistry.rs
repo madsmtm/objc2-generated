@@ -33,6 +33,9 @@ impl NSScriptSuiteRegistry {
         pub unsafe fn loadSuitesFromBundle(&self, bundle: &NSBundle);
 
         #[cfg(all(feature = "NSBundle", feature = "NSDictionary"))]
+        /// # Safety
+        ///
+        /// `suite_declaration` generic should be of the correct type.
         #[unsafe(method(loadSuiteWithDictionary:fromBundle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSuiteWithDictionary_fromBundle(

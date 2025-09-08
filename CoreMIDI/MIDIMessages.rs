@@ -750,6 +750,12 @@ impl MIDIEventList {
     ///
     ///
     /// Parameter `visitorContext`: A context for the visitor that is passed to it when being called.
+    ///
+    /// # Safety
+    ///
+    /// - `evtlist` must be a valid pointer.
+    /// - `visitor` must be implemented correctly.
+    /// - `visitor_context` must be a valid pointer.
     #[doc(alias = "MIDIEventListForEachEvent")]
     #[cfg(feature = "MIDIServices")]
     #[inline]

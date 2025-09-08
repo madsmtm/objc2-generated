@@ -83,6 +83,10 @@ impl AVCaptionConversionValidator {
         /// Returns: A new instance of AVCaptionConversionValidator configured to perform the specified validation.
         ///
         /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
+        ///
+        /// # Safety
+        ///
+        /// `conversion_settings` generic should be of the correct type.
         #[unsafe(method(captionConversionValidatorWithCaptions:timeRange:conversionSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captionConversionValidatorWithCaptions_timeRange_conversionSettings(
@@ -105,6 +109,10 @@ impl AVCaptionConversionValidator {
         /// Parameter `conversionSettings`: Describes the conversion operation for which the captions are to be validated.
         ///
         /// Returns: A new instance of AVCaptionConversionValidator configured to perform the specified validation.
+        ///
+        /// # Safety
+        ///
+        /// `conversion_settings` generic should be of the correct type.
         #[unsafe(method(initWithCaptions:timeRange:conversionSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCaptions_timeRange_conversionSettings(
@@ -141,6 +149,10 @@ impl AVCaptionConversionValidator {
         /// It is an error to invoke this method when the value of status is greater than AVCaptionConversionValidatorStatusUnknown.
         /// If you wish to stop a validation operation in progress before it has been completed, send the message stopValidating to the receiver.
         /// When the validation is complete and all warnings have been reported, the block will be executed once with a value of nil for its warning parameter. When this occurs, the value of status will have been changed to AVCaptionConversionValidatorStatusCompleted.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(validateCaptionConversionWithWarningHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateCaptionConversionWithWarningHandler(

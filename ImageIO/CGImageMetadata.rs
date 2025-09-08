@@ -360,6 +360,10 @@ impl CGImageMetadataTag {
     ///
     /// Returns: Returns a pointer to a new CGImageMetadataTag. Returns NULL if a tag
     /// could not be created with the specified parameters.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "CGImageMetadataTagCreate")]
     #[inline]
     pub unsafe fn new(
@@ -659,6 +663,10 @@ impl CGMutableImageMetadata {
     ///
     /// Returns: Returns true if successful. Returns false and sets 'err' if an error
     /// or conflict occurs.
+    ///
+    /// # Safety
+    ///
+    /// `err` must be a valid pointer or null.
     #[doc(alias = "CGImageMetadataRegisterNamespaceForPrefix")]
     #[inline]
     pub unsafe fn register_namespace_for_prefix(
@@ -834,6 +842,10 @@ impl CGMutableImageMetadata {
     /// .
     ///
     /// Returns: Returns true if successful, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "CGImageMetadataSetValueWithPath")]
     #[inline]
     pub unsafe fn set_value_with_path(
@@ -927,6 +939,11 @@ impl CGImageMetadata {
     /// which should be set to a CFBoolean.
     ///
     /// Parameter `block`: The block that is executed for each tag in metadata.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "CGImageMetadataEnumerateTagsUsingBlock")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1041,6 +1058,10 @@ impl CGMutableImageMetadata {
     /// .
     ///
     /// Returns: Returns true if successful, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "CGImageMetadataSetValueMatchingImageProperty")]
     #[inline]
     pub unsafe fn set_value_matching_image_property(
@@ -1083,6 +1104,10 @@ impl CGImageMetadata {
     ///
     /// Returns: Returns a CFData containing an XMP representation of the metadata. Returns
     /// NULL if an error occurred.
+    ///
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGImageMetadataCreateXMPData")]
     #[inline]
     pub unsafe fn xmp_data(&self, options: Option<&CFDictionary>) -> Option<CFRetained<CFData>> {

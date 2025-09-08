@@ -130,6 +130,10 @@ impl CMIOExtensionStreamProperties {
         /// Parameter `propertiesDictionary`: The dictionary of properties.
         ///
         /// Returns: A CMIOExtensionStreamProperties instance.
+        ///
+        /// # Safety
+        ///
+        /// `properties_dictionary` generic generic should be of the correct type.
         #[unsafe(method(streamPropertiesWithDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamPropertiesWithDictionary(
@@ -142,6 +146,10 @@ impl CMIOExtensionStreamProperties {
         /// Parameter `propertiesDictionary`: The dictionary of properties.
         ///
         /// Returns: A CMIOExtensionStreamProperties instance.
+        ///
+        /// # Safety
+        ///
+        /// `properties_dictionary` generic generic should be of the correct type.
         #[unsafe(method(initWithDictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary(
@@ -170,6 +178,10 @@ impl CMIOExtensionStreamProperties {
         pub unsafe fn frameDuration(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`frameDuration`][Self::frameDuration].
+        ///
+        /// # Safety
+        ///
+        /// `frame_duration` generic should be of the correct type.
         #[unsafe(method(setFrameDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFrameDuration(&self, frame_duration: Option<&NSDictionary>);
@@ -183,6 +195,10 @@ impl CMIOExtensionStreamProperties {
         pub unsafe fn maxFrameDuration(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`maxFrameDuration`][Self::maxFrameDuration].
+        ///
+        /// # Safety
+        ///
+        /// `max_frame_duration` generic should be of the correct type.
         #[unsafe(method(setMaxFrameDuration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxFrameDuration(&self, max_frame_duration: Option<&NSDictionary>);
@@ -249,6 +265,10 @@ impl CMIOExtensionStreamProperties {
         /// Parameter `property`: The property key.
         ///
         /// Setting nil to propertyState does remove the property.
+        ///
+        /// # Safety
+        ///
+        /// `property_state` generic should be of the correct type.
         #[unsafe(method(setPropertyState:forProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertyState_forProperty(
@@ -271,6 +291,10 @@ impl CMIOExtensionStreamProperties {
         /// Setter for [`propertiesDictionary`][Self::propertiesDictionary].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `properties_dictionary` generic generic should be of the correct type.
         #[unsafe(method(setPropertiesDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesDictionary(
@@ -535,6 +559,10 @@ impl CMIOExtensionStream {
         /// Notify client(s) of stream properties changes.
         ///
         /// Parameter `propertyStates`: The dictionary of properties having changed.
+        ///
+        /// # Safety
+        ///
+        /// `property_states` generic generic should be of the correct type.
         #[unsafe(method(notifyPropertiesChanged:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notifyPropertiesChanged(

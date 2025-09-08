@@ -327,6 +327,9 @@ impl UIButtonConfiguration {
             feature = "UIConfigurationColorTransformer",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(imageColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageColorTransformer(&self) -> UIConfigurationColorTransformer;
@@ -339,6 +342,10 @@ impl UIButtonConfiguration {
         /// Setter for [`imageColorTransformer`][Self::imageColorTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `image_color_transformer` must be a valid pointer or null.
         #[unsafe(method(setImageColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageColorTransformer(
@@ -385,6 +392,9 @@ impl UIButtonConfiguration {
             feature = "UIConfigurationColorTransformer",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(activityIndicatorColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityIndicatorColorTransformer(&self) -> UIConfigurationColorTransformer;
@@ -397,6 +407,10 @@ impl UIButtonConfiguration {
         /// Setter for [`activityIndicatorColorTransformer`][Self::activityIndicatorColorTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `activity_indicator_color_transformer` must be a valid pointer or null.
         #[unsafe(method(setActivityIndicatorColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityIndicatorColorTransformer(
@@ -427,6 +441,9 @@ impl UIButtonConfiguration {
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(titleTextAttributesTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleTextAttributesTransformer(
@@ -437,6 +454,10 @@ impl UIButtonConfiguration {
         /// Setter for [`titleTextAttributesTransformer`][Self::titleTextAttributesTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `title_text_attributes_transformer` must be a valid pointer or null.
         #[unsafe(method(setTitleTextAttributesTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributesTransformer(
@@ -482,6 +503,9 @@ impl UIButtonConfiguration {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(subtitleTextAttributesTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleTextAttributesTransformer(
@@ -492,6 +516,10 @@ impl UIButtonConfiguration {
         /// Setter for [`subtitleTextAttributesTransformer`][Self::subtitleTextAttributesTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `subtitle_text_attributes_transformer` must be a valid pointer or null.
         #[unsafe(method(setSubtitleTextAttributesTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleTextAttributesTransformer(
@@ -526,6 +554,9 @@ impl UIButtonConfiguration {
             feature = "UIConfigurationColorTransformer",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(indicatorColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatorColorTransformer(&self) -> UIConfigurationColorTransformer;
@@ -538,6 +569,10 @@ impl UIButtonConfiguration {
         /// Setter for [`indicatorColorTransformer`][Self::indicatorColorTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `indicator_color_transformer` must be a valid pointer or null.
         #[unsafe(method(setIndicatorColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndicatorColorTransformer(

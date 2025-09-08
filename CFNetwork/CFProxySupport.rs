@@ -24,6 +24,9 @@ pub unsafe extern "C-unwind" fn CFNetworkCopySystemProxySettings(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `proxy_settings` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForURL(
     url: &CFURL,
@@ -44,6 +47,9 @@ pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForURL(
 pub type CFProxyAutoConfigurationResultCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFArray>, *mut CFError)>;
 
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForAutoConfigurationScript(
     proxy_auto_configuration_script: &CFString,
@@ -67,6 +73,10 @@ pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForAutoConfigurationScript(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `cb` must be implemented correctly.
+/// - `client_context` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationScript(
     proxy_auto_configuration_script: &CFString,
@@ -94,6 +104,10 @@ pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationScript(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// # Safety
+///
+/// - `cb` must be implemented correctly.
+/// - `client_context` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationURL(
     proxy_auto_config_url: &CFURL,

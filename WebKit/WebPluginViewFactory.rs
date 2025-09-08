@@ -69,6 +69,11 @@ extern_protocol!(
         /// Parameter `arguments`: The arguments dictionary with the mentioned keys and objects. This method is required to implement.
         ///
         /// Returns: Returns an NSView object that conforms to the WebPlugIn informal protocol.
+        ///
+        /// # Safety
+        ///
+        /// - `arguments` generic should be of the correct type.
+        /// - `arguments` might not allow `None`.
         #[deprecated]
         #[unsafe(method(plugInViewWithArguments:))]
         #[unsafe(method_family = none)]

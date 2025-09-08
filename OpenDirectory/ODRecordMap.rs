@@ -38,6 +38,10 @@ impl ODRecordMap {
         /// Setter for [`odPredicate`][Self::odPredicate].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `od_predicate` generic should be of the correct type.
         #[unsafe(method(setOdPredicate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOdPredicate(&self, od_predicate: Option<&NSDictionary>);
@@ -63,6 +67,10 @@ impl ODRecordMap {
         ///
         ///
         /// Returns an ODAttributeMap object for the given OD standard attribute.
+        ///
+        /// # Safety
+        ///
+        /// `standard_attribute` might not allow `None`.
         #[unsafe(method(attributeMapForStandardAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeMapForStandardAttribute(
@@ -75,6 +83,11 @@ impl ODRecordMap {
         ///
         ///
         /// Sets an ODAttributeMap object for a given OD standard attribute.
+        ///
+        /// # Safety
+        ///
+        /// - `attribute_map` might not allow `None`.
+        /// - `standard_attribute` might not allow `None`.
         #[unsafe(method(setAttributeMap:forStandardAttribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributeMap_forStandardAttribute(

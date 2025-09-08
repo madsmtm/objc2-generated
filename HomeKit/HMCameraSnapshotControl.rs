@@ -34,6 +34,10 @@ impl HMCameraSnapshotControl {
         /// Delegate that receives updates on the camera snapshot changes.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -43,6 +47,10 @@ impl HMCameraSnapshotControl {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -54,6 +62,10 @@ impl HMCameraSnapshotControl {
         /// Represents the most recent snapshot taken from the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mostRecentSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn mostRecentSnapshot(&self) -> Option<Retained<HMCameraSnapshot>>;

@@ -256,6 +256,10 @@ impl NEProvider {
         /// Parameter `delegate`: An object to use as the connections delegate. This object should conform to the NWTCPConnectionAuthenticationDelegate protocol.
         ///
         /// Returns: An NWTCPConnection object.
+        ///
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[deprecated = "Use nw_connection_t in Network framework instead"]
         #[unsafe(method(createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:))]
         #[unsafe(method_family = none)]
@@ -529,6 +533,10 @@ impl NEAppProxyProvider {
         /// Parameter `options`: A dictionary containing keys and values passed by the provider's containing app. If the containing app did not start the proxy then this parameter will be nil.
         ///
         /// Parameter `completionHandler`: A block that must be called when the process of starting the proxy is complete. If the proxy cannot be started then the subclass' implementation of this method must pass a non-nil NSError object to this block. A value of nil passed to the completion handler indicates that the proxy was successfully started.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(startProxyWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startProxyWithOptions_completionHandler(
@@ -704,6 +712,10 @@ impl NEVPNManager {
         /// This function sets an authorization object that can be used to obtain the authorization rights necessary to modify the system VPN configuration.
         ///
         /// Parameter `authorization`: The AuthorizationRef to use to obtain rights.
+        ///
+        /// # Safety
+        ///
+        /// `authorization` must be a valid pointer.
         #[unsafe(method(setAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorization(&self, authorization: AuthorizationRef);
@@ -1221,6 +1233,10 @@ impl NEAppRule {
         /// Setter for [`matchDomains`][Self::matchDomains].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `match_domains` generic should be of the correct type.
         #[unsafe(method(setMatchDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMatchDomains(&self, match_domains: Option<&NSArray>);
@@ -1421,6 +1437,10 @@ impl NEDNSProxyProvider {
         /// Parameter `options`: A dictionary containing keys and values passed by the provider's containing app. If the containing app did not start the proxy then this parameter will be nil.
         ///
         /// Parameter `completionHandler`: A block that must be called when the process of starting the proxy is complete. If the proxy cannot be started then the subclass' implementation of this method must pass a non-nil NSError object to this block. A value of nil passed to the completion handler indicates that the proxy was successfully started.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(startProxyWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startProxyWithOptions_completionHandler(
@@ -2047,6 +2067,10 @@ impl NEDNSProxyProviderProtocol {
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `provider_configuration` generic should be of the correct type.
         #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
@@ -4377,6 +4401,10 @@ impl NEFilterProviderConfiguration {
         /// Setter for [`vendorConfiguration`][Self::vendorConfiguration].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `vendor_configuration` generic should be of the correct type.
         #[unsafe(method(setVendorConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVendorConfiguration(
@@ -5217,6 +5245,10 @@ impl NEHotspotHelper {
         /// The application MUST set 'com.apple.developer.networking.HotspotHelper'
         /// as one of its entitlements. The value of the entitlement is a boolean
         /// value true.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(registerWithOptions:queue:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerWithOptions_queue_handler(
@@ -5677,6 +5709,10 @@ impl NEHotspotEAPSettings {
         ///
         /// Returns: returns NO if any element in the array is not an object of type SecCertificateRef or if API
         /// fails to find persistent reference for each element from the application's keychain else return YES.
+        ///
+        /// # Safety
+        ///
+        /// `certificates` generic should be of the correct type.
         #[unsafe(method(setTrustedServerCertificates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrustedServerCertificates(&self, certificates: &NSArray) -> bool;
@@ -6828,6 +6864,10 @@ impl NEPacketTunnelProvider {
         /// Parameter `delegate`: An object to use as the connection delegate. This object should conform to the NWTCPConnectionAuthenticationDelegate protocol.
         ///
         /// Returns: An NWTCPConnection object.
+        ///
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[deprecated = "Use the `virtualInterface` property with `nw_parameters_require_interface`"]
         #[unsafe(method(createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:))]
         #[unsafe(method_family = none)]
@@ -8435,6 +8475,10 @@ impl NETunnelProviderSession {
         /// 2. NEVPNErrorConfigurationDisabled
         ///
         /// Returns: YES if the tunnel was started successfully, NO if an error occurred.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(startTunnelWithOptions:andReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTunnelWithOptions_andReturnError(
@@ -8526,6 +8570,10 @@ impl NETunnelProviderProtocol {
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `provider_configuration` generic should be of the correct type.
         #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
@@ -9472,6 +9520,10 @@ impl NEAppPushManager {
         /// Setter for [`providerConfiguration`][Self::providerConfiguration].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `provider_configuration` generic should be of the correct type.
         #[unsafe(method(setProviderConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProviderConfiguration(
@@ -9602,6 +9654,10 @@ extern_protocol!(
         /// This delegate method is called when the provider reports incoming call using reportIncomingCommunicationWithUserInfo method.
         ///
         /// Parameter `userInfo`: A dictionary of custom information that the provider passes to reportIncomingCommunicationWithUserInfo method.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(appPushManager:didReceiveIncomingCallWithUserInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn appPushManager_didReceiveIncomingCallWithUserInfo(
@@ -9672,6 +9728,10 @@ impl NEAppPushProvider {
         /// This function is called by the provider when it determines incoming call on the conection.
         ///
         /// Parameter `userInfo`: A dictionary of custom information associated with the incoming call. This dictionary is passed to containg app as-is.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(reportIncomingCallWithUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportIncomingCallWithUserInfo(&self, user_info: &NSDictionary);
@@ -9679,6 +9739,10 @@ impl NEAppPushProvider {
         /// This function is called by the provider when it receives a Push to Talk message on the connection.
         ///
         /// Parameter `userInfo`: A dictionary of custom information associated with the Push to Talk message, such as the active remote participant. This dictionary is passed to the PTChannelManagerDelegate of the containing app if the user is joined to a Push to Talk channel.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(reportPushToTalkMessageWithUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reportPushToTalkMessageWithUserInfo(&self, user_info: &NSDictionary);
@@ -10325,6 +10389,10 @@ extern_protocol!(
         /// The SecTrustRef object "trust" is required and must not be nil. It will be evaluated using
         /// SecTrustEvaluate() if necessary. The caller is responsible for keeping the argument object
         /// alive for the duration of the completion handler invocation.
+        ///
+        /// # Safety
+        ///
+        /// `peer_certificate_chain` generic should be of the correct type.
         #[deprecated = "Use `sec_protocol_options_set_verify_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[optional]
         #[unsafe(method(evaluateTrustForConnection:peerCertificateChain:completionHandler:))]

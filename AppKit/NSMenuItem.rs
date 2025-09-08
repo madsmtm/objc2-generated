@@ -85,6 +85,9 @@ impl NSMenuItem {
         #[unsafe(method_family = none)]
         pub unsafe fn writingToolsItems(mtm: MainThreadMarker) -> Retained<NSArray<NSMenuItem>>;
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(initWithTitle:action:keyEquivalent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_action_keyEquivalent(
@@ -110,6 +113,10 @@ impl NSMenuItem {
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`menu`][Self::menu].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setMenu:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
@@ -280,6 +287,10 @@ impl NSMenuItem {
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`onStateImage`][Self::onStateImage].
+        ///
+        /// # Safety
+        ///
+        /// `on_state_image` might not allow `None`.
         #[unsafe(method(setOnStateImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOnStateImage(&self, on_state_image: Option<&NSImage>);
@@ -302,6 +313,10 @@ impl NSMenuItem {
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`mixedStateImage`][Self::mixedStateImage].
+        ///
+        /// # Safety
+        ///
+        /// `mixed_state_image` might not allow `None`.
         #[unsafe(method(setMixedStateImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMixedStateImage(&self, mixed_state_image: Option<&NSImage>);
@@ -340,6 +355,10 @@ impl NSMenuItem {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -349,6 +368,10 @@ impl NSMenuItem {
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
@@ -367,6 +390,10 @@ impl NSMenuItem {
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
+        ///
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[unsafe(method(setRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);

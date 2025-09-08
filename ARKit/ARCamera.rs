@@ -50,6 +50,10 @@ impl ARCamera {
         /// The tracking state of the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(trackingState))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingState(&self) -> ARTrackingState;
@@ -58,6 +62,10 @@ impl ARCamera {
         /// The reason for the camera’s current tracking state.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(trackingStateReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingStateReason(&self) -> ARTrackingStateReason;
@@ -66,6 +74,10 @@ impl ARCamera {
         /// The camera image resolution in pixels.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(imageResolution))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageResolution(&self) -> CGSize;
@@ -74,6 +86,10 @@ impl ARCamera {
         /// The camera exposure duration in seconds.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(exposureDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureDuration(&self) -> NSTimeInterval;
@@ -81,6 +97,10 @@ impl ARCamera {
         /// The camera exposure offset in EV (exposure value) units.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(exposureOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureOffset(&self) -> c_float;

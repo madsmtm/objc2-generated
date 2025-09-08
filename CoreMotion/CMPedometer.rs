@@ -211,6 +211,9 @@ impl CMPedometer {
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(queryPedometerDataFromDate:toDate:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryPedometerDataFromDate_toDate_withHandler(
@@ -221,6 +224,9 @@ impl CMPedometer {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(startPedometerUpdatesFromDate:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startPedometerUpdatesFromDate_withHandler(
@@ -234,6 +240,9 @@ impl CMPedometer {
         pub unsafe fn stopPedometerUpdates(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(startPedometerEventUpdatesWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startPedometerEventUpdatesWithHandler(

@@ -91,6 +91,10 @@ impl AVMetricEventStream {
         /// Subscribe to a specific metric event class.
         ///
         /// Parameter `metricEventClass`: Type of metric event class to subscribe to.
+        ///
+        /// # Safety
+        ///
+        /// `metric_event_class` probably has further requirements.
         #[unsafe(method(subscribeToMetricEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscribeToMetricEvent(&self, metric_event_class: &AnyClass);
@@ -98,6 +102,10 @@ impl AVMetricEventStream {
         /// Subscribe to set of metric event classes.
         ///
         /// Parameter `metricEventClasses`: Set of metric event classes to subscribe to.
+        ///
+        /// # Safety
+        ///
+        /// `metric_event_classes` generic probably has further requirements.
         #[unsafe(method(subscribeToMetricEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscribeToMetricEvents(&self, metric_event_classes: &NSArray<AnyClass>);

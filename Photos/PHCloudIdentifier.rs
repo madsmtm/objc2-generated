@@ -38,6 +38,10 @@ impl PHCloudIdentifier {
         pub unsafe fn notFoundIdentifier() -> Retained<PHCloudIdentifier>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
@@ -87,6 +91,10 @@ extern_conformance!(
 impl PHCloudIdentifierMapping {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(cloudIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn cloudIdentifier(&self) -> Option<Retained<PHCloudIdentifier>>;
@@ -94,6 +102,10 @@ impl PHCloudIdentifierMapping {
         /// The cloud identifier of the resource found for this local identifier
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
@@ -135,6 +147,10 @@ extern_conformance!(
 impl PHLocalIdentifierMapping {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(localIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
@@ -143,6 +159,10 @@ impl PHLocalIdentifierMapping {
         /// `NSString`representing the local identifier of the resource found for this cloud identifier, or nil if the match was not found.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;

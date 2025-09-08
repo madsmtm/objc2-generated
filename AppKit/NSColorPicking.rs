@@ -43,10 +43,16 @@ extern_protocol!(
             button_cell: &NSButtonCell,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(viewSizeChanged:))]
         #[unsafe(method_family = none)]
         unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(alphaControlAddedOrRemoved:))]
         #[unsafe(method_family = none)]
         unsafe fn alphaControlAddedOrRemoved(&self, sender: Option<&AnyObject>);

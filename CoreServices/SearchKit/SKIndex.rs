@@ -113,6 +113,10 @@ unsafe impl RefEncode for SKDocumentIndexState {
 }
 
 impl SKIndex {
+    /// # Safety
+    ///
+    /// - `in_analysis_properties` generics must be of the correct type.
+    /// - `in_analysis_properties` might not allow `None`.
     #[doc(alias = "SKIndexCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -135,6 +139,10 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_url` might not allow `None`.
+    /// - `in_index_name` might not allow `None`.
     #[doc(alias = "SKIndexOpenWithURL")]
     #[inline]
     pub unsafe fn open_with_url(
@@ -153,6 +161,10 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_analysis_properties` generics must be of the correct type.
+    /// - `in_analysis_properties` might not allow `None`.
     #[doc(alias = "SKIndexCreateWithMutableData")]
     #[inline]
     pub unsafe fn with_mutable_data(
@@ -180,6 +192,10 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_data` might not allow `None`.
+    /// - `in_index_name` might not allow `None`.
     #[doc(alias = "SKIndexOpenWithData")]
     #[inline]
     pub unsafe fn open_with_data(
@@ -196,6 +212,10 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_data` might not allow `None`.
+    /// - `in_index_name` might not allow `None`.
     #[doc(alias = "SKIndexOpenWithMutableData")]
     #[inline]
     pub unsafe fn open_with_mutable_data(
@@ -292,6 +312,11 @@ impl SKIndex {
 pub type SKDocumentID = CFIndex;
 
 impl SKIndex {
+    /// # Safety
+    ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
+    /// - `in_document_text` might not allow `None`.
     #[doc(alias = "SKIndexAddDocumentWithText")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -315,6 +340,11 @@ impl SKIndex {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
+    /// - `in_mime_type_hint` might not allow `None`.
     #[doc(alias = "SKIndexAddDocument")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -338,6 +368,10 @@ impl SKIndex {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
     #[doc(alias = "SKIndexRemoveDocument")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -352,6 +386,10 @@ impl SKIndex {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
     #[doc(alias = "SKIndexCopyDocumentProperties")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -369,6 +407,10 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_properties` generics must be of the correct type.
+    /// - `in_properties` might not allow `None`.
     #[doc(alias = "SKIndexSetDocumentProperties")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -387,6 +429,10 @@ impl SKIndex {
         unsafe { SKIndexSetDocumentProperties(self, in_document, in_properties) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
     #[doc(alias = "SKIndexGetDocumentState")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -400,6 +446,10 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentState(self, in_document) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
     #[doc(alias = "SKIndexGetDocumentID")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -430,6 +480,11 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
+    /// - `in_new_name` might not allow `None`.
     #[doc(alias = "SKIndexRenameDocument")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -449,6 +504,12 @@ impl SKIndex {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
+    /// - `in_new_parent` should be of the correct type.
+    /// - `in_new_parent` might not allow `None`.
     #[doc(alias = "SKIndexMoveDocument")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -470,6 +531,10 @@ impl SKIndex {
 }
 
 impl SKIndexDocumentIterator {
+    /// # Safety
+    ///
+    /// - `in_parent_document` should be of the correct type.
+    /// - `in_parent_document` might not allow `None`.
     #[doc(alias = "SKIndexDocumentIteratorCreate")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -606,6 +671,9 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `in_term_string` might not allow `None`.
     #[doc(alias = "SKIndexGetTermIDForTermString")]
     #[inline]
     pub unsafe fn term_id_for_term_string(&self, in_term_string: Option<&CFString>) -> CFIndex {

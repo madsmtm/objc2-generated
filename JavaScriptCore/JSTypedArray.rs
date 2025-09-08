@@ -16,6 +16,11 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSObjectRef that is a Typed Array with all elements set to zero or NULL if there was an error.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArray(
         ctx: JSContextRef,
@@ -45,6 +50,14 @@ extern "C-unwind" {
     /// Returns: A JSObjectRef Typed Array whose backing store is the same as the one pointed to by bytes or NULL if there was an error.
     ///
     /// If an exception is thrown during this function the bytesDeallocator will always be called.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `bytes` must be a valid pointer.
+    /// - `bytes_deallocator` must be implemented correctly.
+    /// - `deallocator_context` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithBytesNoCopy(
         ctx: JSContextRef,
@@ -69,6 +82,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSObjectRef that is a Typed Array or NULL if there was an error. The backing store of the Typed Array will be buffer.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `buffer` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithArrayBuffer(
         ctx: JSContextRef,
@@ -94,6 +113,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSObjectRef that is a Typed Array or NULL if there was an error. The backing store of the Typed Array will be buffer.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `buffer` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
         ctx: JSContextRef,
@@ -117,6 +142,12 @@ extern "C-unwind" {
     /// Returns: A pointer to the raw data buffer that serves as object's backing store or NULL if object is not a Typed Array object.
     ///
     /// The pointer returned by this function is temporary and is not guaranteed to remain valid across JavaScriptCore API calls.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayBytesPtr(
         ctx: JSContextRef,
@@ -135,6 +166,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The length of the Typed Array object or 0 if the object is not a Typed Array object.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayLength(
         ctx: JSContextRef,
@@ -153,6 +190,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The byte length of the Typed Array object or 0 if the object is not a Typed Array object.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayByteLength(
         ctx: JSContextRef,
@@ -171,6 +214,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The byte offset of the Typed Array object or 0 if the object is not a Typed Array object.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayByteOffset(
         ctx: JSContextRef,
@@ -189,6 +238,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSObjectRef with a JSTypedArrayType of kJSTypedArrayTypeArrayBuffer or NULL if object is not a Typed Array.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayBuffer(
         ctx: JSContextRef,
@@ -215,6 +270,14 @@ extern "C-unwind" {
     /// Returns: A JSObjectRef Array Buffer whose backing store is the same as the one pointed to by bytes or NULL if there was an error.
     ///
     /// If an exception is thrown during this function the bytesDeallocator will always be called.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `bytes` must be a valid pointer.
+    /// - `bytes_deallocator` must be implemented correctly.
+    /// - `deallocator_context` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeArrayBufferWithBytesNoCopy(
         ctx: JSContextRef,
@@ -236,6 +299,12 @@ extern "C-unwind" {
     /// Returns: A pointer to the raw data buffer that serves as object's backing store or NULL if object is not an Array Buffer object.
     ///
     /// The pointer returned by this function is temporary and is not guaranteed to remain valid across JavaScriptCore API calls.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetArrayBufferBytesPtr(
         ctx: JSContextRef,
@@ -254,6 +323,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The number of bytes stored in the data object.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetArrayBufferByteLength(
         ctx: JSContextRef,

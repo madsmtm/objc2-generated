@@ -36,6 +36,10 @@ impl CIDetector {
         /// The detector may do image processing in this context and if the image is on the GPU and the specified context is a GPU context this may avoid additional upload to / download from the GPU. If the input image is on the CPU (or the output from a CPU based context) specifying a GPU based context (or vice versa) may reduce performance.
         ///
         /// The options parameter lets you optinally specify a accuracy / performance tradeoff. Can be nil or an empty dictionary.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(detectorOfType:context:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectorOfType_context_options(
@@ -55,6 +59,10 @@ impl CIDetector {
         /// Returns an array of CIFeature instances in the given image.
         /// The array is sorted by confidence, highest confidence first.
         /// The options dictionary can contain a CIDetectorImageOrientation key value.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(featuresInImage:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn featuresInImage_options(

@@ -135,6 +135,9 @@ unsafe impl ConcreteType for Pasteboard {
 }
 
 impl Pasteboard {
+    /// # Safety
+    ///
+    /// `out_pasteboard` must be a valid pointer.
     #[doc(alias = "PasteboardCreate")]
     #[inline]
     pub unsafe fn create(
@@ -168,6 +171,9 @@ impl Pasteboard {
         unsafe { PasteboardClear(self) }
     }
 
+    /// # Safety
+    ///
+    /// `out_name` must be a valid pointer.
     #[doc(alias = "PasteboardCopyName")]
     #[inline]
     pub unsafe fn copy_name(&self, out_name: NonNull<*const CFString>) -> OSStatus {
@@ -180,6 +186,9 @@ impl Pasteboard {
         unsafe { PasteboardCopyName(self, out_name) }
     }
 
+    /// # Safety
+    ///
+    /// `out_item_count` must be a valid pointer.
     #[doc(alias = "PasteboardGetItemCount")]
     #[inline]
     pub unsafe fn item_count(&self, out_item_count: NonNull<ItemCount>) -> OSStatus {
@@ -192,6 +201,9 @@ impl Pasteboard {
         unsafe { PasteboardGetItemCount(self, out_item_count) }
     }
 
+    /// # Safety
+    ///
+    /// `out_item` must be a valid pointer.
     #[doc(alias = "PasteboardGetItemIdentifier")]
     #[inline]
     pub unsafe fn item_identifier(
@@ -209,6 +221,10 @@ impl Pasteboard {
         unsafe { PasteboardGetItemIdentifier(self, in_index, out_item) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_item` must be a valid pointer.
+    /// - `out_flavor_types` must be a valid pointer.
     #[doc(alias = "PasteboardCopyItemFlavors")]
     #[inline]
     pub unsafe fn copy_item_flavors(
@@ -226,6 +242,10 @@ impl Pasteboard {
         unsafe { PasteboardCopyItemFlavors(self, in_item, out_flavor_types) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_item` must be a valid pointer.
+    /// - `out_flags` must be a valid pointer.
     #[doc(alias = "PasteboardGetItemFlavorFlags")]
     #[inline]
     pub unsafe fn item_flavor_flags(
@@ -245,6 +265,10 @@ impl Pasteboard {
         unsafe { PasteboardGetItemFlavorFlags(self, in_item, in_flavor_type, out_flags) }
     }
 
+    /// # Safety
+    ///
+    /// - `in_item` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     #[doc(alias = "PasteboardCopyItemFlavorData")]
     #[inline]
     pub unsafe fn copy_item_flavor_data(
@@ -264,6 +288,9 @@ impl Pasteboard {
         unsafe { PasteboardCopyItemFlavorData(self, in_item, in_flavor_type, out_data) }
     }
 
+    /// # Safety
+    ///
+    /// `in_item` must be a valid pointer.
     #[doc(alias = "PasteboardPutItemFlavor")]
     #[inline]
     pub unsafe fn put_item_flavor(
@@ -285,6 +312,9 @@ impl Pasteboard {
         unsafe { PasteboardPutItemFlavor(self, in_item, in_flavor_type, in_data, in_flags) }
     }
 
+    /// # Safety
+    ///
+    /// `out_paste_location` must be a valid pointer.
     #[doc(alias = "PasteboardCopyPasteLocation")]
     #[inline]
     pub unsafe fn copy_paste_location(
@@ -324,6 +354,10 @@ pub type PasteboardPromiseKeeperProcPtr = Option<
 >;
 
 impl Pasteboard {
+    /// # Safety
+    ///
+    /// - `in_promise_keeper` must be implemented correctly.
+    /// - `in_context` must be a valid pointer or null.
     #[doc(alias = "PasteboardSetPromiseKeeper")]
     #[inline]
     pub unsafe fn set_promise_keeper(

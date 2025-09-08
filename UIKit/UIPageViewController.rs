@@ -165,6 +165,9 @@ extern_conformance!(
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIPageViewController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTransitionStyle:navigationOrientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTransitionStyle_navigationOrientation_options(

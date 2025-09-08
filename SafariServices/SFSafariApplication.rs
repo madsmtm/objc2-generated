@@ -90,6 +90,9 @@ impl SFSafariApplication {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(dispatchMessageWithName:toExtensionWithIdentifier:userInfo:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchMessageWithName_toExtensionWithIdentifier_userInfo_completionHandler(

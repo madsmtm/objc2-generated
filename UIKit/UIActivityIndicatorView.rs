@@ -170,6 +170,10 @@ impl UIActivityIndicatorView {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`color`][Self::color].
+        ///
+        /// # Safety
+        ///
+        /// `color` might not allow `None`.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&UIColor>);

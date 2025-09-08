@@ -84,6 +84,10 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `dict` generics must be of the correct type.
+    /// - `dict` might not allow `None`.
     #[doc(alias = "CFTimeZoneSetAbbreviationDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -94,6 +98,11 @@ impl CFTimeZone {
         unsafe { CFTimeZoneSetAbbreviationDictionary(dict) }
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `name` might not allow `None`.
+    /// - `data` might not allow `None`.
     #[doc(alias = "CFTimeZoneCreate")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]

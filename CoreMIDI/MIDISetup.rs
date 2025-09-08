@@ -36,6 +36,10 @@ extern "C-unwind" {
     /// system, with MIDISetupInstall.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_setup` must be a valid pointer.
     #[cfg(feature = "MIDIServices")]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
@@ -101,6 +105,10 @@ extern "C-unwind" {
     /// dispose of this MIDISetup.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_setup` must be a valid pointer.
     #[cfg(feature = "MIDIServices")]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
@@ -122,6 +130,10 @@ extern "C-unwind" {
     /// releasing this CFData object when done with it.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_data` must be a valid pointer.
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus;
@@ -143,6 +155,10 @@ extern "C-unwind" {
     /// with MIDISetupInstall.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_setup` must be a valid pointer.
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>) -> OSStatus;
@@ -175,6 +191,10 @@ extern "C-unwind" {
 /// Parameter `newEntity`: On successful return, points to the newly-created entity.
 ///
 /// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `new_entity` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIDeviceNewEntity(
@@ -232,6 +252,10 @@ pub unsafe extern "C-unwind" fn MIDIDeviceNewEntity(
 /// Parameter `newEntity`: On successful return, points to the newly-created entity.
 ///
 /// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `new_entity` must be a valid pointer.
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[deprecated]
 #[inline]
@@ -389,6 +413,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_driver_name` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn MIDIGetSerialPortOwner(
@@ -436,6 +464,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_driver_names` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus;
@@ -461,6 +493,10 @@ extern "C-unwind" {
     /// Parameter `outDevice`: On successful return, points to the newly-created device.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_device` must be a valid pointer.
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIExternalDeviceCreate(
         name: &CFString,

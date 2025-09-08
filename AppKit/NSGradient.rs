@@ -86,6 +86,9 @@ impl NSGradient {
             feature = "NSColorSpace",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `locations` must be a valid pointer or null.
         #[unsafe(method(initWithColors:atLocations:colorSpace:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithColors_atLocations_colorSpace(
@@ -160,6 +163,9 @@ impl NSGradient {
         pub unsafe fn numberOfColorStops(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `location` must be a valid pointer or null.
         #[unsafe(method(getColor:location:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getColor_location_atIndex(

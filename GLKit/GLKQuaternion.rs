@@ -67,6 +67,9 @@ extern "C-unwind" {
 // TODO: pub fn GLKQuaternionRotateVector3(quaternion: GLKQuaternion,vector: GLKVector3,) -> GLKVector3;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `vectors` must be a valid pointer.
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionRotateVector3Array(
         quaternion: GLKQuaternion,
@@ -78,6 +81,9 @@ extern "C-unwind" {
 // TODO: pub fn GLKQuaternionRotateVector4(quaternion: GLKQuaternion,vector: GLKVector4,) -> GLKVector4;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `vectors` must be a valid pointer.
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionRotateVector4Array(
         quaternion: GLKQuaternion,

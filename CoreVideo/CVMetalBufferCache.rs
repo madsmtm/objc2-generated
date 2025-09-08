@@ -56,6 +56,11 @@ impl CVMetalBufferCache {
     /// Parameter `cacheOut`: The newly created buffer cache will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// # Safety
+    ///
+    /// - `cache_attributes` generics must be of the correct type.
+    /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVMetalBufferCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
@@ -94,6 +99,10 @@ impl CVMetalBufferCache {
     ///
     /// IMPORTANT NOTE: Clients should retain CVMetalBuffer objects until they are done using the images in them.
     /// Retaining a CVMetalBuffer is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
+    ///
+    /// # Safety
+    ///
+    /// `buffer_out` must be a valid pointer.
     #[doc(alias = "CVMetalBufferCacheCreateBufferFromImage")]
     #[cfg(all(
         feature = "CVBuffer",

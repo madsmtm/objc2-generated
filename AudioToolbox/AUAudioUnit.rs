@@ -560,6 +560,13 @@ impl AUAudioUnit {
         /// Subclassers should override internalRenderBlock, not this property.
         ///
         /// Bridged to the v2 API AudioUnitRender().
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 5 must be a valid pointer.
+        /// - The returned block's argument 6 must be a valid pointer or null.
         #[unsafe(method(renderBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderBlock(&self) -> AURenderBlock;
@@ -602,6 +609,10 @@ impl AUAudioUnit {
         /// Parameter `observer`: The block to call.
         ///
         /// Returns: A token to be used when removing the observer.
+        ///
+        /// # Safety
+        ///
+        /// `observer` must be a valid pointer.
         #[unsafe(method(tokenByAddingRenderObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingRenderObserver(&self, observer: AURenderObserver) -> NSInteger;
@@ -720,6 +731,10 @@ impl AUAudioUnit {
         /// If AudioUnitMIDIProtocol is not set, events will be delivered as legacy MIDI.
         ///
         /// This bridged to the v2 API MusicDeviceMIDIEvent.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 4 must be a valid pointer.
         #[unsafe(method(scheduleMIDIEventBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleMIDIEventBlock(&self) -> AUScheduleMIDIEventBlock;
@@ -762,6 +777,10 @@ impl AUAudioUnit {
         /// Note: AUMIDIEventListBlock should be preferred over this block going forward.
         ///
         /// This is bridged to the v2 API property kAudioUnitProperty_MIDIOutputCallback.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 4 must be a valid pointer.
         #[unsafe(method(MIDIOutputEventBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn MIDIOutputEventBlock(&self) -> AUMIDIOutputEventBlock;
@@ -770,6 +789,10 @@ impl AUAudioUnit {
         /// Setter for [`MIDIOutputEventBlock`][Self::MIDIOutputEventBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `midi_output_event_block` must be a valid pointer or null.
         #[unsafe(method(setMIDIOutputEventBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMIDIOutputEventBlock(
@@ -841,6 +864,10 @@ impl AUAudioUnit {
         /// Setter for [`fullState`][Self::fullState].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `full_state` generic should be of the correct type.
         #[unsafe(method(setFullState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFullState(&self, full_state: Option<&NSDictionary<NSString, AnyObject>>);
@@ -866,6 +893,10 @@ impl AUAudioUnit {
         /// Setter for [`fullStateForDocument`][Self::fullStateForDocument].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `full_state_for_document` generic should be of the correct type.
         #[unsafe(method(setFullStateForDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFullStateForDocument(
@@ -1184,6 +1215,15 @@ impl AUAudioUnit {
         ///
         /// Bridged to the HostCallback_GetBeatAndTempo and HostCallback_GetMusicalTimeLocation
         /// callback members in kAudioUnitProperty_HostCallbacks.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - The returned block's argument 4 must be a valid pointer or null.
+        /// - The returned block's argument 5 must be a valid pointer or null.
+        /// - The returned block's argument 6 must be a valid pointer or null.
         #[unsafe(method(musicalContextBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn musicalContextBlock(&self) -> AUHostMusicalContextBlock;
@@ -1192,6 +1232,10 @@ impl AUAudioUnit {
         /// Setter for [`musicalContextBlock`][Self::musicalContextBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `musical_context_block` must be a valid pointer or null.
         #[unsafe(method(setMusicalContextBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMusicalContextBlock(
@@ -1207,6 +1251,13 @@ impl AUAudioUnit {
         ///
         /// Bridged to the HostCallback_GetTransportState and HostCallback_GetTransportState2
         /// callback members in kAudioUnitProperty_HostCallbacks.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(transportStateBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn transportStateBlock(&self) -> AUHostTransportStateBlock;
@@ -1215,6 +1266,10 @@ impl AUAudioUnit {
         /// Setter for [`transportStateBlock`][Self::transportStateBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `transport_state_block` must be a valid pointer or null.
         #[unsafe(method(setTransportStateBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransportStateBlock(
@@ -1350,12 +1405,20 @@ impl AUAudioUnit {
         /// Since enabling / disabling MIDI-CI profiles is an asynchronous operation, the host can set
         /// this block and the audio unit is expected to call it every time the state of a MIDI-CI
         /// profile has changed.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(profileChangedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn profileChangedBlock(&self) -> AUMIDICIProfileChangedBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
         /// Setter for [`profileChangedBlock`][Self::profileChangedBlock].
+        ///
+        /// # Safety
+        ///
+        /// `profile_changed_block` must be a valid pointer or null.
         #[unsafe(method(setProfileChangedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProfileChangedBlock(
@@ -1473,6 +1536,12 @@ impl AUAudioUnit {
         /// The block that the output unit will call to get audio to send to the output.
         ///
         /// This block must be set if output is enabled.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 5 must be a valid pointer.
         #[unsafe(method(outputProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputProvider(&self) -> AURenderPullInputBlock;
@@ -1485,6 +1554,10 @@ impl AUAudioUnit {
         /// Setter for [`outputProvider`][Self::outputProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `output_provider` must be a valid pointer or null.
         #[unsafe(method(setOutputProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOutputProvider(&self, output_provider: AURenderPullInputBlock);
@@ -1497,6 +1570,11 @@ impl AUAudioUnit {
         /// The block that the output unit will call to notify when input is available.
         ///
         /// See discussion for AUInputHandler.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(inputHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputHandler(&self) -> AUInputHandler;
@@ -1509,6 +1587,10 @@ impl AUAudioUnit {
         /// Setter for [`inputHandler`][Self::inputHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `input_handler` must be a valid pointer or null.
         #[unsafe(method(setInputHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputHandler(&self, input_handler: AUInputHandler);
@@ -1646,6 +1728,10 @@ impl AUAudioUnitBusArray {
         pub unsafe fn setBusCount_error(&self, count: NSUInteger) -> Result<(), Retained<NSError>>;
 
         /// Add a KVO observer for a property on all busses in the array.
+        ///
+        /// # Safety
+        ///
+        /// `context` must be a valid pointer or null.
         #[unsafe(method(addObserverToAllBusses:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserverToAllBusses_forKeyPath_options_context(
@@ -1657,6 +1743,10 @@ impl AUAudioUnitBusArray {
         );
 
         /// Remove a KVO observer for a property on all busses in the array.
+        ///
+        /// # Safety
+        ///
+        /// `context` must be a valid pointer or null.
         #[unsafe(method(removeObserverFromAllBusses:forKeyPath:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserverFromAllBusses_forKeyPath_context(
@@ -1939,6 +2029,10 @@ extern_protocol!(
         ///
         /// Returns: An NSDictionary with custom data. The allowed classes for key and value types are
         /// NSArray, NSDictionary, NSOrderedSet, NSSet, NSString, NSData, NSNull, NSNumber, NSDate
+        ///
+        /// # Safety
+        ///
+        /// `message` generic should be of the correct type.
         #[optional]
         #[unsafe(method(callAudioUnit:))]
         #[unsafe(method_family = none)]
@@ -1948,6 +2042,10 @@ extern_protocol!(
         /// A callback for the AU to send a message to the host.
         ///
         /// The host has to set a block on this property.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[optional]
         #[unsafe(method(callHostBlock))]
         #[unsafe(method_family = none)]
@@ -1957,6 +2055,10 @@ extern_protocol!(
         /// Setter for [`callHostBlock`][Self::callHostBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `call_host_block` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(setCallHostBlock:))]
         #[unsafe(method_family = none)]

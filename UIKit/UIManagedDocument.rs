@@ -57,6 +57,10 @@ impl UIManagedDocument {
         /// Setter for [`persistentStoreOptions`][Self::persistentStoreOptions].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `persistent_store_options` generic should be of the correct type.
         #[unsafe(method(setPersistentStoreOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPersistentStoreOptions(
@@ -75,6 +79,9 @@ impl UIManagedDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn setModelConfiguration(&self, model_configuration: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// `store_options` generic should be of the correct type.
         #[unsafe(method(configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_modelConfiguration_storeOptions_error(
@@ -106,6 +113,9 @@ impl UIManagedDocument {
             absolute_url: &NSURL,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `content` should be of the correct type.
         #[unsafe(method(writeAdditionalContent:toURL:originalContentsURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeAdditionalContent_toURL_originalContentsURL_error(

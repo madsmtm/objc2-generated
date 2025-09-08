@@ -57,6 +57,9 @@ impl NSWindowController {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSNib")]
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(initWithWindowNibName:owner:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibName_owner(
@@ -65,6 +68,9 @@ impl NSWindowController {
             owner: &AnyObject,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(initWithWindowNibPath:owner:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibPath_owner(
@@ -139,6 +145,10 @@ impl NSWindowController {
         pub unsafe fn document(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`document`][Self::document].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocument(&self, document: Option<&AnyObject>);
@@ -212,6 +222,9 @@ impl NSWindowController {
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showWindow(&self, sender: Option<&AnyObject>);
@@ -255,6 +268,9 @@ impl NSWindowController {
 #[cfg(feature = "NSResponder")]
 impl NSWindowController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(dismissController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);

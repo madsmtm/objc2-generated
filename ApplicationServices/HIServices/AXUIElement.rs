@@ -34,6 +34,10 @@ pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
 ///
 ///
 /// Returns: Returns TRUE if the current process is a trusted accessibility client, FALSE if it is not.
+///
+/// # Safety
+///
+/// `options` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn AXIsProcessTrustedWithOptions(
     options: Option<&CFDictionary>,
@@ -215,6 +219,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `names` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -293,6 +301,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `value` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -368,6 +380,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `count` must be a valid pointer.
     #[doc(alias = "AXUIElementGetAttributeValueCount")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -469,6 +485,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `values` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -562,6 +582,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `settable` must be a valid pointer.
     #[doc(alias = "AXUIElementIsAttributeSettable")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -640,6 +664,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "AXUIElementSetAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -742,6 +770,11 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generic must be of the correct type.
+    /// - `values` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyMultipleAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -829,6 +862,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `names` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyParameterizedAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -916,6 +953,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyParameterizedAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -997,6 +1038,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `names` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyActionNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1067,6 +1112,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `description` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyActionDescription")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1232,6 +1281,10 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `element` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyElementAtPosition")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1320,6 +1373,10 @@ impl AXUIElement {
     /// The AXUIElementRef is invalid.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `pid` must be a valid pointer.
     #[doc(alias = "AXUIElementGetPid")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -1538,6 +1595,10 @@ impl AXTextMarker {
     /// Parameter `bytes`: The data used to identify this location in text
     ///
     /// Parameter `length`: The length of the data
+    ///
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "AXTextMarkerCreate")]
     #[inline]
     pub unsafe fn new(
@@ -1679,6 +1740,11 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The text marker range object
+    ///
+    /// # Safety
+    ///
+    /// - `start_marker_bytes` must be a valid pointer.
+    /// - `end_marker_bytes` must be a valid pointer.
     #[doc(alias = "AXTextMarkerRangeCreateWithBytes")]
     #[inline]
     pub unsafe fn with_bytes(
@@ -1879,6 +1945,11 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `out_observer` must be a valid pointer.
     #[doc(alias = "AXObserverCreate")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -1938,6 +2009,11 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `out_observer` must be a valid pointer.
     #[doc(alias = "AXObserverCreateWithInfoCallback")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -2029,6 +2105,10 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
+    ///
+    /// # Safety
+    ///
+    /// `refcon` must be a valid pointer or null.
     #[doc(alias = "AXObserverAddNotification")]
     #[cfg(feature = "AXError")]
     #[inline]

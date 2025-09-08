@@ -50,6 +50,10 @@ extern_protocol!(
         /// Setter for [`drawableProperties`][Self::drawableProperties].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `drawable_properties` generic should be of the correct type.
         #[unsafe(method(setDrawableProperties:))]
         #[unsafe(method_family = none)]
         unsafe fn setDrawableProperties(

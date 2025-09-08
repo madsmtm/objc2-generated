@@ -168,6 +168,10 @@ impl UITextFormattingViewControllerFormattingDescriptor {
 
         /// Initializes formatting descriptor with attribute dictionary.
         /// - Parameter attributes: Attribute dictionary that is being represented by descriptor.
+        ///
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(initWithAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributes(

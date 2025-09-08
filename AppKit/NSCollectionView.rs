@@ -451,6 +451,10 @@ impl NSCollectionView {
         /// Setter for [`content`][Self::content].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `content` generic should be of the correct type.
         #[unsafe(method(setContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContent(&self, content: &NSArray<AnyObject>);
@@ -625,15 +629,24 @@ impl NSCollectionView {
         #[unsafe(method_family = none)]
         pub unsafe fn deselectItemsAtIndexPaths(&self, index_paths: &NSSet<NSIndexPath>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(deselectAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deselectAll(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
+        /// # Safety
+        ///
+        /// `item_class` probably has further requirements.
         #[unsafe(method(registerClass:forItemWithIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forItemWithIdentifier(
@@ -652,6 +665,9 @@ impl NSCollectionView {
         );
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
+        /// # Safety
+        ///
+        /// `view_class` probably has further requirements.
         #[unsafe(method(registerClass:forSupplementaryViewOfKind:withIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forSupplementaryViewOfKind_withIdentifier(
@@ -802,6 +818,9 @@ impl NSCollectionView {
             completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleSectionCollapse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleSectionCollapse(&self, sender: &AnyObject);
@@ -824,6 +843,9 @@ impl NSCollectionView {
         );
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
+        /// # Safety
+        ///
+        /// `drag_image_offset` must be a valid pointer.
         #[unsafe(method(draggingImageForItemsAtIndexPaths:withEvent:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn draggingImageForItemsAtIndexPaths_withEvent_offset(
@@ -834,6 +856,9 @@ impl NSCollectionView {
         ) -> Retained<NSImage>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
+        /// # Safety
+        ///
+        /// `drag_image_offset` must be a valid pointer.
         #[unsafe(method(draggingImageForItemsAtIndexes:withEvent:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn draggingImageForItemsAtIndexes_withEvent_offset(
@@ -1032,6 +1057,9 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `drag_image_offset` must be a valid pointer.
         #[optional]
         #[unsafe(method(collectionView:draggingImageForItemsAtIndexPaths:withEvent:offset:))]
         #[unsafe(method_family = none)]
@@ -1049,6 +1077,9 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `drag_image_offset` must be a valid pointer.
         #[optional]
         #[unsafe(method(collectionView:draggingImageForItemsAtIndexes:withEvent:offset:))]
         #[unsafe(method_family = none)]
@@ -1061,6 +1092,9 @@ extern_protocol!(
         ) -> Retained<NSImage>;
 
         #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `proposed_drop_operation` must be a valid pointer.
         #[optional]
         #[unsafe(method(collectionView:validateDrop:proposedIndexPath:dropOperation:))]
         #[unsafe(method_family = none)]
@@ -1073,6 +1107,10 @@ extern_protocol!(
         ) -> NSDragOperation;
 
         #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// - `proposed_drop_index` must be a valid pointer.
+        /// - `proposed_drop_operation` must be a valid pointer.
         #[optional]
         #[unsafe(method(collectionView:validateDrop:proposedIndex:dropOperation:))]
         #[unsafe(method_family = none)]
@@ -1390,6 +1428,9 @@ unsafe impl NSSetNSCollectionViewAdditions for NSSet {}
 impl NSCollectionView {
     extern_methods!(
         #[cfg(feature = "NSViewController")]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[deprecated = "Use -[NSCollectionViewDataSource collectionView:itemForRepresentedObjectAtIndexPath:] instead"]
         #[unsafe(method(newItemForRepresentedObject:))]
         #[unsafe(method_family = new)]

@@ -383,6 +383,10 @@ impl SBApplication {
         ///
         /// - Returns: An `SBObject` object or `nil` if the object could not be
         /// initialized.
+        ///
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProperties(
@@ -403,6 +407,10 @@ impl SBApplication {
         ///
         /// - Returns: An `SBObject` object or `nil` if the object could not be
         /// initialized.
+        ///
+        /// # Safety
+        ///
+        /// `data` should be of the correct type.
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &AnyObject) -> Retained<Self>;
@@ -466,6 +474,10 @@ extern_protocol!(
         /// <doc
         /// ://com.apple.documentation/documentation/appkit/nsapplication/1428359-sendevent>
         /// that failed. Can be `nil`.
+        ///
+        /// # Safety
+        ///
+        /// `event` must be a valid pointer.
         #[unsafe(method(eventDidFail:withError:))]
         #[unsafe(method_family = none)]
         unsafe fn eventDidFail_withError(

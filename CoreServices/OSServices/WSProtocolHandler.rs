@@ -37,6 +37,10 @@ unsafe impl ConcreteType for WSProtocolHandler {
 }
 
 impl WSProtocolHandler {
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `protocol` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCreate")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -54,6 +58,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `data` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyRequestDictionary")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -71,6 +78,10 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `method_name` might not allow `None`.
+    /// - `data` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyReplyDictionary")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -90,6 +101,12 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `method_context` generics must be of the correct type.
+    /// - `method_context` might not allow `None`.
+    /// - `result_value` should be of the correct type.
+    /// - `result_value` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyReplyDocument")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -109,6 +126,12 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `method_context` generics must be of the correct type.
+    /// - `method_context` might not allow `None`.
+    /// - `fault_dict` generics must be of the correct type.
+    /// - `fault_dict` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyFaultDocument")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -128,6 +151,14 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `method_params` generics must be of the correct type.
+    /// - `method_params` might not allow `None`.
+    /// - `method_param_order` generic must be of the correct type.
+    /// - `method_param_order` might not allow `None`.
+    /// - `method_extras` generics must be of the correct type.
+    /// - `method_extras` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyRequestDocument")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -159,6 +190,9 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `property_name` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -173,6 +207,11 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `property_name` might not allow `None`.
+    /// - `property_value` should be of the correct type.
+    /// - `property_value` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerSetProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -202,6 +241,10 @@ pub type WSProtocolHandlerSerializationProcPtr = Option<
 >;
 
 impl WSProtocolHandler {
+    /// # Safety
+    ///
+    /// - `serialization_proc` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "WSProtocolHandlerSetSerializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
@@ -237,6 +280,10 @@ pub type WSProtocolHandlerDeserializationProcPtr = Option<
 >;
 
 impl WSProtocolHandler {
+    /// # Safety
+    ///
+    /// - `deserialization_proc` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "WSProtocolHandlerSetDeserializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]

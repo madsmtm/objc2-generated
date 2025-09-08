@@ -89,6 +89,9 @@ impl NSAttributedString {
         pub fn string(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `range` must be a valid pointer or null.
         #[unsafe(method(attributesAtIndex:effectiveRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributesAtIndex_effectiveRange(
@@ -149,6 +152,9 @@ impl NSAttributedString {
         pub fn length(&self) -> NSUInteger;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `range` must be a valid pointer or null.
         #[unsafe(method(attribute:atIndex:effectiveRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attribute_atIndex_effectiveRange(
@@ -167,6 +173,9 @@ impl NSAttributedString {
         ) -> Retained<NSAttributedString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `range` must be a valid pointer or null.
         #[unsafe(method(attributesAtIndex:longestEffectiveRange:inRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributesAtIndex_longestEffectiveRange_inRange(
@@ -177,6 +186,9 @@ impl NSAttributedString {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `range` must be a valid pointer or null.
         #[unsafe(method(attribute:atIndex:longestEffectiveRange:inRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attribute_atIndex_longestEffectiveRange_inRange(
@@ -197,6 +209,9 @@ impl NSAttributedString {
         pub fn initWithString(this: Allocated<Self>, str: &NSString) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attrs` generic should be of the correct type.
         #[unsafe(method(initWithString:attributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString_attributes(
@@ -257,6 +272,9 @@ impl NSMutableAttributedString {
         pub fn initWithString(this: Allocated<Self>, str: &NSString) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attrs` generic should be of the correct type.
         #[unsafe(method(initWithString:attributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString_attributes(
@@ -339,6 +357,9 @@ impl NSMutableAttributedString {
         pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, str: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attrs` generic should be of the correct type.
         #[unsafe(method(setAttributes:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributes_range(
@@ -378,6 +399,9 @@ impl NSMutableAttributedString {
         pub unsafe fn mutableString(&self) -> Retained<NSMutableString>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(addAttribute:value:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAttribute_value_range(
@@ -388,6 +412,9 @@ impl NSMutableAttributedString {
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attrs` generic should be of the correct type.
         #[unsafe(method(addAttributes:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAttributes_range(

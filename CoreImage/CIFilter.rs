@@ -616,6 +616,11 @@ impl CIFilter {
         /// Parameter `args`: Array of arguments that are applied to the kernel
         ///
         /// Parameter `dict`: Array of additional options
+        ///
+        /// # Safety
+        ///
+        /// - `args` generic should be of the correct type.
+        /// - `dict` generic should be of the correct type.
         #[unsafe(method(apply:arguments:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn apply_arguments_options(
@@ -674,6 +679,10 @@ impl CIFilter {
         /// The filter's input parameters are set from the dictionary of key-value pairs.
         /// On OSX, any of the filter input parameters not specified in the dictionary will be undefined.
         /// On iOS, any of the filter input parameters not specified in the dictionary will be set to default values.
+        ///
+        /// # Safety
+        ///
+        /// `params` generic should be of the correct type.
         #[unsafe(method(filterWithName:withInputParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithName_withInputParameters(
@@ -703,6 +712,10 @@ impl CIFilter {
         /// The class attributes must have a kCIAttributeFilterCategories key associated with a set of categories.
         ///
         /// Parameter `attributes`: Dictionary of the registration attributes of the filter. See below for attribute keys.
+        ///
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(registerFilterName:constructor:classAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerFilterName_constructor_classAttributes(

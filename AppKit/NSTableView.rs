@@ -657,6 +657,10 @@ impl NSTableView {
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
+        ///
+        /// # Safety
+        ///
+        /// `double_action` must be a valid selector.
         #[unsafe(method(setDoubleAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
@@ -723,6 +727,9 @@ impl NSTableView {
         ) -> bool;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSTableColumn"))]
+        /// # Safety
+        ///
+        /// `drag_image_offset` must be a valid pointer.
         #[unsafe(method(dragImageForRowsWithIndexes:tableColumns:event:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dragImageForRowsWithIndexes_tableColumns_event_offset(
@@ -777,10 +784,16 @@ impl NSTableView {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsColumnSelection(&self, allows_column_selection: bool);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(deselectAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deselectAll(&self, sender: Option<&AnyObject>);
@@ -991,6 +1004,9 @@ impl NSTableView {
         pub unsafe fn columnForView(&self, view: &NSView) -> NSInteger;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(makeViewWithIdentifier:owner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeViewWithIdentifier_owner(
@@ -1213,6 +1229,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `cell` should be of the correct type.
         #[optional]
         #[unsafe(method(tableView:willDisplayCell:forTableColumn:row:))]
         #[unsafe(method_family = none)]
@@ -1241,6 +1260,9 @@ extern_protocol!(
             feature = "NSTableColumn",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `rect` must be a valid pointer.
         #[optional]
         #[unsafe(method(tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:))]
         #[unsafe(method_family = none)]
@@ -1554,6 +1576,9 @@ extern_protocol!(
             feature = "NSTableColumn",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[optional]
         #[unsafe(method(tableView:setObjectValue:forTableColumn:row:))]
         #[unsafe(method_family = none)]
@@ -1740,6 +1765,9 @@ impl NSTableView {
         pub unsafe fn selectedRowEnumerator(&self) -> Retained<NSEnumerator>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
+        /// # Safety
+        ///
+        /// `drag_image_offset` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(dragImageForRows:event:dragImageOffset:))]
         #[unsafe(method_family = none)]

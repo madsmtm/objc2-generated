@@ -108,6 +108,9 @@ impl NSOperation {
         pub unsafe fn setQueuePriority(&self, queue_priority: NSOperationQueuePriority);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(completionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionBlock(&self) -> *mut block2::DynBlock<dyn Fn()>;
@@ -116,6 +119,10 @@ impl NSOperation {
         /// Setter for [`completionBlock`][Self::completionBlock].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `completion_block` block must be sendable.
         #[unsafe(method(setCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionBlock(
@@ -195,12 +202,18 @@ extern_conformance!(
 impl NSBlockOperation {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(blockOperationWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn blockOperationWithBlock(block: &block2::DynBlock<dyn Fn()>)
             -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addExecutionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addExecutionBlock(&self, block: &block2::DynBlock<dyn Fn()>);
@@ -233,6 +246,10 @@ extern_conformance!(
 
 impl NSInvocationOperation {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `sel` must be a valid selector.
+        /// - `arg` should be of the correct type.
         #[unsafe(method(initWithTarget:selector:object:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_selector_object(
@@ -345,6 +362,9 @@ impl NSOperationQueue {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addOperationWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addOperationWithBlock(&self, block: &block2::DynBlock<dyn Fn()>);
@@ -355,6 +375,10 @@ impl NSOperationQueue {
         /// The `addBarrierBlock:` method executes the block when the NSOperationQueue has finished all enqueued operations and
         /// prevents any subsequent operations to be executed until the barrier has been completed. This acts similarly to the
         /// `dispatch_barrier_async` function.
+        ///
+        /// # Safety
+        ///
+        /// `barrier` block must be sendable.
         #[unsafe(method(addBarrierBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBarrierBlock(&self, barrier: &block2::DynBlock<dyn Fn()>);

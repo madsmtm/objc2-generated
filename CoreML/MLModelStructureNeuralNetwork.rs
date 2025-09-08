@@ -37,6 +37,10 @@ impl MLModelStructureNeuralNetwork {
         /// The topologically sorted layers in the NeuralNetwork.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(layers))]
         #[unsafe(method_family = none)]
         pub unsafe fn layers(&self) -> Retained<NSArray<MLModelStructureNeuralNetworkLayer>>;

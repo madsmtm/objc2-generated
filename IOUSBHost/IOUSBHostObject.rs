@@ -69,6 +69,10 @@ impl IOUSBHostObject {
         ///
         /// Returns: An IOUSBHostDevice or IOUSBHostInterface. The object is to be released by the caller.
         /// An IOReturn error code will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `interest_handler` must be a valid pointer or null.
         #[unsafe(method(initWithIOService:options:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_options_queue_error_interestHandler(
@@ -105,6 +109,10 @@ impl IOUSBHostObject {
         ///
         /// Returns: An IOUSBHostDevice or IOUSBHostInterface. The object is to be released by the caller.
         /// An IOReturn error code will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `interest_handler` must be a valid pointer or null.
         #[unsafe(method(initWithIOService:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_queue_error_interestHandler(
@@ -174,6 +182,10 @@ impl IOUSBHostObject {
         /// default this value is IOUSBHostDefaultControlCompletionTimeout.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendDeviceRequest:data:bytesTransferred:completionTimeout:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDeviceRequest_data_bytesTransferred_completionTimeout_error(
@@ -198,6 +210,10 @@ impl IOUSBHostObject {
         /// count of the completed data phase.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendDeviceRequest:data:bytesTransferred:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDeviceRequest_data_bytesTransferred_error(
@@ -242,6 +258,10 @@ impl IOUSBHostObject {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueDeviceRequest:data:completionTimeout:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueDeviceRequest_data_completionTimeout_error_completionHandler(
@@ -269,6 +289,10 @@ impl IOUSBHostObject {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueDeviceRequest:data:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueDeviceRequest_data_error_completionHandler(
@@ -294,6 +318,10 @@ impl IOUSBHostObject {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueDeviceRequest:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueDeviceRequest_error_completionHandler(
@@ -395,6 +423,10 @@ impl IOUSBHostObject {
         ///
         /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
         /// will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `length` must be a valid pointer.
         #[unsafe(method(descriptorWithType:length:index:languageID:requestType:requestRecipient:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_length_index_languageID_requestType_requestRecipient_error(
@@ -446,6 +478,10 @@ impl IOUSBHostObject {
         ///
         /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
         /// will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `length` must be a valid pointer.
         #[unsafe(method(descriptorWithType:length:index:languageID:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_length_index_languageID_error(
@@ -482,6 +518,10 @@ impl IOUSBHostObject {
         ///
         /// Returns: Pointer to the cached descriptor if found, otherwise nil. An IOReturn error code
         /// will be reported on failure.
+        ///
+        /// # Safety
+        ///
+        /// `length` must be a valid pointer.
         #[unsafe(method(descriptorWithType:length:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_length_error(
@@ -613,6 +653,10 @@ impl IOUSBHostObject {
         /// Parameter `time`: If not nil, this will be updated with the current system time
         ///
         /// Returns: The current frame number
+        ///
+        /// # Safety
+        ///
+        /// `time` must be a valid pointer or null.
         #[unsafe(method(frameNumberWithTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameNumberWithTime(&self, time: *mut IOUSBHostTime) -> u64;

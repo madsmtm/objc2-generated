@@ -18,6 +18,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn appearance(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `container_types` generic must implement UIAppearanceContainer.
         #[unsafe(method(appearanceWhenContainedInInstancesOfClasses:))]
         #[unsafe(method_family = none)]
         unsafe fn appearanceWhenContainedInInstancesOfClasses(
@@ -34,6 +37,9 @@ extern_protocol!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
+        /// # Safety
+        ///
+        /// `container_types` generic must implement UIAppearanceContainer.
         #[unsafe(method(appearanceForTraitCollection:whenContainedInInstancesOfClasses:))]
         #[unsafe(method_family = none)]
         unsafe fn appearanceForTraitCollection_whenContainedInInstancesOfClasses(

@@ -60,6 +60,10 @@ pub unsafe trait NSObjectIKImageBrowserDataSource:
         /// Returns the number of records managed for aBrowser by the data source object (required).
         ///
         /// An instance of IKImageView uses this method to determine how many cells it should create and display.
+        ///
+        /// # Safety
+        ///
+        /// `a_browser` might not allow `None`.
         #[unsafe(method(numberOfItemsInImageBrowser:))]
         #[unsafe(method_family = none)]
         unsafe fn numberOfItemsInImageBrowser(
@@ -78,6 +82,10 @@ pub unsafe trait NSObjectIKImageBrowserDataSource:
         /// IKImageBrowserItem
         /// </i>
         /// .
+        ///
+        /// # Safety
+        ///
+        /// `a_browser` might not allow `None`.
         #[unsafe(method(imageBrowser:itemAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowser_itemAtIndex(
@@ -89,6 +97,11 @@ pub unsafe trait NSObjectIKImageBrowserDataSource:
         /// Invoked by the image browser after it has been determined that a remove operation should be applied (optional)
         ///
         /// The data source should update itself (usually by removing this indexes).
+        ///
+        /// # Safety
+        ///
+        /// - `a_browser` might not allow `None`.
+        /// - `indexes` might not allow `None`.
         #[unsafe(method(imageBrowser:removeItemsAtIndexes:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowser_removeItemsAtIndexes(
@@ -100,6 +113,11 @@ pub unsafe trait NSObjectIKImageBrowserDataSource:
         /// Invoked by the image browser after it has been determined that a reordering operation should be applied (optional).
         ///
         /// The data source should update itself (usually by reordering its elements).
+        ///
+        /// # Safety
+        ///
+        /// - `a_browser` might not allow `None`.
+        /// - `indexes` might not allow `None`.
         #[unsafe(method(imageBrowser:moveItemsAtIndexes:toIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowser_moveItemsAtIndexes_toIndex(
@@ -112,6 +130,12 @@ pub unsafe trait NSObjectIKImageBrowserDataSource:
         /// This method is called after it has been determined that a drag should begin, but before the drag has been started. 'itemIndexes' contains the indexes that will be participating in the drag. Return the number of items effectively written to the pasteboard.
         ///
         /// optional - drag and drop support
+        ///
+        /// # Safety
+        ///
+        /// - `a_browser` might not allow `None`.
+        /// - `item_indexes` might not allow `None`.
+        /// - `pasteboard` might not allow `None`.
         #[unsafe(method(imageBrowser:writeItemsAtIndexes:toPasteboard:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowser_writeItemsAtIndexes_toPasteboard(
@@ -124,6 +148,10 @@ pub unsafe trait NSObjectIKImageBrowserDataSource:
         /// Returns the number of groups
         ///
         /// this method is optional
+        ///
+        /// # Safety
+        ///
+        /// `a_browser` might not allow `None`.
         #[unsafe(method(numberOfGroupsInImageBrowser:))]
         #[unsafe(method_family = none)]
         unsafe fn numberOfGroupsInImageBrowser(
@@ -134,6 +162,10 @@ pub unsafe trait NSObjectIKImageBrowserDataSource:
         /// Returns the group at index 'index'
         ///
         /// A group is defined by a dictionay. Keys for this dictionary are defined below.
+        ///
+        /// # Safety
+        ///
+        /// `a_browser` might not allow `None`.
         #[unsafe(method(imageBrowser:groupAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowser_groupAtIndex(
@@ -308,6 +340,10 @@ impl IKImageBrowserView {
         pub unsafe fn dataSource(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
@@ -330,6 +366,10 @@ impl IKImageBrowserView {
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -371,6 +411,10 @@ impl IKImageBrowserView {
 
         #[cfg(feature = "objc2-quartz-core")]
         /// Specifies the receiver�s background layer.
+        ///
+        /// # Safety
+        ///
+        /// `a_layer` might not allow `None`.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(setBackgroundLayer:))]
         #[unsafe(method_family = none)]
@@ -385,6 +429,10 @@ impl IKImageBrowserView {
 
         #[cfg(feature = "objc2-quartz-core")]
         /// Specifies the receiver�s foreground layer.
+        ///
+        /// # Safety
+        ///
+        /// `a_layer` might not allow `None`.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(setForegroundLayer:))]
         #[unsafe(method_family = none)]
@@ -403,6 +451,11 @@ impl IKImageBrowserView {
         /// Parameter `The`: item that the returned cell will represent.
         ///
         /// Subclasses can override this method to customize the appearance of the cell that will represent "anItem".
+        ///
+        /// # Safety
+        ///
+        /// - `an_item` should be of the correct type.
+        /// - `an_item` might not allow `None`.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(newCellForRepresentedItem:))]
         #[unsafe(method_family = new)]
@@ -588,6 +641,10 @@ impl IKImageBrowserView {
         /// extendSelection
         /// </i>
         /// is YES it extends the current selection, otherwise it replaces the current selection.
+        ///
+        /// # Safety
+        ///
+        /// `indexes` might not allow `None`.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(setSelectionIndexes:byExtendingSelection:))]
         #[unsafe(method_family = none)]
@@ -674,6 +731,11 @@ impl IKImageBrowserView {
         /// delegate
         /// </i>
         /// .
+        ///
+        /// # Safety
+        ///
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(setDraggingDestinationDelegate:))]
         #[unsafe(method_family = none)]
@@ -739,6 +801,10 @@ pub unsafe trait NSObjectIKImageBrowserDelegate:
 {
     extern_methods!(
         /// Invoked by 'aBrowser' when the selection did change
+        ///
+        /// # Safety
+        ///
+        /// `a_browser` might not allow `None`.
         #[unsafe(method(imageBrowserSelectionDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowserSelectionDidChange(&self, a_browser: Option<&IKImageBrowserView>);
@@ -746,6 +812,10 @@ pub unsafe trait NSObjectIKImageBrowserDelegate:
         /// Invoked by 'aBrowser' when a cell was double clicked.
         ///
         /// Parameter `index`: Index of the cell that was double clicked.
+        ///
+        /// # Safety
+        ///
+        /// `a_browser` might not allow `None`.
         #[unsafe(method(imageBrowser:cellWasDoubleClickedAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowser_cellWasDoubleClickedAtIndex(
@@ -757,6 +827,11 @@ pub unsafe trait NSObjectIKImageBrowserDelegate:
         /// Invoked by 'aBrowser' when a cell was right clicked or left clicked with the Alt key pressed.
         ///
         /// Parameter `index`: Index of the cell that was right clicked.
+        ///
+        /// # Safety
+        ///
+        /// - `a_browser` might not allow `None`.
+        /// - `event` might not allow `None`.
         #[unsafe(method(imageBrowser:cellWasRightClickedAtIndex:withEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowser_cellWasRightClickedAtIndex_withEvent(
@@ -767,6 +842,11 @@ pub unsafe trait NSObjectIKImageBrowserDelegate:
         );
 
         /// Invoked by 'aBrowser' when a the background was right clicked or left clicked with the Alt key pressed.
+        ///
+        /// # Safety
+        ///
+        /// - `a_browser` might not allow `None`.
+        /// - `event` might not allow `None`.
         #[unsafe(method(imageBrowser:backgroundWasRightClickedWithEvent:))]
         #[unsafe(method_family = none)]
         unsafe fn imageBrowser_backgroundWasRightClickedWithEvent(

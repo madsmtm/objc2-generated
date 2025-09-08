@@ -125,6 +125,10 @@ impl SKPaymentQueue {
         );
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Transaction.updates or PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(transactionObservers))]
         #[unsafe(method_family = none)]
@@ -134,6 +138,10 @@ impl SKPaymentQueue {
 
         #[cfg(feature = "SKPaymentTransaction")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Transaction.unfinished"]
         #[unsafe(method(transactions))]
         #[unsafe(method_family = none)]

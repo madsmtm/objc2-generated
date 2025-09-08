@@ -88,6 +88,10 @@ impl AUPannerView {
         /// Parameter `au`: The Panner Audio Unit associated with the view
         ///
         /// Returns: Returns the newly created view object autoreleased or nil on error
+        ///
+        /// # Safety
+        ///
+        /// `au` must be a valid pointer.
         #[unsafe(method(AUPannerViewWithAudioUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn AUPannerViewWithAudioUnit(

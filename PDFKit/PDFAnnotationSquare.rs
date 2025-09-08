@@ -51,6 +51,9 @@ impl PDFAnnotationSquare {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `color` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setInteriorColor:))]
         #[unsafe(method_family = none)]
@@ -62,6 +65,9 @@ impl PDFAnnotationSquare {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationSquare {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

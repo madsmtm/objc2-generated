@@ -1043,6 +1043,10 @@ impl UIView {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
+        ///
+        /// # Safety
+        ///
+        /// `tint_color` might not allow `None`.
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
@@ -1700,6 +1704,9 @@ impl UIView {
 #[cfg(feature = "UIResponder")]
 impl UIView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `context` must be a valid pointer or null.
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(beginAnimations:context:))]
         #[unsafe(method_family = none)]
@@ -1714,16 +1721,25 @@ impl UIView {
         #[unsafe(method_family = none)]
         pub unsafe fn commitAnimations(mtm: MainThreadMarker);
 
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDelegate(delegate: Option<&AnyObject>, mtm: MainThreadMarker);
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationWillStartSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationWillStartSelector(selector: Option<Sel>, mtm: MainThreadMarker);
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationDidStopSelector:))]
         #[unsafe(method_family = none)]

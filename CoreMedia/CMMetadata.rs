@@ -207,6 +207,10 @@ extern "C-unwind" {
     /// All other keyspaces allow the key to be passed as a CFString
     /// or CFData. In both cases, the key will be interpreted as an
     /// ASCII string for the purposes of identifier encoding.
+    ///
+    /// # Safety
+    ///
+    /// `identifier_out` must be a valid pointer.
     pub fn CMMetadataCreateIdentifierForKeyAndKeySpace(
         allocator: Option<&CFAllocator>,
         key: &CFType,
@@ -228,6 +232,10 @@ extern "C-unwind" {
     /// kCMMetadataKeySpace_Icy, the key will be returned as a CFString.
     ///
     /// All other keyspaces will have the function return the key as a CFData.
+    ///
+    /// # Safety
+    ///
+    /// `key_out` must be a valid pointer.
     pub fn CMMetadataCreateKeyFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -238,6 +246,10 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Creates a copy of the key value that was encoded in the identifier as CFData.
     /// The bytes in the CFData correpsond to how they are serialized in the file.
+    ///
+    /// # Safety
+    ///
+    /// `key_out` must be a valid pointer.
     pub fn CMMetadataCreateKeyFromIdentifierAsCFData(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -247,6 +259,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Creates a copy of the key value that was encoded in the identifier as CFData.
+    ///
+    /// # Safety
+    ///
+    /// `key_space_out` must be a valid pointer.
     pub fn CMMetadataCreateKeySpaceFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -472,6 +488,10 @@ extern "C-unwind" {
     /// been registered, then it is not considered an error to re-register it
     /// as long as the list of conforming data type identifiers has the same
     /// entries as the original;  otherwise an error will be returned.
+    ///
+    /// # Safety
+    ///
+    /// `conforming_data_types` generic must be of the correct type.
     pub fn CMMetadataDataTypeRegistryRegisterDataType(
         data_type: &CFString,
         description: &CFString,

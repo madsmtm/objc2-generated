@@ -39,6 +39,10 @@ impl UIGraphicsRenderer {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// - `drawing_actions` must be a valid pointer.
+        /// - `completion_actions` must be a valid pointer or null.
         #[unsafe(method(runDrawingActions:completionActions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn runDrawingActions_completionActions_error(

@@ -93,6 +93,10 @@ extern_conformance!(
 impl SCNMaterialProperty {
     extern_methods!(
         /// Creates and initialize a property instance with the specified contents.
+        ///
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(materialPropertyWithContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn materialPropertyWithContents(contents: &AnyObject) -> Retained<Self>;
@@ -112,6 +116,10 @@ impl SCNMaterialProperty {
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
+        ///
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
@@ -259,6 +267,10 @@ impl SCNMaterialProperty {
         /// Returns an `NSData` instance containing the result of CPU and GPU-intensive operations that is suitable for caching.
         ///
         /// This method can be leveraged in a custom offline asset pipeline, or at run time at a convenient time before the scene is presented to the user.
+        ///
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(precomputedLightingEnvironmentDataForContents:device:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn precomputedLightingEnvironmentDataForContents_device_error(

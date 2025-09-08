@@ -29,6 +29,10 @@ impl NSSpellServer {
         ) -> Option<Retained<ProtocolObject<dyn NSSpellServerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -95,6 +99,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserverdelegate?language=objc)
     pub unsafe trait NSSpellServerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `word_count` must be a valid pointer.
         #[optional]
         #[unsafe(method(spellServer:findMisspelledWordInString:language:wordCount:countOnly:))]
         #[unsafe(method_family = none)]
@@ -176,6 +183,9 @@ extern_protocol!(
             feature = "NSString",
             feature = "NSTextCheckingResult"
         ))]
+        /// # Safety
+        ///
+        /// `word_count` must be a valid pointer.
         #[optional]
         #[unsafe(method(spellServer:checkString:offset:types:options:orthography:wordCount:))]
         #[unsafe(method_family = none)]

@@ -81,6 +81,9 @@ extern_conformance!(
 impl SCNPhysicsShape {
     extern_methods!(
         #[cfg(feature = "SCNGeometry")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(shapeWithGeometry:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeWithGeometry_options(
@@ -89,6 +92,9 @@ impl SCNPhysicsShape {
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(shapeWithNode:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeWithNode_options(

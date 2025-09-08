@@ -65,6 +65,9 @@ impl CFFileSecurity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `owner_uuid` must be a valid pointer.
     #[doc(alias = "CFFileSecurityCopyOwnerUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -93,6 +96,9 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `group_uuid` must be a valid pointer.
     #[doc(alias = "CFFileSecurityCopyGroupUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -121,6 +127,9 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `owner` must be a valid pointer.
     #[doc(alias = "CFFileSecurityGetOwner")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -146,6 +155,9 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `group` must be a valid pointer.
     #[doc(alias = "CFFileSecurityGetGroup")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -171,6 +183,9 @@ impl CFFileSecurity {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `mode` must be a valid pointer.
     #[doc(alias = "CFFileSecurityGetMode")]
     #[cfg(feature = "libc")]
     #[inline]

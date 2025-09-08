@@ -137,6 +137,9 @@ impl CLLocationManager {
         #[unsafe(method_family = none)]
         pub unsafe fn significantLocationChangeMonitoringAvailable() -> bool;
 
+        /// # Safety
+        ///
+        /// `region_class` probably has further requirements.
         #[unsafe(method(isMonitoringAvailableForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMonitoringAvailableForClass(region_class: &AnyClass) -> bool;

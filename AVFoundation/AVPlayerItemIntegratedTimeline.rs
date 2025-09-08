@@ -69,6 +69,10 @@ impl AVPlayerItemSegment {
         /// The type of content this segment represents.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(segmentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentType(&self) -> AVPlayerItemSegmentType;
@@ -79,6 +83,10 @@ impl AVPlayerItemSegment {
         /// The timeMapping source timeRange represents the start and duration in the segment source's timeline (ie: primary item timeline or interstitial event). The target timeRange represents the start point and duration in the integrated timeline. For interstitial events which occupy a single point, the target's duration will be kCMTimeZero.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timeMapping))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeMapping(&self) -> CMTimeMapping;
@@ -95,6 +103,10 @@ impl AVPlayerItemSegment {
         /// The date this segment starts at. This value will be nil if the primary item does not contain dates.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
@@ -105,6 +117,10 @@ impl AVPlayerItemSegment {
         /// The associated interstitial event for this segment. This value will be nil for segments representing playback of the primary itme.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(interstitialEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEvent(&self) -> Option<Retained<AVPlayerInterstitialEvent>>;
@@ -149,6 +165,10 @@ impl AVPlayerItemIntegratedTimelineSnapshot {
         /// Before loading the duration of the primary item, the value of this property is kCMTimeInvalid. For livestreams, this value will be kCMTimeIndefinite.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
@@ -188,6 +208,10 @@ impl AVPlayerItemIntegratedTimelineSnapshot {
         /// Parameter `segmentOffsetOut`: Output parameter for offset in segment.
         ///
         /// Provides mapping from time to segment and offset in the segment's timeMapping target. For time that correlates to the start of multiple segments, this will return the first one.
+        ///
+        /// # Safety
+        ///
+        /// `segment_offset_out` must be a valid pointer.
         #[unsafe(method(mapTime:toSegment:atSegmentOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapTime_toSegment_atSegmentOffset(
@@ -266,6 +290,10 @@ impl AVPlayerItemIntegratedTimeline {
         /// Parameter `completionHandler`: CompletionHandler callback after seek completes. Success will be true if the playhead moved to the new time.
         ///
         /// The integrated timeline seeks to the the range of [time-beforeTolerance, time+afterTolerance] will be attributed to a segment and AVPlayerItem that falls in that range. You can request sample accurate seeking by passing a time value of kCMTimeZero for both toleranceBefore and toleranceAfter.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
@@ -284,6 +312,10 @@ impl AVPlayerItemIntegratedTimeline {
         /// Parameter `completionHandler`: CompletionHandler callback after seek completes. Success will be true if the playhead moved to the new date.
         ///
         /// The integrated timeline will seek playhead to the coresponding date.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
@@ -318,6 +350,10 @@ impl AVPlayerItemIntegratedTimeline {
         /// Parameter `block`: The block to be invoked periodically.
         ///
         /// Returns: An object conforming to the AVPlayerItemIntegratedTimelineObserver protocol. You must retain this returned value as long as you want the time observer to be invoked by the timeline. The block is invoked periodically at the interval specified, interpreted according to the integrated timeline. The block is also invoked across AVPlayerItemSegment and AVPlayerItem boundaries, whenever time jumps, and whenever playback starts or stops. Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:. Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
@@ -340,6 +376,10 @@ impl AVPlayerItemIntegratedTimeline {
         ///
         /// Returns: An object conforming to the AVPlayerItemIntegratedTimelineObserver protocol. You must retain this returned value as long as you want the time observer to be invoked by the timeline. Pass this object to -removeTimeObserver: to cancel time observation. One can also configure single point segments with segmentTimes to trigger during traversal of the segment's playback. As the timeline duration and segments change, the installed time observer will be automatically adjusted to fire at the desired offset in the segment. A segment that is removed from the timeline will trigger the invocation of the block immediately with success set as false.
         /// Each call to -addBoundaryTimeObserverForSegment:segment:offsetsInSegment:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:. Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addBoundaryTimeObserverForSegment:offsetsIntoSegment:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForSegment_offsetsIntoSegment_queue_usingBlock(

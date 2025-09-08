@@ -364,6 +364,10 @@ impl NSPasteboard {
             objects: &NSArray<ProtocolObject<dyn NSPasteboardWriting>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// - `class_array` generic probably has further requirements.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(readObjectsForClasses:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readObjectsForClasses_options(
@@ -392,6 +396,10 @@ impl NSPasteboard {
             types: &NSArray<NSString>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// - `class_array` generic probably has further requirements.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(canReadObjectForClasses:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canReadObjectForClasses_options(
@@ -400,6 +408,9 @@ impl NSPasteboard {
             options: Option<&NSDictionary<NSPasteboardReadingOptionKey, AnyObject>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `new_owner` should be of the correct type.
         #[unsafe(method(declareTypes:owner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn declareTypes_owner(
@@ -408,6 +419,9 @@ impl NSPasteboard {
             new_owner: Option<&AnyObject>,
         ) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `new_owner` should be of the correct type.
         #[unsafe(method(addTypes:owner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTypes_owner(
@@ -435,6 +449,9 @@ impl NSPasteboard {
             data_type: &NSPasteboardType,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `plist` should be of the correct type.
         #[unsafe(method(setPropertyList:forType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertyList_forType(
@@ -684,6 +701,9 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> NSPasteboardReadingOptions;
 
+        /// # Safety
+        ///
+        /// `property_list` should be of the correct type.
         #[optional]
         #[unsafe(method(initWithPasteboardPropertyList:ofType:))]
         #[unsafe(method_family = init)]

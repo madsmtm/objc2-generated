@@ -62,6 +62,9 @@ impl NSAppleEventManager {
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `handle_event_selector` must be a valid selector.
         #[unsafe(method(setEventHandler:andSelector:forEventClass:andEventID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEventHandler_andSelector_forEventClass_andEventID(
@@ -84,6 +87,11 @@ impl NSAppleEventManager {
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// - `the_apple_event` must be a valid pointer.
+        /// - `the_reply` must be a valid pointer.
+        /// - `handler_ref_con` must be a valid pointer.
         #[unsafe(method(dispatchRawAppleEvent:withRawReply:handlerRefCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchRawAppleEvent_withRawReply_handlerRefCon(
@@ -108,6 +116,9 @@ impl NSAppleEventManager {
         pub unsafe fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// # Safety
+        ///
+        /// `suspension_id` must be a valid pointer.
         #[unsafe(method(appleEventForSuspensionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appleEventForSuspensionID(
@@ -116,6 +127,9 @@ impl NSAppleEventManager {
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// # Safety
+        ///
+        /// `suspension_id` must be a valid pointer.
         #[unsafe(method(replyAppleEventForSuspensionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replyAppleEventForSuspensionID(
@@ -123,6 +137,9 @@ impl NSAppleEventManager {
             suspension_id: NSAppleEventManagerSuspensionID,
         ) -> Retained<NSAppleEventDescriptor>;
 
+        /// # Safety
+        ///
+        /// `suspension_id` must be a valid pointer.
         #[unsafe(method(setCurrentAppleEventAndReplyEventWithSuspensionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCurrentAppleEventAndReplyEventWithSuspensionID(
@@ -130,6 +147,9 @@ impl NSAppleEventManager {
             suspension_id: NSAppleEventManagerSuspensionID,
         );
 
+        /// # Safety
+        ///
+        /// `suspension_id` must be a valid pointer.
         #[unsafe(method(resumeWithSuspensionID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeWithSuspensionID(&self, suspension_id: NSAppleEventManagerSuspensionID);

@@ -46,11 +46,17 @@ extern "C" {
 // TODO: pub fn GLKMatrix3Transpose(matrix: GLKMatrix3,) -> GLKMatrix3;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `is_invertible` must be a valid pointer.
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKMatrix3Invert(matrix: GLKMatrix3, is_invertible: *mut bool) -> GLKMatrix3;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `is_invertible` must be a valid pointer.
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKMatrix3InvertAndTranspose(matrix: GLKMatrix3, is_invertible: *mut bool)
         -> GLKMatrix3;

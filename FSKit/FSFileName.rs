@@ -86,6 +86,10 @@ impl FSFileName {
         /// > Note: This initializer is unavailable in Swift. Use ``initWithData:`` or ``initWithString:`` instead.
         ///
         /// - Parameter name: A pointer to a C string.
+        ///
+        /// # Safety
+        ///
+        /// `name` must be a valid pointer.
         #[unsafe(method(initWithCString:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCString(
@@ -100,6 +104,10 @@ impl FSFileName {
         /// - Parameters:
         /// - bytes: A pointer to the character data to copy, up to a maximum of `length`. The sequence terminates if a `NUL` character exists prior to `length`.
         /// - length: The size of the `bytes` array.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(initWithBytes:length:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_length(
@@ -130,6 +138,10 @@ impl FSFileName {
         /// Creates a filename from a null-terminated character sequence.
         ///
         /// - Parameter name: A pointer to a C string.
+        ///
+        /// # Safety
+        ///
+        /// `name` must be a valid pointer.
         #[unsafe(method(nameWithCString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nameWithCString(name: NonNull<c_char>) -> Retained<Self>;
@@ -139,6 +151,10 @@ impl FSFileName {
         /// - Parameters:
         /// - bytes: A pointer to the character data to copy, up to a maximum of `length`. The sequence terminates if a `NUL` character exists prior to `length`.
         /// - length: The size of the `bytes` array.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(nameWithBytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nameWithBytes_length(

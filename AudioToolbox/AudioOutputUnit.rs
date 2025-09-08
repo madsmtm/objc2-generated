@@ -6,11 +6,17 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ci` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AudioOutputUnitStart(ci: AudioUnit) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ci` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AudioOutputUnitStop(ci: AudioUnit) -> OSStatus;
 }

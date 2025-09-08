@@ -19,6 +19,10 @@ extern "C-unwind" {
     /// Parameter `numChars`: The number of characters to copy from the buffer pointed to by chars.
     ///
     /// Returns: A JSString containing chars. Ownership follows the Create Rule.
+    ///
+    /// # Safety
+    ///
+    /// `chars` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringCreateWithCharacters(chars: *const JSChar, num_chars: usize) -> JSStringRef;
 }
@@ -29,6 +33,10 @@ extern "C-unwind" {
     /// Parameter `string`: The null-terminated UTF8 string to copy into the new JSString.
     ///
     /// Returns: A JSString containing string. Ownership follows the Create Rule.
+    ///
+    /// # Safety
+    ///
+    /// `string` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef;
 }
@@ -39,6 +47,10 @@ extern "C-unwind" {
     /// Parameter `string`: The JSString to retain.
     ///
     /// Returns: A JSString that is the same as string.
+    ///
+    /// # Safety
+    ///
+    /// `string` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringRetain(string: JSStringRef) -> JSStringRef;
 }
@@ -47,6 +59,10 @@ extern "C-unwind" {
     /// Releases a JavaScript string.
     ///
     /// Parameter `string`: The JSString to release.
+    ///
+    /// # Safety
+    ///
+    /// `string` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringRelease(string: JSStringRef);
 }
@@ -57,6 +73,10 @@ extern "C-unwind" {
     /// Parameter `string`: The JSString whose length (in Unicode characters) you want to know.
     ///
     /// Returns: The number of Unicode characters stored in string.
+    ///
+    /// # Safety
+    ///
+    /// `string` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetLength(string: JSStringRef) -> usize;
 }
@@ -69,6 +89,10 @@ extern "C-unwind" {
     ///
     /// Returns: A pointer to the Unicode character buffer that serves as string's
     /// backing store, which will be deallocated when string is deallocated.
+    ///
+    /// # Safety
+    ///
+    /// `string` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar;
 }
@@ -83,6 +107,10 @@ extern "C-unwind" {
     /// Returns: The maximum number of bytes that could be required to convert string into a
     /// null-terminated UTF8 string. The number of bytes that the conversion actually ends
     /// up requiring could be less than this, but never more.
+    ///
+    /// # Safety
+    ///
+    /// `string` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize;
 }
@@ -102,6 +130,11 @@ extern "C-unwind" {
     /// Parameter `bufferSize`: The size of the external buffer in bytes.
     ///
     /// Returns: The number of bytes written into buffer (including the null-terminator byte).
+    ///
+    /// # Safety
+    ///
+    /// - `string` must be a valid pointer.
+    /// - `buffer` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetUTF8CString(
         string: JSStringRef,
@@ -118,6 +151,11 @@ extern "C-unwind" {
     /// Parameter `b`: The second JSString to test.
     ///
     /// Returns: true if the two strings match, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `a` must be a valid pointer.
+    /// - `b` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool;
 }
@@ -130,6 +168,11 @@ extern "C-unwind" {
     /// Parameter `b`: The null-terminated UTF8 string to test.
     ///
     /// Returns: true if the two strings match, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `a` must be a valid pointer.
+    /// - `b` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool;
 }

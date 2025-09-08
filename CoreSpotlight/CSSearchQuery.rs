@@ -183,6 +183,9 @@ impl CSSearchQuery {
         pub unsafe fn foundItemCount(&self) -> NSUInteger;
 
         #[cfg(all(feature = "CSSearchableItem", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(foundItemsHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn foundItemsHandler(
@@ -203,6 +206,9 @@ impl CSSearchQuery {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer or null.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn(*mut NSError)>;

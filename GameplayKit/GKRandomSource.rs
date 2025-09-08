@@ -166,6 +166,10 @@ impl GKRandomSource {
         ///
         /// Any random, be it custom, source or a distribution, that can provide a number with an upper bound of at least the
         /// array.count is suitable for this shuffle.
+        ///
+        /// # Safety
+        ///
+        /// `array` generic should be of the correct type.
         #[unsafe(method(arrayByShufflingObjectsInArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayByShufflingObjectsInArray(&self, array: &NSArray) -> Retained<NSArray>;

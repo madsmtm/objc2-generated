@@ -581,6 +581,10 @@ impl CPManeuver {
 
         #[cfg(feature = "CPLaneGuidance")]
         /// Setter for [`linkedLaneGuidance`][Self::linkedLaneGuidance].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setLinkedLaneGuidance:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLinkedLaneGuidance(&self, linked_lane_guidance: &CPLaneGuidance);
@@ -604,6 +608,10 @@ impl CPManeuver {
         pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
+        ///
+        /// # Safety
+        ///
+        /// `user_info` should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);

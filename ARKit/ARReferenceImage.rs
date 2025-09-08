@@ -46,6 +46,10 @@ impl ARReferenceImage {
         /// An optional name used to identify the image.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
@@ -54,6 +58,10 @@ impl ARReferenceImage {
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -62,6 +70,10 @@ impl ARReferenceImage {
         /// The physical size of the image in meters.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(physicalSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn physicalSize(&self) -> CGSize;
@@ -73,6 +85,10 @@ impl ARReferenceImage {
         /// else be set to nil.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(resourceGroupName))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceGroupName(&self) -> Option<Retained<NSString>>;

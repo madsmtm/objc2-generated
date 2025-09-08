@@ -59,6 +59,10 @@ impl ARFaceGeometry {
         /// The number of mesh vertices of the geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(vertexCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexCount(&self) -> NSUInteger;
@@ -66,6 +70,10 @@ impl ARFaceGeometry {
         /// The number of texture coordinates of the face geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(textureCoordinateCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureCoordinateCount(&self) -> NSUInteger;
@@ -73,6 +81,10 @@ impl ARFaceGeometry {
         /// The number of triangles of the face geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(triangleCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn triangleCount(&self) -> NSUInteger;
@@ -80,6 +92,10 @@ impl ARFaceGeometry {
         /// The triangle indices of the geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(triangleIndices))]
         #[unsafe(method_family = none)]
         pub unsafe fn triangleIndices(&self) -> NonNull<i16>;

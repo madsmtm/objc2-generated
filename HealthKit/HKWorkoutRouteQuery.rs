@@ -49,6 +49,10 @@ impl HKWorkoutRouteQuery {
         /// stopQuery: is called. The stopQuery call can be made within the dataHandler block. The number of
         /// objects returned in routeData per dataHandler call is unspecified. Once done is YES, or
         /// stopQuery called, the query is complete and no more calls to the handler will be made.
+        ///
+        /// # Safety
+        ///
+        /// `data_handler` block must be sendable.
         #[unsafe(method(initWithRoute:dataHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRoute_dataHandler(
@@ -82,6 +86,10 @@ impl HKWorkoutRouteQuery {
         /// stopQuery: is called. The stopQuery call can be made within the dataHandler block. The number of
         /// objects returned in routeData per dataHandler call is unspecified. Once done is YES, or
         /// stopQuery called, the query is complete and no more calls to the handler will be made.
+        ///
+        /// # Safety
+        ///
+        /// `data_handler` block must be sendable.
         #[unsafe(method(initWithRoute:dateInterval:dataHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRoute_dateInterval_dataHandler(

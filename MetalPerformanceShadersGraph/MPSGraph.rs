@@ -237,12 +237,21 @@ impl MPSGraphCompilationDescriptor {
         /// The handler that the graph calls when the compilation completes.
         ///
         /// Default value is nil.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(compilationCompletionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn compilationCompletionHandler(&self) -> MPSGraphCompilationCompletionHandler;
 
         #[cfg(all(feature = "MPSGraphExecutable", feature = "block2"))]
         /// Setter for [`compilationCompletionHandler`][Self::compilationCompletionHandler].
+        ///
+        /// # Safety
+        ///
+        /// `compilation_completion_handler` must be a valid pointer.
         #[unsafe(method(setCompilationCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompilationCompletionHandler(
@@ -335,6 +344,11 @@ impl MPSGraphExecutionDescriptor {
         /// The handler that graph calls when it schedules the execution.
         ///
         /// Default value is nil.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(scheduledHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledHandler(&self) -> MPSGraphScheduledHandler;
@@ -345,6 +359,10 @@ impl MPSGraphExecutionDescriptor {
             feature = "block2"
         ))]
         /// Setter for [`scheduledHandler`][Self::scheduledHandler].
+        ///
+        /// # Safety
+        ///
+        /// `scheduled_handler` must be a valid pointer.
         #[unsafe(method(setScheduledHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScheduledHandler(&self, scheduled_handler: MPSGraphScheduledHandler);
@@ -357,6 +375,11 @@ impl MPSGraphExecutionDescriptor {
         /// The handler that graph calls at the completion of the execution.
         ///
         /// Default value is nil.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> MPSGraphCompletionHandler;
@@ -367,6 +390,10 @@ impl MPSGraphExecutionDescriptor {
             feature = "block2"
         ))]
         /// Setter for [`completionHandler`][Self::completionHandler].
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(&self, completion_handler: MPSGraphCompletionHandler);

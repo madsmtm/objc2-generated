@@ -364,6 +364,10 @@ pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
 /// Partially converts a Metal vertex descriptor to a Model I/O vertex descriptor
 ///
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Model I/O vertex descriptor.  It does not add any semantic information such at attributes names.  Names must be set in the returned Model I/O vertex descriptor before it can be applied to a a Model I/O mesh. If error is nonnull, and the conversion cannot be made, it will be set.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetalWithError(
@@ -401,6 +405,10 @@ pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
 /// Partially converts a Model I/O vertex descriptor to a Metal vertex descriptor
 ///
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Metal vertex descriptor. It simply copies attributes 1 for 1. Thus attributes in the given Model I/O vertex descriptor must be arranged in the correct order for the resulting descriptor to properly map mesh data to vertex shader inputs.  Layout stepFunction and stepRates for the resulting MTLVertexDescriptor must also be set by application.  If error is nonnull, and the conversion cannot be made, it will be set.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIOWithError(

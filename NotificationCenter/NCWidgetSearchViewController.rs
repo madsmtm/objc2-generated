@@ -77,6 +77,10 @@ impl NCWidgetSearchViewController {
         /// Setter for [`searchResults`][Self::searchResults].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `search_results` generic should be of the correct type.
         #[unsafe(method(setSearchResults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchResults(&self, search_results: Option<&NSArray<AnyObject>>);
@@ -186,6 +190,9 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(widgetSearch:resultSelected:))]
         #[unsafe(method_family = none)]
         unsafe fn widgetSearch_resultSelected(

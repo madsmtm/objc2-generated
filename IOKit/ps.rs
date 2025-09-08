@@ -427,6 +427,11 @@ pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<
 ///
 /// Returns: Returns NULL if errors were encountered, otherwise a CFArray of CFTypeRefs.
 /// Caller must CFRelease() the returned CFArrayRef.
+///
+/// # Safety
+///
+/// - `blob` should be of the correct type.
+/// - `blob` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesList(
     blob: Option<&CFType>,
@@ -455,6 +460,13 @@ pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesList(
 /// Returns: Returns NULL if an error was encountered, otherwise a CFDictionary. Caller should
 /// NOT release the returned CFDictionary - it will be released as part of the CFTypeRef returned by
 /// IOPSCopyPowerSourcesInfo().
+///
+/// # Safety
+///
+/// - `blob` should be of the correct type.
+/// - `blob` might not allow `None`.
+/// - `ps` should be of the correct type.
+/// - `ps` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSGetPowerSourceDescription(
     blob: Option<&CFType>,
@@ -480,6 +492,11 @@ pub unsafe extern "C-unwind" fn IOPSGetPowerSourceDescription(
 ///
 ///
 /// Returns: One of: CFSTR(kIOPMACPowerKey), CFSTR(kIOPMBatteryPowerKey), CFSTR(kIOPMUPSPowerKey)
+///
+/// # Safety
+///
+/// - `snapshot` should be of the correct type.
+/// - `snapshot` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSGetProvidingPowerSourceType(
     snapshot: Option<&CFType>,
@@ -533,6 +550,11 @@ pub unsafe extern "C-unwind" fn IOPSGetProvidingPowerSourceType(
 ///
 /// Returns: Returns NULL if an error was encountered, otherwise a CFRunLoopSource. Caller must
 /// release the CFRunLoopSource.
+///
+/// # Safety
+///
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSNotificationCreateRunLoopSource(
     callback: IOPowerSourceCallbackType,
@@ -577,6 +599,11 @@ pub unsafe extern "C-unwind" fn IOPSNotificationCreateRunLoopSource(
 ///
 /// Returns: Returns NULL if an error was encountered, otherwise a CFRunLoopSource. Caller must
 /// release the CFRunLoopSource.
+///
+/// # Safety
+///
+/// - `callback` must be implemented correctly.
+/// - `context` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSCreateLimitedPowerNotification(
     callback: IOPowerSourceCallbackType,

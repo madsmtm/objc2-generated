@@ -37,6 +37,10 @@ impl MLModelStructureProgram {
         /// The functions in the program.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(functions))]
         #[unsafe(method_family = none)]
         pub unsafe fn functions(

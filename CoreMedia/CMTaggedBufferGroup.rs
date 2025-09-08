@@ -78,6 +78,12 @@ impl CMTaggedBufferGroup {
     /// Parameter `groupOut`: The newly created group will be placed here.  The caller has a responsibility to call CFRelease on it.
     ///
     /// Returns: Returns noErr on success.
+    ///
+    /// # Safety
+    ///
+    /// - `tag_collections` generic must be of the correct type.
+    /// - `buffers` generic must be of the correct type.
+    /// - `group_out` must be a valid pointer.
     #[doc(alias = "CMTaggedBufferGroupCreate")]
     #[inline]
     pub unsafe fn create(
@@ -106,6 +112,11 @@ impl CMTaggedBufferGroup {
     /// Parameter `groupOut`: The newly created group will be placed here.  The caller has a responsibility to call CFRelease on it.
     ///
     /// Returns: Returns noErr on success.
+    ///
+    /// # Safety
+    ///
+    /// - `tagged_buffer_groups` generic must be of the correct type.
+    /// - `group_out` must be a valid pointer.
     #[doc(alias = "CMTaggedBufferGroupCreateCombined")]
     #[inline]
     pub unsafe fn create_combined(
@@ -195,6 +206,10 @@ impl CMTaggedBufferGroup {
     /// Parameter `indexOut`: On success, index of the returned CVPixelBuffer.  May be NULL.
     ///
     /// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
+    ///
+    /// # Safety
+    ///
+    /// `index_out` must be a valid pointer or null.
     #[doc(alias = "CMTaggedBufferGroupGetCVPixelBufferForTag")]
     #[cfg(all(feature = "CMTag", feature = "objc2-core-video"))]
     #[inline]
@@ -223,6 +238,10 @@ impl CMTaggedBufferGroup {
     /// Parameter `indexOut`: On success, index of the returned CVPixelBuffer.  May be NULL.
     ///
     /// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
+    ///
+    /// # Safety
+    ///
+    /// `index_out` must be a valid pointer or null.
     #[doc(alias = "CMTaggedBufferGroupGetCVPixelBufferForTagCollection")]
     #[cfg(all(feature = "CMTagCollection", feature = "objc2-core-video"))]
     #[inline]
@@ -277,6 +296,10 @@ impl CMTaggedBufferGroup {
     /// Parameter `indexOut`: On success, index of the returned CMSampleBuffer.  May be NULL.
     ///
     /// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
+    ///
+    /// # Safety
+    ///
+    /// `index_out` must be a valid pointer or null.
     #[doc(alias = "CMTaggedBufferGroupGetCMSampleBufferForTag")]
     #[cfg(all(feature = "CMSampleBuffer", feature = "CMTag"))]
     #[inline]
@@ -305,6 +328,10 @@ impl CMTaggedBufferGroup {
     /// Parameter `indexOut`: On success, index of the returned CMSampleBuffer.  May be NULL.
     ///
     /// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
+    ///
+    /// # Safety
+    ///
+    /// `index_out` must be a valid pointer or null.
     #[doc(alias = "CMTaggedBufferGroupGetCMSampleBufferForTagCollection")]
     #[cfg(all(feature = "CMSampleBuffer", feature = "CMTagCollection"))]
     #[inline]
@@ -365,6 +392,10 @@ impl CMTaggedBufferGroup {
     /// CMTaggedBufferGroups, it is more efficient to create the CMTaggedBufferGroupFormatDescription
     /// once and use it for all of the CMSampleBuffers.
     /// The caller owns the returned CMFormatDescription, and must release it when done with it.
+    ///
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     #[doc(alias = "CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
@@ -439,6 +470,10 @@ extern "C-unwind" {
     /// Parameter `sBufOut`: Returned newly created CMSampleBuffer.
     ///
     /// Returns: OSStatus with error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `s_buf_out` must be a valid pointer.
     #[cfg(all(
         feature = "CMFormatDescription",
         feature = "CMSampleBuffer",

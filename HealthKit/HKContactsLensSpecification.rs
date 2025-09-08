@@ -54,6 +54,10 @@ impl HKContactsLensSpecification {
         /// The curvature of the back surface of the lens (measured in mm)
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(baseCurve))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseCurve(&self) -> Option<Retained<HKQuantity>>;
@@ -62,6 +66,10 @@ impl HKContactsLensSpecification {
         /// The width of the lens from edge to edge (measured in mm)
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(diameter))]
         #[unsafe(method_family = none)]
         pub unsafe fn diameter(&self) -> Option<Retained<HKQuantity>>;

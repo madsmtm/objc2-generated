@@ -29,6 +29,10 @@ extern_protocol!(
         /// Returns a list of supported pixel formats for the current configuration
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(frameSupportedPixelFormats))]
         #[unsafe(method_family = none)]
         unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
@@ -37,6 +41,10 @@ extern_protocol!(
         /// Returns a dictionary of CVPixelBuffer attributes which source and reference frames passed to the processor must conform to.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         unsafe fn sourcePixelBufferAttributes(&self) -> Retained<NSDictionary>;
@@ -45,6 +53,10 @@ extern_protocol!(
         /// Returns a dictionary of CVPixelBuffer attributes which output frames passed to the processor must conform to.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(destinationPixelBufferAttributes))]
         #[unsafe(method_family = none)]
         unsafe fn destinationPixelBufferAttributes(&self) -> Retained<NSDictionary>;
@@ -52,6 +64,10 @@ extern_protocol!(
         /// returns the number of "next" frames that this processor requires for processing.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[optional]
         #[unsafe(method(nextFrameCount))]
         #[unsafe(method_family = none)]
@@ -60,6 +76,10 @@ extern_protocol!(
         /// returns the number of "previous" frames that this processor requires for processing.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[optional]
         #[unsafe(method(previousFrameCount))]
         #[unsafe(method_family = none)]

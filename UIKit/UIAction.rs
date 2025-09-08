@@ -155,6 +155,10 @@ impl UIAction {
         ///
         ///
         /// Returns: A new UIAction.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(actionWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithHandler(
@@ -176,6 +180,10 @@ impl UIAction {
         ///
         ///
         /// Returns: A new UIAction.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(actionWithTitle:image:identifier:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithTitle_image_identifier_handler(
@@ -227,6 +235,10 @@ impl UIAction {
         ///
         ///
         /// Returns: A new UIAction.
+        ///
+        /// # Safety
+        ///
+        /// `responder` must implement UIKeyInput.
         #[unsafe(method(captureTextFromCameraActionForResponder:identifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureTextFromCameraActionForResponder_identifier(

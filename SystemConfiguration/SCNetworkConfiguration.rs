@@ -489,6 +489,10 @@ impl SCNetworkInterface {
     /// Parameter `config`: The configuration settings to associate with this interface.
     ///
     /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `config` generics must be of the correct type.
     #[doc(alias = "SCNetworkInterfaceSetConfiguration")]
     #[inline]
     pub unsafe fn set_configuration(&self, config: Option<&CFDictionary>) -> bool {
@@ -509,6 +513,10 @@ impl SCNetworkInterface {
     /// Parameter `config`: The configuration settings to associate with this interface.
     ///
     /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `config` generics must be of the correct type.
     #[doc(alias = "SCNetworkInterfaceSetExtendedConfiguration")]
     #[inline]
     pub unsafe fn set_extended_configuration(
@@ -551,6 +559,12 @@ impl SCNetworkInterface {
     /// requested by a user/admin (e.g. hw-loopback).
     ///
     /// Returns: TRUE if requested information has been returned.
+    ///
+    /// # Safety
+    ///
+    /// - `current` must be a valid pointer or null.
+    /// - `active` must be a valid pointer or null.
+    /// - `available` must be a valid pointer or null.
     #[doc(alias = "SCNetworkInterfaceCopyMediaOptions")]
     #[inline]
     pub unsafe fn media_options(
@@ -642,6 +656,12 @@ impl SCNetworkInterface {
     /// could not be determined.
     ///
     /// Returns: TRUE if requested information has been returned.
+    ///
+    /// # Safety
+    ///
+    /// - `mtu_cur` must be a valid pointer or null.
+    /// - `mtu_min` must be a valid pointer or null.
+    /// - `mtu_max` must be a valid pointer or null.
     #[doc(alias = "SCNetworkInterfaceCopyMTU")]
     #[inline]
     pub unsafe fn mtu(
@@ -850,6 +870,10 @@ pub extern "C-unwind" fn SCBondInterfaceGetOptions(
 /// Parameter `members`: The desired member interfaces.
 ///
 /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+///
+/// # Safety
+///
+/// `members` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
     bond: &SCBondInterface,
@@ -892,6 +916,10 @@ pub extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
 /// Parameter `newOptions`: The new configuration settings.
 ///
 /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+///
+/// # Safety
+///
+/// `new_options` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SCBondInterfaceSetOptions(
     bond: &SCBondInterface,
@@ -1173,6 +1201,10 @@ pub extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
 /// Parameter `newOptions`: The new configuration settings.
 ///
 /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+///
+/// # Safety
+///
+/// `new_options` generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SCVLANInterfaceSetOptions(
     vlan: &SCVLANInterface,
@@ -1257,6 +1289,10 @@ impl SCNetworkProtocol {
     /// Parameter `config`: The configuration settings to associate with this protocol.
     ///
     /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `config` generics must be of the correct type.
     #[doc(alias = "SCNetworkProtocolSetConfiguration")]
     #[inline]
     pub unsafe fn set_configuration(&self, config: Option<&CFDictionary>) -> bool {
@@ -1872,6 +1908,10 @@ impl SCNetworkSet {
     /// Parameter `newOrder`: The ordered list of CFStringRef service identifiers for the set.
     ///
     /// Returns: TRUE if the new service order was saved; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `new_order` generic must be of the correct type.
     #[doc(alias = "SCNetworkSetSetServiceOrder")]
     #[inline]
     pub unsafe fn set_service_order(&self, new_order: &CFArray) -> bool {

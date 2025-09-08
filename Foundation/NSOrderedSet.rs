@@ -86,6 +86,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(initWithObjects:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(
@@ -117,6 +120,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSRange")]
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(getObjects:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjects_range(&self, objects: *mut NonNull<ObjectType>, range: NSRange);
@@ -290,6 +296,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
             feature = "NSRange",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `cmp` must be a valid pointer.
         #[unsafe(method(indexOfObject:inSortedRange:options:usingComparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfObject_inSortedRange_options_usingComparator(
@@ -301,6 +310,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortedArrayUsingComparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayUsingComparator(
@@ -309,6 +321,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortedArrayWithOptions:usingComparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayWithOptions_usingComparator(
@@ -323,6 +338,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(descriptionWithLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale(
@@ -331,6 +349,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(descriptionWithLocale:indent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale_indent(
@@ -352,6 +373,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithObject(object: &ObjectType) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer.
         #[unsafe(method(orderedSetWithObjects:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithObjects_count(
@@ -485,6 +509,9 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithObject(object: &ObjectType) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer.
         #[unsafe(method(orderedSetWithObjects:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedSetWithObjects_count(
@@ -748,6 +775,9 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
 /// Methods declared on superclass `NSOrderedSet`.
 impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(initWithObjects:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(
@@ -774,6 +804,9 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[unsafe(method_family = none)]
         pub unsafe fn addObject(&self, object: &ObjectType);
 
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(addObjects:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObjects_count(&self, objects: *mut NonNull<ObjectType>, count: NSUInteger);
@@ -814,6 +847,9 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         pub unsafe fn setObject_atIndexedSubscript(&self, obj: &ObjectType, idx: NSUInteger);
 
         #[cfg(feature = "NSRange")]
+        /// # Safety
+        ///
+        /// `objects` must be a valid pointer or null.
         #[unsafe(method(replaceObjectsInRange:withObjects:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceObjectsInRange_withObjects_count(
@@ -883,11 +919,17 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         pub unsafe fn unionSet(&self, other: &NSSet<ObjectType>);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortUsingComparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortUsingComparator(&self, cmptr: NSComparator);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortWithOptions:usingComparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortWithOptions_usingComparator(
@@ -897,6 +939,9 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortRange:options:usingComparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortRange_options_usingComparator(

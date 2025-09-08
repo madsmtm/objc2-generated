@@ -102,12 +102,20 @@ impl SKProductsResponse {
     extern_methods!(
         #[cfg(feature = "SKProduct")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Get products using Product.products(for:)"]
         #[unsafe(method(products))]
         #[unsafe(method_family = none)]
         pub unsafe fn products(&self) -> Retained<NSArray<SKProduct>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Get products using Product.products(for:)"]
         #[unsafe(method(invalidProductIdentifiers))]
         #[unsafe(method_family = none)]

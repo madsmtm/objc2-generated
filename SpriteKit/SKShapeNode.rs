@@ -135,6 +135,9 @@ impl SKShapeNode {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `points` must be a valid pointer.
         #[unsafe(method(shapeNodeWithPoints:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithPoints_count(
@@ -144,6 +147,9 @@ impl SKShapeNode {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `points` must be a valid pointer.
         #[unsafe(method(shapeNodeWithSplinePoints:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shapeNodeWithSplinePoints_count(
@@ -377,6 +383,9 @@ impl SKShapeNode {
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `classes` generic probably has further requirements.
         #[unsafe(method(nodeWithFileNamed:securelyWithClasses:andError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(

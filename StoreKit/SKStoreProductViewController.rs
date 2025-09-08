@@ -70,6 +70,9 @@ impl SKStoreProductViewController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(loadProductWithParameters:completionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadProductWithParameters_completionBlock(
@@ -79,6 +82,9 @@ impl SKStoreProductViewController {
         );
 
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(loadProductWithParameters:impression:completionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadProductWithParameters_impression_completionBlock(

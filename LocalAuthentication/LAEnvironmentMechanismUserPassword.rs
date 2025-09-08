@@ -30,6 +30,10 @@ impl LAEnvironmentMechanismUserPassword {
         /// Whether the local user password or passcode is set on this device.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isSet))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSet(&self) -> bool;

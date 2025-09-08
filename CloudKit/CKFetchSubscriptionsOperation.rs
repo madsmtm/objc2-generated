@@ -41,6 +41,10 @@ impl CKFetchSubscriptionsOperation {
 
         #[cfg(feature = "CKSubscription")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subscriptionIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionIDs(&self) -> Option<Retained<NSArray<CKSubscriptionID>>>;
@@ -49,6 +53,10 @@ impl CKFetchSubscriptionsOperation {
         /// Setter for [`subscriptionIDs`][Self::subscriptionIDs].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSubscriptionIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriptionIDs(
@@ -66,6 +74,13 @@ impl CKFetchSubscriptionsOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(perSubscriptionCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionCompletionBlock(
@@ -78,6 +93,10 @@ impl CKFetchSubscriptionsOperation {
         /// Setter for [`perSubscriptionCompletionBlock`][Self::perSubscriptionCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPerSubscriptionCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerSubscriptionCompletionBlock(
@@ -111,6 +130,12 @@ impl CKFetchSubscriptionsOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(fetchSubscriptionCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSubscriptionCompletionBlock(
@@ -123,6 +148,10 @@ impl CKFetchSubscriptionsOperation {
         /// Setter for [`fetchSubscriptionCompletionBlock`][Self::fetchSubscriptionCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchSubscriptionCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchSubscriptionCompletionBlock(

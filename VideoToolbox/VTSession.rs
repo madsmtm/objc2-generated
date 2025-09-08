@@ -32,6 +32,10 @@ extern "C-unwind" {
     /// </OL
     /// >
     /// The caller must release the returned dictionary.
+    ///
+    /// # Safety
+    ///
+    /// `supported_property_dictionary_out` must be a valid pointer.
     pub fn VTSessionCopySupportedPropertyDictionary(
         session: &VTSession,
         supported_property_dictionary_out: NonNull<*const CFDictionary>,
@@ -102,6 +106,11 @@ extern "C-unwind" {
     /// Sets a property on a video toolbox session.
     ///
     /// Setting a property value to NULL restores the default value.
+    ///
+    /// # Safety
+    ///
+    /// - `session` should be of the correct type.
+    /// - `property_value` should be of the correct type.
     pub fn VTSessionSetProperty(
         session: &VTSession,
         property_key: &CFString,
@@ -130,6 +139,10 @@ extern "C-unwind" {
     /// The caller must release the this property value.
     ///
     /// Returns: noErr if successful; kVTPropertyNotSupportedErr for unrecognized or unsupported properties.
+    ///
+    /// # Safety
+    ///
+    /// `property_value_out` must be a valid pointer or null.
     pub fn VTSessionCopyProperty(
         session: &VTSession,
         property_key: &CFString,
@@ -142,6 +155,10 @@ extern "C-unwind" {
     /// Sets multiple properties at once.
     ///
     /// Sets the properties specified by keys in propertyDictionary to the corresponding values.
+    ///
+    /// # Safety
+    ///
+    /// `property_dictionary` generics must be of the correct type.
     pub fn VTSessionSetProperties(
         session: &VTSession,
         property_dictionary: &CFDictionary,
@@ -153,6 +170,10 @@ extern "C-unwind" {
     ///
     /// The serializable properties are those which can be saved and applied to a different session.
     /// The caller must release the returned dictionary.
+    ///
+    /// # Safety
+    ///
+    /// `dictionary_out` must be a valid pointer.
     pub fn VTSessionCopySerializableProperties(
         session: &VTSession,
         allocator: Option<&CFAllocator>,

@@ -64,6 +64,11 @@ extern "C-unwind" {
     /// options; see the list of keys above for more information. The block is called on the main queue
     /// at time intervals specified by the `delay time` of the image. The animation can be stopped by
     /// setting the boolean parameter of the block to true.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `block` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
     pub fn CGAnimateImageAtURLWithBlock(
         url: &CFURL,
@@ -78,6 +83,11 @@ extern "C-unwind" {
     /// options; see the list of keys above for more information. The block is called on the main queue
     /// at time intervals specified by the `delay time` of the image. The animation can be stopped by
     /// setting the boolean parameter of the block to true.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `block` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
     pub fn CGAnimateImageDataWithBlock(
         data: &CFData,

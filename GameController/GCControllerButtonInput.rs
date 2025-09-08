@@ -61,6 +61,9 @@ extern_conformance!(
 impl GCControllerButtonInput {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueChangedHandler(&self) -> GCControllerButtonValueChangedHandler;
@@ -69,6 +72,10 @@ impl GCControllerButtonInput {
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `value_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setValueChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
@@ -80,6 +87,10 @@ impl GCControllerButtonInput {
         /// Set this block if you want to be notified when only the pressed state on this button changes. This
         /// will get called less often than the valueChangedHandler with the additional feature of the pressed state
         /// being different to the last time it was called.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(pressedChangedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn pressedChangedHandler(&self) -> GCControllerButtonValueChangedHandler;
@@ -88,6 +99,10 @@ impl GCControllerButtonInput {
         /// Setter for [`pressedChangedHandler`][Self::pressedChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `pressed_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setPressedChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPressedChangedHandler(
@@ -96,6 +111,9 @@ impl GCControllerButtonInput {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(touchedChangedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchedChangedHandler(&self) -> GCControllerButtonTouchedChangedHandler;
@@ -104,6 +122,10 @@ impl GCControllerButtonInput {
         /// Setter for [`touchedChangedHandler`][Self::touchedChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `touched_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setTouchedChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTouchedChangedHandler(

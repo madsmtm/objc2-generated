@@ -255,6 +255,9 @@ extern_conformance!(
 
 impl PDFAnnotation {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(
@@ -412,6 +415,9 @@ impl PDFAnnotation {
         #[unsafe(method_family = none)]
         pub unsafe fn drawWithBox_inContext(&self, r#box: PDFDisplayBox, context: &CGContext);
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forAnnotationKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAnnotationKey(
@@ -470,6 +476,9 @@ impl PDFAnnotation {
 impl PDFAnnotation {
     extern_methods!(
         #[cfg(feature = "PDFPage")]
+        /// # Safety
+        ///
+        /// `dictionary` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(initWithDictionary:forPage:))]
         #[unsafe(method_family = init)]

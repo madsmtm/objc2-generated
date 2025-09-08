@@ -12,6 +12,11 @@ extern_protocol!(
         /// Indicates that the pairing has started.
         ///
         /// Parameter `sender`: The IOBluetoothDevicePair object.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(devicePairingStarted:))]
         #[unsafe(method_family = none)]
@@ -20,6 +25,11 @@ extern_protocol!(
         /// Indicates to the delegate that the pairing object is making the device (baseband) connection.
         ///
         /// Parameter `sender`: The IOBluetoothDevicePair object.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(devicePairingConnecting:))]
         #[unsafe(method_family = none)]
@@ -28,6 +38,11 @@ extern_protocol!(
         /// Indicates to the delegate that the pairing object is connected the device (baseband).
         ///
         /// Parameter `sender`: The IOBluetoothDevicePair object.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(devicePairingConnected:))]
         #[unsafe(method_family = none)]
@@ -39,6 +54,11 @@ extern_protocol!(
         /// The method replyPINCode must be invoked in response and happen before the timeout period of the device.
         ///
         /// Parameter `sender`: The IOBluetoothDevicePair object.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(devicePairingPINCodeRequest:))]
         #[unsafe(method_family = none)]
@@ -54,6 +74,11 @@ extern_protocol!(
         /// Parameter `sender`: The IOBluetoothDevicePair object.
         ///
         /// Parameter `numericValue`: Numeric value to be displayed.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(devicePairingUserConfirmationRequest:numericValue:))]
         #[unsafe(method_family = none)]
@@ -72,6 +97,11 @@ extern_protocol!(
         /// Parameter `sender`: The IOBluetoothDevicePair object.
         ///
         /// Parameter `passkey`: Passkey to be displayed.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(devicePairingUserPasskeyNotification:passkey:))]
         #[unsafe(method_family = none)]
@@ -90,6 +120,11 @@ extern_protocol!(
         /// Parameter `sender`: The IOBluetoothDevicePair object.
         ///
         /// Parameter `error`: An IOReturn or Bluetooth error code.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(devicePairingFinished:error:))]
         #[unsafe(method_family = none)]
@@ -104,6 +139,11 @@ extern_protocol!(
         /// Parameter `sender`: The IOBluetoothDevicePair object.
         ///
         /// Parameter `status`: A simple pairing complete error code.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(deviceSimplePairingComplete:status:))]
         #[unsafe(method_family = none)]
@@ -150,6 +190,11 @@ impl IOBluetoothDevicePair {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -160,6 +205,10 @@ impl IOBluetoothDevicePair {
         /// Parameter `device`: An IOBluetoothDevice to attept to pair with. The device is retained.
         ///
         /// Returns: Returns an IOReturn or Bluetooth error code, if the pairing could not be started.
+        ///
+        /// # Safety
+        ///
+        /// `device` might not allow `None`.
         #[unsafe(method(pairWithDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pairWithDevice(device: Option<&IOBluetoothDevice>) -> Option<Retained<Self>>;
@@ -189,6 +238,10 @@ impl IOBluetoothDevicePair {
         /// Set the device object to pair with. It is retained by the object.
         ///
         /// Parameter `device`: The IOBluetoothDevice object that the IOBluetoothDevicePair object with which to perform a pairing.
+        ///
+        /// # Safety
+        ///
+        /// `in_device` might not allow `None`.
         #[unsafe(method(setDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDevice(&self, in_device: Option<&IOBluetoothDevice>);
@@ -200,6 +253,10 @@ impl IOBluetoothDevicePair {
         /// Parameter `PINCodeSize`: The PIN code length in octets (8 bits).
         ///
         /// Parameter `PINcode`: PIN code for the device.  Can be up to a maximum of 128 bits.
+        ///
+        /// # Safety
+        ///
+        /// `pin_code` must be a valid pointer.
         #[unsafe(method(replyPINCode:PINCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replyPINCode_PINCode(

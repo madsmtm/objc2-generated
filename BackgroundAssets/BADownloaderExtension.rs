@@ -46,6 +46,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "BADownload", feature = "block2"))]
         /// Download is about to begin but requires an authentication challenge to continue.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(backgroundDownload:didReceiveChallenge:completionHandler:))]
         #[unsafe(method_family = none)]

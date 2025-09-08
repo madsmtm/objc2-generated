@@ -51,6 +51,10 @@ impl TVDigitEntryViewController {
         /// This is called when the number of digits entered reaches .numberOfDigits.
         ///
         /// Parameter `entry`: Digits entered.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(entryCompletionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn entryCompletionHandler(

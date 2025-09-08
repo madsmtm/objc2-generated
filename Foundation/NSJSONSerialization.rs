@@ -75,11 +75,17 @@ extern_conformance!(
 
 impl NSJSONSerialization {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(isValidJSONObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isValidJSONObject(obj: &AnyObject) -> bool;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(dataWithJSONObject:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithJSONObject_options_error(

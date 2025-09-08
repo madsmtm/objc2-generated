@@ -108,6 +108,10 @@ impl AVAssetDownloadTask {
         /// The asset supplied to the download task upon initialization.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(URLAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLAsset(&self) -> Retained<AVURLAsset>;
@@ -117,6 +121,10 @@ impl AVAssetDownloadTask {
         /// This URL may have been appended with the appropriate extension for the asset.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use the URL property of URLAsset instead"]
         #[unsafe(method(destinationURL))]
         #[unsafe(method_family = none)]
@@ -125,6 +133,10 @@ impl AVAssetDownloadTask {
         /// The options supplied to the download task upon initialization.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use AVAssetDownloadConfiguration instead"]
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
@@ -135,6 +147,10 @@ impl AVAssetDownloadTask {
         /// Returns an NSArray of NSValues containing CMTimeRanges.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use NSURLSessionTask.progress instead"]
         #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
@@ -401,6 +417,10 @@ impl AVAggregateAssetDownloadTask {
         /// The asset supplied to the download task upon initialization.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[unsafe(method(URLAsset))]
         #[unsafe(method_family = none)]
@@ -603,6 +623,10 @@ impl AVAssetDownloadURLSession {
         /// Parameter `destinationURL`: The local URL to download the asset to. This must be a file URL.
         ///
         /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Use assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options: instead"]
         #[unsafe(method(assetDownloadTaskWithURLAsset:destinationURL:options:))]
         #[unsafe(method_family = none)]
@@ -625,6 +649,10 @@ impl AVAssetDownloadURLSession {
         /// Parameter `artworkData`: NSData representing artwork data for this asset. Optional. Will show up in the usage pane of the settings app. Must work with +[UIImage imageWithData:].
         ///
         /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[unsafe(method(assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:))]
         #[unsafe(method_family = none)]
@@ -650,6 +678,10 @@ impl AVAssetDownloadURLSession {
         /// Parameter `artworkData`: Artwork data for this asset. Optional. Will show up in the usage pane of the settings app.
         ///
         /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[unsafe(method(aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:))]
         #[unsafe(method_family = none)]
@@ -754,6 +786,9 @@ impl AVAssetDownloadURLSession {
         ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(dataTaskWithRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithRequest_completionHandler(
@@ -765,6 +800,9 @@ impl AVAssetDownloadURLSession {
         ) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(dataTaskWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataTaskWithURL_completionHandler(
@@ -776,6 +814,9 @@ impl AVAssetDownloadURLSession {
         ) -> Retained<NSURLSessionDataTask>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(uploadTaskWithRequest:fromFile:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromFile_completionHandler(
@@ -788,6 +829,9 @@ impl AVAssetDownloadURLSession {
         ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(uploadTaskWithRequest:fromData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uploadTaskWithRequest_fromData_completionHandler(
@@ -800,6 +844,9 @@ impl AVAssetDownloadURLSession {
         ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(downloadTaskWithRequest:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithRequest_completionHandler(
@@ -811,6 +858,9 @@ impl AVAssetDownloadURLSession {
         ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(downloadTaskWithURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithURL_completionHandler(
@@ -822,6 +872,9 @@ impl AVAssetDownloadURLSession {
         ) -> Retained<NSURLSessionDownloadTask>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(downloadTaskWithResumeData:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadTaskWithResumeData_completionHandler(

@@ -319,6 +319,11 @@ extern "C-unwind" {
     /// you will need a buffer of this size.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `out_property_data_size` must be a valid pointer.
     pub fn AudioFormatGetPropertyInfo(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,
@@ -342,6 +347,12 @@ extern "C-unwind" {
     /// not, the amount that would have been written will be reported.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `io_property_data_size` must be a valid pointer or null.
+    /// - `out_property_data` must be a valid pointer or null.
     pub fn AudioFormatGetProperty(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,

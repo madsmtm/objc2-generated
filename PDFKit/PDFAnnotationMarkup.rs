@@ -44,6 +44,10 @@ impl PDFAnnotationMarkup {
         #[unsafe(method_family = none)]
         pub unsafe fn quadrilateralPoints(&self) -> Option<Retained<NSArray>>;
 
+        /// # Safety
+        ///
+        /// - `points` generic should be of the correct type.
+        /// - `points` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setQuadrilateralPoints:))]
         #[unsafe(method_family = none)]
@@ -67,6 +71,9 @@ impl PDFAnnotationMarkup {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationMarkup {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

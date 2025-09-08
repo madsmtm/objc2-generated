@@ -155,6 +155,9 @@ impl NSManagedObject {
         #[unsafe(method_family = none)]
         pub unsafe fn didChangeValueForKey(&self, key: &NSString);
 
+        /// # Safety
+        ///
+        /// `in_objects` generic should be of the correct type.
         #[unsafe(method(willChangeValueForKey:withSetMutation:usingObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willChangeValueForKey_withSetMutation_usingObjects(
@@ -164,6 +167,9 @@ impl NSManagedObject {
             in_objects: &NSSet,
         );
 
+        /// # Safety
+        ///
+        /// `in_objects` generic should be of the correct type.
         #[unsafe(method(didChangeValueForKey:withSetMutation:usingObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didChangeValueForKey_withSetMutation_usingObjects(
@@ -209,6 +215,9 @@ impl NSManagedObject {
         #[unsafe(method_family = none)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
@@ -217,6 +226,9 @@ impl NSManagedObject {
         #[unsafe(method_family = none)]
         pub unsafe fn primitiveValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setPrimitiveValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimitiveValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
@@ -258,6 +270,9 @@ impl NSManagedObject {
         #[unsafe(method_family = none)]
         pub unsafe fn validateForUpdate(&self) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `in_observation_info` must be a valid pointer or null.
         #[unsafe(method(setObservationInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObservationInfo(&self, in_observation_info: *mut c_void);

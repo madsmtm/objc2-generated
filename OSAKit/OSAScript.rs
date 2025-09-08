@@ -305,6 +305,9 @@ impl OSAScript {
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[unsafe(method(executeHandlerWithName:arguments:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeHandlerWithName_arguments_error(

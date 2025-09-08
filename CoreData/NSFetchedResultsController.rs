@@ -81,6 +81,10 @@ impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         ) -> Option<Retained<ProtocolObject<dyn NSFetchedResultsControllerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -196,6 +200,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultscontrollerdelegate?language=objc)
     pub unsafe trait NSFetchedResultsControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "NSManagedObjectID")]
+        /// # Safety
+        ///
+        /// `controller` generic should be of the correct type.
         #[optional]
         #[unsafe(method(controller:didChangeContentWithDifference:))]
         #[unsafe(method_family = none)]
@@ -205,6 +212,10 @@ extern_protocol!(
             diff: &NSOrderedCollectionDifference<NSManagedObjectID>,
         );
 
+        /// # Safety
+        ///
+        /// - `controller` generic should be of the correct type.
+        /// - `an_object` should be of the correct type.
         #[optional]
         #[unsafe(method(controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:))]
         #[unsafe(method_family = none)]
@@ -217,6 +228,9 @@ extern_protocol!(
             new_index_path: Option<&NSIndexPath>,
         );
 
+        /// # Safety
+        ///
+        /// `controller` generic should be of the correct type.
         #[optional]
         #[unsafe(method(controller:didChangeSection:atIndex:forChangeType:))]
         #[unsafe(method_family = none)]
@@ -228,16 +242,25 @@ extern_protocol!(
             r#type: NSFetchedResultsChangeType,
         );
 
+        /// # Safety
+        ///
+        /// `controller` generic should be of the correct type.
         #[optional]
         #[unsafe(method(controllerWillChangeContent:))]
         #[unsafe(method_family = none)]
         unsafe fn controllerWillChangeContent(&self, controller: &NSFetchedResultsController);
 
+        /// # Safety
+        ///
+        /// `controller` generic should be of the correct type.
         #[optional]
         #[unsafe(method(controllerDidChangeContent:))]
         #[unsafe(method_family = none)]
         unsafe fn controllerDidChangeContent(&self, controller: &NSFetchedResultsController);
 
+        /// # Safety
+        ///
+        /// `controller` generic should be of the correct type.
         #[optional]
         #[unsafe(method(controller:sectionIndexTitleForSectionName:))]
         #[unsafe(method_family = none)]

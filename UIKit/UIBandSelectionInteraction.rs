@@ -81,6 +81,10 @@ impl UIBandSelectionInteraction {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Called when the interaction is about to begin.
         /// Return a boolean indicating whether the interaction should begin at the given location.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(shouldBeginHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldBeginHandler(

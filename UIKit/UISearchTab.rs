@@ -29,6 +29,10 @@ impl UISearchTab {
             feature = "block2"
         ))]
         /// Creates a search tab with a system localized title and image.
+        ///
+        /// # Safety
+        ///
+        /// `view_controller_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithViewControllerProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithViewControllerProvider(
@@ -53,6 +57,10 @@ impl UISearchTab {
         /// Creates a tab with the specified identifier, title, image, and view controller provider.
         /// The view controller provider is called when a view controller is requested and is currently nil.
         /// For root level tabs on `UITabBarController`, the resolved view controller must be non-nil.
+        ///
+        /// # Safety
+        ///
+        /// `view_controller_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithTitle:image:identifier:viewControllerProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_identifier_viewControllerProvider(

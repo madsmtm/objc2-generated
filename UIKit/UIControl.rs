@@ -368,6 +368,9 @@ impl UIControl {
         #[unsafe(method_family = none)]
         pub unsafe fn cancelTrackingWithEvent(&self, event: Option<&UIEvent>);
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(addTarget:action:forControlEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTarget_action_forControlEvents(
@@ -377,6 +380,9 @@ impl UIControl {
             control_events: UIControlEvents,
         );
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(removeTarget:action:forControlEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTarget_action_forControlEvents(
@@ -429,6 +435,9 @@ impl UIControl {
         #[unsafe(method_family = none)]
         pub unsafe fn allControlEvents(&self) -> UIControlEvents;
 
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(actionsForTarget:forControlEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionsForTarget_forControlEvent(
@@ -451,6 +460,11 @@ impl UIControl {
 
         #[cfg(feature = "UIEvent")]
         /// Dispatch the target-action pair. This method is called repeatedly by -sendActionsForControlEvents: and is a point at which you can observe or override behavior.
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `target` should be of the correct type.
         #[unsafe(method(sendAction:to:forEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendAction_to_forEvent(

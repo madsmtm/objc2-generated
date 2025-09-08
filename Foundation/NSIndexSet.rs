@@ -114,6 +114,10 @@ impl NSIndexSet {
         pub unsafe fn indexLessThanOrEqualToIndex(&self, value: NSUInteger) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
+        /// # Safety
+        ///
+        /// - `index_buffer` must be a valid pointer.
+        /// - `range` must be a valid pointer or null.
         #[unsafe(method(getIndexes:maxCount:inIndexRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getIndexes_maxCount_inIndexRange(

@@ -301,86 +301,141 @@ pub type OSLMarkUPP = OSLMarkProcPtr;
 pub type OSLAdjustMarksUPP = OSLAdjustMarksProcPtr;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_routine` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn NewOSLAccessorUPP(user_routine: OSLAccessorProcPtr) -> OSLAccessorUPP;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_routine` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn NewOSLCompareUPP(user_routine: OSLCompareProcPtr) -> OSLCompareUPP;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_routine` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn NewOSLCountUPP(user_routine: OSLCountProcPtr) -> OSLCountUPP;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_routine` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn NewOSLDisposeTokenUPP(user_routine: OSLDisposeTokenProcPtr) -> OSLDisposeTokenUPP;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_routine` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn NewOSLGetMarkTokenUPP(user_routine: OSLGetMarkTokenProcPtr) -> OSLGetMarkTokenUPP;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_routine` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn NewOSLGetErrDescUPP(user_routine: OSLGetErrDescProcPtr) -> OSLGetErrDescUPP;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_routine` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn NewOSLMarkUPP(user_routine: OSLMarkProcPtr) -> OSLMarkUPP;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_routine` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn NewOSLAdjustMarksUPP(user_routine: OSLAdjustMarksProcPtr) -> OSLAdjustMarksUPP;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn DisposeOSLAccessorUPP(user_upp: OSLAccessorUPP);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn DisposeOSLCompareUPP(user_upp: OSLCompareUPP);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn DisposeOSLCountUPP(user_upp: OSLCountUPP);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn DisposeOSLDisposeTokenUPP(user_upp: OSLDisposeTokenUPP);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn DisposeOSLGetMarkTokenUPP(user_upp: OSLGetMarkTokenUPP);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn DisposeOSLGetErrDescUPP(user_upp: OSLGetErrDescUPP);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn DisposeOSLMarkUPP(user_upp: OSLMarkUPP);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn DisposeOSLAdjustMarksUPP(user_upp: OSLAdjustMarksUPP);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `container` must be a valid pointer.
+    /// - `selection_data` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `accessor_refcon` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn InvokeOSLAccessorUPP(
         desired_class: DescType,
@@ -395,6 +450,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `obj1` must be a valid pointer.
+    /// - `obj2` must be a valid pointer.
+    /// - `result` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn InvokeOSLCompareUPP(
         oper: DescType,
@@ -406,6 +467,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `container` must be a valid pointer.
+    /// - `result` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn InvokeOSLCountUPP(
         desired_type: DescType,
@@ -417,6 +483,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `unneeded_token` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn InvokeOSLDisposeTokenUPP(
         unneeded_token: *mut AEDesc,
@@ -425,6 +495,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `d_container_token` must be a valid pointer.
+    /// - `result` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn InvokeOSLGetMarkTokenUPP(
         d_container_token: *const AEDesc,
@@ -435,6 +510,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `app_desc_ptr` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn InvokeOSLGetErrDescUPP(
         app_desc_ptr: *mut *mut AEDesc,
@@ -443,6 +522,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `d_token` must be a valid pointer.
+    /// - `mark_token` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn InvokeOSLMarkUPP(
         d_token: *const AEDesc,
@@ -453,6 +537,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `mark_token` must be a valid pointer.
+    /// - `user_upp` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn InvokeOSLAdjustMarksUPP(
         new_start: c_long,
@@ -467,6 +555,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `my_compare_proc` must be implemented correctly.
+    /// - `my_count_proc` must be implemented correctly.
+    /// - `my_dispose_token_proc` must be implemented correctly.
+    /// - `my_get_mark_token_proc` must be implemented correctly.
+    /// - `my_mark_proc` must be implemented correctly.
+    /// - `my_adjust_marks_proc` must be implemented correctly.
+    /// - `my_get_err_desc_proc_ptr` must be implemented correctly.
     #[cfg(feature = "AEDataModel")]
     pub fn AESetObjectCallbacks(
         my_compare_proc: OSLCompareUPP,
@@ -480,6 +577,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `object_specifier` must be a valid pointer.
+    /// - `the_token` must be a valid pointer.
     #[cfg(feature = "AEDataModel")]
     pub fn AEResolve(
         object_specifier: *const AEDesc,
@@ -488,6 +589,10 @@ extern "C-unwind" {
     ) -> OSErr;
 }
 
+/// # Safety
+///
+/// - `the_accessor` must be implemented correctly.
+/// - `accessor_refcon` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEInstallObjectAccessor(
@@ -517,6 +622,9 @@ pub unsafe extern "C-unwind" fn AEInstallObjectAccessor(
     }
 }
 
+/// # Safety
+///
+/// `the_accessor` must be implemented correctly.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AERemoveObjectAccessor(
@@ -543,6 +651,10 @@ pub unsafe extern "C-unwind" fn AERemoveObjectAccessor(
     }
 }
 
+/// # Safety
+///
+/// - `accessor` must be a valid pointer.
+/// - `accessor_refcon` must be a valid pointer.
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEGetObjectAccessor(
@@ -573,11 +685,19 @@ pub unsafe extern "C-unwind" fn AEGetObjectAccessor(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `the_token` must be a valid pointer.
     #[cfg(feature = "AEDataModel")]
     pub fn AEDisposeToken(the_token: *mut AEDesc) -> OSErr;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `container_token` must be a valid pointer.
+    /// - `key_data` must be a valid pointer.
+    /// - `token` must be a valid pointer.
     #[cfg(feature = "AEDataModel")]
     pub fn AECallObjectAccessor(
         desired_class: DescType,

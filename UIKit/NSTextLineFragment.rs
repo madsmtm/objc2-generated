@@ -47,6 +47,9 @@ impl NSTextLineFragment {
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(initWithString:attributes:range:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString_attributes_range(

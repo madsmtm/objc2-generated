@@ -129,6 +129,10 @@ impl SecAccessControl {
     /// Parameter `error`: Additional error information filled in case of failure.
     ///
     /// Returns: Newly created access control object.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecAccessControlCreateWithFlags")]
     #[cfg(feature = "SecBase")]
     #[inline]

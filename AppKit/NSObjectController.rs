@@ -42,6 +42,9 @@ extern_conformance!(
 #[cfg(feature = "NSController")]
 impl NSObjectController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `content` should be of the correct type.
         #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(
@@ -61,6 +64,10 @@ impl NSObjectController {
         pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`content`][Self::content].
+        ///
+        /// # Safety
+        ///
+        /// `content` should be of the correct type.
         #[unsafe(method(setContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContent(&self, content: Option<&AnyObject>);
@@ -94,6 +101,10 @@ impl NSObjectController {
         pub unsafe fn objectClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`objectClass`][Self::objectClass].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setObjectClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectClass(&self, object_class: Option<&AnyClass>);
@@ -102,10 +113,16 @@ impl NSObjectController {
         #[unsafe(method_family = new)]
         pub unsafe fn newObject(&self) -> Retained<AnyObject>;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObject(&self, object: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObject(&self, object: &AnyObject);
@@ -119,6 +136,9 @@ impl NSObjectController {
         #[unsafe(method_family = none)]
         pub unsafe fn setEditable(&self, editable: bool);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(add:))]
         #[unsafe(method_family = none)]
         pub unsafe fn add(&self, sender: Option<&AnyObject>);
@@ -127,6 +147,9 @@ impl NSObjectController {
         #[unsafe(method_family = none)]
         pub unsafe fn canAdd(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(remove:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remove(&self, sender: Option<&AnyObject>);
@@ -207,6 +230,9 @@ impl NSObjectController {
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `fetch_request` generic should be of the correct type.
         #[unsafe(method(fetchWithRequest:merge:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchWithRequest_merge_error(
@@ -215,6 +241,9 @@ impl NSObjectController {
             merge: bool,
         ) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(fetch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetch(&self, sender: Option<&AnyObject>);

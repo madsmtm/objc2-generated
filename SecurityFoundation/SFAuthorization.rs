@@ -51,6 +51,11 @@ impl SFAuthorization {
         /// Parameter `rights`: (input/optional) An AuthorizationItemSet containing rights for which authorization is being requested.  If none are specified the resulting AuthorizationRef will authorize nothing at all.
         ///
         /// Parameter `environment`: (input/optional) An AuthorizationItemSet containing enviroment state used when making the autorization decision.  See the AuthorizationEnvironment type for details.
+        ///
+        /// # Safety
+        ///
+        /// - `rights` must be a valid pointer.
+        /// - `environment` must be a valid pointer.
         #[unsafe(method(authorizationWithFlags:rights:environment:))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationWithFlags_rights_environment(
@@ -67,6 +72,11 @@ impl SFAuthorization {
         /// Parameter `rights`: (input/optional) An AuthorizationItemSet containing rights for which authorization is being requested.  If none are specified the resulting AuthorizationRef will authorize nothing at all.
         ///
         /// Parameter `environment`: (input/optional) An AuthorizationItemSet containing enviroment state used when making the autorization decision.  See the AuthorizationEnvironment type for details.
+        ///
+        /// # Safety
+        ///
+        /// - `rights` must be a valid pointer.
+        /// - `environment` must be a valid pointer.
         #[unsafe(method(initWithFlags:rights:environment:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFlags_rights_environment(
@@ -94,6 +104,10 @@ impl SFAuthorization {
         /// Parameter `flags`: Authorization flags.
         ///
         /// Parameter `error`: Resulting error.
+        ///
+        /// # Safety
+        ///
+        /// `right_name` must be a valid pointer.
         #[unsafe(method(obtainWithRight:flags:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn obtainWithRight_flags_error(
@@ -115,6 +129,12 @@ impl SFAuthorization {
         /// Parameter `authorizedRights`: (output/optional) A pointer to a newly allocated AuthorizationInfoSet in which the authorized subset of rights are returned (authorizedRights should be deallocated by calling AuthorizationFreeInfoSet() when it is no longer needed).  If NULL the only information returned is the status.  Note that if the kAuthorizationFlagPreAuthorize flag was specified rights that could not be preauthorized are returned in authorizedRights, but their flags contains the kAuthorizationFlagCanNotPreAuthorize bit.
         ///
         /// Parameter `error`: Resulting error.
+        ///
+        /// # Safety
+        ///
+        /// - `rights` must be a valid pointer.
+        /// - `environment` must be a valid pointer.
+        /// - `authorized_rights` must be a valid pointer.
         #[unsafe(method(obtainWithRights:flags:environment:authorizedRights:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn obtainWithRights_flags_environment_authorizedRights_error(
@@ -153,6 +173,12 @@ impl SFAuthorization {
         /// Parameter `environment`: (input/optional) An AuthorizationItemSet containing enviroment state used when making the autorization decision.  See the AuthorizationEnvironment type for details.
         ///
         /// Parameter `authorizedRights`: (output/optional) A pointer to a newly allocated AuthorizationInfoSet in which the authorized subset of rights are returned (authorizedRights should be deallocated by calling AuthorizationFreeInfoSet() when it is no longer needed).  If NULL the only information returned is the status.  Note that if the kAuthorizationFlagPreAuthorize flag was specified rights that could not be preauthorized are returned in authorizedRights, but their flags contains the kAuthorizationFlagCanNotPreAuthorize bit.
+        ///
+        /// # Safety
+        ///
+        /// - `rights` must be a valid pointer.
+        /// - `environment` must be a valid pointer.
+        /// - `authorized_rights` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(permitWithRights:flags:environment:authorizedRights:))]
         #[unsafe(method_family = none)]
@@ -173,6 +199,10 @@ impl SFAuthorization {
         /// Parameter `rightName`: The name of an authorization right.
         ///
         /// Parameter `flags`: Authorization flags.
+        ///
+        /// # Safety
+        ///
+        /// `right_name` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(permitWithRight:flags:))]
         #[unsafe(method_family = none)]

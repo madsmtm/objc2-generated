@@ -55,6 +55,11 @@ extern_protocol!(
         /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
         ///
         /// Returns: The command with the given action and property list, or `nil` if no such command.
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `property_list` should be of the correct type.
         #[unsafe(method(commandForAction:propertyList:))]
         #[unsafe(method_family = none)]
         unsafe fn commandForAction_propertyList(
@@ -85,6 +90,10 @@ extern_protocol!(
         /// Parameter `parentIdentifier`: The identifier of the parent menu.
         ///
         /// Parameter `childrenBlock`: A block that returns the new children, given the old children.
+        ///
+        /// # Safety
+        ///
+        /// `children_block` block's return must be a valid pointer.
         #[unsafe(method(replaceChildrenOfMenuForIdentifier:fromChildrenBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn replaceChildrenOfMenuForIdentifier_fromChildrenBlock(

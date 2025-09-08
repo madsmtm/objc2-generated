@@ -55,6 +55,9 @@ impl UITextFormattingViewControllerFormattingStyle {
         pub unsafe fn attributes(&self)
             -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(initWithStyleKey:title:attributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStyleKey_title_attributes(

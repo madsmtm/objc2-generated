@@ -167,6 +167,9 @@ impl CALayer {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
@@ -432,6 +435,10 @@ impl CALayer {
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
+        ///
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
@@ -723,6 +730,10 @@ impl CALayer {
         pub unsafe fn compositingFilter(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`compositingFilter`][Self::compositingFilter].
+        ///
+        /// # Safety
+        ///
+        /// `compositing_filter` should be of the correct type.
         #[unsafe(method(setCompositingFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&AnyObject>);
@@ -734,6 +745,10 @@ impl CALayer {
         /// Setter for [`filters`][Self::filters].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `filters` generic should be of the correct type.
         #[unsafe(method(setFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray>);
@@ -745,6 +760,10 @@ impl CALayer {
         /// Setter for [`backgroundFilters`][Self::backgroundFilters].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `background_filters` generic should be of the correct type.
         #[unsafe(method(setBackgroundFilters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundFilters(&self, background_filters: Option<&NSArray>);
@@ -959,6 +978,10 @@ impl CALayer {
         /// Setter for [`style`][Self::style].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `style` generic should be of the correct type.
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
@@ -1009,6 +1032,10 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caaction?language=objc)
     pub unsafe trait CAAction {
+        /// # Safety
+        ///
+        /// - `an_object` should be of the correct type.
+        /// - `dict` generic should be of the correct type.
         #[unsafe(method(runActionForKey:object:arguments:))]
         #[unsafe(method_family = none)]
         unsafe fn runActionForKey_object_arguments(

@@ -47,6 +47,9 @@ impl UNNotificationAttachment {
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(attachmentWithIdentifier:URL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachmentWithIdentifier_URL_options_error(

@@ -59,6 +59,10 @@ impl VNRequest {
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
@@ -98,6 +102,11 @@ impl VNRequest {
 
         #[cfg(feature = "block2")]
         /// The completion handler block that will be invoked after the request has completed processing.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> VNRequestCompletionHandler;
@@ -260,6 +269,10 @@ impl VNImageBasedRequest {
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
@@ -301,6 +314,11 @@ extern_protocol!(
         ///
         ///
         /// The progessHandler is optional allowing clients of the request to report progress to the user and/or display or process partial results when they become available. Note that the progressHandler can be called on a different dispatch queue than what the request was initiated from.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer or null.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         unsafe fn progressHandler(&self) -> VNRequestProgressHandler;
@@ -309,6 +327,10 @@ extern_protocol!(
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `progress_handler` must be a valid pointer.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setProgressHandler(&self, progress_handler: VNRequestProgressHandler);

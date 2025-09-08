@@ -39,6 +39,9 @@ extern_conformance!(
 impl NSCachedImageRep {
     extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+        /// # Safety
+        ///
+        /// `win` might not allow `None`.
         #[deprecated]
         #[unsafe(method(initWithWindow:rect:))]
         #[unsafe(method_family = init)]

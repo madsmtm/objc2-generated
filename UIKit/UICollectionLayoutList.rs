@@ -209,6 +209,11 @@ impl UICollectionLayoutListConfiguration {
         /// This handler is executed when the list section is configuring separator appearance for an item. The index path for the item being configured and
         /// a resolved separator configuration are passed in to this block. The configuration returned from this block will be treated as the final
         /// separator configuration for this item.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(itemSeparatorHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemSeparatorHandler(&self) -> UICollectionLayoutListItemSeparatorHandler;
@@ -217,6 +222,10 @@ impl UICollectionLayoutListConfiguration {
         /// Setter for [`itemSeparatorHandler`][Self::itemSeparatorHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `item_separator_handler` must be a valid pointer or null.
         #[unsafe(method(setItemSeparatorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSeparatorHandler(
@@ -240,6 +249,10 @@ impl UICollectionLayoutListConfiguration {
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Called when list is about to show leading swipe actions for a particular index path.
         /// Return either a UISwipeActionsConfiguration object or nil if this index path does not show swipe actions.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(leadingSwipeActionsConfigurationProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn leadingSwipeActionsConfigurationProvider(
@@ -250,6 +263,10 @@ impl UICollectionLayoutListConfiguration {
         /// Setter for [`leadingSwipeActionsConfigurationProvider`][Self::leadingSwipeActionsConfigurationProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `leading_swipe_actions_configuration_provider` must be a valid pointer or null.
         #[unsafe(method(setLeadingSwipeActionsConfigurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeadingSwipeActionsConfigurationProvider(
@@ -260,6 +277,10 @@ impl UICollectionLayoutListConfiguration {
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Called when list is about to show trailing swipe actions for a particular index path.
         /// Return either a UISwipeActionsConfiguration object or nil if this index path does not show swipe actions.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(trailingSwipeActionsConfigurationProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn trailingSwipeActionsConfigurationProvider(
@@ -270,6 +291,10 @@ impl UICollectionLayoutListConfiguration {
         /// Setter for [`trailingSwipeActionsConfigurationProvider`][Self::trailingSwipeActionsConfigurationProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `trailing_swipe_actions_configuration_provider` must be a valid pointer or null.
         #[unsafe(method(setTrailingSwipeActionsConfigurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingSwipeActionsConfigurationProvider(

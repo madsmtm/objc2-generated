@@ -67,6 +67,9 @@ impl NSPasteboardItem {
         ) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
+        /// # Safety
+        ///
+        /// `property_list` should be of the correct type.
         #[unsafe(method(setPropertyList:forType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertyList_forType(

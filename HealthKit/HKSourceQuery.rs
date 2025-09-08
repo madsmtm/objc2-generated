@@ -39,6 +39,10 @@ impl HKSourceQuery {
         /// Parameter `objectPredicate`: The predicate which samples must match.
         ///
         /// Parameter `completionHandler`: The block to be called when the query has finished executing.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(initWithSampleType:samplePredicate:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleType_samplePredicate_completionHandler(

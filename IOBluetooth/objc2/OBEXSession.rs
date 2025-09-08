@@ -126,6 +126,14 @@ impl OBEXSession {
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// transport. You will receive a response to your command on your selector. If you have already established an OBEX
         /// connection and you call this again you will get an 'kOBEXSessionAlreadyConnectedError' as a result.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXConnect:maxPacketLength:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXConnect_maxPacketLength_optionalHeaders_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -167,6 +175,14 @@ impl OBEXSession {
         /// Be careful not to exceed the max packet length in your optional headers, or your command will be rejected.
         /// It is recommended that you call getMaxPacketLength on your session before issuing this command so
         /// you know how much data the session's target will accept in a single transaction.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXDisconnect:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXDisconnect_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -213,6 +229,15 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// transport. You will receive a response to your command on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_headers_data` must be a valid pointer.
+        /// - `in_body_data` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXPut:headersData:headersDataLength:bodyData:bodyDataLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXPut_headersData_headersDataLength_bodyData_bodyDataLength_eventSelector_selectorTarget_refCon(
@@ -255,6 +280,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// transport. You will receive a response to your command on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXGet:headers:headersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXGet_headers_headersLength_eventSelector_selectorTarget_refCon(
@@ -291,6 +324,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// transport. You will receive a response to your command on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXAbort:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXAbort_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -330,6 +371,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// transport. You will receive a response to your command on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXSetPath:constants:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXSetPath_constants_optionalHeaders_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -375,6 +424,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// underlying OBEX transport. You will receive any responses to your command response on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXConnectResponse:flags:maxPacketLength:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXConnectResponse_flags_maxPacketLength_optionalHeaders_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -417,6 +474,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// underlying OBEX transport. You will receive any responses to your command response on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXDisconnectResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXDisconnectResponse_optionalHeaders_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -457,6 +522,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// underlying OBEX transport. You will receive any responses to your command response on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXPutResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXPutResponse_optionalHeaders_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -497,6 +570,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// underlying OBEX transport. You will receive any responses to your command response on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXGetResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXGetResponse_optionalHeaders_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -537,6 +618,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// underlying OBEX transport. You will receive any responses to your command response on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXAbortResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXAbortResponse_optionalHeaders_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -577,6 +666,14 @@ impl OBEXSession {
         ///
         /// A NULL selector or target will result in an error. After return, the data passed in will have been sent over the
         /// underlying OBEX transport. You will receive any responses to your command response on your selector.
+        ///
+        /// # Safety
+        ///
+        /// - `in_optional_headers` must be a valid pointer.
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(OBEXSetPathResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn OBEXSetPathResponse_optionalHeaders_optionalHeadersLength_eventSelector_selectorTarget_refCon(
@@ -653,6 +750,10 @@ impl OBEXSession {
         /// This is really not intended for client sessions. Only subclasses would really be interested in using this. They
         /// should set these when their subclass object is created, because otherwise they will have no way of receiving
         /// the initial command data packet. This is a partner to setEventRefCon, described below.
+        ///
+        /// # Safety
+        ///
+        /// `in_event_callback` must be implemented correctly.
         #[unsafe(method(setEventCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEventCallback(&self, in_event_callback: OBEXSessionEventCallback);
@@ -664,6 +765,10 @@ impl OBEXSession {
         /// This is really not intended for client sessions. Only subclasses would really be interested in using this. They
         /// should set these when their subclass object is created, because otherwise they will have no context in their
         /// callback.
+        ///
+        /// # Safety
+        ///
+        /// `in_ref_con` must be a valid pointer.
         #[unsafe(method(setEventRefCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEventRefCon(&self, in_ref_con: *mut c_void);
@@ -677,6 +782,13 @@ impl OBEXSession {
         /// Parameter `inUserRefCon`: User's refCon that will get passed when their event callback is invoked.
         ///
         /// Really not needed to be used, since the event selector will get set when an OBEX command is sent out.
+        ///
+        /// # Safety
+        ///
+        /// - `in_event_selector` must be a valid selector.
+        /// - `in_event_selector_target` should be of the correct type.
+        /// - `in_event_selector_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(setEventSelector:target:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEventSelector_target_refCon(
@@ -694,6 +806,10 @@ impl OBEXSession {
         /// Parameter `event`: New event received from the transport.
         ///
         /// Tranport subclasses must call this for OBEX server sessions to work!
+        ///
+        /// # Safety
+        ///
+        /// `event` must be a valid pointer.
         #[unsafe(method(serverHandleIncomingData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverHandleIncomingData(&self, event: *mut OBEXTransportEvent);
@@ -706,6 +822,10 @@ impl OBEXSession {
         /// Parameter `event`: New event received from the transport.
         ///
         /// Tranport subclasses must call this for OBEX client sessions to work!
+        ///
+        /// # Safety
+        ///
+        /// `event` must be a valid pointer.
         #[unsafe(method(clientHandleIncomingData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientHandleIncomingData(&self, event: *mut OBEXTransportEvent);
@@ -723,6 +843,10 @@ impl OBEXSession {
         ///
         /// Tranport subclasses must override this! When called you should send the data over the transport to
         /// the remote session.
+        ///
+        /// # Safety
+        ///
+        /// `in_data_to_send` must be a valid pointer.
         #[unsafe(method(sendDataToTransport:dataLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDataToTransport_dataLength(
@@ -744,6 +868,13 @@ impl OBEXSession {
         ///
         /// Tranport subclasses must override this! when called you should attempt to open your transport
         /// connection, and if you are successful, return kOBEXSuccess, otherwise an interesting error code.
+        ///
+        /// # Safety
+        ///
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(openTransportConnection:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openTransportConnection_selectorTarget_refCon(

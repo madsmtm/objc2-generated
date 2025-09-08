@@ -42,6 +42,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A NULL-terminated string carrying the negotiated protocol.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol")]
     #[deprecated]
     #[inline]
@@ -62,6 +66,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A NULL-terminated string carrying the negotiated protocol.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_copy_negotiated_protocol")]
     #[inline]
     pub unsafe fn copy_negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
@@ -80,6 +88,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A `tls_protocol_version_t` value.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -101,6 +113,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A SSLProtocol enum of the TLS version.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
@@ -121,6 +137,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A `tls_ciphersuite_t`.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_ciphersuite")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -142,6 +162,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A SSLCipherSuite.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_get_negotiated_ciphersuite")]
     #[cfg(feature = "CipherSuite")]
     #[deprecated]
@@ -162,6 +186,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: A bool indicating if early data was accepted.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_get_early_data_accepted")]
     #[inline]
     pub unsafe fn early_data_accepted(metadata: sec_protocol_metadata_t) -> bool {
@@ -183,6 +211,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: Returns true if the peer certificates were accessible, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_access_peer_certificate_chain")]
     #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
     #[inline]
@@ -210,6 +242,10 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: Returns true if the supported signature list was accessible, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_access_supported_signature_algorithms")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -236,6 +272,10 @@ impl sec_protocol_metadata {
     ///
     /// Returns: Returns A NULL-terminated string carrying the server name, or NULL
     /// if none was provided.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_get_server_name")]
     #[deprecated]
     #[inline]
@@ -259,6 +299,10 @@ impl sec_protocol_metadata {
     ///
     /// Returns: Returns A NULL-terminated string carrying the server name, or NULL
     /// if none was provided.
+    ///
+    /// # Safety
+    ///
+    /// `metadata` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_copy_server_name")]
     #[inline]
     pub unsafe fn copy_server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
@@ -281,6 +325,11 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: Returns true if both metadata values refer to the same peer, and false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// - `metadata_a` must be a valid pointer.
+    /// - `metadata_b` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_peers_are_equal")]
     #[inline]
     pub unsafe fn peers_are_equal(
@@ -310,6 +359,11 @@ impl sec_protocol_metadata {
     ///
     ///
     /// Returns: Returns true if both metadata values have the same challenge parameters.
+    ///
+    /// # Safety
+    ///
+    /// - `metadata_a` must be a valid pointer.
+    /// - `metadata_b` must be a valid pointer.
     #[doc(alias = "sec_protocol_metadata_challenge_parameters_are_equal")]
     #[inline]
     pub unsafe fn challenge_parameters_are_equal(

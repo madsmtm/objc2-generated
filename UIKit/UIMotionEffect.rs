@@ -178,6 +178,10 @@ impl UIInterpolatingMotionEffect {
         pub unsafe fn minimumRelativeValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`minimumRelativeValue`][Self::minimumRelativeValue].
+        ///
+        /// # Safety
+        ///
+        /// `minimum_relative_value` should be of the correct type.
         #[unsafe(method(setMinimumRelativeValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMinimumRelativeValue(&self, minimum_relative_value: Option<&AnyObject>);
@@ -187,6 +191,10 @@ impl UIInterpolatingMotionEffect {
         pub unsafe fn maximumRelativeValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`maximumRelativeValue`][Self::maximumRelativeValue].
+        ///
+        /// # Safety
+        ///
+        /// `maximum_relative_value` should be of the correct type.
         #[unsafe(method(setMaximumRelativeValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaximumRelativeValue(&self, maximum_relative_value: Option<&AnyObject>);

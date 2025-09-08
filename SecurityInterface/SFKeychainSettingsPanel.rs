@@ -68,6 +68,11 @@ impl SFKeychainSettingsPanel {
         /// Parameter `settings`: A pointer to a keychain settings structure. Since this structure is versioned, you must preallocate it and fill in the version of the structure.
         ///
         /// Parameter `keychain`: The keychain that will have its settings changed.
+        ///
+        /// # Safety
+        ///
+        /// - `settings` must be a valid pointer.
+        /// - `keychain` might not allow `None`.
         #[unsafe(method(runModalForSettings:keychain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForSettings_keychain(
@@ -91,6 +96,13 @@ impl SFKeychainSettingsPanel {
         /// Parameter `settings`: A pointer to a keychain settings structure. Since this structure is versioned, you must preallocate it and fill in the version of the structure.
         ///
         /// Parameter `keychain`: The keychain that will have its settings changed.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
+        /// - `settings` must be a valid pointer.
+        /// - `keychain` might not allow `None`.
         #[unsafe(method(beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:settings:keychain:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetForWindow_modalDelegate_didEndSelector_contextInfo_settings_keychain(

@@ -37,6 +37,11 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamCreateWithPage(page) }
     }
 
+    /// # Safety
+    ///
+    /// - `stream` must be a valid pointer.
+    /// - `stream_resources` must be a valid pointer.
+    /// - `parent` must be a valid pointer or null.
     #[doc(alias = "CGPDFContentStreamCreateWithStream")]
     #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
     #[inline]
@@ -55,6 +60,9 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamCreateWithStream(stream, stream_resources, parent) }
     }
 
+    /// # Safety
+    ///
+    /// `cs` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamRetain")]
     #[inline]
     pub unsafe fn retain(cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef {
@@ -64,6 +72,9 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamRetain(cs) }
     }
 
+    /// # Safety
+    ///
+    /// `cs` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamRelease")]
     #[inline]
     pub unsafe fn release(cs: CGPDFContentStreamRef) {
@@ -73,6 +84,9 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamRelease(cs) }
     }
 
+    /// # Safety
+    ///
+    /// `cs` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamGetStreams")]
     #[inline]
     pub unsafe fn streams(cs: CGPDFContentStreamRef) -> Option<CFRetained<CFArray>> {
@@ -83,6 +97,11 @@ impl CGPDFContentStream {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `cs` must be a valid pointer.
+    /// - `category` must be a valid pointer.
+    /// - `name` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamGetResource")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]

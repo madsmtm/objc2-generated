@@ -130,6 +130,11 @@ extern "C" {
 ///  
 ///
 /// ```
+///
+/// # Safety
+///
+/// - `domain` might not allow `None`.
+/// - `job_label` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -173,6 +178,10 @@ pub unsafe extern "C-unwind" fn SMJobCopyDictionary(
 ///  
 ///
 /// ```
+///
+/// # Safety
+///
+/// `domain` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -216,6 +225,13 @@ pub unsafe extern "C-unwind" fn SMCopyAllJobDictionaries(
 ///  
 ///
 /// ```
+///
+/// # Safety
+///
+/// - `job` generics must be of the correct type.
+/// - `job` might not allow `None`.
+/// - `auth` must be a valid pointer.
+/// - `out_error` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
@@ -272,6 +288,11 @@ pub unsafe extern "C-unwind" fn SMJobSubmit(
 ///  
 ///
 /// ```
+///
+/// # Safety
+///
+/// - `auth` must be a valid pointer.
+/// - `out_error` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
@@ -367,6 +388,11 @@ pub unsafe extern "C-unwind" fn SMJobRemove(
 ///  
 ///
 /// ```
+///
+/// # Safety
+///
+/// - `auth` must be a valid pointer.
+/// - `out_error` must be a valid pointer.
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]

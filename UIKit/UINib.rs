@@ -40,6 +40,10 @@ impl UINib {
         ) -> Retained<UINib>;
 
         #[cfg(feature = "UINibLoading")]
+        /// # Safety
+        ///
+        /// - `owner_or_nil` should be of the correct type.
+        /// - `options_or_nil` generic should be of the correct type.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(instantiateWithOwner:options:))]
         #[unsafe(method_family = none)]

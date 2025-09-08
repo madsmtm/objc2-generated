@@ -207,9 +207,6 @@ impl NSView {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSWindow")]
-        /// # Safety
-        ///
-        /// This is not retained internally, you must ensure the object is still alive.
         #[unsafe(method(window))]
         #[unsafe(method_family = none)]
         pub fn window(&self) -> Option<Retained<NSWindow>>;
@@ -260,6 +257,10 @@ impl NSView {
         #[unsafe(method_family = none)]
         pub unsafe fn isHiddenOrHasHiddenAncestor(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// - `rects` must be a valid pointer or null.
+        /// - `count` must be a valid pointer or null.
         #[unsafe(method(getRectsBeingDrawn:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRectsBeingDrawn_count(
@@ -298,6 +299,10 @@ impl NSView {
             other_view: Option<&NSView>,
         );
 
+        /// # Safety
+        ///
+        /// - `compare` must be implemented correctly.
+        /// - `context` must be a valid pointer or null.
         #[unsafe(method(sortSubviewsUsingFunction:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortSubviewsUsingFunction_context(
@@ -1009,6 +1014,9 @@ impl NSView {
         #[unsafe(method_family = none)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer or null.
         #[unsafe(method(addToolTipRect:owner:userData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addToolTipRect_owner_userData(
@@ -1151,6 +1159,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewtooltipowner?language=objc)
     pub unsafe trait NSViewToolTipOwner: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer or null.
         #[unsafe(method(view:stringForToolTip:point:userData:))]
         #[unsafe(method_family = none)]
         unsafe fn view_stringForToolTip_point_userData(
@@ -1187,6 +1198,10 @@ impl NSView {
         pub unsafe fn nextKeyView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`nextKeyView`][Self::nextKeyView].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setNextKeyView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNextKeyView(&self, next_key_view: Option<&NSView>);
@@ -1280,10 +1295,16 @@ impl NSView {
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(print:))]
         #[unsafe(method_family = none)]
         pub unsafe fn print(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `range` must be a valid pointer.
         #[unsafe(method(knowsPageRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn knowsPageRange(&self, range: NSRangePointer) -> bool;
@@ -1299,6 +1320,9 @@ impl NSView {
         pub unsafe fn widthAdjustLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `new_right` must be a valid pointer.
         #[unsafe(method(adjustPageWidthNew:left:right:limit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustPageWidthNew_left_right_limit(
@@ -1310,6 +1334,9 @@ impl NSView {
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `new_bottom` must be a valid pointer.
         #[unsafe(method(adjustPageHeightNew:top:bottom:limit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustPageHeightNew_top_bottom_limit(
@@ -1433,6 +1460,9 @@ extern "C" {
 impl NSView {
     extern_methods!(
         #[cfg(feature = "NSScreen")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(enterFullScreenMode:withOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enterFullScreenMode_withOptions(
@@ -1441,6 +1471,9 @@ impl NSView {
             options: Option<&NSDictionary<NSViewFullScreenModeOptionKey, AnyObject>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(exitFullScreenModeWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exitFullScreenModeWithOptions(
@@ -1491,6 +1524,9 @@ impl NSView {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(showDefinitionForAttributedString:range:options:baselineOriginProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showDefinitionForAttributedString_range_options_baselineOriginProvider(
@@ -1636,6 +1672,9 @@ impl NSView {
         #[unsafe(method_family = none)]
         pub unsafe fn resetCursorRects(&self);
 
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer or null.
         #[unsafe(method(addTrackingRect:owner:userData:assumeInside:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrackingRect_owner_userData_assumeInside(
@@ -1658,6 +1697,9 @@ impl NSView {
     extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(
@@ -1673,6 +1715,9 @@ impl NSView {
 impl NSView {
     extern_methods!(
         #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSPasteboard"))]
+        /// # Safety
+        ///
+        /// `source_obj` should be of the correct type.
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: instead"]
         #[unsafe(method(dragImage:at:offset:event:pasteboard:source:slideBack:))]
         #[unsafe(method_family = none)]
@@ -1700,6 +1745,9 @@ impl NSView {
         ) -> bool;
 
         #[cfg(feature = "NSEvent")]
+        /// # Safety
+        ///
+        /// `source_object` should be of the correct type.
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: with an NSFilePromiseProvider instead"]
         #[unsafe(method(dragPromisedFilesOfTypes:fromRect:source:slideBack:event:))]
         #[unsafe(method_family = none)]

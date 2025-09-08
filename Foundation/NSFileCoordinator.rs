@@ -168,6 +168,9 @@ impl NSFileCoordinator {
             feature = "NSOperation",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `accessor` block must be sendable.
         #[unsafe(method(coordinateAccessWithIntents:queue:byAccessor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinateAccessWithIntents_queue_byAccessor(
@@ -231,6 +234,9 @@ impl NSFileCoordinator {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `batch_accessor` block's argument block must be sendable.
         #[unsafe(method(prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareForReadingItemsAtURLs_options_writingItemsAtURLs_options_error_byAccessor(

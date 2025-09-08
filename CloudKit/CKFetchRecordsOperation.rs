@@ -41,6 +41,10 @@ impl CKFetchRecordsOperation {
 
         #[cfg(feature = "CKRecordID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSArray<CKRecordID>>>;
@@ -49,6 +53,10 @@ impl CKFetchRecordsOperation {
         /// Setter for [`recordIDs`][Self::recordIDs].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordIDs(&self, record_i_ds: Option<&NSArray<CKRecordID>>);
@@ -62,6 +70,10 @@ impl CKFetchRecordsOperation {
         /// `nil.`
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(desiredKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
@@ -70,6 +82,10 @@ impl CKFetchRecordsOperation {
         /// Setter for [`desiredKeys`][Self::desiredKeys].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
@@ -86,6 +102,11 @@ impl CKFetchRecordsOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - This might not be thread-safe.
         #[unsafe(method(perRecordProgressBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordProgressBlock(
@@ -96,6 +117,10 @@ impl CKFetchRecordsOperation {
         /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPerRecordProgressBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordProgressBlock(
@@ -115,6 +140,13 @@ impl CKFetchRecordsOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(perRecordCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordCompletionBlock(
@@ -125,6 +157,10 @@ impl CKFetchRecordsOperation {
         /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPerRecordCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordCompletionBlock(
@@ -156,6 +192,12 @@ impl CKFetchRecordsOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(fetchRecordsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordsCompletionBlock(
@@ -166,6 +208,10 @@ impl CKFetchRecordsOperation {
         /// Setter for [`fetchRecordsCompletionBlock`][Self::fetchRecordsCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchRecordsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordsCompletionBlock(

@@ -83,6 +83,9 @@ impl NSPointerArray {
         #[unsafe(method_family = none)]
         pub unsafe fn pointerAtIndex(&self, index: NSUInteger) -> *mut c_void;
 
+        /// # Safety
+        ///
+        /// `pointer` must be a valid pointer or null.
         #[unsafe(method(addPointer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPointer(&self, pointer: *mut c_void);
@@ -91,10 +94,16 @@ impl NSPointerArray {
         #[unsafe(method_family = none)]
         pub unsafe fn removePointerAtIndex(&self, index: NSUInteger);
 
+        /// # Safety
+        ///
+        /// `item` must be a valid pointer or null.
         #[unsafe(method(insertPointer:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertPointer_atIndex(&self, item: *mut c_void, index: NSUInteger);
 
+        /// # Safety
+        ///
+        /// `item` must be a valid pointer or null.
         #[unsafe(method(replacePointerAtIndex:withPointer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replacePointerAtIndex_withPointer(

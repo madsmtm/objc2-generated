@@ -127,6 +127,10 @@ impl SKAction {
 
         #[cfg(feature = "block2")]
         /// Setter for [`timingFunction`][Self::timingFunction].
+        ///
+        /// # Safety
+        ///
+        /// `timing_function` must be a valid pointer.
         #[unsafe(method(setTimingFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimingFunction(&self, timing_function: SKActionTimingFunction);
@@ -880,6 +884,11 @@ impl SKAction {
         /// Parameter `selector`: The selector of the method to call
         ///
         /// Parameter `target`: The target object
+        ///
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
         #[unsafe(method(performSelector:onTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performSelector_onTarget(
@@ -891,6 +900,10 @@ impl SKAction {
         /// Creates an action that executes a block
         ///
         /// Parameter `block`: The block to run
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(runBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock(block: dispatch_block_t) -> Retained<SKAction>;
@@ -901,6 +914,10 @@ impl SKAction {
         /// Parameter `block`: The block to run
         ///
         /// Parameter `queue`: The queue to perform the action on
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(

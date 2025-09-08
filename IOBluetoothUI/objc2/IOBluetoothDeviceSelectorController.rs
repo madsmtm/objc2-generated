@@ -83,6 +83,11 @@ impl IOBluetoothDeviceSelectorController {
         /// Parameter `contextInfo`: User-definied value passed to the modalDelegate in the didEndSelector.
         ///
         /// Returns: Returns kIOReturnSuccess if the sheet modal session was started.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetModalForWindow_modalDelegate_didEndSelector_contextInfo(
@@ -143,6 +148,10 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
         ///
         /// Parameter `searchAttributes`: Attributes to control the panel's inquiry behavior.
+        ///
+        /// # Safety
+        ///
+        /// `search_attributes` must be a valid pointer.
         #[unsafe(method(setSearchAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchAttributes(
@@ -156,6 +165,10 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
         ///
         /// Returns: Returns the search attributes set by setSearchAttributes:
+        ///
+        /// # Safety
+        ///
+        /// The returned struct field 4 struct field 2 Array TODO.
         #[unsafe(method(getSearchAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSearchAttributes(&self) -> *const IOBluetoothDeviceSearchAttributes;
@@ -175,6 +188,10 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
         ///
         /// Parameter `allowedUUID`: UUID that a device may contain to be selected
+        ///
+        /// # Safety
+        ///
+        /// `allowed_uuid` might not allow `None`.
         #[unsafe(method(addAllowedUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAllowedUUID(&self, allowed_uuid: Option<&IOBluetoothSDPUUID>);
@@ -193,6 +210,11 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
         ///
         /// Parameter `allowedUUIDArray`: An NSArray of UUIDs that all must be present in a device for it to be selectable.
+        ///
+        /// # Safety
+        ///
+        /// - `allowed_uuid_array` generic should be of the correct type.
+        /// - `allowed_uuid_array` might not allow `None`.
         #[unsafe(method(addAllowedUUIDArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAllowedUUIDArray(&self, allowed_uuid_array: Option<&NSArray>);
@@ -211,6 +233,10 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
         ///
         /// Parameter `windowTitle`: Title of the device selector panel.
+        ///
+        /// # Safety
+        ///
+        /// `window_title` might not allow `None`.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, window_title: Option<&NSString>);
@@ -231,6 +257,10 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.9 or later.
         ///
         /// Parameter `headerText`: String that appears in the description section of the device selector panel.
+        ///
+        /// # Safety
+        ///
+        /// `header_text` might not allow `None`.
         #[unsafe(method(setHeader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHeader(&self, header_text: Option<&NSString>);
@@ -251,6 +281,10 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
         ///
         /// Parameter `descriptionText`: String that appears in the description section of the device selector panel.
+        ///
+        /// # Safety
+        ///
+        /// `description_text` might not allow `None`.
         #[unsafe(method(setDescriptionText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDescriptionText(&self, description_text: Option<&NSString>);
@@ -271,6 +305,10 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
         ///
         /// Parameter `prompt`: String that appears in the default/select button in the device selector panel.
+        ///
+        /// # Safety
+        ///
+        /// `prompt` might not allow `None`.
         #[unsafe(method(setPrompt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
@@ -291,6 +329,10 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.9 or later.
         ///
         /// Parameter `prompt`: String that appears in the default/cancel button in the device selector panel.
+        ///
+        /// # Safety
+        ///
+        /// `prompt` might not allow `None`.
         #[unsafe(method(setCancel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCancel(&self, prompt: Option<&NSString>);
@@ -330,6 +372,9 @@ impl IOBluetoothDeviceSelectorController {
             window_nib_name: &NSNibName,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(initWithWindowNibName:owner:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibName_owner(
@@ -338,6 +383,9 @@ impl IOBluetoothDeviceSelectorController {
             owner: &AnyObject,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(initWithWindowNibPath:owner:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibPath_owner(

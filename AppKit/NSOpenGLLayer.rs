@@ -112,6 +112,9 @@ impl NSOpenGLLayer {
             feature = "objc2-core-foundation",
             feature = "objc2-core-video"
         ))]
+        /// # Safety
+        ///
+        /// `ts` must be a valid pointer.
         #[unsafe(method(canDrawInOpenGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canDrawInOpenGLContext_pixelFormat_forLayerTime_displayTime(
@@ -127,6 +130,9 @@ impl NSOpenGLLayer {
             feature = "objc2-core-foundation",
             feature = "objc2-core-video"
         ))]
+        /// # Safety
+        ///
+        /// `ts` must be a valid pointer.
         #[unsafe(method(drawInOpenGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInOpenGLContext_pixelFormat_forLayerTime_displayTime(
@@ -153,6 +159,9 @@ impl NSOpenGLLayer {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;

@@ -188,6 +188,10 @@ impl CAMetalLayer {
         /// Setter for [`developerHUDProperties`][Self::developerHUDProperties].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `developer_hud_properties` generic should be of the correct type.
         #[unsafe(method(setDeveloperHUDProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeveloperHUDProperties(
@@ -210,6 +214,9 @@ impl CAMetalLayer {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;

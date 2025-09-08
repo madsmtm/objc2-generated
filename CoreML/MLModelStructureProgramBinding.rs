@@ -38,6 +38,10 @@ impl MLModelStructureProgramBinding {
         /// The name of the variable in the Program.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
@@ -46,6 +50,10 @@ impl MLModelStructureProgramBinding {
         /// The compile time constant value in the Program.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<MLModelStructureProgramValue>>;

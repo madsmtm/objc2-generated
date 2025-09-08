@@ -117,6 +117,10 @@ impl NSTask {
         pub unsafe fn standardInput(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardInput`][Self::standardInput].
+        ///
+        /// # Safety
+        ///
+        /// `standard_input` should be of the correct type.
         #[unsafe(method(setStandardInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardInput(&self, standard_input: Option<&AnyObject>);
@@ -126,6 +130,10 @@ impl NSTask {
         pub unsafe fn standardOutput(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardOutput`][Self::standardOutput].
+        ///
+        /// # Safety
+        ///
+        /// `standard_output` should be of the correct type.
         #[unsafe(method(setStandardOutput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardOutput(&self, standard_output: Option<&AnyObject>);
@@ -135,6 +143,10 @@ impl NSTask {
         pub unsafe fn standardError(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardError`][Self::standardError].
+        ///
+        /// # Safety
+        ///
+        /// `standard_error` should be of the correct type.
         #[unsafe(method(setStandardError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStandardError(&self, standard_error: Option<&AnyObject>);
@@ -177,6 +189,9 @@ impl NSTask {
         pub unsafe fn terminationReason(&self) -> NSTaskTerminationReason;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(terminationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn terminationHandler(&self) -> *mut block2::DynBlock<dyn Fn(NonNull<NSTask>)>;
@@ -185,6 +200,10 @@ impl NSTask {
         /// Setter for [`terminationHandler`][Self::terminationHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `termination_handler` block must be sendable.
         #[unsafe(method(setTerminationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTerminationHandler(
@@ -224,6 +243,9 @@ impl NSTask {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `termination_handler` block must be sendable.
         #[unsafe(method(launchedTaskWithExecutableURL:arguments:error:terminationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn launchedTaskWithExecutableURL_arguments_error_terminationHandler(

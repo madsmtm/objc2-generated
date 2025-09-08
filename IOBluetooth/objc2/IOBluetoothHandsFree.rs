@@ -560,6 +560,10 @@ impl IOBluetoothHandsFree {
         ) -> Option<Retained<ProtocolObject<dyn IOBluetoothHandsFreeDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -573,6 +577,10 @@ impl IOBluetoothHandsFree {
         /// Returns an indicator's value.
         ///
         /// Parameter `indicatorName`: See  “Hands free indicator constants," for standard indicator names.
+        ///
+        /// # Safety
+        ///
+        /// `indicator_name` might not allow `None`.
         #[unsafe(method(indicator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicator(&self, indicator_name: Option<&NSString>) -> c_int;
@@ -585,6 +593,10 @@ impl IOBluetoothHandsFree {
         /// Parameter `indicatorName`: See  “Hands free indicator constants," for standard indicator names.
         ///
         /// Parameter `indicatorValue`: Will set the indicator value as long as it is within the min and max values allowed.
+        ///
+        /// # Safety
+        ///
+        /// `indicator_name` might not allow `None`.
         #[unsafe(method(setIndicator:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndicator_value(
@@ -603,6 +615,11 @@ impl IOBluetoothHandsFree {
         /// Parameter `inDelegate`: An object to act as delegate that implements the IOBluetoothHandsFreeDelegate protocol.
         ///
         /// Returns: A newly created IOBluetoothHandsFreeAudioGateway object on success, nil on failure
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `in_delegate` might not allow `None`.
         #[unsafe(method(initWithDevice:delegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_delegate(
@@ -685,6 +702,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFree object that was being connected
         ///
         /// Parameter `status`: The result of the connection attempt. An IOReturn result returned in an NSNumber object.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `status` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:connected:))]
         #[unsafe(method_family = none)]
@@ -700,6 +722,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFree object whose service level connection was disconnected
         ///
         /// Parameter `status`: The result of the disconnection attempt. An IOReturn result returned in an NSNumber object.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `status` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:disconnected:))]
         #[unsafe(method_family = none)]
@@ -715,6 +742,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFree object that was being connected
         ///
         /// Parameter `status`: The result of the connection attempt. An IOReturn result returned in an NSNumber object.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `status` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:scoConnectionOpened:))]
         #[unsafe(method_family = none)]
@@ -730,6 +762,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFree object whose SCO connection was closed
         ///
         /// Parameter `status`: The result of the disconnection attempt. An IOReturn result returned in an NSNumber object.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `status` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:scoConnectionClosed:))]
         #[unsafe(method_family = none)]

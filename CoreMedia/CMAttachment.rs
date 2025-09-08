@@ -30,6 +30,11 @@ extern "C-unwind" {
     ///
     /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
     /// a single mode at a time.
+    ///
+    /// # Safety
+    ///
+    /// - `target` should be of the correct type.
+    /// - `value` should be of the correct type.
     pub fn CMSetAttachment(
         target: &CMAttachmentBearer,
         key: &CFString,
@@ -49,6 +54,10 @@ extern "C-unwind" {
 /// Parameter `attachmentModeOut`: Returns the mode of the attachment, if desired.  May be NULL.
 ///
 /// Returns: If found the attachment object; else NULL.
+///
+/// # Safety
+///
+/// `attachment_mode_out` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn CMGetAttachment(
     target: &CMAttachmentBearer,
@@ -74,6 +83,10 @@ extern "C-unwind" {
     /// Parameter `target`: Target CMAttachmentBearer.
     ///
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+    ///
+    /// # Safety
+    ///
+    /// `target` should be of the correct type.
     pub fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString);
 }
 
@@ -83,6 +96,10 @@ extern "C-unwind" {
     /// While CMRemoveAttachment removes a specific attachment identified by a key CMRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.  Given a CVBufferRef, CMRemoveAllAttachments is equivalent to CVBufferRemoveAllAttachments.
     ///
     /// Parameter `target`: Target CMAttachmentBearer.
+    ///
+    /// # Safety
+    ///
+    /// `target` should be of the correct type.
     pub fn CMRemoveAllAttachments(target: &CMAttachmentBearer);
 }
 
@@ -96,6 +113,10 @@ extern "C-unwind" {
 ///
 /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, NULL is returned.  Returns NULL
 /// for invalid attachment mode.
+///
+/// # Safety
+///
+/// `target` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
     allocator: Option<&CFAllocator>,
@@ -119,6 +140,10 @@ extern "C-unwind" {
     /// CMSetAttachments is a convenience call that in turn calls CMSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.  Given a CVBufferRef, CMSetAttachments is equivalent to CVBufferSetAttachments.
     ///
     /// Parameter `target`: Target CMAttachmentBearer.
+    ///
+    /// # Safety
+    ///
+    /// `the_attachments` generics must be of the correct type.
     pub fn CMSetAttachments(
         target: &CMAttachmentBearer,
         the_attachments: &CFDictionary,
@@ -135,5 +160,10 @@ extern "C-unwind" {
     /// Parameter `source`: CMAttachmentBearer to copy attachments from.
     ///
     /// Parameter `destination`: CMAttachmentBearer to copy attachments to.
+    ///
+    /// # Safety
+    ///
+    /// - `source` should be of the correct type.
+    /// - `destination` should be of the correct type.
     pub fn CMPropagateAttachments(source: &CMAttachmentBearer, destination: &CMAttachmentBearer);
 }

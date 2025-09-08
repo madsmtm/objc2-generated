@@ -122,6 +122,10 @@ impl CBMutableDescriptor {
         /// </i>
         /// is required and cannot be updated dynamically
         /// once the parent service has been published.
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(initWithType:value:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_value(

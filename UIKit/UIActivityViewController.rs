@@ -117,6 +117,9 @@ impl UIActivityViewController {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIActivity")]
+        /// # Safety
+        ///
+        /// `activity_items` generic should be of the correct type.
         #[unsafe(method(initWithActivityItems:applicationActivities:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityItems_applicationActivities(
@@ -126,6 +129,9 @@ impl UIActivityViewController {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
@@ -135,6 +141,10 @@ impl UIActivityViewController {
         /// Setter for [`completionHandler`][Self::completionHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -144,6 +154,11 @@ impl UIActivityViewController {
         );
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(completionWithItemsHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionWithItemsHandler(
@@ -154,6 +169,10 @@ impl UIActivityViewController {
         /// Setter for [`completionWithItemsHandler`][Self::completionWithItemsHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `completion_with_items_handler` must be a valid pointer or null.
         #[unsafe(method(setCompletionWithItemsHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionWithItemsHandler(

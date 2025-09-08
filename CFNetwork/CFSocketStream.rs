@@ -177,6 +177,10 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `read_stream` must be a valid pointer or null.
+    /// - `write_stream` must be a valid pointer or null.
     #[cfg(feature = "CFHost")]
     #[deprecated = "Use Network framework instead"]
     pub fn CFStreamCreatePairWithSocketToCFHost(
@@ -189,6 +193,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `read_stream` must be a valid pointer or null.
+    /// - `write_stream` must be a valid pointer or null.
     #[cfg(feature = "CFNetServices")]
     #[deprecated = "Use Network framework instead"]
     pub fn CFStreamCreatePairWithSocketToNetService(

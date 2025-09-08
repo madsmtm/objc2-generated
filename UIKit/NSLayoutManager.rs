@@ -141,6 +141,10 @@ impl NSLayoutManager {
 
         #[cfg(feature = "NSTextStorage")]
         /// Setter for [`textStorage`][Self::textStorage].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setTextStorage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
@@ -254,6 +258,10 @@ impl NSLayoutManager {
         pub unsafe fn setUsesDefaultHyphenation(&self, uses_default_hyphenation: bool);
 
         /// ************************ Invalidation *************************
+        ///
+        /// # Safety
+        ///
+        /// `actual_char_range` must be a valid pointer or null.
         #[unsafe(method(invalidateGlyphsForCharacterRange:changeInLength:actualCharacterRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateGlyphsForCharacterRange_changeInLength_actualCharacterRange(
@@ -263,6 +271,9 @@ impl NSLayoutManager {
             actual_char_range: NSRangePointer,
         );
 
+        /// # Safety
+        ///
+        /// `actual_char_range` must be a valid pointer or null.
         #[unsafe(method(invalidateLayoutForCharacterRange:actualCharacterRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateLayoutForCharacterRange_actualCharacterRange(
@@ -324,6 +335,12 @@ impl NSLayoutManager {
 
         #[cfg(all(feature = "UIFont", feature = "objc2-core-graphics"))]
         /// ********************** Set glyphs and glyph properties ***********************
+        ///
+        /// # Safety
+        ///
+        /// - `glyphs` must be a valid pointer.
+        /// - `props` must be a valid pointer.
+        /// - `char_indexes` must be a valid pointer.
         #[unsafe(method(setGlyphs:properties:characterIndexes:font:forGlyphRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGlyphs_properties_characterIndexes_font_forGlyphRange(
@@ -341,6 +358,9 @@ impl NSLayoutManager {
         pub unsafe fn numberOfGlyphs(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `is_valid_index` must be a valid pointer or null.
         #[unsafe(method(CGGlyphAtIndex:isValidIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGGlyphAtIndex_isValidIndex(
@@ -371,6 +391,12 @@ impl NSLayoutManager {
         pub unsafe fn glyphIndexForCharacterAtIndex(&self, char_index: NSUInteger) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// - `glyph_buffer` must be a valid pointer or null.
+        /// - `props` must be a valid pointer or null.
+        /// - `char_index_buffer` must be a valid pointer or null.
+        /// - `bidi_level_buffer` must be a valid pointer or null.
         #[unsafe(method(getGlyphsInRange:glyphs:properties:characterIndexes:bidiLevels:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getGlyphsInRange_glyphs_properties_characterIndexes_bidiLevels(
@@ -446,6 +472,11 @@ impl NSLayoutManager {
         );
 
         /// ********************** Get layout information ***********************
+        ///
+        /// # Safety
+        ///
+        /// - `char_index` must be a valid pointer or null.
+        /// - `glyph_index` must be a valid pointer or null.
         #[unsafe(method(getFirstUnlaidCharacterIndex:glyphIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFirstUnlaidCharacterIndex_glyphIndex(
@@ -463,6 +494,9 @@ impl NSLayoutManager {
         pub unsafe fn firstUnlaidGlyphIndex(&self) -> NSUInteger;
 
         #[cfg(feature = "NSTextContainer")]
+        /// # Safety
+        ///
+        /// `effective_glyph_range` must be a valid pointer or null.
         #[unsafe(method(textContainerForGlyphAtIndex:effectiveRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textContainerForGlyphAtIndex_effectiveRange(
@@ -472,6 +506,9 @@ impl NSLayoutManager {
         ) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
+        /// # Safety
+        ///
+        /// `effective_glyph_range` must be a valid pointer or null.
         #[unsafe(method(textContainerForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textContainerForGlyphAtIndex_effectiveRange_withoutAdditionalLayout(
@@ -487,6 +524,9 @@ impl NSLayoutManager {
         pub unsafe fn usedRectForTextContainer(&self, container: &NSTextContainer) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `effective_glyph_range` must be a valid pointer or null.
         #[unsafe(method(lineFragmentRectForGlyphAtIndex:effectiveRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineFragmentRectForGlyphAtIndex_effectiveRange(
@@ -496,6 +536,9 @@ impl NSLayoutManager {
         ) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `effective_glyph_range` must be a valid pointer or null.
         #[unsafe(method(lineFragmentRectForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineFragmentRectForGlyphAtIndex_effectiveRange_withoutAdditionalLayout(
@@ -506,6 +549,9 @@ impl NSLayoutManager {
         ) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `effective_glyph_range` must be a valid pointer or null.
         #[unsafe(method(lineFragmentUsedRectForGlyphAtIndex:effectiveRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineFragmentUsedRectForGlyphAtIndex_effectiveRange(
@@ -515,6 +561,9 @@ impl NSLayoutManager {
         ) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `effective_glyph_range` must be a valid pointer or null.
         #[unsafe(method(lineFragmentUsedRectForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineFragmentUsedRectForGlyphAtIndex_effectiveRange_withoutAdditionalLayout(
@@ -568,6 +617,10 @@ impl NSLayoutManager {
         ) -> NSRange;
 
         /// ********************** More sophisticated queries ***********************
+        ///
+        /// # Safety
+        ///
+        /// `actual_char_range` must be a valid pointer or null.
         #[unsafe(method(glyphRangeForCharacterRange:actualCharacterRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphRangeForCharacterRange_actualCharacterRange(
@@ -576,6 +629,9 @@ impl NSLayoutManager {
             actual_char_range: NSRangePointer,
         ) -> NSRange;
 
+        /// # Safety
+        ///
+        /// `actual_glyph_range` must be a valid pointer or null.
         #[unsafe(method(characterRangeForGlyphRange:actualGlyphRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterRangeForGlyphRange_actualGlyphRange(
@@ -624,6 +680,9 @@ impl NSLayoutManager {
         ) -> NSRange;
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `partial_fraction` must be a valid pointer or null.
         #[unsafe(method(glyphIndexForPoint:inTextContainer:fractionOfDistanceThroughGlyph:))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphIndexForPoint_inTextContainer_fractionOfDistanceThroughGlyph(
@@ -652,6 +711,9 @@ impl NSLayoutManager {
         ) -> CGFloat;
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `partial_fraction` must be a valid pointer or null.
         #[unsafe(method(characterIndexForPoint:inTextContainer:fractionOfDistanceBetweenInsertionPoints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn characterIndexForPoint_inTextContainer_fractionOfDistanceBetweenInsertionPoints(
@@ -662,6 +724,10 @@ impl NSLayoutManager {
         ) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `positions` must be a valid pointer or null.
+        /// - `char_indexes` must be a valid pointer or null.
         #[unsafe(method(getLineFragmentInsertionPointsForCharacterAtIndex:alternatePositions:inDisplayOrder:positions:characterIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineFragmentInsertionPointsForCharacterAtIndex_alternatePositions_inDisplayOrder_positions_characterIndexes(
@@ -727,6 +793,11 @@ impl NSLayoutManager {
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
+        /// # Safety
+        ///
+        /// - `glyphs` must be a valid pointer.
+        /// - `positions` must be a valid pointer.
+        /// - `attributes` generic should be of the correct type.
         #[unsafe(method(showCGGlyphs:positions:count:font:textMatrix:attributes:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showCGGlyphs_positions_count_font_textMatrix_attributes_inContext(
@@ -741,6 +812,9 @@ impl NSLayoutManager {
         );
 
         #[cfg(all(feature = "UIColor", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `rect_array` must be a valid pointer.
         #[unsafe(method(fillBackgroundRectArray:count:forCharacterRange:color:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fillBackgroundRectArray_count_forCharacterRange_color(
@@ -817,6 +891,12 @@ extern_protocol!(
     pub unsafe trait NSLayoutManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIFont", feature = "objc2-core-graphics"))]
         /// ********************** Glyph generation ***********************
+        ///
+        /// # Safety
+        ///
+        /// - `glyphs` must be a valid pointer.
+        /// - `props` must be a valid pointer.
+        /// - `char_indexes` must be a valid pointer.
         #[optional]
         #[unsafe(method(layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:))]
         #[unsafe(method_family = none)]
@@ -907,6 +987,11 @@ extern_protocol!(
         ) -> CGRect;
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// - `line_fragment_rect` must be a valid pointer.
+        /// - `line_fragment_used_rect` must be a valid pointer.
+        /// - `baseline_offset` must be a valid pointer.
         #[optional]
         #[unsafe(method(layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:))]
         #[unsafe(method_family = none)]
@@ -977,6 +1062,9 @@ pub const NSControlCharacterContainerBreakAction: NSInteger =
 impl NSLayoutManager {
     extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `is_valid_index` must be a valid pointer or null.
         #[unsafe(method(glyphAtIndex:isValidIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn glyphAtIndex_isValidIndex(
@@ -1008,6 +1096,11 @@ impl NSLayoutManager {
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
+        /// # Safety
+        ///
+        /// - `glyphs` must be a valid pointer.
+        /// - `positions` must be a valid pointer.
+        /// - `attributes` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(showCGGlyphs:positions:count:font:matrix:attributes:inContext:))]
         #[unsafe(method_family = none)]

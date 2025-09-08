@@ -62,6 +62,10 @@ impl HMNumberRange {
         /// The minimum value of the range.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(minValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn minValue(&self) -> Option<Retained<NSNumber>>;
@@ -69,6 +73,10 @@ impl HMNumberRange {
         /// The maximum value of the range.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maxValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> Option<Retained<NSNumber>>;

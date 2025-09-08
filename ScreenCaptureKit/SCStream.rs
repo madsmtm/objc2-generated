@@ -489,6 +489,10 @@ impl SCStreamConfiguration {
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &CGColor);
@@ -539,6 +543,10 @@ impl SCStreamConfiguration {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorMatrix`][Self::colorMatrix].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setColorMatrix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorMatrix(&self, color_matrix: &CFString);
@@ -556,6 +564,10 @@ impl SCStreamConfiguration {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorSpaceName`][Self::colorSpaceName].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setColorSpaceName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorSpaceName(&self, color_space_name: &CFString);

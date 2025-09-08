@@ -109,6 +109,10 @@ impl NSColorPickerTouchBarItem {
 
         #[cfg(feature = "NSColorList")]
         /// Setter for [`colorList`][Self::colorList].
+        ///
+        /// # Safety
+        ///
+        /// `color_list` might not allow `None`.
         #[unsafe(method(setColorList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorList(&self, color_list: Option<&NSColorList>);
@@ -132,6 +136,10 @@ impl NSColorPickerTouchBarItem {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -141,6 +149,10 @@ impl NSColorPickerTouchBarItem {
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);

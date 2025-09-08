@@ -104,6 +104,10 @@ impl AVAudioSourceNode {
         ///
         /// The audio format for the block will be set to the node's output format. If node is
         /// reconnected with a different output format, the audio format for the block will also change.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(initWithRenderBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRenderBlock(
@@ -131,6 +135,10 @@ impl AVAudioSourceNode {
         ///
         /// AVAudioSourceNode supports different audio formats for the block and output, but only
         /// Linear PCM conversions are supported (sample rate, bit depth, interleaving).
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(initWithFormat:renderBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFormat_renderBlock(

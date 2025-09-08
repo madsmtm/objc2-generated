@@ -41,6 +41,10 @@ impl CKFetchRecordZonesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordZoneIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneIDs(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
@@ -49,6 +53,10 @@ impl CKFetchRecordZonesOperation {
         /// Setter for [`recordZoneIDs`][Self::recordZoneIDs].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
@@ -67,6 +75,13 @@ impl CKFetchRecordZonesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(perRecordZoneCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneCompletionBlock(
@@ -81,6 +96,10 @@ impl CKFetchRecordZonesOperation {
         /// Setter for [`perRecordZoneCompletionBlock`][Self::perRecordZoneCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPerRecordZoneCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordZoneCompletionBlock(
@@ -116,6 +135,12 @@ impl CKFetchRecordZonesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(fetchRecordZonesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordZonesCompletionBlock(
@@ -132,6 +157,10 @@ impl CKFetchRecordZonesOperation {
         /// Setter for [`fetchRecordZonesCompletionBlock`][Self::fetchRecordZonesCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchRecordZonesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordZonesCompletionBlock(

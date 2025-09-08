@@ -39,6 +39,10 @@ impl HKObserverQuery {
         /// If you have subscribed to background updates you must call the passed completion block
         /// once you have processed data from this notification. Otherwise the system will continue
         /// to notify you of this data.
+        ///
+        /// # Safety
+        ///
+        /// `update_handler` block must be sendable.
         #[unsafe(method(initWithSampleType:predicate:updateHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleType_predicate_updateHandler(
@@ -64,6 +68,10 @@ impl HKObserverQuery {
         ///
         /// Parameter `queryDescriptors`: An array of query descriptors that describes the sample types and predicates for
         /// which you are interested in getting notified.
+        ///
+        /// # Safety
+        ///
+        /// `update_handler` block must be sendable.
         #[unsafe(method(initWithQueryDescriptors:updateHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueryDescriptors_updateHandler(

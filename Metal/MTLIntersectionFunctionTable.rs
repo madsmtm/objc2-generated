@@ -138,6 +138,10 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLBuffer")]
+        /// # Safety
+        ///
+        /// - `buffers` must be a valid pointer.
+        /// - `offsets` must be a valid pointer.
         #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
@@ -163,6 +167,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFunctionHandle")]
+        /// # Safety
+        ///
+        /// `functions` must be a valid pointer.
         #[unsafe(method(setFunctions:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunctions_withRange(
@@ -213,6 +220,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLVisibleFunctionTable")]
+        /// # Safety
+        ///
+        /// `function_tables` must be a valid pointer.
         #[unsafe(method(setVisibleFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withBufferRange(

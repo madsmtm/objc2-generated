@@ -75,6 +75,11 @@ impl CMFormatDescription {
     /// creations routines such as CMVideoFormatDescriptionCreate, CMAudioFormatDescriptionCreate, etc.
     ///
     /// Returns: A new CMFormatDescription object.
+    ///
+    /// # Safety
+    ///
+    /// - `extensions` generics must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMFormatDescriptionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -154,6 +159,11 @@ impl CMFormatDescription {
     /// Parameter `sampleDescriptionExtensionAtomKeysToIgnore`: Either a single sample description extension atom key (four-character CFString)
     /// or a CFArray of such keys.
     /// See kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms.
+    ///
+    /// # Safety
+    ///
+    /// - `format_description_extension_keys_to_ignore` should be of the correct type.
+    /// - `sample_description_extension_atom_keys_to_ignore` should be of the correct type.
     #[doc(alias = "CMFormatDescriptionEqualIgnoringExtensionKeys")]
     #[inline]
     pub unsafe fn equal_ignoring_extension_keys(
@@ -346,6 +356,14 @@ extern "C-unwind" {
     /// returned CMFormatDescription, and must release it when done with it.  The ASBD,
     /// magic cookie, channel layout, and extensions are all copied (the extensions are
     /// deep-copied).  The caller can deallocate them or re-use them after making this call.
+    ///
+    /// # Safety
+    ///
+    /// - `asbd` must be a valid pointer.
+    /// - `layout` must be a valid pointer or null.
+    /// - `magic_cookie` must be a valid pointer or null.
+    /// - `extensions` generics must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
@@ -381,6 +399,10 @@ extern "C-unwind" {
     /// description.
     ///
     /// Returns: A read-only pointer to the magic cookie inside the audio format description.
+    ///
+    /// # Safety
+    ///
+    /// `size_out` must be a valid pointer or null.
     pub fn CMAudioFormatDescriptionGetMagicCookie(
         desc: &CMAudioFormatDescription,
         size_out: *mut usize,
@@ -397,6 +419,10 @@ extern "C-unwind" {
     /// format description.
     ///
     /// Returns: A read-only pointer to the AudioChannelLayout inside the audio format description.
+    ///
+    /// # Safety
+    ///
+    /// `size_out` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetChannelLayout(
         desc: &CMAudioFormatDescription,
@@ -414,6 +440,10 @@ extern "C-unwind" {
     /// format description.
     ///
     /// Returns: A read-only pointer to the array of AudioFormatListItem structs inside the audio format description.
+    ///
+    /// # Safety
+    ///
+    /// `size_out` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetFormatList(
         desc: &CMAudioFormatDescription,
@@ -457,6 +487,11 @@ extern "C-unwind" {
     /// The summary format description will be canonical LPCM and deep enough in
     /// sample rate, channel layout and channel count to sensibly contain the result of decoding
     /// and mixing the constituent format descriptions.
+    ///
+    /// # Safety
+    ///
+    /// - `format_description_array` generic must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     pub fn CMAudioFormatDescriptionCreateSummary(
         allocator: Option<&CFAllocator>,
         format_description_array: &CFArray,
@@ -506,6 +541,10 @@ pub const kCMAudioFormatDescriptionMask_All: CMAudioFormatDescriptionMask =
 ///
 /// Returns: The result of the comparison.  True if all parts in which the caller is interested are equal.
 /// False if any of the parts in which the caller is interested are not equal.
+///
+/// # Safety
+///
+/// `equality_mask_out` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn CMAudioFormatDescriptionEqual(
     format_description: &CMAudioFormatDescription,
@@ -1300,6 +1339,11 @@ extern "C-unwind" {
     ///
     /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
     /// are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
+    ///
+    /// # Safety
+    ///
+    /// - `extensions` generics must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     pub fn CMVideoFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
         codec_type: CMVideoCodecType,
@@ -1324,6 +1368,10 @@ extern "C-unwind" {
     /// where extensions is a CFDictionary of attachments to image buffer with keys specified by
     /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers, and also
     /// kCMFormatDescriptionExtension_BytesPerRow if applicable.
+    ///
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     #[cfg(feature = "objc2-core-video")]
     pub fn CMVideoFormatDescriptionCreateForImageBuffer(
         allocator: Option<&CFAllocator>,
@@ -1338,6 +1386,12 @@ extern "C-unwind" {
     /// This function parses the dimensions provided by the parameter sets and creates a format description suitable for a raw H.264 stream.
     /// The parameter sets' data can come from raw NAL units and must have any emulation prevention bytes needed.
     /// The supported NAL unit types to be included in the format description are 7 (sequence parameter set), 8 (picture parameter set) and 13 (sequence parameter set extension). At least one sequence parameter set and one picture parameter set must be provided.
+    ///
+    /// # Safety
+    ///
+    /// - `parameter_set_pointers` must be a valid pointer.
+    /// - `parameter_set_sizes` must be a valid pointer.
+    /// - `format_description_out` must be a valid pointer.
     pub fn CMVideoFormatDescriptionCreateFromH264ParameterSets(
         allocator: Option<&CFAllocator>,
         parameter_set_count: usize,
@@ -1354,6 +1408,13 @@ extern "C-unwind" {
     /// This function parses the dimensions provided by the parameter sets and creates a format description suitable for a raw H.265 stream.
     /// The parameter sets' data can come from raw NAL units and must have any emulation prevention bytes needed.
     /// The supported NAL unit types to be included in the format description are 32 (video parameter set), 33 (sequence parameter set), 34 (picture parameter set), 39 (prefix SEI) and 40 (suffix SEI). At least one of each parameter set must be provided.
+    ///
+    /// # Safety
+    ///
+    /// - `parameter_set_pointers` must be a valid pointer.
+    /// - `parameter_set_sizes` must be a valid pointer.
+    /// - `extensions` generics must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     pub fn CMVideoFormatDescriptionCreateFromHEVCParameterSets(
         allocator: Option<&CFAllocator>,
         parameter_set_count: usize,
@@ -1372,6 +1433,13 @@ extern "C-unwind" {
     /// Both parameterSetPointerOut and parameterSetSizeOut may be NULL, parameterSetCountOut will return the total number of parameter set NAL units contained in the AVC decoder configuration record.
     /// The parameter set NAL units returned will already have any emulation prevention bytes needed.
     /// The pointer returned in parameterSetPointerOut points to internal memory of videoDesc, and may only be accessed as long as a retain on videoDesc is held.
+    ///
+    /// # Safety
+    ///
+    /// - `parameter_set_pointer_out` must be a valid pointer or null.
+    /// - `parameter_set_size_out` must be a valid pointer or null.
+    /// - `parameter_set_count_out` must be a valid pointer or null.
+    /// - `nal_unit_header_length_out` must be a valid pointer or null.
     pub fn CMVideoFormatDescriptionGetH264ParameterSetAtIndex(
         video_desc: &CMFormatDescription,
         parameter_set_index: usize,
@@ -1389,6 +1457,13 @@ extern "C-unwind" {
     /// Both parameterSetPointerOut and parameterSetSizeOut may be NULL, parameterSetCountOut will return the total number of parameter set NAL units contained in the HEVC decoder configuration record.
     /// The parameter set NAL units returned will already have any emulation prevention bytes needed.
     /// The pointer returned in parameterSetPointerOut points to internal memory of videoDesc, and may only be accessed as long as a retain on videoDesc is held.
+    ///
+    /// # Safety
+    ///
+    /// - `parameter_set_pointer_out` must be a valid pointer or null.
+    /// - `parameter_set_size_out` must be a valid pointer or null.
+    /// - `parameter_set_count_out` must be a valid pointer or null.
+    /// - `nal_unit_header_length_out` must be a valid pointer or null.
     pub fn CMVideoFormatDescriptionGetHEVCParameterSetAtIndex(
         video_desc: &CMFormatDescription,
         parameter_set_index: usize,
@@ -1523,6 +1598,10 @@ extern "C-unwind" {
     /// It also gives the eye mapping information for the pixel buffers of the decoded CMTaggedBufferGroups.
     ///
     /// Returns: Array of CMTagCollections. The result will be NULL if the CMVideoFormatDescription does not contain multi-image encoding parameters, or if there is some other error.
+    ///
+    /// # Safety
+    ///
+    /// `tag_collections_out` must be a valid pointer or null.
     pub fn CMVideoFormatDescriptionCopyTagCollectionArray(
         format_description: &CMVideoFormatDescription,
         tag_collections_out: *mut *const CFArray,
@@ -1580,6 +1659,11 @@ extern "C-unwind" {
     /// its output streams. The caller owns the returned CMFormatDescription, and must release it when done
     /// with it. All input parameters are copied (the extensions are deep-copied).  The caller can deallocate
     /// them or re-use them after making this call.
+    ///
+    /// # Safety
+    ///
+    /// - `extensions` generics must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     pub fn CMMuxedFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
         mux_type: CMMuxedStreamType,
@@ -1799,6 +1883,10 @@ extern "C-unwind" {
     /// Returns the displayFlags.
     ///
     /// These are the flags that control how the text appears. The function can return kCMFormatDescriptionError_ValueNotAvailable for formats without display flags.
+    ///
+    /// # Safety
+    ///
+    /// `display_flags_out` must be a valid pointer.
     pub fn CMTextFormatDescriptionGetDisplayFlags(
         desc: &CMFormatDescription,
         display_flags_out: NonNull<CMTextDisplayFlags>,
@@ -1809,6 +1897,11 @@ extern "C-unwind" {
     /// Returns horizontal and vertical justification.
     ///
     /// Values are kCMTextJustification_* constants. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry text justification.
+    ///
+    /// # Safety
+    ///
+    /// - `horizonta_justificationl_out` must be a valid pointer or null.
+    /// - `vertical_justification_out` must be a valid pointer or null.
     pub fn CMTextFormatDescriptionGetJustification(
         desc: &CMFormatDescription,
         horizonta_justificationl_out: *mut CMTextJustificationValue,
@@ -1819,6 +1912,10 @@ extern "C-unwind" {
 /// Returns the default text box.
 ///
 /// Within a text track, text is rendered within a text box.  There is a default text box set, which can be over-ridden by a sample. The function can return kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry a default text box.
+///
+/// # Safety
+///
+/// `default_text_box_out` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn CMTextFormatDescriptionGetDefaultTextBox(
     desc: &CMFormatDescription,
@@ -1848,6 +1945,10 @@ extern "C-unwind" {
     /// Returns the font name for a local font ID.
     ///
     /// Some format descriptions carry a mapping from local font IDs to font names. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry such a font mapping table.
+    ///
+    /// # Safety
+    ///
+    /// `font_name_out` must be a valid pointer.
     pub fn CMTextFormatDescriptionGetFontName(
         desc: &CMFormatDescription,
         local_font_id: u16,
@@ -1894,6 +1995,11 @@ extern "C-unwind" {
     ///
     /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
     /// are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
+    ///
+    /// # Safety
+    ///
+    /// - `extensions` generics must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeCodeFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
@@ -2054,6 +2160,10 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `keys` generic must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     pub fn CMMetadataFormatDescriptionCreateWithKeys(
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
@@ -2063,6 +2173,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `metadata_specifications` generic must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     pub fn CMMetadataFormatDescriptionCreateWithMetadataSpecifications(
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
@@ -2072,6 +2186,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `metadata_specifications` generic must be of the correct type.
+    /// - `format_description_out` must be a valid pointer.
     pub fn CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(
         allocator: Option<&CFAllocator>,
         source_description: &CMMetadataFormatDescription,
@@ -2081,6 +2199,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `format_description_out` must be a valid pointer.
     pub fn CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(
         allocator: Option<&CFAllocator>,
         source_description: &CMMetadataFormatDescription,

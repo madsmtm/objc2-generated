@@ -126,6 +126,10 @@ impl UIContextMenuInteraction {
         ///
         /// If Submenu A is visible, the block is called twice (once for the Root Menu and once for Submenu A).
         /// If both A and B are visible, it's called 3 times (for the Root Menu, A, and B).
+        ///
+        /// # Safety
+        ///
+        /// `block` block's return must be a valid pointer.
         #[unsafe(method(updateVisibleMenuWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateVisibleMenuWithBlock(

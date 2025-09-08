@@ -240,6 +240,10 @@ impl AUParameterNode {
         /// Parameter `observer`: A block to call after the value of a parameter has changed.
         ///
         /// Returns: A token which can be passed to removeParameterObserver: or to -[AUParameter setValue:originator:]
+        ///
+        /// # Safety
+        ///
+        /// `observer` must be a valid pointer.
         #[unsafe(method(tokenByAddingParameterObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterObserver(
@@ -255,6 +259,10 @@ impl AUParameterNode {
         ///
         /// This will be deprecated in favor of tokenByAddingParameterAutomationObserver in a future
         /// release.
+        ///
+        /// # Safety
+        ///
+        /// `observer` must be a valid pointer.
         #[unsafe(method(tokenByAddingParameterRecordingObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterRecordingObserver(
@@ -282,6 +290,10 @@ impl AUParameterNode {
         ///
         /// Returns: A token which can be passed to removeParameterObserver: or to -[AUParameter
         /// setValue:originator:]
+        ///
+        /// # Safety
+        ///
+        /// `observer` must be a valid pointer.
         #[unsafe(method(tokenByAddingParameterAutomationObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterAutomationObserver(
@@ -294,6 +306,10 @@ impl AUParameterNode {
         ///
         /// This call will remove the callback corresponding to the supplied token. Note that this
         /// will block until any callbacks currently in flight have completed.
+        ///
+        /// # Safety
+        ///
+        /// `token` must be a valid pointer.
         #[unsafe(method(removeParameterObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeParameterObserver(&self, token: AUParameterObserverToken);
@@ -526,6 +542,10 @@ impl AUParameter {
         /// Set the parameter's value, avoiding redundant notifications to the originator.
         ///
         /// Bridged to the v2 function AudioUnitSetParameter.
+        ///
+        /// # Safety
+        ///
+        /// `originator` must be a valid pointer or null.
         #[unsafe(method(setValue:originator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_originator(
@@ -537,6 +557,10 @@ impl AUParameter {
         /// Convenience for setValue:originator:atHostTime:eventType:
         ///
         /// Bridged to the v2 function AudioUnitSetParameter.
+        ///
+        /// # Safety
+        ///
+        /// `originator` must be a valid pointer or null.
         #[unsafe(method(setValue:originator:atHostTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_originator_atHostTime(
@@ -558,6 +582,10 @@ impl AUParameter {
         /// AUAudioUnit's scheduleParameterBlock.
         ///
         /// Bridged to the v2 function AudioUnitSetParameter.
+        ///
+        /// # Safety
+        ///
+        /// `originator` must be a valid pointer or null.
         #[unsafe(method(setValue:originator:atHostTime:eventType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_originator_atHostTime_eventType(
@@ -573,6 +601,10 @@ impl AUParameter {
         ///
         /// This is currently only supported for parameters whose flags include
         /// kAudioUnitParameterFlag_ValuesHaveStrings.
+        ///
+        /// # Safety
+        ///
+        /// `value` must be a valid pointer or null.
         #[unsafe(method(stringFromValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromValue(&self, value: *const AUValue) -> Retained<NSString>;

@@ -65,6 +65,11 @@ extern "C-unwind" {
     /// Parameter `bufferOut`: The newly created buffer will be placed here.
     ///
     /// Returns: kCVReturnSuccess if the attachment succeeded
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generics must be of the correct type.
+    /// - `buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferCreate(
@@ -106,6 +111,10 @@ extern "C-unwind" {
     /// Parameter `screen`: The virtual screen number you want to use
     ///
     /// Returns: kCVReturnSuccess if the attachment succeeded
+    ///
+    /// # Safety
+    ///
+    /// `cgl_context` must be a valid pointer.
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",

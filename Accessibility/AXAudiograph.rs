@@ -153,6 +153,10 @@ impl AXNumericDataAxisDescriptor {
         /// Setter for [`valueDescriptionProvider`][Self::valueDescriptionProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `value_description_provider` block's return must be a valid pointer.
         #[unsafe(method(setValueDescriptionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueDescriptionProvider(
@@ -173,6 +177,9 @@ impl AXNumericDataAxisDescriptor {
         pub unsafe fn setGridlinePositions(&self, gridline_positions: &NSArray<NSNumber>);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `value_description_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_lowerBound_upperBound_gridlinePositions_valueDescriptionProvider(
@@ -185,6 +192,9 @@ impl AXNumericDataAxisDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `value_description_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedTitle_lowerBound_upperBound_gridlinePositions_valueDescriptionProvider(

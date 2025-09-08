@@ -288,12 +288,20 @@ impl UIImage {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(CGImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGImage(&self) -> Option<Retained<CGImage>>;
@@ -301,22 +309,38 @@ impl UIImage {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(CIImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn CIImage(&self) -> Option<Retained<CIImage>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(imageOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageOrientation(&self) -> UIImageOrientation;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(scale))]
         #[unsafe(method_family = none)]
         pub unsafe fn scale(&self) -> CGFloat;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isSymbolImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSymbolImage(&self) -> bool;
@@ -355,11 +379,19 @@ impl UIImage {
         ) -> Option<Retained<UIImage>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(images))]
         #[unsafe(method_family = none)]
         pub unsafe fn images(&self) -> Option<Retained<NSArray<UIImage>>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -418,11 +450,19 @@ impl UIImage {
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(capInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn capInsets(&self) -> UIEdgeInsets;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(resizingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn resizingMode(&self) -> UIImageResizingMode;
@@ -437,6 +477,10 @@ impl UIImage {
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(alignmentRectInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentRectInsets(&self) -> UIEdgeInsets;
@@ -449,24 +493,40 @@ impl UIImage {
         ) -> Retained<UIImage>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(renderingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingMode(&self) -> UIImageRenderingMode;
 
         #[cfg(all(feature = "UIGraphicsImageRenderer", feature = "UIGraphicsRenderer"))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(imageRendererFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRendererFormat(&self) -> Retained<UIGraphicsImageRendererFormat>;
 
         #[cfg(feature = "UITraitCollection")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(traitCollection))]
         #[unsafe(method_family = none)]
         pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIImageAsset")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(imageAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAsset(&self) -> Option<Retained<UIImageAsset>>;
@@ -476,6 +536,10 @@ impl UIImage {
         pub unsafe fn imageFlippedForRightToLeftLayoutDirection(&self) -> Retained<UIImage>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(flipsForRightToLeftLayoutDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn flipsForRightToLeftLayoutDirection(&self) -> bool;
@@ -486,11 +550,19 @@ impl UIImage {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(baselineOffsetFromBottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn baselineOffsetFromBottom(&self) -> CGFloat;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(hasBaseline))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasBaseline(&self) -> bool;
@@ -509,6 +581,10 @@ impl UIImage {
 
         #[cfg(feature = "UIImageConfiguration")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<UIImageConfiguration>>;
@@ -526,6 +602,10 @@ impl UIImage {
             feature = "UIImageSymbolConfiguration"
         ))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(symbolConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Retained<UIImageSymbolConfiguration>>;
@@ -604,6 +684,10 @@ impl UIImage {
         /// Indicates that this image is tagged for display of high dynamic range content.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isHighDynamicRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHighDynamicRange(&self) -> bool;
@@ -688,11 +772,19 @@ impl UIImage {
         ) -> Retained<UIImage>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(leftCapWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftCapWidth(&self) -> NSInteger;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(topCapHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn topCapHeight(&self) -> NSInteger;
@@ -715,6 +807,9 @@ pub unsafe trait CIImageUIKitAdditions:
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithImage:options:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithImage_options(

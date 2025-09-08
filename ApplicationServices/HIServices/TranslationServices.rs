@@ -48,6 +48,9 @@ unsafe impl ConcreteType for Translation {
 }
 
 impl Translation {
+    /// # Safety
+    ///
+    /// `out_translation` must be a valid pointer.
     #[doc(alias = "TranslationCreate")]
     #[inline]
     pub unsafe fn create(
@@ -74,6 +77,12 @@ impl Translation {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `in_source_types` generic must be of the correct type.
+    /// - `in_source_types` might not allow `None`.
+    /// - `out_destination_types` must be a valid pointer.
+    /// - `out_translations` must be a valid pointer.
     #[doc(alias = "TranslationCreateWithSourceArray")]
     #[inline]
     pub unsafe fn create_with_source_array(
@@ -100,6 +109,9 @@ impl Translation {
         }
     }
 
+    /// # Safety
+    ///
+    /// `out_destination_data` must be a valid pointer.
     #[doc(alias = "TranslationPerformForData")]
     #[inline]
     pub unsafe fn perform_for_data(
@@ -117,6 +129,9 @@ impl Translation {
         unsafe { TranslationPerformForData(self, in_source_data, out_destination_data) }
     }
 
+    /// # Safety
+    ///
+    /// `out_translated_url` must be a valid pointer.
     #[doc(alias = "TranslationPerformForURL")]
     #[inline]
     pub unsafe fn perform_for_url(
@@ -138,6 +153,9 @@ impl Translation {
         }
     }
 
+    /// # Safety
+    ///
+    /// `out_source_type` must be a valid pointer.
     #[doc(alias = "TranslationCopySourceType")]
     #[inline]
     pub unsafe fn copy_source_type(&self, out_source_type: *mut *const CFString) -> OSStatus {
@@ -150,6 +168,9 @@ impl Translation {
         unsafe { TranslationCopySourceType(self, out_source_type) }
     }
 
+    /// # Safety
+    ///
+    /// `out_destination_type` must be a valid pointer.
     #[doc(alias = "TranslationCopyDestinationType")]
     #[inline]
     pub unsafe fn copy_destination_type(
@@ -165,6 +186,9 @@ impl Translation {
         unsafe { TranslationCopyDestinationType(self, out_destination_type) }
     }
 
+    /// # Safety
+    ///
+    /// `out_translation_flags` must be a valid pointer.
     #[doc(alias = "TranslationGetTranslationFlags")]
     #[inline]
     pub unsafe fn translation_flags(

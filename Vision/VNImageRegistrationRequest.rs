@@ -58,6 +58,9 @@ impl VNImageRegistrationRequest {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
@@ -72,6 +75,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCVPixelBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
@@ -93,6 +100,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCVPixelBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
@@ -115,6 +126,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options(
@@ -140,6 +155,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options_completionHandler(
@@ -157,6 +176,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `cgImage`: The CGImageRef of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCGImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options(
@@ -178,6 +201,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCGImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
@@ -200,6 +227,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCGImage:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_orientation_options(
@@ -225,6 +256,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCGImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_orientation_options_completionHandler(
@@ -242,6 +277,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `ciImage`: The CIImage of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCIImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options(
@@ -263,6 +302,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCIImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
@@ -285,6 +328,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCIImage:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_orientation_options(
@@ -310,6 +357,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCIImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_orientation_options_completionHandler(
@@ -327,6 +378,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `imageURL`: The URL of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options(
@@ -344,6 +399,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageURL:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
@@ -362,6 +421,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageURL:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_orientation_options(
@@ -386,6 +449,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageURL:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_orientation_options_completionHandler(
@@ -403,6 +470,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `imageData`: The data of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options(
@@ -420,6 +491,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageData:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
@@ -438,6 +513,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageData:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_orientation_options(
@@ -462,6 +541,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageData:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_orientation_options_completionHandler(
@@ -479,6 +562,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCMSampleBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
@@ -500,6 +587,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCMSampleBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
@@ -522,6 +613,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options(
@@ -547,6 +642,10 @@ impl VNImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options_completionHandler(
@@ -625,6 +724,9 @@ impl VNTranslationalImageRegistrationRequest {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
@@ -639,6 +741,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCVPixelBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
@@ -660,6 +766,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCVPixelBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
@@ -682,6 +792,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options(
@@ -707,6 +821,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options_completionHandler(
@@ -724,6 +842,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `cgImage`: The CGImageRef of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCGImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options(
@@ -745,6 +867,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCGImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
@@ -767,6 +893,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCGImage:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_orientation_options(
@@ -792,6 +922,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCGImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_orientation_options_completionHandler(
@@ -809,6 +943,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `ciImage`: The CIImage of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCIImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options(
@@ -830,6 +968,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCIImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
@@ -852,6 +994,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCIImage:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_orientation_options(
@@ -877,6 +1023,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCIImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_orientation_options_completionHandler(
@@ -894,6 +1044,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `imageURL`: The URL of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options(
@@ -911,6 +1065,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageURL:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
@@ -929,6 +1087,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageURL:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_orientation_options(
@@ -953,6 +1115,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageURL:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_orientation_options_completionHandler(
@@ -970,6 +1136,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `imageData`: The data of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options(
@@ -987,6 +1157,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageData:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
@@ -1005,6 +1179,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageData:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_orientation_options(
@@ -1029,6 +1207,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageData:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_orientation_options_completionHandler(
@@ -1046,6 +1228,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCMSampleBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
@@ -1067,6 +1253,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCMSampleBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
@@ -1089,6 +1279,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options(
@@ -1114,6 +1308,10 @@ impl VNTranslationalImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options_completionHandler(
@@ -1196,6 +1394,9 @@ impl VNHomographicImageRegistrationRequest {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
@@ -1210,6 +1411,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCVPixelBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
@@ -1231,6 +1436,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCVPixelBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
@@ -1253,6 +1462,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options(
@@ -1278,6 +1491,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options_completionHandler(
@@ -1295,6 +1512,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `cgImage`: The CGImageRef of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCGImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options(
@@ -1316,6 +1537,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCGImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
@@ -1338,6 +1563,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCGImage:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_orientation_options(
@@ -1363,6 +1592,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCGImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_orientation_options_completionHandler(
@@ -1380,6 +1613,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `ciImage`: The CIImage of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCIImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options(
@@ -1401,6 +1638,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCIImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
@@ -1423,6 +1664,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCIImage:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_orientation_options(
@@ -1448,6 +1693,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCIImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_orientation_options_completionHandler(
@@ -1465,6 +1714,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `imageURL`: The URL of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options(
@@ -1482,6 +1735,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageURL:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
@@ -1500,6 +1757,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageURL:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_orientation_options(
@@ -1524,6 +1785,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageURL:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_orientation_options_completionHandler(
@@ -1541,6 +1806,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `imageData`: The data of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options(
@@ -1558,6 +1827,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageData:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
@@ -1576,6 +1849,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageData:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_orientation_options(
@@ -1600,6 +1877,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageData:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_orientation_options_completionHandler(
@@ -1617,6 +1898,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCMSampleBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
@@ -1638,6 +1923,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCMSampleBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
@@ -1660,6 +1949,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options(
@@ -1685,6 +1978,10 @@ impl VNHomographicImageRegistrationRequest {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options_completionHandler(

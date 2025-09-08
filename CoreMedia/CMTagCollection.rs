@@ -135,6 +135,11 @@ impl CMTagCollection {
     /// Parameter `newCollectionOut`: Address of a location to return the newly created CMTagCollectionRef.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `tags` must be a valid pointer or null.
+    /// - `new_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreate")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -167,6 +172,10 @@ impl CMTagCollection {
     /// Parameter `newMutableCollectionOut`: Address of a location to return the newly created CMMutabbleTagCollectionRef.  The client is responsible for releasing the returned CMMutableTagCollection.
     ///
     /// Returns: OSStatus with error, or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `new_mutable_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateMutable")]
     #[inline]
     pub unsafe fn create_mutable(
@@ -195,6 +204,10 @@ impl CMTagCollection {
     /// Parameter `newCollectionCopyOut`: Address of a location to return the newly created CMTagCollectionRef.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `new_collection_copy_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateCopy")]
     #[inline]
     pub unsafe fn create_copy(
@@ -223,6 +236,10 @@ impl CMTagCollection {
     /// Parameter `newMutableCollectionCopyOut`: Address of a location to return the newly created CMMutableTagCollectionRef.  The client is responsible for releasing the returned CMMutableTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `new_mutable_collection_copy_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateMutableCopy")]
     #[inline]
     pub unsafe fn create_mutable_copy(
@@ -337,6 +354,10 @@ impl CMTagCollection {
     /// Parameter `containedTagCount`: The number of CMTag elements in the buffer containedTags. Zero is allowed but will report true.
     ///
     /// Returns: Returns true if all CMTags in a buffer of CMTags are contained within the CMTagCollection, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `contained_tags` must be a valid pointer.
     #[doc(alias = "CMTagCollectionContainsSpecifiedTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -414,6 +435,11 @@ impl CMTagCollection {
     /// Parameter `numberOfTagsCopied`: The address of a CMItemCount that is filled with the number of tags retrieved, may be NULL.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `tag_buffer` must be a valid pointer.
+    /// - `number_of_tags_copied` must be a valid pointer or null.
     #[doc(alias = "CMTagCollectionGetTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -449,6 +475,11 @@ impl CMTagCollection {
     /// Parameter `numberOfTagsCopied`: The address of a CMItemCount that is filled with the number of tags retrieved, may be NULL.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `tag_buffer` must be a valid pointer.
+    /// - `number_of_tags_copied` must be a valid pointer or null.
     #[doc(alias = "CMTagCollectionGetTagsWithCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -490,6 +521,11 @@ impl CMTagCollection {
     /// Parameter `context`: A void * or NULL to pass to applier.
     ///
     /// Returns: CMItemCount indicating the number of CMTags satisfying 'filterApplier'.
+    ///
+    /// # Safety
+    ///
+    /// - `filter_applier` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "CMTagCollectionCountTagsWithFilterFunction")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -525,6 +561,13 @@ impl CMTagCollection {
     /// Parameter `context`: A void * or NULL to pass to filter.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `tag_buffer` must be a valid pointer.
+    /// - `number_of_tags_copied` must be a valid pointer or null.
+    /// - `filter` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "CMTagCollectionGetTagsWithFilterFunction")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -573,6 +616,11 @@ impl CMTagCollection {
     /// Parameter `collectionWithTagsOfCategories`: The address of a CMTagCollectionRef that contains all tags copied from 'tagCollection'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// # Safety
+    ///
+    /// - `categories` must be a valid pointer.
+    /// - `collection_with_tags_of_categories` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCopyTagsOfCategories")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -612,6 +660,11 @@ impl CMTagCollection {
     /// Parameter `applier`: The CMTagCollectionApplierFunction callback to call with each tag.
     ///
     /// Parameter `context`: A void * or NULL to pass to applier.
+    ///
+    /// # Safety
+    ///
+    /// - `applier` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "CMTagCollectionApply")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -637,6 +690,11 @@ impl CMTagCollection {
     /// Parameter `context`: A void * or NULL to pass to applier.
     ///
     /// Returns: CMTag having the value of the first tag the callback returned true for or kCMTagInvalid if none was found.
+    ///
+    /// # Safety
+    ///
+    /// - `applier` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "CMTagCollectionApplyUntil")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -683,6 +741,10 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains all tags that are common to 'tagCollection1' and 'tagCollection2'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// # Safety
+    ///
+    /// `tag_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateIntersection")]
     #[inline]
     pub unsafe fn create_intersection(
@@ -713,6 +775,10 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains all tags that are common to 'tagCollection1' and 'tagCollection2'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// # Safety
+    ///
+    /// `tag_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateUnion")]
     #[inline]
     pub unsafe fn create_union(
@@ -741,6 +807,10 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains tags from a first tag collection without tags found in a second tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// # Safety
+    ///
+    /// `tag_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateDifference")]
     #[inline]
     pub unsafe fn create_difference(
@@ -775,6 +845,10 @@ impl CMTagCollection {
     /// Parameter `tagCollectionOut`: The address of a CMTagCollectionRef that contains the xor of the tags from the two tag collections.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// # Safety
+    ///
+    /// `tag_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateExclusiveOr")]
     #[inline]
     pub unsafe fn create_exclusive_or(
@@ -909,6 +983,10 @@ impl CMMutableTagCollection {
     /// Parameter `tagCount`: CMItemCount of the number of tags in 'tags' array.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
+    ///
+    /// # Safety
+    ///
+    /// `tags` must be a valid pointer.
     #[doc(alias = "CMTagCollectionAddTagsFromArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -965,6 +1043,11 @@ impl CMTagCollection {
     /// Parameter `newCollectionOut`: Address of an CMTagCollectionRef to return the newly created tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `dict` generics must be of the correct type.
+    /// - `new_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateFromDictionary")]
     #[inline]
     pub unsafe fn create_from_dictionary(
@@ -1016,6 +1099,10 @@ impl CMTagCollection {
     /// Parameter `newCollectionOut`: Address of an CMTagCollectionRef to return the newly created tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `new_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateFromData")]
     #[inline]
     pub unsafe fn create_from_data(

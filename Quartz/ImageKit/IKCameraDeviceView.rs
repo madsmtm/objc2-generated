@@ -16,6 +16,10 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewdelegate?language=objc)
     pub unsafe trait IKCameraDeviceViewDelegate {
         /// This message is sent when the user selection did change.
+        ///
+        /// # Safety
+        ///
+        /// `camera_device_view` might not allow `None`.
         #[optional]
         #[unsafe(method(cameraDeviceViewSelectionDidChange:))]
         #[unsafe(method_family = none)]
@@ -28,6 +32,14 @@ extern_protocol!(
         /// This message is sent for each file that gets downloaded.
         ///
         /// Based on the IKCameraDeviceViewDisplayMode the downloaded file will be saved on disk using the 'url', or returned in memory as NSData
+        ///
+        /// # Safety
+        ///
+        /// - `camera_device_view` might not allow `None`.
+        /// - `file` might not allow `None`.
+        /// - `url` might not allow `None`.
+        /// - `data` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[optional]
         #[unsafe(method(cameraDeviceView:didDownloadFile:location:fileData:error:))]
         #[unsafe(method_family = none)]
@@ -41,6 +53,11 @@ extern_protocol!(
         );
 
         /// This message is sent every time the camera device reports an error.
+        ///
+        /// # Safety
+        ///
+        /// - `camera_device_view` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[optional]
         #[unsafe(method(cameraDeviceView:didEncounterError:))]
         #[unsafe(method_family = none)]
@@ -147,6 +164,10 @@ impl IKCameraDeviceView {
         ) -> Option<Retained<ProtocolObject<dyn IKCameraDeviceViewDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -166,6 +187,10 @@ impl IKCameraDeviceView {
 
         #[cfg(feature = "objc2-image-capture-core")]
         /// Setter for [`cameraDevice`][Self::cameraDevice].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setCameraDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCameraDevice(&self, camera_device: Option<&ICCameraDevice>);
@@ -269,6 +294,10 @@ impl IKCameraDeviceView {
         pub unsafe fn downloadsDirectory(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`downloadsDirectory`][Self::downloadsDirectory].
+        ///
+        /// # Safety
+        ///
+        /// `downloads_directory` might not allow `None`.
         #[unsafe(method(setDownloadsDirectory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownloadsDirectory(&self, downloads_directory: Option<&NSURL>);
@@ -292,6 +321,10 @@ impl IKCameraDeviceView {
         pub unsafe fn postProcessApplication(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`postProcessApplication`][Self::postProcessApplication].
+        ///
+        /// # Safety
+        ///
+        /// `post_process_application` might not allow `None`.
         #[unsafe(method(setPostProcessApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPostProcessApplication(&self, post_process_application: Option<&NSURL>);
@@ -322,6 +355,10 @@ impl IKCameraDeviceView {
         pub unsafe fn selectedIndexes(&self) -> Option<Retained<NSIndexSet>>;
 
         /// setting current user selection.
+        ///
+        /// # Safety
+        ///
+        /// `indexes` might not allow `None`.
         #[unsafe(method(selectIndexes:byExtendingSelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectIndexes_byExtendingSelection(
@@ -331,51 +368,96 @@ impl IKCameraDeviceView {
         );
 
         /// rotate selected items left.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(rotateLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateLeft(&self, sender: Option<&AnyObject>);
 
         /// rotate selected items right.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(rotateRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateRight(&self, sender: Option<&AnyObject>);
 
         /// delete selected items.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(deleteSelectedItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteSelectedItems(&self, sender: Option<&AnyObject>);
 
         /// download selected items.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(downloadSelectedItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadSelectedItems(&self, sender: Option<&AnyObject>);
 
         /// download all items.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(downloadAllItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadAllItems(&self, sender: Option<&AnyObject>);
 
         /// provide your own NSSlider to resize item thumbnails
+        ///
+        /// # Safety
+        ///
+        /// `slider` might not allow `None`.
         #[unsafe(method(setCustomIconSizeSlider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomIconSizeSlider(&self, slider: Option<&NSSlider>);
 
         /// provide your own control to toggle between IKCameraDeviceViewDisplayMode table / icon
+        ///
+        /// # Safety
+        ///
+        /// `control` might not allow `None`.
         #[unsafe(method(setCustomModeControl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomModeControl(&self, control: Option<&NSSegmentedControl>);
 
         /// provide your own control to toggle between IKCameraDeviceViewDisplayMode table / icon
+        ///
+        /// # Safety
+        ///
+        /// `control` might not allow `None`.
         #[unsafe(method(setCustomActionControl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomActionControl(&self, control: Option<&NSSegmentedControl>);
 
         /// provide your own control to rotate items (multiple of 90º)
+        ///
+        /// # Safety
+        ///
+        /// `control` might not allow `None`.
         #[unsafe(method(setCustomRotateControl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomRotateControl(&self, control: Option<&NSSegmentedControl>);
 
         /// provide your own control to delete selected items
+        ///
+        /// # Safety
+        ///
+        /// `control` might not allow `None`.
         #[unsafe(method(setCustomDeleteControl:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomDeleteControl(&self, control: Option<&NSSegmentedControl>);

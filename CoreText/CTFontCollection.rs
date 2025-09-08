@@ -113,6 +113,10 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: This function creates a new collection containing all fonts available to the current application.
+    ///
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateFromAvailableFonts")]
     #[inline]
     pub unsafe fn from_available_fonts(
@@ -139,6 +143,11 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: This function creates a new collection based on the provided font descriptors. The contents of this collection is defined by matching the provided descriptors against all available font descriptors.
+    ///
+    /// # Safety
+    ///
+    /// - `query_descriptors` generic must be of the correct type.
+    /// - `options` generics must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateWithFontDescriptors")]
     #[inline]
     pub unsafe fn with_font_descriptors(
@@ -170,6 +179,11 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: This function creates a copy of the original font collection augmented by the new font descriptors and options. The new font descriptors are merged with the existing descriptors to create a single set.
+    ///
+    /// # Safety
+    ///
+    /// - `query_descriptors` generic must be of the correct type.
+    /// - `options` generics must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateCopyWithFontDescriptors")]
     #[inline]
     pub unsafe fn copy_with_font_descriptors(
@@ -245,6 +259,10 @@ impl CTMutableFontCollection {
     ///
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL to represent an empty collection, in which case the matching descriptors will also be NULL.
+    ///
+    /// # Safety
+    ///
+    /// `descriptors` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionSetQueryDescriptors")]
     #[inline]
     pub unsafe fn set_query_descriptors(&self, descriptors: Option<&CFArray>) {
@@ -287,6 +305,10 @@ impl CTMutableFontCollection {
     ///
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL.
+    ///
+    /// # Safety
+    ///
+    /// `descriptors` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionSetExclusionDescriptors")]
     #[inline]
     pub unsafe fn set_exclusion_descriptors(&self, descriptors: Option<&CFArray>) {
@@ -333,6 +355,11 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: An array of CTFontDescriptors matching the criteria of the collection, sorted by the results of the sorting callback function, or NULL if there are none.
+    ///
+    /// # Safety
+    ///
+    /// - `sort_callback` must be implemented correctly.
+    /// - `ref_con` must be a valid pointer or null.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -368,6 +395,10 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
+    ///
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsWithOptions")]
     #[inline]
     pub unsafe fn matching_font_descriptors_with_options(
@@ -395,6 +426,10 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: An array of CTFontDescriptors matching the specified family in the collection or NULL if there are none.
+    ///
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsForFamily")]
     #[inline]
     pub unsafe fn matching_font_descriptors_for_family(
@@ -497,6 +532,10 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: An array containing one CFDictionary value for each descriptor mapping the requested attribute names. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
+    ///
+    /// # Safety
+    ///
+    /// `attribute_names` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionCopyFontAttributes")]
     #[inline]
     pub unsafe fn font_attributes(

@@ -160,10 +160,17 @@ impl NSBrowser {
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
+        ///
+        /// # Safety
+        ///
+        /// `double_action` must be a valid selector.
         #[unsafe(method(setDoubleAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
+        /// # Safety
+        ///
+        /// `factory_id` probably has further requirements.
         #[unsafe(method(setCellClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellClass(&self, factory_id: &AnyClass);
@@ -173,6 +180,11 @@ impl NSBrowser {
         pub unsafe fn cellPrototype(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`cellPrototype`][Self::cellPrototype].
+        ///
+        /// # Safety
+        ///
+        /// - `cell_prototype` should be of the correct type.
+        /// - `cell_prototype` might not allow `None`.
         #[unsafe(method(setCellPrototype:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&AnyObject>);
@@ -320,6 +332,9 @@ impl NSBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathForColumn(&self, column: NSInteger) -> Retained<NSIndexPath>;
 
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[unsafe(method(isLeafItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLeafItem(&self, item: Option<&AnyObject>) -> bool;
@@ -494,6 +509,9 @@ impl NSBrowser {
             col: NSInteger,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
@@ -502,10 +520,16 @@ impl NSBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn tile(&self);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(doClick:))]
         #[unsafe(method_family = none)]
         pub unsafe fn doClick(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(doDoubleClick:))]
         #[unsafe(method_family = none)]
         pub unsafe fn doDoubleClick(&self, sender: Option<&AnyObject>);
@@ -539,6 +563,10 @@ impl NSBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn frameOfRow_inColumn(&self, row: NSInteger, column: NSInteger) -> NSRect;
 
+        /// # Safety
+        ///
+        /// - `row` must be a valid pointer or null.
+        /// - `column` must be a valid pointer or null.
         #[unsafe(method(getRow:column:forPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRow_column_forPoint(
@@ -656,6 +684,9 @@ impl NSBrowser {
         ) -> bool;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
+        /// # Safety
+        ///
+        /// `drag_image_offset` must be a valid pointer or null.
         #[unsafe(method(draggingImageForRowsWithIndexes:inColumn:withEvent:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
@@ -779,6 +810,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:numberOfChildrenOfItem:))]
         #[unsafe(method_family = none)]
@@ -789,6 +823,9 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:child:ofItem:))]
         #[unsafe(method_family = none)]
@@ -800,12 +837,18 @@ extern_protocol!(
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:isLeafItem:))]
         #[unsafe(method_family = none)]
         unsafe fn browser_isLeafItem(&self, browser: &NSBrowser, item: Option<&AnyObject>) -> bool;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:objectValueForItem:))]
         #[unsafe(method_family = none)]
@@ -838,6 +881,10 @@ extern_protocol!(
         unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `item` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:setObjectValue:forItem:))]
         #[unsafe(method_family = none)]
@@ -849,6 +896,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:shouldEditItem:))]
         #[unsafe(method_family = none)]
@@ -859,6 +909,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `cell` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:willDisplayCell:atRow:column:))]
         #[unsafe(method_family = none)]
@@ -1022,6 +1075,9 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `drag_image_offset` must be a valid pointer.
         #[optional]
         #[unsafe(method(browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:))]
         #[unsafe(method_family = none)]
@@ -1040,6 +1096,11 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// - `row` must be a valid pointer.
+        /// - `column` must be a valid pointer.
+        /// - `drop_operation` must be a valid pointer.
         #[optional]
         #[unsafe(method(browser:validateDrop:proposedRow:column:dropOperation:))]
         #[unsafe(method_family = none)]
@@ -1116,6 +1177,9 @@ extern_protocol!(
             feature = "NSView",
             feature = "NSViewController"
         ))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:previewViewControllerForLeafItem:))]
         #[unsafe(method_family = none)]
@@ -1131,6 +1195,9 @@ extern_protocol!(
             feature = "NSView",
             feature = "NSViewController"
         ))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(browser:headerViewControllerForItem:))]
         #[unsafe(method_family = none)]
@@ -1189,6 +1256,9 @@ impl NSBrowser {
         pub unsafe fn displayAllColumns(&self);
 
         #[cfg(feature = "NSScroller")]
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[unsafe(method(scrollViaScroller:))]
         #[unsafe(method_family = none)]
@@ -1199,6 +1269,9 @@ impl NSBrowser {
         #[unsafe(method_family = none)]
         pub unsafe fn updateScroller(&self);
 
+        /// # Safety
+        ///
+        /// `factory_id` probably has further requirements.
         #[deprecated = "Use the item based NSBrowser instead"]
         #[unsafe(method(setMatrixClass:))]
         #[unsafe(method_family = none)]

@@ -339,6 +339,13 @@ impl MPSCNNConvolutionDescriptor {
         /// Parameter `beta`: Pointer to an array of floats of beta for each output feature channel
         ///
         /// Parameter `epsilon`: A small float value used to have numerical stability in the code
+        ///
+        /// # Safety
+        ///
+        /// - `mean` must be a valid pointer or null.
+        /// - `variance` must be a valid pointer or null.
+        /// - `gamma` must be a valid pointer or null.
+        /// - `beta` must be a valid pointer or null.
         #[unsafe(method(setBatchNormalizationParametersForInferenceWithMean:variance:gamma:beta:epsilon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBatchNormalizationParametersForInferenceWithMean_variance_gamma_beta_epsilon(
@@ -1658,6 +1665,10 @@ extern_protocol!(
         /// when convolution itself is coplied, for example when copying training graph for running
         /// on second GPU so that weights update on two different GPUs dont end up stomping same
         /// data source.
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
@@ -1883,6 +1894,11 @@ impl MPSCNNConvolution {
         ///
         ///
         /// Returns: A valid MPSCNNConvolution object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// - `kernel_weights` must be a valid pointer.
+        /// - `bias_terms` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:))]
         #[unsafe(method_family = init)]
@@ -2543,6 +2559,11 @@ impl MPSCNNFullyConnected {
         ///
         ///
         /// Returns: A valid MPSCNNConvolution object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// - `kernel_weights` must be a valid pointer.
+        /// - `bias_terms` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:))]
         #[unsafe(method_family = init)]
@@ -3633,6 +3654,13 @@ impl MPSCNNBinaryConvolution {
         ///
         ///
         /// Returns: A valid MPSCNNBinaryConvolution object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// - `output_bias_terms` must be a valid pointer or null.
+        /// - `output_scale_terms` must be a valid pointer or null.
+        /// - `input_bias_terms` must be a valid pointer or null.
+        /// - `input_scale_terms` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:convolutionData:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_convolutionData_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
@@ -3843,6 +3871,13 @@ impl MPSCNNBinaryFullyConnected {
         ///
         ///
         /// Returns: A valid MPSCNNBinaryFullyConnected object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// - `output_bias_terms` must be a valid pointer or null.
+        /// - `output_scale_terms` must be a valid pointer or null.
+        /// - `input_bias_terms` must be a valid pointer or null.
+        /// - `input_scale_terms` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:convolutionData:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_convolutionData_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(

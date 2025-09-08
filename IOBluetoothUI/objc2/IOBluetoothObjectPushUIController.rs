@@ -52,6 +52,14 @@ impl IOBluetoothObjectPushUIController {
         /// is specified this object will release itself when the transaction is complete.
         ///
         /// Returns: An IOBluetoothObjectPushUIController object on success, nil on fail.
+        ///
+        /// # Safety
+        ///
+        /// - `in_device` might not allow `None`.
+        /// - `in_files` generic should be of the correct type.
+        /// - `in_files` might not allow `None`.
+        /// - `in_delegate` should be of the correct type.
+        /// - `in_delegate` might not allow `None`.
         #[unsafe(method(initObjectPushWithBluetoothDevice:withFiles:delegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initObjectPushWithBluetoothDevice_withFiles_delegate(
@@ -102,6 +110,11 @@ impl IOBluetoothObjectPushUIController {
         /// Parameter `contextInfo`: User-definied value passed to the modalDelegate in the didEndSelector.
         ///
         /// Returns: Returns kIOReturnSuccess if the sheet modal session was started.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetModalForWindow_modalDelegate_didEndSelector_contextInfo(
@@ -127,6 +140,10 @@ impl IOBluetoothObjectPushUIController {
         /// The panel title should be localized for best user experience.
         ///
         /// Parameter `windowTitle`: Title of the device selector panel.
+        ///
+        /// # Safety
+        ///
+        /// `window_title` might not allow `None`.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, window_title: Option<&NSString>);
@@ -146,6 +163,10 @@ impl IOBluetoothObjectPushUIController {
         /// the running application on fail.
         ///
         /// Parameter `image`: Image to use as the icon.
+        ///
+        /// # Safety
+        ///
+        /// `image` might not allow `None`.
         #[unsafe(method(setIconImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIconImage(&self, image: Option<&NSImage>);
@@ -193,6 +214,9 @@ impl IOBluetoothObjectPushUIController {
             window_nib_name: &NSNibName,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(initWithWindowNibName:owner:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibName_owner(
@@ -201,6 +225,9 @@ impl IOBluetoothObjectPushUIController {
             owner: &AnyObject,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(initWithWindowNibPath:owner:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibPath_owner(

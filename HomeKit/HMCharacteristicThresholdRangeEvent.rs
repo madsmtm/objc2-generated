@@ -80,6 +80,10 @@ impl HMCharacteristicThresholdRangeEvent {
         /// The characteristic associated with the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
@@ -88,6 +92,10 @@ impl HMCharacteristicThresholdRangeEvent {
         /// The range of the characteristic value that triggers the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(thresholdRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;
@@ -158,12 +166,20 @@ impl HMMutableCharacteristicThresholdRangeEvent {
         /// The characteristic associated with the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Setter for [`characteristic`][Self::characteristic].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharacteristic(&self, characteristic: &HMCharacteristic);
@@ -172,6 +188,10 @@ impl HMMutableCharacteristicThresholdRangeEvent {
         /// The range of the characteristic value that triggers the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(thresholdRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;
@@ -180,6 +200,10 @@ impl HMMutableCharacteristicThresholdRangeEvent {
         /// Setter for [`thresholdRange`][Self::thresholdRange].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setThresholdRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setThresholdRange(&self, threshold_range: &HMNumberRange);

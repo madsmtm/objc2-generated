@@ -52,6 +52,12 @@ impl JSValue {
         /// Parameter `value`: The Objective-C object to be converted.
         ///
         /// Returns: The new JSValue.
+        ///
+        /// # Safety
+        ///
+        /// - `value` should be of the correct type.
+        /// - `value` might not allow `None`.
+        /// - `context` might not allow `None`.
         #[unsafe(method(valueWithObject:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithObject_inContext(
@@ -65,6 +71,10 @@ impl JSValue {
         /// Parameter `context`: The JSContext in which the resulting JSValue will be created.
         ///
         /// Returns: The new JSValue representing the equivalent boolean value.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithBool:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithBool_inContext(
@@ -78,6 +88,10 @@ impl JSValue {
         /// Parameter `context`: The JSContext in which the resulting JSValue will be created.
         ///
         /// Returns: The new JSValue representing the equivalent boolean value.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithDouble:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithDouble_inContext(
@@ -95,6 +109,10 @@ impl JSValue {
         /// Parameter `context`: The JSContext in which the resulting JSValue will be created.
         ///
         /// Returns: The new JSValue representing the equivalent boolean value.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithInt32:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithInt32_inContext(
@@ -112,6 +130,10 @@ impl JSValue {
         /// Parameter `context`: The JSContext in which the resulting JSValue will be created.
         ///
         /// Returns: The new JSValue representing the equivalent boolean value.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithUInt32:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithUInt32_inContext(
@@ -125,6 +147,10 @@ impl JSValue {
         /// Parameter `context`: The JSContext in which the resulting object will be created.
         ///
         /// Returns: The new JavaScript object.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithNewObjectInContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewObjectInContext(
@@ -137,6 +163,10 @@ impl JSValue {
         /// Parameter `context`: The JSContext in which the resulting array will be created.
         ///
         /// Returns: The new JavaScript array.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithNewArrayInContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewArrayInContext(
@@ -153,6 +183,12 @@ impl JSValue {
         /// Parameter `context`: The JSContext in which the resulting regular expression object will be created.
         ///
         /// Returns: The new JavaScript regular expression object.
+        ///
+        /// # Safety
+        ///
+        /// - `pattern` might not allow `None`.
+        /// - `flags` might not allow `None`.
+        /// - `context` might not allow `None`.
         #[unsafe(method(valueWithNewRegularExpressionFromPattern:flags:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewRegularExpressionFromPattern_flags_inContext(
@@ -169,6 +205,11 @@ impl JSValue {
         /// Parameter `context`: The JSContext in which the resulting error object will be created.
         ///
         /// Returns: The new JavaScript error object.
+        ///
+        /// # Safety
+        ///
+        /// - `message` might not allow `None`.
+        /// - `context` might not allow `None`.
         #[unsafe(method(valueWithNewErrorFromMessage:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewErrorFromMessage_inContext(
@@ -194,6 +235,11 @@ impl JSValue {
         /// [context thisValue]
         /// </code>
         /// .
+        ///
+        /// # Safety
+        ///
+        /// - `context` might not allow `None`.
+        /// - `callback` might not allow `None`.
         #[unsafe(method(valueWithNewPromiseInContext:fromExecutor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewPromiseInContext_fromExecutor(
@@ -216,6 +262,12 @@ impl JSValue {
         /// @
         /// [result]]; } inContext:context]
         /// </code>
+        ///
+        /// # Safety
+        ///
+        /// - `result` should be of the correct type.
+        /// - `result` might not allow `None`.
+        /// - `context` might not allow `None`.
         #[unsafe(method(valueWithNewPromiseResolvedWithResult:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewPromiseResolvedWithResult_inContext(
@@ -238,6 +290,12 @@ impl JSValue {
         /// @
         /// [reason]]; } inContext:context]
         /// </code>
+        ///
+        /// # Safety
+        ///
+        /// - `reason` should be of the correct type.
+        /// - `reason` might not allow `None`.
+        /// - `context` might not allow `None`.
         #[unsafe(method(valueWithNewPromiseRejectedWithReason:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewPromiseRejectedWithReason_inContext(
@@ -253,6 +311,11 @@ impl JSValue {
         /// Parameter `context`: The JSContext to which the resulting JSValue belongs.
         ///
         /// Returns: The JSValue representing a unique JavaScript value with type symbol.
+        ///
+        /// # Safety
+        ///
+        /// - `description` might not allow `None`.
+        /// - `context` might not allow `None`.
         #[unsafe(method(valueWithNewSymbolFromDescription:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNewSymbolFromDescription_inContext(
@@ -350,6 +413,10 @@ impl JSValue {
         /// null
         /// </code>
         /// .
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithNullInContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithNullInContext(
@@ -370,6 +437,10 @@ impl JSValue {
         /// undefined
         /// </code>
         /// .
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithUndefinedInContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithUndefinedInContext(
@@ -446,6 +517,11 @@ impl JSValue {
         /// nil
         /// </code>
         /// .
+        ///
+        /// # Safety
+        ///
+        /// - `expected_class` probably has further requirements.
+        /// - `expected_class` might not allow `None`.
         #[unsafe(method(toObjectOfClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toObjectOfClass(
@@ -714,6 +790,11 @@ impl JSValue {
         /// .
         /// If an object other than a JSValue is passed, it will first be converted according to
         /// the aforementioned rules.
+        ///
+        /// # Safety
+        ///
+        /// - `value` should be of the correct type.
+        /// - `value` might not allow `None`.
         #[unsafe(method(isInstanceOf:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInstanceOf(&self, value: Option<&AnyObject>) -> bool;
@@ -723,6 +804,11 @@ impl JSValue {
         /// ===
         /// </code>
         /// operator.
+        ///
+        /// # Safety
+        ///
+        /// - `value` should be of the correct type.
+        /// - `value` might not allow `None`.
         #[unsafe(method(isEqualToObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToObject(&self, value: Option<&AnyObject>) -> bool;
@@ -732,6 +818,11 @@ impl JSValue {
         /// ==
         /// </code>
         /// operator.
+        ///
+        /// # Safety
+        ///
+        /// - `value` should be of the correct type.
+        /// - `value` might not allow `None`.
         #[unsafe(method(isEqualWithTypeCoercionToObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualWithTypeCoercionToObject(&self, value: Option<&AnyObject>) -> bool;
@@ -845,6 +936,11 @@ impl JSValue {
         /// Parameter `arguments`: The arguments to pass to the function.
         ///
         /// Returns: The return value of the function call.
+        ///
+        /// # Safety
+        ///
+        /// - `arguments` generic should be of the correct type.
+        /// - `arguments` might not allow `None`.
         #[unsafe(method(callWithArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn callWithArguments(
@@ -864,6 +960,11 @@ impl JSValue {
         /// Parameter `arguments`: The arguments to pass to the constructor.
         ///
         /// Returns: The return value of the constructor call.
+        ///
+        /// # Safety
+        ///
+        /// - `arguments` generic should be of the correct type.
+        /// - `arguments` might not allow `None`.
         #[unsafe(method(constructWithArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constructWithArguments(
@@ -890,6 +991,12 @@ impl JSValue {
         /// Parameter `arguments`: The arguments to pass to the method.
         ///
         /// Returns: The return value of the method call.
+        ///
+        /// # Safety
+        ///
+        /// - `method` might not allow `None`.
+        /// - `arguments` generic should be of the correct type.
+        /// - `arguments` might not allow `None`.
         #[unsafe(method(invokeMethod:withArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invokeMethod_withArguments(
@@ -957,6 +1064,10 @@ impl JSValue {
         /// y
         /// </code>
         /// , with values from the CGPoint.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithPoint:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithPoint_inContext(
@@ -977,6 +1088,10 @@ impl JSValue {
         /// length
         /// </code>
         /// , with values from the NSRange.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithRange:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithRange_inContext(
@@ -1005,6 +1120,10 @@ impl JSValue {
         /// height
         /// </code>
         /// , with values from the CGRect.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithRect:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithRect_inContext(
@@ -1025,6 +1144,10 @@ impl JSValue {
         /// height
         /// </code>
         /// , with values from the CGSize.
+        ///
+        /// # Safety
+        ///
+        /// `context` might not allow `None`.
         #[unsafe(method(valueWithSize:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithSize_inContext(
@@ -1143,6 +1266,10 @@ impl JSValue {
         /// valueWithObject:inContext:
         /// </code>
         /// . Prior to macOS 10.15 and iOS 13, 'property' was expected to be an NSString *.
+        ///
+        /// # Safety
+        ///
+        /// `property` might not allow `None`.
         #[unsafe(method(valueForProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForProperty(
@@ -1162,6 +1289,12 @@ impl JSValue {
         /// valueWithObject:inContext:
         /// </code>
         /// . Prior to macOS 10.15 and iOS 13, 'property' was expected to be an NSString *.
+        ///
+        /// # Safety
+        ///
+        /// - `value` should be of the correct type.
+        /// - `value` might not allow `None`.
+        /// - `property` might not allow `None`.
         #[unsafe(method(setValue:forProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forProperty(
@@ -1184,6 +1317,10 @@ impl JSValue {
         /// valueWithObject:inContext:
         /// </code>
         /// . Prior to macOS 10.15 and iOS 13, 'property' was expected to be an NSString *.
+        ///
+        /// # Safety
+        ///
+        /// `property` might not allow `None`.
         #[unsafe(method(deleteProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteProperty(&self, property: Option<&JSValueProperty>) -> bool;
@@ -1208,6 +1345,10 @@ impl JSValue {
         /// valueWithObject:inContext:
         /// </code>
         /// . Prior to macOS 10.15 and iOS 13, 'property' was expected to be an NSString *.
+        ///
+        /// # Safety
+        ///
+        /// `property` might not allow `None`.
         #[unsafe(method(hasProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasProperty(&self, property: Option<&JSValueProperty>) -> bool;
@@ -1221,6 +1362,12 @@ impl JSValue {
         /// valueWithObject:inContext:
         /// </code>
         /// . Prior to macOS 10.15 and iOS 13, 'property' was expected to be an NSString *.
+        ///
+        /// # Safety
+        ///
+        /// - `property` might not allow `None`.
+        /// - `descriptor` should be of the correct type.
+        /// - `descriptor` might not allow `None`.
         #[unsafe(method(defineProperty:descriptor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn defineProperty_descriptor(
@@ -1245,6 +1392,11 @@ impl JSValue {
         ///
         /// For JSValues that are JavaScript arrays, indices greater than
         /// UINT_MAX - 1 will not affect the length of the array.
+        ///
+        /// # Safety
+        ///
+        /// - `value` should be of the correct type.
+        /// - `value` might not allow `None`.
         #[unsafe(method(setValue:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_atIndex(&self, value: Option<&AnyObject>, index: NSUInteger);
@@ -1288,6 +1440,10 @@ impl JSValue {
 #[cfg(feature = "objc2")]
 impl JSValue {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `key` should be of the correct type.
+        /// - `key` might not allow `None`.
         #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(
@@ -1302,6 +1458,12 @@ impl JSValue {
             index: NSUInteger,
         ) -> Option<Retained<JSValue>>;
 
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
+        /// - `key` should be of the correct type.
+        /// - `key` might not allow `None`.
         #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(
@@ -1310,6 +1472,10 @@ impl JSValue {
             key: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -1330,6 +1496,11 @@ impl JSValue {
         /// Creates a JSValue, wrapping its C API counterpart.
         ///
         /// Returns: The Objective-C API equivalent of the specified JSValueRef.
+        ///
+        /// # Safety
+        ///
+        /// - `value` must be a valid pointer.
+        /// - `context` might not allow `None`.
         #[unsafe(method(valueWithJSValueRef:inContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithJSValueRef_inContext(

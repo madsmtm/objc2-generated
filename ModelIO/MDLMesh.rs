@@ -42,6 +42,10 @@ impl MDLVertexAttributeData {
         pub unsafe fn dataStart(&self) -> NonNull<c_void>;
 
         /// Setter for [`dataStart`][Self::dataStart].
+        ///
+        /// # Safety
+        ///
+        /// `data_start` must be a valid pointer.
         #[unsafe(method(setDataStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataStart(&self, data_start: NonNull<c_void>);

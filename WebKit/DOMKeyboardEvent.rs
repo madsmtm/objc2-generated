@@ -120,12 +120,20 @@ impl DOMKeyboardEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn charCode(&self) -> c_int;
 
+        /// # Safety
+        ///
+        /// `key_identifier_arg` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getModifierState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getModifierState(&self, key_identifier_arg: Option<&NSString>) -> bool;
 
         #[cfg(feature = "DOMAbstractView")]
+        /// # Safety
+        ///
+        /// - `type` might not allow `None`.
+        /// - `view` might not allow `None`.
+        /// - `key_identifier` might not allow `None`.
         #[unsafe(method(initKeyboardEvent:canBubble:cancelable:view:keyIdentifier:location:ctrlKey:altKey:shiftKey:metaKey:altGraphKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn initKeyboardEvent_canBubble_cancelable_view_keyIdentifier_location_ctrlKey_altKey_shiftKey_metaKey_altGraphKey(
@@ -144,6 +152,11 @@ impl DOMKeyboardEvent {
         );
 
         #[cfg(feature = "DOMAbstractView")]
+        /// # Safety
+        ///
+        /// - `type` might not allow `None`.
+        /// - `view` might not allow `None`.
+        /// - `key_identifier` might not allow `None`.
         #[unsafe(method(initKeyboardEvent:canBubble:cancelable:view:keyIdentifier:location:ctrlKey:altKey:shiftKey:metaKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn initKeyboardEvent_canBubble_cancelable_view_keyIdentifier_location_ctrlKey_altKey_shiftKey_metaKey(
@@ -161,6 +174,11 @@ impl DOMKeyboardEvent {
         );
 
         #[cfg(feature = "DOMAbstractView")]
+        /// # Safety
+        ///
+        /// - `type` might not allow `None`.
+        /// - `view` might not allow `None`.
+        /// - `key_identifier` might not allow `None`.
         #[deprecated]
         #[unsafe(method(initKeyboardEvent:canBubble:cancelable:view:keyIdentifier:keyLocation:ctrlKey:altKey:shiftKey:metaKey:altGraphKey:))]
         #[unsafe(method_family = none)]
@@ -180,6 +198,11 @@ impl DOMKeyboardEvent {
         );
 
         #[cfg(feature = "DOMAbstractView")]
+        /// # Safety
+        ///
+        /// - `type` might not allow `None`.
+        /// - `view` might not allow `None`.
+        /// - `key_identifier` might not allow `None`.
         #[deprecated]
         #[unsafe(method(initKeyboardEvent:canBubble:cancelable:view:keyIdentifier:keyLocation:ctrlKey:altKey:shiftKey:metaKey:))]
         #[unsafe(method_family = none)]

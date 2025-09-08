@@ -71,6 +71,11 @@ impl SFKeychainSavePanel {
         /// Parameter `name`: The keychain name to be automatically filled out in the NSSave panel.
         ///
         /// Returns: a result code returned by NSSavePanel's runModalForDirectory method.
+        ///
+        /// # Safety
+        ///
+        /// - `path` might not allow `None`.
+        /// - `name` might not allow `None`.
         #[unsafe(method(runModalForDirectory:file:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForDirectory_file(
@@ -82,6 +87,10 @@ impl SFKeychainSavePanel {
         /// Specifies the password for the keychain that will be created.
         ///
         /// Parameter `The`: password string object.
+        ///
+        /// # Safety
+        ///
+        /// `password` might not allow `None`.
         #[unsafe(method(setPassword:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPassword(&self, password: Option<&NSString>);
@@ -115,6 +124,11 @@ impl SFKeychainSavePanel {
         /// - (void)createPanelDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo;
         ///
         /// Parameter `contextInfo`: Client-defined context pointer.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetForDirectory_file_modalForWindow_modalDelegate_didEndSelector_contextInfo(

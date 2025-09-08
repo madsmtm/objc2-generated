@@ -63,6 +63,10 @@ impl MDItem {
     /// Parameter `label`: The label.
     ///
     /// Returns: True if the label was successfully set on the item, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `label` might not allow `None`.
     #[doc(alias = "MDItemSetLabel")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -81,6 +85,10 @@ impl MDItem {
     /// Parameter `label`: The label.
     ///
     /// Returns: True if the label was successfully removed from the item, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `label` might not allow `None`.
     #[doc(alias = "MDItemRemoveLabel")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -128,6 +136,12 @@ impl MDLabel {
     /// Parameter `domain`: The domain of the label (normally kMDLabelUserDomain).
     ///
     /// Returns: An MDLabelRef, or NULL on failure.
+    ///
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `display_name` might not allow `None`.
+    /// - `kind` might not allow `None`.
     #[doc(alias = "MDLabelCreate")]
     #[inline]
     pub unsafe fn new(
@@ -155,6 +169,10 @@ impl MDLabel {
     /// Parameter `name`: The name of the desired attribute.
     ///
     /// Returns: A CFTypeRef, or NULL on failure, or if the attribute does not exist, or if the attribute is not readable.
+    ///
+    /// # Safety
+    ///
+    /// `name` might not allow `None`.
     #[doc(alias = "MDLabelCopyAttribute")]
     #[inline]
     pub unsafe fn attribute(&self, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
@@ -205,6 +223,11 @@ impl MDLabel {
     /// Parameter `attrs`: A dictionary containing the attributes to be modified. To remove an attribute, include it in the dictionary with kCFNull as its value.
     ///
     /// Returns: True if the label definition or override was successfully updated.
+    ///
+    /// # Safety
+    ///
+    /// - `attrs` generics must be of the correct type.
+    /// - `attrs` might not allow `None`.
     #[doc(alias = "MDLabelSetAttributes")]
     #[inline]
     pub unsafe fn set_attributes(&self, attrs: Option<&CFDictionary>) -> bool {
@@ -233,6 +256,10 @@ pub unsafe extern "C-unwind" fn MDCopyLabelKinds() -> Option<CFRetained<CFArray>
 /// Parameter `simpleQueryString`: The query expression string.
 ///
 /// Returns: A CFArrayRef containing all of the matching labels, or NULL on failure.
+///
+/// # Safety
+///
+/// `simple_query_string` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDCopyLabelsMatchingExpression(
     simple_query_string: Option<&CFString>,
@@ -251,6 +278,10 @@ pub unsafe extern "C-unwind" fn MDCopyLabelsMatchingExpression(
 /// Parameter `kind`: The kind string, or NULL to copy all labels.
 ///
 /// Returns: A CFArrayRef containing all of the labels with the specified kind string, or NULL on failure.
+///
+/// # Safety
+///
+/// `kind` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDCopyLabelsWithKind(
     kind: Option<&CFString>,
@@ -267,6 +298,10 @@ pub unsafe extern "C-unwind" fn MDCopyLabelsWithKind(
 /// Parameter `labelUUID`: The label UUID.
 ///
 /// Returns: An MDLabelRef, or NULL on failure.
+///
+/// # Safety
+///
+/// `label_uuid` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDCopyLabelWithUUID(
     label_uuid: Option<&CFUUID>,

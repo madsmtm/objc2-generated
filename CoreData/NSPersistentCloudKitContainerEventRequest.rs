@@ -59,6 +59,9 @@ impl NSPersistentCloudKitContainerEventRequest {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSFetchRequest")]
+        /// # Safety
+        ///
+        /// `fetch_request` generic should be of the correct type.
         #[unsafe(method(fetchEventsMatchingFetchRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchEventsMatchingFetchRequest(

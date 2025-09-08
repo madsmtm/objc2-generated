@@ -196,6 +196,10 @@ impl UISegmentedControl {
         ) -> Option<Retained<Self>>;
 
         /// Initializes the segmented control with the given items. Items may be NSStrings, UIImages, or (as of iOS 14.0) UIActions. When constructing from a UIAction segments will prefer images over titles when both are provided. The segmented control is automatically sized to fit content.
+        ///
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[unsafe(method(initWithItems:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
@@ -445,6 +449,9 @@ impl UISegmentedControl {
             bar_metrics: UIBarMetrics,
         ) -> Option<Retained<UIImage>>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(setTitleTextAttributes:forState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributes_forState(

@@ -40,6 +40,10 @@ extern_protocol!(
         /// Parameter `error`: On return, if initialization of the MEVideoDecoder fails, points to an NSError describing the nature of the failure.
         ///
         /// Returns: A newly created instance conforming to MEVideoDecoder.
+        ///
+        /// # Safety
+        ///
+        /// `video_decoder_specifications` generic should be of the correct type.
         #[unsafe(method(videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn videoDecoderWithCodecType_videoFormatDescription_videoDecoderSpecifications_extensionDecoderPixelBufferManager_error(
@@ -79,6 +83,10 @@ impl MEVideoDecoderPixelBufferManager {
         /// Setter for [`pixelBufferAttributes`][Self::pixelBufferAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `pixel_buffer_attributes` generic should be of the correct type.
         #[unsafe(method(setPixelBufferAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPixelBufferAttributes(
@@ -108,6 +116,10 @@ impl MEVideoDecoderPixelBufferManager {
         /// Parameter `customPixelFormat`: This dictionary contains a set of keys and values as described in CoreVideo/CVPixelFormatDescription.h suitable for providing
         /// as the 'description' parameter to CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType.  This must contain the
         /// custom pixel format fourCC as the value for the kCVPixelFormatCodecType key.
+        ///
+        /// # Safety
+        ///
+        /// `custom_pixel_format` generic should be of the correct type.
         #[unsafe(method(registerCustomPixelFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerCustomPixelFormat(

@@ -68,6 +68,9 @@ impl NSProgress {
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `user_info_or_nil` generic should be of the correct type.
         #[unsafe(method(initWithParent:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithParent_userInfo(
@@ -171,6 +174,9 @@ impl NSProgress {
         pub unsafe fn isPaused(&self) -> bool;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(cancellationHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancellationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
@@ -179,6 +185,10 @@ impl NSProgress {
         /// Setter for [`cancellationHandler`][Self::cancellationHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `cancellation_handler` block must be sendable.
         #[unsafe(method(setCancellationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCancellationHandler(
@@ -187,6 +197,9 @@ impl NSProgress {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(pausingHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn pausingHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
@@ -195,6 +208,10 @@ impl NSProgress {
         /// Setter for [`pausingHandler`][Self::pausingHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `pausing_handler` block must be sendable.
         #[unsafe(method(setPausingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPausingHandler(
@@ -203,6 +220,9 @@ impl NSProgress {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(resumingHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumingHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
@@ -211,6 +231,10 @@ impl NSProgress {
         /// Setter for [`resumingHandler`][Self::resumingHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `resuming_handler` block must be sendable.
         #[unsafe(method(setResumingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResumingHandler(
@@ -219,6 +243,9 @@ impl NSProgress {
         );
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `object_or_nil` should be of the correct type.
         #[unsafe(method(setUserInfoObject:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfoObject_forKey(
@@ -359,6 +386,9 @@ impl NSProgress {
         pub unsafe fn unpublish(&self);
 
         #[cfg(all(feature = "NSURL", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `publishing_handler` must be a valid pointer.
         #[unsafe(method(addSubscriberForFileURL:withPublishingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSubscriberForFileURL_withPublishingHandler(
@@ -366,6 +396,9 @@ impl NSProgress {
             publishing_handler: NSProgressPublishingHandler,
         ) -> Retained<AnyObject>;
 
+        /// # Safety
+        ///
+        /// `subscriber` should be of the correct type.
         #[unsafe(method(removeSubscriber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSubscriber(subscriber: &AnyObject);

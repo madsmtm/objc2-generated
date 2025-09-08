@@ -97,6 +97,10 @@ impl HKCDADocumentSample {
         ///
         /// Attributes of the document, such as title, patient name, etc. will be extracted automatically
         /// from the document content.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(CDADocumentSampleWithData:startDate:endDate:metadata:validationError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn CDADocumentSampleWithData_startDate_endDate_metadata_validationError(

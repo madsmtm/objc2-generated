@@ -206,6 +206,10 @@ impl CHHapticPattern {
         /// Initialize a new CHHapticPattern using the passed-in NSDictionary.
         ///
         /// Parameter `patternDict`: NSDictionary containing a pattern property list.
+        ///
+        /// # Safety
+        ///
+        /// `pattern_dict` generic should be of the correct type.
         #[unsafe(method(initWithDictionary:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary_error(

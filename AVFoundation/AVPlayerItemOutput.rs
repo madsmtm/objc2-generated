@@ -117,6 +117,10 @@ impl AVPlayerItemVideoOutput {
         /// /CVPixelBuffer.h>.
         ///
         /// Returns: An instance of AVPlayerItemVideoOutput.
+        ///
+        /// # Safety
+        ///
+        /// `pixel_buffer_attributes` generic should be of the correct type.
         #[unsafe(method(initWithPixelBufferAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPixelBufferAttributes(
@@ -143,6 +147,10 @@ impl AVPlayerItemVideoOutput {
         /// - the output settings dictionary is empty
         /// - the settings will yield compressed output
         /// - the settings do not honor the requirements listed above for outputSettings
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(initWithOutputSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOutputSettings(
@@ -174,6 +182,10 @@ impl AVPlayerItemVideoOutput {
         /// Parameter `itemTime`: A CMTime that expresses a desired item time.
         ///
         /// Parameter `itemTimeForDisplay`: A CMTime pointer whose value will contain the true display deadline for the copied pixel buffer. Can be NULL.
+        ///
+        /// # Safety
+        ///
+        /// `out_item_time_for_display` must be a valid pointer or null.
         #[unsafe(method(copyPixelBufferForItemTime:itemTimeForDisplay:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyPixelBufferForItemTime_itemTimeForDisplay(
@@ -433,6 +445,10 @@ extern_protocol!(
         /// For each media subtype in the array passed in to -initWithMediaSubtypesForNativeRepresentation:, the delegate will receive sample buffers carrying data in its native format via the nativeSamples parameter, if there is media data of that subtype in the media resource.  For all other media subtypes present in the media resource, the delegate will receive attributed strings in a common format via the strings parameter.  See
         /// <CoreMedia
         /// /CMTextMarkup.h> for the string attributes that are used in the attributed strings.
+        ///
+        /// # Safety
+        ///
+        /// `native_samples` generic should be of the correct type.
         #[optional]
         #[unsafe(method(legibleOutput:didOutputAttributedStrings:nativeSampleBuffers:forItemTime:))]
         #[unsafe(method_family = none)]

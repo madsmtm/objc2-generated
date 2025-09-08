@@ -83,6 +83,10 @@ pub type ColorSyncCMMIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<ColorSyncCMM>, NonNull<c_void>) -> bool>;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `call_back` must be implemented correctly.
+    /// - `user_info` must be a valid pointer or null.
     pub fn ColorSyncIterateInstalledCMMs(
         call_back: ColorSyncCMMIterateCallback,
         user_info: *mut c_void,

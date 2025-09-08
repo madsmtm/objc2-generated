@@ -19,6 +19,11 @@ extern_protocol!(
         /// This message is sent when the user selection did change.
         ///
         /// The device may be a ICCameraDevice or a ICScannerDevice.
+        ///
+        /// # Safety
+        ///
+        /// - `device_browser_view` might not allow `None`.
+        /// - `device` might not allow `None`.
         #[unsafe(method(deviceBrowserView:selectionDidChange:))]
         #[unsafe(method_family = none)]
         unsafe fn deviceBrowserView_selectionDidChange(
@@ -28,6 +33,11 @@ extern_protocol!(
         );
 
         /// This message is sent every time the device browser reports an error.
+        ///
+        /// # Safety
+        ///
+        /// - `device_browser_view` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[optional]
         #[unsafe(method(deviceBrowserView:didEncounterError:))]
         #[unsafe(method_family = none)]
@@ -115,6 +125,10 @@ impl IKDeviceBrowserView {
         ) -> Option<Retained<ProtocolObject<dyn IKDeviceBrowserViewDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(

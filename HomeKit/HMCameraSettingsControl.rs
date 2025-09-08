@@ -37,6 +37,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to night vision setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(nightVision))]
         #[unsafe(method_family = none)]
         pub unsafe fn nightVision(&self) -> Option<Retained<HMCharacteristic>>;
@@ -45,6 +49,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to current horizontal tilt setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(currentHorizontalTilt))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentHorizontalTilt(&self) -> Option<Retained<HMCharacteristic>>;
@@ -53,6 +61,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to target horizontal tilt setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(targetHorizontalTilt))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetHorizontalTilt(&self) -> Option<Retained<HMCharacteristic>>;
@@ -61,6 +73,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to current vertical tilt setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(currentVerticalTilt))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentVerticalTilt(&self) -> Option<Retained<HMCharacteristic>>;
@@ -69,6 +85,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to target vertical tilt setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(targetVerticalTilt))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetVerticalTilt(&self) -> Option<Retained<HMCharacteristic>>;
@@ -77,6 +97,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to optical zoom setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(opticalZoom))]
         #[unsafe(method_family = none)]
         pub unsafe fn opticalZoom(&self) -> Option<Retained<HMCharacteristic>>;
@@ -85,6 +109,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to digital zoom setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(digitalZoom))]
         #[unsafe(method_family = none)]
         pub unsafe fn digitalZoom(&self) -> Option<Retained<HMCharacteristic>>;
@@ -93,6 +121,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to image rotation setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(imageRotation))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRotation(&self) -> Option<Retained<HMCharacteristic>>;
@@ -101,6 +133,10 @@ impl HMCameraSettingsControl {
         /// Characteristic corresponding to image mirroring setting on the camera.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(imageMirroring))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageMirroring(&self) -> Option<Retained<HMCharacteristic>>;

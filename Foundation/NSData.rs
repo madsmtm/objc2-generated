@@ -244,11 +244,17 @@ impl NSData {
         #[unsafe(method_family = none)]
         pub unsafe fn description(&self) -> Retained<NSString>;
 
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(getBytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBytes_length(&self, buffer: NonNull<c_void>, length: NSUInteger);
 
         #[cfg(feature = "NSRange")]
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(getBytes:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBytes_range(&self, buffer: NonNull<c_void>, range: NSRange);
@@ -321,6 +327,9 @@ impl NSData {
         #[unsafe(method_family = none)]
         pub unsafe fn data() -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer or null.
         #[unsafe(method(dataWithBytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytes_length(
@@ -328,6 +337,9 @@ impl NSData {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(dataWithBytesNoCopy:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length(
@@ -335,6 +347,9 @@ impl NSData {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(dataWithBytesNoCopy:length:freeWhenDone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length_freeWhenDone(
@@ -369,6 +384,9 @@ impl NSData {
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfURL(url: &NSURL) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer or null.
         #[unsafe(method(initWithBytes:length:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_length(
@@ -377,6 +395,9 @@ impl NSData {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(initWithBytesNoCopy:length:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length(
@@ -385,6 +406,9 @@ impl NSData {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(initWithBytesNoCopy:length:freeWhenDone:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_freeWhenDone(
@@ -395,6 +419,9 @@ impl NSData {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(initWithBytesNoCopy:length:deallocator:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_deallocator(
@@ -457,6 +484,9 @@ impl NSMutableData {
         #[unsafe(method_family = none)]
         pub unsafe fn data() -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer or null.
         #[unsafe(method(dataWithBytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytes_length(
@@ -464,6 +494,9 @@ impl NSMutableData {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(dataWithBytesNoCopy:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length(
@@ -471,6 +504,9 @@ impl NSMutableData {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(dataWithBytesNoCopy:length:freeWhenDone:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length_freeWhenDone(
@@ -505,6 +541,9 @@ impl NSMutableData {
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfURL(url: &NSURL) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer or null.
         #[unsafe(method(initWithBytes:length:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_length(
@@ -513,6 +552,9 @@ impl NSMutableData {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(initWithBytesNoCopy:length:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length(
@@ -521,6 +563,9 @@ impl NSMutableData {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(initWithBytesNoCopy:length:freeWhenDone:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_freeWhenDone(
@@ -531,6 +576,9 @@ impl NSMutableData {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(initWithBytesNoCopy:length:deallocator:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_deallocator(
@@ -693,6 +741,9 @@ impl NSData {
 /// NSDeprecated.
 impl NSData {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[deprecated = "This method is unsafe because it could potentially cause buffer overruns. Use -getBytes:length: instead."]
         #[unsafe(method(getBytes:))]
         #[unsafe(method_family = none)]
@@ -846,6 +897,9 @@ impl DefaultRetained for NSMutableData {
 /// NSExtendedMutableData.
 impl NSMutableData {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(appendBytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBytes_length(&self, bytes: NonNull<c_void>, length: NSUInteger);
@@ -859,6 +913,9 @@ impl NSMutableData {
         pub unsafe fn increaseLengthBy(&self, extra_length: NSUInteger);
 
         #[cfg(feature = "NSRange")]
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(replaceBytesInRange:withBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceBytesInRange_withBytes(&self, range: NSRange, bytes: NonNull<c_void>);
@@ -873,6 +930,9 @@ impl NSMutableData {
         pub unsafe fn setData(&self, data: &NSData);
 
         #[cfg(feature = "NSRange")]
+        /// # Safety
+        ///
+        /// `replacement_bytes` must be a valid pointer or null.
         #[unsafe(method(replaceBytesInRange:withBytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceBytesInRange_withBytes_length(

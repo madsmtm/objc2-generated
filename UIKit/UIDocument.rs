@@ -168,6 +168,9 @@ impl UIDocument {
             completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(loadFromContents:ofType:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromContents_ofType_error(
@@ -196,6 +199,10 @@ impl UIDocument {
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         /// Setter for [`undoManager`][Self::undoManager].
+        ///
+        /// # Safety
+        ///
+        /// `undo_manager` might not allow `None`.
         #[unsafe(method(setUndoManager:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
@@ -215,6 +222,9 @@ impl UIDocument {
             save_operation: UIDocumentSaveOperation,
         ) -> Retained<AnyObject>;
 
+        /// # Safety
+        ///
+        /// `change_count_token` should be of the correct type.
         #[unsafe(method(updateChangeCountWithToken:forSaveOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateChangeCountWithToken_forSaveOperation(
@@ -253,6 +263,10 @@ impl UIDocument {
             save_operation: UIDocumentSaveOperation,
         ) -> Retained<NSString>;
 
+        /// # Safety
+        ///
+        /// - `contents` should be of the correct type.
+        /// - `additional_file_attributes` generic should be of the correct type.
         #[unsafe(method(writeContents:andAttributes:safelyToURL:forSaveOperation:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeContents_andAttributes_safelyToURL_forSaveOperation_error(
@@ -263,6 +277,9 @@ impl UIDocument {
             save_operation: UIDocumentSaveOperation,
         ) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(writeContents:toURL:forSaveOperation:originalContentsURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeContents_toURL_forSaveOperation_originalContentsURL_error(

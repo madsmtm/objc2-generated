@@ -95,6 +95,10 @@ impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
         /// The characteristic associated with the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
@@ -103,6 +107,10 @@ impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
         /// A value of nil corresponds to any change in the value of the characteristic.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(triggerValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerValue(&self) -> Option<Retained<TriggerValueType>>;
@@ -213,12 +221,20 @@ impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
         /// The characteristic associated with the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Setter for [`characteristic`][Self::characteristic].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setCharacteristic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharacteristic(&self, characteristic: &HMCharacteristic);
@@ -227,6 +243,10 @@ impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
         /// A value of nil corresponds to any change in the value of the characteristic.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(triggerValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerValue(&self) -> Option<Retained<TriggerValueType>>;
@@ -234,6 +254,10 @@ impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
         /// Setter for [`triggerValue`][Self::triggerValue].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setTriggerValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTriggerValue(&self, trigger_value: Option<&TriggerValueType>);

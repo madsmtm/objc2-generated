@@ -175,6 +175,10 @@ extern "C" {
 /// occurred.
 ///
 /// This function creates a transform which encrypts data.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -207,6 +211,10 @@ pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
 /// occurred.
 ///
 /// This function creates a transform which encrypts data.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

@@ -157,6 +157,10 @@ impl NSScriptObjectSpecifier {
         pub unsafe fn childSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         /// Setter for [`childSpecifier`][Self::childSpecifier].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setChildSpecifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChildSpecifier(&self, child_specifier: Option<&NSScriptObjectSpecifier>);
@@ -231,6 +235,9 @@ impl NSScriptObjectSpecifier {
         #[unsafe(method_family = none)]
         pub unsafe fn keyClassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
 
+        /// # Safety
+        ///
+        /// `count` must be a valid pointer.
         #[unsafe(method(indicesOfObjectsByEvaluatingWithContainer:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicesOfObjectsByEvaluatingWithContainer_count(
@@ -239,6 +246,9 @@ impl NSScriptObjectSpecifier {
             count: NonNull<NSInteger>,
         ) -> *mut NSInteger;
 
+        /// # Safety
+        ///
+        /// `containers` should be of the correct type.
         #[unsafe(method(objectsByEvaluatingWithContainers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectsByEvaluatingWithContainers(
@@ -1017,6 +1027,9 @@ impl NSUniqueIDSpecifier {
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// `unique_id` should be of the correct type.
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:uniqueID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_uniqueID(
@@ -1034,6 +1047,10 @@ impl NSUniqueIDSpecifier {
         /// Setter for [`uniqueID`][Self::uniqueID].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `unique_id` should be of the correct type.
         #[unsafe(method(setUniqueID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUniqueID(&self, unique_id: &AnyObject);

@@ -15,6 +15,10 @@ use crate::*;
 ///
 /// A convenience function for retrieving a caption from an image file that aims to describe the photo accurately.
 /// This checks for XMP metadata field: Iptc4xmpExt:AOContentDescription.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn MAImageCaptioningCopyCaption(
     url: &CFURL,
@@ -43,6 +47,10 @@ extern "C-unwind" {
     ///
     /// A convenience function for setting a caption to an image file that aims to describe the photo accurately.
     /// This sets the XMP metadata field: Iptc4xmpExt:AOContentDescription.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     pub fn MAImageCaptioningSetCaption(
         url: &CFURL,
         string: Option<&CFString>,

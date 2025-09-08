@@ -55,6 +55,13 @@ impl UITextCursorDropPositionAnimator {
             feature = "UIView"
         ))]
         /// Creates an animator for the given text cursor view implementation, and the document object that implements the UITextInput protocol.
+        ///
+        /// # Safety
+        ///
+        /// - `cursor_view` must implement UITextCursorView.
+        /// - `cursor_view` might not allow `None`.
+        /// - `text_input` must implement UITextInput.
+        /// - `text_input` might not allow `None`.
         #[unsafe(method(initWithTextCursorView:textInput:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextCursorView_textInput(
@@ -72,6 +79,10 @@ impl UITextCursorDropPositionAnimator {
         /// Controls the placement of the cursor, using
         /// `textInput`and
         /// `position`to compute the final frame for the cursor view.
+        ///
+        /// # Safety
+        ///
+        /// `position` might not allow `None`.
         #[unsafe(method(placeCursorAtPosition:animated:))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeCursorAtPosition_animated(

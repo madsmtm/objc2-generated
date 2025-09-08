@@ -36,6 +36,10 @@ impl MLModelStructureNeuralNetworkLayer {
         /// The layer name.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -43,6 +47,10 @@ impl MLModelStructureNeuralNetworkLayer {
         /// The type of the layer, e,g, "elementwise", "pooling", etc.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
@@ -50,6 +58,10 @@ impl MLModelStructureNeuralNetworkLayer {
         /// The input names.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(inputNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputNames(&self) -> Retained<NSArray<NSString>>;
@@ -57,6 +69,10 @@ impl MLModelStructureNeuralNetworkLayer {
         /// The output names.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(outputNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputNames(&self) -> Retained<NSArray<NSString>>;

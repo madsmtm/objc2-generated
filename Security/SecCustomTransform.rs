@@ -349,6 +349,12 @@ pub type SecTransformImplementationRef = *const OpaqueSecTransformImplementation
 /// named attribute or for all attributes when the attribute
 /// parameter is NULL. Each time the API is called it overwrites
 /// what was there previously.
+///
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `attribute` should be of the correct type.
+/// - `new_action` must be a valid pointer.
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -418,6 +424,11 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttributeAction(
 ///
 /// This API may be called multiple times.  Each time the API is called
 /// it overwrites what was there previously.
+///
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `new_action` must be a valid pointer.
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -437,6 +448,10 @@ pub unsafe extern "C-unwind" fn SecTransformSetDataAction(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `new_action` must be a valid pointer.
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -472,6 +487,11 @@ pub unsafe extern "C-unwind" fn SecTransformSetTransformAction(
 ///
 ///
 /// Returns: The value of the attribute.
+///
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `attribute` should be of the correct type.
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
@@ -506,6 +526,11 @@ pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
 ///
 ///
 /// Returns: The value of the attribute.
+///
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `attribute` should be of the correct type.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
@@ -550,6 +575,12 @@ pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
 /// attribute values while a transform is executing.  These
 /// values are limited to the custom transform instance that
 /// is bound to the ref parameter.
+///
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `attribute` should be of the correct type.
+/// - `value` should be of the correct type.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
@@ -588,6 +619,12 @@ pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
 ///
 ///
 /// Returns: A CFErrorRef if an error occured , NULL otherwise.
+///
+/// # Safety
+///
+/// - `ref` must be a valid pointer.
+/// - `attribute` should be of the correct type.
+/// - `value` should be of the correct type.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformPushbackAttribute(
@@ -764,6 +801,11 @@ extern "C" {
 ///
 ///
 /// Returns: True if the custom transform was registered false otherwise
+///
+/// # Safety
+///
+/// - `create_transform_function` must be implemented correctly.
+/// - `error` must be a valid pointer or null.
 #[cfg(all(feature = "SecTransform", feature = "block2"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -799,6 +841,10 @@ pub unsafe extern "C-unwind" fn SecTransformRegister(
 /// Returns: A pointer to a SecTransformRef object.  This object must be
 /// released with CFRelease when you are done with it.  This
 /// function returns NULL if an error occurred.
+///
+/// # Safety
+///
+/// `error` must be a valid pointer or null.
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

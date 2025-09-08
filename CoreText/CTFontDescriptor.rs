@@ -478,6 +478,10 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function creates a new font descriptor with the attributes specified. This dictionary can contain arbitrary attributes that will be preserved, however unrecognized attributes will be ignored on font creation and and may not be preserved over the round trip (descriptor -> font -> descriptor).
+    ///
+    /// # Safety
+    ///
+    /// `attributes` generics must be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(attributes: &CFDictionary) -> CFRetained<CTFontDescriptor> {
@@ -512,6 +516,10 @@ impl CTFontDescriptor {
     /// [
     /// "
     /// liga", (id)kCFNull ] will have the same effect.
+    ///
+    /// # Safety
+    ///
+    /// `attributes` generics must be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
     #[inline]
     pub unsafe fn copy_with_attributes(
@@ -677,6 +685,10 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a retained array of normalized font descriptors matching the attributes present in descriptor. If descriptor itself is normalized then the array will contain only one item, the original descriptor.
+    ///
+    /// # Safety
+    ///
+    /// `mandatory_attributes` generic must be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptors")]
     #[inline]
     pub unsafe fn matching_font_descriptors(
@@ -704,6 +716,10 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a retained normalized font descriptor matching the attributes present in descriptor. The original descriptor may be returned in normalized form.
+    ///
+    /// # Safety
+    ///
+    /// `mandatory_attributes` generic must be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptor")]
     #[inline]
     pub unsafe fn matching_font_descriptor(
@@ -806,6 +822,11 @@ pub type CTFontDescriptorProgressHandler =
     *mut block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
 
 impl CTFontDescriptor {
+    /// # Safety
+    ///
+    /// - `descriptors` generic must be of the correct type.
+    /// - `mandatory_attributes` generic must be of the correct type.
+    /// - `progress_block` must be a valid pointer.
     #[doc(alias = "CTFontDescriptorMatchFontDescriptorsWithProgressHandler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -893,6 +914,10 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
+    ///
+    /// # Safety
+    ///
+    /// `language` must be a valid pointer or null.
     #[doc(alias = "CTFontDescriptorCopyLocalizedAttribute")]
     #[inline]
     pub unsafe fn localized_attribute(

@@ -176,6 +176,10 @@ impl MLModelConfiguration {
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         /// Setter for [`parameters`][Self::parameters].
+        ///
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(setParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParameters(

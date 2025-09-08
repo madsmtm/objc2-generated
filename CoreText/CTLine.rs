@@ -408,6 +408,12 @@ impl CTLine {
     ///
     ///
     /// See also: CTLineGetTrailingWhitespaceWidth
+    ///
+    /// # Safety
+    ///
+    /// - `ascent` must be a valid pointer or null.
+    /// - `descent` must be a valid pointer or null.
+    /// - `leading` must be a valid pointer or null.
     #[doc(alias = "CTLineGetTypographicBounds")]
     #[inline]
     pub unsafe fn typographic_bounds(
@@ -569,6 +575,10 @@ impl CTLine {
     ///
     /// Returns: The primary offset along the baseline for charIndex, or 0.0 in
     /// the event of failure.
+    ///
+    /// # Safety
+    ///
+    /// `secondary_offset` must be a valid pointer or null.
     #[doc(alias = "CTLineGetOffsetForStringIndex")]
     #[inline]
     pub unsafe fn offset_for_string_index(

@@ -88,6 +88,9 @@ extern_protocol!(
             feature = "NSString",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadDataWithTypeIdentifier:forItemProviderCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
@@ -166,6 +169,9 @@ impl NSItemProvider {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `load_handler` block must be sendable.
         #[unsafe(method(registerDataRepresentationForTypeIdentifier:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerDataRepresentationForTypeIdentifier_visibility_loadHandler(
@@ -186,6 +192,9 @@ impl NSItemProvider {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `load_handler` block must be sendable.
         #[unsafe(method(registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerFileRepresentationForTypeIdentifier_fileOptions_visibility_loadHandler(
@@ -234,6 +243,9 @@ impl NSItemProvider {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadDataRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadDataRepresentationForTypeIdentifier_completionHandler(
@@ -249,6 +261,9 @@ impl NSItemProvider {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFileRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFileRepresentationForTypeIdentifier_completionHandler(
@@ -264,6 +279,9 @@ impl NSItemProvider {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
@@ -310,6 +328,9 @@ impl NSItemProvider {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
+        /// # Safety
+        ///
+        /// `file_url` might not allow `None`.
         #[unsafe(method(initWithContentsOfURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
@@ -324,6 +345,9 @@ impl NSItemProvider {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `load_handler` must be a valid pointer.
         #[unsafe(method(registerItemForTypeIdentifier:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerItemForTypeIdentifier_loadHandler(
@@ -339,6 +363,9 @@ impl NSItemProvider {
             feature = "NSString",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(loadItemForTypeIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadItemForTypeIdentifier_options_completionHandler(
@@ -374,6 +401,9 @@ impl NSItemProvider {
             feature = "NSObject",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(previewImageHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewImageHandler(&self) -> NSItemProviderLoadHandler;
@@ -387,6 +417,10 @@ impl NSItemProvider {
         /// Setter for [`previewImageHandler`][Self::previewImageHandler].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `preview_image_handler` must be a valid pointer or null.
         #[unsafe(method(setPreviewImageHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewImageHandler(
@@ -400,6 +434,9 @@ impl NSItemProvider {
             feature = "NSObject",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(loadPreviewImageWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPreviewImageWithOptions_completionHandler(

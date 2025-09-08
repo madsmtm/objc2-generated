@@ -46,6 +46,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `outGraph`: the new AUGraph object
+    ///
+    /// # Safety
+    ///
+    /// `out_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn NewAUGraph(out_graph: NonNull<AUGraph>) -> OSStatus;
 }
@@ -57,6 +61,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `inGraph`: the AUGraph object to be disposed
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn DisposeAUGraph(in_graph: AUGraph) -> OSStatus;
 }
@@ -73,6 +81,12 @@ extern "C-unwind" {
     /// Parameter `inDescription`: the AudioComponentDescription used to find and open the AudioUnit
     ///
     /// Parameter `outNode`: the newly added node
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `in_description` must be a valid pointer.
+    /// - `out_node` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphAddNode(
@@ -92,6 +106,10 @@ extern "C-unwind" {
     /// Parameter `inGraph`: the AUGraph object
     ///
     /// Parameter `inNode`: the node to be removed
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphRemoveNode(in_graph: AUGraph, in_node: AUNode) -> OSStatus;
 }
@@ -103,6 +121,11 @@ extern "C-unwind" {
     /// Parameter `inGraph`: the AUGraph object
     ///
     /// Parameter `outNumberOfNodes`: the number of nodes
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_number_of_nodes` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetNodeCount(in_graph: AUGraph, out_number_of_nodes: NonNull<u32>) -> OSStatus;
 }
@@ -119,6 +142,11 @@ extern "C-unwind" {
     /// Parameter `inIndex`: the index of the node to retrieve
     ///
     /// Parameter `outNode`: the node at that index
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_node` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetIndNode(
         in_graph: AUGraph,
@@ -141,6 +169,12 @@ extern "C-unwind" {
     /// Parameter `outDescription`: the component description that would describe the AudioUnit of this node
     ///
     /// Parameter `outAudioUnit`: the AudioUnit of this node
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_description` must be a valid pointer or null.
+    /// - `out_audio_unit` must be a valid pointer or null.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphNodeInfo(
@@ -165,6 +199,11 @@ extern "C-unwind" {
     /// Parameter `inGraph`: the AUGraph object
     ///
     /// Parameter `outNode`: the node that is used to refer to the sub-graph
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_node` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AUGraphNewNodeSubGraph(in_graph: AUGraph, out_node: NonNull<AUNode>) -> OSStatus;
 }
@@ -180,6 +219,11 @@ extern "C-unwind" {
     /// Parameter `inNode`: the node to query
     ///
     /// Parameter `outSubGraph`: the sub-graph
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_sub_graph` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AUGraphGetNodeInfoSubGraph(
         in_graph: AUGraph,
@@ -199,6 +243,11 @@ extern "C-unwind" {
     /// Parameter `inNode`: the node to query
     ///
     /// Parameter `outFlag`: true if the node is a subgraph, false if not
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_flag` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AUGraphIsNodeSubGraph(
         in_graph: AUGraph,
@@ -289,6 +338,10 @@ unsafe impl RefEncode for AUNodeRenderCallback {
 
 extern "C-unwind" {
     /// connect a node's output to a node's input
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphConnectNodeInput(
         in_graph: AUGraph,
@@ -303,6 +356,11 @@ extern "C-unwind" {
     /// Set a callback for the specified node's specified input.
     ///
     /// Parameter `inInputCallback`: The callback that will provide input data to the node
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `in_input_callback` must be a valid pointer.
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioUnitProperties",
@@ -322,6 +380,10 @@ extern "C-unwind" {
     ///
     /// This can be used to disconnect either a connection or callback interaction
     /// to the specified node input
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphDisconnectNodeInput(
         in_graph: AUGraph,
@@ -334,6 +396,10 @@ extern "C-unwind" {
     /// clear all of the interactions in a graph
     ///
     /// This will clear all connections and callback interactions of the nodes of a graph
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphClearConnections(in_graph: AUGraph) -> OSStatus;
 }
@@ -342,6 +408,11 @@ extern "C-unwind" {
     /// Retrieve the number of interactions of a graph
     ///
     /// The number of node interactions currently being managed by the graph
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_num_interactions` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetNumberOfInteractions(
         in_graph: AUGraph,
@@ -353,6 +424,11 @@ extern "C-unwind" {
     /// Retrieve the number of interactions of a graph's node
     ///
     /// The number of node interactions currently being managed by the graph for the specified node.
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_num_interactions` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphCountNodeInteractions(
         in_graph: AUGraph,
@@ -399,6 +475,11 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `outIsUpdated`: if specified returns true if all of the edits were applied to the graph
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_is_updated` must be a valid pointer or null.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphUpdate(in_graph: AUGraph, out_is_updated: *mut Boolean) -> OSStatus;
 }
@@ -407,6 +488,10 @@ extern "C-unwind" {
     /// Open a graph
     ///
     /// AudioUnits are open but not initialized (no resource allocation occurs here)
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphOpen(in_graph: AUGraph) -> OSStatus;
 }
@@ -415,6 +500,10 @@ extern "C-unwind" {
     /// Close a graph
     ///
     /// All AudioUnits are closed - leaving only its nodal representation
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphClose(in_graph: AUGraph) -> OSStatus;
 }
@@ -428,6 +517,10 @@ extern "C-unwind" {
     /// after it becomes involved in an interaction.
     ///
     /// A graph must be opened before it can be initialised.
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphInitialize(in_graph: AUGraph) -> OSStatus;
 }
@@ -436,6 +529,10 @@ extern "C-unwind" {
     /// Uninitialise a graph
     ///
     /// The member of the graph are uninitialised
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphUninitialize(in_graph: AUGraph) -> OSStatus;
 }
@@ -446,6 +543,10 @@ extern "C-unwind" {
     /// Start() is called on the "head" node(s) of the AUGraph (now rendering starts)
     ///
     /// The graph must be initialised before it can be started.
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphStart(in_graph: AUGraph) -> OSStatus;
 }
@@ -454,18 +555,32 @@ extern "C-unwind" {
     /// Stop a graph
     ///
     /// Stop() is called on the "head" node(s) of the AUGraph    (rendering is stopped)
+    ///
+    /// # Safety
+    ///
+    /// `in_graph` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphStop(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
     /// Is the graph open
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_is_open` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsOpen(in_graph: AUGraph, out_is_open: NonNull<Boolean>) -> OSStatus;
 }
 
 extern "C-unwind" {
     /// Is the graph initialised
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_is_initialized` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsInitialized(
         in_graph: AUGraph,
@@ -475,6 +590,11 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Is the graph running (has it been started)
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_is_running` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsRunning(in_graph: AUGraph, out_is_running: NonNull<Boolean>) -> OSStatus;
 }
@@ -483,6 +603,11 @@ extern "C-unwind" {
     /// The CPU load of the graph
     ///
     /// Returns a short-term running average of the current CPU load of the graph.
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_average_cpu_load` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetCPULoad(in_graph: AUGraph, out_average_cpu_load: NonNull<f32>) -> OSStatus;
 }
@@ -492,6 +617,11 @@ extern "C-unwind" {
     ///
     /// Returns the max CPU load of the graph since this call was last made or the graph was last
     /// started.
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_max_load` must be a valid pointer.
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetMaxCPULoad(in_graph: AUGraph, out_max_load: NonNull<f32>) -> OSStatus;
 }
@@ -502,6 +632,12 @@ extern "C-unwind" {
     /// Add a callback that the graph will call every time the graph renders. The callback will be
     /// called once before the graph's render operation, and once after the render operation is
     /// complete.
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_ref_con` must be a valid pointer or null.
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphAddRenderNotify(
@@ -516,6 +652,12 @@ extern "C-unwind" {
     ///
     /// Remove a previously added callback. You must provide both the callback and the refCon that was
     /// used previously to add the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_ref_con` must be a valid pointer or null.
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphRemoveRenderNotify(
@@ -526,6 +668,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_num_connections` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AUGraphGetNumberOfConnections(
         in_graph: AUGraph,
@@ -534,6 +680,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_source_node` must be a valid pointer.
+    /// - `out_source_output_number` must be a valid pointer.
+    /// - `out_dest_node` must be a valid pointer.
+    /// - `out_dest_input_number` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AUGraphGetConnectionInfo(
         in_graph: AUGraph,
@@ -546,6 +699,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_num_connections` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AUGraphCountNodeConnections(
         in_graph: AUGraph,
@@ -555,6 +712,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_graph` must be a valid pointer.
+    /// - `out_connections` must be a valid pointer.
+    /// - `io_num_connections` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AUGraphGetNodeConnections(
         in_graph: AUGraph,

@@ -263,6 +263,10 @@ impl NSXMLNode {
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
+        ///
+        /// # Safety
+        ///
+        /// `object_value` should be of the correct type.
         #[unsafe(method(setObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
@@ -452,6 +456,10 @@ impl NSXMLNode {
         /// Returns the objects resulting from applying an XQuery to this node using the node as the context item ("."). Constants are a name-value dictionary for constants declared "external" in the query. normalizeAdjacentTextNodesPreservingCDATA:NO should be called if there are adjacent text nodes since they are not allowed under the XPath/XQuery Data Model.
         ///
         /// Returns: An array whose elements are kinds of NSArray, NSData, NSDate, NSNumber, NSString, NSURL, or NSXMLNode.
+        ///
+        /// # Safety
+        ///
+        /// `constants` generic should be of the correct type.
         #[unsafe(method(objectsForXQuery:constants:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectsForXQuery_constants_error(

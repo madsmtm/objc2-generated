@@ -174,6 +174,10 @@ impl NSPanel {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `panel` should be of the correct type.
+    /// - `panel` might not allow `None`.
     #[deprecated = "Use NSAlert instead"]
     pub fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
 }

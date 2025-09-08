@@ -122,6 +122,10 @@ impl HMEventTrigger {
         /// The events associated with the trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<HMEvent>>;
@@ -132,6 +136,10 @@ impl HMEventTrigger {
         /// HMDurationEvent in the list of endEvents.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(endEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn endEvents(&self) -> Retained<NSArray<HMEvent>>;
@@ -139,6 +147,10 @@ impl HMEventTrigger {
         /// The predicate to evaluate before executing the action sets associated with the trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
@@ -146,6 +158,10 @@ impl HMEventTrigger {
         /// recurrences Specifies the recurrences for when the trigger is evaluated. This only supports days of the week.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recurrences))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrences(&self) -> Option<Retained<NSArray<NSDateComponents>>>;
@@ -153,6 +169,10 @@ impl HMEventTrigger {
         /// Specifies whether this trigger is executed only once after which the trigger is disabled.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(executeOnce))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeOnce(&self) -> bool;
@@ -161,6 +181,10 @@ impl HMEventTrigger {
         /// Specifies the current activation state of the trigger.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(triggerActivationState))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerActivationState(&self) -> HMEventTriggerActivationState;
@@ -481,6 +505,10 @@ impl HMEventTrigger {
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(predicateForEvaluatingTriggerWithCharacteristic:relatedBy:toValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerWithCharacteristic_relatedBy_toValue(

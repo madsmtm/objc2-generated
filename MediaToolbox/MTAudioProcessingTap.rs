@@ -354,6 +354,11 @@ impl MTAudioProcessingTap {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `callbacks` must be a valid pointer.
+    /// - `tap_out` must be a valid pointer.
     #[doc(alias = "MTAudioProcessingTapCreate")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]
@@ -419,6 +424,13 @@ impl MTAudioProcessingTap {
     ///
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `buffer_list_in_out` must be a valid pointer.
+    /// - `flags_out` must be a valid pointer or null.
+    /// - `time_range_out` must be a valid pointer or null.
+    /// - `number_frames_out` must be a valid pointer or null.
     #[doc(alias = "MTAudioProcessingTapGetSourceAudio")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]

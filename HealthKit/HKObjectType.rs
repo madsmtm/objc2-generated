@@ -233,6 +233,10 @@ impl HKSampleType {
         /// Returns YES if the start and end date for samples of this type are restricted by a maximum duration.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isMaximumDurationRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMaximumDurationRestricted(&self) -> bool;
@@ -243,6 +247,10 @@ impl HKSampleType {
         /// Throws an exception if there is no maximum restriction on duration for samples of this type.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maximumAllowedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumAllowedDuration(&self) -> NSTimeInterval;
@@ -250,6 +258,10 @@ impl HKSampleType {
         /// Returns YES if the start and end date for samples of this type are restricted by a minimum duration.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isMinimumDurationRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMinimumDurationRestricted(&self) -> bool;
@@ -260,6 +272,10 @@ impl HKSampleType {
         /// Throws an exception if there is no minimum restriction on duration for samples of this type.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(minimumAllowedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumAllowedDuration(&self) -> NSTimeInterval;
@@ -268,6 +284,10 @@ impl HKSampleType {
         /// estimates for a sample type, see -[HKHealthStore recalibrateEstimatesForSampleType:atDate:completion:]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(allowsRecalibrationForEstimates))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsRecalibrationForEstimates(&self) -> bool;

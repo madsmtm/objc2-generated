@@ -63,6 +63,11 @@ impl VTFrameSilo {
     ///
     /// Parameter `frameSiloOut`: Points to a VTFrameSiloRef to receive the newly created object.
     /// Call CFRelease to release your retain on the created VTFrameSilo object when you are done with it.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `frame_silo_out` must be a valid pointer.
     #[doc(alias = "VTFrameSiloCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -113,6 +118,10 @@ impl VTFrameSilo {
     /// It is not necessary to call VTFrameSiloSetTimeRangesForNextPass before adding the first pass' sample buffers.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
+    ///
+    /// # Safety
+    ///
+    /// `time_range_array` must be a valid pointer.
     #[doc(alias = "VTFrameSiloSetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -136,6 +145,10 @@ impl VTFrameSilo {
     /// Calculates the current progress based on the most recent sample buffer added and the current pass time ranges.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
+    ///
+    /// # Safety
+    ///
+    /// `progress_out` must be a valid pointer.
     #[doc(alias = "VTFrameSiloGetProgressOfCurrentPass")]
     #[inline]
     pub unsafe fn progress_of_current_pass(&self, progress_out: NonNull<f32>) -> OSStatus {
@@ -162,6 +175,11 @@ impl VTFrameSilo {
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     /// Returns any nonzero status returned by the callback function.
+    ///
+    /// # Safety
+    ///
+    /// - `refcon` must be a valid pointer or null.
+    /// - `callback` must be implemented correctly.
     #[doc(alias = "VTFrameSiloCallFunctionForEachSampleBuffer")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]

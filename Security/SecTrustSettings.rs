@@ -97,6 +97,9 @@ unsafe impl RefEncode for SecTrustSettingsDomain {
 
 #[cfg(feature = "SecTrust")]
 impl SecTrust {
+    /// # Safety
+    ///
+    /// `trust_settings` must be a valid pointer.
     #[doc(alias = "SecTrustSettingsCopyTrustSettings")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -115,6 +118,9 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyTrustSettings(cert_ref, domain, trust_settings) }
     }
 
+    /// # Safety
+    ///
+    /// `trust_settings_dict_or_array` should be of the correct type.
     #[doc(alias = "SecTrustSettingsSetTrustSettings")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -149,6 +155,9 @@ impl SecTrust {
         unsafe { SecTrustSettingsRemoveTrustSettings(cert_ref, domain) }
     }
 
+    /// # Safety
+    ///
+    /// `cert_array` must be a valid pointer or null.
     #[doc(alias = "SecTrustSettingsCopyCertificates")]
     #[inline]
     pub unsafe fn settings_copy_certificates(
@@ -164,6 +173,9 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyCertificates(domain, cert_array) }
     }
 
+    /// # Safety
+    ///
+    /// `modification_date` must be a valid pointer.
     #[doc(alias = "SecTrustSettingsCopyModificationDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -182,6 +194,9 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyModificationDate(cert_ref, domain, modification_date) }
     }
 
+    /// # Safety
+    ///
+    /// `trust_settings` must be a valid pointer.
     #[doc(alias = "SecTrustSettingsCreateExternalRepresentation")]
     #[inline]
     pub unsafe fn settings_create_external_representation(

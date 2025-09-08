@@ -145,6 +145,13 @@ impl VTDecompressionSession {
     /// Pass NULL if and only if you will be calling VTDecompressionSessionDecodeFrameWithOutputHandler for decoding frames.
     ///
     /// Parameter `decompressionSessionOut`: Points to a variable to receive the new decompression session.
+    ///
+    /// # Safety
+    ///
+    /// - `video_decoder_specification` generics must be of the correct type.
+    /// - `destination_image_buffer_attributes` generics must be of the correct type.
+    /// - `output_callback` must be a valid pointer or null.
+    /// - `decompression_session_out` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionCreate")]
     #[cfg(all(
         feature = "VTErrors",
@@ -239,6 +246,11 @@ impl VTDecompressionSession {
     /// asynchronously.
     /// The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
     /// Pass NULL if you do not want to receive this information.
+    ///
+    /// # Safety
+    ///
+    /// - `source_frame_ref_con` must be a valid pointer or null.
+    /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -331,6 +343,11 @@ impl VTDecompressionSession {
     ///
     /// Parameter `outputHandler`: The block to be called when decoding the frame is completed.  If the VTDecompressionSessionDecodeFrameWithOutputHandler
     /// call returns an error, the block will not be called.
+    ///
+    /// # Safety
+    ///
+    /// - `info_flags_out` must be a valid pointer or null.
+    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -429,6 +446,10 @@ impl VTDecompressionSession {
     /// Parameter `session`: The decompression session.
     ///
     /// Parameter `pixelBufferOut`: Points to a variable to receive the copied pixel buffer.
+    ///
+    /// # Safety
+    ///
+    /// `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionCopyBlackPixelBuffer")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
@@ -525,6 +546,11 @@ impl VTDecompressionSession {
     /// When installed, outputMultiImageCallback will also be used when DecodeFrame operations fail and return a nonzero status.
     /// The original single-image callback will only be used in the case where the video decoder outputs a CVImageBuffer instead of a CMTaggedBufferGroup.
     /// Terminology note: in multi-image decompression, a single video sample (from one CMSampleBuffer) contains a single frame (with one PTS) that is decoded to produce multiple images.
+    ///
+    /// # Safety
+    ///
+    /// - `output_multi_image_callback` must be implemented correctly.
+    /// - `output_multi_image_refcon` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionSetMultiImageCallback")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -627,6 +653,11 @@ impl VTDecompressionSession {
     /// Parameter `multiImageCapableHandler`: The block to be called when decoding the frame is completed.  If the
     /// VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler call returns an error,
     /// the block will not be called.
+    ///
+    /// # Safety
+    ///
+    /// - `info_flags_out` must be a valid pointer or null.
+    /// - `multi_image_capable_output_handler` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",

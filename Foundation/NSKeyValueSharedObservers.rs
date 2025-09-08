@@ -49,6 +49,10 @@ extern_conformance!(
 impl NSKeyValueSharedObservers {
     extern_methods!(
         /// A new collection of observables for an observable object of the given class
+        ///
+        /// # Safety
+        ///
+        /// `observable_class` probably has further requirements.
         #[unsafe(method(initWithObservableClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObservableClass(
@@ -80,6 +84,10 @@ impl NSKeyValueSharedObservers {
         /// specify what is included in observation notifications. For possible values
         /// see NSKeyValueObservingOptions.
         /// - Parameter context: Arbitrary data which is passed to the observer object
+        ///
+        /// # Safety
+        ///
+        /// `context` must be a valid pointer or null.
         #[unsafe(method(addSharedObserver:forKey:options:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSharedObserver_forKey_options_context(
@@ -91,6 +99,9 @@ impl NSKeyValueSharedObservers {
         );
 
         #[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `context` must be a valid pointer or null.
         #[unsafe(method(addObserver:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_forKeyPath_options_context(

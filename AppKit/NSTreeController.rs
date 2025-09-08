@@ -105,26 +105,45 @@ impl NSTreeController {
         pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`content`][Self::content].
+        ///
+        /// # Safety
+        ///
+        /// `content` should be of the correct type.
         #[unsafe(method(setContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContent(&self, content: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(add:))]
         #[unsafe(method_family = none)]
         pub unsafe fn add(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(remove:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remove(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChild(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(insert:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insert(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(insertChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertChild(&self, sender: Option<&AnyObject>);
@@ -141,6 +160,9 @@ impl NSTreeController {
         #[unsafe(method_family = none)]
         pub unsafe fn canAddChild(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(insertObject:atArrangedObjectIndexPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertObject_atArrangedObjectIndexPath(
@@ -149,6 +171,9 @@ impl NSTreeController {
             index_path: &NSIndexPath,
         );
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(insertObjects:atArrangedObjectIndexPaths:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertObjects_atArrangedObjectIndexPaths(
@@ -278,6 +303,9 @@ impl NSTreeController {
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 impl NSTreeController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `content` should be of the correct type.
         #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(

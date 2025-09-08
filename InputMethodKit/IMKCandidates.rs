@@ -86,6 +86,10 @@ impl IMKCandidates {
         /// Default initializer for the class.
         ///
         /// When an input method allocates an IMKCandidate object it should initialize that object by calling this method passing the IMKServer that will manage the candidates and the initial panel type.
+        ///
+        /// # Safety
+        ///
+        /// `server` might not allow `None`.
         #[unsafe(method(initWithServer:panelType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServer_panelType(
@@ -95,6 +99,9 @@ impl IMKCandidates {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "IMKServer")]
+        /// # Safety
+        ///
+        /// `server` might not allow `None`.
         #[unsafe(method(initWithServer:panelType:styleType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServer_panelType_styleType(
@@ -141,10 +148,20 @@ impl IMKCandidates {
         /// Displays an annotation window whose contents are the annotationString.
         ///
         /// An annotation is additional text that explains or somehow adds to the candidate string in a candidate window. Annotations are displayed in a small borderless window that is aligned with the current candidate panel. An input method calls showAnnotation: when the method [IMKInputController candidateSelectionChanged:] is called, and the candidateString has annotations.
+        ///
+        /// # Safety
+        ///
+        /// `annotation_string` might not allow `None`.
         #[unsafe(method(showAnnotation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showAnnotation(&self, annotation_string: Option<&NSAttributedString>);
 
+        /// # Safety
+        ///
+        /// - `candidates` generic should be of the correct type.
+        /// - `candidates` might not allow `None`.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[unsafe(method(showSublist:subListDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showSublist_subListDelegate(
@@ -168,6 +185,11 @@ impl IMKCandidates {
         /// setSelectionKeysKeylayout (see below).
         ///
         /// The default selection keys are the digits 1 through 9, or in terms of key codes: 18-21,23,22, 26, 28, 25.
+        ///
+        /// # Safety
+        ///
+        /// - `key_codes` generic should be of the correct type.
+        /// - `key_codes` might not allow `None`.
         #[unsafe(method(setSelectionKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectionKeys(&self, key_codes: Option<&NSArray>);
@@ -190,6 +212,11 @@ impl IMKCandidates {
         /// NSBackgroundColorDocumentAttribute (value = NSColor).  Set the background color that is drawn behind the candidate text.
         ///
         /// IMKCandidatesSendServerKeyEventFirst (value = NSNumber).  NO (default) gives the candidate window first chance at key events.  YES causes events to first be routed to the current IMKInputController.  In that case, if the event is not handled, it will then be sent to the candidate window.
+        ///
+        /// # Safety
+        ///
+        /// - `attributes` generic should be of the correct type.
+        /// - `attributes` might not allow `None`.
         #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributes(&self, attributes: Option<&NSDictionary>);
@@ -244,6 +271,10 @@ impl IMKCandidates {
         /// Attach an IMKCandidates object to the specified selection.
         ///
         /// The IMKCandidate can be a sublist or an annotation.
+        ///
+        /// # Safety
+        ///
+        /// `child` might not allow `None`.
         #[unsafe(method(attachChild:toCandidate:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachChild_toCandidate_type(
@@ -261,6 +292,11 @@ impl IMKCandidates {
         /// Set the candidates data directly rather than supplying data via [IMKInputContoller candidates:].
         ///
         /// The elements of the array can be strings or attributed strings.
+        ///
+        /// # Safety
+        ///
+        /// - `candidates_array` generic should be of the correct type.
+        /// - `candidates_array` might not allow `None`.
         #[unsafe(method(setCandidateData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCandidateData(&self, candidates_array: Option<&NSArray>);
@@ -289,6 +325,11 @@ impl IMKCandidates {
         /// Map a candidateString to an identifier.
         ///
         /// Beginning with MacOS 10.7, candidate strings are mapped internally to an unique identifier of type NSInteger.  Using identifiers to identify a particular candidate is the first stage of enabling data types other than NSString and NSAttributedString for containing the contents of a candidate.
+        ///
+        /// # Safety
+        ///
+        /// - `candidate_string` should be of the correct type.
+        /// - `candidate_string` might not allow `None`.
         #[unsafe(method(candidateStringIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn candidateStringIdentifier(

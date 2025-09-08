@@ -130,6 +130,10 @@ impl HKElectrocardiogram {
         /// The number of voltage measurements in the electrocardiogram.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfVoltageMeasurements))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfVoltageMeasurements(&self) -> NSInteger;
@@ -138,6 +142,10 @@ impl HKElectrocardiogram {
         /// The frequency at which the data was sampled. This is reported in [HKUnit hertzUnit].
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(samplingFrequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplingFrequency(&self) -> Option<Retained<HKQuantity>>;
@@ -145,6 +153,10 @@ impl HKElectrocardiogram {
         /// The classification of this electrocardiogram sample.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(classification))]
         #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> HKElectrocardiogramClassification;
@@ -153,6 +165,10 @@ impl HKElectrocardiogram {
         /// The average heart rate of the user while the electrocardiogram was recorded.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(averageHeartRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageHeartRate(&self) -> Option<Retained<HKQuantity>>;
@@ -160,6 +176,10 @@ impl HKElectrocardiogram {
         /// Whether the user experienced symptoms during this electrocardiogram.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(symptomsStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn symptomsStatus(&self) -> HKElectrocardiogramSymptomsStatus;

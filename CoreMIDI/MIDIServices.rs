@@ -1544,6 +1544,12 @@ extern "C-unwind" {
     ///
     /// Note that notifyProc will always be called on the run loop which was current when
     /// MIDIClientCreate was first called.
+    ///
+    /// # Safety
+    ///
+    /// - `notify_proc` must be implemented correctly.
+    /// - `notify_ref_con` must be a valid pointer or null.
+    /// - `out_client` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIClientCreate(
         name: &CFString,
@@ -1569,6 +1575,11 @@ extern "C-unwind" {
     ///
     /// Note that notifyBlock is called on a thread chosen by the implementation.
     /// Thread-safety is the block's responsibility.
+    ///
+    /// # Safety
+    ///
+    /// - `out_client` must be a valid pointer.
+    /// - `notify_block` must be a valid pointer or null.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIClientCreateWithBlock(
         name: &CFString,
@@ -1620,6 +1631,11 @@ extern "C-unwind" {
     /// any number of sources to your port.
     ///
     /// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
+    ///
+    /// # Safety
+    ///
+    /// - `out_port` must be a valid pointer.
+    /// - `receive_block` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIInputPortCreateWithProtocol(
         client: MIDIClientRef,
@@ -1654,6 +1670,12 @@ extern "C-unwind" {
     /// any number of sources to your port.
     ///
     /// readProc will be called on a separate high-priority thread owned by CoreMIDI.
+    ///
+    /// # Safety
+    ///
+    /// - `read_proc` must be implemented correctly.
+    /// - `ref_con` must be a valid pointer or null.
+    /// - `out_port` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDIInputPortCreate(
@@ -1687,6 +1709,11 @@ extern "C-unwind" {
     /// any number of sources to your port.
     ///
     /// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
+    ///
+    /// # Safety
+    ///
+    /// - `out_port` must be a valid pointer.
+    /// - `read_block` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     #[deprecated]
     pub fn MIDIInputPortCreateWithBlock(
@@ -1718,6 +1745,10 @@ extern "C-unwind" {
     ///
     /// Multiple output ports are only necessary when an application is capable of directing
     /// multiple simultaneous MIDI streams to the same destination.
+    ///
+    /// # Safety
+    ///
+    /// `out_port` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIOutputPortCreate(
         client: MIDIClientRef,
@@ -1754,6 +1785,10 @@ extern "C-unwind" {
     /// identify the source.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `conn_ref_con` must be a valid pointer or null.
     pub fn MIDIPortConnectSource(
         port: MIDIPortRef,
         source: MIDIEndpointRef,
@@ -1899,6 +1934,10 @@ extern "C-unwind" {
     /// Parameter `inEntity`: The entity being queried.
     ///
     /// Parameter `outDevice`: On successful return, the entity's owning device.
+    ///
+    /// # Safety
+    ///
+    /// `out_device` must be a valid pointer or null.
     pub fn MIDIEntityGetDevice(
         in_entity: MIDIEntityRef,
         out_device: *mut MIDIDeviceRef,
@@ -1955,6 +1994,10 @@ extern "C-unwind" {
     ///
     ///
     /// Virtual sources and destinations don't have entities.
+    ///
+    /// # Safety
+    ///
+    /// `out_entity` must be a valid pointer or null.
     pub fn MIDIEndpointGetEntity(
         in_endpoint: MIDIEndpointRef,
         out_entity: *mut MIDIEntityRef,
@@ -1994,6 +2037,11 @@ extern "C-unwind" {
     /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
     /// relationship between when a sender sends MIDI to the destination and when it is
     /// received.
+    ///
+    /// # Safety
+    ///
+    /// - `out_dest` must be a valid pointer.
+    /// - `read_block` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIDestinationCreateWithProtocol(
         client: MIDIClientRef,
@@ -2036,6 +2084,12 @@ extern "C-unwind" {
     /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
     /// relationship between when a sender sends MIDI to the destination and when it is
     /// received.
+    ///
+    /// # Safety
+    ///
+    /// - `read_proc` must be implemented correctly.
+    /// - `ref_con` must be a valid pointer or null.
+    /// - `out_dest` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDIDestinationCreate(
@@ -2077,6 +2131,11 @@ extern "C-unwind" {
     /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the
     /// relationship between when a sender sends MIDI to the destination and when it is
     /// received.
+    ///
+    /// # Safety
+    ///
+    /// - `out_dest` must be a valid pointer.
+    /// - `read_block` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     #[deprecated]
     pub fn MIDIDestinationCreateWithBlock(
@@ -2115,6 +2174,10 @@ extern "C-unwind" {
     /// the last time your application created it. (Although you should be prepared for this to
     /// fail in the unlikely event of a collision.) This will permit other clients to retain
     /// persistent references to your virtual source more easily.
+    ///
+    /// # Safety
+    ///
+    /// `out_src` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDISourceCreateWithProtocol(
         client: MIDIClientRef,
@@ -2148,6 +2211,10 @@ extern "C-unwind" {
     /// the last time your application created it. (Although you should be prepared for this to
     /// fail in the unlikely event of a collision.) This will permit other clients to retain
     /// persistent references to your virtual source more easily.
+    ///
+    /// # Safety
+    ///
+    /// `out_src` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDISourceCreate(
@@ -2210,6 +2277,10 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
+    ///
+    /// # Safety
+    ///
+    /// `out_value` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetIntegerProperty(
         obj: MIDIObjectRef,
@@ -2254,6 +2325,10 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
+    ///
+    /// # Safety
+    ///
+    /// `str` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetStringProperty(
         obj: MIDIObjectRef,
@@ -2299,6 +2374,10 @@ extern "C-unwind" {
     /// Parameter `outData`: On successful return, the value of the property.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `out_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetDataProperty(
         obj: MIDIObjectRef,
@@ -2343,6 +2422,10 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
+    ///
+    /// # Safety
+    ///
+    /// `out_dict` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetDictionaryProperty(
         obj: MIDIObjectRef,
@@ -2365,6 +2448,10 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
+    ///
+    /// # Safety
+    ///
+    /// `dict` generics must be of the correct type.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetDictionaryProperty(
         obj: MIDIObjectRef,
@@ -2391,6 +2478,10 @@ extern "C-unwind" {
 /// be CFNumber, CFString, or CFData.  Arrays are arrays of such values.
 ///
 /// Properties which an object inherits from its owning object (if any) are not included.
+///
+/// # Safety
+///
+/// `out_properties` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIObjectGetProperties(
@@ -2439,6 +2530,11 @@ extern "C-unwind" {
     ///
     /// Returns: An OSStatus error code, including kMIDIObjectNotFound if there
     /// is no object with the specified uniqueID.
+    ///
+    /// # Safety
+    ///
+    /// - `out_object` must be a valid pointer or null.
+    /// - `out_object_type` must be a valid pointer or null.
     pub fn MIDIObjectFindByUniqueID(
         in_unique_id: MIDIUniqueID,
         out_object: *mut MIDIObjectRef,
@@ -2461,6 +2557,10 @@ extern "C-unwind" {
     ///
     /// Events with future timestamps are scheduled for future delivery.  CoreMIDI performs
     /// any needed MIDI merging.
+    ///
+    /// # Safety
+    ///
+    /// `evtlist` must be a valid pointer.
     pub fn MIDISendEventList(
         port: MIDIPortRef,
         dest: MIDIEndpointRef,
@@ -2483,6 +2583,10 @@ extern "C-unwind" {
     ///
     /// Events with future timestamps are scheduled for future delivery.  CoreMIDI performs
     /// any needed MIDI merging.
+    ///
+    /// # Safety
+    ///
+    /// `pktlist` must be a valid pointer.
     #[deprecated]
     pub fn MIDISend(
         port: MIDIPortRef,
@@ -2501,6 +2605,10 @@ extern "C-unwind" {
     ///
     ///
     /// request->data must point to a single MIDI system-exclusive message, or portion thereof.
+    ///
+    /// # Safety
+    ///
+    /// `request` must be a valid pointer.
     pub fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus;
 }
 
@@ -2514,6 +2622,10 @@ extern "C-unwind" {
     ///
     ///
     /// request->words must point to a single MIDI system-exclusive message, or portion thereof.
+    ///
+    /// # Safety
+    ///
+    /// `ump_request` must be a valid pointer.
     pub fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
 }
 
@@ -2527,6 +2639,10 @@ extern "C-unwind" {
     ///
     ///
     /// request->data must point to a single MIDI system-exclusive message, or portion thereof.
+    ///
+    /// # Safety
+    ///
+    /// `ump_request` must be a valid pointer.
     pub fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
 }
 
@@ -2547,6 +2663,11 @@ impl MIDIEventPacket {
     ///
     ///
     /// pkt must contain a single MIDI system-exclusive message on groupIndex, or portion thereof.
+    ///
+    /// # Safety
+    ///
+    /// - `pkt` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     #[doc(alias = "MIDIEventPacketSysexBytesForGroup")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -2585,6 +2706,10 @@ extern "C-unwind" {
     ///
     /// Unlike MIDISendEventList(), a timestamp of 0 is not equivalent to "now"; the driver or virtual
     /// source is responsible for putting proper timestamps in the packets.
+    ///
+    /// # Safety
+    ///
+    /// `evtlist` must be a valid pointer.
     pub fn MIDIReceivedEventList(src: MIDIEndpointRef, evtlist: NonNull<MIDIEventList>)
         -> OSStatus;
 }
@@ -2608,6 +2733,10 @@ extern "C-unwind" {
     ///
     /// Unlike MIDISend(), a timestamp of 0 is not equivalent to "now"; the driver or virtual
     /// source is responsible for putting proper timestamps in the packets.
+    ///
+    /// # Safety
+    ///
+    /// `pktlist` must be a valid pointer.
     #[deprecated]
     pub fn MIDIReceived(src: MIDIEndpointRef, pktlist: NonNull<MIDIPacketList>) -> OSStatus;
 }
@@ -2649,6 +2778,10 @@ impl MIDIEventList {
     ///
     ///
     /// Returns: A pointer to the first MIDIEventPacket in the event list.
+    ///
+    /// # Safety
+    ///
+    /// `evtlist` must be a valid pointer.
     #[doc(alias = "MIDIEventListInit")]
     #[inline]
     pub unsafe fn init(
@@ -2696,6 +2829,12 @@ impl MIDIEventList {
     /// smaller event lists.
     ///
     /// Note that events must use the same protocol as was passed to MIDIEventListInit().
+    ///
+    /// # Safety
+    ///
+    /// - `evtlist` must be a valid pointer.
+    /// - `cur_packet` must be a valid pointer.
+    /// - `words` must be a valid pointer.
     #[doc(alias = "MIDIEventListAdd")]
     #[inline]
     pub unsafe fn add(
@@ -2734,6 +2873,10 @@ impl MIDIPacketList {
     ///
     ///
     /// Returns: A pointer to the first MIDIPacket in the packet list.
+    ///
+    /// # Safety
+    ///
+    /// `pktlist` must be a valid pointer.
     #[doc(alias = "MIDIPacketListInit")]
     #[deprecated]
     #[inline]
@@ -2774,6 +2917,12 @@ impl MIDIPacketList {
     ///
     /// The maximum size of a packet list is 65536 bytes. Large sysex messages must be sent in
     /// smaller packet lists.
+    ///
+    /// # Safety
+    ///
+    /// - `pktlist` must be a valid pointer.
+    /// - `cur_packet` must be a valid pointer.
+    /// - `data` must be a valid pointer.
     #[doc(alias = "MIDIPacketListAdd")]
     #[deprecated]
     #[inline]

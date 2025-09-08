@@ -141,6 +141,9 @@ impl CTTelephonyNetworkInfo {
         pub unsafe fn subscriberCellularProvider(&self) -> Option<Retained<CTCarrier>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[deprecated = "Deprecated with no replacement"]
         #[unsafe(method(serviceSubscriberCellularProvidersDidUpdateNotifier))]
         #[unsafe(method_family = none)]
@@ -163,6 +166,9 @@ impl CTTelephonyNetworkInfo {
         );
 
         #[cfg(all(feature = "CTCarrier", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[deprecated]
         #[unsafe(method(subscriberCellularProviderDidUpdateNotifier))]
         #[unsafe(method_family = none)]

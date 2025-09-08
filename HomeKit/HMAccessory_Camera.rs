@@ -20,6 +20,10 @@ impl HMAccessory {
         /// will be nil.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(cameraProfiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraProfiles(&self) -> Option<Retained<NSArray<HMCameraProfile>>>;

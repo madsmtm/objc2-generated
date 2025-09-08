@@ -97,6 +97,10 @@ unsafe impl ConcreteType for CGPattern {
 }
 
 impl CGPattern {
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `callbacks` must be a valid pointer or null.
     #[doc(alias = "CGPatternCreate")]
     #[cfg(feature = "CGContext")]
     #[inline]

@@ -156,6 +156,12 @@ pub type MDS_FUNCS = mds_funcs;
 pub type MDS_FUNCS_PTR = *mut mds_funcs;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `p_caller_guid` must be a valid pointer.
+    /// - `p_memory_functions` must be a valid pointer.
+    /// - `p_dl_functions` must be a valid pointer.
+    /// - `h_mds` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn MDS_Initialize(

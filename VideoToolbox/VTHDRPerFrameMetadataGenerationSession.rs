@@ -80,6 +80,11 @@ impl VTHDRPerFrameMetadataGenerationSession {
     /// Parameter `framesPerSecond`: Value must be greater than 0.0
     ///
     /// Parameter `options`: CFDictionary may contain the key kVTHDRPerFrameMetadataGenerationOptionsHDRFormatsKey.
+    ///
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `hdr_per_frame_metadata_generation_session_out` must be a valid pointer.
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionCreate")]
     #[inline]
     pub unsafe fn create(

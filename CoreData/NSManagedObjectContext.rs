@@ -245,6 +245,9 @@ impl NSManagedObjectContext {
         ) -> Result<Retained<NSManagedObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
+        /// # Safety
+        ///
+        /// `request` generic should be of the correct type.
         #[unsafe(method(executeFetchRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeFetchRequest_error(
@@ -283,6 +286,9 @@ impl NSManagedObjectContext {
         #[unsafe(method_family = none)]
         pub unsafe fn detectConflictsForObject(&self, object: &NSManagedObject);
 
+        /// # Safety
+        ///
+        /// `context` must be a valid pointer or null.
         #[unsafe(method(observeValueForKeyPath:ofObject:change:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn observeValueForKeyPath_ofObject_change_context(
@@ -298,6 +304,9 @@ impl NSManagedObjectContext {
         pub unsafe fn processPendingChanges(&self);
 
         #[cfg(feature = "NSPersistentStore")]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(assignObject:toPersistentStore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assignObject_toPersistentStore(
@@ -426,6 +435,10 @@ impl NSManagedObjectContext {
         pub unsafe fn mergePolicy(&self) -> Retained<AnyObject>;
 
         /// Setter for [`mergePolicy`][Self::mergePolicy].
+        ///
+        /// # Safety
+        ///
+        /// `merge_policy` should be of the correct type.
         #[unsafe(method(setMergePolicy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMergePolicy(&self, merge_policy: &AnyObject);
@@ -445,6 +458,9 @@ impl NSManagedObjectContext {
             notification: &NSNotification,
         );
 
+        /// # Safety
+        ///
+        /// `change_notification_data` generic should be of the correct type.
         #[unsafe(method(mergeChangesFromRemoteContextSave:intoContexts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mergeChangesFromRemoteContextSave_intoContexts(

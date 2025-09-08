@@ -43,6 +43,10 @@ impl cp_view_texture_map {
     ///
     /// Pass the returned index to the ``cp_drawable_get_color_texture``
     /// or ``cp_drawable_get_depth_texture`` function.
+    ///
+    /// # Safety
+    ///
+    /// `view_texture_map` must be a valid pointer.
     #[doc(alias = "cp_view_texture_map_get_texture_index")]
     #[inline]
     pub unsafe fn texture_index(view_texture_map: cp_view_texture_map_t) -> usize {
@@ -71,6 +75,10 @@ impl cp_view_texture_map {
     ///
     /// To request an array-based texture from your layer, configure your layer
     /// with the ``cp_layer_renderer_layout/cp_layer_renderer_layout_dedicated`` layout option.
+    ///
+    /// # Safety
+    ///
+    /// `view_texture_map` must be a valid pointer.
     #[doc(alias = "cp_view_texture_map_get_slice_index")]
     #[inline]
     pub unsafe fn slice_index(view_texture_map: cp_view_texture_map_t) -> usize {
@@ -94,6 +102,10 @@ impl cp_view_texture_map {
     /// the texture bounds and view bounds match. However, if the layer uses a
     /// shared or layered texture, the view’s location or other slice index
     /// might differ.
+    ///
+    /// # Safety
+    ///
+    /// `view_texture_map` must be a valid pointer.
     #[doc(alias = "cp_view_texture_map_get_viewport")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -141,6 +153,10 @@ impl cp_view {
     /// Use the texture map to fetch additional information you need to
     /// draw your content. For example, use it to fetch the rectangle to
     /// use for drawing in the associated texture.
+    ///
+    /// # Safety
+    ///
+    /// `view` must be a valid pointer.
     #[doc(alias = "cp_view_get_view_texture_map")]
     #[inline]
     pub unsafe fn view_texture_map(view: cp_view_t) -> cp_view_texture_map_t {

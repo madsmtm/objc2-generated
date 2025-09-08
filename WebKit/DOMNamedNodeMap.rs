@@ -40,18 +40,27 @@ impl DOMNamedNodeMap {
         pub unsafe fn length(&self) -> c_uint;
 
         #[cfg(feature = "DOMNode")]
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getNamedItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getNamedItem(&self, name: Option<&NSString>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
+        /// # Safety
+        ///
+        /// `node` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setNamedItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNamedItem(&self, node: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(removeNamedItem:))]
         #[unsafe(method_family = none)]
@@ -64,6 +73,10 @@ impl DOMNamedNodeMap {
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `local_name` might not allow `None`.
         #[unsafe(method(getNamedItemNS:localName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getNamedItemNS_localName(
@@ -73,12 +86,19 @@ impl DOMNamedNodeMap {
         ) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
+        /// # Safety
+        ///
+        /// `node` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setNamedItemNS:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNamedItemNS(&self, node: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `local_name` might not allow `None`.
         #[unsafe(method(removeNamedItemNS:localName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeNamedItemNS_localName(
@@ -116,6 +136,10 @@ impl DOMNamedNodeMap {
 impl DOMNamedNodeMap {
     extern_methods!(
         #[cfg(feature = "DOMNode")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `local_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(getNamedItemNS::))]
         #[unsafe(method_family = none)]
@@ -126,6 +150,10 @@ impl DOMNamedNodeMap {
         ) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
+        /// # Safety
+        ///
+        /// - `namespace_uri` might not allow `None`.
+        /// - `local_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(removeNamedItemNS::))]
         #[unsafe(method_family = none)]

@@ -214,6 +214,11 @@ extern "C-unwind" {
     /// Parameter `outDevice`: On successful return, points to the newly-created device.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `owner` must be a valid pointer or null.
+    /// - `out_device` must be a valid pointer.
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIDeviceCreate(
         owner: MIDIDriverRef,
@@ -315,6 +320,11 @@ extern "C-unwind" {
     /// Parameter `ref2`: The second refCon.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `ref1` must be a valid pointer or null.
+    /// - `ref2` must be a valid pointer or null.
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIEndpointSetRefCons(
         endpt: MIDIEndpointRef,
@@ -334,6 +344,11 @@ extern "C-unwind" {
     /// Parameter `ref2`: On exit, the second refCon.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `ref1` must be a valid pointer or null.
+    /// - `ref2` must be a valid pointer or null.
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIEndpointGetRefCons(
         endpt: MIDIEndpointRef,
@@ -381,6 +396,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The requested device list.
+    ///
+    /// # Safety
+    ///
+    /// `driver` must be a valid pointer.
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIGetDriverDeviceList(driver: MIDIDriverRef) -> MIDIDeviceListRef;
 }
@@ -396,6 +415,10 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: An OSStatus result code.
+///
+/// # Safety
+///
+/// `driver` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIDriverEnableMonitoring(
     driver: MIDIDriverRef,

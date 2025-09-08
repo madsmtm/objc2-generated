@@ -184,23 +184,39 @@ impl UIFontDescriptor {
         ) -> Option<Retained<Self>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(postscriptName))]
         #[unsafe(method_family = none)]
         pub unsafe fn postscriptName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(pointSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(matrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn matrix(&self) -> CGAffineTransform;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(symbolicTraits))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolicTraits(&self) -> UIFontDescriptorSymbolicTraits;
@@ -213,6 +229,10 @@ impl UIFontDescriptor {
         ) -> Option<Retained<AnyObject>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(fontAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontAttributes(
@@ -226,6 +246,9 @@ impl UIFontDescriptor {
             mandatory_keys: Option<&NSSet<UIFontDescriptorAttributeName>>,
         ) -> Retained<NSArray<UIFontDescriptor>>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(fontDescriptorWithFontAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontDescriptorWithFontAttributes(
@@ -262,6 +285,9 @@ impl UIFontDescriptor {
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<UIFontDescriptor>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(initWithFontAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFontAttributes(
@@ -269,6 +295,9 @@ impl UIFontDescriptor {
             attributes: &NSDictionary<UIFontDescriptorAttributeName, AnyObject>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(fontDescriptorByAddingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontDescriptorByAddingAttributes(

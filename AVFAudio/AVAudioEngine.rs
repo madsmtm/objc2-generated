@@ -511,6 +511,10 @@ impl AVAudioEngine {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`musicSequence`][Self::musicSequence].
+        ///
+        /// # Safety
+        ///
+        /// `music_sequence` must be a valid pointer or null.
         #[unsafe(method(setMusicSequence:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMusicSequence(&self, music_sequence: MusicSequence);
@@ -698,6 +702,11 @@ impl AVAudioEngine {
         /// When rendering in `AVAudioEngineManualRenderingModeOffline`, either this block based render
         /// call or    `renderOffline:toBuffer:error:` ObjC method can be used.
         /// All the rules outlined in `renderOffline:toBuffer:error:` are applicable here as well.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer or null.
         #[unsafe(method(manualRenderingBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingBlock(&self) -> AVAudioEngineManualRenderingBlock;
@@ -777,6 +786,10 @@ impl AVAudioEngine {
         ///
         /// Any client installed block on the source node's audio unit `AUMIDIOutputEventBlock`
         /// will be overwritten when making the MIDI connection.
+        ///
+        /// # Safety
+        ///
+        /// `tap_block` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(connectMIDI:to:format:block:))]
         #[unsafe(method_family = none)]
@@ -825,6 +838,10 @@ impl AVAudioEngine {
         ///
         /// Any client installed block on the source node's audio unit `AUMIDIOutputEventBlock`
         /// will be overwritten when making the MIDI connection.
+        ///
+        /// # Safety
+        ///
+        /// `tap_block` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(connectMIDI:toNodes:format:block:))]
         #[unsafe(method_family = none)]

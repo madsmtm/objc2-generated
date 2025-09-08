@@ -12,6 +12,9 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustomlayer?language=objc)
     pub unsafe trait MLCustomLayer {
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(initWithParameterDictionary:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithParameterDictionary_error(

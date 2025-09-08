@@ -132,6 +132,10 @@ impl NSSliderAccessoryBehavior {
         ) -> Retained<NSSliderAccessoryBehavior>;
 
         /// The action is sent to the target on interaction. The optional first parameter is an NSSliderAccessory.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(behaviorWithTarget:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn behaviorWithTarget_action(

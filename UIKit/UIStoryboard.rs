@@ -51,6 +51,9 @@ impl UIStoryboard {
             feature = "UIViewController",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer or null.
         #[unsafe(method(instantiateInitialViewControllerWithCreator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateInitialViewControllerWithCreator(
@@ -72,6 +75,9 @@ impl UIStoryboard {
             feature = "UIViewController",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer or null.
         #[unsafe(method(instantiateViewControllerWithIdentifier:creator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateViewControllerWithIdentifier_creator(

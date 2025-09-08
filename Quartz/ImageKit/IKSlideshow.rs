@@ -37,6 +37,10 @@ extern_protocol!(
         ) -> Option<Retained<NSString>>;
 
         /// should the export button be enabled for a given item at index?
+        ///
+        /// # Safety
+        ///
+        /// `application_bundle_identifier` might not allow `None`.
         #[optional]
         #[unsafe(method(canExportSlideshowItemAtIndex:toApplication:))]
         #[unsafe(method_family = none)]
@@ -99,6 +103,13 @@ impl IKSlideshow {
         pub unsafe fn sharedSlideshow() -> Option<Retained<IKSlideshow>>;
 
         /// start the slideshow (slideshowOptions can be NULL).
+        ///
+        /// # Safety
+        ///
+        /// - `data_source` might not allow `None`.
+        /// - `slideshow_mode` might not allow `None`.
+        /// - `slideshow_options` generic should be of the correct type.
+        /// - `slideshow_options` might not allow `None`.
         #[unsafe(method(runSlideshowWithDataSource:inMode:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runSlideshowWithDataSource_inMode_options(
@@ -109,6 +120,11 @@ impl IKSlideshow {
         );
 
         /// stop the slideshow.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(stopSlideshow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopSlideshow(&self, sender: Option<&AnyObject>);
@@ -129,6 +145,10 @@ impl IKSlideshow {
         pub unsafe fn indexOfCurrentSlideshowItem(&self) -> NSUInteger;
 
         /// Is exporting to a given application possible (application installed?, right version?, ...).
+        ///
+        /// # Safety
+        ///
+        /// `application_bundle_identifier` might not allow `None`.
         #[unsafe(method(canExportToApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canExportToApplication(
@@ -138,6 +158,12 @@ impl IKSlideshow {
         /// export an item to the given application.
         ///
         /// The item can be either: NSImage, NSString, NSURL, or a NSArray of NSImage / NSString / NSURL.
+        ///
+        /// # Safety
+        ///
+        /// - `item` should be of the correct type.
+        /// - `item` might not allow `None`.
+        /// - `application_bundle_identifier` might not allow `None`.
         #[unsafe(method(exportSlideshowItem:toApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportSlideshowItem_toApplication(

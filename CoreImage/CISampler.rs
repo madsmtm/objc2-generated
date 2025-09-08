@@ -35,6 +35,9 @@ impl CISampler {
         pub unsafe fn samplerWithImage(im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(samplerWithImage:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplerWithImage_options(
@@ -48,6 +51,9 @@ impl CISampler {
         pub unsafe fn initWithImage(this: Allocated<Self>, im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_options(

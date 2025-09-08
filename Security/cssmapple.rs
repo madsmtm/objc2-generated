@@ -1375,11 +1375,18 @@ unsafe impl RefEncode for CSSM_APPLE_CL_CSR_REQUEST {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `how` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     pub fn cssmPerror(how: *const c_char, error: CSSM_RETURN);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `oid` must be a valid pointer.
+    /// - `alg` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     pub fn cssmOidToAlg(oid: *const SecAsn1Oid, alg: *mut CSSM_ALGORITHMS) -> bool;
 }

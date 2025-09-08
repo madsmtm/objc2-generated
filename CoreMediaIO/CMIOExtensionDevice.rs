@@ -36,6 +36,10 @@ impl CMIOExtensionDeviceProperties {
         /// Parameter `propertiesDictionary`: The dictionary of properties.
         ///
         /// Returns: A CMIOExtensionDeviceProperties instance.
+        ///
+        /// # Safety
+        ///
+        /// `properties_dictionary` generic generic should be of the correct type.
         #[unsafe(method(devicePropertiesWithDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn devicePropertiesWithDictionary(
@@ -48,6 +52,10 @@ impl CMIOExtensionDeviceProperties {
         /// Parameter `propertiesDictionary`: The dictionary of properties.
         ///
         /// Returns: A CMIOExtensionDeviceProperties instance.
+        ///
+        /// # Safety
+        ///
+        /// `properties_dictionary` generic generic should be of the correct type.
         #[unsafe(method(initWithDictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary(
@@ -116,6 +124,10 @@ impl CMIOExtensionDeviceProperties {
         /// Parameter `property`: The property key.
         ///
         /// Setting nil to propertyState does remove the property.
+        ///
+        /// # Safety
+        ///
+        /// `property_state` generic should be of the correct type.
         #[unsafe(method(setPropertyState:forProperty:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertyState_forProperty(
@@ -138,6 +150,10 @@ impl CMIOExtensionDeviceProperties {
         /// Setter for [`propertiesDictionary`][Self::propertiesDictionary].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `properties_dictionary` generic generic should be of the correct type.
         #[unsafe(method(setPropertiesDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesDictionary(
@@ -355,6 +371,10 @@ impl CMIOExtensionDevice {
         /// Notify client(s) of device properties changes.
         ///
         /// Parameter `propertyStates`: The dictionary of properties having changed.
+        ///
+        /// # Safety
+        ///
+        /// `property_states` generic generic should be of the correct type.
         #[unsafe(method(notifyPropertiesChanged:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notifyPropertiesChanged(

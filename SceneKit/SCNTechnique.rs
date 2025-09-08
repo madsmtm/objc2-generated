@@ -375,6 +375,10 @@ impl SCNTechnique {
         /// <metalLibraryName
         /// >
         /// An optional metal library name to load metal programs from. The metallib file is located from the default or specified bundle using NSBundle pathForResource:ofType:.
+        ///
+        /// # Safety
+        ///
+        /// `dictionary` generic should be of the correct type.
         #[unsafe(method(techniqueWithDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn techniqueWithDictionary(
@@ -405,6 +409,10 @@ impl SCNTechnique {
         /// Parameter `block`: The block to call to bind the specified symbol.
         ///
         /// The block will be called at every frame for every pass referencing the specified symbol.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer or null.
         #[unsafe(method(handleBindingOfSymbol:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleBindingOfSymbol_usingBlock(
@@ -420,6 +428,9 @@ impl SCNTechnique {
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `key` should be of the correct type.
         #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(
@@ -427,6 +438,9 @@ impl SCNTechnique {
             key: &AnyObject,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(

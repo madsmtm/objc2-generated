@@ -1023,6 +1023,10 @@ impl MPSCNNNeuronPReLU {
         /// This usually corresponds to number of output channels in convolution layer
         ///
         /// Returns: A valid MPSCNNNeuronPReLU object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(initWithDevice:a:count:))]
         #[unsafe(method_family = init)]

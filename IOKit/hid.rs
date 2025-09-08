@@ -1319,6 +1319,10 @@ impl IOHIDQueue {
     ///
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer.
     #[doc(alias = "IOHIDQueueSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1403,6 +1407,11 @@ impl IOHIDQueue {
     /// placed on the queue.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDQueueRegisterValueAvailableCallback")]
     #[inline]
     pub unsafe fn register_value_available_callback(
@@ -1645,6 +1654,10 @@ impl IOHIDDevice {
     /// Parameter `property`: CFTypeRef containg the property to be set.
     ///
     /// Returns: Returns TRUE if successful.
+    ///
+    /// # Safety
+    ///
+    /// `property` should be of the correct type.
     #[doc(alias = "IOHIDDeviceSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -1674,6 +1687,10 @@ impl IOHIDDevice {
     /// Parameter `options`: Reserved for future use.
     ///
     /// Returns: Returns CFArrayRef containing multiple IOHIDElement object.
+    ///
+    /// # Safety
+    ///
+    /// `matching` generics must be of the correct type.
     #[doc(alias = "IOHIDDeviceCopyMatchingElements")]
     #[inline]
     pub unsafe fn matching_elements(
@@ -1785,6 +1802,10 @@ impl IOHIDDevice {
     /// Parameter `device`: Reference to an IOHIDDevice.
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1856,6 +1877,11 @@ impl IOHIDDevice {
     /// Parameter `callback`: Pointer to a callback method of type IOHIDCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterRemovalCallback")]
     #[inline]
     pub unsafe fn register_removal_callback(&self, callback: IOHIDCallback, context: *mut c_void) {
@@ -1884,6 +1910,11 @@ impl IOHIDDevice {
     /// Parameter `callback`: Pointer to a callback method of type IOHIDValueCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterInputValueCallback")]
     #[inline]
     pub unsafe fn register_input_value_callback(
@@ -1919,6 +1950,12 @@ impl IOHIDDevice {
     /// IOHIDReportCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `report` must be a valid pointer.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterInputReportCallback")]
     #[inline]
     pub unsafe fn register_input_report_callback(
@@ -1960,6 +1997,12 @@ impl IOHIDDevice {
     /// IOHIDReportWithTimeStampCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `report` must be a valid pointer.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceRegisterInputReportWithTimeStampCallback")]
     #[inline]
     pub unsafe fn register_input_report_with_time_stamp_callback(
@@ -2005,6 +2048,10 @@ impl IOHIDDevice {
     /// Parameter `device`: Reference to an IOHIDDevice.
     ///
     /// Parameter `matching`: CFDictionaryRef containg device matching criteria.
+    ///
+    /// # Safety
+    ///
+    /// `matching` generics must be of the correct type.
     #[doc(alias = "IOHIDDeviceSetInputValueMatching")]
     #[inline]
     pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
@@ -2030,6 +2077,10 @@ impl IOHIDDevice {
     ///
     /// Parameter `multiple`: CFArrayRef containing multiple CFDictionaryRef objects
     /// containg input element matching criteria.
+    ///
+    /// # Safety
+    ///
+    /// `multiple` generic must be of the correct type.
     #[doc(alias = "IOHIDDeviceSetInputValueMatchingMultiple")]
     #[inline]
     pub unsafe fn set_input_value_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -2082,6 +2133,10 @@ impl IOHIDDevice {
     /// value is IOHIDValueRef.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// `multiple` generics must be of the correct type.
     #[doc(alias = "IOHIDDeviceSetValueMultiple")]
     #[inline]
     pub unsafe fn set_value_multiple(&self, multiple: &CFDictionary) -> IOReturn {
@@ -2115,6 +2170,11 @@ impl IOHIDDevice {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceSetValueWithCallback")]
     #[inline]
     pub unsafe fn set_value_with_callback(
@@ -2158,6 +2218,12 @@ impl IOHIDDevice {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `multiple` generics must be of the correct type.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceSetValueMultipleWithCallback")]
     #[inline]
     pub unsafe fn set_value_multiple_with_callback(
@@ -2196,6 +2262,10 @@ impl IOHIDDevice {
     /// Parameter `pValue`: Pointer to IOHIDValueRef to be obtained.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// `p_value` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetValue")]
     #[inline]
     pub unsafe fn value(
@@ -2254,6 +2324,10 @@ impl IOHIDDevice {
     /// Parameter `options`: (see IOHIDDeviceGetValueOptions).
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// `p_value` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetValueWithOptions")]
     #[inline]
     pub unsafe fn value_with_options(
@@ -2289,6 +2363,11 @@ impl IOHIDDevice {
     /// provided elements and the values are the requested values.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `elements` generic must be of the correct type.
+    /// - `p_multiple` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceCopyValueMultiple")]
     #[inline]
     pub unsafe fn copy_value_multiple(
@@ -2327,6 +2406,12 @@ impl IOHIDDevice {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `p_value` must be a valid pointer.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceGetValueWithCallback")]
     #[inline]
     pub unsafe fn value_with_callback(
@@ -2374,6 +2459,13 @@ impl IOHIDDevice {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `elements` generic must be of the correct type.
+    /// - `p_multiple` must be a valid pointer or null.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceCopyValueMultipleWithCallback")]
     #[inline]
     pub unsafe fn copy_value_multiple_with_callback(
@@ -2420,6 +2512,10 @@ impl IOHIDDevice {
     /// Parameter `reportLength`: The length of the report to be sent to the device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// `report` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceSetReport")]
     #[inline]
     pub unsafe fn set_report(
@@ -2466,6 +2562,12 @@ impl IOHIDDevice {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `report` must be a valid pointer.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceSetReportWithCallback")]
     #[inline]
     pub unsafe fn set_report_with_callback(
@@ -2526,6 +2628,11 @@ impl IOHIDDevice {
     /// report.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `report` must be a valid pointer.
+    /// - `p_report_length` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetReport")]
     #[inline]
     pub unsafe fn report(
@@ -2575,6 +2682,13 @@ impl IOHIDDevice {
     /// Parameter `context`: Pointer to data to be passed to the callback.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `report` must be a valid pointer.
+    /// - `p_report_length` must be a valid pointer.
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "IOHIDDeviceGetReportWithCallback")]
     #[inline]
     pub unsafe fn report_with_callback(
@@ -2636,6 +2750,10 @@ impl IOHIDElement {
     /// Parameter `dictionary`: dictionary containing values in which to create element.
     ///
     /// Returns: Returns a new IOHIDElementRef.
+    ///
+    /// # Safety
+    ///
+    /// `dictionary` generics must be of the correct type.
     #[doc(alias = "IOHIDElementCreateWithDictionary")]
     #[inline]
     pub unsafe fn with_dictionary(
@@ -3158,6 +3276,10 @@ impl IOHIDElement {
     /// Parameter `key`: The key to be used when querying the element.
     ///
     /// Returns: Returns TRUE if successful.
+    ///
+    /// # Safety
+    ///
+    /// `property` should be of the correct type.
     #[doc(alias = "IOHIDElementSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -4049,6 +4171,10 @@ impl IOHIDManager {
     /// Parameter `value`: CFTypeRef containing the property value to be set.
     ///
     /// Returns: Returns TRUE if successful.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "IOHIDManagerSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, value: &CFType) -> bool {
@@ -4168,6 +4294,10 @@ impl IOHIDManager {
     ///
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer.
     #[doc(alias = "IOHIDManagerSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -4255,6 +4385,10 @@ impl IOHIDManager {
     /// Parameter `manager`: Reference to an IOHIDManager.
     ///
     /// Parameter `matching`: CFDictionaryRef containg device matching criteria.
+    ///
+    /// # Safety
+    ///
+    /// `matching` generics must be of the correct type.
     #[doc(alias = "IOHIDManagerSetDeviceMatching")]
     #[inline]
     pub unsafe fn set_device_matching(&self, matching: Option<&CFDictionary>) {
@@ -4279,6 +4413,10 @@ impl IOHIDManager {
     ///
     /// Parameter `multiple`: CFArrayRef containing multiple CFDictionaryRef objects
     /// containg device matching criteria.
+    ///
+    /// # Safety
+    ///
+    /// `multiple` generic must be of the correct type.
     #[doc(alias = "IOHIDManagerSetDeviceMatchingMultiple")]
     #[inline]
     pub unsafe fn set_device_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -4320,6 +4458,11 @@ impl IOHIDManager {
     /// IOHIDDeviceCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterDeviceMatchingCallback")]
     #[inline]
     pub unsafe fn register_device_matching_callback(
@@ -4349,6 +4492,11 @@ impl IOHIDManager {
     /// IOHIDDeviceCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterDeviceRemovalCallback")]
     #[inline]
     pub unsafe fn register_device_removal_callback(
@@ -4377,6 +4525,11 @@ impl IOHIDManager {
     /// Parameter `callback`: Pointer to a callback method of type IOHIDReportCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterInputReportCallback")]
     #[inline]
     pub unsafe fn register_input_report_callback(
@@ -4406,6 +4559,11 @@ impl IOHIDManager {
     /// IOHIDReportWithTimeStampCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterInputReportWithTimeStampCallback")]
     #[inline]
     pub unsafe fn register_input_report_with_time_stamp_callback(
@@ -4436,6 +4594,11 @@ impl IOHIDManager {
     /// Parameter `callback`: Pointer to a callback method of type IOHIDValueCallback.
     ///
     /// Parameter `context`: Pointer to data to be passed to the callback.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDManagerRegisterInputValueCallback")]
     #[inline]
     pub unsafe fn register_input_value_callback(
@@ -4469,6 +4632,10 @@ impl IOHIDManager {
     /// Parameter `manager`: Reference to an IOHIDManager.
     ///
     /// Parameter `matching`: CFDictionaryRef containg device matching criteria.
+    ///
+    /// # Safety
+    ///
+    /// `matching` generics must be of the correct type.
     #[doc(alias = "IOHIDManagerSetInputValueMatching")]
     #[inline]
     pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
@@ -4494,6 +4661,10 @@ impl IOHIDManager {
     ///
     /// Parameter `multiple`: CFArrayRef containing multiple CFDictionaryRef objects
     /// containing input element matching criteria.
+    ///
+    /// # Safety
+    ///
+    /// `multiple` generic must be of the correct type.
     #[doc(alias = "IOHIDManagerSetInputValueMatchingMultiple")]
     #[inline]
     pub unsafe fn set_input_value_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -9358,6 +9529,10 @@ impl IOHIDValue {
     /// Parameter `length`: Number of bytes in the passed buffer.
     ///
     /// Returns: Returns a reference to a new IOHIDValueRef.
+    ///
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "IOHIDValueCreateWithBytes")]
     #[inline]
     pub unsafe fn with_bytes(
@@ -9401,6 +9576,10 @@ impl IOHIDValue {
     /// Parameter `length`: Number of bytes in the passed buffer.
     ///
     /// Returns: Returns a reference to a new IOHIDValueRef.
+    ///
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "IOHIDValueCreateWithBytesNoCopy")]
     #[inline]
     pub unsafe fn with_bytes_no_copy(
@@ -9921,6 +10100,11 @@ impl IOHIDTransaction {
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if
     /// unsuccessful.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDTransactionCommitWithCallback")]
     #[inline]
     pub unsafe fn commit_with_callback(

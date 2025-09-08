@@ -32,6 +32,9 @@ impl SKTextureAtlas {
         #[unsafe(method_family = none)]
         pub unsafe fn atlasNamed(name: &NSString) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(atlasWithDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn atlasWithDictionary(

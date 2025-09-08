@@ -8,6 +8,9 @@ use crate::*;
 
 #[cfg(feature = "WKApplication")]
 impl WKApplication {
+    /// # Safety
+    ///
+    /// `argv` must be a valid pointer.
     #[doc(alias = "WKApplicationMain")]
     #[inline]
     pub(crate) unsafe fn __main(

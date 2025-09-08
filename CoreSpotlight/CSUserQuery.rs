@@ -174,6 +174,9 @@ impl CSUserQuery {
         pub unsafe fn foundSuggestionCount(&self) -> NSInteger;
 
         #[cfg(all(feature = "CSSuggestion", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(foundSuggestionsHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn foundSuggestionsHandler(

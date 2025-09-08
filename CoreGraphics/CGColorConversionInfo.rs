@@ -78,6 +78,9 @@ impl CGColorConversionInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGColorConversionInfoCreateWithOptions")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -97,6 +100,10 @@ impl CGColorConversionInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "CGColorConversionInfoCreateForToneMapping")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
     #[inline]
@@ -167,6 +174,11 @@ unsafe impl RefEncode for CGColorBufferFormat {
 }
 
 impl CGColorConversionInfo {
+    /// # Safety
+    ///
+    /// - `dst_data` must be a valid pointer.
+    /// - `src_data` must be a valid pointer.
+    /// - `options` generics must be of the correct type.
     #[doc(alias = "CGColorConversionInfoConvertData")]
     #[cfg(feature = "CGImage")]
     #[inline]

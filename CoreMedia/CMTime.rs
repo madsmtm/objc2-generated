@@ -560,6 +560,10 @@ impl CMTime {
     /// have the requisite keyed values, an invalid time is returned.
     ///
     /// Returns: The created CMTime.
+    ///
+    /// # Safety
+    ///
+    /// `dictionary_representation` generics must be of the correct type.
     #[doc(alias = "CMTimeMakeFromDictionary")]
     #[inline]
     pub unsafe fn from_dictionary(dictionary_representation: Option<&CFDictionary>) -> CMTime {

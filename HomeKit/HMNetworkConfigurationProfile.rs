@@ -31,6 +31,10 @@ impl HMNetworkConfigurationProfile {
         /// The delegate of the receiver.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -40,6 +44,10 @@ impl HMNetworkConfigurationProfile {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -50,6 +58,10 @@ impl HMNetworkConfigurationProfile {
         /// Indicates if the associated accessory's access to the network is restricted.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isNetworkAccessRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessRestricted(&self) -> bool;

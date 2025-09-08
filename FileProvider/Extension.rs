@@ -115,6 +115,10 @@ impl NSFileProviderExtension {
         /// consult the placeholder before consulting your app extension.
         ///
         /// Metadata contains NSURLNameKey, NSURLFileSizeKey, NSURLIsPackageKey.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated = "Use the corresponding method on NSFileProviderManager instead"]
         #[unsafe(method(writePlaceholderAtURL:withMetadata:error:_))]
         #[unsafe(method_family = none)]
@@ -956,6 +960,11 @@ impl NSFileProviderManager {
         ///
         /// If a drive is eligible, unsupportedReason will be empty (0). Otherwise it will contain the list of identified
         /// conditions that currently prevent this drive from being used to store FP domains.
+        ///
+        /// # Safety
+        ///
+        /// - `eligible` must be a valid pointer.
+        /// - `unsupported_reason` must be a valid pointer or null.
         #[unsafe(method(checkDomainsCanBeStored:onVolumeAtURL:unsupportedReason:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkDomainsCanBeStored_onVolumeAtURL_unsupportedReason_error(

@@ -463,6 +463,11 @@ impl SCNAnimation {
 
         #[cfg(feature = "block2")]
         /// Called when the animation starts.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(animationDidStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationDidStart(&self) -> SCNAnimationDidStartBlock;
@@ -471,6 +476,10 @@ impl SCNAnimation {
         /// Setter for [`animationDidStart`][Self::animationDidStart].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `animation_did_start` must be a valid pointer or null.
         #[unsafe(method(setAnimationDidStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDidStart(&self, animation_did_start: SCNAnimationDidStartBlock);
@@ -479,6 +488,11 @@ impl SCNAnimation {
         /// Called when the animation either completes its active duration or
         /// is removed from the object it is attached to (i.e. the layer). The 'completed' argument of SCNAnimationDidStopBlock
         /// is true if the animation reached the end of its active duration without being removed.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(animationDidStop))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationDidStop(&self) -> SCNAnimationDidStopBlock;
@@ -487,6 +501,10 @@ impl SCNAnimation {
         /// Setter for [`animationDidStop`][Self::animationDidStop].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `animation_did_stop` must be a valid pointer or null.
         #[unsafe(method(setAnimationDidStop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDidStop(&self, animation_did_stop: SCNAnimationDidStopBlock);
@@ -695,6 +713,10 @@ impl SCNAnimationEvent {
         /// Parameter `eventBlock`: The block to call when the event is triggered.
         ///
         /// "time" is relative to animation duration and therefor it has to be a value in the range [0,1].
+        ///
+        /// # Safety
+        ///
+        /// `event_block` must be a valid pointer.
         #[unsafe(method(animationEventWithKeyTime:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationEventWithKeyTime_block(

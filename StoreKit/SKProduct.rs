@@ -54,12 +54,20 @@ extern_conformance!(
 impl SKProductSubscriptionPeriod {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.SubscriptionPeriod"]
         #[unsafe(method(numberOfUnits))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfUnits(&self) -> NSUInteger;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.SubscriptionPeriod"]
         #[unsafe(method(unit))]
         #[unsafe(method_family = none)]
@@ -99,78 +107,130 @@ extern_conformance!(
 impl SKProduct {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.description"]
         #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.displayName"]
         #[unsafe(method(localizedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.displayPrice"]
         #[unsafe(method(price))]
         #[unsafe(method_family = none)]
         pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.displayPrice"]
         #[unsafe(method(priceLocale))]
         #[unsafe(method_family = none)]
         pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.id"]
         #[unsafe(method(productIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Hosted content is no longer supported"]
         #[unsafe(method(isDownloadable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDownloadable(&self) -> bool;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(downloadable))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadable(&self) -> bool;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.isFamilyShareable"]
         #[unsafe(method(isFamilyShareable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFamilyShareable(&self) -> bool;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(contentLengths))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentLengths(&self) -> Retained<NSArray<NSNumber>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Hosted content is no longer supported"]
         #[unsafe(method(downloadContentLengths))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadContentLengths(&self) -> Retained<NSArray<NSNumber>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(contentVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentVersion(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Hosted content is no longer supported"]
         #[unsafe(method(downloadContentVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadContentVersion(&self) -> Retained<NSString>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.subscription.subscriptionPeriod"]
         #[unsafe(method(subscriptionPeriod))]
         #[unsafe(method_family = none)]
@@ -178,12 +238,20 @@ impl SKProduct {
 
         #[cfg(feature = "SKProductDiscount")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.subscription.introductionaryOffer"]
         #[unsafe(method(introductoryPrice))]
         #[unsafe(method_family = none)]
         pub unsafe fn introductoryPrice(&self) -> Option<Retained<SKProductDiscount>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.subscription.subscriptionGroupID"]
         #[unsafe(method(subscriptionGroupIdentifier))]
         #[unsafe(method_family = none)]
@@ -191,6 +259,10 @@ impl SKProduct {
 
         #[cfg(feature = "SKProductDiscount")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use Product.subscription.promotionalOffers"]
         #[unsafe(method(discounts))]
         #[unsafe(method_family = none)]

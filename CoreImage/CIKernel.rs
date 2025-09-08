@@ -69,6 +69,9 @@ impl CIKernel {
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// # Safety
+        ///
+        /// `method` must be a valid selector.
         #[unsafe(method(setROISelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setROISelector(&self, method: Sel);
@@ -78,6 +81,10 @@ impl CIKernel {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// - `callback` must be a valid pointer.
+        /// - `args` generic should be of the correct type.
         #[unsafe(method(applyWithExtent:roiCallback:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_roiCallback_arguments(
@@ -121,6 +128,9 @@ impl CIColorKernel {
         pub unsafe fn kernelWithString(string: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `args` generic should be of the correct type.
         #[unsafe(method(applyWithExtent:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_arguments(
@@ -188,6 +198,10 @@ impl CIWarpKernel {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// - `callback` must be a valid pointer.
+        /// - `args` generic should be of the correct type.
         #[unsafe(method(applyWithExtent:roiCallback:inputImage:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_roiCallback_inputImage_arguments(

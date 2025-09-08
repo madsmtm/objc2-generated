@@ -43,6 +43,10 @@ impl AVAssetVariant {
         /// If it is not declared, the value will be negative.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(peakBitRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn peakBitRate(&self) -> c_double;
@@ -50,6 +54,10 @@ impl AVAssetVariant {
         /// If it is not declared, the value will be negative.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(averageBitRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageBitRate(&self) -> c_double;
@@ -57,6 +65,10 @@ impl AVAssetVariant {
         /// Provides  variant's video rendition attributes. If no video attributes are declared, it will be nil.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(videoAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoAttributes(&self) -> Option<Retained<AVAssetVariantVideoAttributes>>;
@@ -64,6 +76,10 @@ impl AVAssetVariant {
         /// Provides  variant's audio rendition attributes. If no audio attributes are declared, it will be nil.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(audioAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioAttributes(&self) -> Option<Retained<AVAssetVariantAudioAttributes>>;
@@ -160,6 +176,10 @@ impl AVAssetVariantVideoLayoutAttributes {
         /// In case of monoscopic content, the value will be `kCMStereoViewComponent_None` and incase of stereoscopic content, the value will be `(kCMStereoViewComponent_LeftEye | kCMStereoViewComponent_RightEye)`.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stereoViewComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn stereoViewComponents(&self) -> CMStereoViewComponents;
@@ -198,6 +218,10 @@ impl AVAssetVariantAudioAttributes {
         /// Provides an array of audio formats present in the variant's renditions if any are declared. Each value in the array is a NSNumber representation of AudioFormatID.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(formatIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatIDs(&self) -> Retained<NSArray<NSNumber>>;
@@ -241,6 +265,10 @@ impl AVAssetVariantAudioRenditionSpecificAttributes {
         /// A channel count greater than two indicates that the variant offers a rich multichannel authoring.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> NSInteger;
@@ -250,6 +278,10 @@ impl AVAssetVariantAudioRenditionSpecificAttributes {
         /// A binaural variant may originate from a direct binaural recording or from the processing of a multichannel audio source.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isBinaural))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBinaural(&self) -> bool;
@@ -259,6 +291,10 @@ impl AVAssetVariantAudioRenditionSpecificAttributes {
         /// If a variant audio redition is immersive it is eligible for rendering either to headphones or speakers.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isImmersive))]
         #[unsafe(method_family = none)]
         pub unsafe fn isImmersive(&self) -> bool;
@@ -268,6 +304,10 @@ impl AVAssetVariantAudioRenditionSpecificAttributes {
         /// If one or more multichannel variants are also provided, the dowmix is assumed to be compatible in its internal timing and other attributes with those variants. Typically this is because it has been derived from the same source. A downmix can be used as a suitable substitute for a multichannel variant under some conditions.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isDownmix))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDownmix(&self) -> bool;

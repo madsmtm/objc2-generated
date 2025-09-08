@@ -62,6 +62,12 @@ impl VTRAWProcessingSession {
     /// Parameter `processingSessionOut`: Points to a variable to receive the new RAW processing session.
     /// When you are done with the session, call VTRAWProcessingSessionInvalidate
     /// to tear it down and then CFRelease to release your object reference.
+    ///
+    /// # Safety
+    ///
+    /// - `output_pixel_buffer_attributes` generics must be of the correct type.
+    /// - `processing_session_options` generics must be of the correct type.
+    /// - `processing_session_out` must be a valid pointer.
     #[doc(alias = "VTRAWProcessingSessionCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -132,6 +138,10 @@ impl VTRAWProcessingSession {
     ///
     /// Parameter `parameterChangeHandler`: A VTRAWProcessingParameterChangeHandler block which will be called when the set of processing parameters changes, or the value of a parameter changes without the client explicitly requesting it.
     /// Setting this to NULL removes the current handler.
+    ///
+    /// # Safety
+    ///
+    /// `parameter_change_handler` must be a valid pointer or null.
     #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHander")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -181,6 +191,11 @@ impl VTRAWProcessingSession {
     /// No keys currently.  Pass NULL.
     ///
     /// Parameter `outputHandler`: A VTRAWProcessingOutputHandler block which will be called once when processing is complete.
+    ///
+    /// # Safety
+    ///
+    /// - `frame_options` generics must be of the correct type.
+    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
@@ -235,6 +250,10 @@ impl VTRAWProcessingSession {
     /// Parameter `session`: The RAW processing session.
     ///
     /// Parameter `outParameterArray`: Pointer for receiving the RAW Processing parameter array..
+    ///
+    /// # Safety
+    ///
+    /// `out_parameter_array` must be a valid pointer.
     #[doc(alias = "VTRAWProcessingSessionCopyProcessingParameters")]
     #[inline]
     pub unsafe fn copy_processing_parameters(
@@ -269,6 +288,10 @@ impl VTRAWProcessingSession {
     ///
     /// Returns: Returns an error if any of the provided parameters are invalid, disabled or outside of the declared valid range.
     /// None of the provided parameters will be set on the processor if an error is returned.
+    ///
+    /// # Safety
+    ///
+    /// `processing_parameters` generics must be of the correct type.
     #[doc(alias = "VTRAWProcessingSessionSetProcessingParameters")]
     #[inline]
     pub unsafe fn set_processing_parameters(

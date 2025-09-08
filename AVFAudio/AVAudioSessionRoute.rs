@@ -115,6 +115,10 @@ impl AVAudioSessionChannelDescription {
         /// A human-readable name for the channel.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelName))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelName(&self) -> Retained<NSString>;
@@ -122,6 +126,10 @@ impl AVAudioSessionChannelDescription {
         /// The UID (unique identifier) of the port owning the channel.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(owningPortUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn owningPortUID(&self) -> Retained<NSString>;
@@ -129,6 +137,10 @@ impl AVAudioSessionChannelDescription {
         /// The index of this channel in its owning port's array of channels.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelNumber(&self) -> NSUInteger;
@@ -137,6 +149,10 @@ impl AVAudioSessionChannelDescription {
         /// Description of the physical location of this channel.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelLabel(&self) -> AudioChannelLabel;
@@ -271,6 +287,10 @@ impl AVAudioSessionPortDescription {
     extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(portType))]
         #[unsafe(method_family = none)]
         pub unsafe fn portType(&self) -> Retained<AVAudioSessionPort>;
@@ -278,6 +298,10 @@ impl AVAudioSessionPortDescription {
         /// A descriptive name for the associated hardware port
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(portName))]
         #[unsafe(method_family = none)]
         pub unsafe fn portName(&self) -> Retained<NSString>;
@@ -285,6 +309,10 @@ impl AVAudioSessionPortDescription {
         /// A system-assigned unique identifier for the associated hardware port
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(UID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UID(&self) -> Retained<NSString>;
@@ -321,6 +349,10 @@ impl AVAudioSessionPortDescription {
         pub unsafe fn isSpatialAudioEnabled(&self) -> bool;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channels))]
         #[unsafe(method_family = none)]
         pub unsafe fn channels(
@@ -330,6 +362,10 @@ impl AVAudioSessionPortDescription {
         /// Will be nil if there are no selectable data sources.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(dataSources))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSources(
@@ -340,6 +376,10 @@ impl AVAudioSessionPortDescription {
         /// the currently selected data source.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(selectedDataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedDataSource(
@@ -350,6 +390,10 @@ impl AVAudioSessionPortDescription {
         /// there are no selectable data sources or if no preference has been set.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(preferredDataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredDataSource(
@@ -406,6 +450,10 @@ impl AVAudioSessionRouteDescription {
         /// Flattened list of all input port descriptions associated with all the streams as part of the route.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVAudioSessionPortDescription>>;
@@ -413,6 +461,10 @@ impl AVAudioSessionRouteDescription {
         /// Flattened list of all output port descriptions associated with all the streams as part of the route.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVAudioSessionPortDescription>>;

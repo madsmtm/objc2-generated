@@ -55,6 +55,10 @@ impl HKAudiogramSensitivityPoint {
         /// The tests conducted at this frequency
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(tests))]
         #[unsafe(method_family = none)]
         pub unsafe fn tests(&self) -> Retained<NSArray<HKAudiogramSensitivityTest>>;

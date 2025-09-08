@@ -115,6 +115,10 @@ impl MKPinAnnotationView {
         pub unsafe fn pinTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`pinTintColor`][Self::pinTintColor].
+        ///
+        /// # Safety
+        ///
+        /// `pin_tint_color` might not allow `None`.
         #[unsafe(method(setPinTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPinTintColor(&self, pin_tint_color: Option<&NSColor>);

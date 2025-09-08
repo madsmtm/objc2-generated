@@ -25,6 +25,10 @@ extern_protocol!(
         /// Returns: An array of strings (`NSString`) that are possible completions, or `nil` to provide no completions
         ///
         /// If the delegate does not implement this method, no completions are provided
+        ///
+        /// # Safety
+        ///
+        /// `selected_index` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
@@ -37,6 +41,9 @@ extern_protocol!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `tokens` generic should be of the correct type.
         #[optional]
         #[unsafe(method(tokenField:shouldAddObjects:atIndex:))]
         #[unsafe(method_family = none)]
@@ -48,6 +55,9 @@ extern_protocol!(
         ) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenField:displayStringForRepresentedObject:))]
         #[unsafe(method_family = none)]
@@ -58,6 +68,9 @@ extern_protocol!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenField:editingStringForRepresentedObject:))]
         #[unsafe(method_family = none)]
@@ -78,6 +91,9 @@ extern_protocol!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSPasteboard", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[optional]
         #[unsafe(method(tokenField:writeRepresentedObjects:toPasteboard:))]
         #[unsafe(method_family = none)]
@@ -99,6 +115,9 @@ extern_protocol!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenField:menuForRepresentedObject:))]
         #[unsafe(method_family = none)]
@@ -109,6 +128,9 @@ extern_protocol!(
         ) -> Option<Retained<NSMenu>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenField:hasMenuForRepresentedObject:))]
         #[unsafe(method_family = none)]
@@ -123,6 +145,9 @@ extern_protocol!(
             feature = "NSTokenFieldCell",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenField:styleForRepresentedObject:))]
         #[unsafe(method_family = none)]

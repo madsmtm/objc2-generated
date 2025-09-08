@@ -49,6 +49,9 @@ impl NSCalendarDate {
         pub unsafe fn calendarDate() -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[deprecated = "Use NSDateFormatter instead"]
         #[unsafe(method(dateWithString:calendarFormat:locale:))]
         #[unsafe(method_family = none)]
@@ -146,6 +149,9 @@ impl NSCalendarDate {
         pub unsafe fn calendarFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[deprecated]
         #[unsafe(method(descriptionWithCalendarFormat:locale:))]
         #[unsafe(method_family = none)]
@@ -163,6 +169,9 @@ impl NSCalendarDate {
             -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[deprecated]
         #[unsafe(method(descriptionWithLocale:))]
         #[unsafe(method_family = none)]
@@ -178,6 +187,9 @@ impl NSCalendarDate {
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[deprecated = "Use NSDateFormatter instead"]
         #[unsafe(method(initWithString:calendarFormat:locale:))]
         #[unsafe(method_family = init)]
@@ -234,6 +246,14 @@ impl NSCalendarDate {
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, a_time_zone: Option<&NSTimeZone>);
 
+        /// # Safety
+        ///
+        /// - `yp` must be a valid pointer or null.
+        /// - `mop` must be a valid pointer or null.
+        /// - `dp` must be a valid pointer or null.
+        /// - `hp` must be a valid pointer or null.
+        /// - `mip` must be a valid pointer or null.
+        /// - `sp` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(years:months:days:hours:minutes:seconds:sinceDate:))]
         #[unsafe(method_family = none)]
@@ -300,6 +320,9 @@ impl NSCalendarDate {
 impl NSDate {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
         #[unsafe(method(dateWithNaturalLanguageString:locale:))]
         #[unsafe(method_family = none)]
@@ -333,6 +356,9 @@ impl NSDate {
         ) -> Retained<NSCalendarDate>;
 
         #[cfg(all(feature = "NSString", feature = "NSTimeZone"))]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[deprecated]
         #[unsafe(method(descriptionWithCalendarFormat:timeZone:locale:))]
         #[unsafe(method_family = none)]

@@ -62,6 +62,10 @@ impl ARObjectAnchor {
         /// Reference to the detected object.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(referenceObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceObject(&self) -> Retained<ARReferenceObject>;

@@ -253,6 +253,10 @@ extern_protocol!(
         /// Returns: An array of strings (`NSString`) that are possible completions
         ///
         /// If the delegate does not implement this method, no completions are provided
+        ///
+        /// # Safety
+        ///
+        /// `selected_index` must be a valid pointer.
         #[optional]
         #[unsafe(method(tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
@@ -269,6 +273,9 @@ extern_protocol!(
             feature = "NSCell",
             feature = "NSTextFieldCell"
         ))]
+        /// # Safety
+        ///
+        /// `tokens` generic should be of the correct type.
         #[optional]
         #[unsafe(method(tokenFieldCell:shouldAddObjects:atIndex:))]
         #[unsafe(method_family = none)]
@@ -284,6 +291,9 @@ extern_protocol!(
             feature = "NSCell",
             feature = "NSTextFieldCell"
         ))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenFieldCell:displayStringForRepresentedObject:))]
         #[unsafe(method_family = none)]
@@ -298,6 +308,9 @@ extern_protocol!(
             feature = "NSCell",
             feature = "NSTextFieldCell"
         ))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenFieldCell:editingStringForRepresentedObject:))]
         #[unsafe(method_family = none)]
@@ -327,6 +340,9 @@ extern_protocol!(
             feature = "NSPasteboard",
             feature = "NSTextFieldCell"
         ))]
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[optional]
         #[unsafe(method(tokenFieldCell:writeRepresentedObjects:toPasteboard:))]
         #[unsafe(method_family = none)]
@@ -358,6 +374,9 @@ extern_protocol!(
             feature = "NSMenu",
             feature = "NSTextFieldCell"
         ))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenFieldCell:menuForRepresentedObject:))]
         #[unsafe(method_family = none)]
@@ -372,6 +391,9 @@ extern_protocol!(
             feature = "NSCell",
             feature = "NSTextFieldCell"
         ))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenFieldCell:hasMenuForRepresentedObject:))]
         #[unsafe(method_family = none)]
@@ -386,6 +408,9 @@ extern_protocol!(
             feature = "NSCell",
             feature = "NSTextFieldCell"
         ))]
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenFieldCell:styleForRepresentedObject:))]
         #[unsafe(method_family = none)]

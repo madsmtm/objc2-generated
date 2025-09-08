@@ -273,6 +273,10 @@ impl NSSlider {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized slider control.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(sliderWithTarget:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sliderWithTarget_action(
@@ -294,6 +298,10 @@ impl NSSlider {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized slider control.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(sliderWithValue:minValue:maxValue:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sliderWithValue_minValue_maxValue_target_action(
@@ -312,6 +320,9 @@ impl NSSlider {
 impl NSSlider {
     extern_methods!(
         #[cfg(feature = "NSCell")]
+        /// # Safety
+        ///
+        /// `cell` might not allow `None`.
         #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[unsafe(method(setTitleCell:))]
         #[unsafe(method_family = none)]
@@ -323,6 +334,9 @@ impl NSSlider {
         pub unsafe fn titleCell(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSColor")]
+        /// # Safety
+        ///
+        /// `new_color` might not allow `None`.
         #[deprecated = "-setTitleColor: had no effect since 10.0"]
         #[unsafe(method(setTitleColor:))]
         #[unsafe(method_family = none)]
@@ -335,6 +349,9 @@ impl NSSlider {
         pub unsafe fn titleColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSFont")]
+        /// # Safety
+        ///
+        /// `font_obj` might not allow `None`.
         #[deprecated = "-setTitleFont: had no effect since 10.0"]
         #[unsafe(method(setTitleFont:))]
         #[unsafe(method_family = none)]
@@ -351,6 +368,9 @@ impl NSSlider {
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `string` might not allow `None`.
         #[deprecated = "-setTitle: had no effect since 10.0"]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -363,6 +383,9 @@ impl NSSlider {
         pub unsafe fn setKnobThickness(&self, thickness: CGFloat);
 
         #[cfg(feature = "NSImage")]
+        /// # Safety
+        ///
+        /// `background_image` might not allow `None`.
         #[deprecated = "-setImage: had no effect since 10.0"]
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]

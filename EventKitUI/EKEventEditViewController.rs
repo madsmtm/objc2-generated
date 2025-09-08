@@ -109,6 +109,10 @@ impl EKEventEditViewController {
 
         #[cfg(feature = "objc2-event-kit")]
         /// Setter for [`eventStore`][Self::eventStore].
+        ///
+        /// # Safety
+        ///
+        /// `event_store` might not allow `None`.
         #[unsafe(method(setEventStore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEventStore(&self, event_store: Option<&EKEventStore>);
@@ -145,6 +149,10 @@ impl EKEventEditViewController {
 #[cfg(feature = "objc2-ui-kit")]
 impl EKEventEditViewController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `navigation_bar_class` probably has further requirements.
+        /// - `toolbar_class` probably has further requirements.
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(

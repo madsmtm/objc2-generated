@@ -38,6 +38,12 @@ impl IOBluetoothHandsFreeAudioGateway {
         /// Parameter `inDelegate`: An object to act as delegate
         ///
         /// Returns: A newly created IOBluetoothHandsFreeAudioGateway object on success, nil on failure
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `in_delegate` should be of the correct type.
+        /// - `in_delegate` might not allow `None`.
         #[unsafe(method(initWithDevice:delegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_delegate(
@@ -58,6 +64,10 @@ impl IOBluetoothHandsFreeAudioGateway {
         /// Parameter `maxValue`: Maximum value allowed for the indicator
         ///
         /// Parameter `currentValue`: The current indicator value. Must be within the min and max values passed in or the indicator will not be created.
+        ///
+        /// # Safety
+        ///
+        /// `indicator_name` might not allow `None`.
         #[unsafe(method(createIndicator:min:max:currentValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createIndicator_min_max_currentValue(
@@ -74,6 +84,10 @@ impl IOBluetoothHandsFreeAudioGateway {
         /// Implement this in a subclass if you wish to respond to additional AT commands or to change the default response.
         ///
         /// Parameter `atCommand`: The at command from the hands free device
+        ///
+        /// # Safety
+        ///
+        /// `at_command` might not allow `None`.
         #[unsafe(method(processATCommand:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processATCommand(&self, at_command: Option<&NSString>);
@@ -91,6 +105,10 @@ impl IOBluetoothHandsFreeAudioGateway {
         /// Use this to send a response followed by an OK. Equivalent to [sendResponse:response withOK:YES].
         ///
         /// Parameter `response`: The response to send to the hands free device
+        ///
+        /// # Safety
+        ///
+        /// `response` might not allow `None`.
         #[unsafe(method(sendResponse:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendResponse(&self, response: Option<&NSString>);
@@ -103,6 +121,10 @@ impl IOBluetoothHandsFreeAudioGateway {
         /// Parameter `response`: The response to send to the hands free device
         ///
         /// Parameter `withOK`: If yes, an OK response will also be sent.
+        ///
+        /// # Safety
+        ///
+        /// `response` might not allow `None`.
         #[unsafe(method(sendResponse:withOK:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendResponse_withOK(&self, response: Option<&NSString>, with_ok: bool);
@@ -132,6 +154,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeAudioGateway object
         ///
         /// Parameter `redial`: Always 1.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `hangup` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:hangup:))]
         #[unsafe(method_family = none)]
@@ -147,6 +174,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeAudioGateway object
         ///
         /// Parameter `redial`: Always 1.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `redial` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:redial:))]
         #[unsafe(method_family = none)]

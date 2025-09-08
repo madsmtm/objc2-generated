@@ -161,6 +161,9 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFHostStartInfoResolution")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -180,6 +183,9 @@ impl CFHost {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `has_been_resolved` must be a valid pointer or null.
     #[doc(alias = "CFHostGetAddressing")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -197,6 +203,9 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `has_been_resolved` must be a valid pointer or null.
     #[doc(alias = "CFHostGetNames")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -211,6 +220,9 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `has_been_resolved` must be a valid pointer or null.
     #[doc(alias = "CFHostGetReachability")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -238,6 +250,10 @@ impl CFHost {
         unsafe { CFHostCancelInfoResolution(self, info) }
     }
 
+    /// # Safety
+    ///
+    /// - `client_cb` must be implemented correctly.
+    /// - `client_context` must be a valid pointer or null.
     #[doc(alias = "CFHostSetClient")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]

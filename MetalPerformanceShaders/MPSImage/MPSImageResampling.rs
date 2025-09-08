@@ -124,6 +124,10 @@ impl MPSImageScale {
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`scaleTransform`][Self::scaleTransform].
+        ///
+        /// # Safety
+        ///
+        /// `scale_transform` must be a valid pointer or null.
         #[unsafe(method(setScaleTransform:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScaleTransform(&self, scale_transform: *const MPSScaleTransform);

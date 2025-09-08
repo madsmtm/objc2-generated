@@ -240,6 +240,10 @@ impl INGetCarPowerLevelStatusIntentResponse {
         /// Setter for [`consumptionFormulaArguments`][Self::consumptionFormulaArguments].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `consumption_formula_arguments` generic should be of the correct type.
         #[unsafe(method(setConsumptionFormulaArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConsumptionFormulaArguments(
@@ -256,6 +260,10 @@ impl INGetCarPowerLevelStatusIntentResponse {
         /// Setter for [`chargingFormulaArguments`][Self::chargingFormulaArguments].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `charging_formula_arguments` generic should be of the correct type.
         #[unsafe(method(setChargingFormulaArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChargingFormulaArguments(

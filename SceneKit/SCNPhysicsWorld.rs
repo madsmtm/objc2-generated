@@ -180,6 +180,9 @@ impl SCNPhysicsWorld {
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(rayTestWithSegmentFromPoint:toPoint:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rayTestWithSegmentFromPoint_toPoint_options(
@@ -190,6 +193,9 @@ impl SCNPhysicsWorld {
         ) -> Retained<NSArray<SCNHitTestResult>>;
 
         #[cfg(all(feature = "SCNPhysicsBody", feature = "SCNPhysicsContact"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(contactTestBetweenBody:andBody:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contactTestBetweenBody_andBody_options(
@@ -200,6 +206,9 @@ impl SCNPhysicsWorld {
         ) -> Retained<NSArray<SCNPhysicsContact>>;
 
         #[cfg(all(feature = "SCNPhysicsBody", feature = "SCNPhysicsContact"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(contactTestWithBody:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contactTestWithBody_options(
@@ -215,6 +224,9 @@ impl SCNPhysicsWorld {
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(convexSweepTestWithShape:fromTransform:toTransform:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convexSweepTestWithShape_fromTransform_toTransform_options(

@@ -479,6 +479,10 @@ impl CTParagraphStyle {
     /// Returns: If the paragraph style creation was successful, this function
     /// will return a valid reference to an immutable CTParagraphStyle
     /// object. Otherwise, this function will return NULL.
+    ///
+    /// # Safety
+    ///
+    /// `settings` must be a valid pointer or null.
     #[doc(alias = "CTParagraphStyleCreate")]
     #[inline]
     pub unsafe fn new(
@@ -554,6 +558,10 @@ impl CTParagraphStyle {
     /// Returns: This function will return "true" if the valueBuffer had been
     /// successfully filled. Otherwise, this function will return false,
     /// indicating that one or more of the parameters is not valid.
+    ///
+    /// # Safety
+    ///
+    /// `value_buffer` must be a valid pointer.
     #[doc(alias = "CTParagraphStyleGetValueForSpecifier")]
     #[inline]
     pub unsafe fn value_for_specifier(

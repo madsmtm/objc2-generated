@@ -1824,6 +1824,10 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `element` should be of the correct type.
+    /// - `user_info` generic should be of the correct type.
     pub fn NSAccessibilityPostNotificationWithUserInfo(
         element: &AnyObject,
         notification: &NSAccessibilityNotificationName,

@@ -505,6 +505,10 @@ impl SCNGeometrySource {
         /// Parameter `count`: The number of vertices.
         ///
         /// Input vertices are copied to an optimized data format. The actual format is described by the properties of the resulting instance.
+        ///
+        /// # Safety
+        ///
+        /// `vertices` must be a valid pointer.
         #[unsafe(method(geometrySourceWithVertices:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometrySourceWithVertices_count(
@@ -520,6 +524,10 @@ impl SCNGeometrySource {
         /// Parameter `count`: The number of normals.
         ///
         /// Input normals are copied to an optimized data format. The actual format is described by the properties of the resulting instance.
+        ///
+        /// # Safety
+        ///
+        /// `normals` must be a valid pointer.
         #[unsafe(method(geometrySourceWithNormals:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometrySourceWithNormals_count(
@@ -535,6 +543,10 @@ impl SCNGeometrySource {
         /// Parameter `count`: The number of texture coordinate points.
         ///
         /// Input texture coordinates are copied to an optimized data format. The actual format is described by the properties of the resulting instance.
+        ///
+        /// # Safety
+        ///
+        /// `texcoord` must be a valid pointer.
         #[unsafe(method(geometrySourceWithTextureCoordinates:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometrySourceWithTextureCoordinates_count(

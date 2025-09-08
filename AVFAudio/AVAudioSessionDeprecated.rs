@@ -21,6 +21,10 @@ impl AVAudioSession {
         ) -> Option<Retained<ProtocolObject<dyn AVAudioSessionDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

@@ -131,6 +131,9 @@ impl AVMetadataItem {
 impl AVMetadataItem {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(loadValuesAsynchronouslyForKeys:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadValuesAsynchronouslyForKeys_completionHandler(
@@ -204,6 +207,10 @@ impl AVMetadataItem {
         /// Metadata keys that are not instances of NSString, NSNumber, or NSData cannot be converted to metadata identifiers; they also cannot be written to media resources via AVAssetExportSession or AVAssetWriter.  Metadata item keySpaces must be a string of one to four printable ASCII characters.
         ///
         /// For custom identifiers, the keySpace AVMetadataKeySpaceQuickTimeMetadata is recommended.  This keySpace defines its key values to be expressed as reverse-DNS strings, which allows third parties to define their own keys in a well established way that avoids collisions.
+        ///
+        /// # Safety
+        ///
+        /// `key` should be of the correct type.
         #[unsafe(method(identifierForKey:keySpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifierForKey_keySpace(
@@ -351,6 +358,10 @@ impl AVMutableMetadataItem {
         /// Setter for [`value`][Self::value].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&AnyObject /* NSObjectProtocol+ NSCopying */>);
@@ -366,6 +377,10 @@ impl AVMutableMetadataItem {
         /// Setter for [`extraAttributes`][Self::extraAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `extra_attributes` generic should be of the correct type.
         #[unsafe(method(setExtraAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExtraAttributes(
@@ -432,6 +447,10 @@ impl AVMutableMetadataItem {
         /// Setter for [`key`][Self::key].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `key` should be of the correct type.
         #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKey(&self, key: Option<&AnyObject /* NSObjectProtocol+ NSCopying */>);
@@ -454,6 +473,10 @@ impl AVMetadataItem {
         /// When -loadValuesAsynchronouslyForKeys:completionHandler: is invoked on an AVMetadataItem created via +metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler: and
         /// "
         /// value" is among the keys for which loading is requested, the block you provide as the value loading handler will be executed on an arbitrary dispatch queue, off the main thread. The handler can perform I/O and other necessary operations to obtain the value. If loading of the value succeeds, provide the value by invoking -[AVMetadataItemValueRequest respondWithValue:]. If loading of the value fails, provide an instance of NSError that describes the failure by invoking -[AVMetadataItemValueRequest respondWithError:].
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemWithPropertiesOfMetadataItem_valueLoadingHandler(
@@ -483,6 +506,10 @@ impl AVMetadataItemValueRequest {
         /// Allows you to respond to an AVMetadataItemValueRequest by providing a value.
         ///
         /// Parameter `value`: The value of the AVMetadataItem.
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(respondWithValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondWithValue(
@@ -565,6 +592,10 @@ impl AVMetadataItem {
 
         #[cfg(feature = "AVMetadataFormat")]
         /// Instead, use metadataItemsFromArray:filteredByIdentifier:.
+        ///
+        /// # Safety
+        ///
+        /// `key` should be of the correct type.
         #[unsafe(method(metadataItemsFromArray:withKey:keySpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataItemsFromArray_withKey_keySpace(

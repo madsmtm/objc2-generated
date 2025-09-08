@@ -34,6 +34,11 @@ impl NSCustomMigrationStage {
         pub unsafe fn nextModel(&self) -> Retained<NSManagedObjectModelReference>;
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer or null.
         #[unsafe(method(willMigrateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn willMigrateHandler(
@@ -66,6 +71,11 @@ impl NSCustomMigrationStage {
         );
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer or null.
         #[unsafe(method(didMigrateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn didMigrateHandler(

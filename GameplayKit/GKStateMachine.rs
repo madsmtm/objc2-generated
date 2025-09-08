@@ -60,6 +60,10 @@ impl GKStateMachine {
         ///
         ///
         /// Parameter `stateClass`: the class of the state to be retrieved
+        ///
+        /// # Safety
+        ///
+        /// `state_class` probably has further requirements.
         #[unsafe(method(stateForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateForClass(&self, state_class: &AnyClass) -> Option<Retained<GKState>>;
@@ -68,6 +72,10 @@ impl GKStateMachine {
         ///
         ///
         /// Parameter `stateClass`: the class of the state to be tested
+        ///
+        /// # Safety
+        ///
+        /// `state_class` probably has further requirements.
         #[unsafe(method(canEnterState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canEnterState(&self, state_class: &AnyClass) -> bool;
@@ -80,6 +88,10 @@ impl GKStateMachine {
         /// Parameter `stateClass`: the class of the state to switch to
         ///
         /// Returns: YES if state was entered.  NO otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `state_class` probably has further requirements.
         #[unsafe(method(enterState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enterState(&self, state_class: &AnyClass) -> bool;

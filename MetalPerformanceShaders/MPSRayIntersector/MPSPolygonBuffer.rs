@@ -71,6 +71,10 @@ impl MPSPolygonBuffer {
         ///
         ///
         /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(copyWithZone:))]
         #[unsafe(method_family = copy)]

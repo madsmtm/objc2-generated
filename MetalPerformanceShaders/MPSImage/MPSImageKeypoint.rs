@@ -83,6 +83,10 @@ impl MPSImageFindKeypoints {
         /// Parameter `info`: Pointer to the MPSImageKeypointRangeInfo struct
         ///
         /// Returns: A valid MPSImageFindKeypoints object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `info` must be a valid pointer.
         #[unsafe(method(initWithDevice:info:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_info(
@@ -144,6 +148,10 @@ impl MPSImageFindKeypoints {
         ///
         /// Parameter `keypointDataBufferOffset`: Byte offset into keypointData buffer at which to write the keypoint results.
         /// Must be a multiple of 32 bytes.
+        ///
+        /// # Safety
+        ///
+        /// `regions` must be a valid pointer.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:regions:numberOfRegions:keypointCountBuffer:keypointCountBufferOffset:keypointDataBuffer:keypointDataBufferOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_regions_numberOfRegions_keypointCountBuffer_keypointCountBufferOffset_keypointDataBuffer_keypointDataBufferOffset(

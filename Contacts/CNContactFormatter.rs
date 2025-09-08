@@ -161,6 +161,10 @@ impl CNContactFormatter {
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted contact name as an attributed string.
+        ///
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(attributedStringFromContact:style:defaultAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromContact_style_defaultAttributes(
@@ -217,6 +221,10 @@ impl CNContactFormatter {
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted contact name as an attributed string.
+        ///
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(attributedStringFromContact:defaultAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromContact_defaultAttributes(

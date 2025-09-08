@@ -33,6 +33,9 @@ impl PHChange {
         ) -> Option<Retained<PHObjectChangeDetails>>;
 
         #[cfg(feature = "PHFetchResult")]
+        /// # Safety
+        ///
+        /// `object` generic should be of the correct type.
         #[unsafe(method(changeDetailsForFetchResult:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeDetailsForFetchResult(

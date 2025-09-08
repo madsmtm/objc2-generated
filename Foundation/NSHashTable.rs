@@ -235,13 +235,23 @@ unsafe impl RefEncode for NSHashEnumerator {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     pub fn NSFreeHashTable(table: &NSHashTable);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     pub fn NSResetHashTable(table: &NSHashTable);
 }
 
+/// # Safety
+///
+/// - `table1` generic should be of the correct type.
+/// - `table2` generic should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSCompareHashTables(
     table1: &NSHashTable,
@@ -253,6 +263,9 @@ pub unsafe extern "C-unwind" fn NSCompareHashTables(
     unsafe { NSCompareHashTables(table1, table2) }.as_bool()
 }
 
+/// # Safety
+///
+/// `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
@@ -267,6 +280,9 @@ pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// `pointer` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSHashGet(
     table: &NSHashTable,
@@ -280,39 +296,66 @@ pub unsafe extern "C-unwind" fn NSHashGet(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `pointer` must be a valid pointer or null.
     pub fn NSHashInsert(table: &NSHashTable, pointer: *const c_void);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `pointer` must be a valid pointer or null.
     pub fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *const c_void);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `pointer` must be a valid pointer or null.
     pub fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `pointer` must be a valid pointer or null.
     pub fn NSHashRemove(table: &NSHashTable, pointer: *const c_void);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     pub fn NSEnumerateHashTable(table: &NSHashTable) -> NSHashEnumerator;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `enumerator` must be a valid pointer.
     pub fn NSNextHashEnumeratorItem(enumerator: NonNull<NSHashEnumerator>) -> *mut c_void;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `enumerator` must be a valid pointer.
     pub fn NSEndHashTableEnumeration(enumerator: NonNull<NSHashEnumerator>);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     pub fn NSCountHashTable(table: &NSHashTable) -> NSUInteger;
 }
 
 #[cfg(feature = "NSString")]
 impl NSString {
+    /// # Safety
+    ///
+    /// `table` generic should be of the correct type.
     #[doc(alias = "NSStringFromHashTable")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -326,6 +369,9 @@ impl NSString {
     }
 }
 
+/// # Safety
+///
+/// `table` generic should be of the correct type.
 #[cfg(feature = "NSArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllHashTableObjects(table: &NSHashTable) -> Retained<NSArray> {
@@ -385,6 +431,14 @@ unsafe impl RefEncode for NSHashTableCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// # Safety
+///
+/// - `call_backs` struct field 1 must be implemented correctly.
+/// - `call_backs` struct field 2 must be implemented correctly.
+/// - `call_backs` struct field 3 must be implemented correctly.
+/// - `call_backs` struct field 4 must be implemented correctly.
+/// - `call_backs` struct field 5 must be implemented correctly.
+/// - `zone` must be a valid pointer or null.
 #[cfg(all(feature = "NSString", feature = "NSZone"))]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCreateHashTableWithZone(
@@ -404,6 +458,13 @@ pub unsafe extern "C-unwind" fn NSCreateHashTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// - `call_backs` struct field 1 must be implemented correctly.
+/// - `call_backs` struct field 2 must be implemented correctly.
+/// - `call_backs` struct field 3 must be implemented correctly.
+/// - `call_backs` struct field 4 must be implemented correctly.
+/// - `call_backs` struct field 5 must be implemented correctly.
 #[cfg(feature = "NSString")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCreateHashTable(

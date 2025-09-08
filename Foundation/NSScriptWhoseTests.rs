@@ -182,6 +182,9 @@ impl NSSpecifierTest {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
+        /// # Safety
+        ///
+        /// `obj2` should be of the correct type.
         #[unsafe(method(initWithObjectSpecifier:comparisonOperator:testObject:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
@@ -212,30 +215,51 @@ pub unsafe trait NSObjectNSComparisonMethods:
     ClassType + Sized + private_NSObjectNSComparisonMethods::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn isEqualTo(&self, object: Option<&AnyObject>) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isLessThanOrEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn isLessThanOrEqualTo(&self, object: Option<&AnyObject>) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isLessThan:))]
         #[unsafe(method_family = none)]
         unsafe fn isLessThan(&self, object: Option<&AnyObject>) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isGreaterThanOrEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn isGreaterThanOrEqualTo(&self, object: Option<&AnyObject>) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isGreaterThan:))]
         #[unsafe(method_family = none)]
         unsafe fn isGreaterThan(&self, object: Option<&AnyObject>) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isNotEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn isNotEqualTo(&self, object: Option<&AnyObject>) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(doesContain:))]
         #[unsafe(method_family = none)]
         unsafe fn doesContain(&self, object: &AnyObject) -> bool;
@@ -265,34 +289,58 @@ pub unsafe trait NSObjectNSScriptingComparisonMethods:
     ClassType + Sized + private_NSObjectNSScriptingComparisonMethods::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(scriptingIsEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingIsEqualTo(&self, object: &AnyObject) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(scriptingIsLessThanOrEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingIsLessThanOrEqualTo(&self, object: &AnyObject) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(scriptingIsLessThan:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingIsLessThan(&self, object: &AnyObject) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(scriptingIsGreaterThanOrEqualTo:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingIsGreaterThanOrEqualTo(&self, object: &AnyObject) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(scriptingIsGreaterThan:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingIsGreaterThan(&self, object: &AnyObject) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(scriptingBeginsWith:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingBeginsWith(&self, object: &AnyObject) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(scriptingEndsWith:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingEndsWith(&self, object: &AnyObject) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(scriptingContains:))]
         #[unsafe(method_family = none)]
         unsafe fn scriptingContains(&self, object: &AnyObject) -> bool;

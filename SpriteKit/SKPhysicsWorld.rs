@@ -80,6 +80,10 @@ impl SKPhysicsWorld {
         ) -> Option<Retained<ProtocolObject<dyn SKPhysicsContactDelegate>>>;
 
         /// Setter for [`contactDelegate`][Self::contactDelegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setContactDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContactDelegate(

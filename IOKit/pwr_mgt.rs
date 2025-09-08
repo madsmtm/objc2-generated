@@ -1064,6 +1064,10 @@ extern "C-unwind" {
     /// Parameter `aggressiveness`: Points to where to store the retrieved value of the aggressiveness factor.
     ///
     /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+    ///
+    /// # Safety
+    ///
+    /// `aggressiveness` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOPMGetAggressiveness(
         fb: io_connect_t,
@@ -1161,6 +1165,10 @@ extern "C-unwind" {
     /// </pre>
     ///
     /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+    ///
+    /// # Safety
+    ///
+    /// `info` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOPMCopyBatteryInfo(
         master_port: libc::mach_port_t,
@@ -1173,6 +1181,13 @@ extern "C-unwind" {
     ///
     /// This function is obsolete and deprecated. To receive notifications of driver power state changes,
     /// Please use IOServiceAddInterestNotification with interest type gIOGeneralInterest instead.
+    ///
+    /// # Safety
+    ///
+    /// - `refcon` must be a valid pointer.
+    /// - `the_port_ref` must be a valid pointer.
+    /// - `callback` must be implemented correctly.
+    /// - `notifier` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IORegisterApp(
@@ -1299,6 +1314,13 @@ extern "C-unwind" {
     ///
     /// Returns: Returns a io_connect_t session for the IOPMrootDomain or IO_OBJECT_NULL if request failed.
     /// Caller must close return value via IOServiceClose() after calling IODeregisterForSystemPower on the notifier argument.
+    ///
+    /// # Safety
+    ///
+    /// - `refcon` must be a valid pointer.
+    /// - `the_port_ref` must be a valid pointer.
+    /// - `callback` must be implemented correctly.
+    /// - `notifier` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegisterForSystemPower(
         refcon: *mut c_void,
@@ -1314,6 +1336,10 @@ extern "C-unwind" {
     /// Parameter `notifier`: An object from IORegisterApp.
     ///
     /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+    ///
+    /// # Safety
+    ///
+    /// `notifier` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn;
 }
@@ -1324,6 +1350,10 @@ extern "C-unwind" {
     /// Parameter `notifier`: The object returned from IORegisterForSystemPower.
     ///
     /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+    ///
+    /// # Safety
+    ///
+    /// `notifier` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn;
 }
@@ -1413,6 +1443,12 @@ extern "C-unwind" {
     /// </ul>
     ///
     /// Returns: kIOReturnSuccess on success, otherwise on failure
+    ///
+    /// # Safety
+    ///
+    /// - `time_to_wake` might not allow `None`.
+    /// - `my_id` might not allow `None`.
+    /// - `type` might not allow `None`.
     pub fn IOPMSchedulePowerEvent(
         time_to_wake: Option<&CFDate>,
         my_id: Option<&CFString>,
@@ -1432,6 +1468,12 @@ extern "C-unwind" {
     /// Parameter `type`: Type to cancel
     ///
     /// Returns: kIOReturnSuccess on success, otherwise on failure
+    ///
+    /// # Safety
+    ///
+    /// - `time_to_wake` might not allow `None`.
+    /// - `my_id` might not allow `None`.
+    /// - `type` might not allow `None`.
     pub fn IOPMCancelScheduledPowerEvent(
         time_to_wake: Option<&CFDate>,
         my_id: Option<&CFString>,
@@ -1634,6 +1676,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: kIOReturnSuccess, or another IOKit return code on error.
+    ///
+    /// # Safety
+    ///
+    /// `assertion_id` must be a valid pointer.
     pub fn IOPMAssertionCreateWithDescription(
         assertion_type: Option<&CFString>,
         name: Option<&CFString>,
@@ -1755,6 +1801,12 @@ extern "C-unwind" {
     /// </code>
     /// The caller may specify a timeout.
     /// </ul>
+    ///
+    /// # Safety
+    ///
+    /// - `assertion_properties` generics must be of the correct type.
+    /// - `assertion_properties` might not allow `None`.
+    /// - `assertion_id` must be a valid pointer.
     pub fn IOPMAssertionCreateWithProperties(
         assertion_properties: Option<&CFDictionary>,
         assertion_id: *mut IOPMAssertionID,
@@ -1812,6 +1864,10 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kIOReturnSuccess on success, any other return indicates
     /// PM could not successfully activate the specified assertion.
+    ///
+    /// # Safety
+    ///
+    /// `assertion_id` must be a valid pointer.
     pub fn IOPMAssertionDeclareUserActivity(
         assertion_name: Option<&CFString>,
         user_type: IOPMUserActiveType,
@@ -1916,6 +1972,10 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kIOReturnSuccess on success, any other return indicates
     /// PM could not successfully activate the specified assertion.
+    ///
+    /// # Safety
+    ///
+    /// `assertion_id` must be a valid pointer.
     pub fn IOPMDeclareNetworkClientActivity(
         assertion_name: Option<&CFString>,
         assertion_id: *mut IOPMAssertionID,
@@ -2071,6 +2131,12 @@ extern "C-unwind" {
     ///
     /// </code>
     /// otherwise.
+    ///
+    /// # Safety
+    ///
+    /// - `the_property` might not allow `None`.
+    /// - `the_value` should be of the correct type.
+    /// - `the_value` might not allow `None`.
     pub fn IOPMAssertionSetProperty(
         the_assertion: IOPMAssertionID,
         the_property: Option<&CFString>,
@@ -2095,6 +2161,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kIOReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// `assertions_by_pid` must be a valid pointer.
     pub fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDictionary) -> IOReturn;
 }
 
@@ -2111,6 +2181,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns      kIOReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// `assertions_status` must be a valid pointer.
     pub fn IOPMCopyAssertionsStatus(assertions_status: *mut *const CFDictionary) -> IOReturn;
 }
 
@@ -2140,6 +2214,10 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kIOReturnSuccess on success, any other return indicates
     /// PM could not successfully activate the specified assertion.
+    ///
+    /// # Safety
+    ///
+    /// `assertion_id` must be a valid pointer.
     #[deprecated]
     pub fn IOPMAssertionCreate(
         assertion_type: Option<&CFString>,
@@ -2171,6 +2249,10 @@ extern "C-unwind" {
     ///
     /// Returns: Returns kIOReturnSuccess on success, any other return indicates
     /// PM could not successfully activate the specified assertion.
+    ///
+    /// # Safety
+    ///
+    /// `assertion_id` must be a valid pointer.
     pub fn IOPMAssertionCreateWithName(
         assertion_type: Option<&CFString>,
         assertion_level: IOPMAssertionLevel,
@@ -2264,6 +2346,10 @@ extern "C-unwind" {
     ///
     /// Returns: kIOReturnSuccess, or other error report. Returns kIOReturnNotFound if
     /// CPU PowerStatus has not been published.
+    ///
+    /// # Safety
+    ///
+    /// `cpu_power_status` must be a valid pointer.
     pub fn IOPMCopyCPUPowerStatus(cpu_power_status: *mut *const CFDictionary) -> IOReturn;
 }
 
@@ -2285,5 +2371,9 @@ extern "C-unwind" {
     ///
     /// Returns: kIOReturnSuccess, or other error report. Returns kIOReturnNotFound if
     /// thermal warning level has not been published.
+    ///
+    /// # Safety
+    ///
+    /// `thermal_level` must be a valid pointer.
     pub fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn;
 }

@@ -69,6 +69,10 @@ impl WebHistory {
         pub unsafe fn optionalSharedHistory() -> Option<Retained<WebHistory>>;
 
         /// Parameter `history`: The history to use for the global WebHistory.
+        ///
+        /// # Safety
+        ///
+        /// `history` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setOptionalSharedHistory:))]
         #[unsafe(method_family = none)]
@@ -81,6 +85,10 @@ impl WebHistory {
         /// The designated initializer for WebHistory.
         ///
         /// Returns: Returns YES if successful, NO otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(loadFromURL:error:))]
         #[unsafe(method_family = none)]
@@ -97,6 +105,10 @@ impl WebHistory {
         /// Parameter `error`: Set to nil or an NSError instance if an error occurred.
         ///
         /// Returns: Returns YES if successful, NO otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(saveToURL:error:))]
         #[unsafe(method_family = none)]
@@ -107,12 +119,22 @@ impl WebHistory {
         ) -> bool;
 
         /// Parameter `newItems`: An array of WebHistoryItems to add to the WebHistory.
+        ///
+        /// # Safety
+        ///
+        /// - `new_items` generic should be of the correct type.
+        /// - `new_items` might not allow `None`.
         #[deprecated]
         #[unsafe(method(addItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItems(&self, new_items: Option<&NSArray>);
 
         /// Parameter `items`: An array of WebHistoryItems to remove from the WebHistory.
+        ///
+        /// # Safety
+        ///
+        /// - `items` generic should be of the correct type.
+        /// - `items` might not allow `None`.
         #[deprecated]
         #[unsafe(method(removeItems:))]
         #[unsafe(method_family = none)]
@@ -132,6 +154,9 @@ impl WebHistory {
         #[unsafe(method_family = none)]
         pub unsafe fn orderedLastVisitedDays(&self) -> Retained<NSArray>;
 
+        /// # Safety
+        ///
+        /// `calendar_date` might not allow `None`.
         #[deprecated]
         #[unsafe(method(orderedItemsLastVisitedOnDay:))]
         #[unsafe(method_family = none)]
@@ -146,6 +171,10 @@ impl WebHistory {
         /// Parameter `URL`: The URL of the history item to search for
         ///
         /// Returns: Returns an item matching the URL
+        ///
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(itemForURL:))]
         #[unsafe(method_family = none)]

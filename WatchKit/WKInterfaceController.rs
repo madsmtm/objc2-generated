@@ -287,6 +287,9 @@ impl WKInterfaceController {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `context` should be of the correct type.
         #[unsafe(method(awakeWithContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn awakeWithContext(&self, context: Option<&AnyObject>);
@@ -367,6 +370,9 @@ impl WKInterfaceController {
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// `context` should be of the correct type.
         #[unsafe(method(pushControllerWithName:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pushControllerWithName_context(
@@ -405,6 +411,9 @@ impl WKInterfaceController {
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceOffsetDidScrollToBottom(&self);
 
+        /// # Safety
+        ///
+        /// `contexts` generic should be of the correct type.
         #[unsafe(method(reloadRootPageControllersWithNames:contexts:orientation:pageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadRootPageControllersWithNames_contexts_orientation_pageIndex(
@@ -419,6 +428,9 @@ impl WKInterfaceController {
         #[unsafe(method_family = none)]
         pub unsafe fn becomeCurrentPage(&self);
 
+        /// # Safety
+        ///
+        /// `context` should be of the correct type.
         #[unsafe(method(presentControllerWithName:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentControllerWithName_context(
@@ -427,6 +439,9 @@ impl WKInterfaceController {
             context: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `contexts` generic should be of the correct type.
         #[unsafe(method(presentControllerWithNames:contexts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentControllerWithNames_contexts(
@@ -450,6 +465,9 @@ impl WKInterfaceController {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `suggestions_handler` block's return must be a valid pointer or null.
         #[unsafe(method(presentTextInputControllerWithSuggestionsForLanguage:allowedInputMode:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentTextInputControllerWithSuggestionsForLanguage_allowedInputMode_completion(
@@ -466,6 +484,9 @@ impl WKInterfaceController {
         pub unsafe fn dismissTextInputController(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(presentMediaPlayerControllerWithURL:options:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentMediaPlayerControllerWithURL_options_completion(
@@ -480,6 +501,9 @@ impl WKInterfaceController {
         pub unsafe fn dismissMediaPlayerController(&self);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(presentAudioRecorderControllerWithOutputURL:preset:options:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentAudioRecorderControllerWithOutputURL_preset_options_completion(
@@ -570,6 +594,9 @@ impl WKInterfaceController {
         #[unsafe(method_family = none)]
         pub unsafe fn endGlanceUpdates(&self);
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[deprecated = "use updateUserActivity:"]
         #[unsafe(method(updateUserActivity:userInfo:webpageURL:))]
         #[unsafe(method_family = none)]
@@ -580,6 +607,9 @@ impl WKInterfaceController {
             webpage_url: Option<&NSURL>,
         );
 
+        /// # Safety
+        ///
+        /// `contexts` generic should be of the correct type.
         #[deprecated = "use reloadRootPageControllersWithNames:contexts:orientation:pageIndex:"]
         #[unsafe(method(reloadRootControllersWithNames:contexts:))]
         #[unsafe(method_family = none)]
@@ -589,12 +619,18 @@ impl WKInterfaceController {
             mtm: MainThreadMarker,
         );
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[deprecated = "use WKExtensionDelegate's handleUserActivity:"]
         #[unsafe(method(handleUserActivity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleUserActivity(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(feature = "objc2-ui-kit")]
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated]
         #[unsafe(method(addMenuItemWithImage:title:action:))]
         #[unsafe(method_family = none)]
@@ -605,6 +641,9 @@ impl WKInterfaceController {
             action: Sel,
         );
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated]
         #[unsafe(method(addMenuItemWithImageNamed:title:action:))]
         #[unsafe(method_family = none)]
@@ -615,6 +654,9 @@ impl WKInterfaceController {
             action: Sel,
         );
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated]
         #[unsafe(method(addMenuItemWithItemIcon:title:action:))]
         #[unsafe(method_family = none)]

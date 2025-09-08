@@ -89,6 +89,10 @@ impl ASAccessoryEvent {
         /// Some event types may indicate that the event is a subclass of ``ASAccessoryEvent-c.class`` that provides additional properties.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(eventType))]
         #[unsafe(method_family = none)]
         pub unsafe fn eventType(&self) -> ASAccessoryEventType;
@@ -99,6 +103,10 @@ impl ASAccessoryEvent {
         /// The session populates this member for event types like ``ASAccessoryEventType/accessoryAdded`` and ``ASAccessoryEventType/accessoryChanged``, but not for life cycle or picker events like ``ASAccessoryEventType/activated`` or ``ASAccessoryEventType/pickerDidPresent``.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accessory))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessory(&self) -> Option<Retained<ASAccessory>>;
@@ -106,6 +114,10 @@ impl ASAccessoryEvent {
         /// The error associated with the event, if any.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;

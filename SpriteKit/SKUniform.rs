@@ -156,6 +156,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// The returned must be correctly initialized.
         #[deprecated]
         #[unsafe(method(floatVector2Value))]
         #[unsafe(method_family = none)]
@@ -164,6 +167,10 @@ impl SKUniform {
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         /// Setter for [`floatVector2Value`][Self::floatVector2Value].
+        ///
+        /// # Safety
+        ///
+        /// `float_vector2_value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(setFloatVector2Value:))]
         #[unsafe(method_family = none)]
@@ -171,6 +178,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// The returned must be correctly initialized.
         #[deprecated]
         #[unsafe(method(floatVector3Value))]
         #[unsafe(method_family = none)]
@@ -179,6 +189,10 @@ impl SKUniform {
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         /// Setter for [`floatVector3Value`][Self::floatVector3Value].
+        ///
+        /// # Safety
+        ///
+        /// `float_vector3_value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(setFloatVector3Value:))]
         #[unsafe(method_family = none)]
@@ -186,6 +200,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// The returned must be correctly initialized.
         #[deprecated]
         #[unsafe(method(floatVector4Value))]
         #[unsafe(method_family = none)]
@@ -194,6 +211,10 @@ impl SKUniform {
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         /// Setter for [`floatVector4Value`][Self::floatVector4Value].
+        ///
+        /// # Safety
+        ///
+        /// `float_vector4_value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(setFloatVector4Value:))]
         #[unsafe(method_family = none)]
@@ -201,6 +222,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// The returned must be correctly initialized.
         #[deprecated]
         #[unsafe(method(floatMatrix2Value))]
         #[unsafe(method_family = none)]
@@ -209,6 +233,10 @@ impl SKUniform {
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         /// Setter for [`floatMatrix2Value`][Self::floatMatrix2Value].
+        ///
+        /// # Safety
+        ///
+        /// `float_matrix2_value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(setFloatMatrix2Value:))]
         #[unsafe(method_family = none)]
@@ -216,6 +244,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// The returned must be correctly initialized.
         #[deprecated]
         #[unsafe(method(floatMatrix3Value))]
         #[unsafe(method_family = none)]
@@ -224,6 +255,10 @@ impl SKUniform {
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         /// Setter for [`floatMatrix3Value`][Self::floatMatrix3Value].
+        ///
+        /// # Safety
+        ///
+        /// `float_matrix3_value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(setFloatMatrix3Value:))]
         #[unsafe(method_family = none)]
@@ -231,6 +266,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// The returned must be correctly initialized.
         #[deprecated]
         #[unsafe(method(floatMatrix4Value))]
         #[unsafe(method_family = none)]
@@ -239,6 +277,10 @@ impl SKUniform {
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
         /// Setter for [`floatMatrix4Value`][Self::floatMatrix4Value].
+        ///
+        /// # Safety
+        ///
+        /// `float_matrix4_value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(setFloatMatrix4Value:))]
         #[unsafe(method_family = none)]
@@ -246,6 +288,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(uniformWithName:floatVector2:))]
         #[unsafe(method_family = none)]
@@ -256,6 +301,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(uniformWithName:floatVector3:))]
         #[unsafe(method_family = none)]
@@ -266,6 +314,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(uniformWithName:floatVector4:))]
         #[unsafe(method_family = none)]
@@ -276,6 +327,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(uniformWithName:floatMatrix2:))]
         #[unsafe(method_family = none)]
@@ -286,6 +340,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(uniformWithName:floatMatrix3:))]
         #[unsafe(method_family = none)]
@@ -296,6 +353,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(uniformWithName:floatMatrix4:))]
         #[unsafe(method_family = none)]
@@ -306,6 +366,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(initWithName:floatVector2:))]
         #[unsafe(method_family = init)]
@@ -317,6 +380,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(initWithName:floatVector3:))]
         #[unsafe(method_family = init)]
@@ -328,6 +394,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(initWithName:floatVector4:))]
         #[unsafe(method_family = init)]
@@ -339,6 +408,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(initWithName:floatMatrix2:))]
         #[unsafe(method_family = init)]
@@ -350,6 +422,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(initWithName:floatMatrix3:))]
         #[unsafe(method_family = init)]
@@ -361,6 +436,9 @@ impl SKUniform {
 
         #[cfg(feature = "objc2-gl-kit")]
         #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
+        /// # Safety
+        ///
+        /// `value` must be correctly initialized.
         #[deprecated]
         #[unsafe(method(initWithName:floatMatrix4:))]
         #[unsafe(method_family = init)]

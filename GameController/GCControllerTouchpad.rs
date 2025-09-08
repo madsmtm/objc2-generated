@@ -76,6 +76,10 @@ impl GCControllerTouchpad {
 
         #[cfg(feature = "block2")]
         /// Called when a touch event begins on the touchpad.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(touchDown))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchDown(&self) -> GCControllerTouchpadHandler;
@@ -84,12 +88,20 @@ impl GCControllerTouchpad {
         /// Setter for [`touchDown`][Self::touchDown].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `touch_down` must be a valid pointer or null.
         #[unsafe(method(setTouchDown:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTouchDown(&self, touch_down: GCControllerTouchpadHandler);
 
         #[cfg(feature = "block2")]
         /// Called when a touch event continues on the touchpad, but not when it begins or ends.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(touchMoved))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchMoved(&self) -> GCControllerTouchpadHandler;
@@ -98,12 +110,20 @@ impl GCControllerTouchpad {
         /// Setter for [`touchMoved`][Self::touchMoved].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `touch_moved` must be a valid pointer or null.
         #[unsafe(method(setTouchMoved:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTouchMoved(&self, touch_moved: GCControllerTouchpadHandler);
 
         #[cfg(feature = "block2")]
         /// Called when a touch event ends on the touchpad.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(touchUp))]
         #[unsafe(method_family = none)]
         pub unsafe fn touchUp(&self) -> GCControllerTouchpadHandler;
@@ -112,6 +132,10 @@ impl GCControllerTouchpad {
         /// Setter for [`touchUp`][Self::touchUp].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `touch_up` must be a valid pointer or null.
         #[unsafe(method(setTouchUp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTouchUp(&self, touch_up: GCControllerTouchpadHandler);

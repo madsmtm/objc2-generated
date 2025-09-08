@@ -1517,6 +1517,11 @@ extern "C-unwind" {
     /// more CFDataRef elements (the persistent reference), and a kSecReturnRef
     /// whose value is kCFBooleanTrue. The objects in the provided array must be
     /// of the same type.
+    ///
+    /// # Safety
+    ///
+    /// - `query` generics must be of the correct type.
+    /// - `result` must be a valid pointer or null.
     pub fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFType) -> OSStatus;
 }
 
@@ -1570,6 +1575,11 @@ extern "C-unwind" {
     /// returned as a CFDictionaryRef containing all the requested data.
     /// On iOS, if a result type is not specified, no results are returned.
     /// On macOS, the added item is returned.
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generics must be of the correct type.
+    /// - `result` must be a valid pointer or null.
     pub fn SecItemAdd(attributes: &CFDictionary, result: *mut *const CFType) -> OSStatus;
 }
 
@@ -1591,6 +1601,11 @@ extern "C-unwind" {
     ///
     /// Attributes defining a search are specified by adding key/value
     /// pairs to the query dictionary.
+    ///
+    /// # Safety
+    ///
+    /// - `query` generics must be of the correct type.
+    /// - `attributes_to_update` generics must be of the correct type.
     pub fn SecItemUpdate(query: &CFDictionary, attributes_to_update: &CFDictionary) -> OSStatus;
 }
 
@@ -1623,5 +1638,9 @@ extern "C-unwind" {
     /// of references.
     /// If more than one of these result keys is specified, the behavior is
     /// undefined.
+    ///
+    /// # Safety
+    ///
+    /// `query` generics must be of the correct type.
     pub fn SecItemDelete(query: &CFDictionary) -> OSStatus;
 }

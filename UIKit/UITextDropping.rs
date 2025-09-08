@@ -77,6 +77,9 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_droppable_view` must implement UITextDroppable.
         #[optional]
         #[unsafe(method(textDroppableView:willBecomeEditableForDrop:))]
         #[unsafe(method_family = none)]
@@ -96,6 +99,9 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_droppable_view` must implement UITextDroppable.
         #[optional]
         #[unsafe(method(textDroppableView:proposalForDrop:))]
         #[unsafe(method_family = none)]
@@ -113,6 +119,9 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_droppable_view` must implement UITextDroppable.
         #[optional]
         #[unsafe(method(textDroppableView:willPerformDrop:))]
         #[unsafe(method_family = none)]
@@ -132,6 +141,9 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_droppable_view` must implement UITextDroppable.
         #[optional]
         #[unsafe(method(textDroppableView:previewForDroppingAllItemsWithDefault:))]
         #[unsafe(method_family = none)]
@@ -150,6 +162,9 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_droppable_view` must implement UITextDroppable.
         #[optional]
         #[unsafe(method(textDroppableView:dropSessionDidEnter:))]
         #[unsafe(method_family = none)]
@@ -168,6 +183,9 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_droppable_view` must implement UITextDroppable.
         #[optional]
         #[unsafe(method(textDroppableView:dropSessionDidUpdate:))]
         #[unsafe(method_family = none)]
@@ -186,6 +204,9 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_droppable_view` must implement UITextDroppable.
         #[optional]
         #[unsafe(method(textDroppableView:dropSessionDidExit:))]
         #[unsafe(method_family = none)]
@@ -204,6 +225,9 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting",
             feature = "UIView"
         ))]
+        /// # Safety
+        ///
+        /// `text_droppable_view` must implement UITextDroppable.
         #[optional]
         #[unsafe(method(textDroppableView:dropSessionDidEnd:))]
         #[unsafe(method_family = none)]

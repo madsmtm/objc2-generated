@@ -2605,6 +2605,10 @@ impl SCNText {
         /// Parameter `string`: The text to be represented.
         ///
         /// Parameter `extrusionDepth`: The extrusion depth.
+        ///
+        /// # Safety
+        ///
+        /// `string` should be of the correct type.
         #[unsafe(method(textWithString:extrusionDepth:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textWithString_extrusionDepth(
@@ -2636,6 +2640,10 @@ impl SCNText {
         /// Setter for [`string`][Self::string].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `string` should be of the correct type.
         #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: Option<&AnyObject>);
@@ -2652,6 +2660,10 @@ impl SCNText {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Setter for [`font`][Self::font].
+        ///
+        /// # Safety
+        ///
+        /// `font` might not allow `None`.
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);

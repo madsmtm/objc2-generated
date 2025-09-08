@@ -29,6 +29,9 @@ pub unsafe trait NSObjectUIAccessibilityContainer:
             mtm: MainThreadMarker,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `element` should be of the correct type.
         #[unsafe(method(indexOfAccessibilityElement:))]
         #[unsafe(method_family = none)]
         unsafe fn indexOfAccessibilityElement(
@@ -42,6 +45,10 @@ pub unsafe trait NSObjectUIAccessibilityContainer:
         unsafe fn accessibilityElements(&self, mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityElements`][Self::accessibilityElements].
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_elements` generic should be of the correct type.
         #[unsafe(method(setAccessibilityElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElements(
@@ -73,6 +80,10 @@ pub unsafe trait NSObjectUIAccessibilityContainer:
         unsafe fn automationElements(&self, mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
         /// Setter for [`automationElements`][Self::automationElements].
+        ///
+        /// # Safety
+        ///
+        /// `automation_elements` generic should be of the correct type.
         #[unsafe(method(setAutomationElements:))]
         #[unsafe(method_family = none)]
         unsafe fn setAutomationElements(

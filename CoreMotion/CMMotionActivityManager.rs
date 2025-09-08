@@ -51,6 +51,9 @@ impl CMMotionActivityManager {
             feature = "CMMotionActivity",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(queryActivityStartingFromDate:toDate:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryActivityStartingFromDate_toDate_toQueue_withHandler(
@@ -66,6 +69,9 @@ impl CMMotionActivityManager {
             feature = "CMMotionActivity",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(startActivityUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startActivityUpdatesToQueue_withHandler(

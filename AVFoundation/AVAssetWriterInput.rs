@@ -63,6 +63,10 @@ impl AVAssetWriterInput {
         /// For AVMediaTypeAudio the following keys are not currently supported in the outputSettings dictionary: AVSampleRateConverterAudioQualityKey.  When using this method to construct a new instance, an audio settings dictionary must be fully specified, meaning that it must contain AVFormatIDKey, AVSampleRateKey, and AVNumberOfChannelsKey.  If no other channel layout information is available, a value of 1 for AVNumberOfChannelsKey will result in mono output and a value of 2 will result in stereo output.  If AVNumberOfChannelsKey specifies a channel count greater than 2, the dictionary must also specify a value for AVChannelLayoutKey.  For kAudioFormatLinearPCM, all relevant AVLinearPCM*Key keys must be included, and for kAudioFormatAppleLossless, AVEncoderBitDepthHintKey keys must be included.  See +assetWriterInputWithMediaType:outputSettings:sourceFormatHint: for a way to avoid having to specify a value for each of those keys.
         ///
         /// For AVMediaTypeVideo, any output settings dictionary must request a compressed video format.  This means that the value passed in for outputSettings must follow the rules for compressed video output, as laid out in AVVideoSettings.h.  When using this method to construct a new instance, a video settings dictionary must be fully specified, meaning that it must contain AVVideoCodecKey, AVVideoWidthKey, and AVVideoHeightKey.  See +assetWriterInputWithMediaType:outputSettings:sourceFormatHint: for a way to avoid having to specify a value for each of those keys.  On iOS, the only values currently supported for AVVideoCodecKey are AVVideoCodecTypeH264 and AVVideoCodecTypeJPEG.  AVVideoCodecTypeH264 is not supported on iPhone 3G.  For AVVideoScalingModeKey, the value AVVideoScalingModeFit is not supported.
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(assetWriterInputWithMediaType:outputSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputWithMediaType_outputSettings(
@@ -92,6 +96,10 @@ impl AVAssetWriterInput {
         /// - for video inputs, the output settings do not contain a required key (AVVideoCodecKey, AVVideoWidthKey, AVVideoHeightKey)
         /// - the output scaling mode is AVVideoScalingModeFit
         /// - the output settings contain AVSampleRateConverterAudioQualityKey or AVVideoDecompressionPropertiesKey
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(assetWriterInputWithMediaType:outputSettings:sourceFormatHint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputWithMediaType_outputSettings_sourceFormatHint(
@@ -125,6 +133,10 @@ impl AVAssetWriterInput {
         /// - for video inputs, the output settings do not contain a required key (AVVideoCodecKey, AVVideoWidthKey, AVVideoHeightKey)
         /// - the output scaling mode is AVVideoScalingModeFit
         /// - the output settings contain AVSampleRateConverterAudioQualityKey or AVVideoDecompressionPropertiesKey
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(initWithMediaType:outputSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMediaType_outputSettings(
@@ -155,6 +167,10 @@ impl AVAssetWriterInput {
         /// - for video inputs, the output settings do not contain a required key (AVVideoCodecKey, AVVideoWidthKey, AVVideoHeightKey)
         /// - the output scaling mode is AVVideoScalingModeFit
         /// - the output settings contain AVSampleRateConverterAudioQualityKey or AVVideoDecompressionPropertiesKey
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(initWithMediaType:outputSettings:sourceFormatHint:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMediaType_outputSettings_sourceFormatHint(
@@ -281,6 +297,10 @@ impl AVAssetWriterInput {
         /// Before calling this method, you must ensure that the receiver is attached to an AVAssetWriter via a prior call to -addInput: and that -startWriting has been called on the asset writer.
         ///
         /// This method throws an exception if this method is called more than once.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(
@@ -722,6 +742,10 @@ impl AVAssetWriterInput {
         /// Before calling this method, you must ensure that the receiver is attached to an AVAssetWriter via a prior call to -addInput: and that -startWriting has been called on the asset writer.
         ///
         /// This method throws an exception if called more than once.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(respondToEachPassDescriptionOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondToEachPassDescriptionOnQueue_usingBlock(
@@ -785,6 +809,10 @@ impl AVAssetWriterInputPassDescription {
         /// The value of this property is suitable for using as a parameter for -[AVAssetReaderOutput resetForReadingTimeRanges:].
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sourceTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTimeRanges(&self) -> Retained<NSArray<NSValue>>;
@@ -836,6 +864,10 @@ impl AVAssetWriterInputPixelBufferAdaptor {
         /// Clients that do not need a pixel buffer pool for allocating buffers should set sourcePixelBufferAttributes to nil.
         ///
         /// This method throws an exception if the input is already attached to another asset writer input pixel buffer adaptor or if the input has already started writing (the asset writer has progressed beyond AVAssetWriterStatusUnknown).
+        ///
+        /// # Safety
+        ///
+        /// `source_pixel_buffer_attributes` generic should be of the correct type.
         #[unsafe(method(assetWriterInputPixelBufferAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputPixelBufferAdaptorWithAssetWriterInput_sourcePixelBufferAttributes(
@@ -862,6 +894,10 @@ impl AVAssetWriterInputPixelBufferAdaptor {
         /// Clients that do not need a pixel buffer pool for allocating buffers should set sourcePixelBufferAttributes to nil.
         ///
         /// This method throws an exception if the input is already attached to another asset writer input pixel buffer adaptor or if the input has already started writing (the asset writer has progressed beyond AVAssetWriterStatusUnknown).
+        ///
+        /// # Safety
+        ///
+        /// `source_pixel_buffer_attributes` generic should be of the correct type.
         #[unsafe(method(initWithAssetWriterInput:sourcePixelBufferAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAssetWriterInput_sourcePixelBufferAttributes(
@@ -983,6 +1019,10 @@ impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
         /// Clients that do not need a pixel buffer pool for allocating buffers should set sourcePixelBufferAttributes to nil.
         ///
         /// This method throws an exception if the input is already attached to another asset writer input tagged buffer group adaptor or if the input has already started writing (the asset writer has progressed beyond AVAssetWriterStatusUnknown).
+        ///
+        /// # Safety
+        ///
+        /// `source_pixel_buffer_attributes` generic should be of the correct type.
         #[unsafe(method(assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput_sourcePixelBufferAttributes(
@@ -1009,6 +1049,10 @@ impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
         /// Clients that do not need a pixel buffer pool for allocating buffers should set sourcePixelBufferAttributes to nil.
         ///
         /// It is an error to initialize an instance of AVAssetWriterInputTaggedPixelBufferGroupAdaptor with an asset writer input that is already attached to another instance of AVAssetWriterInputTaggedPixelBufferGroupAdaptor. It is also an error to initialize an instance of AVAssetWriterInputTaggedPixelBufferGroupAdaptor with an asset writer input whose asset writer has progressed beyond AVAssetWriterStatusUnknown.
+        ///
+        /// # Safety
+        ///
+        /// `source_pixel_buffer_attributes` generic should be of the correct type.
         #[unsafe(method(initWithAssetWriterInput:sourcePixelBufferAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAssetWriterInput_sourcePixelBufferAttributes(

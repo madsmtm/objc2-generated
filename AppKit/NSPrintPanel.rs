@@ -130,11 +130,17 @@ impl NSPrintPanel {
         pub unsafe fn printPanel(mtm: MainThreadMarker) -> Retained<NSPrintPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// # Safety
+        ///
+        /// `accessory_controller` must implement NSPrintPanelAccessorizing.
         #[unsafe(method(addAccessoryController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// # Safety
+        ///
+        /// `accessory_controller` must implement NSPrintPanelAccessorizing.
         #[unsafe(method(removeAccessoryController:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccessoryController(&self, accessory_controller: &NSViewController);
@@ -201,6 +207,10 @@ impl NSPrintPanel {
         );
 
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSWindow"))]
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]

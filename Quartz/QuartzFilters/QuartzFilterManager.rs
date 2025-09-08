@@ -111,6 +111,10 @@ impl QuartzFilterManager {
         #[unsafe(method_family = none)]
         pub unsafe fn filterManager() -> Option<Retained<QuartzFilterManager>>;
 
+        /// # Safety
+        ///
+        /// - `domains` generic should be of the correct type.
+        /// - `domains` might not allow `None`.
         #[unsafe(method(filtersInDomains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filtersInDomains(domains: Option<&NSArray>) -> Option<Retained<NSArray>>;
@@ -132,10 +136,17 @@ impl QuartzFilterManager {
         pub unsafe fn selectedFilter(&self) -> Option<Retained<QuartzFilter>>;
 
         #[cfg(feature = "QuartzFilter")]
+        /// # Safety
+        ///
+        /// `filter` might not allow `None`.
         #[unsafe(method(selectFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectFilter(&self, filter: Option<&QuartzFilter>) -> bool;
 
+        /// # Safety
+        ///
+        /// - `a_delegate` should be of the correct type.
+        /// - `a_delegate` might not allow `None`.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, a_delegate: Option<&AnyObject>);
@@ -145,6 +156,10 @@ impl QuartzFilterManager {
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "QuartzFilter")]
+        /// # Safety
+        ///
+        /// - `filter_properties` generic should be of the correct type.
+        /// - `filter_properties` might not allow `None`.
         #[unsafe(method(importFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn importFilter(
@@ -178,6 +193,10 @@ pub unsafe trait NSObjectQuartzFilterManagerDelegate:
 {
     extern_methods!(
         #[cfg(feature = "QuartzFilter")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `filter` might not allow `None`.
         #[unsafe(method(quartzFilterManager:didAddFilter:))]
         #[unsafe(method_family = none)]
         unsafe fn quartzFilterManager_didAddFilter(
@@ -187,6 +206,10 @@ pub unsafe trait NSObjectQuartzFilterManagerDelegate:
         );
 
         #[cfg(feature = "QuartzFilter")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `filter` might not allow `None`.
         #[unsafe(method(quartzFilterManager:didRemoveFilter:))]
         #[unsafe(method_family = none)]
         unsafe fn quartzFilterManager_didRemoveFilter(
@@ -196,6 +219,10 @@ pub unsafe trait NSObjectQuartzFilterManagerDelegate:
         );
 
         #[cfg(feature = "QuartzFilter")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `filter` might not allow `None`.
         #[unsafe(method(quartzFilterManager:didModifyFilter:))]
         #[unsafe(method_family = none)]
         unsafe fn quartzFilterManager_didModifyFilter(
@@ -205,6 +232,10 @@ pub unsafe trait NSObjectQuartzFilterManagerDelegate:
         );
 
         #[cfg(feature = "QuartzFilter")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `filter` might not allow `None`.
         #[unsafe(method(quartzFilterManager:didSelectFilter:))]
         #[unsafe(method_family = none)]
         unsafe fn quartzFilterManager_didSelectFilter(

@@ -112,6 +112,10 @@ impl NSAlert {
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`icon`][Self::icon].
+        ///
+        /// # Safety
+        ///
+        /// `icon` might not allow `None`.
         #[unsafe(method(setIcon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIcon(&self, icon: Option<&NSImage>);
@@ -318,6 +322,10 @@ extern_protocol!(
 impl NSAlert {
     extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated = "Use -beginSheetModalForWindow:completionHandler: instead"]
         #[unsafe(method(beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]

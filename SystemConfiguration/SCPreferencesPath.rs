@@ -86,6 +86,10 @@ impl SCPreferences {
     /// stored at the specified path.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `value` generics must be of the correct type.
     #[doc(alias = "SCPreferencesPathSetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]

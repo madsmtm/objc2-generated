@@ -84,6 +84,9 @@ extern_conformance!(
 impl NSFormatter {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(stringForObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
@@ -96,6 +99,10 @@ impl NSFormatter {
             feature = "NSDictionary",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// - `obj` should be of the correct type.
+        /// - `attrs` generic should be of the correct type.
         #[unsafe(method(attributedStringForObjectValue:withDefaultAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForObjectValue_withDefaultAttributes(
@@ -105,6 +112,9 @@ impl NSFormatter {
         ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(editingStringForObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn editingStringForObjectValue(
@@ -133,6 +143,9 @@ impl NSFormatter {
         ) -> bool;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `proposed_sel_range_ptr` must be a valid pointer or null.
         #[unsafe(method(isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription(

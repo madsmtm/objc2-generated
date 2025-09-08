@@ -81,6 +81,9 @@ extern_conformance!(
 
 impl NSGraphicsContext {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(graphicsContextWithAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsContextWithAttributes(
@@ -252,11 +255,18 @@ impl NSGraphicsContext {
         #[unsafe(method_family = none)]
         pub unsafe fn focusStack(&self) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// - `stack` should be of the correct type.
+        /// - `stack` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFocusStack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFocusStack(&self, stack: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `graphics_port` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(graphicsContextWithGraphicsPort:flipped:))]
         #[unsafe(method_family = none)]

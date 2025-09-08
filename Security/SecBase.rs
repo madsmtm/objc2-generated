@@ -330,6 +330,10 @@ unsafe impl RefEncode for SecKeychainAttributeInfo {
 /// Reserved for future use. Your code should pass NULL in this parameter.
 ///
 /// Returns: A reference to an error string, or NULL if no error string is available for the specified result code. Your code must release this reference by calling the CFRelease function.
+///
+/// # Safety
+///
+/// `reserved` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn SecCopyErrorMessageString(
     status: OSStatus,

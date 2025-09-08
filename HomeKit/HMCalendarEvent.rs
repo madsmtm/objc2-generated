@@ -93,6 +93,10 @@ impl HMCalendarEvent {
         /// If its expected to fire on the same day, it should be at least 1 minute ahead or it could get scheduled for the next recurrent day.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(fireDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn fireDateComponents(&self) -> Retained<NSDateComponents>;
@@ -161,11 +165,19 @@ impl HMMutableCalendarEvent {
         /// The date component that specifies the time when the event is fired
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(fireDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn fireDateComponents(&self) -> Retained<NSDateComponents>;
 
         /// Setter for [`fireDateComponents`][Self::fireDateComponents].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFireDateComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFireDateComponents(&self, fire_date_components: &NSDateComponents);

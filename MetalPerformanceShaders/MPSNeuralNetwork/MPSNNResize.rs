@@ -242,6 +242,10 @@ impl MPSNNCropAndResizeBilinear {
         /// source image to use for each box/region to perform the resize operation.
         ///
         /// Returns: A valid MPSNNCropAndResizeBilinear object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `regions` must be a valid pointer.
         #[unsafe(method(initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resizeWidth_resizeHeight_numberOfRegions_regions(

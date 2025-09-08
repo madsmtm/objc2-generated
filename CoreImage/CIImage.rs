@@ -314,6 +314,9 @@ impl CIImage {
         pub unsafe fn imageWithCGImage(image: &CGImage) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(imageWithCGImage:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithCGImage_options(
@@ -322,6 +325,9 @@ impl CIImage {
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-image-io")]
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(imageWithCGImageSource:index:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithCGImageSource_index_options(
@@ -337,6 +343,9 @@ impl CIImage {
         pub unsafe fn imageWithCGLayer(layer: &CGLayer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(imageWithCGLayer:options:))]
         #[unsafe(method_family = none)]
@@ -368,6 +377,9 @@ impl CIImage {
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(imageWithTexture:size:flipped:options:))]
         #[unsafe(method_family = none)]
@@ -379,6 +391,9 @@ impl CIImage {
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-metal")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(imageWithMTLTexture:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithMTLTexture_options(
@@ -390,6 +405,9 @@ impl CIImage {
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithContentsOfURL(url: &NSURL) -> Option<Retained<CIImage>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(imageWithContentsOfURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithContentsOfURL_options(
@@ -401,6 +419,9 @@ impl CIImage {
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithData(data: &NSData) -> Option<Retained<CIImage>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(imageWithData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithData_options(
@@ -414,6 +435,9 @@ impl CIImage {
         pub unsafe fn imageWithCVImageBuffer(image_buffer: &CVImageBuffer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(imageWithCVImageBuffer:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithCVImageBuffer_options(
@@ -427,6 +451,9 @@ impl CIImage {
         pub unsafe fn imageWithCVPixelBuffer(pixel_buffer: &CVPixelBuffer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(imageWithCVPixelBuffer:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithCVPixelBuffer_options(
@@ -440,6 +467,9 @@ impl CIImage {
         pub unsafe fn imageWithIOSurface(surface: &IOSurfaceRef) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-io-surface")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(imageWithIOSurface:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithIOSurface_options(
@@ -502,6 +532,9 @@ impl CIImage {
         pub unsafe fn initWithCGImage(this: Allocated<Self>, image: &CGImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCGImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGImage_options(
@@ -511,6 +544,9 @@ impl CIImage {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-image-io")]
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithCGImageSource:index:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGImageSource_index_options(
@@ -527,6 +563,9 @@ impl CIImage {
         pub unsafe fn initWithCGLayer(this: Allocated<Self>, layer: &CGLayer) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Use initWithCGImage:options instead."]
         #[unsafe(method(initWithCGLayer:options:))]
         #[unsafe(method_family = init)]
@@ -540,6 +579,9 @@ impl CIImage {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
@@ -573,6 +615,9 @@ impl CIImage {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(initWithTexture:size:flipped:options:))]
         #[unsafe(method_family = init)]
@@ -585,6 +630,9 @@ impl CIImage {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-metal")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithMTLTexture:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLTexture_options(
@@ -600,6 +648,9 @@ impl CIImage {
             url: &NSURL,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithContentsOfURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_options(
@@ -617,6 +668,9 @@ impl CIImage {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-io-surface")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithIOSurface:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOSurface_options(
@@ -626,6 +680,9 @@ impl CIImage {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-io-surface")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(initWithIOSurface:plane:format:options:))]
         #[unsafe(method_family = init)]
@@ -646,6 +703,9 @@ impl CIImage {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCVImageBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCVImageBuffer_options(
@@ -663,6 +723,9 @@ impl CIImage {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCVPixelBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCVPixelBuffer_options(
@@ -736,6 +799,9 @@ impl CIImage {
         #[unsafe(method_family = none)]
         pub unsafe fn imageByClampingToRect(&self, rect: CGRect) -> Retained<CIImage>;
 
+        /// # Safety
+        ///
+        /// `params` generic should be of the correct type.
         #[unsafe(method(imageByApplyingFilter:withInputParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByApplyingFilter_withInputParameters(
@@ -784,6 +850,9 @@ impl CIImage {
             sigma: c_double,
         ) -> Retained<CIImage>;
 
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(imageBySettingProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageBySettingProperties(
@@ -927,6 +996,9 @@ impl CIImage {
         pub unsafe fn autoAdjustmentFilters(&self) -> Retained<NSArray<CIFilter>>;
 
         #[cfg(feature = "CIFilter")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(autoAdjustmentFiltersWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn autoAdjustmentFiltersWithOptions(

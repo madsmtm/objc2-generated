@@ -24,6 +24,9 @@ extern_conformance!(
 #[cfg(feature = "SKRequest")]
 impl SKReceiptRefreshRequest {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[deprecated = "Use Transaction.all and AppTransaction.shared"]
         #[unsafe(method(initWithReceiptProperties:))]
         #[unsafe(method_family = init)]

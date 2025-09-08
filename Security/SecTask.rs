@@ -75,6 +75,10 @@ impl SecTask {
     /// A NULL return may indicate an error, or it may indicate that
     /// the entitlement is simply not present.  In the latter case, no CFError is
     /// returned.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecTaskCopyValueForEntitlement")]
     #[inline]
     pub unsafe fn value_for_entitlement(
@@ -105,6 +109,11 @@ impl SecTask {
     /// detailed errors.  If a requested entitlement is not present for the
     /// returned dictionary, the entitlement is not set on the task.  The caller
     /// must CFRelease the returned value
+    ///
+    /// # Safety
+    ///
+    /// - `entitlements` generic must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecTaskCopyValuesForEntitlements")]
     #[inline]
     pub unsafe fn values_for_entitlements(
@@ -130,6 +139,10 @@ impl SecTask {
     /// Parameter `error`: On a NULL return, this will contain a CFError describing
     /// the problem.  This argument may be NULL if the caller is not interested in
     /// detailed errors. The caller must CFRelease the returned value
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecTaskCopySigningIdentifier")]
     #[inline]
     pub unsafe fn signing_identifier(

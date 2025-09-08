@@ -69,6 +69,9 @@ impl NSColorPicker {
             button_cell: &NSButtonCell,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(viewSizeChanged:))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>);

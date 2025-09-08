@@ -250,6 +250,10 @@ impl AVCustomRoutingPartialIP {
         /// ```
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> Retained<NSData>;
@@ -266,6 +270,10 @@ impl AVCustomRoutingPartialIP {
         /// ```
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mask))]
         #[unsafe(method_family = none)]
         pub unsafe fn mask(&self) -> Retained<NSData>;

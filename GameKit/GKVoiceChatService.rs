@@ -44,11 +44,18 @@ impl GKVoiceChatService {
 
         #[cfg(feature = "GKPublicProtocols")]
         /// Setter for [`client`][Self::client].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported."]
         #[unsafe(method(setClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 
+        /// # Safety
+        ///
+        /// `participant_id` might not allow `None`.
         #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(startVoiceChatWithParticipantID:error:))]
         #[unsafe(method_family = none)]
@@ -58,6 +65,9 @@ impl GKVoiceChatService {
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `participant_id` might not allow `None`.
         #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(stopVoiceChatWithParticipantID:))]
         #[unsafe(method_family = none)]
@@ -77,6 +87,10 @@ impl GKVoiceChatService {
         #[unsafe(method_family = none)]
         pub unsafe fn denyCallID(&self, call_id: NSInteger);
 
+        /// # Safety
+        ///
+        /// - `audio` might not allow `None`.
+        /// - `participant_id` might not allow `None`.
         #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(receivedRealTimeData:fromParticipantID:))]
         #[unsafe(method_family = none)]
@@ -86,6 +100,10 @@ impl GKVoiceChatService {
             participant_id: Option<&NSString>,
         );
 
+        /// # Safety
+        ///
+        /// - `arbitrary_data` might not allow `None`.
+        /// - `participant_id` might not allow `None`.
         #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(receivedData:fromParticipantID:))]
         #[unsafe(method_family = none)]

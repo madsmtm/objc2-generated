@@ -26,6 +26,10 @@ extern_conformance!(
 
 impl CARenderer {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `ctx` must be a valid pointer.
+        /// - `dict` generic should be of the correct type.
         #[deprecated = "+rendererWithMTLTexture"]
         #[unsafe(method(rendererWithCGLContext:options:))]
         #[unsafe(method_family = none)]
@@ -35,6 +39,9 @@ impl CARenderer {
         ) -> Retained<CARenderer>;
 
         #[cfg(feature = "objc2-metal")]
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(rendererWithMTLTexture:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererWithMTLTexture_options(
@@ -65,6 +72,9 @@ impl CARenderer {
         pub fn setBounds(&self, bounds: CGRect);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-video"))]
+        /// # Safety
+        ///
+        /// `ts` must be a valid pointer or null.
         #[unsafe(method(beginFrameAtTime:timeStamp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginFrameAtTime_timeStamp(&self, t: CFTimeInterval, ts: *mut CVTimeStamp);

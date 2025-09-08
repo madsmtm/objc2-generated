@@ -36,6 +36,10 @@ impl AVCaptionFormatConformer {
         /// Parameter `conversionSettings`: Describes the conversion operation for which the caption is to be conformed.
         ///
         /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
+        ///
+        /// # Safety
+        ///
+        /// `conversion_settings` generic should be of the correct type.
         #[unsafe(method(captionFormatConformerWithConversionSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn captionFormatConformerWithConversionSettings(
@@ -50,6 +54,10 @@ impl AVCaptionFormatConformer {
         /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
         ///
         /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
+        ///
+        /// # Safety
+        ///
+        /// `conversion_settings` generic should be of the correct type.
         #[unsafe(method(initWithConversionSettings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConversionSettings(

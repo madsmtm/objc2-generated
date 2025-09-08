@@ -31,6 +31,10 @@ impl NSNibConnector {
         /// Setter for [`source`][Self::source].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `source` should be of the correct type.
         #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&AnyObject>);
@@ -42,6 +46,10 @@ impl NSNibConnector {
         /// Setter for [`destination`][Self::destination].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `destination` should be of the correct type.
         #[unsafe(method(setDestination:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestination(&self, destination: Option<&AnyObject>);
@@ -57,6 +65,10 @@ impl NSNibConnector {
         #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
+        /// # Safety
+        ///
+        /// - `old_object` should be of the correct type.
+        /// - `new_object` should be of the correct type.
         #[unsafe(method(replaceObject:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceObject_withObject(

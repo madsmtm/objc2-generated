@@ -166,6 +166,10 @@ impl HKQuantitySeriesSampleBuilder {
         /// error indicates the resulting samples could not be returned.
         /// After calling this method, the receiver will be considered invalid
         /// and calling any other method will result in an error.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(finishSeriesWithMetadata:endDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithMetadata_endDate_completion(
@@ -210,6 +214,10 @@ impl HKQuantitySeriesSampleBuilder {
         /// error indicates the resulting samples could not be returned.
         /// After calling this method, the receiver will be considered invalid
         /// and calling any other method will result in an error.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(finishSeriesWithMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithMetadata_completion(

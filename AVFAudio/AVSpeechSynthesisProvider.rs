@@ -56,6 +56,10 @@ impl AVSpeechSynthesisProviderVoice {
         /// The localized name of the voice
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -66,6 +70,10 @@ impl AVSpeechSynthesisProviderVoice {
         /// Behavior is undefined if identifiers are not unique for all voices within a given extension.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -75,6 +83,10 @@ impl AVSpeechSynthesisProviderVoice {
         /// These languages are what a user would expect a synthesizer to fully support and be primarily used for.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(primaryLanguages))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryLanguages(&self) -> Retained<NSArray<NSString>>;
@@ -88,6 +100,10 @@ impl AVSpeechSynthesisProviderVoice {
         /// `["zh-CN","en-US"]`indicating if it received "你好 means Hello", it would be able to speak the entire phrase.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(supportedLanguages))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedLanguages(&self) -> Retained<NSArray<NSString>>;
@@ -97,11 +113,19 @@ impl AVSpeechSynthesisProviderVoice {
         /// This reported size of the voice package on disk, in bytes. Defaults to 0.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(voiceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceSize(&self) -> i64;
 
         /// Setter for [`voiceSize`][Self::voiceSize].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setVoiceSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVoiceSize(&self, voice_size: i64);
@@ -111,11 +135,19 @@ impl AVSpeechSynthesisProviderVoice {
         /// This is an optional property for bookkeeping. This value does not affect system behavior.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
 
         /// Setter for [`version`][Self::version].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: &NSString);
@@ -124,12 +156,20 @@ impl AVSpeechSynthesisProviderVoice {
         /// The gender of the voice (optional)
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(gender))]
         #[unsafe(method_family = none)]
         pub unsafe fn gender(&self) -> AVSpeechSynthesisVoiceGender;
 
         #[cfg(feature = "AVSpeechSynthesis")]
         /// Setter for [`gender`][Self::gender].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setGender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setGender(&self, gender: AVSpeechSynthesisVoiceGender);
@@ -139,11 +179,19 @@ impl AVSpeechSynthesisProviderVoice {
         /// This is an optional property that indicates the age of this voice, to be treated as a personality trait. Defaults to 0.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(age))]
         #[unsafe(method_family = none)]
         pub unsafe fn age(&self) -> NSInteger;
 
         /// Setter for [`age`][Self::age].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAge:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAge(&self, age: NSInteger);
@@ -219,6 +267,10 @@ impl AVSpeechSynthesisProviderRequest {
         /// See: https://www.w3.org/TR/speech-synthesis11/
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(ssmlRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn ssmlRepresentation(&self) -> Retained<NSString>;
@@ -226,6 +278,10 @@ impl AVSpeechSynthesisProviderRequest {
         /// The voice to be used in this speech request
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(voice))]
         #[unsafe(method_family = none)]
         pub unsafe fn voice(&self) -> Retained<AVSpeechSynthesisProviderVoice>;
@@ -301,6 +357,11 @@ impl AVSpeechSynthesisProviderAudioUnit {
         /// A synthesizer should call this method when it has produced relevant data to the audio buffers it is sending back to the host. In some cases speech output may be delayed until these markers are delivered. For example, word highlighting depends on marker data from synthesizers in order to properly time which words are highlighted. Many speech synthesizers generate this information on the fly, while synthesizing the audio. The array of markers can reference future audio buffers that have yet to be delivered.
         ///
         /// There may be cases in which marker data is not fully known until further audio processing is done. In these cases, and other casers where marker data has changed, calling this block with marker data that contains perviously delivered audio buffer ranges will replace that audio buffer range's marker data, as it will be considered stale.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(speechSynthesisOutputMetadataBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechSynthesisOutputMetadataBlock(
@@ -311,6 +372,10 @@ impl AVSpeechSynthesisProviderAudioUnit {
         /// Setter for [`speechSynthesisOutputMetadataBlock`][Self::speechSynthesisOutputMetadataBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `speech_synthesis_output_metadata_block` must be a valid pointer or null.
         #[unsafe(method(setSpeechSynthesisOutputMetadataBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeechSynthesisOutputMetadataBlock(

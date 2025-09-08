@@ -165,6 +165,9 @@ impl NSNumberFormatter {
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(all(feature = "NSError", feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `rangep` must be a valid pointer or null.
         #[unsafe(method(getObjectValue:forString:range:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_range_error(
@@ -273,6 +276,10 @@ impl NSNumberFormatter {
         /// Setter for [`textAttributesForNegativeValues`][Self::textAttributesForNegativeValues].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_attributes_for_negative_values` generic should be of the correct type.
         #[unsafe(method(setTextAttributesForNegativeValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNegativeValues(
@@ -304,6 +311,10 @@ impl NSNumberFormatter {
         /// Setter for [`textAttributesForPositiveValues`][Self::textAttributesForPositiveValues].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_attributes_for_positive_values` generic should be of the correct type.
         #[unsafe(method(setTextAttributesForPositiveValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForPositiveValues(
@@ -404,6 +415,10 @@ impl NSNumberFormatter {
         /// Setter for [`textAttributesForZero`][Self::textAttributesForZero].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_attributes_for_zero` generic should be of the correct type.
         #[unsafe(method(setTextAttributesForZero:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForZero(
@@ -435,6 +450,10 @@ impl NSNumberFormatter {
         /// Setter for [`textAttributesForNil`][Self::textAttributesForNil].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_attributes_for_nil` generic should be of the correct type.
         #[unsafe(method(setTextAttributesForNil:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNil(
@@ -466,6 +485,10 @@ impl NSNumberFormatter {
         /// Setter for [`textAttributesForNotANumber`][Self::textAttributesForNotANumber].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_attributes_for_not_a_number` generic should be of the correct type.
         #[unsafe(method(setTextAttributesForNotANumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNotANumber(
@@ -497,6 +520,10 @@ impl NSNumberFormatter {
         /// Setter for [`textAttributesForPositiveInfinity`][Self::textAttributesForPositiveInfinity].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_attributes_for_positive_infinity` generic should be of the correct type.
         #[unsafe(method(setTextAttributesForPositiveInfinity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForPositiveInfinity(
@@ -528,6 +555,10 @@ impl NSNumberFormatter {
         /// Setter for [`textAttributesForNegativeInfinity`][Self::textAttributesForNegativeInfinity].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_attributes_for_negative_infinity` generic should be of the correct type.
         #[unsafe(method(setTextAttributesForNegativeInfinity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextAttributesForNegativeInfinity(

@@ -40,6 +40,10 @@ impl LAPrivateKey {
         /// `SecKeyAlgorithm`suitable for generating signatures with this key – e.g:
         /// `kSecKeyAlgorithmECDSASignatureMessageX962SHA256`
         /// Parameter `handler`: Completion handler with the signature of given data or an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(signData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn signData_secKeyAlgorithm_completion(
@@ -69,6 +73,10 @@ impl LAPrivateKey {
         /// `SecKeyAlgorithm`suitable for decrypting data with this key –e.g:
         /// `kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM`
         /// Parameter `handler`: Completion handler with plaintext or an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(decryptData:secKeyAlgorithm:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decryptData_secKeyAlgorithm_completion(
@@ -100,6 +108,10 @@ impl LAPrivateKey {
         /// `SecKeyKeyExchangeParameter`constants.  Used algorithm determines the set of required and optional parameters to be used.
         ///
         /// Parameter `handler`: Completion handler with the result of the key exchange or an error on failure.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exchangeKeysWithPublicKey_secKeyAlgorithm_secKeyParameters_completion(

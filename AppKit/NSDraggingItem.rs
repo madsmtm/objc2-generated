@@ -67,6 +67,10 @@ impl NSDraggingImageComponent {
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
+        ///
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
@@ -140,6 +144,10 @@ impl NSDraggingItem {
         /// Setter for [`imageComponentsProvider`][Self::imageComponentsProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `image_components_provider` block's return must be a valid pointer.
         #[unsafe(method(setImageComponentsProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageComponentsProvider(
@@ -149,6 +157,9 @@ impl NSDraggingItem {
             >,
         );
 
+        /// # Safety
+        ///
+        /// `contents` should be of the correct type.
         #[unsafe(method(setDraggingFrame:contents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&AnyObject>);

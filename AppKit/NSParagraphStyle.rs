@@ -538,6 +538,9 @@ impl NSMutableParagraphStyle {
 impl NSTextTab {
     extern_methods!(
         #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTextAlignment:location:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextAlignment_location_options(

@@ -133,6 +133,10 @@ impl ASAuthorizationProviderExtensionLoginManager {
         /// Setter for [`ssoTokens`][Self::ssoTokens].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `sso_tokens` generic should be of the correct type.
         #[unsafe(method(setSsoTokens:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSsoTokens(&self, sso_tokens: Option<&NSDictionary>);

@@ -25,6 +25,9 @@ unsafe impl RefEncode for CGPDFArray {
 pub type CGPDFArrayRef = *mut CGPDFArray;
 
 impl CGPDFArray {
+    /// # Safety
+    ///
+    /// `array` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetCount")]
     #[inline]
     pub unsafe fn count(array: CGPDFArrayRef) -> usize {
@@ -34,6 +37,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetCount(array) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetObject")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
@@ -48,6 +55,9 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetObject(array, index, value) }
     }
 
+    /// # Safety
+    ///
+    /// `array` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetNull")]
     #[inline]
     pub unsafe fn null(array: CGPDFArrayRef, index: usize) -> bool {
@@ -57,6 +67,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetNull(array, index) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetBoolean")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
@@ -71,6 +85,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetBoolean(array, index, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetInteger")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
@@ -85,6 +103,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetInteger(array, index, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetNumber")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
@@ -99,6 +121,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetNumber(array, index, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetName")]
     #[inline]
     pub unsafe fn name(array: CGPDFArrayRef, index: usize, value: *mut *const c_char) -> bool {
@@ -112,6 +138,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetName(array, index, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetString")]
     #[cfg(feature = "CGPDFString")]
     #[inline]
@@ -126,6 +156,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetString(array, index, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetArray")]
     #[inline]
     pub unsafe fn array(array: CGPDFArrayRef, index: usize, value: *mut CGPDFArrayRef) -> bool {
@@ -139,6 +173,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetArray(array, index, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
@@ -157,6 +195,10 @@ impl CGPDFArray {
         unsafe { CGPDFArrayGetDictionary(array, index, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetStream")]
     #[cfg(feature = "CGPDFStream")]
     #[inline]
@@ -178,6 +220,11 @@ pub type CGPDFArrayApplierBlock =
     *mut block2::DynBlock<dyn Fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFArray {
+    /// # Safety
+    ///
+    /// - `array` must be a valid pointer or null.
+    /// - `block` must be a valid pointer or null.
+    /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayApplyBlock")]
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
     #[inline]

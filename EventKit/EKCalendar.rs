@@ -65,6 +65,10 @@ impl EKCalendar {
 
         #[cfg(feature = "EKSource")]
         /// Setter for [`source`][Self::source].
+        ///
+        /// # Safety
+        ///
+        /// `source` might not allow `None`.
         #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&EKSource>);
@@ -125,6 +129,10 @@ impl EKCalendar {
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`CGColor`][Self::CGColor].
+        ///
+        /// # Safety
+        ///
+        /// `cg_color` might not allow `None`.
         #[unsafe(method(setCGColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCGColor(&self, cg_color: Option<&CGColor>);

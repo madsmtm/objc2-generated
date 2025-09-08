@@ -78,6 +78,10 @@ unsafe impl RefEncode for CFNumberFormatterStyle {
 }
 
 impl CFNumberFormatter {
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `locale` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -131,6 +135,9 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `format_string` might not allow `None`.
     #[doc(alias = "CFNumberFormatterSetFormat")]
     #[inline]
     pub unsafe fn set_format(&self, format_string: Option<&CFString>) {
@@ -143,6 +150,11 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetFormat(self, format_string) }
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `formatter` might not allow `None`.
+    /// - `number` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreateStringWithNumber")]
     #[cfg(feature = "CFNumber")]
     #[inline]
@@ -162,6 +174,9 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterCreateStringWithValue")]
     #[cfg(feature = "CFNumber")]
     #[inline]
@@ -209,6 +224,9 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
 }
 
 impl CFNumberFormatter {
+    /// # Safety
+    ///
+    /// `rangep` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterCreateNumberFromString")]
     #[cfg(feature = "CFNumber")]
     #[inline]
@@ -234,6 +252,10 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `rangep` must be a valid pointer.
+    /// - `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterGetValueFromString")]
     #[cfg(feature = "CFNumber")]
     #[inline]
@@ -259,6 +281,11 @@ impl CFNumberFormatter {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `key` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
     #[doc(alias = "CFNumberFormatterSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: Option<&CFNumberFormatterKey>, value: Option<&CFType>) {
@@ -272,6 +299,9 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetProperty(self, key, value) }
     }
 
+    /// # Safety
+    ///
+    /// `key` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCopyProperty")]
     #[inline]
     pub unsafe fn property(
@@ -543,6 +573,10 @@ unsafe impl RefEncode for CFNumberFormatterPadPosition {
 }
 
 impl CFNumberFormatter {
+    /// # Safety
+    ///
+    /// - `default_fraction_digits` must be a valid pointer.
+    /// - `rounding_increment` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterGetDecimalInfoForCurrencyCode")]
     #[inline]
     pub unsafe fn decimal_info_for_currency_code(

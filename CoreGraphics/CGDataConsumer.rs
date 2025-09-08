@@ -69,6 +69,10 @@ unsafe impl ConcreteType for CGDataConsumer {
 }
 
 impl CGDataConsumer {
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `cbks` must be a valid pointer or null.
     #[doc(alias = "CGDataConsumerCreate")]
     #[inline]
     pub unsafe fn new(

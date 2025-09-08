@@ -401,6 +401,10 @@ impl NSButtonCell {
         #[unsafe(method_family = none)]
         pub unsafe fn setPeriodicDelay_interval(&self, delay: c_float, interval: c_float);
 
+        /// # Safety
+        ///
+        /// - `delay` must be a valid pointer.
+        /// - `interval` must be a valid pointer.
         #[unsafe(method(getPeriodicDelay:interval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPeriodicDelay_interval(
@@ -409,6 +413,9 @@ impl NSButtonCell {
             interval: NonNull<c_float>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(performClick:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performClick(&self, sender: Option<&AnyObject>);
@@ -632,11 +639,17 @@ impl NSButtonCell {
         #[unsafe(method_family = none)]
         pub unsafe fn setGradientType(&self, gradient_type: NSGradientType);
 
+        /// # Safety
+        ///
+        /// `string_with_ampersand` might not allow `None`.
         #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleWithMnemonic(&self, string_with_ampersand: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// `string_with_ampersand` might not allow `None`.
         #[deprecated = "Mnemonics are not used on macOS. Set the alternateTitle property directly instead."]
         #[unsafe(method(setAlternateTitleWithMnemonic:))]
         #[unsafe(method_family = none)]

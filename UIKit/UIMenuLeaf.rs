@@ -104,6 +104,11 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
 
         /// Performs the element’s primary action (i.e. it's handler or selector).
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `target` should be of the correct type.
         #[unsafe(method(performWithSender:target:))]
         #[unsafe(method_family = none)]
         unsafe fn performWithSender_target(

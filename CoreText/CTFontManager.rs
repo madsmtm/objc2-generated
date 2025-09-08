@@ -64,6 +64,12 @@ extern "C-unwind" {
     /// Parameter `context`: Unused. Can be NULL.
     ///
     /// Returns: A CFComparisonResult value indicating the sort order for the two family names. kCFComparisonResultGreaterThan if family1 is greater than family2, kCFComparisonResultLessThan if family1 is less than family2, and kCFComparisonResultEqualTo if they are equal.
+    ///
+    /// # Safety
+    ///
+    /// - `family1` must be a valid pointer.
+    /// - `family2` must be a valid pointer.
+    /// - `context` must be a valid pointer or null.
     pub fn CTFontManagerCompareFontFamilyNames(
         family1: NonNull<c_void>,
         family2: NonNull<c_void>,
@@ -199,6 +205,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns true if registration of the fonts was successful.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     pub fn CTFontManagerRegisterFontsForURL(
         font_url: &CFURL,
         scope: CTFontManagerScope,
@@ -221,6 +231,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns true if unregistration of the fonts was successful.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     pub fn CTFontManagerUnregisterFontsForURL(
         font_url: &CFURL,
         scope: CTFontManagerScope,
@@ -244,6 +258,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns true if registration of the fonts was successful.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
     pub fn CTFontManagerRegisterGraphicsFont(font: &CGFont, error: *mut *mut CFError) -> bool;
@@ -260,6 +278,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns true if unregistration of the font was successful.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use the API corresponding to the one used to register the font"]
     pub fn CTFontManagerUnregisterGraphicsFont(font: &CGFont, error: *mut *mut CFError) -> bool;
@@ -279,6 +301,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns true if registration of all font URLs was successful. Otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `font_ur_ls` generic must be of the correct type.
+    /// - `errors` must be a valid pointer or null.
     #[deprecated]
     pub fn CTFontManagerRegisterFontsForURLs(
         font_ur_ls: &CFArray,
@@ -302,6 +329,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns true if unregistration of all font URLs was successful. Otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `font_ur_ls` generic must be of the correct type.
+    /// - `errors` must be a valid pointer or null.
     #[deprecated]
     pub fn CTFontManagerUnregisterFontsForURLs(
         font_ur_ls: &CFArray,
@@ -327,6 +359,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+    ///
+    /// # Safety
+    ///
+    /// `font_ur_ls` generic must be of the correct type.
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRegisterFontURLs(
         font_ur_ls: &CFArray,
@@ -348,6 +384,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all files are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+    ///
+    /// # Safety
+    ///
+    /// `font_ur_ls` generic must be of the correct type.
     #[cfg(feature = "block2")]
     pub fn CTFontManagerUnregisterFontURLs(
         font_ur_ls: &CFArray,
@@ -373,6 +413,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+    ///
+    /// # Safety
+    ///
+    /// `font_descriptors` generic must be of the correct type.
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRegisterFontDescriptors(
         font_descriptors: &CFArray,
@@ -393,6 +437,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all font descriptors are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+    ///
+    /// # Safety
+    ///
+    /// `font_descriptors` generic must be of the correct type.
     #[cfg(feature = "block2")]
     pub fn CTFontManagerUnregisterFontDescriptors(
         font_descriptors: &CFArray,
@@ -422,6 +470,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `registrationHandler`: Block called as errors are discovered, or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font asset names corresponding to kCTFontManagerErrorFontAssetNameKey. These represent the font asset names that were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+    ///
+    /// # Safety
+    ///
+    /// `font_asset_names` generic must be of the correct type.
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRegisterFontsWithAssetNames(
         font_asset_names: &CFArray,
@@ -440,6 +492,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `enable`: Boolean value indicating whether the fonts matching descriptors should be enabled for font descriptor matching.
+    ///
+    /// # Safety
+    ///
+    /// `descriptors` generic must be of the correct type.
     pub fn CTFontManagerEnableFontDescriptors(descriptors: &CFArray, enable: bool);
 }
 
@@ -494,6 +550,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `completionHandler`: Block called after request operation completes. Block takes a single parameter containing an array of those descriptors that could not be resolved/found. The array can be empty if all descriptors were resolved.
+    ///
+    /// # Safety
+    ///
+    /// `font_descriptors` generic must be of the correct type.
     #[cfg(feature = "block2")]
     pub fn CTFontManagerRequestFonts(
         font_descriptors: &CFArray,
@@ -522,6 +582,10 @@ extern "C-unwind" {
 /// Parameter `createMatchesCallback`: A block to handle the font request.
 ///
 /// Returns: A CFRunLoopSourceRef that should be added to the run loop. To stop receiving requests, invalidate this run loop source. Will return NULL on error, in the case of a duplicate requestPortName or invalid context structure.
+///
+/// # Safety
+///
+/// `create_matches_callback` block's return must be a valid pointer.
 #[cfg(all(feature = "block2", feature = "libc"))]
 #[deprecated = "This functionality will be removed in a future release"]
 #[inline]

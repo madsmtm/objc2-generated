@@ -224,6 +224,9 @@ impl UIGraphicsImageRenderer {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `actions` must be a valid pointer.
         #[unsafe(method(imageWithActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithActions(
@@ -232,6 +235,9 @@ impl UIGraphicsImageRenderer {
         ) -> Retained<UIImage>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `actions` must be a valid pointer.
         #[unsafe(method(PNGDataWithActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn PNGDataWithActions(
@@ -240,6 +246,9 @@ impl UIGraphicsImageRenderer {
         ) -> Retained<NSData>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `actions` must be a valid pointer.
         #[unsafe(method(JPEGDataWithCompressionQuality:actions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn JPEGDataWithCompressionQuality_actions(

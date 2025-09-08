@@ -180,6 +180,10 @@ unsafe impl ConcreteType for CFSocket {
 }
 
 impl CFSocket {
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFSocketCreate")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -217,6 +221,10 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFSocketCreateWithNative")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -241,6 +249,11 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `signature` must be a valid pointer.
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFSocketCreateWithSocketSignature")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -272,6 +285,11 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `signature` must be a valid pointer.
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFSocketCreateConnectedToSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -375,6 +393,9 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFSocketGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFSocketContext) {
@@ -468,6 +489,12 @@ impl CFSocket {
         unsafe { CFSocketSendData(self, address, data, timeout) }
     }
 
+    /// # Safety
+    ///
+    /// - `name_server_signature` must be a valid pointer.
+    /// - `name` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
     #[doc(alias = "CFSocketRegisterValue")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -488,6 +515,12 @@ impl CFSocket {
         unsafe { CFSocketRegisterValue(name_server_signature, timeout, name, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `name_server_signature` must be a valid pointer.
+    /// - `name` might not allow `None`.
+    /// - `value` must be a valid pointer.
+    /// - `name_server_address` must be a valid pointer.
     #[doc(alias = "CFSocketCopyRegisteredValue")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -518,6 +551,11 @@ impl CFSocket {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `name_server_signature` must be a valid pointer.
+    /// - `name` might not allow `None`.
+    /// - `signature` must be a valid pointer.
     #[doc(alias = "CFSocketRegisterSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -538,6 +576,12 @@ impl CFSocket {
         unsafe { CFSocketRegisterSocketSignature(name_server_signature, timeout, name, signature) }
     }
 
+    /// # Safety
+    ///
+    /// - `name_server_signature` must be a valid pointer.
+    /// - `name` might not allow `None`.
+    /// - `signature` must be a valid pointer.
+    /// - `name_server_address` must be a valid pointer.
     #[doc(alias = "CFSocketCopyRegisteredSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -568,6 +612,10 @@ impl CFSocket {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `name_server_signature` must be a valid pointer.
+    /// - `name` might not allow `None`.
     #[doc(alias = "CFSocketUnregister")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]

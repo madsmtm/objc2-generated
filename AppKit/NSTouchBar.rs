@@ -271,6 +271,10 @@ impl NSApplication {
         );
 
         /// Show or dismiss the customization palette for the currently displayed NSTouchBars. NSApplication validates this selector against whether the current NSTouchBars are customizable and, if configured on a menu item, will standardize and localize the title. If the current system does not have Touch Bar support, the menu item will be automatically hidden.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleTouchBarCustomizationPalette:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleTouchBarCustomizationPalette(&self, sender: Option<&AnyObject>);

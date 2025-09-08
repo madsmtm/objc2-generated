@@ -1375,6 +1375,9 @@ pub const kIOHIDSetRelativeCursorPosition: c_uint = 0x00000004;
 pub const kIOHIDPostHIDManagerEvent: c_uint = 0x00000008;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `event_data` must be a valid pointer.
     #[cfg(all(feature = "graphics", feature = "libc"))]
     #[deprecated = "Use CGSEventTap for posting HID events, IOHIDUserDevice for simulating HID device, IOPMAssertionDeclareUserActivity for reporting user activity"]
     pub fn IOHIDPostEvent(
@@ -1395,6 +1398,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `event_num` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDGetButtonEventNum(
@@ -1405,6 +1411,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `acceleration` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDGetScrollAcceleration(
@@ -1423,6 +1432,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `acceleration` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDGetMouseAcceleration(
@@ -1441,6 +1453,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `mode` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDGetMouseButtonMode(handle: io_connect_t, mode: *mut c_int) -> libc::kern_return_t;
@@ -1453,6 +1468,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `acceleration` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDGetAccelerationWithKey(
@@ -1463,6 +1481,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `key` might not allow `None`.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDSetAccelerationWithKey(
@@ -1473,6 +1494,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `bytes` must be a valid pointer.
+    /// - `actual_size` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDGetParameter(
@@ -1485,6 +1510,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDSetParameter(
@@ -1496,6 +1524,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `parameter` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOHIDCopyCFTypeParameter(
         handle: io_connect_t,
@@ -1505,6 +1536,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` might not allow `None`.
+    /// - `parameter` should be of the correct type.
+    /// - `parameter` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IOHIDSetCFTypeParameter(
         handle: io_connect_t,
@@ -1514,6 +1550,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `state` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOHIDGetStateForSelector(
         handle: io_connect_t,
@@ -1532,6 +1571,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `state` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOHIDGetModifierLockState(
         handle: io_connect_t,
@@ -1550,6 +1592,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `display_token` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDRegisterVirtualDisplay(
@@ -1568,6 +1613,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `bounds` must be a valid pointer.
     #[cfg(all(feature = "graphics", feature = "libc"))]
     #[deprecated]
     pub fn IOHIDSetVirtualDisplayBounds(
@@ -1578,6 +1626,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `hid_activity_idle` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDGetActivityState(
@@ -1676,6 +1727,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `flavor` must be a valid pointer.
+    /// - `evs_info` must be a valid pointer.
+    /// - `evs_info_cnt` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn NXEventSystemInfo(
@@ -1729,12 +1785,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `area` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn NXSetClickSpace(handle: NXEventHandle, area: *mut NXSize);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `area` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn NXGetClickSpace(handle: NXEventHandle, area: *mut NXSize);
@@ -1881,6 +1943,10 @@ impl IOHIDEventSystemClient {
     ///
     ///
     /// Returns: Returns true on success.
+    ///
+    /// # Safety
+    ///
+    /// `property` should be of the correct type.
     #[doc(alias = "IOHIDEventSystemClientSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -2025,6 +2091,10 @@ impl IOHIDServiceClient {
     ///
     ///
     /// Returns: Returns true on success.
+    ///
+    /// # Safety
+    ///
+    /// `property` should be of the correct type.
     #[doc(alias = "IOHIDServiceClientSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -2254,6 +2324,10 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Returns: Returns a IOHIDUserDeviceRef on success.
+    ///
+    /// # Safety
+    ///
+    /// `properties` generics must be of the correct type.
     #[doc(alias = "IOHIDUserDeviceCreateWithProperties")]
     #[inline]
     pub unsafe fn with_properties(
@@ -2284,6 +2358,10 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `block`: The block to be invoked for get report calls.
+    ///
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "IOHIDUserDeviceRegisterGetReportBlock")]
     #[cfg(all(feature = "block2", feature = "hid"))]
     #[inline]
@@ -2309,6 +2387,10 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `block`: The block to be invoked for set report calls.
+    ///
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "IOHIDUserDeviceRegisterSetReportBlock")]
     #[cfg(all(feature = "block2", feature = "hid"))]
     #[inline]
@@ -2372,6 +2454,10 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer.
     #[doc(alias = "IOHIDUserDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -2474,6 +2560,10 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Returns: Returns true on success.
+    ///
+    /// # Safety
+    ///
+    /// `property` should be of the correct type.
     #[doc(alias = "IOHIDUserDeviceSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -2504,6 +2594,10 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Returns: Returns kIOReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// `report` must be a valid pointer.
     #[doc(alias = "IOHIDUserDeviceHandleReportWithTimeStamp")]
     #[inline]
     pub unsafe fn handle_report_with_time_stamp(

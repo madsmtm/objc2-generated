@@ -61,6 +61,12 @@ impl CVOpenGLBufferPool {
     /// Parameter `poolOut`: The newly created pool will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// # Safety
+    ///
+    /// - `pool_attributes` generics must be of the correct type.
+    /// - `open_gl_buffer_attributes` generics must be of the correct type.
+    /// - `pool_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
@@ -139,6 +145,10 @@ impl CVOpenGLBufferPool {
     /// Parameter `openGLBufferOut`: The newly created OpenGL buffer will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// # Safety
+    ///
+    /// `open_gl_buffer_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLBufferPoolCreateOpenGLBuffer")]
     #[cfg(all(
         feature = "CVBuffer",

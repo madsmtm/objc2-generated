@@ -170,6 +170,15 @@ extern_protocol!(
         ///
         /// This method will be called before loading starts, and
         /// on every redirect.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `action_information` generic should be of the correct type.
+        /// - `action_information` might not allow `None`.
+        /// - `request` might not allow `None`.
+        /// - `frame` might not allow `None`.
+        /// - `listener` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:decidePolicyForNavigationAction:request:frame:decisionListener:))]
@@ -204,6 +213,15 @@ extern_protocol!(
         /// opened, and decidePolicyForNavigationAction:request:frame:decisionListner:
         /// will be called with a WebNavigationType of WebNavigationTypeOther
         /// in its action. This is to avoid possible confusion about the modifiers.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `action_information` generic should be of the correct type.
+        /// - `action_information` might not allow `None`.
+        /// - `request` might not allow `None`.
+        /// - `frame_name` might not allow `None`.
+        /// - `listener` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:decidePolicyForNewWindowAction:request:newFrameName:decisionListener:))]
@@ -229,6 +247,14 @@ extern_protocol!(
         /// Parameter `frame`: The frame which is loading the URL.
         ///
         /// Parameter `listener`: The object to call when the decision is made
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `type` might not allow `None`.
+        /// - `request` might not allow `None`.
+        /// - `frame` might not allow `None`.
+        /// - `listener` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:decidePolicyForMIMEType:request:frame:decisionListener:))]
@@ -249,6 +275,12 @@ extern_protocol!(
         /// Parameter `error`: The error that caused the policy to not be implemented.
         ///
         /// Parameter `frame`: The frame in which the policy could not be implemented.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `error` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:unableToImplementPolicyWithError:frame:))]

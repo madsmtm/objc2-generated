@@ -41,6 +41,10 @@ unsafe impl ConcreteType for QLThumbnail {
 }
 
 impl QLThumbnail {
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `options` might not allow `None`.
     #[doc(alias = "QLThumbnailCreate")]
     #[deprecated = "Use QLThumbnailGenerationRequest in QuickLookThumbnailing to generate thumbnails."]
     #[inline]
@@ -94,6 +98,9 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `completion` must be a valid pointer.
     #[doc(alias = "QLThumbnailDispatchAsync")]
     #[cfg(feature = "dispatch2")]
     #[deprecated = "Use QLThumbnailGenerator in QuickLookThumbnailing to generate thumbnails."]

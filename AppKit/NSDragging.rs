@@ -222,6 +222,10 @@ extern_protocol!(
             feature = "NSView",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// - `class_array` generic probably has further requirements.
+        /// - `search_options` generic should be of the correct type.
         #[unsafe(method(enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn enumerateDraggingItemsWithOptions_forView_classes_searchOptions_usingBlock(

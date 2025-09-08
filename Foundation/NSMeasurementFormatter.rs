@@ -111,6 +111,9 @@ impl NSMeasurementFormatter {
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `measurement` generic should be of the correct type.
         #[unsafe(method(stringFromMeasurement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeasurement(

@@ -72,6 +72,10 @@ impl IOUSBHostPipe {
         /// new endpoint policy
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `descriptors` must be a valid pointer.
         #[unsafe(method(adjustPipeWithDescriptors:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustPipeWithDescriptors_error(
@@ -141,6 +145,10 @@ impl IOUSBHostPipe {
         /// The default value is IOUSBHostDefaultControlCompletionTimeout.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendControlRequest:data:bytesTransferred:completionTimeout:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendControlRequest_data_bytesTransferred_completionTimeout_error(
@@ -165,6 +173,10 @@ impl IOUSBHostPipe {
         /// of the completed data phase.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendControlRequest:data:bytesTransferred:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendControlRequest_data_bytesTransferred_error(
@@ -212,6 +224,10 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueControlRequest:data:completionTimeout:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueControlRequest_data_completionTimeout_error_completionHandler(
@@ -242,6 +258,10 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueControlRequest:data:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueControlRequest_data_error_completionHandler(
@@ -269,6 +289,10 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueControlRequest:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueControlRequest_error_completionHandler(
@@ -334,6 +358,10 @@ impl IOUSBHostPipe {
         /// Must be 0 for interrupt pipes and streams.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendIORequestWithData:bytesTransferred:completionTimeout:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendIORequestWithData_bytesTransferred_completionTimeout_error(
@@ -357,6 +385,10 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueIORequestWithData:completionTimeout:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueIORequestWithData_completionTimeout_error_completionHandler(
@@ -400,6 +432,10 @@ impl IOUSBHostPipe {
         /// If 0, the transfer will start on the next available frame (XHCI only).
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `frame_list` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(sendIORequestWithData:frameList:frameListCount:firstFrameNumber:error:_))]
         #[unsafe(method_family = none)]
@@ -446,6 +482,11 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostIsochronousCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// - `frame_list` must be a valid pointer.
+        /// - `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(enqueueIORequestWithData:frameList:frameListCount:firstFrameNumber:error:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -501,6 +542,10 @@ impl IOUSBHostPipe {
         /// for more details.
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `transaction_list` must be a valid pointer.
         #[unsafe(method(sendIORequestWithData:transactionList:transactionListCount:firstFrameNumber:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendIORequestWithData_transactionList_transactionListCount_firstFrameNumber_options_error(
@@ -549,6 +594,11 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostIsochronousTransactionCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// - `transaction_list` must be a valid pointer.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueIORequestWithData:transactionList:transactionListCount:firstFrameNumber:options:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueIORequestWithData_transactionList_transactionListCount_firstFrameNumber_options_error_completionHandler(

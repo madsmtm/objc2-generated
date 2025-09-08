@@ -69,6 +69,10 @@ impl IOBluetoothRFCOMMChannel {
         /// object.  If an error is encountered creating the notification, nil is returned.  The returned
         /// IOBluetoothUserNotification will be valid for as long as the notification is registered.  It is
         /// not necessary to retain the result.  Once -unregister is called on it, it will no longer be valid.
+        ///
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(registerForChannelOpenNotifications:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelOpenNotifications_selector(
@@ -104,6 +108,10 @@ impl IOBluetoothRFCOMMChannel {
         /// object.  If an error is encountered creating the notification, nil is returned.  The returned
         /// IOBluetoothUserNotification will be valid for as long as the notification is registered.  It is
         /// not necessary to retain the result.  Once -unregister is called on it, it will no longer be valid.
+        ///
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(registerForChannelOpenNotifications:selector:withChannelID:direction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelOpenNotifications_selector_withChannelID_direction(
@@ -119,6 +127,10 @@ impl IOBluetoothRFCOMMChannel {
         /// Parameter `rfcommChannelRef`: IOBluetoothRFCOMMChannelRef for which an IOBluetoothRFCOMMChannel * is desired.
         ///
         /// Returns: Returns the IOBluetoothRFCOMMChannel * for the given IOBluetoothRFCOMMChannelRef.
+        ///
+        /// # Safety
+        ///
+        /// `rfcomm_channel_ref` might not allow `None`.
         #[unsafe(method(withRFCOMMChannelRef:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withRFCOMMChannelRef(
@@ -201,6 +213,10 @@ impl IOBluetoothRFCOMMChannel {
         /// error.
         ///
         /// Returns: An error code value. 0 if successful.
+        ///
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(write:length:sleep:))]
         #[unsafe(method_family = none)]
@@ -228,6 +244,11 @@ impl IOBluetoothRFCOMMChannel {
         /// Parameter `refcon`: User supplied value that gets passed to the write callback.
         ///
         /// Returns: Returns kIOReturnSuccess if the data was buffered successfully.
+        ///
+        /// # Safety
+        ///
+        /// - `data` must be a valid pointer.
+        /// - `refcon` must be a valid pointer.
         #[unsafe(method(writeAsync:length:refcon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeAsync_length_refcon(
@@ -251,6 +272,10 @@ impl IOBluetoothRFCOMMChannel {
         /// Parameter `length`: The length of the buffer to be sent (in bytes).
         ///
         /// Returns: Returns kIOReturnSuccess if the data was written successfully.
+        ///
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer.
         #[unsafe(method(writeSync:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeSync_length(&self, data: *mut c_void, length: u16) -> IOReturn;
@@ -271,6 +296,11 @@ impl IOBluetoothRFCOMMChannel {
         /// If set to FALSE and it is not possible to send part of the data the method will return immediately.
         ///
         /// Returns: An error code value. 0 if successful.
+        ///
+        /// # Safety
+        ///
+        /// - `data` must be a valid pointer.
+        /// - `num_bytes_sent` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(writeSimple:length:sleep:bytesSent:))]
         #[unsafe(method_family = none)]
@@ -330,6 +360,11 @@ impl IOBluetoothRFCOMMChannel {
         /// Parameter `delegate`: The object that will play the role of channel delegate [NOTE the rfcomm channel will reatin the delegate].
         ///
         /// Returns: Returns kIOReturnSuccess if the delegate is successfully registered.
+        ///
+        /// # Safety
+        ///
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>) -> IOReturn;
@@ -390,6 +425,10 @@ impl IOBluetoothRFCOMMChannel {
         /// Returns: Returns an IOBluetoothUserNotification representing the outstanding RFCOMM channel close notification.
         /// To unregister the notification, call -unregister of the returned IOBluetoothUserNotification
         /// object.  If an error is encountered creating the notification, nil is returned.
+        ///
+        /// # Safety
+        ///
+        /// `in_selector` must be a valid selector.
         #[unsafe(method(registerForChannelCloseNotification:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelCloseNotification_selector(
@@ -418,6 +457,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothrfcommchanneldelegate?language=objc)
     pub unsafe trait IOBluetoothRFCOMMChannelDelegate {
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `data_pointer` must be a valid pointer.
         #[optional]
         #[unsafe(method(rfcommChannelData:data:length:))]
         #[unsafe(method_family = none)]
@@ -429,6 +471,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `rfcomm_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(rfcommChannelOpenComplete:status:))]
         #[unsafe(method_family = none)]
@@ -439,12 +484,18 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `rfcomm_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(rfcommChannelClosed:))]
         #[unsafe(method_family = none)]
         unsafe fn rfcommChannelClosed(&self, rfcomm_channel: Option<&IOBluetoothRFCOMMChannel>);
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `rfcomm_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(rfcommChannelControlSignalsChanged:))]
         #[unsafe(method_family = none)]
@@ -454,6 +505,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `rfcomm_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(rfcommChannelFlowControlChanged:))]
         #[unsafe(method_family = none)]
@@ -463,6 +517,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `refcon` must be a valid pointer.
         #[optional]
         #[unsafe(method(rfcommChannelWriteComplete:refcon:status:))]
         #[unsafe(method_family = none)]
@@ -474,6 +531,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `refcon` must be a valid pointer.
         #[optional]
         #[unsafe(method(rfcommChannelWriteComplete:refcon:status:bytesWritten:))]
         #[unsafe(method_family = none)]
@@ -486,6 +546,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `rfcomm_channel` might not allow `None`.
         #[optional]
         #[unsafe(method(rfcommChannelQueueSpaceAvailable:))]
         #[unsafe(method_family = none)]

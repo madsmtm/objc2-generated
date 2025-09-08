@@ -487,6 +487,9 @@ impl NSCalendar {
         ) -> NSUInteger;
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// `tip` must be a valid pointer or null.
         #[unsafe(method(rangeOfUnit:startDate:interval:forDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeOfUnit_startDate_interval_forDate(
@@ -536,6 +539,12 @@ impl NSCalendar {
         ) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// - `era_value_pointer` must be a valid pointer or null.
+        /// - `year_value_pointer` must be a valid pointer or null.
+        /// - `month_value_pointer` must be a valid pointer or null.
+        /// - `day_value_pointer` must be a valid pointer or null.
         #[unsafe(method(getEra:year:month:day:fromDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getEra_year_month_day_fromDate(
@@ -548,6 +557,12 @@ impl NSCalendar {
         );
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// - `era_value_pointer` must be a valid pointer or null.
+        /// - `year_value_pointer` must be a valid pointer or null.
+        /// - `week_value_pointer` must be a valid pointer or null.
+        /// - `weekday_value_pointer` must be a valid pointer or null.
         #[unsafe(method(getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getEra_yearForWeekOfYear_weekOfYear_weekday_fromDate(
@@ -560,6 +575,12 @@ impl NSCalendar {
         );
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// - `hour_value_pointer` must be a valid pointer or null.
+        /// - `minute_value_pointer` must be a valid pointer or null.
+        /// - `second_value_pointer` must be a valid pointer or null.
+        /// - `nanosecond_value_pointer` must be a valid pointer or null.
         #[unsafe(method(getHour:minute:second:nanosecond:fromDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getHour_minute_second_nanosecond_fromDate(
@@ -666,6 +687,9 @@ impl NSCalendar {
         pub unsafe fn isDateInWeekend(&self, date: &NSDate) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// `tip` must be a valid pointer or null.
         #[unsafe(method(rangeOfWeekendStartDate:interval:containingDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeOfWeekendStartDate_interval_containingDate(
@@ -676,6 +700,9 @@ impl NSCalendar {
         ) -> bool;
 
         #[cfg(feature = "NSDate")]
+        /// # Safety
+        ///
+        /// `tip` must be a valid pointer or null.
         #[unsafe(method(nextWeekendStartDate:interval:options:afterDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextWeekendStartDate_interval_options_afterDate(

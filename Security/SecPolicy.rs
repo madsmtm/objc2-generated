@@ -304,6 +304,10 @@ impl SecPolicy {
     ///
     /// Returns: The returned policy reference, or NULL if the policy could not be
     /// created.
+    ///
+    /// # Safety
+    ///
+    /// `properties` generics must be of the correct type.
     #[doc(alias = "SecPolicyCreateWithProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -434,6 +438,10 @@ impl SecPolicy {
     /// This function is deprecated in Mac OS X 10.9 and later;
     /// use SecPolicyCreateWithProperties (or a more specific policy creation
     /// function) instead.
+    ///
+    /// # Safety
+    ///
+    /// `policy_oid` should be of the correct type.
     #[doc(alias = "SecPolicyCreateWithOID")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -456,6 +464,10 @@ impl SecPolicy {
     ///
     /// This function is deprecated in Mac OS X 10.7 and later;
     /// use SecPolicyCopyProperties instead.
+    ///
+    /// # Safety
+    ///
+    /// `oid` must be a valid pointer.
     #[doc(alias = "SecPolicyGetOID")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -477,6 +489,10 @@ impl SecPolicy {
     ///
     /// This function is deprecated in Mac OS X 10.7 and later;
     /// use SecPolicyCopyProperties instead.
+    ///
+    /// # Safety
+    ///
+    /// `value` must be a valid pointer.
     #[doc(alias = "SecPolicyGetValue")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -501,6 +517,10 @@ impl SecPolicy {
     /// instances should be considered read-only; in cases where your code would
     /// consider changing properties of a policy, it should instead create a new
     /// policy instance with the desired properties.
+    ///
+    /// # Safety
+    ///
+    /// `value` must be a valid pointer.
     #[doc(alias = "SecPolicySetValue")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -527,6 +547,10 @@ impl SecPolicy {
     /// instances should be considered read-only; in cases where your code would
     /// consider changing properties of a policy, it should instead create a new
     /// policy instance with the desired properties.
+    ///
+    /// # Safety
+    ///
+    /// `properties` generics must be of the correct type.
     #[doc(alias = "SecPolicySetProperties")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -550,6 +574,10 @@ impl SecPolicy {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in Mac OS X 10.7 and later.
+    ///
+    /// # Safety
+    ///
+    /// `tp_handle` must be a valid pointer.
     #[doc(alias = "SecPolicyGetTPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]

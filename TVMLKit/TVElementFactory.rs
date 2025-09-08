@@ -24,6 +24,9 @@ extern_conformance!(
 
 impl TVElementFactory {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `element_class` probably has further requirements.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(registerViewElementClass:forElementName:))]
         #[unsafe(method_family = none)]

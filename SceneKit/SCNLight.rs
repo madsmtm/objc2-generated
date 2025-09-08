@@ -203,6 +203,10 @@ impl SCNLight {
         pub unsafe fn color(&self) -> Retained<AnyObject>;
 
         /// Setter for [`color`][Self::color].
+        ///
+        /// # Safety
+        ///
+        /// `color` should be of the correct type.
         #[unsafe(method(setColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &AnyObject);
@@ -267,6 +271,10 @@ impl SCNLight {
         pub unsafe fn shadowColor(&self) -> Retained<AnyObject>;
 
         /// Setter for [`shadowColor`][Self::shadowColor].
+        ///
+        /// # Safety
+        ///
+        /// `shadow_color` should be of the correct type.
         #[unsafe(method(setShadowColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setShadowColor(&self, shadow_color: &AnyObject);

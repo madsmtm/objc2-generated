@@ -307,6 +307,10 @@ impl NSURLProtocol {
         /// Parameter `key`: The string to use for the property storage.
         ///
         /// Parameter `request`: The request in which to store the property.
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setProperty:forKey:inRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperty_forKey_inRequest(
@@ -363,6 +367,10 @@ impl NSURLProtocol {
         /// Returns: YES if the protocol was registered successfully, NO if not.
         /// The only way that failure can occur is if the given class is not a
         /// subclass of NSURLProtocol.
+        ///
+        /// # Safety
+        ///
+        /// `protocol_class` probably has further requirements.
         #[unsafe(method(registerClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass(protocol_class: &AnyClass) -> bool;
@@ -373,6 +381,10 @@ impl NSURLProtocol {
         /// consulted in calls to NSURLProtocol class methods.
         ///
         /// Parameter `protocolClass`: The class to unregister.
+        ///
+        /// # Safety
+        ///
+        /// `protocol_class` probably has further requirements.
         #[unsafe(method(unregisterClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unregisterClass(protocol_class: &AnyClass);

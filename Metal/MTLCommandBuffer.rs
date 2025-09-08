@@ -421,6 +421,10 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Adds a block to be called when this command buffer has been scheduled for execution.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(addScheduledHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addScheduledHandler(&self, block: MTLCommandBufferHandler);
@@ -469,6 +473,10 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Add a block to be called when this command buffer has completed execution.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(addCompletedHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addCompletedHandler(&self, block: MTLCommandBufferHandler);
@@ -643,6 +651,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks the residency sets as part of the current command buffer execution. This ensures that the residency sets are resident during execution of the command buffer.
+        ///
+        /// # Safety
+        ///
+        /// `residency_sets` must be a valid pointer.
         #[unsafe(method(useResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useResidencySets_count(

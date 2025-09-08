@@ -722,6 +722,10 @@ impl SCNNode {
         ) -> Option<Retained<ProtocolObject<dyn SCNNodeRendererDelegate>>>;
 
         /// Setter for [`rendererDelegate`][Self::rendererDelegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setRendererDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRendererDelegate(
@@ -743,6 +747,10 @@ impl SCNNode {
         /// Parameter `options`: Optional parameters (see the "Hit test options" section in SCNSceneRenderer.h for the available options).
         ///
         /// See SCNSceneRenderer.h for a screen-space hit testing method.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(hitTestWithSegmentFromPoint:toPoint:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hitTestWithSegmentFromPoint_toPoint_options(
@@ -902,6 +910,10 @@ extern_protocol!(
         /// Parameter `renderer`: The scene renderer to render into.
         ///
         /// Parameter `arguments`: A dictionary whose values are SCNMatrix4 matrices wrapped in NSValue objects.
+        ///
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[optional]
         #[unsafe(method(renderNode:renderer:arguments:))]
         #[unsafe(method_family = none)]

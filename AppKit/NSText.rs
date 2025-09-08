@@ -168,6 +168,10 @@ impl NSText {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextDelegate>>);
@@ -357,82 +361,142 @@ impl NSText {
         #[unsafe(method_family = none)]
         pub unsafe fn sizeToFit(&self);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(copy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copy(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(copyFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copyFont(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(copyRuler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copyRuler(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(cut:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cut(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(delete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn delete(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(paste:))]
         #[unsafe(method_family = none)]
         pub unsafe fn paste(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(pasteFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteFont(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(pasteRuler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteRuler(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(changeFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeFont(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(alignLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignLeft(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(alignRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignRight(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(alignCenter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignCenter(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(subscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscript(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(superscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn superscript(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(underline:))]
         #[unsafe(method_family = none)]
         pub unsafe fn underline(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(unscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unscript(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showGuessPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showGuessPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(checkSpelling:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkSpelling(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleRuler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleRuler(&self, sender: Option<&AnyObject>);

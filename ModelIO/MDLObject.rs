@@ -39,6 +39,10 @@ impl MDLObject {
         #[cfg(feature = "MDLTypes")]
         /// Extensible component support that allows user of ModelIO to customize
         /// MDLObjects to fit their format and workflow.
+        ///
+        /// # Safety
+        ///
+        /// `protocol` possibly has further requirements.
         #[unsafe(method(setComponent:forProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setComponent_forProtocol(
@@ -50,6 +54,10 @@ impl MDLObject {
         #[cfg(feature = "MDLTypes")]
         /// Extensible component support that allows user of ModelIO to customize
         /// MDLObjects to fit their format and workflow.
+        ///
+        /// # Safety
+        ///
+        /// `protocol` possibly has further requirements.
         #[unsafe(method(componentConformingToProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentConformingToProtocol(
@@ -63,6 +71,10 @@ impl MDLObject {
         /// Parameter `key`: The protocol that the component conforms to.
         ///
         /// See: componentConformingToProtocol:
+        ///
+        /// # Safety
+        ///
+        /// `key` possibly has further requirements.
         #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(
@@ -76,6 +88,10 @@ impl MDLObject {
         /// Parameter `key`: The protocol that the component conforms to.
         ///
         /// See: setComponent:forProtocol:
+        ///
+        /// # Safety
+        ///
+        /// `key` possibly has further requirements.
         #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(
@@ -136,6 +152,9 @@ impl MDLObject {
         pub unsafe fn objectAtPath(&self, path: &NSString) -> Retained<MDLObject>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `stop_pointer` must be a valid pointer.
         #[unsafe(method(enumerateChildObjectsOfClass:root:usingBlock:stopPointer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChildObjectsOfClass_root_usingBlock_stopPointer(

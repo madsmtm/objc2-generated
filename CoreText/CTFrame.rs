@@ -336,6 +336,10 @@ impl CTFrame {
     /// the descent of the last line. This will obviously exclude any
     /// spacing following the last line, but such spacing has no effect
     /// on framesetting in the first place.
+    ///
+    /// # Safety
+    ///
+    /// `origins` must be a valid pointer.
     #[doc(alias = "CTFrameGetLineOrigins")]
     #[inline]
     pub unsafe fn line_origins(&self, range: CFRange, origins: NonNull<CGPoint>) {

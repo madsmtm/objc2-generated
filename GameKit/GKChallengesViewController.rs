@@ -70,6 +70,10 @@ impl GKChallengesViewController {
         /// Setter for [`challengeDelegate`][Self::challengeDelegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `challenge_delegate` might not allow `None`.
         #[deprecated = "No longer supported"]
         #[unsafe(method(setChallengeDelegate:))]
         #[unsafe(method_family = none)]
@@ -130,6 +134,9 @@ extern_protocol!(
     pub unsafe trait GKChallengesViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `view_controller` might not allow `None`.
         #[deprecated = "No longer supported"]
         #[unsafe(method(challengesViewControllerDidFinish:))]
         #[unsafe(method_family = none)]

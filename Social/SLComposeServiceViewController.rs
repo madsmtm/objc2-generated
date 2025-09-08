@@ -113,6 +113,10 @@ impl SLComposeServiceViewController {
         pub unsafe fn charactersRemaining(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`charactersRemaining`][Self::charactersRemaining].
+        ///
+        /// # Safety
+        ///
+        /// `characters_remaining` might not allow `None`.
         #[unsafe(method(setCharactersRemaining:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCharactersRemaining(&self, characters_remaining: Option<&NSNumber>);

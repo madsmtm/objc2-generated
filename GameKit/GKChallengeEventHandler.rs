@@ -14,6 +14,10 @@ extern_protocol!(
     pub unsafe trait GKChallengeEventHandlerDelegate: NSObjectProtocol {
         #[cfg(feature = "GKChallenge")]
         /// Called when the user taps a challenge notification banner or the "Play Now" button for a challenge inside Game Center, causing the game to launch. Also called when the user taps a challenge banner inside the game.
+        ///
+        /// # Safety
+        ///
+        /// `challenge` might not allow `None`.
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[unsafe(method(localPlayerDidSelectChallenge:))]
@@ -22,6 +26,10 @@ extern_protocol!(
 
         #[cfg(feature = "GKChallenge")]
         /// If the method returns YES, a challenge banner (like an achievement or welcome banner -- not a notification center banner) is displayed when a challenge is received in-game for the local player. If NO, then no banner is displayed, and localPlayerDidSelectChallenge: will not be called for that challenge. Default behavior for non-implementing apps is YES.
+        ///
+        /// # Safety
+        ///
+        /// `challenge` might not allow `None`.
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[unsafe(method(shouldShowBannerForLocallyReceivedChallenge:))]
@@ -33,6 +41,10 @@ extern_protocol!(
 
         #[cfg(feature = "GKChallenge")]
         /// Called when the local player has received a challenge, triggered by a push notification from the server. Received only while the game is running.
+        ///
+        /// # Safety
+        ///
+        /// `challenge` might not allow `None`.
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[unsafe(method(localPlayerDidReceiveChallenge:))]
@@ -41,6 +53,10 @@ extern_protocol!(
 
         #[cfg(feature = "GKChallenge")]
         /// If the method returns YES, a challenge banner (like an achievement or welcome banner -- not a notification center banner) is displayed. If NO, then no banner is displayed. Default behavior for non-implementing apps is YES.
+        ///
+        /// # Safety
+        ///
+        /// `challenge` might not allow `None`.
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[unsafe(method(shouldShowBannerForLocallyCompletedChallenge:))]
@@ -52,6 +68,10 @@ extern_protocol!(
 
         #[cfg(feature = "GKChallenge")]
         /// Called when the local player has completed one of their challenges, triggered by a push notification from the server. Received only while the game is running.
+        ///
+        /// # Safety
+        ///
+        /// `challenge` might not allow `None`.
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[unsafe(method(localPlayerDidCompleteChallenge:))]
@@ -60,6 +80,10 @@ extern_protocol!(
 
         #[cfg(feature = "GKChallenge")]
         /// If the method returns YES, a challenge banner (like an achievement or welcome banner -- not a notification center banner) is displayed. If NO, then no banner is displayed. Default behavior for non-implementing apps is YES.
+        ///
+        /// # Safety
+        ///
+        /// `challenge` might not allow `None`.
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[unsafe(method(shouldShowBannerForRemotelyCompletedChallenge:))]
@@ -71,6 +95,10 @@ extern_protocol!(
 
         #[cfg(feature = "GKChallenge")]
         /// Called when a non-local player has completed a challenge issued by the local player. Triggered by a push notification from the server. Received when a challenge notification banner is tapped, or while the game is running.
+        ///
+        /// # Safety
+        ///
+        /// `challenge` might not allow `None`.
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[unsafe(method(remotePlayerDidCompleteChallenge:))]
@@ -110,6 +138,10 @@ impl GKChallengeEventHandler {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `delegate` might not allow `None`.
         #[deprecated = "No longer supported."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

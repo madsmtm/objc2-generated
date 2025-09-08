@@ -109,6 +109,10 @@ impl LARight {
         /// Parameter `localizedReason`: Localized explanation for the authorization. Appears in the UI presented to the user.
         ///
         /// Parameter `handler`: Completion handler called after the authorization finishes. Returns an error when the authorization fails.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(authorizeWithLocalizedReason:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizeWithLocalizedReason_completion(
@@ -122,6 +126,10 @@ impl LARight {
         ///
         /// Parameter `handler`: Completion handler. Returns
         /// `nil`if the right can be authorized or an error otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(checkCanAuthorizeWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkCanAuthorizeWithCompletion(

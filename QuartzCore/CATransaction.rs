@@ -84,6 +84,9 @@ impl CATransaction {
         #[unsafe(method_family = none)]
         pub unsafe fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `an_object` should be of the correct type.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(an_object: Option<&AnyObject>, key: &NSString);

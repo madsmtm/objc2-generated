@@ -39,6 +39,10 @@ impl HKElectrocardiogramVoltageMeasurement {
         /// The time interval between this voltage measurement and the start of the sample.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timeSinceSampleStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeSinceSampleStart(&self) -> NSTimeInterval;

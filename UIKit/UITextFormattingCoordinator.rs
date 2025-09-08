@@ -13,6 +13,9 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `conversion_handler` must be a valid pointer.
         #[unsafe(method(updateTextAttributesWithConversionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn updateTextAttributesWithConversionHandler(
@@ -88,6 +91,9 @@ impl UITextFormattingCoordinator {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(setSelectedAttributes:isMultiple:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedAttributes_isMultiple(
@@ -96,6 +102,9 @@ impl UITextFormattingCoordinator {
             flag: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleFontPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleFontPanel(sender: &AnyObject, mtm: MainThreadMarker);

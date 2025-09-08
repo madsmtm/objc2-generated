@@ -598,6 +598,10 @@ impl MLCTensor {
         /// Parameter `synchronizeWithDevice`: Whether to synchronize device memory if device is GPU
         ///
         /// Returns: Returns YES if success, NO if there is a failure to synchronize
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(copyDataFromDeviceMemoryToBytes:length:synchronizeWithDevice:))]
         #[unsafe(method_family = none)]

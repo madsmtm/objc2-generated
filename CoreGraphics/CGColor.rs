@@ -25,6 +25,9 @@ cf_objc2_type!(
 );
 
 impl CGColor {
+    /// # Safety
+    ///
+    /// `components` must be a valid pointer or null.
     #[doc(alias = "CGColorCreate")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -147,6 +150,9 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `components` must be a valid pointer or null.
     #[doc(alias = "CGColorCreateWithPattern")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGPattern"))]
     #[inline]
@@ -192,6 +198,9 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGColorCreateCopyByMatchingToColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]

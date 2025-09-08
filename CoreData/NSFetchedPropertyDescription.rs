@@ -45,6 +45,10 @@ impl NSFetchedPropertyDescription {
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         /// Setter for [`fetchRequest`][Self::fetchRequest].
+        ///
+        /// # Safety
+        ///
+        /// `fetch_request` generic should be of the correct type.
         #[unsafe(method(setFetchRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRequest(&self, fetch_request: Option<&NSFetchRequest>);

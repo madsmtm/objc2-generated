@@ -56,12 +56,20 @@ impl ASDiscoveryDescriptor {
         /// Options supported by an accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(supportedOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedOptions(&self) -> ASAccessorySupportOptions;
 
         #[cfg(feature = "ASAccessory")]
         /// Setter for [`supportedOptions`][Self::supportedOptions].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSupportedOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupportedOptions(&self, supported_options: ASAccessorySupportOptions);
@@ -70,12 +78,20 @@ impl ASDiscoveryDescriptor {
         /// The accessory's 16-bit Bluetooth Company Identifier.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothCompanyIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothCompanyIdentifier(&self) -> ASBluetoothCompanyIdentifier;
 
         #[cfg(feature = "ASCommon")]
         /// Setter for [`bluetoothCompanyIdentifier`][Self::bluetoothCompanyIdentifier].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothCompanyIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothCompanyIdentifier(
@@ -86,6 +102,10 @@ impl ASDiscoveryDescriptor {
         /// A byte buffer that matches the accessory's Bluetooth manufacturer data.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothManufacturerDataBlob))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothManufacturerDataBlob(&self) -> Option<Retained<NSData>>;
@@ -93,6 +113,10 @@ impl ASDiscoveryDescriptor {
         /// Setter for [`bluetoothManufacturerDataBlob`][Self::bluetoothManufacturerDataBlob].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothManufacturerDataBlob:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothManufacturerDataBlob(
@@ -103,6 +127,10 @@ impl ASDiscoveryDescriptor {
         /// The accessory's Bluetooth manufacturer data mask.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothManufacturerDataMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothManufacturerDataMask(&self) -> Option<Retained<NSData>>;
@@ -110,6 +138,10 @@ impl ASDiscoveryDescriptor {
         /// Setter for [`bluetoothManufacturerDataMask`][Self::bluetoothManufacturerDataMask].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothManufacturerDataMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothManufacturerDataMask(
@@ -120,11 +152,19 @@ impl ASDiscoveryDescriptor {
         /// The accessory's over-the-air Bluetooth name substring compare options.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothNameSubstringCompareOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothNameSubstringCompareOptions(&self) -> NSStringCompareOptions;
 
         /// Setter for [`bluetoothNameSubstringCompareOptions`][Self::bluetoothNameSubstringCompareOptions].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothNameSubstringCompareOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothNameSubstringCompareOptions(
@@ -135,6 +175,10 @@ impl ASDiscoveryDescriptor {
         /// The accessory's over-the-air Bluetooth name substring.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothNameSubstring))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothNameSubstring(&self) -> Option<Retained<NSString>>;
@@ -142,6 +186,10 @@ impl ASDiscoveryDescriptor {
         /// Setter for [`bluetoothNameSubstring`][Self::bluetoothNameSubstring].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothNameSubstring:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothNameSubstring(&self, bluetooth_name_substring: Option<&NSString>);
@@ -149,11 +197,19 @@ impl ASDiscoveryDescriptor {
         /// A property that tells the session to discover accessories within a specific Bluetooth range.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothRange(&self) -> ASDiscoveryDescriptorRange;
 
         /// Setter for [`bluetoothRange`][Self::bluetoothRange].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothRange(&self, bluetooth_range: ASDiscoveryDescriptorRange);
@@ -161,6 +217,10 @@ impl ASDiscoveryDescriptor {
         /// A byte buffer that matches the accessory's Bluetooth service data.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothServiceDataBlob))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothServiceDataBlob(&self) -> Option<Retained<NSData>>;
@@ -168,6 +228,10 @@ impl ASDiscoveryDescriptor {
         /// Setter for [`bluetoothServiceDataBlob`][Self::bluetoothServiceDataBlob].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothServiceDataBlob:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothServiceDataBlob(
@@ -178,6 +242,10 @@ impl ASDiscoveryDescriptor {
         /// The accessory's Bluetooth service data mask.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothServiceDataMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothServiceDataMask(&self) -> Option<Retained<NSData>>;
@@ -185,6 +253,10 @@ impl ASDiscoveryDescriptor {
         /// Setter for [`bluetoothServiceDataMask`][Self::bluetoothServiceDataMask].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothServiceDataMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothServiceDataMask(
@@ -196,6 +268,10 @@ impl ASDiscoveryDescriptor {
         /// The accessory's Bluetooth service UUID.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothServiceUUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothServiceUUID(&self) -> Option<Retained<CBUUID>>;
@@ -204,6 +280,10 @@ impl ASDiscoveryDescriptor {
         /// Setter for [`bluetoothServiceUUID`][Self::bluetoothServiceUUID].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBluetoothServiceUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBluetoothServiceUUID(&self, bluetooth_service_uuid: Option<&CBUUID>);
@@ -211,6 +291,10 @@ impl ASDiscoveryDescriptor {
         /// The SSID of the accessory's Wi-Fi network.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
@@ -218,6 +302,10 @@ impl ASDiscoveryDescriptor {
         /// Setter for [`SSID`][Self::SSID].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSID(&self, ssid: Option<&NSString>);
@@ -225,6 +313,10 @@ impl ASDiscoveryDescriptor {
         /// The prefix string of SSID of the accessory's Wi-Fi network.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(SSIDPrefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSIDPrefix(&self) -> Option<Retained<NSString>>;
@@ -232,6 +324,10 @@ impl ASDiscoveryDescriptor {
         /// Setter for [`SSIDPrefix`][Self::SSIDPrefix].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSSIDPrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSSIDPrefix(&self, ssid_prefix: Option<&NSString>);

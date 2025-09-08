@@ -63,6 +63,10 @@ impl AVMIDIPlayer {
 
         #[cfg(feature = "block2")]
         /// Play the sequence.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(play:))]
         #[unsafe(method_family = none)]
         pub unsafe fn play(&self, completion_handler: AVMIDIPlayerCompletionHandler);

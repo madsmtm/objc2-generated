@@ -46,6 +46,10 @@ impl VTPixelTransferSession {
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
     ///
     /// Parameter `pixelTransferSessionOut`: Points to a variable to receive the new pixel transfer session.
+    ///
+    /// # Safety
+    ///
+    /// `pixel_transfer_session_out` must be a valid pointer.
     #[doc(alias = "VTPixelTransferSessionCreate")]
     #[inline]
     pub unsafe fn create(

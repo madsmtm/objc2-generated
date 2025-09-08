@@ -215,6 +215,9 @@ impl NSFormCell {
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSFormCell {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `string_with_ampersand` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]

@@ -48,6 +48,9 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(sortDescriptorWithKey:ascending:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending_selector(
@@ -66,6 +69,9 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(initWithKey:ascending:selector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_ascending_selector(
@@ -101,6 +107,9 @@ impl NSSortDescriptor {
         pub unsafe fn allowEvaluation(&self);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortDescriptorWithKey:ascending:comparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
@@ -110,6 +119,9 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(initWithKey:ascending:comparator:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_ascending_comparator(
@@ -120,11 +132,19 @@ impl NSSortDescriptor {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(comparator))]
         #[unsafe(method_family = none)]
         pub unsafe fn comparator(&self) -> NSComparator;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// # Safety
+        ///
+        /// - `object1` should be of the correct type.
+        /// - `object2` should be of the correct type.
         #[unsafe(method(compareObject:toObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compareObject_toObject(

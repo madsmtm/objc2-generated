@@ -31,6 +31,10 @@ impl OBEXFileTransferServices {
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -45,6 +49,10 @@ impl OBEXFileTransferServices {
         /// Parameter `inOBEXSession`: A valid IOBluetoothOBEXSession
         ///
         /// Returns: A newly created OBEXFileTransferServices object on success, nil on failure
+        ///
+        /// # Safety
+        ///
+        /// `in_obex_session` might not allow `None`.
         #[unsafe(method(withOBEXSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withOBEXSession(
@@ -62,6 +70,10 @@ impl OBEXFileTransferServices {
         /// Parameter `inOBEXSession`: A valid IOBluetoothOBEXSession
         ///
         /// Returns: A newly created OBEXFileTransferServices object on success, nil on failure
+        ///
+        /// # Safety
+        ///
+        /// `in_obex_session` might not allow `None`.
         #[unsafe(method(initWithOBEXSession:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOBEXSession(
@@ -171,6 +183,10 @@ impl OBEXFileTransferServices {
         ///
         /// Returns: kOBEXSuccess, kOBEXSessionBusyError, or kOBEXBadArgumentError initially. Further results
         /// returned through the fileTransferServicesPathChangeComplete: delegate method if initially successful.
+        ///
+        /// # Safety
+        ///
+        /// `in_dir_name` might not allow `None`.
         #[unsafe(method(changeCurrentFolderForwardToPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeCurrentFolderForwardToPath(
@@ -188,6 +204,10 @@ impl OBEXFileTransferServices {
         /// Returns: kOBEXSuccess, kOBEXSessionBusyError, or kOBEXBadArgumentError initially.
         /// Further results returned through the fileTransferServicesCreateFolderComplete delegate method
         /// if initially successful.
+        ///
+        /// # Safety
+        ///
+        /// `in_dir_name` might not allow `None`.
         #[unsafe(method(createFolder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createFolder(&self, in_dir_name: Option<&NSString>) -> OBEXError;
@@ -202,6 +222,10 @@ impl OBEXFileTransferServices {
         /// Returns: kOBEXSuccess, kOBEXSessionBusyError, or kOBEXBadArgumentError initially.
         /// Further results returned through the fileTransferServicesRemoveItemComplete: delegate method
         /// if initially successful.
+        ///
+        /// # Safety
+        ///
+        /// `in_item_name` might not allow `None`.
         #[unsafe(method(removeItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeItem(&self, in_item_name: Option<&NSString>) -> OBEXError;
@@ -227,6 +251,10 @@ impl OBEXFileTransferServices {
         /// Returns: kOBEXSuccess, kOBEXSessionBusyError, or kOBEXBadArgumentError initially. Further
         /// results returned through the fileTransferServicesSendComplete: and
         /// fileTransferServicesSendProgress: delegate methods if initially successful.
+        ///
+        /// # Safety
+        ///
+        /// `in_local_path_and_name` might not allow `None`.
         #[unsafe(method(sendFile:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendFile(&self, in_local_path_and_name: Option<&NSString>) -> OBEXError;
@@ -243,6 +271,11 @@ impl OBEXFileTransferServices {
         /// Returns: kOBEXSuccess, kOBEXSessionBusyError, or kOBEXBadArgumentError. initially.  Further
         /// results returned through the fileTransferServicesGetComplete: and
         /// fileTransferServicesGetProgress: delegate methods if initially successful.
+        ///
+        /// # Safety
+        ///
+        /// - `in_remote_file_name` might not allow `None`.
+        /// - `in_local_path_and_name` might not allow `None`.
         #[unsafe(method(copyRemoteFile:toLocalPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copyRemoteFile_toLocalPath(
@@ -267,6 +300,12 @@ impl OBEXFileTransferServices {
         /// Returns: kOBEXSuccess, kOBEXSessionBusyError, or kOBEXBadArgumentError initially. Further
         /// results returned through the fileTransferServicesSendComplete: and
         /// fileTransferServicesSendProgress: delegate methods if initially successful.
+        ///
+        /// # Safety
+        ///
+        /// - `in_data` might not allow `None`.
+        /// - `in_type` might not allow `None`.
+        /// - `in_name` might not allow `None`.
         #[unsafe(method(sendData:type:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendData_type_name(
@@ -286,6 +325,10 @@ impl OBEXFileTransferServices {
         /// Returns: kOBEXSuccess, kOBEXSessionBusyError, or kOBEXBadArgumentError initially.  Further
         /// results returned through the fileTransferServicesGetComplete: and
         /// fileTransferServicesGetProgress: delegate methods if initially successful.
+        ///
+        /// # Safety
+        ///
+        /// `in_local_path_and_name` might not allow `None`.
         #[unsafe(method(getDefaultVCard:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDefaultVCard(
@@ -445,6 +488,10 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// The delegate method that corresponds to the connect method
         ///
         /// inError will either be kOBEXSuccess or it will be an error returned by the OBEX Session
+        ///
+        /// # Safety
+        ///
+        /// `in_services` might not allow `None`.
         #[unsafe(method(fileTransferServicesConnectionComplete:error:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesConnectionComplete_error(
@@ -459,6 +506,10 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// inError will be kOBEXSuccess on success.  This method will also be called if the connection
         /// is lost to the server.  Possible error codes include kOBEXSessionTransportDiedError,
         /// kOBEXSessionNoTransportError, and kOBEXSessionNotConnectedError.
+        ///
+        /// # Safety
+        ///
+        /// `in_services` might not allow `None`.
         #[unsafe(method(fileTransferServicesDisconnectionComplete:error:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesDisconnectionComplete_error(
@@ -471,6 +522,10 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// The delegate method that corresponds to the abort method
         ///
         /// Possible inError values are kOBEXSuccess and kOBEXTimeoutError
+        ///
+        /// # Safety
+        ///
+        /// `in_services` might not allow `None`.
         #[unsafe(method(fileTransferServicesAbortComplete:error:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesAbortComplete_error(
@@ -484,6 +539,11 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         ///
         ///
         /// Parameter `inItemName`: The name of the remote item that was removed
+        ///
+        /// # Safety
+        ///
+        /// - `in_services` might not allow `None`.
+        /// - `in_item_name` might not allow `None`.
         #[unsafe(method(fileTransferServicesRemoveItemComplete:error:removedItem:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesRemoveItemComplete_error_removedItem(
@@ -498,6 +558,11 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         ///
         ///
         /// Parameter `inFolderName`: The name of the newly created folder
+        ///
+        /// # Safety
+        ///
+        /// - `in_services` might not allow `None`.
+        /// - `in_folder_name` might not allow `None`.
         #[unsafe(method(fileTransferServicesCreateFolderComplete:error:folder:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesCreateFolderComplete_error_folder(
@@ -513,6 +578,11 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         ///
         ///
         /// Parameter `inPath`: The current remote path
+        ///
+        /// # Safety
+        ///
+        /// - `in_services` might not allow `None`.
+        /// - `in_path` might not allow `None`.
         #[unsafe(method(fileTransferServicesPathChangeComplete:error:finalPath:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesPathChangeComplete_error_finalPath(
@@ -528,6 +598,12 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         ///
         /// Parameter `inListing`: An array of NSDictionary's that detail each file at the current path.  The keys
         /// to this dictionary are defined in the OBEXFileTransferServicesDelegate category.
+        ///
+        /// # Safety
+        ///
+        /// - `in_services` might not allow `None`.
+        /// - `in_listing` generic should be of the correct type.
+        /// - `in_listing` might not allow `None`.
         #[unsafe(method(fileTransferServicesRetrieveFolderListingComplete:error:listing:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesRetrieveFolderListingComplete_error_listing(
@@ -541,6 +617,10 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// The delegate method for receiving information on the preparation of each file to send
         ///
         /// This method will be called before the transfer operation.
+        ///
+        /// # Safety
+        ///
+        /// `in_services` might not allow `None`.
         #[unsafe(method(fileTransferServicesFilePreparationComplete:error:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesFilePreparationComplete_error(
@@ -556,6 +636,12 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         ///
         /// Parameter `inProgressDescription`: A dictionary containing information on the state of the transfer. The keys
         /// to this dictionary are defined in the OBEXFileTransferServicesDelegate category.
+        ///
+        /// # Safety
+        ///
+        /// - `in_services` might not allow `None`.
+        /// - `in_progress_description` generic should be of the correct type.
+        /// - `in_progress_description` might not allow `None`.
         #[unsafe(method(fileTransferServicesSendFileProgress:transferProgress:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesSendFileProgress_transferProgress(
@@ -568,6 +654,10 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// The delegate method that corresponds to the sendFile: method.
         ///
         /// This method will be called when the transfer operation has finished.
+        ///
+        /// # Safety
+        ///
+        /// `in_services` might not allow `None`.
         #[unsafe(method(fileTransferServicesSendFileComplete:error:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesSendFileComplete_error(
@@ -583,6 +673,12 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         ///
         /// Parameter `inProgressDescription`: A dictionary containing information on the state of the transfer. The keys
         /// to this dictionary are defined in the OBEXFileTransferServicesDelegate category.
+        ///
+        /// # Safety
+        ///
+        /// - `in_services` might not allow `None`.
+        /// - `in_progress_description` generic should be of the correct type.
+        /// - `in_progress_description` might not allow `None`.
         #[unsafe(method(fileTransferServicesCopyRemoteFileProgress:transferProgress:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesCopyRemoteFileProgress_transferProgress(
@@ -595,6 +691,10 @@ pub unsafe trait NSObjectOBEXFileTransferServicesDelegate:
         /// The delegate method that corresponds to the getFileNamed:toLocalPathAndName: method
         ///
         /// This method will be called when the transfer operation has finished
+        ///
+        /// # Safety
+        ///
+        /// `in_services` might not allow `None`.
         #[unsafe(method(fileTransferServicesCopyRemoteFileComplete:error:))]
         #[unsafe(method_family = none)]
         unsafe fn fileTransferServicesCopyRemoteFileComplete_error(

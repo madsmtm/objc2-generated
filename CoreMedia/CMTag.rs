@@ -728,6 +728,10 @@ impl CMTag {
     /// Parameter `dict`: A CFDictionary from which to create a CMTag.
     ///
     /// Returns: The created CMTag.
+    ///
+    /// # Safety
+    ///
+    /// `dict` generics must be of the correct type.
     #[doc(alias = "CMTagMakeFromDictionary")]
     #[inline]
     pub unsafe fn from_dictionary(dict: &CFDictionary) -> CMTag {

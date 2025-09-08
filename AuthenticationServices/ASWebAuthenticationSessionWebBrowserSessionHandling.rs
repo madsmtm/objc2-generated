@@ -9,6 +9,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionhandling?language=objc)
     pub unsafe trait ASWebAuthenticationSessionWebBrowserSessionHandling {
         #[cfg(feature = "ASWebAuthenticationSessionRequest")]
+        /// # Safety
+        ///
+        /// `request` might not allow `None`.
         #[unsafe(method(beginHandlingWebAuthenticationSessionRequest:))]
         #[unsafe(method_family = none)]
         unsafe fn beginHandlingWebAuthenticationSessionRequest(
@@ -17,6 +20,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "ASWebAuthenticationSessionRequest")]
+        /// # Safety
+        ///
+        /// `request` might not allow `None`.
         #[unsafe(method(cancelWebAuthenticationSessionRequest:))]
         #[unsafe(method_family = none)]
         unsafe fn cancelWebAuthenticationSessionRequest(

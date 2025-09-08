@@ -145,6 +145,10 @@ impl PGDisplayDescriptor {
         /// Setter for [`modeChangeHandler`][Self::modeChangeHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `mode_change_handler` must be a valid pointer or null.
         #[unsafe(method(setModeChangeHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModeChangeHandler(&self, mode_change_handler: PGDisplayModeChangeHandler);
@@ -161,6 +165,10 @@ impl PGDisplayDescriptor {
         /// Setter for [`newFrameEventHandler`][Self::newFrameEventHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `new_frame_event_handler` must be a valid pointer or null.
         #[unsafe(method(setNewFrameEventHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNewFrameEventHandler(
@@ -172,6 +180,10 @@ impl PGDisplayDescriptor {
         /// The block to invoke to handle cursor glyph updates.
         ///
         /// Handler invocation indicative of new cursor image for display.  If this block is not set, cursor will be precomposited in presented image.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(cursorGlyphHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn cursorGlyphHandler(&self) -> PGDisplayCursorGlyphHandler;
@@ -180,6 +192,10 @@ impl PGDisplayDescriptor {
         /// Setter for [`cursorGlyphHandler`][Self::cursorGlyphHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `cursor_glyph_handler` must be a valid pointer or null.
         #[unsafe(method(setCursorGlyphHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorGlyphHandler(
@@ -199,6 +215,10 @@ impl PGDisplayDescriptor {
         /// Setter for [`cursorShowHandler`][Self::cursorShowHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `cursor_show_handler` must be a valid pointer or null.
         #[unsafe(method(setCursorShowHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorShowHandler(&self, cursor_show_handler: PGDisplayCursorShowHandler);
@@ -215,6 +235,10 @@ impl PGDisplayDescriptor {
         /// Setter for [`cursorMoveHandler`][Self::cursorMoveHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `cursor_move_handler` must be a valid pointer or null.
         #[unsafe(method(setCursorMoveHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorMoveHandler(&self, cursor_move_handler: PGDisplayCursorMoveHandler);
@@ -330,6 +354,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         /// The block to invoke to handle cursor glyph updates.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(cursorGlyphHandler))]
         #[unsafe(method_family = none)]
         unsafe fn cursorGlyphHandler(&self) -> PGDisplayCursorGlyphHandler;

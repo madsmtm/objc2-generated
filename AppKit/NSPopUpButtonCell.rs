@@ -248,11 +248,17 @@ impl NSPopUpButtonCell {
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithTag(&self, tag: NSInteger) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(indexOfItemWithRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithRepresentedObject(&self, obj: Option<&AnyObject>)
             -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `action_selector` must be a valid selector.
         #[unsafe(method(indexOfItemWithTarget:andAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithTarget_andAction(

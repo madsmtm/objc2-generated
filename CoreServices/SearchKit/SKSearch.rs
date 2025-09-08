@@ -49,6 +49,10 @@ pub const kSKSearchOptionSpaceMeansOR: c_uint = 1 << 1;
 pub const kSKSearchOptionFindSimilar: c_uint = 1 << 2;
 
 impl SKSearch {
+    /// # Safety
+    ///
+    /// - `in_index` might not allow `None`.
+    /// - `in_query` might not allow `None`.
     #[doc(alias = "SKSearchCreate")]
     #[cfg(feature = "SKIndex")]
     #[inline]
@@ -77,6 +81,11 @@ impl SKSearch {
         unsafe { SKSearchCancel(self) }
     }
 
+    /// # Safety
+    ///
+    /// - `out_document_i_ds_array` must be a valid pointer.
+    /// - `out_scores_array` must be a valid pointer.
+    /// - `out_found_count` must be a valid pointer.
     #[doc(alias = "SKSearchFindMatches")]
     #[cfg(feature = "SKIndex")]
     #[inline]
@@ -114,6 +123,11 @@ impl SKSearch {
 
 #[cfg(feature = "SKIndex")]
 impl SKIndex {
+    /// # Safety
+    ///
+    /// - `in_document_i_ds_array` must be a valid pointer.
+    /// - `out_names_array` must be a valid pointer.
+    /// - `out_parent_i_ds_array` must be a valid pointer.
     #[doc(alias = "SKIndexCopyInfoForDocumentIDs")]
     #[cfg(feature = "SKIndex")]
     #[inline]
@@ -144,6 +158,10 @@ impl SKIndex {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `in_document_i_ds_array` must be a valid pointer.
+    /// - `out_document_refs_array` must be a valid pointer.
     #[doc(alias = "SKIndexCopyDocumentRefsForDocumentIDs")]
     #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
     #[inline]
@@ -171,6 +189,10 @@ impl SKIndex {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `in_document_i_ds_array` must be a valid pointer.
+    /// - `out_document_ur_ls_array` must be a valid pointer.
     #[doc(alias = "SKIndexCopyDocumentURLsForDocumentIDs")]
     #[cfg(feature = "SKIndex")]
     #[inline]
@@ -282,6 +304,10 @@ pub type SKSearchResultsFilterCallBack =
     Option<unsafe extern "C-unwind" fn(*mut SKIndex, *const SKDocument, *mut c_void) -> Boolean>;
 
 impl SKSearchGroup {
+    /// # Safety
+    ///
+    /// - `in_array_of_in_indexes` generic must be of the correct type.
+    /// - `in_array_of_in_indexes` might not allow `None`.
     #[doc(alias = "SKSearchGroupCreate")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -312,6 +338,10 @@ impl SKSearchGroup {
 }
 
 impl SKSearchResults {
+    /// # Safety
+    ///
+    /// - `in_context` must be a valid pointer.
+    /// - `in_filter_call_back` must be implemented correctly.
     #[doc(alias = "SKSearchResultsCreateWithQuery")]
     #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
     #[deprecated = "No longer supported"]
@@ -347,6 +377,12 @@ impl SKSearchResults {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `in_example_documents` generic must be of the correct type.
+    /// - `in_example_documents` might not allow `None`.
+    /// - `in_context` must be a valid pointer.
+    /// - `in_filter_call_back` must be implemented correctly.
     #[doc(alias = "SKSearchResultsCreateWithDocuments")]
     #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
     #[deprecated = "No longer supported"]
@@ -389,6 +425,11 @@ impl SKSearchResults {
         unsafe { SKSearchResultsGetCount(self) }
     }
 
+    /// # Safety
+    ///
+    /// - `out_documents_array` must be a valid pointer.
+    /// - `out_indexes_array` must be a valid pointer.
+    /// - `out_scores_array` must be a valid pointer.
     #[doc(alias = "SKSearchResultsGetInfoInRange")]
     #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
     #[deprecated = "No longer supported"]

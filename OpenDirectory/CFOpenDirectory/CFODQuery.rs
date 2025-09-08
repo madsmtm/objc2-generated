@@ -66,6 +66,10 @@ impl ODQueryRef {
     ///
     /// Returns: an ODQueryRef which should be passed into ODQueryCopyResults for immediate results or
     /// ODQueryScheduleWithRunLoop for background behavior
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODQueryCreateWithNode")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -139,6 +143,10 @@ impl ODQueryRef {
     /// Returns: an ODQueryRef which should be passed into ODQueryCopyResults for immediate results or
     /// ODQueryScheduleWithRunLoop for background behavior, see ODQueryCallback for details on RunLoop
     /// behavior.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODQueryCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -201,6 +209,10 @@ impl ODQueryRef {
     /// Returns: a CFArrayRef comprised of ODRecord objects.  If partial results were requested but are complete, then
     /// NULL will be returned with outError set to NULL. If an error occurs, NULL will be returned and
     /// outError should be checked accordingly.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "ODQueryCopyResults")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -247,6 +259,11 @@ impl ODQueryRef {
     /// Parameter `callback`: a function to call when a query has results to return
     ///
     /// Parameter `userInfo`: a user-defined pointer to be passed back to the Query callback function
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `user_info` must be a valid pointer.
     #[doc(alias = "ODQuerySetCallback")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -273,6 +290,11 @@ impl ODQueryRef {
     /// Parameter `runLoop`: a CFRunLoopRef to put the ODQueryRef source onto
     ///
     /// Parameter `runLoopMode`: a CFStringRef with the runloop mode to add the ODQueryRef to
+    ///
+    /// # Safety
+    ///
+    /// - `run_loop` might not allow `None`.
+    /// - `run_loop_mode` might not allow `None`.
     #[doc(alias = "ODQueryScheduleWithRunLoop")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -300,6 +322,11 @@ impl ODQueryRef {
     /// Parameter `runLoop`: a CFRunLoopRef to remove the ODQuery source from
     ///
     /// Parameter `runLoopMode`: a CFStringRef of the mode to remove the ODQuery from
+    ///
+    /// # Safety
+    ///
+    /// - `run_loop` might not allow `None`.
+    /// - `run_loop_mode` might not allow `None`.
     #[doc(alias = "ODQueryUnscheduleFromRunLoop")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -327,6 +354,10 @@ impl ODQueryRef {
     /// Parameter `query`: an ODQueryRef to perform
     ///
     /// Parameter `queue`: a dispatch queue to receive the query results
+    ///
+    /// # Safety
+    ///
+    /// `queue` might not allow `None`.
     #[doc(alias = "ODQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

@@ -45,6 +45,10 @@ extern_protocol!(
         ) -> Option<Retained<AnyObject>>;
 
         /// Sets the custom state for the specified key.
+        ///
+        /// # Safety
+        ///
+        /// `custom_state` should be of the correct type.
         #[unsafe(method(setCustomState:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn setCustomState_forKey(
@@ -60,6 +64,9 @@ extern_protocol!(
             key: &UIConfigurationStateCustomKey,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         unsafe fn setObject_forKeyedSubscript(

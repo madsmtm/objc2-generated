@@ -47,6 +47,9 @@ impl PDFAnnotationChoiceWidget {
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `value` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setStringValue:))]
         #[unsafe(method_family = none)]
@@ -61,6 +64,9 @@ impl PDFAnnotationChoiceWidget {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `color` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
@@ -75,6 +81,9 @@ impl PDFAnnotationChoiceWidget {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `font` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
@@ -89,6 +98,9 @@ impl PDFAnnotationChoiceWidget {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `color` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFontColor:))]
         #[unsafe(method_family = none)]
@@ -99,6 +111,9 @@ impl PDFAnnotationChoiceWidget {
         #[unsafe(method_family = none)]
         pub unsafe fn fieldName(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFieldName:))]
         #[unsafe(method_family = none)]
@@ -119,6 +134,10 @@ impl PDFAnnotationChoiceWidget {
         #[unsafe(method_family = none)]
         pub unsafe fn choices(&self) -> Option<Retained<NSArray>>;
 
+        /// # Safety
+        ///
+        /// - `options` generic should be of the correct type.
+        /// - `options` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setChoices:))]
         #[unsafe(method_family = none)]
@@ -130,6 +149,9 @@ impl PDFAnnotationChoiceWidget {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationChoiceWidget {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

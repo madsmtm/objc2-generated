@@ -127,6 +127,10 @@ impl CTTypesetter {
     ///
     ///
     /// See also: kCTTypesetterOptionAllowUnboundedLayout
+    ///
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CTTypesetterCreateWithAttributedStringAndOptions")]
     #[inline]
     pub unsafe fn with_attributed_string_and_options(

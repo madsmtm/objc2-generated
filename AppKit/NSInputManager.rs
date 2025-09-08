@@ -10,16 +10,27 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinput?language=objc)
     pub unsafe trait NSTextInput {
+        /// # Safety
+        ///
+        /// - `string` should be of the correct type.
+        /// - `string` might not allow `None`.
         #[deprecated]
         #[unsafe(method(insertText:))]
         #[unsafe(method_family = none)]
         unsafe fn insertText(&self, string: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[deprecated]
         #[unsafe(method(doCommandBySelector:))]
         #[unsafe(method_family = none)]
         unsafe fn doCommandBySelector(&self, selector: Option<Sel>);
 
+        /// # Safety
+        ///
+        /// - `string` should be of the correct type.
+        /// - `string` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setMarkedText:selectedRange:))]
         #[unsafe(method_family = none)]
@@ -102,16 +113,26 @@ impl NSInputManager {
         #[unsafe(method_family = none)]
         pub unsafe fn currentInputManager() -> Option<Retained<NSInputManager>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated]
         #[unsafe(method(cycleToNextInputLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cycleToNextInputLanguage(sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated]
         #[unsafe(method(cycleToNextInputServerInLanguage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cycleToNextInputServerInLanguage(sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// - `input_server_name` might not allow `None`.
+        /// - `host_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(initWithName:host:))]
         #[unsafe(method_family = init)]
@@ -126,11 +147,19 @@ impl NSInputManager {
         #[unsafe(method_family = none)]
         pub unsafe fn localizedInputManagerName(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// - `cli` should be of the correct type.
+        /// - `cli` might not allow `None`.
         #[deprecated]
         #[unsafe(method(markedTextAbandoned:))]
         #[unsafe(method_family = none)]
         pub unsafe fn markedTextAbandoned(&self, cli: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// - `cli` should be of the correct type.
+        /// - `cli` might not allow `None`.
         #[deprecated]
         #[unsafe(method(markedTextSelectionChanged:client:))]
         #[unsafe(method_family = none)]
@@ -168,6 +197,9 @@ impl NSInputManager {
         pub unsafe fn wantsToHandleMouseEvents(&self) -> bool;
 
         #[cfg(feature = "NSEvent")]
+        /// # Safety
+        ///
+        /// `mouse_event` might not allow `None`.
         #[deprecated]
         #[unsafe(method(handleMouseEvent:))]
         #[unsafe(method_family = none)]

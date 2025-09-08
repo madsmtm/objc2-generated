@@ -28,6 +28,9 @@ extern_conformance!(
 #[cfg(feature = "NSTouchBarItem")]
 impl NSButtonTouchBarItem {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonTouchBarItemWithIdentifier:title:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_target_action(
@@ -39,6 +42,9 @@ impl NSButtonTouchBarItem {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonTouchBarItemWithIdentifier:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_image_target_action(
@@ -50,6 +56,9 @@ impl NSButtonTouchBarItem {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonTouchBarItemWithIdentifier:title:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_image_target_action(
@@ -103,6 +112,10 @@ impl NSButtonTouchBarItem {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -112,6 +125,10 @@ impl NSButtonTouchBarItem {
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);

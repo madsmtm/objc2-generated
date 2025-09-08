@@ -291,6 +291,10 @@ impl LAContext {
         /// LAErrorUserCancel if user has tapped the Cancel button
         ///
         /// LAErrorSystemCancel if some system event interrupted the evaluation (e.g. Home button pressed).
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(evaluatePolicy:localizedReason:reply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluatePolicy_localizedReason_reply(
@@ -399,6 +403,10 @@ impl LAContext {
         ///
         /// Warning: localizedReason parameter is mandatory and the call will throw NSInvalidArgumentException if
         /// nil or empty string is specified.
+        ///
+        /// # Safety
+        ///
+        /// `reply` block must be sendable.
         #[unsafe(method(evaluateAccessControl:operation:localizedReason:reply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluateAccessControl_operation_localizedReason_reply(

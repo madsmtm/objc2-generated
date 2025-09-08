@@ -194,6 +194,10 @@ impl UITabGroup {
             feature = "block2"
         ))]
         /// Creates a `UITabGroup` using the specified parameters.
+        ///
+        /// # Safety
+        ///
+        /// `view_controller_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithTitle:image:identifier:children:viewControllerProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_identifier_children_viewControllerProvider(
@@ -222,6 +226,10 @@ impl UITabGroup {
         /// Creates a tab with the specified identifier, title, image, and view controller provider.
         /// The view controller provider is called when a view controller is requested and is currently nil.
         /// For root level tabs on `UITabBarController`, the resolved view controller must be non-nil.
+        ///
+        /// # Safety
+        ///
+        /// `view_controller_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithTitle:image:identifier:viewControllerProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_identifier_viewControllerProvider(

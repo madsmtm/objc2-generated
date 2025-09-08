@@ -52,6 +52,10 @@ impl IKFilterUIView {
     extern_methods!(
         #[cfg(feature = "objc2-core-image")]
         /// The viewWithFrame method creates a view that retains the filter passed into it.
+        ///
+        /// # Safety
+        ///
+        /// `in_filter` might not allow `None`.
         #[unsafe(method(viewWithFrame:filter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn viewWithFrame_filter(
@@ -62,6 +66,10 @@ impl IKFilterUIView {
 
         #[cfg(feature = "objc2-core-image")]
         /// The initWithFrame method initializes a view that retains the filter passed into it.
+        ///
+        /// # Safety
+        ///
+        /// `in_filter` might not allow `None`.
         #[unsafe(method(initWithFrame:filter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_filter(

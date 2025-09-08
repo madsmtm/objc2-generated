@@ -95,6 +95,9 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderreadingaugmentationproviding?language=objc)
     pub unsafe trait UIItemProviderReadingAugmentationProviding {
+        /// # Safety
+        ///
+        /// `requested_class` probably has further requirements.
         #[unsafe(method(objectWithItemProviderData:typeIdentifier:requestedClass:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn objectWithItemProviderData_typeIdentifier_requestedClass_error(

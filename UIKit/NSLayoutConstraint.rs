@@ -186,6 +186,10 @@ extern_conformance!(
 
 impl NSLayoutConstraint {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `metrics` generic should be of the correct type.
+        /// - `views` generic should be of the correct type.
         #[unsafe(method(constraintsWithVisualFormat:options:metrics:views:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsWithVisualFormat_options_metrics_views(
@@ -197,6 +201,10 @@ impl NSLayoutConstraint {
         ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `view1` should be of the correct type.
+        /// - `view2` should be of the correct type.
         #[unsafe(method(constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(

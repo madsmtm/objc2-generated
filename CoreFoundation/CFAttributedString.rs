@@ -57,6 +57,11 @@ unsafe impl ConcreteType for CFAttributedString {
 
 impl CFAttributedString {
     /// Creates an attributed string with the specified string and attributes (both copied).
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generics must be of the correct type.
+    /// - `attributes` might not allow `None`.
     #[doc(alias = "CFAttributedStringCreate")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -77,6 +82,11 @@ impl CFAttributedString {
     }
 
     /// Creates a sub-attributed string from the specified range. It's a programming error for range to specify characters outside the bounds of aStr.
+    ///
+    /// # Safety
+    ///
+    /// - `alloc` might not allow `None`.
+    /// - `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringCreateWithSubstring")]
     #[inline]
     pub unsafe fn with_substring(
@@ -137,6 +147,10 @@ impl CFAttributedString {
     /// Returns the attributes at the specified location. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same set of attributes apply. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributesAndLongestEffectiveRange().  It's a programming error for loc to specify a location outside the bounds of the attributed string.
     ///
     /// Note that the returned attribute dictionary might change in unpredictable ways from under the caller if the attributed string is edited after this call. If you wish to hang on to the dictionary long-term, you should make an actual copy of it rather than just retaining it.  Also, no assumptions should be made about the relationship of the actual CFDictionaryRef returned by this call and the dictionary originally used to set the attributes, other than the fact that the values stored in the dictionary will be identical (that is, ==) to those originally specified.
+    ///
+    /// # Safety
+    ///
+    /// `effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributes")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -157,6 +171,10 @@ impl CFAttributedString {
     }
 
     /// Returns the value of a single attribute at the specified location. If the specified attribute doesn't exist at the location, returns NULL. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same attribute value applies. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributeAndLongestEffectiveRange(). It's a programming error for loc to specify a location outside the bounds of the attributed string.
+    ///
+    /// # Safety
+    ///
+    /// `effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttribute")]
     #[inline]
     pub unsafe fn attribute(
@@ -178,6 +196,10 @@ impl CFAttributedString {
     }
 
     /// Returns the attributes at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same set of attributes apply. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
+    ///
+    /// # Safety
+    ///
+    /// `longest_effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributesAndLongestEffectiveRange")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -207,6 +229,10 @@ impl CFAttributedString {
     }
 
     /// Returns the value of a single attribute at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same attribute value applies. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
+    ///
+    /// # Safety
+    ///
+    /// `longest_effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributeAndLongestEffectiveRange")]
     #[inline]
     pub unsafe fn attribute_and_longest_effective_range(
@@ -278,6 +304,11 @@ impl CFMutableAttributedString {
     /// Modifies the string for the attributed string, much like CFStringReplace().  It's an error for range to specify characters outside the bounds of aStr.
     ///
     /// (Note: This function is a convenience on CFAttributedStringGetMutableString(); however, until CFAttributedStringGetMutableString() is implemented, it remains the only way to edit the string of the attributed string.)
+    ///
+    /// # Safety
+    ///
+    /// - `a_str` might not allow `None`.
+    /// - `replacement` might not allow `None`.
     #[doc(alias = "CFAttributedStringReplaceString")]
     #[inline]
     pub unsafe fn replace_string(
@@ -313,6 +344,11 @@ impl CFMutableAttributedString {
     }
 
     /// Sets the value of multiple attributes over the specified range, which should be valid. If clearOtherAttributes is false, existing attributes (which aren't being replaced) are left alone; otherwise they are cleared. The dictionary should be setup for "usual" CF type usage --- CFString keys, and arbitrary CFType values. Note that after this call, further mutations to the replacement dictionary argument by the caller will not affect the contents of the attributed string.
+    ///
+    /// # Safety
+    ///
+    /// - `replacement` generics must be of the correct type.
+    /// - `replacement` might not allow `None`.
     #[doc(alias = "CFAttributedStringSetAttributes")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -336,6 +372,13 @@ impl CFMutableAttributedString {
     }
 
     /// Sets the value of a single attribute over the specified range, which should be valid. value should not be NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `a_str` might not allow `None`.
+    /// - `attr_name` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
     #[doc(alias = "CFAttributedStringSetAttribute")]
     #[inline]
     pub unsafe fn set_attribute(
@@ -356,6 +399,11 @@ impl CFMutableAttributedString {
     }
 
     /// Removes the value of a single attribute over the specified range, which should be valid. It's OK for the attribute not the exist over the specified range.
+    ///
+    /// # Safety
+    ///
+    /// - `a_str` might not allow `None`.
+    /// - `attr_name` might not allow `None`.
     #[doc(alias = "CFAttributedStringRemoveAttribute")]
     #[inline]
     pub unsafe fn remove_attribute(
@@ -374,6 +422,11 @@ impl CFMutableAttributedString {
     }
 
     /// Replaces the attributed substring over the specified range with the attributed string specified in replacement. range should be valid. To delete a range of the attributed string, call CFAttributedStringReplaceString() with empty string and specified range.
+    ///
+    /// # Safety
+    ///
+    /// - `a_str` might not allow `None`.
+    /// - `replacement` might not allow `None`.
     #[doc(alias = "CFAttributedStringReplaceAttributedString")]
     #[inline]
     pub unsafe fn replace_attributed_string(
@@ -414,6 +467,11 @@ impl CFMutableAttributedString {
 
 impl CFAttributedString {
     /// Fills bidiLevels by applying the Unicode Bidi Algorithm (P, X, W, N, and I) to the characters in range. Returns true if the result is not uni-level LTR (in other words, needing further Bidi processing). baseDirection is NSWritingDirection (NSWritingDirectionNatural, NSWritingDirectionLeftToRight, and NSWritingDirectionRightToLeft).  Understands NSWritingDirectionAttributeName values.
+    ///
+    /// # Safety
+    ///
+    /// - `bidi_levels` must be a valid pointer.
+    /// - `base_directions` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetBidiLevelsAndResolvedDirections")]
     #[inline]
     pub unsafe fn bidi_levels_and_resolved_directions(

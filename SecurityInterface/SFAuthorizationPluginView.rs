@@ -79,6 +79,11 @@ impl SFAuthorizationPluginView {
         /// Parameter `callbacks`: The AuthorizationCallbacks provided to the AuthorizationPlugin.
         ///
         /// Parameter `engineRef`: The AuthorizationEngineRef provided to the AuthorizationMechanismRef.
+        ///
+        /// # Safety
+        ///
+        /// - `callbacks` must be a valid pointer.
+        /// - `engine_ref` must be a valid pointer.
         #[unsafe(method(initWithCallbacks:andEngineRef:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallbacks_andEngineRef(
@@ -129,6 +134,11 @@ impl SFAuthorizationPluginView {
         ///
         /// The user name can be used to pre-populate a Text Field.
         /// NOTE: inUserInformation may be nil.
+        ///
+        /// # Safety
+        ///
+        /// - `in_user_information` generic should be of the correct type.
+        /// - `in_user_information` might not allow `None`.
         #[unsafe(method(willActivateWithUser:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willActivateWithUser(&self, in_user_information: Option<&NSDictionary>);

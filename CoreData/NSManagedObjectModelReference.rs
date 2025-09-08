@@ -49,6 +49,9 @@ impl NSManagedObjectModelReference {
             version_checksum: &NSString,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `version_hash` generic should be of the correct type.
         #[unsafe(method(initWithEntityVersionHashes:inBundle:versionChecksum:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityVersionHashes_inBundle_versionChecksum(

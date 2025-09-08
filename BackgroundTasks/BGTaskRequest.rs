@@ -216,6 +216,10 @@ impl BGHealthResearchTaskRequest {
         pub unsafe fn protectionTypeOfRequiredData(&self) -> Retained<NSFileProtectionType>;
 
         /// Setter for [`protectionTypeOfRequiredData`][Self::protectionTypeOfRequiredData].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setProtectionTypeOfRequiredData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtectionTypeOfRequiredData(

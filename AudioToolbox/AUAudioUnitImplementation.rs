@@ -53,6 +53,10 @@ impl AUAudioUnit {
         /// /AUGraph.h>, or
         /// <AVFoundation
         /// /AVAudioUnitEffect.h>).
+        ///
+        /// # Safety
+        ///
+        /// `cls` probably has further requirements.
         #[unsafe(method(registerSubclass:asComponentDescription:name:version:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerSubclass_asComponentDescription_name_version(
@@ -282,6 +286,10 @@ impl AUParameterNode {
         /// This block, used only in an audio unit implementation, receives all externally-generated
         /// changes to parameter values. It should store the new value in its audio signal processing
         /// state (assuming that that state is separate from the AUParameter object).
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(implementorValueObserver))]
         #[unsafe(method_family = none)]
         pub unsafe fn implementorValueObserver(&self) -> AUImplementorValueObserver;
@@ -290,6 +298,10 @@ impl AUParameterNode {
         /// Setter for [`implementorValueObserver`][Self::implementorValueObserver].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `implementor_value_observer` must be a valid pointer.
         #[unsafe(method(setImplementorValueObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueObserver(
@@ -303,6 +315,10 @@ impl AUParameterNode {
         ///
         /// The audio unit should return the current value for this parameter; the AUParameterNode will
         /// store the value.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(implementorValueProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn implementorValueProvider(&self) -> AUImplementorValueProvider;
@@ -311,6 +327,10 @@ impl AUParameterNode {
         /// Setter for [`implementorValueProvider`][Self::implementorValueProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `implementor_value_provider` must be a valid pointer.
         #[unsafe(method(setImplementorValueProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueProvider(
@@ -321,6 +341,11 @@ impl AUParameterNode {
         #[cfg(feature = "block2")]
         /// Called to provide string representations of parameter values.
         /// If value is nil, the callback uses the current value of the parameter.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(implementorStringFromValueCallback))]
         #[unsafe(method_family = none)]
         pub unsafe fn implementorStringFromValueCallback(
@@ -331,6 +356,10 @@ impl AUParameterNode {
         /// Setter for [`implementorStringFromValueCallback`][Self::implementorStringFromValueCallback].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `implementor_string_from_value_callback` must be a valid pointer.
         #[unsafe(method(setImplementorStringFromValueCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorStringFromValueCallback(
@@ -340,6 +369,11 @@ impl AUParameterNode {
 
         #[cfg(feature = "block2")]
         /// Called to convert string to numeric representations of parameter values.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(implementorValueFromStringCallback))]
         #[unsafe(method_family = none)]
         pub unsafe fn implementorValueFromStringCallback(
@@ -350,6 +384,10 @@ impl AUParameterNode {
         /// Setter for [`implementorValueFromStringCallback`][Self::implementorValueFromStringCallback].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `implementor_value_from_string_callback` must be a valid pointer.
         #[unsafe(method(setImplementorValueFromStringCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueFromStringCallback(
@@ -359,6 +397,10 @@ impl AUParameterNode {
 
         #[cfg(feature = "block2")]
         /// Called to obtain an abbreviated version of a parameter or group name.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(implementorDisplayNameWithLengthCallback))]
         #[unsafe(method_family = none)]
         pub unsafe fn implementorDisplayNameWithLengthCallback(
@@ -369,6 +411,10 @@ impl AUParameterNode {
         /// Setter for [`implementorDisplayNameWithLengthCallback`][Self::implementorDisplayNameWithLengthCallback].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `implementor_display_name_with_length_callback` must be a valid pointer.
         #[unsafe(method(setImplementorDisplayNameWithLengthCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImplementorDisplayNameWithLengthCallback(

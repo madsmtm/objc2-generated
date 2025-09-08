@@ -391,6 +391,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The OSStatus value
+    ///
+    /// # Safety
+    ///
+    /// - `in_codec` must be a valid pointer.
+    /// - `out_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecGetPropertyInfo(
         in_codec: AudioCodec,
@@ -416,6 +422,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The OSStatus value
+    ///
+    /// # Safety
+    ///
+    /// - `in_codec` must be a valid pointer.
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecGetProperty(
         in_codec: AudioCodec,
@@ -439,6 +451,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The OSStatus value
+    ///
+    /// # Safety
+    ///
+    /// - `in_codec` must be a valid pointer.
+    /// - `in_property_data` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecSetProperty(
         in_codec: AudioCodec,
@@ -467,6 +484,13 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The OSStatus value
+    ///
+    /// # Safety
+    ///
+    /// - `in_codec` must be a valid pointer.
+    /// - `in_input_format` must be a valid pointer or null.
+    /// - `in_output_format` must be a valid pointer or null.
+    /// - `in_magic_cookie` must be a valid pointer or null.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecInitialize(
         in_codec: AudioCodec,
@@ -487,6 +511,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The OSStatus value
+    ///
+    /// # Safety
+    ///
+    /// `in_codec` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus;
 }
@@ -517,6 +545,14 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The OSStatus value
+    ///
+    /// # Safety
+    ///
+    /// - `in_codec` must be a valid pointer.
+    /// - `in_input_data` must be a valid pointer.
+    /// - `io_input_data_byte_size` must be a valid pointer.
+    /// - `io_number_packets` must be a valid pointer.
+    /// - `in_packet_description` must be a valid pointer or null.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecAppendInputData(
         in_codec: AudioCodec,
@@ -554,6 +590,15 @@ extern "C-unwind" {
     /// Parameter `ioNumberPackets`: number of input/output packets
     ///
     /// Returns: The OSStatus value
+    ///
+    /// # Safety
+    ///
+    /// - `in_codec` must be a valid pointer.
+    /// - `out_output_data` must be a valid pointer.
+    /// - `io_output_data_byte_size` must be a valid pointer.
+    /// - `io_number_packets` must be a valid pointer.
+    /// - `out_packet_description` must be a valid pointer or null.
+    /// - `out_status` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecProduceOutputPackets(
         in_codec: AudioCodec,
@@ -566,6 +611,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_codec` must be a valid pointer.
+    /// - `in_buffer_list` must be a valid pointer.
+    /// - `io_number_packets` must be a valid pointer.
+    /// - `in_packet_description` must be a valid pointer or null.
+    /// - `out_bytes_consumed` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecAppendInputBufferList(
         in_codec: AudioCodec,
@@ -577,6 +629,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_codec` must be a valid pointer.
+    /// - `io_buffer_list` must be a valid pointer.
+    /// - `io_number_packets` must be a valid pointer.
+    /// - `out_packet_description` must be a valid pointer or null.
+    /// - `out_status` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecProduceOutputBufferList(
         in_codec: AudioCodec,
@@ -597,6 +656,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: the OSStatus value
+    ///
+    /// # Safety
+    ///
+    /// `in_codec` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus;
 }

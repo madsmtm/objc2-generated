@@ -230,6 +230,13 @@ extern "C-unwind" {
     /// Otherwise if you do not know the file type, you can pass zero.
     ///
     /// Parameter `outAudioFileStream`: A new file stream ID for use in other AudioFileStream API calls.
+    ///
+    /// # Safety
+    ///
+    /// - `in_client_data` must be a valid pointer or null.
+    /// - `in_property_listener_proc` must be implemented correctly.
+    /// - `in_packets_proc` must be implemented correctly.
+    /// - `out_audio_file_stream` must be a valid pointer.
     #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
     pub fn AudioFileStreamOpen(
         in_client_data: *mut c_void,
@@ -255,6 +262,11 @@ extern "C-unwind" {
     /// Parameter `inData`: The data passed in to be parsed. Must be null when flushing the parser.
     ///
     /// Parameter `inFlags`: If there is a data discontinuity, then kAudioFileStreamParseFlag_Discontinuity should be set true.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file_stream` must be a valid pointer.
+    /// - `in_data` must be a valid pointer or null.
     pub fn AudioFileStreamParseBytes(
         in_audio_file_stream: AudioFileStreamID,
         in_data_byte_size: u32,
@@ -281,6 +293,12 @@ extern "C-unwind" {
     ///
     /// Parameter `ioFlags`: If outDataByteOffset is an estimate, then kAudioFileStreamSeekFlag_OffsetIsEstimated will be set on output.
     /// There are currently no flags defined for passing into this call.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file_stream` must be a valid pointer.
+    /// - `out_data_byte_offset` must be a valid pointer.
+    /// - `io_flags` must be a valid pointer.
     pub fn AudioFileStreamSeek(
         in_audio_file_stream: AudioFileStreamID,
         in_packet_offset: i64,
@@ -304,6 +322,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: an OSStatus return code
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file_stream` must be a valid pointer.
+    /// - `out_property_data_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     pub fn AudioFileStreamGetPropertyInfo(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -327,6 +351,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: an OSStatus return code
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file_stream` must be a valid pointer.
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     pub fn AudioFileStreamGetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -349,6 +379,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: an OSStatus return code
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file_stream` must be a valid pointer.
+    /// - `in_property_data` must be a valid pointer.
     pub fn AudioFileStreamSetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -362,5 +397,9 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `inAudioFileStream`: The file stream ID
+    ///
+    /// # Safety
+    ///
+    /// `in_audio_file_stream` must be a valid pointer.
     pub fn AudioFileStreamClose(in_audio_file_stream: AudioFileStreamID) -> OSStatus;
 }

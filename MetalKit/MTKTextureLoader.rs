@@ -218,6 +218,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `completionHandler`: Block called when the texture has been loaded and fully initialized
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTextureWithContentsOfURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithContentsOfURL_options_completionHandler(
@@ -252,6 +256,10 @@ impl MTKTextureLoader {
         /// This method attempts to load a texture asset with thw name iven.  If a texture asset
         /// with the name given does not exist, it will attempt to create a texture from an
         /// image asset with the given name
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTextureWithName:scaleFactor:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_completionHandler(
@@ -299,6 +307,10 @@ impl MTKTextureLoader {
         /// image asset with the given name.
         /// This method can be used on macOS to choose between sRGB and P3 versions of a texture
         /// asset depending on the gamut of the display rendered to.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -319,6 +331,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions, which will be used for every texture loaded
         ///
         /// Parameter `completionHandler`: Block called when all of the textures have been loaded and fully initialized. The array of MTLTextures will be the same length and in the same order as the requested array of paths. If an error occurs while loading a texture, the corresponding array index will contain NSNull. The NSError will be null if all of the textures are loaded successfully, or will correspond to one of the textures which failed to load.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTexturesWithContentsOfURLs:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithContentsOfURLs_options_completionHandler(
@@ -357,6 +373,10 @@ impl MTKTextureLoader {
         /// This method attempts to load a texture asset with each name iven.  If a texture asset
         /// with the name given does not exist, it will attempt to create a texture from an
         /// image asset with the given name.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTexturesWithNames:scaleFactor:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithNames_scaleFactor_bundle_options_completionHandler(
@@ -412,6 +432,10 @@ impl MTKTextureLoader {
         /// will be set to [NSNull null].  An error will also be set.  Thus, if there is a failure
         /// to load a texture with a name, other names may succesfully be loaded.  Also, a set
         /// error does not necessarily mean all textures in the names array have failed to load.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -432,6 +456,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTextureWithData:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithData_options_completionHandler(
@@ -449,6 +477,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTextureWithCGImage:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithCGImage_options_completionHandler(
@@ -466,6 +498,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newTextureWithMDLTexture:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithMDLTexture_options_completionHandler(
@@ -484,6 +520,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithContentsOfURL:options:error:_))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithContentsOfURL_options_error(
@@ -505,6 +545,10 @@ impl MTKTextureLoader {
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred.
         /// Will be null if all of the textures are loaded successfully, or will correspond to
         /// one of the textures which failed to load.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTexturesWithContentsOfURLs:options:error:))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTexturesWithContentsOfURLs_options_error(
@@ -523,6 +567,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithData:options:error:_))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithData_options_error(
@@ -541,6 +589,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithCGImage:options:error:_))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithCGImage_options_error(
@@ -559,6 +611,10 @@ impl MTKTextureLoader {
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithMDLTexture:options:error:_))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithMDLTexture_options_error(
@@ -592,6 +648,10 @@ impl MTKTextureLoader {
         /// This method attempts to load a texture asset with the name given.  If a texture asset
         /// with the name given does not exist, it will attempt to create a texture from an
         /// image asset with the given name.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithName:scaleFactor:bundle:options:error:_))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_error(
@@ -636,6 +696,10 @@ impl MTKTextureLoader {
         /// image asset with the given name.
         /// This method can be used on macOS to choose between sRGB and P3 versions of a texture
         /// asset depending on the gamut of the display rendered to.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithName:scaleFactor:displayGamut:bundle:options:error:_))]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_error(

@@ -314,6 +314,10 @@ impl UIMutableApplicationShortcutItem {
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `target_content_identifier` should be of the correct type.
         #[unsafe(method(setTargetContentIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTargetContentIdentifier(

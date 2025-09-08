@@ -42,6 +42,9 @@ impl MKLocalSearch {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(

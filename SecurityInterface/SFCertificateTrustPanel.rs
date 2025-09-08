@@ -93,6 +93,11 @@ impl SFCertificateTrustPanel {
         /// /SecTrust.h>).
         ///
         /// Parameter `message`: Client-defined message string to display in the panel.
+        ///
+        /// # Safety
+        ///
+        /// - `trust` might not allow `None`.
+        /// - `message` might not allow `None`.
         #[unsafe(method(runModalForTrust:message:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForTrust_message(
@@ -123,6 +128,13 @@ impl SFCertificateTrustPanel {
         /// /SecTrust.h>).
         ///
         /// Parameter `message`: Client-defined message string to display in the panel.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
+        /// - `trust` might not allow `None`.
+        /// - `message` might not allow `None`.
         #[unsafe(method(beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:trust:message:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetForWindow_modalDelegate_didEndSelector_contextInfo_trust_message(
@@ -141,6 +153,10 @@ impl SFCertificateTrustPanel {
         ///
         /// By default, informative text describing the current certificate trust status is displayed.
         /// Call this method only if your application needs to customize the displayed informative text.
+        ///
+        /// # Safety
+        ///
+        /// `informative_text` might not allow `None`.
         #[unsafe(method(setInformativeText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInformativeText(&self, informative_text: Option<&NSString>);

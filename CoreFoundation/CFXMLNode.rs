@@ -358,6 +358,9 @@ unsafe impl ConcreteType for CFXMLNode {
 }
 
 impl CFXMLNode {
+    /// # Safety
+    ///
+    /// `additional_info_ptr` must be a valid pointer.
     #[doc(alias = "CFXMLNodeCreate")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -382,6 +385,10 @@ impl CFXMLNode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `alloc` might not allow `None`.
+    /// - `orig_node` might not allow `None`.
     #[doc(alias = "CFXMLNodeCreateCopy")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -441,6 +448,10 @@ impl CFXMLNode {
     }
 }
 
+/// # Safety
+///
+/// - `allocator` might not allow `None`.
+/// - `node` might not allow `None`.
 #[cfg(feature = "CFTree")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]

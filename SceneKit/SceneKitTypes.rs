@@ -263,12 +263,18 @@ impl SCNVector4 {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// The returned must be correctly initialized.
     #[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
     #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
     pub fn SCNMatrix4ToGLKMatrix4(mat: SCNMatrix4) -> GLKMatrix4;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `mat` must be correctly initialized.
     #[cfg(all(feature = "objc2-gl-kit", feature = "objc2-quartz-core"))]
     #[cfg(any(target_os = "macos", target_os = "ios", target_os = "tvos"))]
     pub fn SCNMatrix4FromGLKMatrix4(mat: GLKMatrix4) -> SCNMatrix4;

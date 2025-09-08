@@ -45,6 +45,9 @@ extern_protocol!(
         unsafe fn scale(&self) -> c_short;
 
         #[cfg(all(feature = "NSDecimal", feature = "NSValue"))]
+        /// # Safety
+        ///
+        /// `operation` must be a valid selector.
         #[unsafe(method(exceptionDuringOperation:error:leftOperand:rightOperand:))]
         #[unsafe(method_family = none)]
         unsafe fn exceptionDuringOperation_error_leftOperand_rightOperand(
@@ -124,6 +127,9 @@ impl NSDecimalNumber {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(initWithString:locale:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString_locale(
@@ -133,6 +139,9 @@ impl NSDecimalNumber {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(descriptionWithLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale(
@@ -166,6 +175,9 @@ impl NSDecimalNumber {
         ) -> Retained<NSDecimalNumber>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(decimalNumberWithString:locale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decimalNumberWithString_locale(
@@ -334,6 +346,10 @@ impl NSDecimalNumber {
 #[cfg(feature = "NSValue")]
 impl NSDecimalNumber {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `value` must be a valid pointer.
+        /// - `type` must be a valid pointer.
         #[unsafe(method(initWithBytes:objCType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_objCType(
@@ -448,6 +464,9 @@ impl NSNumber {
 impl NSScanner {
     extern_methods!(
         #[cfg(feature = "NSDecimal")]
+        /// # Safety
+        ///
+        /// `dcm` must be a valid pointer or null.
         #[unsafe(method(scanDecimal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanDecimal(&self, dcm: *mut NSDecimal) -> bool;

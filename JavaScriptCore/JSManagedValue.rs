@@ -39,6 +39,10 @@ impl JSManagedValue {
         /// Create a JSManagedValue from a JSValue.
         ///
         /// Returns: The new JSManagedValue.
+        ///
+        /// # Safety
+        ///
+        /// `value` might not allow `None`.
         #[unsafe(method(managedValueWithValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn managedValueWithValue(
@@ -46,6 +50,11 @@ impl JSManagedValue {
         ) -> Option<Retained<JSManagedValue>>;
 
         #[cfg(feature = "JSValue")]
+        /// # Safety
+        ///
+        /// - `value` might not allow `None`.
+        /// - `owner` should be of the correct type.
+        /// - `owner` might not allow `None`.
         #[unsafe(method(managedValueWithValue:andOwner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn managedValueWithValue_andOwner(
@@ -57,6 +66,10 @@ impl JSManagedValue {
         /// Create a JSManagedValue.
         ///
         /// Returns: The new JSManagedValue.
+        ///
+        /// # Safety
+        ///
+        /// `value` might not allow `None`.
         #[unsafe(method(initWithValue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithValue(

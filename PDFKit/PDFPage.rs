@@ -111,6 +111,9 @@ impl PDFPage {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_options(

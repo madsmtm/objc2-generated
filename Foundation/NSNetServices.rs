@@ -141,6 +141,10 @@ impl NSNetService {
             -> Option<Retained<ProtocolObject<dyn NSNetServiceDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -234,6 +238,10 @@ impl NSNetService {
         pub unsafe fn resolveWithTimeout(&self, timeout: NSTimeInterval);
 
         #[cfg(feature = "NSStream")]
+        /// # Safety
+        ///
+        /// - `input_stream` must be a valid pointer or null.
+        /// - `output_stream` must be a valid pointer or null.
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(getInputStream:outputStream:))]
         #[unsafe(method_family = none)]
@@ -310,6 +318,10 @@ impl NSNetServiceBrowser {
         ) -> Option<Retained<ProtocolObject<dyn NSNetServiceBrowserDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

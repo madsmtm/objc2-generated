@@ -169,6 +169,10 @@ impl NSFileWrapper {
         /// Setter for [`fileAttributes`][Self::fileAttributes].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `file_attributes` generic should be of the correct type.
         #[unsafe(method(setFileAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFileAttributes(&self, file_attributes: &NSDictionary<NSString, AnyObject>);

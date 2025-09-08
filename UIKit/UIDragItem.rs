@@ -47,6 +47,10 @@ impl UIDragItem {
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localObject`][Self::localObject].
+        ///
+        /// # Safety
+        ///
+        /// `local_object` should be of the correct type.
         #[unsafe(method(setLocalObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);
@@ -74,6 +78,10 @@ impl UIDragItem {
         /// Setter for [`previewProvider`][Self::previewProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `preview_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setPreviewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewProvider(

@@ -71,6 +71,10 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// The completionHandler is passed the attributed string result along with any
         /// document-level attributes, or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(loadFromHTMLWithRequest:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithRequest_options_completionHandler(
@@ -95,6 +99,10 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         /// document-level attributes, or an error. If NSReadAccessURLDocumentOption references a single file,
         /// only that file may be loaded by WebKit. If NSReadAccessURLDocumentOption references a directory,
         /// files inside that directory may be loaded by WebKit.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(loadFromHTMLWithFileURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithFileURL_options_completionHandler(
@@ -118,6 +126,10 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         /// The completionHandler is passed the attributed string result along with any
         /// document-level attributes, or an error. NSBaseURLDocumentOption is used to resolve relative URLs
         /// within the document.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(loadFromHTMLWithString:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithString_options_completionHandler(
@@ -141,6 +153,10 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         /// The completionHandler is passed the attributed string result along with any
         /// document-level attributes, or an error. If neither NSTextEncodingNameDocumentOption nor
         /// NSCharacterEncodingDocumentOption is supplied, a best-guess encoding is used.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(loadFromHTMLWithData:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithData_options_completionHandler(

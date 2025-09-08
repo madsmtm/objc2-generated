@@ -193,6 +193,10 @@ impl NSSound {
             playback_device_identifier: Option<&NSSoundPlaybackDeviceIdentifier>,
         );
 
+        /// # Safety
+        ///
+        /// - `channel_mapping` generic should be of the correct type.
+        /// - `channel_mapping` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setChannelMapping:))]
         #[unsafe(method_family = none)]

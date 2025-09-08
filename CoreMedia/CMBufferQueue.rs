@@ -298,6 +298,11 @@ impl CMBufferQueue {
     /// Creates a CMBufferQueue object.
     ///
     /// On return, the caller owns the returned CMBufferQueue, and must release it when done with it.
+    ///
+    /// # Safety
+    ///
+    /// - `callbacks` must be a valid pointer.
+    /// - `queue_out` must be a valid pointer.
     #[doc(alias = "CMBufferQueueCreate")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -321,6 +326,11 @@ impl CMBufferQueue {
     /// Creates a CMBufferQueue object.
     ///
     /// On return, the caller owns the returned CMBufferQueue, and must release it when done with it.
+    ///
+    /// # Safety
+    ///
+    /// - `handlers` must be a valid pointer.
+    /// - `queue_out` must be a valid pointer.
     #[doc(alias = "CMBufferQueueCreateWithHandlers")]
     #[cfg(all(feature = "CMBase", feature = "CMTime", feature = "block2"))]
     #[inline]
@@ -365,6 +375,10 @@ impl CMBufferQueue {
     /// If the compare callback is non-NULL, this API performs an insertion sort using that compare operation.
     /// If the validation callback is non-NULL, this API calls it; if it returns a nonzero OSStatus,
     /// the buffer will not be enqueued and this API will return the same error OSStatus.
+    ///
+    /// # Safety
+    ///
+    /// `buf` should be of the correct type.
     #[doc(alias = "CMBufferQueueEnqueue")]
     #[inline]
     pub unsafe fn enqueue(&self, buf: &CMBuffer) -> OSStatus {
@@ -520,6 +534,11 @@ impl CMBufferQueue {
     }
 
     /// Calls a function for every buffer in a queue, then resets the queue.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `refcon` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueResetWithCallback")]
     #[inline]
     pub unsafe fn reset_with_callback(
@@ -769,6 +788,12 @@ impl CMBufferQueue {
     /// trigger that does not perform a callback is meaningless.  If the trigger condition is already true,
     /// CMBufferQueueInstallTrigger will call the callback.  If it does this, it will first write
     /// the trigger token to *triggerTokenOut.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `refcon` must be a valid pointer or null.
+    /// - `trigger_token_out` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueInstallTrigger")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -799,6 +824,12 @@ impl CMBufferQueue {
     ///
     /// This function behaves the same way as CMBufferQueueInstallTrigger() except the trigger is evaluated against
     /// the integer value rather than the time value.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `refcon` must be a valid pointer or null.
+    /// - `trigger_token_out` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueInstallTriggerWithIntegerThreshold")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -841,6 +872,11 @@ impl CMBufferQueue {
     /// trigger that does not perform a callback is meaningless.  If the trigger condition is already true,
     /// CMBufferQueueInstallTrigger will call the handler.  If it does this, it will first write
     /// the trigger token to *triggerTokenOut.
+    ///
+    /// # Safety
+    ///
+    /// - `trigger_token_out` must be a valid pointer or null.
+    /// - `handler` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueInstallTriggerHandler")]
     #[cfg(all(feature = "CMTime", feature = "block2"))]
     #[inline]
@@ -869,6 +905,11 @@ impl CMBufferQueue {
     ///
     /// This function behaves the same way as CMBufferQueueInstallTriggerHandler() except the trigger is evaluated against
     /// the integer value rather than the time value.
+    ///
+    /// # Safety
+    ///
+    /// - `trigger_token_out` must be a valid pointer or null.
+    /// - `handler` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueInstallTriggerHandlerWithIntegerThreshold")]
     #[cfg(all(feature = "CMBase", feature = "block2"))]
     #[inline]
@@ -905,6 +946,10 @@ impl CMBufferQueue {
     /// than one module has access to a queue, it may be hard for an individual module to know
     /// when the queue is finalized since other modules may retain it.  To address this concern,
     /// modules should remove their triggers before they themselves are finalized.
+    ///
+    /// # Safety
+    ///
+    /// `trigger_token` must be a valid pointer.
     #[doc(alias = "CMBufferQueueRemoveTrigger")]
     #[inline]
     pub unsafe fn remove_trigger(&self, trigger_token: CMBufferQueueTriggerToken) -> OSStatus {
@@ -922,6 +967,10 @@ impl CMBufferQueue {
     /// Whereas the trigger callback will only be called when the condition goes from false
     /// to true, CMBufferQueueTestTrigger always returns the condition's current status.
     /// The triggerToken must be one that has been installed on this queue.
+    ///
+    /// # Safety
+    ///
+    /// `trigger_token` must be a valid pointer.
     #[doc(alias = "CMBufferQueueTestTrigger")]
     #[inline]
     pub unsafe fn test_trigger(&self, trigger_token: CMBufferQueueTriggerToken) -> bool {
@@ -939,6 +988,11 @@ impl CMBufferQueue {
     ///
     /// If the callback function returns an error, iteration will stop immediately
     /// and the error will be returned.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `refcon` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueCallForEachBuffer")]
     #[inline]
     pub unsafe fn call_for_each_buffer(
@@ -985,6 +1039,11 @@ pub type CMBufferValidationHandler =
 
 impl CMBufferQueue {
     /// Sets a function that CMBufferQueueEnqueue will call to validate buffers before adding them to the queue.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `refcon` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueSetValidationCallback")]
     #[inline]
     pub unsafe fn set_validation_callback(
@@ -1007,6 +1066,10 @@ impl CMBufferQueue {
     /// Both a validation callback and a validation handler can be set at the
     /// same time, in which case they will both be called when enqueueing
     /// buffers. They both need to return noErr for the buffer to be enqueued.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer.
     #[doc(alias = "CMBufferQueueSetValidationHandler")]
     #[cfg(feature = "block2")]
     #[inline]

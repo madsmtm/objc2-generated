@@ -142,6 +142,10 @@ impl MKOverlayPathRenderer {
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`path`][Self::path].
+        ///
+        /// # Safety
+        ///
+        /// `path` might not allow `None`.
         #[unsafe(method(setPath:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&CGPath>);

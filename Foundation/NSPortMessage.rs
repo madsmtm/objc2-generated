@@ -20,6 +20,9 @@ extern_conformance!(
 impl NSPortMessage {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
+        /// # Safety
+        ///
+        /// `components` generic should be of the correct type.
         #[unsafe(method(initWithSendPort:receivePort:components:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSendPort_receivePort_components(

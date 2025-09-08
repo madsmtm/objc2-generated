@@ -83,6 +83,10 @@ impl VNImageRequestHandler {
         /// Parameter `pixelBuffer`: A CVPixelBuffer containing the image to be used for performing the requests. The content of the buffer cannot be modified for the lifetime of the VNImageRequestHandler.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCVPixelBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCVPixelBuffer_options(
@@ -100,6 +104,10 @@ impl VNImageRequestHandler {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCVPixelBuffer:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCVPixelBuffer_orientation_options(
@@ -123,6 +131,10 @@ impl VNImageRequestHandler {
         /// Parameter `orientation`: The orientation of the image and depth buffers based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information and should match for both buffers.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCVPixelBuffer:depthData:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCVPixelBuffer_depthData_orientation_options(
@@ -140,6 +152,10 @@ impl VNImageRequestHandler {
         /// Parameter `image`: A CGImageRef containing the image to be used for performing the requests. The content of the image cannot be modified.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCGImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGImage_options(
@@ -157,6 +173,10 @@ impl VNImageRequestHandler {
         /// Parameter `orientation`: The orientation of the image/buffer based on the EXIF specification. For details see kCGImagePropertyOrientation. The value has to be an integer from 1 to 8. This supersedes every other orientation information.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCGImage:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGImage_orientation_options(
@@ -176,6 +196,10 @@ impl VNImageRequestHandler {
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator. The orientation of the original image should be applied for instance by using imageByApplyingOrientation or use the initWithCIImage:options:orientation API.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCIImage:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCIImage_options(
@@ -196,6 +220,10 @@ impl VNImageRequestHandler {
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCIImage:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCIImage_orientation_options(
@@ -214,6 +242,10 @@ impl VNImageRequestHandler {
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
@@ -234,6 +266,10 @@ impl VNImageRequestHandler {
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_orientation_options(
@@ -272,6 +308,10 @@ impl VNImageRequestHandler {
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_orientation_options(
@@ -290,6 +330,10 @@ impl VNImageRequestHandler {
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
         ///
         /// Note: CMSampleBuffers can contain metadata like camera intrinsics that will be used by algorithms supporting it unless overwritten by the options.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCMSampleBuffer:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCMSampleBuffer_options(
@@ -311,6 +355,10 @@ impl VNImageRequestHandler {
         /// Note: CMSampleBuffers can contain metadata like camera intrinsics that will be used by algorithms supporting it unless overwritten by the options.
         ///
         /// Note: :  Because CoreImage is unable to render certain pixel formats in the iOS simulator, request results may not be accurate in those cases.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCMSampleBuffer:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCMSampleBuffer_orientation_options(
@@ -339,6 +387,10 @@ impl VNImageRequestHandler {
         /// Note: CMSampleBuffers can contain metadata like camera intrinsics that will be used by algorithms supporting it unless overwritten by the options.
         ///
         /// Note: :  Because CoreImage is unable to render certain pixel formats in the iOS simulator, request results may not be accurate in those cases.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithCMSampleBuffer:depthData:orientation:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCMSampleBuffer_depthData_orientation_options(

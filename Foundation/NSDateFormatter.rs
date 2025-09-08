@@ -101,6 +101,9 @@ impl NSDateFormatter {
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(all(feature = "NSError", feature = "NSRange", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `rangep` must be a valid pointer or null.
         #[unsafe(method(getObjectValue:forString:range:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_range_error(

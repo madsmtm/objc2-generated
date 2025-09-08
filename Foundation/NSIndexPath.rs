@@ -43,6 +43,9 @@ impl NSIndexPath {
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `indexes` must be a valid pointer or null.
         #[unsafe(method(indexPathWithIndexes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathWithIndexes_length(
@@ -50,6 +53,9 @@ impl NSIndexPath {
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `indexes` must be a valid pointer or null.
         #[unsafe(method(initWithIndexes:length:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIndexes_length(
@@ -86,6 +92,10 @@ impl NSIndexPath {
         /// Parameter `positionRange`: A range of valid positions within this index path.  If the location plus the length of positionRange is greater than the length of this index path, this method raises an NSRangeException.
         ///
         /// It is the developer’s responsibility to allocate the memory for the C array.
+        ///
+        /// # Safety
+        ///
+        /// `indexes` must be a valid pointer.
         #[unsafe(method(getIndexes:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getIndexes_range(
@@ -118,6 +128,10 @@ impl NSIndexPath {
 impl NSIndexPath {
     extern_methods!(
         /// This method is unsafe because it could potentially cause buffer overruns. You should use -getIndexes:range: instead.
+        ///
+        /// # Safety
+        ///
+        /// `indexes` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(getIndexes:))]
         #[unsafe(method_family = none)]

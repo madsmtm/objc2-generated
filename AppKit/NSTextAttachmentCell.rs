@@ -67,6 +67,10 @@ extern_protocol!(
 
         #[cfg(feature = "NSTextAttachment")]
         /// Setter for [`attachment`][Self::attachment].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setAttachment:))]
         #[unsafe(method_family = none)]
         unsafe fn setAttachment(&self, attachment: Option<&NSTextAttachment>);

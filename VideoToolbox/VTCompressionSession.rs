@@ -116,6 +116,14 @@ impl VTCompressionSession {
     /// Parameter `outputCallbackRefCon`: Client-defined reference value for the output callback.
     ///
     /// Parameter `compressionSessionOut`: Points to a variable to receive the new compression session.
+    ///
+    /// # Safety
+    ///
+    /// - `encoder_specification` generics must be of the correct type.
+    /// - `source_image_buffer_attributes` generics must be of the correct type.
+    /// - `output_callback` must be implemented correctly.
+    /// - `output_callback_ref_con` must be a valid pointer or null.
+    /// - `compression_session_out` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionCreate")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -268,6 +276,12 @@ impl VTCompressionSession {
     /// asynchronously.
     /// The kVTEncodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
     /// Pass NULL if you do not want to receive this information.
+    ///
+    /// # Safety
+    ///
+    /// - `frame_properties` generics must be of the correct type.
+    /// - `source_frame_refcon` must be a valid pointer or null.
+    /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeFrame")]
     #[cfg(all(
         feature = "VTErrors",
@@ -360,6 +374,12 @@ impl VTCompressionSession {
     ///
     /// Parameter `outputHandler`: The block to be called when encoding the frame is completed.
     /// This block may be called asynchronously, on a different thread from the one that calls VTCompressionSessionEncodeFrameWithOutputHandler.
+    ///
+    /// # Safety
+    ///
+    /// - `frame_properties` generics must be of the correct type.
+    /// - `info_flags_out` must be a valid pointer or null.
+    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -464,6 +484,12 @@ impl VTCompressionSession {
     /// asynchronously.
     /// The kVTEncodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously).
     /// Pass NULL if you do not want to receive this information.
+    ///
+    /// # Safety
+    ///
+    /// - `frame_properties` generics must be of the correct type.
+    /// - `source_frame_refcon` must be a valid pointer or null.
+    /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -529,6 +555,12 @@ impl VTCompressionSession {
     ///
     /// Parameter `outputHandler`: The block to be called when encoding the frame is completed.
     /// This block may be called asynchronously, on a different thread from the one that calls VTCompressionSessionEncodeMultiImageFrameWithOutputHandler.
+    ///
+    /// # Safety
+    ///
+    /// - `frame_properties` generics must be of the correct type.
+    /// - `info_flags_out` must be a valid pointer or null.
+    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
     #[inline]
@@ -595,6 +627,10 @@ impl VTCompressionSession {
     /// It is an error to call this function when multi-pass encoding has not been enabled by setting kVTCompressionPropertyKey_MultiPassStorage.
     ///
     /// Parameter `beginPassFlags`: Pass kVTCompressionSessionBeginFinalPass to inform the encoder that the pass must be the final pass.
+    ///
+    /// # Safety
+    ///
+    /// `reserved` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionBeginPass")]
     #[inline]
     pub unsafe fn begin_pass(
@@ -620,6 +656,11 @@ impl VTCompressionSession {
     ///
     /// Parameter `furtherPassesRequestedOut`: Points to a Boolean that will be set to true if the video encoder would like to perform another pass, false otherwise.
     /// You may pass NULL to indicate that the client is certain to use this as the final pass, in which case the video encoder can skip that evaluation step.
+    ///
+    /// # Safety
+    ///
+    /// - `further_passes_requested_out` must be a valid pointer or null.
+    /// - `reserved` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEndPass")]
     #[inline]
     pub unsafe fn end_pass(
@@ -648,6 +689,11 @@ impl VTCompressionSession {
     /// Parameter `timeRangeArrayOut`: Points to a const CMTimeRange * to receive a pointer to a C array of CMTimeRanges.
     /// The storage for this array belongs to the VTCompressionSession and should not be modified.
     /// The pointer will be valid until the next call to VTCompressionSessionEndPass, or until the VTCompressionSession is invalidated or finalized.
+    ///
+    /// # Safety
+    ///
+    /// - `time_range_count_out` must be a valid pointer.
+    /// - `time_range_array_out` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionGetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]

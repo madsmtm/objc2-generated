@@ -296,6 +296,9 @@ impl HKWorkoutEvent {
             date: &NSDate,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(workoutEventWithType:date:metadata:))]
         #[unsafe(method_family = none)]
@@ -312,6 +315,10 @@ impl HKWorkoutEvent {
         /// Parameter `dateInterval`: The dateInterval over which the event occurs
         ///
         /// Parameter `metadata`: Dictionary of metadata associated with the event, nullable
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(workoutEventWithType:dateInterval:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutEventWithType_dateInterval_metadata(
@@ -494,6 +501,10 @@ impl HKWorkout {
         /// Parameter `totalDistance`: The total distance that was traveled during the workout. (Optional)
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated = "Use HKWorkoutBuilder"]
         #[unsafe(method(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:))]
         #[unsafe(method_family = none)]
@@ -527,6 +538,10 @@ impl HKWorkout {
         /// Parameter `device`: The HKDevice associated with the workout. (Optional)
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated = "Use HKWorkoutBuilder"]
         #[unsafe(method(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:))]
         #[unsafe(method_family = none)]
@@ -559,6 +574,10 @@ impl HKWorkout {
         /// Parameter `totalDistance`: The total distance that was traveled during the workout. (Optional)
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated = "Use HKWorkoutBuilder"]
         #[unsafe(method(workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:))]
         #[unsafe(method_family = none)]
@@ -592,6 +611,10 @@ impl HKWorkout {
         /// Parameter `device`: The HKDevice associated with the workout. (Optional)
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated = "Use HKWorkoutBuilder"]
         #[unsafe(method(workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:))]
         #[unsafe(method_family = none)]
@@ -628,6 +651,10 @@ impl HKWorkout {
         /// Parameter `device`: The HKDevice associated with the workout. (Optional)
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated = "Use HKWorkoutBuilder"]
         #[unsafe(method(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:))]
         #[unsafe(method_family = none)]
@@ -666,6 +693,10 @@ impl HKWorkout {
         /// Parameter `device`: The HKDevice associated with the workout. (Optional)
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated = "Use HKWorkoutBuilder"]
         #[unsafe(method(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:))]
         #[unsafe(method_family = none)]

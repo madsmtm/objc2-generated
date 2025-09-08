@@ -38,6 +38,10 @@ impl CKModifyRecordZonesOperation {
 
         #[cfg(feature = "CKRecordZone")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordZonesToSave))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZonesToSave(&self) -> Option<Retained<NSArray<CKRecordZone>>>;
@@ -46,6 +50,10 @@ impl CKModifyRecordZonesOperation {
         /// Setter for [`recordZonesToSave`][Self::recordZonesToSave].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZonesToSave:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZonesToSave(
@@ -55,6 +63,10 @@ impl CKModifyRecordZonesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordZoneIDsToDelete))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
@@ -63,6 +75,10 @@ impl CKModifyRecordZonesOperation {
         /// Setter for [`recordZoneIDsToDelete`][Self::recordZoneIDsToDelete].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneIDsToDelete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneIDsToDelete(
@@ -84,6 +100,13 @@ impl CKModifyRecordZonesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(perRecordZoneSaveBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneSaveBlock(
@@ -98,6 +121,10 @@ impl CKModifyRecordZonesOperation {
         /// Setter for [`perRecordZoneSaveBlock`][Self::perRecordZoneSaveBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPerRecordZoneSaveBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordZoneSaveBlock(
@@ -117,6 +144,12 @@ impl CKModifyRecordZonesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(perRecordZoneDeleteBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneDeleteBlock(
@@ -127,6 +160,10 @@ impl CKModifyRecordZonesOperation {
         /// Setter for [`perRecordZoneDeleteBlock`][Self::perRecordZoneDeleteBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPerRecordZoneDeleteBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordZoneDeleteBlock(
@@ -163,6 +200,13 @@ impl CKModifyRecordZonesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(modifyRecordZonesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifyRecordZonesCompletionBlock(
@@ -179,6 +223,10 @@ impl CKModifyRecordZonesOperation {
         /// Setter for [`modifyRecordZonesCompletionBlock`][Self::modifyRecordZonesCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setModifyRecordZonesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setModifyRecordZonesCompletionBlock(

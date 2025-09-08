@@ -44,6 +44,11 @@ impl CKDiscoverAllUserIdentitiesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(userIdentityDiscoveredBlock))]
         #[unsafe(method_family = none)]
@@ -55,6 +60,10 @@ impl CKDiscoverAllUserIdentitiesOperation {
         /// Setter for [`userIdentityDiscoveredBlock`][Self::userIdentityDiscoveredBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(setUserIdentityDiscoveredBlock:))]
         #[unsafe(method_family = none)]
@@ -82,6 +91,11 @@ impl CKDiscoverAllUserIdentitiesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(discoverAllUserIdentitiesCompletionBlock))]
         #[unsafe(method_family = none)]
@@ -93,6 +107,10 @@ impl CKDiscoverAllUserIdentitiesOperation {
         /// Setter for [`discoverAllUserIdentitiesCompletionBlock`][Self::discoverAllUserIdentitiesCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(setDiscoverAllUserIdentitiesCompletionBlock:))]
         #[unsafe(method_family = none)]

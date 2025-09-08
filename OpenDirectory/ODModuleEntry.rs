@@ -27,6 +27,10 @@ impl ODModuleEntry {
 
         #[cfg(feature = "ODMappings")]
         /// Setter for [`mappings`][Self::mappings].
+        ///
+        /// # Safety
+        ///
+        /// `mappings` might not allow `None`.
         #[unsafe(method(setMappings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMappings(&self, mappings: Option<&ODMappings>);
@@ -72,6 +76,11 @@ impl ODModuleEntry {
         ///
         ///
         /// Creates a new module entry with a given name and service.
+        ///
+        /// # Safety
+        ///
+        /// - `name` might not allow `None`.
+        /// - `xpc_service_name` might not allow `None`.
         #[unsafe(method(moduleEntryWithName:xpcServiceName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moduleEntryWithName_xpcServiceName(
@@ -83,6 +92,12 @@ impl ODModuleEntry {
         ///
         ///
         /// Options are dictated by the module and can be queried via [module supportedOptions].
+        ///
+        /// # Safety
+        ///
+        /// - `option_name` might not allow `None`.
+        /// - `value` should be of the correct type.
+        /// - `value` might not allow `None`.
         #[unsafe(method(setOption:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOption_value(
@@ -95,6 +110,10 @@ impl ODModuleEntry {
         ///
         ///
         /// Fetches the current setting for the requested option.
+        ///
+        /// # Safety
+        ///
+        /// `option_name` might not allow `None`.
         #[unsafe(method(option:))]
         #[unsafe(method_family = none)]
         pub unsafe fn option(&self, option_name: Option<&NSString>) -> Option<Retained<AnyObject>>;

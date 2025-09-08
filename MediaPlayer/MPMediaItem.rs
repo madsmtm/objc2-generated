@@ -475,6 +475,9 @@ impl MPMediaItemArtwork {
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `request_handler` block's return must be a valid pointer.
         #[unsafe(method(initWithBoundsSize:requestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBoundsSize_requestHandler(

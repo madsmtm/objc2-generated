@@ -104,6 +104,10 @@ impl ASAccessory {
         /// The current authorization state of the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> ASAccessoryState;
@@ -113,6 +117,10 @@ impl ASAccessory {
         /// Use this identifier to establish a connection to the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothIdentifier(&self) -> Option<Retained<NSUUID>>;
@@ -120,6 +128,10 @@ impl ASAccessory {
         /// The accessory's Bluetooth identifier, if any, for use when bridging classic transport profiles.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bluetoothTransportBridgingIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothTransportBridgingIdentifier(&self) -> Option<Retained<NSData>>;
@@ -127,6 +139,10 @@ impl ASAccessory {
         /// The accessory's name, suitable for displaying to someone using your app.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
@@ -136,6 +152,10 @@ impl ASAccessory {
         /// Use this identifier to establish a connection to the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
@@ -144,6 +164,10 @@ impl ASAccessory {
         /// The descriptor used to discover the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<ASDiscoveryDescriptor>;

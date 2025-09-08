@@ -49,6 +49,10 @@ impl ARPlaneGeometry {
         /// The number of mesh vertices of the geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(vertexCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexCount(&self) -> NSUInteger;
@@ -56,6 +60,10 @@ impl ARPlaneGeometry {
         /// The number of texture coordinates of the geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(textureCoordinateCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureCoordinateCount(&self) -> NSUInteger;
@@ -63,6 +71,10 @@ impl ARPlaneGeometry {
         /// The number of triangles of the geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(triangleCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn triangleCount(&self) -> NSUInteger;
@@ -70,6 +82,10 @@ impl ARPlaneGeometry {
         /// The triangle indices of the geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(triangleIndices))]
         #[unsafe(method_family = none)]
         pub unsafe fn triangleIndices(&self) -> NonNull<i16>;
@@ -77,6 +93,10 @@ impl ARPlaneGeometry {
         /// The number of boundary vertices of the geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(boundaryVertexCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn boundaryVertexCount(&self) -> NSUInteger;

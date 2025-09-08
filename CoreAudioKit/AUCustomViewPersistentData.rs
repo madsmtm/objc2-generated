@@ -23,6 +23,10 @@ extern_protocol!(
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`customViewPersistentData`][Self::customViewPersistentData].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setCustomViewPersistentData:))]
         #[unsafe(method_family = none)]
         unsafe fn setCustomViewPersistentData(

@@ -255,6 +255,14 @@ impl CMSampleBuffer {
     /// <li>
     /// sampleSizeArray: NULL (because the samples are not contiguous)
     /// </ul>
+    ///
+    /// # Safety
+    ///
+    /// - `make_data_ready_callback` must be implemented correctly.
+    /// - `make_data_ready_refcon` must be a valid pointer or null.
+    /// - `sample_timing_array` must be a valid pointer or null.
+    /// - `sample_size_array` must be a valid pointer or null.
+    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreate")]
     #[cfg(all(
         feature = "CMBase",
@@ -314,6 +322,13 @@ impl CMSampleBuffer {
     /// Creates a CMSampleBuffer.
     ///
     /// See CMSampleBufferCreate; this variant allows for passing a block to make the data ready.
+    ///
+    /// # Safety
+    ///
+    /// - `sample_timing_array` must be a valid pointer or null.
+    /// - `sample_size_array` must be a valid pointer or null.
+    /// - `sample_buffer_out` must be a valid pointer.
+    /// - `make_data_ready_handler` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferCreateWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMBase",
@@ -493,6 +508,12 @@ impl CMSampleBuffer {
     /// <li>
     /// sampleSizeArray: NULL (because the samples are not contiguous)
     /// </ul>
+    ///
+    /// # Safety
+    ///
+    /// - `sample_timing_array` must be a valid pointer or null.
+    /// - `sample_size_array` must be a valid pointer or null.
+    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateReady")]
     #[cfg(all(
         feature = "CMBase",
@@ -546,6 +567,13 @@ impl CMSampleBuffer {
 /// Provides an optimization over CMSampleBufferCreate() when the caller already has packetDescriptions for
 /// the audio data. This routine will use the packetDescriptions to create the sizing and timing arrays required
 /// to make the sample buffer if necessary.
+///
+/// # Safety
+///
+/// - `make_data_ready_callback` must be implemented correctly.
+/// - `make_data_ready_refcon` must be a valid pointer or null.
+/// - `packet_descriptions` must be a valid pointer or null.
+/// - `sample_buffer_out` must be a valid pointer.
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
@@ -599,6 +627,12 @@ pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptions(
 /// Creates an CMSampleBuffer containing audio given packetDescriptions instead of sizing and timing info
 ///
 /// See CMAudioSampleBufferCreateWithPacketDescriptions; this variant allows for passing a block to make the data ready.
+///
+/// # Safety
+///
+/// - `packet_descriptions` must be a valid pointer or null.
+/// - `sample_buffer_out` must be a valid pointer.
+/// - `make_data_ready_handler` must be a valid pointer or null.
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
@@ -655,6 +689,11 @@ extern "C-unwind" {
     /// to make the sample buffer if necessary.
     /// CMAudioSampleBufferCreateReadyWithPacketDescriptions is identical to CMAudioSampleBufferCreateWithPacketDescriptions
     /// except that dataReady is always true, and so no makeDataReadyCallback or refcon needs to be passed.
+    ///
+    /// # Safety
+    ///
+    /// - `packet_descriptions` must be a valid pointer or null.
+    /// - `sample_buffer_out` must be a valid pointer.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMBlockBuffer",
@@ -695,6 +734,13 @@ impl CMSampleBuffer {
     /// match the image buffer attachments for all the keys in the list returned by
     /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers (if absent in either they
     /// must be absent in both).
+    ///
+    /// # Safety
+    ///
+    /// - `make_data_ready_callback` must be implemented correctly.
+    /// - `make_data_ready_refcon` must be a valid pointer or null.
+    /// - `sample_timing` must be a valid pointer.
+    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateForImageBuffer")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -741,6 +787,12 @@ impl CMSampleBuffer {
     /// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
     ///
     /// See CMSampleBufferCreateForImageBuffer; this variant allows for passing a block to make the data ready.
+    ///
+    /// # Safety
+    ///
+    /// - `sample_timing` must be a valid pointer.
+    /// - `sample_buffer_out` must be a valid pointer.
+    /// - `make_data_ready_handler` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -806,6 +858,11 @@ impl CMSampleBuffer {
     ///
     /// CMSampleBufferCreateReadyWithImageBuffer is identical to CMSampleBufferCreateForImageBuffer except that
     /// dataReady is always true, and so no makeDataReadyCallback or refcon needs to be passed.
+    ///
+    /// # Safety
+    ///
+    /// - `sample_timing` must be a valid pointer.
+    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateReadyWithImageBuffer")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -846,6 +903,10 @@ impl CMSampleBuffer {
     /// the data buffer and format description are retained, and
     /// the propogatable attachments are retained by the copy's dictionary.
     /// If sbuf's data is not ready, the copy will be set to track its readiness.
+    ///
+    /// # Safety
+    ///
+    /// `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateCopy")]
     #[inline]
     pub unsafe fn create_copy(
@@ -871,6 +932,11 @@ impl CMSampleBuffer {
     /// free them, reuse them or whatever.  Any outputPresentationTimestamp that has been set on the original Buffer
     /// will not be copied because it is no longer relevant.    On return, the caller owns the returned
     /// CMSampleBuffer, and must release it when done with it.
+    ///
+    /// # Safety
+    ///
+    /// - `sample_timing_array` must be a valid pointer or null.
+    /// - `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCreateCopyWithNewTiming")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -904,6 +970,10 @@ impl CMSampleBuffer {
     /// Creates a CMSampleBuffer containing a range of samples from an existing CMSampleBuffer.
     ///
     /// Samples containing non-interleaved audio are currently not supported.
+    ///
+    /// # Safety
+    ///
+    /// `sample_buffer_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCopySampleBufferForRange")]
     #[inline]
     pub unsafe fn copy_sample_buffer_for_range(
@@ -1006,6 +1076,10 @@ impl CMSampleBuffer {
     /// and sets that as the CMSampleBuffer's data buffer. The resulting buffer(s) in the
     /// sample buffer will be 16-byte-aligned if
     /// kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment is passed in.
+    ///
+    /// # Safety
+    ///
+    /// `buffer_list` must be a valid pointer.
     #[doc(alias = "CMSampleBufferSetDataBufferFromAudioBufferList")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1043,6 +1117,12 @@ impl CMSampleBuffer {
     /// data. The buffers placed in the AudioBufferList are guaranteed to be contiguous.
     /// The buffers in the AudioBufferList will be 16-byte-aligned if
     /// kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment is passed in.
+    ///
+    /// # Safety
+    ///
+    /// - `buffer_list_size_needed_out` must be a valid pointer or null.
+    /// - `buffer_list_out` must be a valid pointer or null.
+    /// - `block_buffer_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer")]
     #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-audio-types"))]
     #[inline]
@@ -1089,6 +1169,11 @@ impl CMSampleBuffer {
     /// and no packet descriptions.  This API is specific to audio format
     /// sample buffers, and will return kCMSampleBufferError_InvalidMediaTypeForOperation
     /// if called with a non-audio sample buffer.
+    ///
+    /// # Safety
+    ///
+    /// - `packet_descriptions_out` must be a valid pointer or null.
+    /// - `packet_descriptions_size_needed_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetAudioStreamPacketDescriptions")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1126,6 +1211,11 @@ impl CMSampleBuffer {
     /// specific to audio format sample buffers, and will return
     /// kCMSampleBufferError_InvalidMediaTypeForOperation if called
     /// with a non-audio sample buffer.
+    ///
+    /// # Safety
+    ///
+    /// - `packet_descriptions_pointer_out` must be a valid pointer or null.
+    /// - `packet_descriptions_size_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetAudioStreamPacketDescriptionsPtr")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1159,6 +1249,10 @@ impl CMSampleBuffer {
     /// if called with a non-audio sample buffer. It will return an
     /// error if the CMSampleBuffer does not contain PCM audio data
     /// or if its dataBuffer is not ready.
+    ///
+    /// # Safety
+    ///
+    /// `buffer_list` must be a valid pointer.
     #[doc(alias = "CMSampleBufferCopyPCMDataIntoAudioBufferList")]
     #[cfg(feature = "objc2-core-audio-types")]
     #[inline]
@@ -1225,6 +1319,10 @@ impl CMSampleBuffer {
     }
 
     /// Returns whether or not a CMSampleBuffer's data loading request has failed.
+    ///
+    /// # Safety
+    ///
+    /// `status_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferHasDataFailed")]
     #[inline]
     pub unsafe fn has_data_failed(&self, status_out: *mut OSStatus) -> bool {
@@ -1301,6 +1399,10 @@ impl CMSampleBuffer {
     ///
     /// A sample buffer can only have one invalidation callback.
     /// The invalidation callback is NOT called during ordinary sample buffer finalization.
+    ///
+    /// # Safety
+    ///
+    /// `invalidate_callback` must be implemented correctly.
     #[doc(alias = "CMSampleBufferSetInvalidateCallback")]
     #[inline]
     pub unsafe fn set_invalidate_callback(
@@ -1332,6 +1434,10 @@ impl CMSampleBuffer {
     ///
     /// A sample buffer can only have one invalidation callback.
     /// The invalidation callback is NOT called during ordinary sample buffer finalization.
+    ///
+    /// # Safety
+    ///
+    /// `invalidate_handler` must be a valid pointer.
     #[doc(alias = "CMSampleBufferSetInvalidateHandler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1612,6 +1718,11 @@ impl CMSampleBuffer {
     ///
     /// If there is no timingInfo in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned, and
     /// timingArrayEntriesNeededOut will be set to 0.
+    ///
+    /// # Safety
+    ///
+    /// - `timing_array_out` must be a valid pointer or null.
+    /// - `timing_array_entries_needed_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetSampleTimingInfoArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -1654,6 +1765,11 @@ impl CMSampleBuffer {
     ///
     /// If there is no timingInfo in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned,
     /// and *timingArrayEntriesNeededOut will be set to 0.
+    ///
+    /// # Safety
+    ///
+    /// - `timing_array_out` must be a valid pointer or null.
+    /// - `timing_array_entries_needed_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetOutputSampleTimingInfoArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -1689,6 +1805,10 @@ impl CMSampleBuffer {
     /// allocated by the caller.  If the sample index is not in the range 0 .. numSamples-1,
     /// kCMSampleBufferError_SampleIndexOutOfRange will be returned.  If there is no timingInfo
     /// in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned.
+    ///
+    /// # Safety
+    ///
+    /// `timing_info_out` must be a valid pointer.
     #[doc(alias = "CMSampleBufferGetSampleTimingInfo")]
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
@@ -1725,6 +1845,11 @@ impl CMSampleBuffer {
     /// if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
     /// the channel values for a single sample are scattered through the buffer), or if
     /// this CMSampleBuffer contains a CVImageBuffer.
+    ///
+    /// # Safety
+    ///
+    /// - `size_array_out` must be a valid pointer or null.
+    /// - `size_array_entries_needed_out` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferGetSampleSizeArray")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -2297,6 +2422,11 @@ impl CMSampleBuffer {
     /// If there are no sample sizes in the provided sample buffer, kCMSampleBufferError_CannotSubdivide will be returned.
     /// This will happen, for example, if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
     /// the channel values for a single sample are scattered through the buffer).
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `refcon` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferCallForEachSample")]
     #[cfg(feature = "CMBase")]
     #[inline]

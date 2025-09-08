@@ -191,6 +191,10 @@ extern_protocol!(
         /// Call this method to return a filename from the file open panel.
         ///
         /// Parameter `fileName`: the path of the selected file
+        ///
+        /// # Safety
+        ///
+        /// `file_name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(chooseFilename:))]
         #[unsafe(method_family = none)]
@@ -199,6 +203,11 @@ extern_protocol!(
         /// Call this method to return an array of filenames from the file open panel.
         ///
         /// Parameter `fileNames`: an array of paths of selected files
+        ///
+        /// # Safety
+        ///
+        /// - `file_names` generic should be of the correct type.
+        /// - `file_names` might not allow `None`.
         #[unsafe(method(chooseFilenames:))]
         #[unsafe(method_family = none)]
         unsafe fn chooseFilenames(&self, file_names: Option<&NSArray>);
@@ -232,6 +241,11 @@ extern_protocol!(
         /// Parameter `request`: The request to load.
         ///
         /// Returns: The WebView for the new window.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `request` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:createWebViewWithRequest:))]
@@ -252,6 +266,10 @@ extern_protocol!(
         ///
         /// This will only be called just after createWindowWithRequest:
         /// is used to create a new window.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewShow:))]
@@ -270,6 +288,11 @@ extern_protocol!(
         /// Parameter `request`: The request to load.
         ///
         /// Returns: The WebView for the new window.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `request` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:createWebViewModalDialogWithRequest:))]
@@ -290,6 +313,10 @@ extern_protocol!(
         ///
         /// This will only be called just after createWebViewModalDialogWithRequest:
         /// is used to create a new window.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewRunModal:))]
@@ -306,6 +333,10 @@ extern_protocol!(
         /// choose to close only the one corresponding to this
         /// WebView. Other clients may choose to ignore this method
         /// entirely.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewClose:))]
@@ -320,6 +351,10 @@ extern_protocol!(
         ///
         /// Clients showing multiple views in one window may want to
         /// also do something to focus the one corresponding to this WebView.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewFocus:))]
@@ -334,6 +369,10 @@ extern_protocol!(
         ///
         /// Clients showing multiple views in one window may want to
         /// also do something to unfocus the one corresponding to this WebView.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewUnfocus:))]
@@ -351,6 +390,10 @@ extern_protocol!(
         /// hierarchy, this might return something than calling firstResponder
         /// on the real NSWindow would. It's OK to return either nil or the
         /// real first responder if some control not in the window has focus.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewFirstResponder:))]
@@ -374,6 +417,11 @@ extern_protocol!(
         /// WebView's top level view is currently out of the view
         /// hierarchy, it may be desirable to save the first responder
         /// elsewhere, or possibly ignore this call.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `responder` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:makeFirstResponder:))]
@@ -391,6 +439,11 @@ extern_protocol!(
         /// Parameter `sender`: The WebView sending the delegate method.
         ///
         /// Parameter `text`: The status text to set
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `text` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:setStatusText:))]
@@ -404,6 +457,10 @@ extern_protocol!(
         /// Parameter `sender`: The WebView sending the delegate method.
         ///
         /// Returns: The status text
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewStatusText:))]
@@ -423,6 +480,10 @@ extern_protocol!(
         /// this method if at least one is on.
         ///
         /// Returns: YES if at least one toolbar is visible, otherwise NO.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewAreToolbarsVisible:))]
@@ -440,6 +501,10 @@ extern_protocol!(
         /// Setting this to YES should turn on all toolbars
         /// (except for a possible status bar). Setting it to NO should turn
         /// off all toolbars (with the same exception).
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:setToolbarsVisible:))]
@@ -453,6 +518,10 @@ extern_protocol!(
         /// Parameter `sender`: The WebView sending the delegate method.
         ///
         /// Returns: YES if the status bar is visible, otherwise NO.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewIsStatusBarVisible:))]
@@ -467,6 +536,10 @@ extern_protocol!(
         ///
         /// Setting this to YES should show the status bar,
         /// setting it to NO should hide it.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:setStatusBarVisible:))]
@@ -484,6 +557,10 @@ extern_protocol!(
         /// If there are multiple views in the same window, they
         /// have have their own separate resize controls and this may need to
         /// be handled specially.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewIsResizable:))]
@@ -501,6 +578,10 @@ extern_protocol!(
         /// If there are multiple views in the same window, they
         /// have have their own separate resize controls and this may need to
         /// be handled specially.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:setResizable:))]
@@ -518,6 +599,10 @@ extern_protocol!(
         /// Even though a caller could set the frame directly using the NSWindow,
         /// this method is provided so implementors of this protocol can do special
         /// things on programmatic move/resize, like avoiding autosaving of the size.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:setFrame:))]
@@ -529,6 +614,10 @@ extern_protocol!(
         /// Parameter `sender`: The WebView sending the delegate method.
         ///
         /// Return the window's frame rect
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewFrame:))]
@@ -548,6 +637,12 @@ extern_protocol!(
         /// Clients should visually indicate that this panel comes
         /// from JavaScript initiated by the specified frame. The panel should have
         /// a single OK button.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `message` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:))]
@@ -574,6 +669,12 @@ extern_protocol!(
         /// Clients should visually indicate that this panel comes
         /// from JavaScript initiated by the specified frame. The panel should have
         /// two buttons, e.g. "OK" and "Cancel".
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `message` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:))]
@@ -602,6 +703,13 @@ extern_protocol!(
         /// Clients should visually indicate that this panel comes
         /// from JavaScript initiated by the specified frame. The panel should have
         /// two buttons, e.g. "OK" and "Cancel", and an area to type text.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `prompt` might not allow `None`.
+        /// - `default_text` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:))]
@@ -629,6 +737,12 @@ extern_protocol!(
         /// Clients should include a message in addition to the one
         /// supplied by the web page that indicates. The panel should have
         /// two buttons, e.g. "OK" and "Cancel".
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `message` might not allow `None`.
+        /// - `frame` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:runBeforeUnloadConfirmPanelWithMessage:initiatedByFrame:))]
@@ -650,6 +764,11 @@ extern_protocol!(
         ///
         /// This method is passed a callback object instead of giving a return
         /// value so that it can be handled with a sheet.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `result_listener` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:runOpenPanelForFileButtonWithResultListener:))]
@@ -672,6 +791,11 @@ extern_protocol!(
         ///
         /// This method is passed a callback object instead of giving a return
         /// value so that it can be handled with a sheet.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `result_listener` might not allow `None`.
         #[optional]
         #[unsafe(method(webView:runOpenPanelForFileButtonWithResultListener:allowMultipleFiles:))]
         #[unsafe(method_family = none)]
@@ -692,6 +816,12 @@ extern_protocol!(
         /// Parameter `elementInformation`: Dictionary that describes the element that the mouse is over, or nil.
         ///
         /// Parameter `modifierFlags`: The modifier flags as in NSEvent.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `element_information` generic should be of the correct type.
+        /// - `element_information` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:mouseDidMoveOverElement:modifierFlags:))]
@@ -714,6 +844,14 @@ extern_protocol!(
         /// Parameter `defaultMenuItems`: An array of default NSMenuItems to include in all contextual menus.
         ///
         /// Returns: An array of NSMenuItems to include in the contextual menu.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `element` generic should be of the correct type.
+        /// - `element` might not allow `None`.
+        /// - `default_menu_items` generic should be of the correct type.
+        /// - `default_menu_items` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:contextMenuItemsForElement:defaultMenuItems:))]
@@ -738,6 +876,11 @@ extern_protocol!(
         /// This method allows the UI delegate to control WebView's validation of user interface items.
         /// See WebView.h to see the methods to that WebView can currently validate. See NSUserInterfaceValidations and
         /// NSValidatedUserInterfaceItem for information about UI validation.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `item` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:validateUserInterfaceItem:defaultValidation:))]
@@ -763,6 +906,12 @@ extern_protocol!(
         /// For example, if the action is copy:, the delegate can return YES to allow WebView to perform its default
         /// copy behavior or return NO and perform copy: in some other way. See WebView.h to see the actions that
         /// WebView can perform.
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:shouldPerformAction:fromSender:))]
@@ -785,6 +934,11 @@ extern_protocol!(
         /// This method is called periodically as something is dragged over a WebView. The UI delegate can return a mask
         /// indicating which drag destination actions can occur, WebDragDestinationActionAny to allow any kind of action or
         /// WebDragDestinationActionNone to not accept the drag.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `dragging_info` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:dragDestinationActionMaskForDraggingInfo:))]
@@ -807,6 +961,11 @@ extern_protocol!(
         ///
         /// This method is called after the last call to webView:dragDestinationActionMaskForDraggingInfo: after something is dropped on a WebView.
         /// This method informs the UI delegate of the drag destination action that WebView will perform.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `dragging_info` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:willPerformDragDestinationAction:forDraggingInfo:))]
@@ -828,6 +987,10 @@ extern_protocol!(
         ///
         /// This method is called after the user has begun a drag from a WebView. The UI delegate can return a mask indicating
         /// which drag source actions can occur, WebDragSourceActionAny to allow any kind of action or WebDragSourceActionNone to not begin a drag.
+        ///
+        /// # Safety
+        ///
+        /// `web_view` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:dragSourceActionMaskForPoint:))]
@@ -853,6 +1016,11 @@ extern_protocol!(
         /// This method is called after webView:dragSourceActionMaskForPoint: is called after the user has begun a drag from a WebView.
         /// This method informs the UI delegate of the drag source action that will be performed and gives the delegate an opportunity to modify
         /// the contents of the dragging pasteboard.
+        ///
+        /// # Safety
+        ///
+        /// - `web_view` might not allow `None`.
+        /// - `pasteboard` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:willPerformDragSourceAction:fromPoint:withPasteboard:))]
@@ -884,6 +1052,11 @@ extern_protocol!(
         /// WebFrameView's documentViewShouldHandlePrint, if YES then the delegate can call printDocumentView
         /// on the WebFrameView. Otherwise the delegate will need to request a NSPrintOperation from
         /// the WebFrameView's printOperationWithPrintInfo to handle the printing.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `frame_view` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:printFrameView:))]
@@ -903,6 +1076,10 @@ extern_protocol!(
         /// Returns: The height to reserve for the printed page header, return 0.0 to not reserve any space for a header.
         ///
         /// The height returned will be used to calculate the rect passed to webView:drawHeaderInRect:.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewHeaderHeight:))]
@@ -918,6 +1095,10 @@ extern_protocol!(
         /// Returns: The height to reserve for the printed page footer, return 0.0 to not reserve any space for a footer.
         ///
         /// The height returned will be used to calculate the rect passed to webView:drawFooterInRect:.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewFooterHeight:))]
@@ -931,6 +1112,10 @@ extern_protocol!(
         /// Parameter `rect`: The NSRect reserved for the header of the page
         ///
         /// The delegate should draw a header for the sender in the supplied rect.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:drawHeaderInRect:))]
@@ -944,6 +1129,10 @@ extern_protocol!(
         /// Parameter `rect`: The NSRect reserved for the footer of the page
         ///
         /// The delegate should draw a footer for the sender in the supplied rect.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:drawFooterInRect:))]
@@ -952,6 +1141,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `message` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:runJavaScriptAlertPanelWithMessage:))]
@@ -964,6 +1157,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `message` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:runJavaScriptConfirmPanelWithMessage:))]
@@ -976,6 +1173,11 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `prompt` might not allow `None`.
+        /// - `default_text` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:))]
@@ -989,6 +1191,9 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:setContentRect:))]
@@ -997,6 +1202,9 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[optional]
         #[unsafe(method(webViewContentRect:))]

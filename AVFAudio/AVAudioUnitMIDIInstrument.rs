@@ -226,6 +226,10 @@ impl AVAudioUnitMIDIInstrument {
         /// sends a MIDI event list to the instrument.
         ///
         /// Parameter `eventList`: the MIDIEventList
+        ///
+        /// # Safety
+        ///
+        /// `event_list` must be a valid pointer.
         #[unsafe(method(sendMIDIEventList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendMIDIEventList(&self, event_list: NonNull<MIDIEventList>);

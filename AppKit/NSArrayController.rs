@@ -103,6 +103,9 @@ impl NSArrayController {
             clears_filter_predicate_on_insertion: bool,
         );
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(arrangeObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrangeObjects(&self, objects: &NSArray) -> Retained<NSArray>;
@@ -174,6 +177,9 @@ impl NSArrayController {
         #[unsafe(method_family = none)]
         pub unsafe fn removeSelectionIndexes(&self, indexes: &NSIndexSet) -> bool;
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(setSelectedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedObjects(&self, objects: &NSArray) -> bool;
@@ -182,22 +188,37 @@ impl NSArrayController {
         #[unsafe(method_family = none)]
         pub unsafe fn selectedObjects(&self) -> Retained<NSArray>;
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(addSelectedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSelectedObjects(&self, objects: &NSArray) -> bool;
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(removeSelectedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeSelectedObjects(&self, objects: &NSArray) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(add:))]
         #[unsafe(method_family = none)]
         pub unsafe fn add(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(remove:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remove(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(insert:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insert(&self, sender: Option<&AnyObject>);
@@ -206,10 +227,16 @@ impl NSArrayController {
         #[unsafe(method_family = none)]
         pub unsafe fn canInsert(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectNext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectNext(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectPrevious:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectPrevious(&self, sender: Option<&AnyObject>);
@@ -222,14 +249,23 @@ impl NSArrayController {
         #[unsafe(method_family = none)]
         pub unsafe fn canSelectPrevious(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObject(&self, object: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(addObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObjects(&self, objects: &NSArray);
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(insertObject:atArrangedObjectIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertObject_atArrangedObjectIndex(
@@ -238,6 +274,9 @@ impl NSArrayController {
             index: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(insertObjects:atArrangedObjectIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertObjects_atArrangedObjectIndexes(
@@ -254,10 +293,16 @@ impl NSArrayController {
         #[unsafe(method_family = none)]
         pub unsafe fn removeObjectsAtArrangedObjectIndexes(&self, indexes: &NSIndexSet);
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObject(&self, object: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(removeObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObjects(&self, objects: &NSArray);
@@ -268,6 +313,9 @@ impl NSArrayController {
 #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
 impl NSArrayController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `content` should be of the correct type.
         #[unsafe(method(initWithContent:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(

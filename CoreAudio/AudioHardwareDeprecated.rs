@@ -218,6 +218,11 @@ extern "C-unwind" {
     /// requested.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `out_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareGetPropertyInfo(
@@ -243,6 +248,11 @@ extern "C-unwind" {
     /// property.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareGetProperty(
@@ -268,6 +278,10 @@ extern "C-unwind" {
     /// Parameter `inPropertyData`: The buffer containing the data to be used to change the property's value.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// `in_property_data` must be a valid pointer.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareSetProperty(
@@ -291,6 +305,11 @@ extern "C-unwind" {
     /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareAddPropertyListener(
@@ -313,6 +332,10 @@ extern "C-unwind" {
     /// Parameter `inProc`: AudioHardwarePropertyListenerProc to unregister.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// `in_proc` must be implemented correctly.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareRemovePropertyListener(
@@ -487,6 +510,11 @@ extern "C-unwind" {
     /// called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceAddIOProc(
@@ -505,6 +533,10 @@ extern "C-unwind" {
     /// Parameter `inProc`: The AudioDeviceIOProc to unregister.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// `in_proc` must be implemented correctly.
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceRemoveIOProc(
@@ -534,6 +566,11 @@ extern "C-unwind" {
     /// Returns: An OSStatus indicating success or failure.
     /// kAudioHardwareUnsupportedOperationError will be returned if the AudioDevice does
     /// not support direct reading.
+    ///
+    /// # Safety
+    ///
+    /// - `in_start_time` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceRead(
@@ -565,6 +602,11 @@ extern "C-unwind" {
 /// requested.
 ///
 /// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `out_size` must be a valid pointer or null.
+/// - `out_writable` must be a valid pointer or null.
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -618,6 +660,11 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetPropertyInfo(
 /// Parameter `outPropertyData`: The buffer into which the object will put the data for the given property.
 ///
 /// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `io_property_data_size` must be a valid pointer.
+/// - `out_property_data` must be a valid pointer.
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -676,6 +723,11 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetProperty(
 /// Parameter `inPropertyData`: The buffer containing the data to be used to change the property's value.
 ///
 /// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_when` must be a valid pointer or null.
+/// - `in_property_data` must be a valid pointer.
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
@@ -731,6 +783,11 @@ pub unsafe extern "C-unwind" fn AudioDeviceSetProperty(
 /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
 ///
 /// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// - `in_proc` must be implemented correctly.
+/// - `in_client_data` must be a valid pointer or null.
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -782,6 +839,10 @@ pub unsafe extern "C-unwind" fn AudioDeviceAddPropertyListener(
 /// Parameter `inProc`: AudioDevicePropertyListenerProc to unregister.
 ///
 /// Returns: An OSStatus indicating success or failure.
+///
+/// # Safety
+///
+/// `in_proc` must be implemented correctly.
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -883,6 +944,11 @@ extern "C-unwind" {
     /// requested.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `out_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamGetPropertyInfo(
@@ -913,6 +979,11 @@ extern "C-unwind" {
     /// Parameter `outPropertyData`: The buffer into which the object will put the data for the given property.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamGetProperty(
@@ -948,6 +1019,11 @@ extern "C-unwind" {
     /// Parameter `inPropertyData`: The buffer containing the data to be used to change the property's value.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_when` must be a valid pointer or null.
+    /// - `in_property_data` must be a valid pointer.
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioStreamSetProperty(
@@ -978,6 +1054,11 @@ extern "C-unwind" {
     /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamAddPropertyListener(
@@ -1006,6 +1087,10 @@ extern "C-unwind" {
     /// Parameter `inProc`: AudioStreamPropertyListenerProc to unregister.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// `in_proc` must be implemented correctly.
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamRemovePropertyListener(

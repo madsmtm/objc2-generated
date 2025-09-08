@@ -192,6 +192,9 @@ extern_conformance!(
 
 impl UIMenuItem {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated = "UIMenuItem is deprecated. Use UIEditMenuInteraction instead."]
         #[unsafe(method(initWithTitle:action:))]
         #[unsafe(method_family = init)]
@@ -220,6 +223,10 @@ impl UIMenuItem {
         pub unsafe fn action(&self) -> Sel;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated = "UIMenuItem is deprecated. Use UIEditMenuInteraction instead."]
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]

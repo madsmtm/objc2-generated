@@ -87,6 +87,10 @@ impl AVAudioSinkNode {
         /// to another node.
         ///
         /// The audio format for the data received by the block will be set to the node's input format.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(initWithReceiverBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithReceiverBlock(

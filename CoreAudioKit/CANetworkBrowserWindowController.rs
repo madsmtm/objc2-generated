@@ -87,6 +87,9 @@ impl CANetworkBrowserWindowController {
             window_nib_name: &NSNibName,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(initWithWindowNibName:owner:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibName_owner(
@@ -95,6 +98,9 @@ impl CANetworkBrowserWindowController {
             owner: &AnyObject,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `owner` should be of the correct type.
         #[unsafe(method(initWithWindowNibPath:owner:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibPath_owner(

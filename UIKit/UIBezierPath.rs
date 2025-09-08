@@ -255,6 +255,9 @@ impl UIBezierPath {
         pub unsafe fn setUsesEvenOddFillRule(&self, uses_even_odd_fill_rule: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `pattern` must be a valid pointer or null.
         #[unsafe(method(setLineDash:count:phase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineDash_count_phase(
@@ -265,6 +268,11 @@ impl UIBezierPath {
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `pattern` must be a valid pointer or null.
+        /// - `count` must be a valid pointer or null.
+        /// - `phase` must be a valid pointer or null.
         #[unsafe(method(getLineDash:count:phase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineDash_count_phase(

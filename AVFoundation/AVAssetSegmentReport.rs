@@ -69,6 +69,10 @@ impl AVAssetSegmentReport {
         /// A segment type of the segment data.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(segmentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentType(&self) -> AVAssetSegmentType;
@@ -76,6 +80,10 @@ impl AVAssetSegmentReport {
         /// Provides an array of AVAssetSegmentTrackReport in the segment data.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(trackReports))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackReports(&self) -> Retained<NSArray<AVAssetSegmentTrackReport>>;
@@ -115,6 +123,10 @@ impl AVAssetSegmentTrackReport {
         /// Indicates the persistent unique identifier for this track.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
@@ -123,6 +135,10 @@ impl AVAssetSegmentTrackReport {
         /// Indicates the media type for this track. Media types are declared in AVMediaFormat.h.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
@@ -131,6 +147,10 @@ impl AVAssetSegmentTrackReport {
         /// Indicates the earliest presentation timestamp (PTS) for this track. The value is kCMTimeInvalid if there is no information available.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(earliestPresentationTimeStamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn earliestPresentationTimeStamp(&self) -> CMTime;
@@ -139,6 +159,10 @@ impl AVAssetSegmentTrackReport {
         /// Indicates the duration for this track. The value is kCMTimeInvalid if there is no information available.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
@@ -146,6 +170,10 @@ impl AVAssetSegmentTrackReport {
         /// Provides information on the first video sample in this track. The value is nil if this track is not video track or no information available.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(firstVideoSampleInformation))]
         #[unsafe(method_family = none)]
         pub unsafe fn firstVideoSampleInformation(
@@ -189,6 +217,10 @@ impl AVAssetSegmentReportSampleInformation {
         /// This timestamp may be different from the earliestPresentationTimeStamp if the video is encoded using frame reordering.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(presentationTimeStamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationTimeStamp(&self) -> CMTime;
@@ -196,6 +228,10 @@ impl AVAssetSegmentReportSampleInformation {
         /// The offset of the sample in the segment.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSInteger;
@@ -203,6 +239,10 @@ impl AVAssetSegmentReportSampleInformation {
         /// The length of the sample.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSInteger;
@@ -210,6 +250,10 @@ impl AVAssetSegmentReportSampleInformation {
         /// Indicates whether the sample is a sync sample.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isSyncSample))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSyncSample(&self) -> bool;

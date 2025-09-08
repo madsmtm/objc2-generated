@@ -88,6 +88,10 @@ impl NSControl {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -97,6 +101,10 @@ impl NSControl {
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
@@ -182,6 +190,10 @@ impl NSControl {
         /// Setter for [`objectValue`][Self::objectValue].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `object_value` should be of the correct type.
         #[unsafe(method(setObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
@@ -257,31 +269,53 @@ impl NSControl {
         #[unsafe(method_family = none)]
         pub unsafe fn sendActionOn(&self, mask: NSEventMask) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `target` should be of the correct type.
         #[unsafe(method(sendAction:to:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendAction_to(&self, action: Option<Sel>, target: Option<&AnyObject>)
             -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeIntValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeIntValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeFloatValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeFloatValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeDoubleValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeDoubleValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeStringValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeStringValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeObjectValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeObjectValueFrom(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeIntegerValueFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeIntegerValueFrom(&self, sender: Option<&AnyObject>);
@@ -291,6 +325,9 @@ impl NSControl {
         #[unsafe(method_family = none)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(performClick:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performClick(&self, sender: Option<&AnyObject>);
@@ -407,6 +444,9 @@ impl NSControl {
         pub unsafe fn validateEditing(&self);
 
         #[cfg(all(feature = "NSEvent", feature = "NSText"))]
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[unsafe(method(editWithFrame:editor:delegate:event:))]
         #[unsafe(method_family = none)]
         pub unsafe fn editWithFrame_editor_delegate_event(
@@ -418,6 +458,9 @@ impl NSControl {
         );
 
         #[cfg(feature = "NSText")]
+        /// # Safety
+        ///
+        /// `delegate` should be of the correct type.
         #[unsafe(method(selectWithFrame:editor:delegate:start:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectWithFrame_editor_delegate_start_length(
@@ -499,6 +542,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[optional]
         #[unsafe(method(control:isValidObject:))]
         #[unsafe(method_family = none)]
@@ -514,6 +560,9 @@ extern_protocol!(
             feature = "NSTextView",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `command_selector` must be a valid selector.
         #[optional]
         #[unsafe(method(control:textView:doCommandBySelector:))]
         #[unsafe(method_family = none)]
@@ -530,6 +579,9 @@ extern_protocol!(
             feature = "NSTextView",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `index` must be a valid pointer.
         #[optional]
         #[unsafe(method(control:textView:completions:forPartialWordRange:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
@@ -578,6 +630,10 @@ impl NSControl {
         pub unsafe fn cellClass(mtm: MainThreadMarker) -> Option<&'static AnyClass>;
 
         /// Setter for [`cellClass`][Self::cellClass].
+        ///
+        /// # Safety
+        ///
+        /// `cell_class` probably has further requirements.
         #[unsafe(method(setCellClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellClass(cell_class: Option<&AnyClass>, mtm: MainThreadMarker);

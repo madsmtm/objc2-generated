@@ -40,6 +40,10 @@ impl IOBluetoothDeviceInquiry {
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -51,6 +55,11 @@ impl IOBluetoothDeviceInquiry {
         /// Returns: A pointer to the created IOBluetoothDeviceInquiry object.
         ///
         /// The inquiry is NOT automatically started. You musts call -start on it to start the search for in-range devices.
+        ///
+        /// # Safety
+        ///
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[unsafe(method(inquiryWithDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn inquiryWithDelegate(delegate: Option<&AnyObject>) -> Option<Retained<Self>>;
@@ -60,6 +69,11 @@ impl IOBluetoothDeviceInquiry {
         /// Parameter `delegate`: A delegate object that wishes to receive messages from the inquiry object. Delegate methods are listed below, under IOBluetoothDeviceInquiryDelegate.
         ///
         /// Returns: A pointer to the initialized IOBluetoothDeviceInquiry object.
+        ///
+        /// # Safety
+        ///
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
@@ -204,6 +218,10 @@ extern_protocol!(
         /// message may not be received immediately after called -start.
         ///
         /// Parameter `sender`: Inquiry object that sent this delegate message.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(deviceInquiryStarted:))]
         #[unsafe(method_family = none)]
@@ -216,6 +234,11 @@ extern_protocol!(
         /// Parameter `sender`: Inquiry object that sent this delegate message.
         ///
         /// Parameter `device`: IOBluetoothDevice that was found.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `device` might not allow `None`.
         #[optional]
         #[unsafe(method(deviceInquiryDeviceFound:device:))]
         #[unsafe(method_family = none)]
@@ -230,6 +253,10 @@ extern_protocol!(
         /// Parameter `sender`: Inquiry object that sent this delegate message.
         ///
         /// Parameter `devicesRemaining`: Number of devices remaining to update.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(deviceInquiryUpdatingDeviceNamesStarted:devicesRemaining:))]
         #[unsafe(method_family = none)]
@@ -247,6 +274,11 @@ extern_protocol!(
         /// Parameter `device`: IOBluetoothDevice that was updated.
         ///
         /// Parameter `devicesRemaining`: Number of devices remaining to update.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `device` might not allow `None`.
         #[optional]
         #[unsafe(method(deviceInquiryDeviceNameUpdated:device:devicesRemaining:))]
         #[unsafe(method_family = none)]
@@ -266,6 +298,10 @@ extern_protocol!(
         /// Parameter `error`: Error code. kIOReturnSuccess if the inquiry completed without incident.
         ///
         /// Parameter `aborted`: TRUE if user called -stop on the inquiry.
+        ///
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[optional]
         #[unsafe(method(deviceInquiryComplete:error:aborted:))]
         #[unsafe(method_family = none)]

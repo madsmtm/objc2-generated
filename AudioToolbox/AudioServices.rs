@@ -72,6 +72,10 @@ extern "C-unwind" {
     /// Parameter `inFileURL`: A CFURLRef for an AudioFile.
     ///
     /// Parameter `outSystemSoundID`: Returns a SystemSoundID.
+    ///
+    /// # Safety
+    ///
+    /// `out_system_sound_id` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesCreateSystemSoundID(
         in_file_url: &CFURL,
@@ -143,6 +147,12 @@ extern "C-unwind" {
     /// Parameter `outWritable`: Will be set to 1 if writable, or 0 if read only.
     ///
     /// Returns: returns kAudioServicesNoError if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `out_property_data_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     pub fn AudioServicesGetPropertyInfo(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -170,6 +180,12 @@ extern "C-unwind" {
     /// written.
     ///
     /// Returns: returns kAudioServicesNoError if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer or null.
     pub fn AudioServicesGetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -194,6 +210,11 @@ extern "C-unwind" {
     /// Parameter `inPropertyData`: The buffer containing the property data.
     ///
     /// Returns: returns kAudioServicesNoError if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `in_property_data` must be a valid pointer.
     pub fn AudioServicesSetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -256,6 +277,11 @@ extern "C-unwind" {
     /// SystemSoundID has completed playing in the server.
     ///
     /// Parameter `inClientData`: A void* to pass client data to the completion routine.
+    ///
+    /// # Safety
+    ///
+    /// - `in_completion_routine` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesAddSystemSoundCompletion(
         in_system_sound_id: SystemSoundID,

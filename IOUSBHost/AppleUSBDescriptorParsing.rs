@@ -15,6 +15,11 @@ extern "C-unwind" {
     /// Parameter `currentDescriptor`: A descriptor pointer within the bounds of configurationDescriptor, or NULL
     ///
     /// Returns: Descriptor pointer, or NULL if no descriptor can be returned
+    ///
+    /// # Safety
+    ///
+    /// - `configuration_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -34,6 +39,11 @@ extern "C-unwind" {
     /// Parameter `type`: tDescriptorType representing the descriptor type to find
     ///
     /// Returns: Descriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// - `configuration_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextDescriptorWithType(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -54,6 +64,12 @@ extern "C-unwind" {
     /// Parameter `currentDescriptor`: A descriptor pointer within the bounds of configurationDescriptor, or NULL
     ///
     /// Returns: Descriptor pointer, or NULL if no descriptor can be returned
+    ///
+    /// # Safety
+    ///
+    /// - `configuration_descriptor` must be a valid pointer.
+    /// - `parent_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextAssociatedDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -76,6 +92,12 @@ extern "C-unwind" {
     /// Parameter `type`: tDescriptorType representing the descriptor type to find
     ///
     /// Returns: Descriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// - `configuration_descriptor` must be a valid pointer.
+    /// - `parent_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextAssociatedDescriptorWithType(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -95,6 +117,11 @@ extern "C-unwind" {
     /// Parameter `currentDescriptor`: A descriptor pointer within the bounds of configurationDescriptor, or NULL
     ///
     /// Returns: InterfaceAssociationDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// - `configuration_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextInterfaceAssociationDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -112,6 +139,11 @@ extern "C-unwind" {
     /// Parameter `currentDescriptor`: A descriptor pointer within the bounds of configurationDescriptor, or NULL
     ///
     /// Returns: InterfaceDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// - `configuration_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextInterfaceDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -131,6 +163,12 @@ extern "C-unwind" {
     /// Parameter `currentDescriptor`: A descriptor pointer within the bounds of configurationDescriptor, or NULL
     ///
     /// Returns: EndpointDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// - `configuration_descriptor` must be a valid pointer.
+    /// - `interface_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextEndpointDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -149,6 +187,11 @@ extern "C-unwind" {
     /// Parameter `currentDescriptor`: A descriptor pointer within the bounds of bosDescriptor, or NULL
     ///
     /// Returns: DeviceCapabilityDescriptor pointer, or NULL if no descriptor can be returned
+    ///
+    /// # Safety
+    ///
+    /// - `bos_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -168,6 +211,11 @@ extern "C-unwind" {
     /// Parameter `type`: tDeviceCapabilityType representing the descriptor type to find
     ///
     /// Returns: DeviceCapabilityDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// - `bos_descriptor` must be a valid pointer.
+    /// - `current_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextCapabilityDescriptorWithType(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -184,6 +232,10 @@ extern "C-unwind" {
     /// Parameter `bosDescriptor`: BOS descriptor that contains the descriptors to iterate through
     ///
     /// Returns: USB20ExtensionCapabilityDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// `bos_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetUSB20ExtensionDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -198,6 +250,10 @@ extern "C-unwind" {
     /// Parameter `bosDescriptor`: BOS descriptor that contains the descriptors to iterate through
     ///
     /// Returns: SuperSpeedUSBDeviceCapabilityDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// `bos_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetSuperSpeedDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -212,6 +268,10 @@ extern "C-unwind" {
     /// Parameter `bosDescriptor`: BOS descriptor that contains the descriptors to iterate through
     ///
     /// Returns: SuperSpeedPlusUSBDeviceCapabilityDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// `bos_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetSuperSpeedPlusDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -226,6 +286,10 @@ extern "C-unwind" {
     /// Parameter `bosDescriptor`: BOS descriptor that contains the descriptors to iterate through
     ///
     /// Returns: ContainerIDCapabilityDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// `bos_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetContainerIDDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -240,6 +304,11 @@ extern "C-unwind" {
     /// Parameter `bosDescriptor`: BOS descriptor that contains the descriptors to iterate through
     ///
     /// Returns: PlatformCapabilityDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// - `bos_descriptor` must be a valid pointer.
+    /// - The returned struct field 5 Array TODO.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetPlatformCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -254,6 +323,10 @@ extern "C-unwind" {
     /// Parameter `bosDescriptor`: BOS descriptor that contains the descriptors to iterate through
     ///
     /// Returns: BillboardCapabilityDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// `bos_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetBillboardDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -268,6 +341,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The descriptor to parse
     ///
     /// Returns: tEndpointDirection indicating the direction found.  Control endpoints return tEndpointDirection.
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointDirection(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -280,6 +357,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The descriptor to parse
     ///
     /// Returns: uint8_t representing direction and endpoint number
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointAddress(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -292,6 +373,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The descriptor to parse
     ///
     /// Returns: uint8_t representing endpoint number
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointNumber(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -304,6 +389,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The descriptor to parse
     ///
     /// Returns: tEndpointType indicating the type found.
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -316,6 +405,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The descriptor to parse
     ///
     /// Returns: tEndpointUsageType indicating the type found.
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointUsageType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -328,6 +421,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The descriptor to parse
     ///
     /// Returns: tEndpointSynchronizationType indicating the type found.
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointSynchronizationType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -342,6 +439,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The descriptor to parse
     ///
     /// Returns: uint16_t The max packet size in bytes
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxPacketSize(
         usb_device_speed: u32,
@@ -363,6 +464,12 @@ extern "C-unwind" {
     /// Parameter `sspCompanionDescriptor`: The SuperSpeedPlusIsochronousEndpointCompanionDescriptor to parse, or NULL
     ///
     /// Returns: uint32_t The burst size in bytes
+    ///
+    /// # Safety
+    ///
+    /// - `descriptor` must be a valid pointer.
+    /// - `companion_descriptor` must be a valid pointer.
+    /// - `ssp_companion_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointBurstSize(
         usb_device_speed: u32,
@@ -386,6 +493,12 @@ extern "C-unwind" {
     /// Parameter `sspCompanionDescriptor`: The SuperSpeedPlusIsochronousEndpointCompanionDescriptor to parse, or NULL
     ///
     /// Returns: uint8_t The mult count
+    ///
+    /// # Safety
+    ///
+    /// - `descriptor` must be a valid pointer.
+    /// - `companion_descriptor` must be a valid pointer.
+    /// - `ssp_companion_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMult(
         usb_device_speed: u32,
@@ -405,6 +518,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The EndpointDescriptor to parse
     ///
     /// Returns: uint32_t Encoded endpoint interval
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalEncodedMicroframes(
         usb_device_speed: u32,
@@ -422,6 +539,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The EndpointDescriptor to parse
     ///
     /// Returns: uint32_t Endpoint interval in microframes
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalMicroframes(
         usb_device_speed: u32,
@@ -439,6 +560,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The EndpointDescriptor to parse
     ///
     /// Returns: uint32_t Endpoint interval in frames
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalFrames(
         usb_device_speed: u32,
@@ -458,6 +583,11 @@ extern "C-unwind" {
     /// Parameter `companionDescriptor`: The SuperSpeedEndpointCompanionDescriptor to parse
     ///
     /// Returns: uint32_t Encoded number of streams
+    ///
+    /// # Safety
+    ///
+    /// - `descriptor` must be a valid pointer.
+    /// - `companion_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxStreamsEncoded(
         usb_device_speed: u32,
@@ -478,6 +608,11 @@ extern "C-unwind" {
     /// Parameter `companionDescriptor`: The SuperSpeedEndpointCompanionDescriptor to parse
     ///
     /// Returns: uint32_t Number of streams
+    ///
+    /// # Safety
+    ///
+    /// - `descriptor` must be a valid pointer.
+    /// - `companion_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxStreams(
         usb_device_speed: u32,
@@ -496,6 +631,10 @@ extern "C-unwind" {
     /// Parameter `descriptor`: The ConfigurationDescriptor to parse
     ///
     /// Returns: uint32_t milliamps required
+    ///
+    /// # Safety
+    ///
+    /// `descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetConfigurationMaxPowerMilliAmps(
         usb_device_speed: u32,

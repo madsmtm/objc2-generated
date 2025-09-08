@@ -26,6 +26,9 @@ extern_protocol!(
         unsafe fn primaryPresentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `reader` block must be sendable.
         #[optional]
         #[unsafe(method(relinquishPresentedItemToReader:))]
         #[unsafe(method_family = none)]
@@ -35,6 +38,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `writer` block must be sendable.
         #[optional]
         #[unsafe(method(relinquishPresentedItemToWriter:))]
         #[unsafe(method_family = none)]
@@ -44,6 +50,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(savePresentedItemChangesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -53,6 +62,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(accommodatePresentedItemDeletionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -62,6 +74,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(accommodatePresentedItemEvictionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -117,6 +132,9 @@ extern_protocol!(
         unsafe fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[optional]
         #[unsafe(method(accommodatePresentedSubitemDeletionAtURL:completionHandler:))]
         #[unsafe(method_family = none)]

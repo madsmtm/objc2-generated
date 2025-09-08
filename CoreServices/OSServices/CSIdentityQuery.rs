@@ -38,6 +38,10 @@ pub type CSIdentityQueryStringComparisonMethod = CFIndex;
 
 #[cfg(feature = "CSIdentity")]
 impl CSIdentityQuery {
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `authority` might not allow `None`.
     #[doc(alias = "CSIdentityQueryCreate")]
     #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
     #[inline]
@@ -57,6 +61,11 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `name` might not allow `None`.
+    /// - `authority` might not allow `None`.
     #[doc(alias = "CSIdentityQueryCreateForName")]
     #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
     #[inline]
@@ -88,6 +97,11 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `uuid` might not allow `None`.
+    /// - `authority` might not allow `None`.
     #[doc(alias = "CSIdentityQueryCreateForUUID")]
     #[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
     #[inline]
@@ -107,6 +121,10 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `authority` might not allow `None`.
     #[doc(alias = "CSIdentityQueryCreateForPosixID")]
     #[cfg(all(
         feature = "CSIdentity",
@@ -134,6 +152,10 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `reference_data` might not allow `None`.
     #[doc(alias = "CSIdentityQueryCreateForPersistentReference")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
@@ -151,6 +173,9 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CSIdentityQueryCreateForCurrentUser")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
@@ -177,6 +202,9 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "CSIdentityQueryExecute")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
@@ -255,6 +283,11 @@ unsafe impl RefEncode for CSIdentityQueryClientContext {
 
 #[cfg(feature = "CSIdentity")]
 impl CSIdentityQuery {
+    /// # Safety
+    ///
+    /// - `client_context` must be a valid pointer.
+    /// - `run_loop` might not allow `None`.
+    /// - `run_loop_mode` might not allow `None`.
     #[doc(alias = "CSIdentityQueryExecuteAsynchronously")]
     #[cfg(feature = "CSIdentity")]
     #[inline]

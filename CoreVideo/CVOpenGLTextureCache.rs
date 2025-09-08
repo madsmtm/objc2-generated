@@ -81,6 +81,14 @@ impl CVOpenGLTextureCache {
     /// Parameter `cacheOut`: The newly created texture cache will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// # Safety
+    ///
+    /// - `cache_attributes` generics must be of the correct type.
+    /// - `cgl_context` must be a valid pointer.
+    /// - `cgl_pixel_format` must be a valid pointer.
+    /// - `texture_attributes` generics must be of the correct type.
+    /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
@@ -129,6 +137,11 @@ impl CVOpenGLTextureCache {
     /// Parameter `textureOut`: The newly created texture object will be placed here.
     ///
     /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generics must be of the correct type.
+    /// - `texture_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",

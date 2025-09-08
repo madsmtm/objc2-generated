@@ -122,6 +122,9 @@ impl NSColor {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSColorSpace", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `components` must be a valid pointer.
         #[unsafe(method(colorWithColorSpace:components:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorWithColorSpace_components_count(
@@ -216,6 +219,9 @@ impl NSColor {
         pub unsafe fn colorNamed(name: &NSColorName) -> Option<Retained<NSColor>>;
 
         #[cfg(all(feature = "NSAppearance", feature = "NSColorList", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `dynamic_provider` block's return must be a valid pointer.
         #[unsafe(method(colorWithName:dynamicProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorWithName_dynamicProvider(
@@ -691,6 +697,12 @@ impl NSColor {
         pub unsafe fn blueComponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `red` must be a valid pointer or null.
+        /// - `green` must be a valid pointer or null.
+        /// - `blue` must be a valid pointer or null.
+        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getRed:green:blue:alpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRed_green_blue_alpha(
@@ -717,6 +729,12 @@ impl NSColor {
         pub unsafe fn brightnessComponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `hue` must be a valid pointer or null.
+        /// - `saturation` must be a valid pointer or null.
+        /// - `brightness` must be a valid pointer or null.
+        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getHue:saturation:brightness:alpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getHue_saturation_brightness_alpha(
@@ -733,6 +751,10 @@ impl NSColor {
         pub unsafe fn whiteComponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `white` must be a valid pointer or null.
+        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getWhite:alpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getWhite_alpha(&self, white: *mut CGFloat, alpha: *mut CGFloat);
@@ -758,6 +780,13 @@ impl NSColor {
         pub unsafe fn blackComponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `cyan` must be a valid pointer or null.
+        /// - `magenta` must be a valid pointer or null.
+        /// - `yellow` must be a valid pointer or null.
+        /// - `black` must be a valid pointer or null.
+        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getCyan:magenta:yellow:black:alpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCyan_magenta_yellow_black_alpha(
@@ -779,6 +808,9 @@ impl NSColor {
         pub unsafe fn numberOfComponents(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `components` must be a valid pointer.
         #[unsafe(method(getComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getComponents(&self, components: NonNull<CGFloat>);
@@ -929,6 +961,9 @@ impl NSColor {
         pub unsafe fn colorSpaceName(&self) -> Retained<NSColorSpaceName>;
 
         #[cfg(feature = "NSGraphics")]
+        /// # Safety
+        ///
+        /// `device_description` generic should be of the correct type.
         #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
         #[unsafe(method(colorUsingColorSpaceName:device:))]
         #[unsafe(method_family = none)]

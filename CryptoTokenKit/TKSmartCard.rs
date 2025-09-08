@@ -576,6 +576,10 @@ impl TKSmartCardUserInteractionForPINOperation {
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         /// Setter for [`locale`][Self::locale].
+        ///
+        /// # Safety
+        ///
+        /// `locale` might not allow `None`.
         #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
@@ -823,6 +827,10 @@ impl TKSmartCard {
         pub unsafe fn context(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`context`][Self::context].
+        ///
+        /// # Safety
+        ///
+        /// `context` should be of the correct type.
         #[unsafe(method(setContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setContext(&self, context: Option<&AnyObject>);
@@ -1027,6 +1035,10 @@ impl TKSmartCard {
         /// Parameter `error`: Contains error details when nil is returned.  Specific error is also filled in if there was no communication error, but card returned other SW code than 0x9000.
         ///
         /// Returns: Returned data field, excluding SW status bytes.  If an error occured, returns nil.
+        ///
+        /// # Safety
+        ///
+        /// `sw` must be a valid pointer.
         #[unsafe(method(sendIns:p1:p2:data:le:sw:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendIns_p1_p2_data_le_sw_error(

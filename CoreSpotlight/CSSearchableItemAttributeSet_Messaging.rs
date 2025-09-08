@@ -150,6 +150,10 @@ impl CSSearchableItemAttributeSet {
         /// Setter for [`emailHeaders`][Self::emailHeaders].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `email_headers` generic generic should be of the correct type.
         #[unsafe(method(setEmailHeaders:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEmailHeaders(

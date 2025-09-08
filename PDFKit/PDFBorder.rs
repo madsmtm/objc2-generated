@@ -106,6 +106,10 @@ impl PDFBorder {
         /// Setter for [`dashPattern`][Self::dashPattern].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `dash_pattern` generic should be of the correct type.
         #[unsafe(method(setDashPattern:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDashPattern(&self, dash_pattern: Option<&NSArray>);

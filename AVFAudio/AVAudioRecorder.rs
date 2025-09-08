@@ -29,6 +29,10 @@ impl AVAudioRecorder {
         /// Init the AudioRecorder with a specified url and settings.
         ///
         /// The file type to create can be set through the corresponding settings key. If not set, it will be inferred from the file extension. Will overwrite a file at the specified url if a file exists.
+        ///
+        /// # Safety
+        ///
+        /// `settings` generic should be of the correct type.
         #[unsafe(method(initWithURL:settings:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_settings_error(
@@ -196,6 +200,10 @@ impl AVAudioRecorder {
         /// The channels property lets you assign the output to record specific channels as described by AVAudioSessionPortDescription's channels property. This property is nil valued until set. The array must have the same number of channels as returned by the numberOfChannels property.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelAssignments))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelAssignments(
@@ -206,6 +214,10 @@ impl AVAudioRecorder {
         /// Setter for [`channelAssignments`][Self::channelAssignments].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setChannelAssignments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelAssignments(

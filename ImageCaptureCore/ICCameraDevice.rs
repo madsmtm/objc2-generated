@@ -251,6 +251,11 @@ impl ICCameraDevice {
         /// This method asynchronously reads data of a specified length from a specified offset.
         ///
         /// The readDelegate passed must not be nil. When this request is completed, the didReadDataSelector of the readDelegate object is called. The didReadDataSelector should have the same signature as: - (void)didReadData:(NSData*)data fromFile:(ICCameraFile*)file error:(NSError*)error contextInfo:(void*)contextInfo. The content of error returned should be examined to determine if the request completed successfully.
+        ///
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(requestReadDataFromFile:atOffset:length:readDelegate:didReadDataSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestReadDataFromFile_atOffset_length_readDelegate_didReadDataSelector_contextInfo(
@@ -267,6 +272,11 @@ impl ICCameraDevice {
         /// Download a file from the camera. Please refer to the top of this header for information about the options.
         ///
         /// The downloadDelegate passed must not be nil. When this request is completed, the didDownloadSelector of the downloadDelegate object is called.The didDownloadSelector should have the same signature as: - (void)didDownloadFile:(ICCameraFile*)file error:(NSError*)error options:(NSDictionary*)options contextInfo:(void*)contextInfo. The content of error returned should be examined to determine if the request completed successfully.
+        ///
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestDownloadFile_options_downloadDelegate_didDownloadSelector_contextInfo(
@@ -355,6 +365,11 @@ impl ICCameraDevice {
         /// Upload a file at fileURL to the camera. The options dictionary is not used in this version.
         ///
         /// The uploadDelegate passed must not be nil. When this request is completed, the didUploadSelector of the uploadDelegate object is called. The didUploadSelector should have the same signature as: - (void)didUploadFile:(NSURL*)fileURL error:(NSError*)error contextInfo:(void*)contextInfo. The content of error returned should be examined to determine if the request completed successfully.
+        ///
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated = "Sandbox restrictions prohibit writing directly to device hardware"]
         #[unsafe(method(requestUploadFile:options:uploadDelegate:didUploadSelector:contextInfo:))]
         #[unsafe(method_family = none)]
@@ -394,6 +409,10 @@ impl ICCameraDevice {
 
         #[cfg(feature = "block2")]
         /// As an alternative to setting up an object to handle PTP event packets, a handler can be set.  The handler will always be called in place of the delegate if non-nil.  If the handler is not present, the delegate will be called if present. It is guaranteed only one of the methods will be called if both are implemented.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(ptpEventHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn ptpEventHandler(&self) -> NonNull<block2::DynBlock<dyn Fn(NonNull<NSData>)>>;
@@ -412,6 +431,11 @@ impl ICCameraDevice {
         /// This method asynchronously sends a PTP command to a camera.
         ///
         /// This should be sent only if the 'capabilities' property contains 'ICCameraDeviceCanAcceptPTPCommands'. All PTP cameras have this capability. The response to this command will be delivered using didSendCommandSelector of sendCommandDelegate. The didSendCommandSelector should have the same signature as: - (void)didSendPTPCommand:(NSData*)command inData:(NSData*)data response:(NSData*)response error:(NSError*)error contextInfo:(void*)contextInfo. The content of error returned should be examined to determine if the request completed successfully.
+        ///
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(requestSendPTPCommand:outData:sendCommandDelegate:didSendCommandSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSendPTPCommand_outData_sendCommandDelegate_didSendCommandSelector_contextInfo(
@@ -498,6 +522,10 @@ extern_protocol!(
 
         #[cfg(feature = "ICCameraItem")]
         /// This message is sent when the metadata requested for an item on a device is available.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(cameraDevice:didReceiveMetadata:forItem:error:))]
         #[unsafe(method_family = none)]
         unsafe fn cameraDevice_didReceiveMetadata_forItem_error(
@@ -637,6 +665,10 @@ extern_protocol!(
     pub unsafe trait ICCameraDeviceDownloadDelegate: NSObjectProtocol {
         #[cfg(all(feature = "ICCameraFile", feature = "ICCameraItem"))]
         /// This message is sent to the delegate when the requested download operation is complete.
+        ///
+        /// # Safety
+        ///
+        /// `context_info` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(didDownloadFile:error:options:contextInfo:))]
         #[unsafe(method_family = none)]

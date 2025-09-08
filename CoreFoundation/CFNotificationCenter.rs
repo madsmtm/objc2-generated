@@ -108,6 +108,12 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `observer` must be a valid pointer.
+    /// - `call_back` must be implemented correctly.
+    /// - `name` might not allow `None`.
+    /// - `object` must be a valid pointer.
     #[doc(alias = "CFNotificationCenterAddObserver")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -141,6 +147,11 @@ impl CFNotificationCenter {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `observer` must be a valid pointer.
+    /// - `name` might not allow `None`.
+    /// - `object` must be a valid pointer.
     #[doc(alias = "CFNotificationCenterRemoveObserver")]
     #[inline]
     pub unsafe fn remove_observer(
@@ -160,6 +171,9 @@ impl CFNotificationCenter {
         unsafe { CFNotificationCenterRemoveObserver(self, observer, name, object) }
     }
 
+    /// # Safety
+    ///
+    /// `observer` must be a valid pointer.
     #[doc(alias = "CFNotificationCenterRemoveEveryObserver")]
     #[inline]
     pub unsafe fn remove_every_observer(&self, observer: *const c_void) {
@@ -172,6 +186,11 @@ impl CFNotificationCenter {
         unsafe { CFNotificationCenterRemoveEveryObserver(self, observer) }
     }
 
+    /// # Safety
+    ///
+    /// - `object` must be a valid pointer.
+    /// - `user_info` generics must be of the correct type.
+    /// - `user_info` might not allow `None`.
     #[doc(alias = "CFNotificationCenterPostNotification")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -209,6 +228,11 @@ pub const kCFNotificationDeliverImmediately: CFOptionFlags = 1 << 0;
 pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 
 impl CFNotificationCenter {
+    /// # Safety
+    ///
+    /// - `object` must be a valid pointer.
+    /// - `user_info` generics must be of the correct type.
+    /// - `user_info` might not allow `None`.
     #[doc(alias = "CFNotificationCenterPostNotificationWithOptions")]
     #[cfg(feature = "CFDictionary")]
     #[inline]

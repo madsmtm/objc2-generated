@@ -133,6 +133,10 @@ impl<ComponentType: Message> GKComponentSystem<ComponentType> {
         pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ComponentType>;
 
         /// Initializes a system for the given component class. The receiver can now only accept components of the given class.
+        ///
+        /// # Safety
+        ///
+        /// `cls` probably has further requirements.
         #[unsafe(method(initWithComponentClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithComponentClass(

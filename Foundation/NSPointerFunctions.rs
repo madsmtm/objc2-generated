@@ -99,6 +99,10 @@ impl NSPointerFunctions {
         >;
 
         /// Setter for [`hashFunction`][Self::hashFunction].
+        ///
+        /// # Safety
+        ///
+        /// `hash_function` must be implemented correctly.
         #[unsafe(method(setHashFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHashFunction(
@@ -124,6 +128,10 @@ impl NSPointerFunctions {
         >;
 
         /// Setter for [`isEqualFunction`][Self::isEqualFunction].
+        ///
+        /// # Safety
+        ///
+        /// `is_equal_function` must be implemented correctly.
         #[unsafe(method(setIsEqualFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIsEqualFunction(
@@ -144,6 +152,10 @@ impl NSPointerFunctions {
         ) -> Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>;
 
         /// Setter for [`sizeFunction`][Self::sizeFunction].
+        ///
+        /// # Safety
+        ///
+        /// `size_function` must be implemented correctly.
         #[unsafe(method(setSizeFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSizeFunction(
@@ -160,6 +172,10 @@ impl NSPointerFunctions {
 
         #[cfg(feature = "NSString")]
         /// Setter for [`descriptionFunction`][Self::descriptionFunction].
+        ///
+        /// # Safety
+        ///
+        /// `description_function` must be implemented correctly.
         #[unsafe(method(setDescriptionFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDescriptionFunction(
@@ -181,6 +197,10 @@ impl NSPointerFunctions {
         >;
 
         /// Setter for [`relinquishFunction`][Self::relinquishFunction].
+        ///
+        /// # Safety
+        ///
+        /// `relinquish_function` must be implemented correctly.
         #[unsafe(method(setRelinquishFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRelinquishFunction(
@@ -206,6 +226,10 @@ impl NSPointerFunctions {
         >;
 
         /// Setter for [`acquireFunction`][Self::acquireFunction].
+        ///
+        /// # Safety
+        ///
+        /// `acquire_function` must be implemented correctly.
         #[unsafe(method(setAcquireFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAcquireFunction(

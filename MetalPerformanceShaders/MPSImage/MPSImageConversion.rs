@@ -96,6 +96,10 @@ impl MPSImageConversion {
         ///
         ///
         /// Returns: An initialized MPSImageConversion object.
+        ///
+        /// # Safety
+        ///
+        /// `background_color` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_srcAlpha_destAlpha_backgroundColor_conversionInfo(

@@ -121,6 +121,10 @@ impl AVAudioNode {
         /// ....
         /// // start engine
         /// </pre>
+        ///
+        /// # Safety
+        ///
+        /// `tap_block` must be a valid pointer.
         #[unsafe(method(installTapOnBus:bufferSize:format:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn installTapOnBus_bufferSize_format_block(

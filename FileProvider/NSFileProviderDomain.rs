@@ -232,6 +232,10 @@ impl NSFileProviderDomain {
         /// The provider should therefore use the userInfo to associate all necessary information to map the created object to the corresponding account.
         /// The userInfo will be persisted on the volume where the domain was created. If that is an external volume, the userInfo can be used on other devices
         /// to assist in setting up the domain on those devices. See the`NSFileProviderExternalVolumeHandling` protocol for more details.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(initWithDisplayName:userInfo:volumeURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplayName_userInfo_volumeURL(
@@ -373,6 +377,10 @@ impl NSFileProviderDomain {
         /// Setter for [`userInfo`][Self::userInfo].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);

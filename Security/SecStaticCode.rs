@@ -44,6 +44,10 @@ impl SecStaticCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `static_code` must be a valid pointer.
     #[doc(alias = "SecStaticCodeCreateWithPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -124,6 +128,11 @@ impl SecStaticCode {
     ///
     ///
     /// then select the specified framework version. This key is otherwise ignored.
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generics must be of the correct type.
+    /// - `static_code` must be a valid pointer.
     #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -198,6 +207,9 @@ impl SecStaticCode {
         unsafe { SecStaticCodeCheckValidity(self, flags, requirement) }
     }
 
+    /// # Safety
+    ///
+    /// `errors` must be a valid pointer or null.
     #[doc(alias = "SecStaticCodeCheckValidityWithErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]

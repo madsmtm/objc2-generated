@@ -111,6 +111,10 @@ impl NSScrollView {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSCell", feature = "NSScroller"))]
+        /// # Safety
+        ///
+        /// - `horizontal_scroller_class` probably has further requirements.
+        /// - `vertical_scroller_class` probably has further requirements.
         #[unsafe(method(frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
@@ -124,6 +128,10 @@ impl NSScrollView {
         ) -> NSSize;
 
         #[cfg(all(feature = "NSCell", feature = "NSScroller"))]
+        /// # Safety
+        ///
+        /// - `horizontal_scroller_class` probably has further requirements.
+        /// - `vertical_scroller_class` probably has further requirements.
         #[unsafe(method(contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
@@ -571,6 +579,11 @@ impl NSScrollView {
         pub unsafe fn rulerViewClass(mtm: MainThreadMarker) -> Option<&'static AnyClass>;
 
         /// Setter for [`rulerViewClass`][Self::rulerViewClass].
+        ///
+        /// # Safety
+        ///
+        /// - `ruler_view_class` probably has further requirements.
+        /// - `ruler_view_class` might not allow `None`.
         #[unsafe(method(setRulerViewClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRulerViewClass(ruler_view_class: Option<&AnyClass>, mtm: MainThreadMarker);

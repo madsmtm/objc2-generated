@@ -106,6 +106,10 @@ impl UITextInteraction {
         /// Setter for [`textInput`][Self::textInput].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `text_input` must implement UITextInput.
         #[unsafe(method(setTextInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextInput(&self, text_input: Option<&UIResponder>);

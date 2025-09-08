@@ -151,6 +151,9 @@ impl AVSampleBufferDisplayLayer {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
@@ -309,6 +312,10 @@ impl AVSampleBufferDisplayLayer {
         /// with a corresponding call to stopRequestingMediaData:. Releasing the
         /// AVSampleBufferDisplayLayer without a call to stopRequestingMediaData will result
         /// in undefined behavior.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[deprecated = "Use sampleBufferRenderer's requestMediaDataWhenReadyOnQueue:usingBlock: instead"]
         #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]

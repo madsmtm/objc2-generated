@@ -198,6 +198,10 @@ impl SCPreferences {
     ///
     /// Returns: Returns a reference to the new SCPreferences.
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// `authorization` must be a valid pointer or null.
     #[doc(alias = "SCPreferencesCreateWithAuthorization")]
     #[cfg(feature = "objc2-security")]
     #[inline]
@@ -385,6 +389,10 @@ impl SCPreferences {
     /// Returns: Returns TRUE if the value was added;
     /// FALSE if the key already exists or
     /// if an error occurred.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "SCPreferencesAddValue")]
     #[inline]
     pub unsafe fn add_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -414,6 +422,10 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the value was set;
     /// FALSE if an error occurred.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "SCPreferencesSetValue")]
     #[inline]
     pub unsafe fn set_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -464,6 +476,11 @@ impl SCPreferences {
     /// the callout.
     ///
     /// Returns: Returns TRUE if the notification client was successfully set.
+    ///
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "SCPreferencesSetCallback")]
     #[inline]
     pub unsafe fn set_callback(

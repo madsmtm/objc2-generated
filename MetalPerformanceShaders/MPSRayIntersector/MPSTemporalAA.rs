@@ -88,6 +88,9 @@ impl MPSTemporalAA {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:device:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(

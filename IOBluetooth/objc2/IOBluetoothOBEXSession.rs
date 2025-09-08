@@ -43,6 +43,10 @@ impl IOBluetoothOBEXSession {
         /// should be according to objc convention. This has been changed starting in Bluetooth version
         /// 1.0.1 and later, so it WILL be autoreleased upon return, so you will need to retain
         /// it if you want to reference it later.
+        ///
+        /// # Safety
+        ///
+        /// `in_sdp_service_record` might not allow `None`.
         #[unsafe(method(withSDPServiceRecord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withSDPServiceRecord(
@@ -71,6 +75,10 @@ impl IOBluetoothOBEXSession {
         /// should be according to objc convention. This has been changed starting in Bluetooth version
         /// 1.0.1 and later, so it WILL be autoreleased upon return, so you will need to retain
         /// it if you want to reference it later.
+        ///
+        /// # Safety
+        ///
+        /// `in_device` might not allow `None`.
         #[unsafe(method(withDevice:channelID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withDevice_channelID(
@@ -95,6 +103,13 @@ impl IOBluetoothOBEXSession {
         /// should be according to objc convention. This has been changed starting in Bluetooth version
         /// 1.0.1 and later, so it WILL be autoreleased upon return, so you will need to retain
         /// it if you want to reference it later.
+        ///
+        /// # Safety
+        ///
+        /// - `in_event_selector` must be a valid selector.
+        /// - `in_event_selector_target` should be of the correct type.
+        /// - `in_event_selector_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(withIncomingRFCOMMChannel:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withIncomingRFCOMMChannel_eventSelector_selectorTarget_refCon(
@@ -109,6 +124,10 @@ impl IOBluetoothOBEXSession {
         ///
         /// Parameter `inSDPServiceRecord`:
         /// Returns:
+        ///
+        /// # Safety
+        ///
+        /// `in_sdp_service_record` might not allow `None`.
         #[unsafe(method(initWithSDPServiceRecord:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSDPServiceRecord(
@@ -128,6 +147,10 @@ impl IOBluetoothOBEXSession {
         /// Parameter `inChannelID`: The RFCOMM channel ID to use when opening the connection.
         ///
         /// Returns:
+        ///
+        /// # Safety
+        ///
+        /// `in_device` might not allow `None`.
         #[unsafe(method(initWithDevice:channelID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_channelID(
@@ -148,6 +171,13 @@ impl IOBluetoothOBEXSession {
         /// Parameter `refCon`: caller reference constant, pass whatever you want, it will be returned to you in the selector.
         ///
         /// Returns:
+        ///
+        /// # Safety
+        ///
+        /// - `in_event_selector` must be a valid selector.
+        /// - `in_event_selector_target` should be of the correct type.
+        /// - `in_event_selector_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(initWithIncomingRFCOMMChannel:eventSelector:selectorTarget:refCon:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIncomingRFCOMMChannel_eventSelector_selectorTarget_refCon(
@@ -221,6 +251,13 @@ impl IOBluetoothOBEXSession {
         /// refCon:anOBEXSession];    // or whatever you want to pass as a refCon...
         ///
         /// Be sure to check the status code! Assume the connection was not opened unless status is kOBEXSuccess.
+        ///
+        /// # Safety
+        ///
+        /// - `in_selector` must be a valid selector.
+        /// - `in_target` should be of the correct type.
+        /// - `in_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(openTransportConnection:selectorTarget:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openTransportConnection_selectorTarget_refCon(
@@ -254,6 +291,10 @@ impl IOBluetoothOBEXSession {
         /// case, it will be sent over the RFCOMM channel.
         ///
         /// Returns: Success or failure code, describing whether the call succeeded in writing the data to the transport.
+        ///
+        /// # Safety
+        ///
+        /// `in_data_to_send` must be a valid pointer.
         #[unsafe(method(sendDataToTransport:dataLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDataToTransport_dataLength(
@@ -273,6 +314,13 @@ impl IOBluetoothOBEXSession {
         /// You do not need to call this on the session typically, unless you have subclassed the OBEXSession to
         /// implement a new transport and that transport supports async opening of connections. If it does not support
         /// async open, then using this is pointless.
+        ///
+        /// # Safety
+        ///
+        /// - `in_selector` must be a valid selector.
+        /// - `in_selector_target` should be of the correct type.
+        /// - `in_selector_target` might not allow `None`.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(setOpenTransportConnectionAsyncSelector:target:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOpenTransportConnectionAsyncSelector_target_refCon(
@@ -288,6 +336,11 @@ impl IOBluetoothOBEXSession {
         /// Parameter `inCallback`: function to call on the target.
         ///
         /// Parameter `inUserRefCon`: user's reference constant, will be returned on the callback.
+        ///
+        /// # Safety
+        ///
+        /// - `in_callback` must be implemented correctly.
+        /// - `in_user_ref_con` must be a valid pointer.
         #[unsafe(method(setOBEXSessionOpenConnectionCallback:refCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOBEXSessionOpenConnectionCallback_refCon(

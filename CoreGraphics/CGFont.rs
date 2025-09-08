@@ -76,6 +76,9 @@ unsafe impl ConcreteType for CGFont {
 }
 
 impl CGFont {
+    /// # Safety
+    ///
+    /// `platform_font_reference` must be a valid pointer or null.
     #[doc(alias = "CGFontCreateWithPlatformFont")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -112,6 +115,9 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `variations` generics must be of the correct type.
     #[doc(alias = "CGFontCreateCopyWithVariations")]
     #[inline]
     pub unsafe fn new_copy_with_variations(
@@ -258,6 +264,10 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer.
+    /// - `advances` must be a valid pointer.
     #[doc(alias = "CGFontGetGlyphAdvances")]
     #[inline]
     pub unsafe fn glyph_advances(
@@ -277,6 +287,10 @@ impl CGFont {
         unsafe { CGFontGetGlyphAdvances(font, glyphs, count, advances) }
     }
 
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer.
+    /// - `bboxes` must be a valid pointer.
     #[doc(alias = "CGFontGetGlyphBBoxes")]
     #[inline]
     pub unsafe fn glyph_b_boxes(

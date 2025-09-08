@@ -889,6 +889,9 @@ impl NSEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn eventRef(&self) -> *const c_void;
 
+        /// # Safety
+        ///
+        /// `event_ref` must be a valid pointer.
         #[unsafe(method(eventWithEventRef:))]
         #[unsafe(method_family = none)]
         pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Retained<NSEvent>>;
@@ -1101,6 +1104,9 @@ impl NSEvent {
         ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSGraphicsContext")]
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer or null.
         #[unsafe(method(enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
@@ -1163,6 +1169,9 @@ impl NSEvent {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block's return must be a valid pointer or null.
         #[unsafe(method(addLocalMonitorForEventsMatchingMask:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addLocalMonitorForEventsMatchingMask_handler(
@@ -1170,6 +1179,9 @@ impl NSEvent {
             block: &block2::DynBlock<dyn Fn(NonNull<NSEvent>) -> *mut NSEvent>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `event_monitor` should be of the correct type.
         #[unsafe(method(removeMonitor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeMonitor(event_monitor: &AnyObject);

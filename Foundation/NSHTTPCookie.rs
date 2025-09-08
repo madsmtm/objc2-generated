@@ -427,6 +427,10 @@ impl NSHTTPCookie {
         /// Returns: An initialized NSHTTPCookie, or nil if the set of
         /// dictionary keys is invalid, for example because a required key is
         /// missing, or a recognized key maps to an illegal value.
+        ///
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProperties(
@@ -451,6 +455,10 @@ impl NSHTTPCookie {
         /// nil if the set of dictionary keys is invalid, for example because
         /// a required key is missing, or a recognized key maps to an illegal
         /// value.
+        ///
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(cookieWithProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cookieWithProperties(

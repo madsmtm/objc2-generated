@@ -37,6 +37,10 @@ impl CKFetchShareParticipantsOperation {
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(userIdentityLookupInfos))]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentityLookupInfos(
@@ -47,6 +51,10 @@ impl CKFetchShareParticipantsOperation {
         /// Setter for [`userIdentityLookupInfos`][Self::userIdentityLookupInfos].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setUserIdentityLookupInfos:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserIdentityLookupInfos(
@@ -66,6 +74,11 @@ impl CKFetchShareParticipantsOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[unsafe(method(shareParticipantFetchedBlock))]
         #[unsafe(method_family = none)]
@@ -77,6 +90,10 @@ impl CKFetchShareParticipantsOperation {
         /// Setter for [`shareParticipantFetchedBlock`][Self::shareParticipantFetchedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[unsafe(method(setShareParticipantFetchedBlock:))]
         #[unsafe(method_family = none)]
@@ -101,6 +118,13 @@ impl CKFetchShareParticipantsOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(perShareParticipantCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perShareParticipantCompletionBlock(
@@ -117,6 +141,10 @@ impl CKFetchShareParticipantsOperation {
         /// Setter for [`perShareParticipantCompletionBlock`][Self::perShareParticipantCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPerShareParticipantCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPerShareParticipantCompletionBlock(
@@ -153,6 +181,11 @@ impl CKFetchShareParticipantsOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(fetchShareParticipantsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantsCompletionBlock(
@@ -163,6 +196,10 @@ impl CKFetchShareParticipantsOperation {
         /// Setter for [`fetchShareParticipantsCompletionBlock`][Self::fetchShareParticipantsCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchShareParticipantsCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchShareParticipantsCompletionBlock(

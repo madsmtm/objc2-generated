@@ -143,6 +143,9 @@ impl NSComparisonPredicate {
         ) -> Retained<NSComparisonPredicate>;
 
         #[cfg(feature = "NSExpression")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(predicateWithLeftExpression:rightExpression:customSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithLeftExpression_rightExpression_customSelector(
@@ -164,6 +167,9 @@ impl NSComparisonPredicate {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSExpression")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(initWithLeftExpression:rightExpression:customSelector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLeftExpression_rightExpression_customSelector(

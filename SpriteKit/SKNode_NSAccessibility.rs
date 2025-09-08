@@ -76,6 +76,10 @@ impl SKNode {
         /// Setter for [`accessibilityParent`][Self::accessibilityParent].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_parent` should be of the correct type.
         #[unsafe(method(setAccessibilityParent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityParent(&self, accessibility_parent: Option<&AnyObject>);
@@ -87,6 +91,10 @@ impl SKNode {
         /// Setter for [`accessibilityChildren`][Self::accessibilityChildren].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_children` generic should be of the correct type.
         #[unsafe(method(setAccessibilityChildren:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityChildren(&self, accessibility_children: Option<&NSArray>);

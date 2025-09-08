@@ -223,6 +223,9 @@ impl AVPlayerItem {
             automatically_loaded_asset_keys: Option<&NSArray<NSString>>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
@@ -484,6 +487,10 @@ impl AVPlayerItem {
         /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled and the completion handler will be invoked with the finished parameter set to NO.
         ///
         /// This method throws an exception if time is invalid or indefinite.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_completionHandler(
@@ -509,6 +516,10 @@ impl AVPlayerItem {
         /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled and the completion handler will be invoked with the finished parameter set to NO.
         ///
         /// This method throws an exception if time is invalid or indefinite or if tolerance before or tolerance after is invalid or negative.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
@@ -549,6 +560,10 @@ impl AVPlayerItem {
         /// Parameter `completionHandler`: The block to invoke when seek operation is complete
         ///
         /// Returns: Returns true if the playhead was moved to the supplied date.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
@@ -1239,6 +1254,10 @@ impl AVPlayerItemAccessLog {
         /// [[NSString alloc] initWithData:[myLog extendedLogData] encoding:[myLog extendedLogDataStringEncoding]]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(extendedLogDataStringEncoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLogDataStringEncoding(&self) -> NSStringEncoding;
@@ -1250,6 +1269,10 @@ impl AVPlayerItemAccessLog {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemAccessLogEvent>>;
@@ -1312,6 +1335,10 @@ impl AVPlayerItemErrorLog {
         /// [[NSString alloc] initWithData:[myLog extendedLogData] encoding:[myLog extendedLogDataStringEncoding]]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(extendedLogDataStringEncoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLogDataStringEncoding(&self) -> NSStringEncoding;
@@ -1323,6 +1350,10 @@ impl AVPlayerItemErrorLog {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemErrorLogEvent>>;
@@ -1376,6 +1407,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is deprecated. Use numberOfMediaRequests instead.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(numberOfSegmentsDownloaded))]
         #[unsafe(method_family = none)]
@@ -1389,6 +1424,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfMediaRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfMediaRequests(&self) -> NSInteger;
@@ -1399,6 +1438,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(playbackStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackStartDate(&self) -> Option<Retained<NSDate>>;
@@ -1409,6 +1452,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(URI))]
         #[unsafe(method_family = none)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
@@ -1419,6 +1466,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(serverAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
@@ -1429,6 +1480,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfServerAddressChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfServerAddressChanges(&self) -> NSInteger;
@@ -1439,6 +1494,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(playbackSessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
@@ -1449,6 +1508,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(playbackStartOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackStartOffset(&self) -> NSTimeInterval;
@@ -1459,6 +1522,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(segmentsDownloadedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentsDownloadedDuration(&self) -> NSTimeInterval;
@@ -1469,6 +1536,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(durationWatched))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationWatched(&self) -> NSTimeInterval;
@@ -1479,6 +1550,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfStalls))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfStalls(&self) -> NSInteger;
@@ -1489,6 +1564,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfBytesTransferred))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfBytesTransferred(&self) -> c_longlong;
@@ -1499,6 +1578,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(transferDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn transferDuration(&self) -> NSTimeInterval;
@@ -1509,6 +1592,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(observedBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedBitrate(&self) -> c_double;
@@ -1519,6 +1606,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(indicatedBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatedBitrate(&self) -> c_double;
@@ -1529,6 +1620,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(indicatedAverageBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatedAverageBitrate(&self) -> c_double;
@@ -1539,6 +1634,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(averageVideoBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageVideoBitrate(&self) -> c_double;
@@ -1549,6 +1648,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(averageAudioBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageAudioBitrate(&self) -> c_double;
@@ -1559,6 +1662,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(numberOfDroppedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDroppedVideoFrames(&self) -> NSInteger;
@@ -1569,6 +1676,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(startupTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn startupTime(&self) -> NSTimeInterval;
@@ -1579,6 +1690,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(downloadOverdue))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadOverdue(&self) -> NSInteger;
@@ -1589,6 +1704,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use observedBitrateStandardDeviation to monitor variance in network bitrate."]
         #[unsafe(method(observedMaxBitrate))]
         #[unsafe(method_family = none)]
@@ -1600,6 +1719,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use observedBitrateStandardDeviation to monitor variance in network bitrate."]
         #[unsafe(method(observedMinBitrate))]
         #[unsafe(method_family = none)]
@@ -1611,6 +1734,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(observedBitrateStandardDeviation))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedBitrateStandardDeviation(&self) -> c_double;
@@ -1621,6 +1748,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(playbackType))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackType(&self) -> Option<Retained<NSString>>;
@@ -1631,6 +1762,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mediaRequestsWWAN))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaRequestsWWAN(&self) -> NSInteger;
@@ -1641,6 +1776,10 @@ impl AVPlayerItemAccessLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(switchBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn switchBitrate(&self) -> c_double;
@@ -1693,6 +1832,10 @@ impl AVPlayerItemErrorLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
@@ -1703,6 +1846,10 @@ impl AVPlayerItemErrorLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(URI))]
         #[unsafe(method_family = none)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
@@ -1713,6 +1860,10 @@ impl AVPlayerItemErrorLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(serverAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
@@ -1723,6 +1874,10 @@ impl AVPlayerItemErrorLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(playbackSessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
@@ -1733,6 +1888,10 @@ impl AVPlayerItemErrorLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(errorStatusCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorStatusCode(&self) -> NSInteger;
@@ -1743,6 +1902,10 @@ impl AVPlayerItemErrorLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(errorDomain))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorDomain(&self) -> Retained<NSString>;
@@ -1753,11 +1916,19 @@ impl AVPlayerItemErrorLogEvent {
         /// This property is not observable.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(errorComment))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorComment(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(allHTTPResponseHeaderFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn allHTTPResponseHeaderFields(

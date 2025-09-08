@@ -17,6 +17,11 @@ extern_protocol!(
         /// Parameter `input`: the element that has been modified.
         ///
         /// See: value
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(positionDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn positionDidChangeHandler(

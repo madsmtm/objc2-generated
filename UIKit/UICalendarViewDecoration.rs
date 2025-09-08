@@ -70,6 +70,10 @@ impl UICalendarViewDecoration {
         /// Creates a new custom view decoration using the provided view provider. The provider will
         /// be called once when the decoration view is first loaded. The decoration will be clipped to
         /// its parent's bounds, and cannot have interaction.
+        ///
+        /// # Safety
+        ///
+        /// `custom_view_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithCustomViewProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCustomViewProvider(
@@ -111,6 +115,10 @@ impl UICalendarViewDecoration {
         /// Creates a new custom view decoration using the specified custom view provider. The provider will be called once
         /// when the decoration view is first loaded. The decoration will be clipped to its parent's bounds, and cannot have
         /// user interaction.
+        ///
+        /// # Safety
+        ///
+        /// `custom_view_provider` block's return must be a valid pointer.
         #[unsafe(method(decorationWithCustomViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decorationWithCustomViewProvider(

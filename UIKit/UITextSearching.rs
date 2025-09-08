@@ -55,6 +55,10 @@ extern_protocol!(
         ///
         /// Parameter `document`: (Optional) A developer-defined document identifier, later provided when this range
         /// needs to be styled.
+        ///
+        /// # Safety
+        ///
+        /// `document` should be of the correct type.
         #[unsafe(method(foundRange:forSearchString:inDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn foundRange_forSearchString_inDocument(
@@ -75,6 +79,10 @@ extern_protocol!(
         /// Parameter `range`: The range that is now invalid.
         ///
         /// Parameter `document`: (Optional) If multiple documents are used, the document identifier for the range provided.
+        ///
+        /// # Safety
+        ///
+        /// `document` should be of the correct type.
         #[unsafe(method(invalidateFoundRange:inDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn invalidateFoundRange_inDocument(
@@ -120,6 +128,10 @@ extern_protocol!(
         ///
         /// Parameter `document`: If multiple documents are used, a document identifier will be provided here. Ranges are only
         /// compared between other ranges of the same document.
+        ///
+        /// # Safety
+        ///
+        /// `document` should be of the correct type.
         #[unsafe(method(compareFoundRange:toRange:inDocument:))]
         #[unsafe(method_family = none)]
         unsafe fn compareFoundRange_toRange_inDocument(
@@ -163,6 +175,10 @@ extern_protocol!(
         ///
         /// Parameter `style`: A style hint for how to decorate the text. This is ultimately up to the developer, but developers are
         /// encouraged to match the system's appearance (i.e., UITextView) as close as possible.
+        ///
+        /// # Safety
+        ///
+        /// `document` should be of the correct type.
         #[unsafe(method(decorateFoundTextRange:inDocument:usingStyle:))]
         #[unsafe(method_family = none)]
         unsafe fn decorateFoundTextRange_inDocument_usingStyle(
@@ -197,6 +213,10 @@ extern_protocol!(
         /// Parameter `document`: If multiple documents are used, the document from which range originates.
         ///
         /// Parameter `replacementText`: Text that the user intends to replace with.
+        ///
+        /// # Safety
+        ///
+        /// `document` should be of the correct type.
         #[optional]
         #[unsafe(method(shouldReplaceFoundTextInRange:inDocument:withText:))]
         #[unsafe(method_family = none)]
@@ -218,6 +238,10 @@ extern_protocol!(
         /// here. Otherwise nil.
         ///
         /// Parameter `replacementText`: The replacement string.
+        ///
+        /// # Safety
+        ///
+        /// `document` should be of the correct type.
         #[optional]
         #[unsafe(method(replaceFoundTextInRange:inDocument:withText:))]
         #[unsafe(method_family = none)]
@@ -250,6 +274,10 @@ extern_protocol!(
         #[cfg(feature = "UITextInput")]
         /// Called when the highlighted search result is about to change to
         /// `range`.
+        ///
+        /// # Safety
+        ///
+        /// `document` should be of the correct type.
         #[optional]
         #[unsafe(method(willHighlightFoundTextRange:inDocument:))]
         #[unsafe(method_family = none)]
@@ -267,6 +295,10 @@ extern_protocol!(
         /// Parameter `range`: The text range to scroll to.
         ///
         /// Parameter `document`: (Optional) If multiple documents are used, the document identifier to scroll to.
+        ///
+        /// # Safety
+        ///
+        /// `document` should be of the correct type.
         #[optional]
         #[unsafe(method(scrollRangeToVisible:inDocument:))]
         #[unsafe(method_family = none)]
@@ -286,6 +318,11 @@ extern_protocol!(
 
         /// Returns the visible ordering from `fromDocument` to `toDocument`. If your document identifiers
         /// are index paths, for example, this would yield the same result as `-[NSIndexPath compare:]`.
+        ///
+        /// # Safety
+        ///
+        /// - `from_document` should be of the correct type.
+        /// - `to_document` should be of the correct type.
         #[optional]
         #[unsafe(method(compareOrderFromDocument:toDocument:))]
         #[unsafe(method_family = none)]

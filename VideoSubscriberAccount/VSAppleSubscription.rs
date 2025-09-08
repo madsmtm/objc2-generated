@@ -25,21 +25,37 @@ extern_conformance!(
 impl VSAppleSubscription {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(customerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn customerID(&self) -> Retained<NSString>;
 
         /// Setter for [`customerID`][Self::customerID].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setCustomerID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomerID(&self, customer_id: &NSString);
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(productCodes))]
         #[unsafe(method_family = none)]
         pub unsafe fn productCodes(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`productCodes`][Self::productCodes].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setProductCodes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProductCodes(&self, product_codes: &NSArray<NSString>);

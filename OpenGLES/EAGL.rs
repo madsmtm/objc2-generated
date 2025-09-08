@@ -37,6 +37,11 @@ unsafe impl RefEncode for EAGLRenderingAPI {
 
 extern "C-unwind" {
     /// *********************************************************************
+    ///
+    /// # Safety
+    ///
+    /// - `major` must be a valid pointer.
+    /// - `minor` must be a valid pointer.
     pub fn EAGLGetVersion(major: NonNull<c_uint>, minor: NonNull<c_uint>);
 }
 

@@ -52,6 +52,9 @@ impl NSPortCoder {
         pub unsafe fn connection(&self) -> Option<Retained<NSConnection>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
+        /// # Safety
+        ///
+        /// `comps` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(portCoderWithReceivePort:sendPort:components:))]
         #[unsafe(method_family = none)]
@@ -62,6 +65,9 @@ impl NSPortCoder {
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
+        /// # Safety
+        ///
+        /// `comps` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(initWithReceivePort:sendPort:components:))]
         #[unsafe(method_family = init)]

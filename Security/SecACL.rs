@@ -72,6 +72,12 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLCreateWithSimpleContents instead.
+    ///
+    /// # Safety
+    ///
+    /// - `application_list` generic must be of the correct type.
+    /// - `prompt_selector` must be a valid pointer.
+    /// - `new_acl` must be a valid pointer.
     #[doc(alias = "SecACLCreateFromSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -116,6 +122,11 @@ impl SecACL {
     /// Parameter `newAcl`: A pointer to an access control list entry.  On return, this points to the reference of the new access control list entry.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `application_list` generic must be of the correct type.
+    /// - `new_acl` must be a valid pointer.
     #[doc(alias = "SecACLCreateWithSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -177,6 +188,12 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLCopyContents instead.
+    ///
+    /// # Safety
+    ///
+    /// - `application_list` must be a valid pointer.
+    /// - `description` must be a valid pointer.
+    /// - `prompt_selector` must be a valid pointer.
     #[doc(alias = "SecACLCopySimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -209,6 +226,12 @@ impl SecACL {
     /// Parameter `promptSelector`: A pointer to a SecKeychainPromptSelector.  On return, this points to the SecKeychainPromptSelector for the given access control list entry.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `application_list` must be a valid pointer.
+    /// - `description` must be a valid pointer.
+    /// - `prompt_selector` must be a valid pointer.
     #[doc(alias = "SecACLCopyContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -244,6 +267,11 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLSetContents instead.
+    ///
+    /// # Safety
+    ///
+    /// - `application_list` generic must be of the correct type.
+    /// - `prompt_selector` must be a valid pointer.
     #[doc(alias = "SecACLSetSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -276,6 +304,10 @@ impl SecACL {
     /// Parameter `promptSelector`: A SecKeychainPromptSelector selector.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `application_list` generic must be of the correct type.
     #[doc(alias = "SecACLSetContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -309,6 +341,11 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLCopyAuthorizations instead.
+    ///
+    /// # Safety
+    ///
+    /// - `tags` must be a valid pointer.
+    /// - `tag_count` must be a valid pointer.
     #[doc(alias = "SecACLGetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -359,6 +396,10 @@ impl SecACL {
     ///
     /// This function is deprecated in 10.7 and later;
     /// use SecACLUpdateAuthorizations instead.
+    ///
+    /// # Safety
+    ///
+    /// `tags` must be a valid pointer.
     #[doc(alias = "SecACLSetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -385,6 +426,10 @@ impl SecACL {
     /// Parameter `authorizations`: A pointer to an array of authorization tags.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `authorizations` generic must be of the correct type.
     #[doc(alias = "SecACLUpdateAuthorizations")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

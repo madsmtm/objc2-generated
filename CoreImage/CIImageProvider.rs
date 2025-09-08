@@ -14,6 +14,10 @@ use crate::*;
 impl CIImage {
     extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// - `p` should be of the correct type.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(imageWithImageProvider:size::format:colorSpace:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithImageProvider_size__format_colorSpace_options(
@@ -26,6 +30,10 @@ impl CIImage {
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// - `p` should be of the correct type.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(initWithImageProvider:size::format:colorSpace:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImageProvider_size__format_colorSpace_options(
@@ -52,6 +60,10 @@ pub unsafe trait NSObjectCIImageProvider:
     ClassType + Sized + private_NSObjectCIImageProvider::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `data` must be a valid pointer.
+        /// - `info` should be of the correct type.
         #[unsafe(method(provideImageData:bytesPerRow:origin::size::userInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn provideImageData_bytesPerRow_origin__size__userInfo(

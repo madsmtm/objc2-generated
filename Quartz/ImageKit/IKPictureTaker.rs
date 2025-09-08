@@ -77,6 +77,11 @@ impl IKPictureTaker {
         ///
         /// didEndSelector should have the following signature: - (void)pictureTakerDidEnd:(IKPictureTaker *)pictureTaker returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo;
         /// returnCode value is set to NSOKButton if the user validate, or to NSCancelButton if the user cancel.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginPictureTakerWithDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginPictureTakerWithDelegate_didEndSelector_contextInfo(
@@ -96,6 +101,11 @@ impl IKPictureTaker {
         ///
         /// didEndSelector should have the following signature: - (void)pictureTakerDidEnd:(IKPictureTaker *)pictureTaker returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo;
         /// returnCode value is set to NSOKButton if the user validate, or to NSCancelButton if the user cancel.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginPictureTakerSheetForWindow:withDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginPictureTakerSheetForWindow_withDelegate_didEndSelector_contextInfo(
@@ -116,6 +126,11 @@ impl IKPictureTaker {
         ///
         /// didEndSelector should have the following signature: - (void)pictureTakerDidEnd:(IKPictureTaker *)pictureTaker returnCode:(NSInteger)returnCode contextInfo:(void  *)contextInfo;
         /// returnCode value is set to NSOKButton if the user validate, or to NSCancelButton if the user cancel.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[unsafe(method(popUpRecentsMenuForView:withDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn popUpRecentsMenuForView_withDelegate_didEndSelector_contextInfo(
@@ -131,6 +146,10 @@ impl IKPictureTaker {
         /// Parameter `image`: A valid NSImage.
         ///
         /// The input image is never modified by the PictureTaker.
+        ///
+        /// # Safety
+        ///
+        /// `image` might not allow `None`.
         #[unsafe(method(setInputImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputImage(&self, image: Option<&NSImage>);

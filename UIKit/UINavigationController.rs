@@ -106,6 +106,10 @@ extern_conformance!(
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UINavigationController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `navigation_bar_class` probably has further requirements.
+        /// - `toolbar_class` probably has further requirements.
         #[unsafe(method(initWithNavigationBarClass:toolbarClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
@@ -252,6 +256,9 @@ impl UINavigationController {
             &self,
         ) -> Option<Retained<UIGestureRecognizer>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showViewController:sender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showViewController_sender(

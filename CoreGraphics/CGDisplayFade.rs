@@ -22,6 +22,9 @@ pub type CGDisplayBlendFraction = c_float;
 pub type CGDisplayFadeInterval = c_float;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `config` must be a valid pointer or null.
     #[cfg(all(feature = "CGDisplayConfiguration", feature = "CGError"))]
     pub fn CGConfigureDisplayFadeEffect(
         config: CGDisplayConfigRef,
@@ -37,6 +40,9 @@ extern "C-unwind" {
 pub type CGDisplayReservationInterval = c_float;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `token` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGAcquireDisplayFadeReservation(
         seconds: CGDisplayReservationInterval,

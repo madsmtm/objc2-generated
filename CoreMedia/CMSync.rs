@@ -176,6 +176,11 @@ impl CMClock {
     /// Retrieves the current time from a clock and also the matching time from the clock's reference clock.
     ///
     /// To make practical use of this, you may need to know what the clock's reference clock is.
+    ///
+    /// # Safety
+    ///
+    /// - `clock_time_out` must be a valid pointer.
+    /// - `reference_clock_time_out` must be a valid pointer.
     #[doc(alias = "CMClockGetAnchorTime")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -233,6 +238,9 @@ unsafe impl ConcreteType for CMTimebase {
 }
 
 impl CMTimebase {
+    /// # Safety
+    ///
+    /// `timebase_out` must be a valid pointer.
     #[doc(alias = "CMTimebaseCreateWithMasterClock")]
     #[deprecated]
     #[inline]
@@ -253,6 +261,9 @@ impl CMTimebase {
 
     // TODO: pub fn CMTimebaseCreateWithSourceClock(allocator: Option<&CFAllocator>,source_clock: &CMClock,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
 
+    /// # Safety
+    ///
+    /// `timebase_out` must be a valid pointer.
     #[doc(alias = "CMTimebaseCreateWithMasterTimebase")]
     #[deprecated]
     #[inline]
@@ -503,6 +514,11 @@ impl CMTimebase {
     ///
     /// You can use this function to take a consistent snapshot of the two values,
     /// avoiding possible inconsistencies due to external changes between retrieval of time and rate.
+    ///
+    /// # Safety
+    ///
+    /// - `time_out` must be a valid pointer or null.
+    /// - `rate_out` must be a valid pointer or null.
     #[doc(alias = "CMTimebaseGetTimeAndRate")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -782,6 +798,11 @@ extern "C-unwind" {
     /// CMClockRef clock = CMTimebaseCopyUltimateSourceClock(timebase);
     /// CMSyncGetRelativeRate(timebase, clock).
     /// CFRelease(clock);
+    ///
+    /// # Safety
+    ///
+    /// - `of_clock_or_timebase` should be of the correct type.
+    /// - `relative_to_clock_or_timebase` should be of the correct type.
     pub fn CMSyncGetRelativeRate(
         of_clock_or_timebase: &CMClockOrTimebase,
         relative_to_clock_or_timebase: &CMClockOrTimebase,
@@ -796,6 +817,12 @@ extern "C-unwind" {
     /// If they have different source clocks (or are both clocks), this calculation takes into account the measured
     /// drift between the two clocks, using host time as a pivot.
     /// The rate of a moving timebase relative to a stopped timebase is a NaN.
+    ///
+    /// # Safety
+    ///
+    /// - `out_relative_rate` must be a valid pointer or null.
+    /// - `out_of_clock_or_timebase_anchor_time` must be a valid pointer or null.
+    /// - `out_relative_to_clock_or_timebase_anchor_time` must be a valid pointer or null.
     #[cfg(feature = "CMTime")]
     pub fn CMSyncGetRelativeRateAndAnchorTime(
         of_clock_or_timebase: &CMClockOrTimebase,
@@ -814,6 +841,11 @@ extern "C-unwind" {
     /// If they have different source clocks (or are both clocks), this calculation also compensates
     /// for measured drift between the clocks.
     /// To convert to or from host time, pass CMClockGetHostTimeClock() as the appropriate argument.
+    ///
+    /// # Safety
+    ///
+    /// - `from_clock_or_timebase` should be of the correct type.
+    /// - `to_clock_or_timebase` should be of the correct type.
     #[cfg(feature = "CMTime")]
     pub fn CMSyncConvertTime(
         time: CMTime,
@@ -826,6 +858,11 @@ extern "C-unwind" {
 ///
 /// A timebase can drift relative to another if their ultimate source clocks that can drift relative
 /// to each other.
+///
+/// # Safety
+///
+/// - `clock_or_timebase1` should be of the correct type.
+/// - `clock_or_timebase2` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn CMSyncMightDrift(
     clock_or_timebase1: &CMClockOrTimebase,
@@ -849,6 +886,10 @@ extern "C-unwind" {
     /// CMClockOrTimebaseRef source = CMTimebaseCopySource(timebase);
     /// CMSyncGetTime(source);
     /// CFRelease(source);
+    ///
+    /// # Safety
+    ///
+    /// `clock_or_timebase` should be of the correct type.
     #[cfg(feature = "CMTime")]
     pub fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime;
 }

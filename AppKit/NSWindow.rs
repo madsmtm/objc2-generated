@@ -789,6 +789,9 @@ impl NSWindow {
         pub fn setStyleMask(&self, style_mask: NSWindowStyleMask);
 
         #[cfg(all(feature = "NSText", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(fieldEditor:forObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fieldEditor_forObject(
@@ -797,6 +800,9 @@ impl NSWindow {
             object: Option<&AnyObject>,
         ) -> Option<Retained<NSText>>;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(endEditingFor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endEditingFor(&self, object: Option<&AnyObject>);
@@ -965,6 +971,9 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub fn miniaturize(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(deminiaturize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deminiaturize(&self, sender: Option<&AnyObject>);
@@ -981,6 +990,10 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub fn isMiniaturized(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `object` should be of the correct type.
         #[unsafe(method(tryToPerform:with:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
@@ -1086,6 +1099,9 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub fn orderFront(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderBack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderBack(&self, sender: Option<&AnyObject>);
@@ -1260,14 +1276,23 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub fn backingScaleFactor(&self) -> CGFloat;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(performClose:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performClose(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(performMiniaturize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performMiniaturize(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(performZoom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performZoom(&self, sender: Option<&AnyObject>);
@@ -1280,6 +1305,9 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(print:))]
         #[unsafe(method_family = none)]
         pub unsafe fn print(&self, sender: Option<&AnyObject>);
@@ -1684,6 +1712,11 @@ impl NSWindow {
         /// Setter for [`appearanceSource`][Self::appearanceSource].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// - `appearance_source` must implement NSAppearanceCustomization.
+        /// - `appearance_source` might not allow `None`.
         #[unsafe(method(setAppearanceSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAppearanceSource(&self, appearance_source: Option<&NSObject>);
@@ -1862,10 +1895,16 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn setToolbar(&self, toolbar: Option<&NSToolbar>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleToolbarShown:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleToolbarShown(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(runToolbarCustomizationPalette:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runToolbarCustomizationPalette(&self, sender: Option<&AnyObject>);
@@ -1936,23 +1975,39 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub fn selectNextTab(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectPreviousTab:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectPreviousTab(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(moveTabToNewWindow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveTabToNewWindow(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(mergeAllWindows:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mergeAllWindows(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleTabBar:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleTabBar(&self, sender: Option<&AnyObject>);
 
         /// Toggle the Tab Picker / Tab Overview UI which is invoked via "Show All Tabs". Performs the toggle in an animated fashion. Use `tabGroup.isOverviewVisible` to find out if it is visible or not at a given time.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleTabOverview:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleTabOverview(&self, sender: Option<&AnyObject>);
@@ -2200,6 +2255,9 @@ impl NSWindow {
         ) -> Retained<NSDraggingSession>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSPasteboard"))]
+        /// # Safety
+        ///
+        /// `source_obj` should be of the correct type.
         #[deprecated = "Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead."]
         #[unsafe(method(dragImage:at:offset:event:pasteboard:source:slideBack:))]
         #[unsafe(method_family = none)]
@@ -2231,6 +2289,9 @@ impl NSWindow {
     extern_methods!(
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(
@@ -2251,6 +2312,9 @@ extern_protocol!(
         unsafe fn windowShouldClose(&self, sender: &NSWindow) -> bool;
 
         #[cfg(feature = "NSResponder")]
+        /// # Safety
+        ///
+        /// `client` should be of the correct type.
         #[optional]
         #[unsafe(method(windowWillReturnFieldEditor:toObject:))]
         #[unsafe(method_family = none)]
@@ -2969,6 +3033,9 @@ impl NSWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsResizeIndicator(&self, shows_resize_indicator: bool);
 
+        /// # Safety
+        ///
+        /// `window_ref` must be a valid pointer.
         #[deprecated = "This method should not be used."]
         #[unsafe(method(initWithWindowRef:))]
         #[unsafe(method_family = init)]

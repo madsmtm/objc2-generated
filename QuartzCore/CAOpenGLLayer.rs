@@ -65,6 +65,11 @@ impl CAOpenGLLayer {
             feature = "objc2-open-gl"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// - `ctx` must be a valid pointer.
+        /// - `pf` must be a valid pointer.
+        /// - `ts` must be a valid pointer or null.
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(canDrawInCGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
@@ -82,6 +87,11 @@ impl CAOpenGLLayer {
             feature = "objc2-open-gl"
         ))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// - `ctx` must be a valid pointer.
+        /// - `pf` must be a valid pointer.
+        /// - `ts` must be a valid pointer or null.
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(drawInCGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
@@ -102,6 +112,9 @@ impl CAOpenGLLayer {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `pf` must be a valid pointer.
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(releaseCGLPixelFormat:))]
         #[unsafe(method_family = none)]
@@ -109,6 +122,9 @@ impl CAOpenGLLayer {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `pf` must be a valid pointer.
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(copyCGLContextForPixelFormat:))]
         #[unsafe(method_family = none)]
@@ -116,6 +132,9 @@ impl CAOpenGLLayer {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `ctx` must be a valid pointer.
         #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(releaseCGLContext:))]
         #[unsafe(method_family = none)]
@@ -163,6 +182,9 @@ impl CAOpenGLLayer {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;

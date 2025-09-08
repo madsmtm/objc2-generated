@@ -124,6 +124,10 @@ impl UITableViewController {
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView", feature = "UIView"))]
         /// Setter for [`tableView`][Self::tableView].
+        ///
+        /// # Safety
+        ///
+        /// `table_view` might not allow `None`.
         #[unsafe(method(setTableView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTableView(&self, table_view: Option<&UITableView>);

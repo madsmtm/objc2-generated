@@ -385,6 +385,9 @@ unsafe impl ConcreteType for ColorSyncProfile {
 }
 
 impl ColorSyncProfile {
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileCreate")]
     #[inline]
     pub unsafe fn new(
@@ -401,6 +404,9 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -440,6 +446,9 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `profile_id` should be of the correct type.
     #[doc(alias = "ColorSyncProfileCreateDeviceProfile")]
     #[inline]
     pub unsafe fn new_device_profile(
@@ -485,6 +494,10 @@ impl ColorSyncMutableProfile {
 }
 
 impl ColorSyncProfile {
+    /// # Safety
+    ///
+    /// - `profile_info` generic must be of the correct type.
+    /// - `options` generics must be of the correct type.
     #[doc(alias = "ColorSyncProfileCreateLink")]
     #[inline]
     pub unsafe fn new_link(
@@ -501,6 +514,10 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `errors` must be a valid pointer or null.
+    /// - `warnings` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileVerify")]
     #[inline]
     pub unsafe fn verify(&self, errors: *mut *mut CFError, warnings: *mut *mut CFError) -> bool {
@@ -550,6 +567,9 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsHLGBased(self) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileEstimateGammaWithDisplayID")]
     #[inline]
     pub unsafe fn estimate_gamma_with_display_id(
@@ -565,6 +585,9 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileEstimateGammaWithDisplayID(display_id, error) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileEstimateGamma")]
     #[inline]
     pub unsafe fn estimate_gamma(&self, error: *mut *mut CFError) -> c_float {
@@ -577,6 +600,17 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileEstimateGamma(self, error) }
     }
 
+    /// # Safety
+    ///
+    /// - `red_min` must be a valid pointer.
+    /// - `red_max` must be a valid pointer.
+    /// - `red_gamma` must be a valid pointer.
+    /// - `green_min` must be a valid pointer.
+    /// - `green_max` must be a valid pointer.
+    /// - `green_gamma` must be a valid pointer.
+    /// - `blue_min` must be a valid pointer.
+    /// - `blue_max` must be a valid pointer.
+    /// - `blue_gamma` must be a valid pointer.
     #[doc(alias = "ColorSyncProfileGetDisplayTransferFormulaFromVCGT")]
     #[inline]
     pub unsafe fn display_transfer_formula_from_vcgt(
@@ -621,6 +655,9 @@ impl ColorSyncProfile {
         }
     }
 
+    /// # Safety
+    ///
+    /// `n_samples_per_channel` must be a valid pointer.
     #[doc(alias = "ColorSyncProfileCreateDisplayTransferTablesFromVCGT")]
     #[inline]
     pub unsafe fn display_transfer_tables_from_vcgt(
@@ -667,6 +704,9 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileGetMD5(self) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileCopyData")]
     #[inline]
     pub unsafe fn data(&self, error: *mut *mut CFError) -> CFRetained<CFData> {
@@ -682,6 +722,9 @@ impl ColorSyncProfile {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileGetURL")]
     #[inline]
     pub unsafe fn url(&self, error: *mut *mut CFError) -> CFRetained<CFURL> {
@@ -803,6 +846,12 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `call_back` must be implemented correctly.
+    /// - `seed` must be a valid pointer or null.
+    /// - `user_info` must be a valid pointer or null.
+    /// - `error` must be a valid pointer or null.
     pub fn ColorSyncIterateInstalledProfiles(
         call_back: ColorSyncProfileIterateCallback,
         seed: *mut u32,
@@ -817,6 +866,13 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `call_back` must be implemented correctly.
+    /// - `seed` must be a valid pointer or null.
+    /// - `user_info` must be a valid pointer or null.
+    /// - `options` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     pub fn ColorSyncIterateInstalledProfilesWithOptions(
         call_back: ColorSyncProfileIterateCallback,
         seed: *mut u32,
@@ -827,6 +883,9 @@ extern "C-unwind" {
 }
 
 impl ColorSyncProfile {
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileInstall")]
     #[inline]
     pub unsafe fn install(
@@ -846,6 +905,9 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileInstall(self, domain, subpath, error) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "ColorSyncProfileUninstall")]
     #[inline]
     pub unsafe fn uninstall(&self, error: *mut *mut CFError) -> bool {

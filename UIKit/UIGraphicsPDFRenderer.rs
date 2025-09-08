@@ -47,6 +47,10 @@ impl UIGraphicsPDFRendererFormat {
         /// Setter for [`documentInfo`][Self::documentInfo].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `document_info` generic should be of the correct type.
         #[unsafe(method(setDocumentInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocumentInfo(&self, document_info: &NSDictionary<NSString, AnyObject>);
@@ -108,6 +112,9 @@ impl UIGraphicsPDFRendererContext {
         pub unsafe fn beginPage(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `page_info` generic should be of the correct type.
         #[unsafe(method(beginPageWithBounds:pageInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginPageWithBounds_pageInfo(
@@ -173,6 +180,9 @@ impl UIGraphicsPDFRenderer {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `actions` must be a valid pointer.
         #[unsafe(method(writePDFToURL:withActions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writePDFToURL_withActions_error(
@@ -182,6 +192,9 @@ impl UIGraphicsPDFRenderer {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `actions` must be a valid pointer.
         #[unsafe(method(PDFDataWithActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn PDFDataWithActions(

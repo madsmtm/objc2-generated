@@ -161,10 +161,16 @@ impl UIActivity {
         #[unsafe(method_family = none)]
         pub unsafe fn activityImage(&self) -> Option<Retained<UIImage>>;
 
+        /// # Safety
+        ///
+        /// `activity_items` generic should be of the correct type.
         #[unsafe(method(canPerformWithActivityItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canPerformWithActivityItems(&self, activity_items: &NSArray) -> bool;
 
+        /// # Safety
+        ///
+        /// `activity_items` generic should be of the correct type.
         #[unsafe(method(prepareWithActivityItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareWithActivityItems(&self, activity_items: &NSArray);

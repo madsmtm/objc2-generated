@@ -80,6 +80,9 @@ impl CGImageDestination {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGImageDestinationCreateWithDataConsumer")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -102,6 +105,9 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGImageDestinationCreateWithData")]
     #[inline]
     pub unsafe fn with_data(
@@ -122,6 +128,9 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGImageDestinationCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -142,6 +151,9 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `properties` generics must be of the correct type.
     #[doc(alias = "CGImageDestinationSetProperties")]
     #[inline]
     pub unsafe fn set_properties(&self, properties: Option<&CFDictionary>) {
@@ -154,6 +166,9 @@ impl CGImageDestination {
         unsafe { CGImageDestinationSetProperties(self, properties) }
     }
 
+    /// # Safety
+    ///
+    /// `properties` generics must be of the correct type.
     #[doc(alias = "CGImageDestinationAddImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -168,6 +183,9 @@ impl CGImageDestination {
         unsafe { CGImageDestinationAddImage(self, image, properties) }
     }
 
+    /// # Safety
+    ///
+    /// `properties` generics must be of the correct type.
     #[doc(alias = "CGImageDestinationAddImageFromSource")]
     #[cfg(feature = "CGImageSource")]
     #[inline]
@@ -197,6 +215,9 @@ impl CGImageDestination {
         unsafe { CGImageDestinationFinalize(self) }
     }
 
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CGImageDestinationAddImageAndMetadata")]
     #[cfg(all(feature = "CGImageMetadata", feature = "objc2-core-graphics"))]
     #[inline]
@@ -257,6 +278,10 @@ extern "C" {
 }
 
 impl CGImageDestination {
+    /// # Safety
+    ///
+    /// - `options` generics must be of the correct type.
+    /// - `err` must be a valid pointer or null.
     #[doc(alias = "CGImageDestinationCopyImageSource")]
     #[cfg(feature = "CGImageSource")]
     #[inline]
@@ -277,6 +302,9 @@ impl CGImageDestination {
         unsafe { CGImageDestinationCopyImageSource(self, isrc, options, err) }
     }
 
+    /// # Safety
+    ///
+    /// `auxiliary_data_info_dictionary` generics must be of the correct type.
     #[doc(alias = "CGImageDestinationAddAuxiliaryDataInfo")]
     #[inline]
     pub unsafe fn add_auxiliary_data_info(

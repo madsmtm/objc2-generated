@@ -22,6 +22,11 @@ extern_protocol!(
         ///
         /// Parameter `delta`: The amount that the input has changed since the last time
         /// `deltaDidChangeHandler`fired.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(deltaDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn deltaDidChangeHandler(

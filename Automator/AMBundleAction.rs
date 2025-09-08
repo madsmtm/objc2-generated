@@ -69,6 +69,10 @@ impl AMBundleAction {
         ) -> Option<Retained<NSMutableDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`parameters`][Self::parameters].
+        ///
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(setParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParameters(
@@ -82,6 +86,9 @@ impl AMBundleAction {
 #[cfg(feature = "AMAction")]
 impl AMBundleAction {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithDefinition:fromArchive:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefinition_fromArchive(

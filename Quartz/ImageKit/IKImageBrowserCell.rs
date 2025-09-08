@@ -167,6 +167,10 @@ impl IKImageBrowserCell {
         /// Provides the receiver�s layer for the given type. The default is nil.
         ///
         /// Subclasses can override this method to add a layer in the background, foreground... of the cell (see possible types above).
+        ///
+        /// # Safety
+        ///
+        /// `type` might not allow `None`.
         #[unsafe(method(layerForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerForType(&self, r#type: Option<&NSString>) -> Option<Retained<CALayer>>;

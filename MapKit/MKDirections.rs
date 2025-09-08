@@ -38,6 +38,9 @@ impl MKDirections {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(calculateDirectionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateDirectionsWithCompletionHandler(
@@ -46,6 +49,9 @@ impl MKDirections {
         );
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(calculateETAWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateETAWithCompletionHandler(&self, completion_handler: MKETAHandler);

@@ -178,6 +178,10 @@ impl CKSyncEngine {
         /// Fetching changes from the server might result in some events being posted to your delegate via `handleEvent`.
         /// For example, you might receive a `CKSyncEngineWillFetchChangesEvent` or `CKSyncEngineWillFetchChangesEvent`.
         /// This will not complete until all the relevant events have been handled by your delegate.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchChangesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchChangesWithCompletionHandler(
@@ -188,6 +192,10 @@ impl CKSyncEngine {
         #[cfg(feature = "block2")]
         /// Fetches changes from the server with the specified options.
         /// See ``fetchChangesWithCompletionHandler:`` for more information.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(fetchChangesWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchChangesWithOptions_completionHandler(
@@ -216,6 +224,10 @@ impl CKSyncEngine {
         #[cfg(feature = "block2")]
         /// Sends pending changes to the server with the specified options.
         /// See discussion in ``sendChangesWithCompletionHandler:`` for more information.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(sendChangesWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendChangesWithOptions_completionHandler(
@@ -228,6 +240,10 @@ impl CKSyncEngine {
         /// Cancels any currently executing or pending sync operations.
         ///
         /// Note that cancellation does not happen synchronously, and it's possible some in-flight operations will succeed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(cancelOperationsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancelOperationsWithCompletionHandler(

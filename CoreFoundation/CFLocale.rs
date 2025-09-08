@@ -287,6 +287,10 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `dictionary` generics must be of the correct type.
+    /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFLocaleCreateLocaleIdentifierFromComponents")]
     #[cfg(feature = "CFDictionary")]
     #[inline]

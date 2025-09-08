@@ -134,6 +134,9 @@ impl SKNode {
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `classes` generic probably has further requirements.
         #[unsafe(method(nodeWithFileNamed:securelyWithClasses:andError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
@@ -327,6 +330,10 @@ impl SKNode {
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;
 
         /// Setter for [`userData`][Self::userData].
+        ///
+        /// # Safety
+        ///
+        /// `user_data` generic should be of the correct type.
         #[unsafe(method(setUserData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserData(&self, user_data: Option<&NSMutableDictionary>);

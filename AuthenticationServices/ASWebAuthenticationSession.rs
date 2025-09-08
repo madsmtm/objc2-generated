@@ -90,6 +90,10 @@ impl ASWebAuthenticationSession {
         /// Parameter `callbackURLScheme`: the custom URL scheme that the app expects in the callback URL.
         ///
         /// Parameter `completionHandler`: the completion handler which is called when the session is completed successfully or canceled by user.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use initWithURL:callback:completionHandler: instead"]
         #[unsafe(method(initWithURL:callbackURLScheme:completionHandler:))]
         #[unsafe(method_family = init)]
@@ -101,6 +105,9 @@ impl ASWebAuthenticationSession {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "ASWebAuthenticationSessionCallback", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(initWithURL:callback:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_callback_completionHandler(

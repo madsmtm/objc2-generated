@@ -286,6 +286,9 @@ impl NSSliderCell {
 #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
 impl NSSliderCell {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `cell` might not allow `None`.
         #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[unsafe(method(setTitleCell:))]
         #[unsafe(method_family = none)]
@@ -297,6 +300,9 @@ impl NSSliderCell {
         pub unsafe fn titleCell(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSColor")]
+        /// # Safety
+        ///
+        /// `new_color` might not allow `None`.
         #[deprecated = "-setTitleColor: had no effect since 10.0"]
         #[unsafe(method(setTitleColor:))]
         #[unsafe(method_family = none)]
@@ -309,6 +315,9 @@ impl NSSliderCell {
         pub unsafe fn titleColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSFont")]
+        /// # Safety
+        ///
+        /// `font_obj` might not allow `None`.
         #[deprecated = "-setTitleFont: had no effect since 10.0"]
         #[unsafe(method(setTitleFont:))]
         #[unsafe(method_family = none)]
@@ -325,6 +334,9 @@ impl NSSliderCell {
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `string` might not allow `None`.
         #[deprecated = "-setTitle: had no effect since 10.0"]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
@@ -337,6 +349,9 @@ impl NSSliderCell {
         pub unsafe fn setKnobThickness(&self, thickness: CGFloat);
 
         #[cfg(feature = "NSImage")]
+        /// # Safety
+        ///
+        /// `background_image` might not allow `None`.
         #[deprecated = "-setImage: had no effect since 10.0"]
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]

@@ -47,6 +47,10 @@ impl HKHeartbeatSeriesQuery {
         /// there was a gap in data collection before the current heartbeat, meaning that one or more
         /// heartbeats may have occured since the previous heartbeat in the series. Once done is YES,
         /// or stopQuery called, the query is complete and no more calls to the handler will be made.
+        ///
+        /// # Safety
+        ///
+        /// `data_handler` block must be sendable.
         #[unsafe(method(initWithHeartbeatSeries:dataHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHeartbeatSeries_dataHandler(

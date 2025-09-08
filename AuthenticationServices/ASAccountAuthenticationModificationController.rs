@@ -13,6 +13,9 @@ extern_protocol!(
         NSObjectProtocol
     {
         #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:))]
         #[unsafe(method_family = none)]

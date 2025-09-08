@@ -520,6 +520,9 @@ impl UISplitViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryEdge(&self, primary_edge: UISplitViewControllerPrimaryEdge);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showViewController:sender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showViewController_sender(
@@ -528,6 +531,9 @@ impl UISplitViewController {
             sender: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showDetailViewController:sender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showDetailViewController_sender(
@@ -587,6 +593,9 @@ extern_protocol!(
         ) -> UISplitViewControllerDisplayMode;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(splitViewController:showViewController:sender:))]
         #[unsafe(method_family = none)]
@@ -598,6 +607,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(splitViewController:showDetailViewController:sender:))]
         #[unsafe(method_family = none)]

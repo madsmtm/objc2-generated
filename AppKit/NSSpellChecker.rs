@@ -141,6 +141,9 @@ impl NSSpellChecker {
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueSpellDocumentTag() -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `word_count` must be a valid pointer or null.
         #[unsafe(method(checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount(
@@ -181,6 +184,9 @@ impl NSSpellChecker {
             details: Option<&mut Option<Retained<NSArray<NSDictionary<NSString, AnyObject>>>>>,
         ) -> NSRange;
 
+        /// # Safety
+        ///
+        /// `word_count` must be a valid pointer or null.
         #[unsafe(method(checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkString_range_types_options_inSpellDocumentWithTag_orthography_wordCount(
@@ -195,6 +201,9 @@ impl NSSpellChecker {
         ) -> Retained<NSArray<NSTextCheckingResult>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestCheckingOfString_range_types_options_inSpellDocumentWithTag_completionHandler(
@@ -217,6 +226,9 @@ impl NSSpellChecker {
         ) -> NSInteger;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestCandidatesForSelectedRange_inString_types_options_inSpellDocumentWithTag_completionHandler(
@@ -232,6 +244,9 @@ impl NSSpellChecker {
         ) -> NSInteger;
 
         #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(menuForResult:string:options:atLocation:inView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn menuForResult_string_options_atLocation_inView(
@@ -260,6 +275,9 @@ impl NSSpellChecker {
         #[unsafe(method_family = none)]
         pub unsafe fn updateSpellingPanelWithMisspelledWord(&self, word: &NSString);
 
+        /// # Safety
+        ///
+        /// `detail` generic should be of the correct type.
         #[unsafe(method(updateSpellingPanelWithGrammarString:detail:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateSpellingPanelWithGrammarString_detail(
@@ -573,11 +591,17 @@ extern "C" {
 /// NSDeprecated.
 impl NSSpellChecker {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `word` might not allow `None`.
         #[deprecated = "Use -guessesForWordRange:inString:language:inSpellDocumentWithTag instead"]
         #[unsafe(method(guessesForWord:))]
         #[unsafe(method_family = none)]
         pub unsafe fn guessesForWord(&self, word: Option<&NSString>) -> Option<Retained<NSArray>>;
 
+        /// # Safety
+        ///
+        /// `word` might not allow `None`.
         #[deprecated]
         #[unsafe(method(forgetWord:))]
         #[unsafe(method_family = none)]

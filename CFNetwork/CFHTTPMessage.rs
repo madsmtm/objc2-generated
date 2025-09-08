@@ -256,6 +256,9 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageSetHeaderFieldValue(self, header_field, value) }
     }
 
+    /// # Safety
+    ///
+    /// `new_bytes` must be a valid pointer.
     #[doc(alias = "CFHTTPMessageAppendBytes")]
     #[inline]
     pub unsafe fn append_bytes(&self, new_bytes: NonNull<u8>, num_bytes: CFIndex) -> bool {

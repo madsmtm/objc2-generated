@@ -210,6 +210,9 @@ impl _XCTestCaseInterruptionException {
 /// Methods declared on superclass `NSException`.
 impl _XCTestCaseInterruptionException {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `a_user_info` generic should be of the correct type.
         #[unsafe(method(initWithName:reason:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_reason_userInfo(
@@ -464,10 +467,16 @@ impl XCTestCase {
             invocation: Option<&NSInvocation>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(testCaseWithSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn testCaseWithSelector(selector: Sel) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(initWithSelector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSelector(this: Allocated<Self>, selector: Sel) -> Retained<Self>;
@@ -553,6 +562,10 @@ impl XCTestCase {
         /// Parameter `block`: An async block to enqueue for future execution. The completion handler
         /// passed to this block must be invoked for test execution to continue. Invoking the completion
         /// handler with a non-nil NSError will cause an XCTIssue to be recorded representing the error.
+        ///
+        /// # Safety
+        ///
+        /// `block` block's argument block's argument must be a valid pointer or null.
         #[unsafe(method(addAsyncTeardownBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAsyncTeardownBlock(
@@ -1108,22 +1121,39 @@ impl XCTestObserver {
         #[unsafe(method_family = none)]
         pub unsafe fn stopObserving(&self);
 
+        /// # Safety
+        ///
+        /// `test_run` might not allow `None`.
         #[unsafe(method(testSuiteDidStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn testSuiteDidStart(&self, test_run: Option<&XCTestRun>);
 
+        /// # Safety
+        ///
+        /// `test_run` might not allow `None`.
         #[unsafe(method(testSuiteDidStop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn testSuiteDidStop(&self, test_run: Option<&XCTestRun>);
 
+        /// # Safety
+        ///
+        /// `test_run` might not allow `None`.
         #[unsafe(method(testCaseDidStart:))]
         #[unsafe(method_family = none)]
         pub unsafe fn testCaseDidStart(&self, test_run: Option<&XCTestRun>);
 
+        /// # Safety
+        ///
+        /// `test_run` might not allow `None`.
         #[unsafe(method(testCaseDidStop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn testCaseDidStop(&self, test_run: Option<&XCTestRun>);
 
+        /// # Safety
+        ///
+        /// - `test_run` might not allow `None`.
+        /// - `description` might not allow `None`.
+        /// - `file_path` might not allow `None`.
         #[unsafe(method(testCaseDidFail:withDescription:inFile:atLine:))]
         #[unsafe(method_family = none)]
         pub unsafe fn testCaseDidFail_withDescription_inFile_atLine(
@@ -1554,6 +1584,9 @@ impl _XCTSkipFailureException {
 /// Methods declared on superclass `NSException`.
 impl _XCTSkipFailureException {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `a_user_info` generic should be of the correct type.
         #[unsafe(method(initWithName:reason:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_reason_userInfo(
@@ -1636,6 +1669,9 @@ impl XCTestSuite {
         #[unsafe(method_family = none)]
         pub unsafe fn testSuiteForTestCaseWithName(name: &NSString) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `test_case_class` probably has further requirements.
         #[unsafe(method(testSuiteForTestCaseClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn testSuiteForTestCaseClass(test_case_class: &AnyClass) -> Retained<Self>;
@@ -1826,6 +1862,9 @@ impl XCTAttachment {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(initWithUniformTypeIdentifier:name:payload:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUniformTypeIdentifier_name_payload_userInfo(
@@ -1836,6 +1875,9 @@ impl XCTAttachment {
             user_info: Option<&NSDictionary>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(attachmentWithUniformTypeIdentifier:name:payload:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachmentWithUniformTypeIdentifier_name_payload_userInfo(
@@ -1871,6 +1913,10 @@ impl XCTAttachment {
         /// Setter for [`userInfo`][Self::userInfo].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
@@ -1946,6 +1992,10 @@ impl XCTAttachment {
         ) -> Retained<Self>;
 
         /// Creates an attachment with an object that can be encoded into an XML property list.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(attachmentWithPlistObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachmentWithPlistObject(object: &AnyObject) -> Retained<Self>;
@@ -2157,6 +2207,10 @@ impl XCTExpectedFailureOptions {
         /// failure block should be matched to the expected failure. Issues that are not matched to an expected
         /// failure will be recorded as normal issues (real test failures). By default the filter is nil and
         /// all issues are matched.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(issueMatcher))]
         #[unsafe(method_family = none)]
         pub unsafe fn issueMatcher(
@@ -2757,6 +2811,10 @@ impl XCTPerformanceMeasurement {
         /// Parameter `displayName`: A human-readable name for this measurement, such as "Wall Clock Time".
         ///
         /// Parameter `value`: The value of the measurement.
+        ///
+        /// # Safety
+        ///
+        /// `value` generic should be of the correct type.
         #[unsafe(method(initWithIdentifier:displayName:value:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_displayName_value(
@@ -2796,6 +2854,10 @@ impl XCTPerformanceMeasurement {
         /// Parameter `value`: The value of the measurement.
         ///
         /// Parameter `polarity`: An enum value representing in which direction measurements should be compared against their baselines.
+        ///
+        /// # Safety
+        ///
+        /// `value` generic should be of the correct type.
         #[unsafe(method(initWithIdentifier:displayName:value:polarity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_displayName_value_polarity(
@@ -3945,11 +4007,19 @@ impl XCTestExpectation {
         /// inverted.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(expectedFulfillmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedFulfillmentCount(&self) -> NSUInteger;
 
         /// Setter for [`expectedFulfillmentCount`][Self::expectedFulfillmentCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setExpectedFulfillmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpectedFulfillmentCount(&self, expected_fulfillment_count: NSUInteger);
@@ -3959,11 +4029,19 @@ impl XCTestExpectation {
         /// but is not enabled for expectations created using XCTestExpectation initializers.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(assertForOverFulfill))]
         #[unsafe(method_family = none)]
         pub unsafe fn assertForOverFulfill(&self) -> bool;
 
         /// Setter for [`assertForOverFulfill`][Self::assertForOverFulfill].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAssertForOverFulfill:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAssertForOverFulfill(&self, assert_for_over_fulfill: bool);
@@ -4039,6 +4117,11 @@ impl XCTKVOExpectation {
 
         /// Initializes an expectation that is fulfilled when a key value coding compliant change is made such
         /// that the specified key path of the observed object has the expected value.
+        ///
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `expected_value` should be of the correct type.
         #[unsafe(method(initWithKeyPath:object:expectedValue:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyPath_object_expectedValue_options(
@@ -4055,6 +4138,11 @@ impl XCTKVOExpectation {
         /// checked immediately. The options also include NSKeyValueObservingOptionNew and NSKeyValueObservingOptionOld,
         /// so if a handler is used the change dictionary passed to it will contain NSKeyValueChangeNewKey and
         /// NSKeyValueChangeOldKey entries.
+        ///
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `expected_value` should be of the correct type.
         #[unsafe(method(initWithKeyPath:object:expectedValue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyPath_object_expectedValue(
@@ -4070,6 +4158,10 @@ impl XCTKVOExpectation {
         /// designated initializer. The options do include NSKeyValueObservingOptionNew and NSKeyValueObservingOptionOld,
         /// so if a handler is used the change dictionary passed to it will contain NSKeyValueChangeNewKey and
         /// NSKeyValueChangeOldKey entries.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(initWithKeyPath:object:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyPath_object(
@@ -4101,6 +4193,10 @@ impl XCTKVOExpectation {
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation of the change to the value
         /// of the object/key path. If a handler is set, expectedValue will be ignored.
+        ///
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> XCKeyValueObservingExpectationHandler;
@@ -4109,6 +4205,10 @@ impl XCTKVOExpectation {
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCKeyValueObservingExpectationHandler);
@@ -4161,6 +4261,10 @@ impl XCTNSNotificationExpectation {
 
         /// Initializes an expectation that waits for an NSNotification to be posted by an optional object from
         /// a given notification center.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(initWithName:object:notificationCenter:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_object_notificationCenter(
@@ -4172,6 +4276,10 @@ impl XCTNSNotificationExpectation {
 
         /// Initializes an expectation that waits for an NSNotification to be posted by an optional object from
         /// the default notification center.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(initWithName:object:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_object(
@@ -4207,6 +4315,10 @@ impl XCTNSNotificationExpectation {
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation of received notifications
         /// matching the specified object and notification center.
+        ///
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> XCNotificationExpectationHandler;
@@ -4215,6 +4327,10 @@ impl XCTNSNotificationExpectation {
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCNotificationExpectationHandler);
@@ -4270,6 +4386,10 @@ impl XCTNSPredicateExpectation {
         /// `fulfillment(of:)`rather than
         /// `wait(for:),`XCTest evaluates
         /// _predicate_on the main actor.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(initWithPredicate:object:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPredicate_object(
@@ -4290,6 +4410,10 @@ impl XCTNSPredicateExpectation {
 
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation of predicate and its object.
+        ///
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> XCPredicateExpectationHandler;
@@ -4298,6 +4422,10 @@ impl XCTNSPredicateExpectation {
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCPredicateExpectationHandler);
@@ -4307,11 +4435,19 @@ impl XCTNSPredicateExpectation {
         /// Setting expectedFulfillmentCount has no impact on fulfillment of the expectation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(expectedFulfillmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedFulfillmentCount(&self) -> NSUInteger;
 
         /// Setter for [`expectedFulfillmentCount`][Self::expectedFulfillmentCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setExpectedFulfillmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExpectedFulfillmentCount(&self, expected_fulfillment_count: NSUInteger);
@@ -4365,6 +4501,10 @@ impl XCTestCase {
         /// -waitForExpectationsWithTimeout:handler: runs the run loop while handling events until all expectations
         /// are fulfilled or the timeout is reached. Clients should not manipulate the run
         /// loop while using this API.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(waitForExpectationsWithTimeout:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn waitForExpectationsWithTimeout_handler(
@@ -4487,6 +4627,11 @@ impl XCTestCase {
         ///
         ///
         /// Returns: Creates and returns an expectation associated with the test case.
+        ///
+        /// # Safety
+        ///
+        /// - `object_to_observe` should be of the correct type.
+        /// - `expected_value` should be of the correct type.
         #[unsafe(method(keyValueObservingExpectationForObject:keyPath:expectedValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyValueObservingExpectationForObject_keyPath_expectedValue(
@@ -4514,6 +4659,10 @@ impl XCTestCase {
         ///
         ///
         /// Returns: Creates and returns an expectation associated with the test case.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(keyValueObservingExpectationForObject:keyPath:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyValueObservingExpectationForObject_keyPath_handler(
@@ -4540,6 +4689,10 @@ impl XCTestCase {
         ///
         ///
         /// Returns: Creates and returns an expectation associated with the test case.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(expectationForNotification:object:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForNotification_object_handler(
@@ -4569,6 +4722,10 @@ impl XCTestCase {
         ///
         ///
         /// Returns: Creates and returns an expectation associated with the test case.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(expectationForNotification:object:notificationCenter:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForNotification_object_notificationCenter_handler(
@@ -4589,6 +4746,10 @@ impl XCTestCase {
         /// than
         /// `wait(for:),`XCTest evaluates
         /// _predicate_on the main actor.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(expectationForPredicate:evaluatedWithObject:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForPredicate_evaluatedWithObject_handler(
@@ -4662,6 +4823,10 @@ impl XCTDarwinNotificationExpectation {
 
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation when the notification is posted.
+        ///
+        /// # Safety
+        ///
+        /// The returned block must be sendable.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> XCTDarwinNotificationExpectationHandler;
@@ -4670,6 +4835,10 @@ impl XCTDarwinNotificationExpectation {
         /// Setter for [`handler`][Self::handler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCTDarwinNotificationExpectationHandler);

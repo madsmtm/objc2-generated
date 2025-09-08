@@ -69,6 +69,10 @@ impl ARImageAnchor {
         /// Reference to the detected image.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(referenceImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceImage(&self) -> Retained<ARReferenceImage>;
@@ -81,6 +85,10 @@ impl ARImageAnchor {
         /// correct the transform's translation. Default value is 1.0.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(estimatedScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedScaleFactor(&self) -> CGFloat;

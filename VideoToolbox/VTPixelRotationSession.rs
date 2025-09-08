@@ -43,6 +43,10 @@ impl VTPixelRotationSession {
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
     ///
     /// Parameter `pixelRotationSessionOut`: Points to a variable to receive the new pixel rotation session.
+    ///
+    /// # Safety
+    ///
+    /// `pixel_rotation_session_out` must be a valid pointer.
     #[doc(alias = "VTPixelRotationSessionCreate")]
     #[inline]
     pub unsafe fn create(

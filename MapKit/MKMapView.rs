@@ -592,6 +592,9 @@ impl MKMapView {
             annotation: &ProtocolObject<dyn MKAnnotation>,
         ) -> Retained<MKAnnotationView>;
 
+        /// # Safety
+        ///
+        /// `view_class` probably has further requirements.
         #[unsafe(method(registerClass:forAnnotationViewWithReuseIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forAnnotationViewWithReuseIdentifier(

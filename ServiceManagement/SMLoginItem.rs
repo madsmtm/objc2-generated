@@ -21,6 +21,10 @@ use crate::*;
 ///
 ///
 /// Returns: Returns true if the requested change has taken effect.
+///
+/// # Safety
+///
+/// `identifier` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]

@@ -96,6 +96,11 @@ impl CIContext {
     extern_methods!(
         #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-open-gl"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// - `cglctx` must be a valid pointer.
+        /// - `pixel_format` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(contextWithCGLContext:pixelFormat:colorSpace:options:))]
         #[unsafe(method_family = none)]
@@ -108,6 +113,11 @@ impl CIContext {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// - `cglctx` must be a valid pointer.
+        /// - `pixel_format` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(contextWithCGLContext:pixelFormat:options:))]
         #[unsafe(method_family = none)]
@@ -118,6 +128,9 @@ impl CIContext {
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(contextWithCGContext:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextWithCGContext_options(
@@ -125,6 +138,9 @@ impl CIContext {
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
         ) -> Retained<CIContext>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(contextWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextWithOptions(
@@ -135,6 +151,9 @@ impl CIContext {
         #[unsafe(method_family = none)]
         pub unsafe fn context() -> Retained<CIContext>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithOptions:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions(
@@ -154,6 +173,9 @@ impl CIContext {
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-metal")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(contextWithMTLDevice:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextWithMTLDevice_options(
@@ -169,6 +191,9 @@ impl CIContext {
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-metal")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(contextWithMTLCommandQueue:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contextWithMTLCommandQueue_options(
@@ -208,6 +233,9 @@ impl CIContext {
         );
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `info` generics must be of the correct type.
         #[deprecated]
         #[unsafe(method(createCGLayerWithSize:info:))]
         // required for soundness, method has `returns_retained` attribute.
@@ -223,6 +251,9 @@ impl CIContext {
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer.
         #[unsafe(method(render:toBitmap:rowBytes:bounds:format:colorSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn render_toBitmap_rowBytes_bounds_format_colorSpace(
@@ -384,6 +415,9 @@ impl CIContext {
 
         #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-open-gl"))]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `shared_context` must be a valid pointer or null.
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:))]
         #[unsafe(method_family = none)]
@@ -476,6 +510,9 @@ extern "C" {
 impl CIContext {
     extern_methods!(
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(TIFFRepresentationOfImage:format:colorSpace:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn TIFFRepresentationOfImage_format_colorSpace_options(
@@ -487,6 +524,9 @@ impl CIContext {
         ) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(JPEGRepresentationOfImage:colorSpace:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn JPEGRepresentationOfImage_colorSpace_options(
@@ -497,6 +537,9 @@ impl CIContext {
         ) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(HEIFRepresentationOfImage:format:colorSpace:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn HEIFRepresentationOfImage_format_colorSpace_options(
@@ -508,6 +551,9 @@ impl CIContext {
         ) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(HEIF10RepresentationOfImage:colorSpace:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn HEIF10RepresentationOfImage_colorSpace_options_error(
@@ -518,6 +564,9 @@ impl CIContext {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(PNGRepresentationOfImage:format:colorSpace:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn PNGRepresentationOfImage_format_colorSpace_options(
@@ -529,6 +578,9 @@ impl CIContext {
         ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "CIImage")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(OpenEXRRepresentationOfImage:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn OpenEXRRepresentationOfImage_options_error(
@@ -538,6 +590,9 @@ impl CIContext {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeTIFFRepresentationOfImage_toURL_format_colorSpace_options_error(
@@ -550,6 +605,9 @@ impl CIContext {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writePNGRepresentationOfImage:toURL:format:colorSpace:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writePNGRepresentationOfImage_toURL_format_colorSpace_options_error(
@@ -562,6 +620,9 @@ impl CIContext {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writeJPEGRepresentationOfImage:toURL:colorSpace:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeJPEGRepresentationOfImage_toURL_colorSpace_options_error(
@@ -573,6 +634,9 @@ impl CIContext {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writeHEIFRepresentationOfImage:toURL:format:colorSpace:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeHEIFRepresentationOfImage_toURL_format_colorSpace_options_error(
@@ -585,6 +649,9 @@ impl CIContext {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeHEIF10RepresentationOfImage_toURL_colorSpace_options_error(
@@ -596,6 +663,9 @@ impl CIContext {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writeOpenEXRRepresentationOfImage:toURL:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeOpenEXRRepresentationOfImage_toURL_options_error(
@@ -611,6 +681,9 @@ impl CIContext {
 impl CIContext {
     extern_methods!(
         #[cfg(feature = "CIFilter")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(depthBlurEffectFilterForImageURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthBlurEffectFilterForImageURL_options(
@@ -620,6 +693,9 @@ impl CIContext {
         ) -> Option<Retained<CIFilter>>;
 
         #[cfg(feature = "CIFilter")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(depthBlurEffectFilterForImageData:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthBlurEffectFilterForImageData_options(
@@ -629,6 +705,9 @@ impl CIContext {
         ) -> Option<Retained<CIFilter>>;
 
         #[cfg(all(feature = "CIFilter", feature = "CIImage", feature = "objc2-image-io"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:orientation:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthBlurEffectFilterForImage_disparityImage_portraitEffectsMatte_orientation_options(
@@ -641,6 +720,9 @@ impl CIContext {
         ) -> Option<Retained<CIFilter>>;
 
         #[cfg(all(feature = "CIFilter", feature = "CIImage", feature = "objc2-image-io"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthBlurEffectFilterForImage_disparityImage_portraitEffectsMatte_hairSemanticSegmentation_orientation_options(
@@ -654,6 +736,9 @@ impl CIContext {
         ) -> Option<Retained<CIFilter>>;
 
         #[cfg(all(feature = "CIFilter", feature = "CIImage", feature = "objc2-image-io"))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn depthBlurEffectFilterForImage_disparityImage_portraitEffectsMatte_hairSemanticSegmentation_glassesMatte_gainMap_orientation_options(

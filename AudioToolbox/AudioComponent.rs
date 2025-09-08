@@ -288,6 +288,11 @@ extern "C-unwind" {
     /// a wildcard, so the first match found is returned.
     ///
     /// Returns: An audio component that matches the search parameters, or NULL if none found.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer or null.
+    /// - `in_desc` must be a valid pointer.
     pub fn AudioComponentFindNext(
         in_component: AudioComponent,
         in_desc: NonNull<AudioComponentDescription>,
@@ -306,6 +311,10 @@ extern "C-unwind" {
     ///
     /// Returns: a UInt32. 0 (zero) means no audio components were found that matched the
     /// search parameters.
+    ///
+    /// # Safety
+    ///
+    /// `in_desc` must be a valid pointer.
     pub fn AudioComponentCount(in_desc: NonNull<AudioComponentDescription>) -> u32;
 }
 
@@ -320,6 +329,11 @@ extern "C-unwind" {
     /// be released by the caller.
     ///
     /// Returns: an OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_name` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyName(
         in_component: AudioComponent,
@@ -338,6 +352,11 @@ extern "C-unwind" {
     /// Parameter `outDesc`: the audio component description for the specified audio component
     ///
     /// Returns: an OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_desc` must be a valid pointer.
     pub fn AudioComponentGetDescription(
         in_component: AudioComponent,
         out_desc: NonNull<AudioComponentDescription>,
@@ -352,6 +371,11 @@ extern "C-unwind" {
     /// Parameter `outVersion`: the audio component's version in the form of 0xMMMMmmDD (Major, Minor, Dot)
     ///
     /// Returns: an OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_version` must be a valid pointer.
     pub fn AudioComponentGetVersion(
         in_component: AudioComponent,
         out_version: NonNull<u32>,
@@ -375,6 +399,11 @@ extern "C-unwind" {
     /// Parameter `outInstance`: the audio component instance
     ///
     /// Returns: an OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_instance` must be a valid pointer.
     pub fn AudioComponentInstanceNew(
         in_component: AudioComponent,
         out_instance: NonNull<AudioComponentInstance>,
@@ -396,6 +425,10 @@ extern "C-unwind" {
     /// Parameter `inOptions`: see AudioComponentInstantiationOptions
     ///
     /// Parameter `inCompletionHandler`: called in an arbitrary thread context when instantiation is complete.
+    ///
+    /// # Safety
+    ///
+    /// `in_component` must be a valid pointer.
     #[cfg(feature = "block2")]
     pub fn AudioComponentInstantiate(
         in_component: AudioComponent,
@@ -413,6 +446,10 @@ extern "C-unwind" {
     /// Parameter `inInstance`: the audio component instance to dispose (must not be NULL)
     ///
     /// Returns: an OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `in_instance` must be a valid pointer.
     pub fn AudioComponentInstanceDispose(in_instance: AudioComponentInstance) -> OSStatus;
 }
 
@@ -429,6 +466,10 @@ extern "C-unwind" {
     /// Parameter `inInstance`: the audio component instance (must not be NULL, and instance must be valid - that is, not disposed)
     ///
     /// Returns: a valid audio component or NULL if no component was found.
+    ///
+    /// # Safety
+    ///
+    /// `in_instance` must be a valid pointer.
     pub fn AudioComponentInstanceGetComponent(
         in_instance: AudioComponentInstance,
     ) -> AudioComponent;
@@ -442,6 +483,10 @@ extern "C-unwind" {
 /// Parameter `inSelectorID`: a number to signify the audio component API (component selector) as appropriate for the instance's component type.
 ///
 /// Returns: a boolean
+///
+/// # Safety
+///
+/// `in_instance` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn AudioComponentInstanceCanDo(
     in_instance: AudioComponentInstance,
@@ -478,6 +523,11 @@ extern "C-unwind" {
     /// AudioComponent
     ///
     /// Returns: an AudioComponent object
+    ///
+    /// # Safety
+    ///
+    /// - `in_desc` must be a valid pointer.
+    /// - `in_factory` must be implemented correctly.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentRegister(
         in_desc: NonNull<AudioComponentDescription>,
@@ -500,6 +550,11 @@ extern "C-unwind" {
     /// AudioUnitProperties.h (or other headers as appropriate for the component type).
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_configuration_info` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyConfigurationInfo(
         in_component: AudioComponent,
@@ -548,6 +603,11 @@ unsafe impl RefEncode for AudioComponentValidationResult {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_validation_parameters` generics must be of the correct type.
+    /// - `out_validation_result` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentValidate(
         in_component: AudioComponent,
@@ -592,6 +652,11 @@ extern "C-unwind" {
     /// Parameter `inCompletionHandler`: Completion callback. See discussion section.
     ///
     /// Returns: an OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_validation_parameters` generics must be of the correct type.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioComponentValidateWithResults(
         in_component: AudioComponent,

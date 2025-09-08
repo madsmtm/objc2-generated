@@ -147,6 +147,9 @@ impl NSColorWell {
         #[unsafe(method_family = none)]
         pub unsafe fn setBordered(&self, bordered: bool);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeColorFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeColorFrom(&self, sender: Option<&AnyObject>);
@@ -192,6 +195,10 @@ impl NSColorWell {
         /// Setter for [`pulldownTarget`][Self::pulldownTarget].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `pulldown_target` should be of the correct type.
         #[unsafe(method(setPulldownTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPulldownTarget(&self, pulldown_target: Option<&AnyObject>);
@@ -202,6 +209,10 @@ impl NSColorWell {
         pub unsafe fn pulldownAction(&self) -> Option<Sel>;
 
         /// Setter for [`pulldownAction`][Self::pulldownAction].
+        ///
+        /// # Safety
+        ///
+        /// `pulldown_action` must be a valid selector.
         #[unsafe(method(setPulldownAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPulldownAction(&self, pulldown_action: Option<Sel>);

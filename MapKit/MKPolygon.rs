@@ -44,6 +44,9 @@ extern_conformance!(
 impl MKPolygon {
     extern_methods!(
         #[cfg(feature = "MKGeometry")]
+        /// # Safety
+        ///
+        /// `points` must be a valid pointer.
         #[unsafe(method(polygonWithPoints:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn polygonWithPoints_count(
@@ -52,6 +55,9 @@ impl MKPolygon {
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKGeometry")]
+        /// # Safety
+        ///
+        /// `points` must be a valid pointer.
         #[unsafe(method(polygonWithPoints:count:interiorPolygons:))]
         #[unsafe(method_family = none)]
         pub unsafe fn polygonWithPoints_count_interiorPolygons(
@@ -61,6 +67,9 @@ impl MKPolygon {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// # Safety
+        ///
+        /// `coords` must be a valid pointer.
         #[unsafe(method(polygonWithCoordinates:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn polygonWithCoordinates_count(
@@ -69,6 +78,9 @@ impl MKPolygon {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// # Safety
+        ///
+        /// `coords` must be a valid pointer.
         #[unsafe(method(polygonWithCoordinates:count:interiorPolygons:))]
         #[unsafe(method_family = none)]
         pub unsafe fn polygonWithCoordinates_count_interiorPolygons(

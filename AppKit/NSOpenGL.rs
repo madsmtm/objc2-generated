@@ -49,6 +49,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `param` must be a valid pointer.
     #[cfg(feature = "objc2-open-gl")]
     #[cfg(target_vendor = "apple")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
@@ -56,6 +59,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `major` must be a valid pointer or null.
+    /// - `minor` must be a valid pointer or null.
     #[cfg(feature = "objc2-open-gl")]
     #[cfg(target_vendor = "apple")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
@@ -214,6 +221,9 @@ impl NSOpenGLPixelFormat {
     extern_methods!(
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `format` must be a valid pointer.
         #[unsafe(method(initWithCGLPixelFormatObj:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGLPixelFormatObj(
@@ -221,6 +231,9 @@ impl NSOpenGLPixelFormat {
             format: CGLPixelFormatObj,
         ) -> Option<Retained<NSOpenGLPixelFormat>>;
 
+        /// # Safety
+        ///
+        /// `attribs` must be a valid pointer.
         #[unsafe(method(initWithAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributes(
@@ -228,6 +241,9 @@ impl NSOpenGLPixelFormat {
             attribs: NonNull<NSOpenGLPixelFormatAttribute>,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `attribs` might not allow `None`.
         #[deprecated = "Use -initWithAttributes: instead"]
         #[unsafe(method(initWithData:))]
         #[unsafe(method_family = init)]
@@ -241,6 +257,9 @@ impl NSOpenGLPixelFormat {
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// `attribs` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
@@ -248,6 +267,9 @@ impl NSOpenGLPixelFormat {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `vals` must be a valid pointer.
         #[unsafe(method(getValues:forAttribute:forVirtualScreen:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getValues_forAttribute_forVirtualScreen(
@@ -318,6 +340,9 @@ impl NSOpenGLPixelBuffer {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `pbuffer` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(initWithCGLPBufferObj:))]
         #[unsafe(method_family = init)]
@@ -476,6 +501,9 @@ impl NSOpenGLContext {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `context` must be a valid pointer.
         #[unsafe(method(initWithCGLContextObj:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGLContextObj(
@@ -509,6 +537,9 @@ impl NSOpenGLContext {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `baseaddr` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(setOffScreen:width:height:rowbytes:))]
         #[unsafe(method_family = none)]
@@ -557,6 +588,9 @@ impl NSOpenGLContext {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `vals` must be a valid pointer.
         #[unsafe(method(setValues:forParameter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValues_forParameter(
@@ -567,6 +601,9 @@ impl NSOpenGLContext {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `vals` must be a valid pointer.
         #[unsafe(method(getValues:forParameter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getValues_forParameter(

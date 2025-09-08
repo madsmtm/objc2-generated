@@ -48,6 +48,10 @@ impl MLDictionaryFeatureProvider {
         /// or from a dictionary with values already stored as MLFeatureValues.
         ///
         /// An error results if the values are not or cannot be represented as MLFeatureValues.
+        ///
+        /// # Safety
+        ///
+        /// `dictionary` generic should be of the correct type.
         #[unsafe(method(initWithDictionary:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary_error(

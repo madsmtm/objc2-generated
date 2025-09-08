@@ -103,6 +103,10 @@ impl EKEventViewController {
 
         #[cfg(feature = "objc2-event-kit")]
         /// Setter for [`event`][Self::event].
+        ///
+        /// # Safety
+        ///
+        /// `event` might not allow `None`.
         #[unsafe(method(setEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEvent(&self, event: Option<&EKEvent>);

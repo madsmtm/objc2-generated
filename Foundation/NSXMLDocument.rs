@@ -121,6 +121,9 @@ impl NSXMLDocument {
             element: Option<&NSXMLElement>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `cls` probably has further requirements.
         #[unsafe(method(replacementClassForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replacementClassForClass(cls: &AnyClass) -> &'static AnyClass;

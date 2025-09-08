@@ -133,6 +133,9 @@ impl CXCallDirectoryExtensionContext {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[unsafe(method(completeRequestReturningItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestReturningItems_completionHandler(

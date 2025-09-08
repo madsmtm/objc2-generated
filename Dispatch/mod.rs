@@ -72,6 +72,10 @@ impl DispatchTime {
     ///
     ///
     /// Returns: A new dispatch_time_t.
+    ///
+    /// # Safety
+    ///
+    /// `when` must be a valid pointer or null.
     #[doc(alias = "dispatch_walltime")]
     #[cfg(feature = "libc")]
     #[must_use]
@@ -139,6 +143,10 @@ extern "C" {
     ///
     /// Parameter `object`: The object to retain.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `object` must be a valid pointer.
     pub fn dispatch_retain(object: NonNull<dispatch_object_s>);
 }
 
@@ -154,6 +162,10 @@ extern "C" {
     ///
     /// Parameter `object`: The object to release.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `object` must be a valid pointer.
     pub fn dispatch_release(object: NonNull<dispatch_object_s>);
 }
 
@@ -181,6 +193,11 @@ extern "C" {
     ///
     ///
     /// Parameter `context`: The new client defined context for the object. This may be NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `object` must be a valid pointer.
+    /// - `context` must be a valid pointer or null.
     pub fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void);
 }
 
@@ -201,6 +218,11 @@ extern "C" {
     /// such as freeing the object's context.
     /// The context parameter passed to the finalizer function is the current
     /// context of the dispatch object at the time the finalizer call is made.
+    ///
+    /// # Safety
+    ///
+    /// - `object` must be a valid pointer.
+    /// - `finalizer` must be implemented correctly.
     pub fn dispatch_set_finalizer_f(
         object: NonNull<dispatch_object_s>,
         finalizer: dispatch_function_t,
@@ -313,6 +335,10 @@ extern "C" {
     /// offset from the maximum supported scheduler priority for the given class.
     /// Passing a value greater than zero or less than QOS_MIN_RELATIVE_PRIORITY
     /// is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `object` must be a valid pointer.
     pub fn dispatch_set_qos_class_floor(
         object: NonNull<dispatch_object_s>,
         qos_class: DispatchQoS,
@@ -321,6 +347,9 @@ extern "C" {
 }
 
 impl DispatchQueue {
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -350,6 +379,11 @@ impl DispatchQueue {
     /// parameter passed to this function is the context provided to
     /// dispatch_async_f().
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_async_f")]
     #[inline]
     pub unsafe fn exec_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -363,6 +397,9 @@ impl DispatchQueue {
         unsafe { dispatch_async_f(self, context, work) }
     }
 
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_sync")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -390,6 +427,11 @@ impl DispatchQueue {
     /// parameter passed to this function is the context provided to
     /// dispatch_sync_f().
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_sync_f")]
     #[inline]
     pub unsafe fn exec_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -403,6 +445,9 @@ impl DispatchQueue {
         unsafe { dispatch_sync_f(self, context, work) }
     }
 
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -430,6 +475,11 @@ impl DispatchQueue {
     /// parameter passed to this function is the context provided to
     /// dispatch_async_and_wait_f().
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_async_and_wait_f")]
     #[inline]
     pub unsafe fn exec_sync_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -483,6 +533,11 @@ impl DispatchQueue {
     /// dispatch_apply_f(). The second parameter passed to this function is the
     /// current index of iteration.
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_apply_f")]
     #[inline]
     pub unsafe fn apply_f(
@@ -919,6 +974,10 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: The newly created dispatch queue.
+    ///
+    /// # Safety
+    ///
+    /// `label` must be a valid pointer or null.
     #[doc(alias = "dispatch_queue_create_with_target")]
     #[must_use]
     #[inline]
@@ -984,6 +1043,10 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: The newly created dispatch queue.
+    ///
+    /// # Safety
+    ///
+    /// `label` must be a valid pointer or null.
     #[doc(alias = "dispatch_queue_create")]
     #[must_use]
     #[inline]
@@ -1054,6 +1117,10 @@ impl DispatchQueue {
     /// - QOS_CLASS_UTILITY
     /// - QOS_CLASS_BACKGROUND
     /// - QOS_CLASS_UNSPECIFIED
+    ///
+    /// # Safety
+    ///
+    /// `relative_priority_ptr` must be a valid pointer or null.
     #[doc(alias = "dispatch_queue_get_qos_class")]
     #[must_use]
     #[inline]
@@ -1125,6 +1192,10 @@ extern "C" {
     /// previous target queue, if any, is released.
     /// If queue is DISPATCH_TARGET_QUEUE_DEFAULT, set the object's target queue
     /// to the default target queue for the given object type.
+    ///
+    /// # Safety
+    ///
+    /// `object` must be a valid pointer.
     pub fn dispatch_set_target_queue(
         object: NonNull<dispatch_object_s>,
         queue: Option<&DispatchQueue>,
@@ -1132,6 +1203,9 @@ extern "C" {
 }
 
 impl DispatchQueue {
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_after")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1166,6 +1240,11 @@ impl DispatchQueue {
     /// parameter passed to this function is the context provided to
     /// dispatch_after_f().
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_after_f")]
     #[inline]
     pub unsafe fn exec_after_f(
@@ -1185,6 +1264,9 @@ impl DispatchQueue {
         unsafe { dispatch_after_f(when, queue, context, work) }
     }
 
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_barrier_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1219,6 +1301,11 @@ impl DispatchQueue {
     /// parameter passed to this function is the context provided to
     /// dispatch_barrier_async_f().
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_async_f")]
     #[inline]
     pub unsafe fn barrier_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1232,6 +1319,9 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_async_f(self, context, work) }
     }
 
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_barrier_sync")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1262,6 +1352,11 @@ impl DispatchQueue {
     /// parameter passed to this function is the context provided to
     /// dispatch_barrier_sync_f().
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_sync_f")]
     #[inline]
     pub unsafe fn barrier_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1275,6 +1370,9 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_sync_f(self, context, work) }
     }
 
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_barrier_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1306,6 +1404,11 @@ impl DispatchQueue {
     /// parameter passed to this function is the context provided to
     /// dispatch_barrier_async_and_wait_f().
     /// The result of passing NULL in this parameter is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_async_and_wait_f")]
     #[inline]
     pub unsafe fn barrier_async_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1345,6 +1448,12 @@ extern "C" {
     ///
     /// Parameter `destructor`: The destructor function pointer. This may be NULL and is ignored if context
     /// is NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer.
+    /// - `context` must be a valid pointer or null.
+    /// - `destructor` must be implemented correctly.
     pub fn dispatch_queue_set_specific(
         queue: &DispatchQueue,
         key: NonNull<c_void>,
@@ -1372,6 +1481,10 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: The context for the specified key or NULL if no context was found.
+    ///
+    /// # Safety
+    ///
+    /// `key` must be a valid pointer.
     #[doc(alias = "dispatch_queue_get_specific")]
     #[must_use]
     #[inline]
@@ -1403,6 +1516,10 @@ extern "C" {
     ///
     ///
     /// Returns: The context for the specified key or NULL if no context was found.
+    ///
+    /// # Safety
+    ///
+    /// `key` must be a valid pointer.
     #[must_use]
     pub fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void;
 }
@@ -2004,6 +2121,10 @@ extern "C" {
     /// Returns: The newly created dispatch block object, or NULL.
     /// When not building with Objective-C ARC, must be released with a -[release]
     /// message or the Block_release() function.
+    ///
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_create(
@@ -2074,6 +2195,10 @@ extern "C" {
     /// Returns: The newly created dispatch block object, or NULL.
     /// When not building with Objective-C ARC, must be released with a -[release]
     /// message or the Block_release() function.
+    ///
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_create_with_qos_class(
@@ -2105,6 +2230,10 @@ extern "C" {
     ///
     ///
     /// Parameter `block`: The block to create the temporary block object from.
+    ///
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[cfg(feature = "block2")]
     pub fn dispatch_block_perform(flags: dispatch_block_flags_t, block: dispatch_block_t);
 }
@@ -2150,6 +2279,10 @@ extern "C" {
     ///
     /// Returns: Returns zero on success (the dispatch block object completed within the
     /// specified timeout) or non-zero on error (i.e. timed out).
+    ///
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[cfg(feature = "block2")]
     pub fn dispatch_block_wait(block: dispatch_block_t, timeout: DispatchTime) -> isize;
 }
@@ -2186,6 +2319,11 @@ extern "C" {
     ///
     ///
     /// Parameter `notification_block`: The notification block to submit when the observed block object completes.
+    ///
+    /// # Safety
+    ///
+    /// - `block` must be a valid pointer.
+    /// - `notification_block` must be a valid pointer.
     #[cfg(feature = "block2")]
     pub fn dispatch_block_notify(
         block: dispatch_block_t,
@@ -2216,6 +2354,10 @@ extern "C" {
     /// Parameter `block`: The dispatch block object to cancel.
     /// The result of passing NULL or a block object not returned by one of the
     /// dispatch_block_create* functions is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[cfg(feature = "block2")]
     pub fn dispatch_block_cancel(block: dispatch_block_t);
 }
@@ -2230,6 +2372,10 @@ extern "C" {
     ///
     ///
     /// Returns: Non-zero if canceled and zero if not canceled.
+    ///
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_testcancel(block: dispatch_block_t) -> isize;
@@ -2337,6 +2483,10 @@ impl DispatchSource {
     ///
     ///
     /// Returns: The newly created dispatch source. Or NULL if invalid arguments are passed.
+    ///
+    /// # Safety
+    ///
+    /// `type` must be a valid pointer.
     #[doc(alias = "dispatch_source_create")]
     #[must_use]
     #[inline]
@@ -2360,6 +2510,9 @@ impl DispatchSource {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer or null.
     #[doc(alias = "dispatch_source_set_event_handler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2395,6 +2548,9 @@ impl DispatchSource {
         unsafe { dispatch_source_set_event_handler_f(self, handler) }
     }
 
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer or null.
     #[doc(alias = "dispatch_source_set_cancel_handler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2654,6 +2810,9 @@ impl DispatchSource {
         unsafe { dispatch_source_set_timer(self, start, interval, leeway) }
     }
 
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer or null.
     #[doc(alias = "dispatch_source_set_registration_handler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2716,6 +2875,9 @@ impl DispatchGroup {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_group_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2751,6 +2913,11 @@ impl DispatchGroup {
     /// Parameter `work`: The application-defined function to invoke on the target queue. The first
     /// parameter passed to this function is the context provided to
     /// dispatch_group_async_f().
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_group_async_f")]
     #[inline]
     pub unsafe fn exec_async_f(
@@ -2809,6 +2976,9 @@ pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTi
 }
 
 impl DispatchGroup {
+    /// # Safety
+    ///
+    /// `block` must be a valid pointer.
     #[doc(alias = "dispatch_group_notify")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2840,6 +3010,11 @@ impl DispatchGroup {
     /// Parameter `work`: The application-defined function to invoke on the target queue. The first
     /// parameter passed to this function is the context provided to
     /// dispatch_group_notify_f().
+    ///
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer or null.
+    /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_group_notify_f")]
     #[inline]
     pub unsafe fn notify_f(
@@ -2978,6 +3153,10 @@ impl DispatchSemaphore {
 pub type dispatch_once_t = isize;
 
 impl DispatchOnce {
+    /// # Safety
+    ///
+    /// - `predicate` must be a valid pointer.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_once")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2988,6 +3167,11 @@ impl DispatchOnce {
         unsafe { dispatch_once(predicate, block) }
     }
 
+    /// # Safety
+    ///
+    /// - `predicate` must be a valid pointer.
+    /// - `context` must be a valid pointer or null.
+    /// - `function` must be implemented correctly.
     #[doc(alias = "dispatch_once_f")]
     #[inline]
     pub unsafe fn once_f(
@@ -3047,6 +3231,11 @@ impl DispatchData {
     /// is no longer needed.
     ///
     /// Returns: A newly created dispatch data object.
+    ///
+    /// # Safety
+    ///
+    /// - `buffer` must be a valid pointer.
+    /// - `destructor` must be a valid pointer or null.
     #[doc(alias = "dispatch_data_create")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3107,6 +3296,11 @@ impl DispatchData {
     /// size of the mapped contiguous memory region, or NULL.
     ///
     /// Returns: A newly created dispatch data object.
+    ///
+    /// # Safety
+    ///
+    /// - `buffer_ptr` must be a valid pointer or null.
+    /// - `size_ptr` must be a valid pointer or null.
     #[doc(alias = "dispatch_data_create_map")]
     #[must_use]
     #[inline]
@@ -3233,6 +3427,10 @@ impl DispatchData {
     ///
     /// Returns: A Boolean indicating whether traversal completed
     /// successfully.
+    ///
+    /// # Safety
+    ///
+    /// `applier` must be a valid pointer.
     #[doc(alias = "dispatch_data_apply")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3258,6 +3456,10 @@ impl DispatchData {
     /// start of the queried data object.
     ///
     /// Returns: A newly created dispatch data object.
+    ///
+    /// # Safety
+    ///
+    /// `offset_ptr` must be a valid pointer.
     #[doc(alias = "dispatch_data_copy_region")]
     #[must_use]
     #[inline]
@@ -3458,6 +3660,10 @@ impl DispatchIO {
     ///
     /// Returns: The newly created dispatch I/O channel or NULL if an error
     /// occurred (invalid type or non-absolute path specified).
+    ///
+    /// # Safety
+    ///
+    /// `path` must be a valid pointer.
     #[doc(alias = "dispatch_io_create_with_path")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[must_use]
@@ -3604,6 +3810,10 @@ impl DispatchIO {
     /// I/O channel as part of this read operation, or NULL.
     /// param error    An errno condition for the read operation or zero if
     /// the read was successful.
+    ///
+    /// # Safety
+    ///
+    /// `io_handler` must be a valid pointer.
     #[doc(alias = "dispatch_io_read")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -3671,6 +3881,10 @@ impl DispatchIO {
     /// operation, or NULL.
     /// param error    An errno condition for the write operation or zero
     /// if the write was successful.
+    ///
+    /// # Safety
+    ///
+    /// `io_handler` must be a valid pointer.
     #[doc(alias = "dispatch_io_write")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -3738,6 +3952,10 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel to schedule the barrier on.
     ///
     /// Parameter `barrier`: The barrier block.
+    ///
+    /// # Safety
+    ///
+    /// `barrier` must be a valid pointer.
     #[doc(alias = "dispatch_io_barrier")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3873,6 +4091,10 @@ impl DispatchWorkloop {
     ///
     ///
     /// Returns: The newly created dispatch workloop.
+    ///
+    /// # Safety
+    ///
+    /// `label` must be a valid pointer or null.
     #[doc(alias = "dispatch_workloop_create")]
     #[must_use]
     #[inline]
@@ -3901,6 +4123,10 @@ impl DispatchWorkloop {
     ///
     ///
     /// Returns: The newly created dispatch workloop.
+    ///
+    /// # Safety
+    ///
+    /// `label` must be a valid pointer or null.
     #[doc(alias = "dispatch_workloop_create_inactive")]
     #[must_use]
     #[inline]

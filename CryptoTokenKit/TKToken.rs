@@ -237,6 +237,10 @@ extern_protocol!(
         /// Parameter `error`: Error details (see TKError.h).
         ///
         /// Returns: authOperation Resulting context of the operation, which will be eventually finalized by receiving 'finishWithError:'.  The resulting 'authOperation' can be of any type based on TKTokenAuthOperation. For known types (e.g. TKTokenPasswordAuthOperation) the system will first fill in the context-specific properties (e.g. 'password') before triggering 'finishWithError:'. When no authentication is actually needed (typically because the session is already authenticated for requested constraint), return instance of TKTokenAuthOperation class instead of any specific subclass.
+        ///
+        /// # Safety
+        ///
+        /// `constraint` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenSession:beginAuthForOperation:constraint:error:_))]
         #[unsafe(method_family = none)]
@@ -258,6 +262,10 @@ extern_protocol!(
         /// Parameter `algorithm`: Algorithm with which the oepration should be performed.
         ///
         /// Returns: YES if the operation is supported, NO otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `key_object_id` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenSession:supportsOperation:usingKey:algorithm:))]
         #[unsafe(method_family = none)]
@@ -283,6 +291,10 @@ extern_protocol!(
         /// `TKErrorCodeAuthenticationNeeded`should be used.
         ///
         /// Returns: Resulting signature, or nil if an error happened.
+        ///
+        /// # Safety
+        ///
+        /// `key_object_id` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenSession:signData:usingKey:algorithm:error:_))]
         #[unsafe(method_family = none)]
@@ -308,6 +320,10 @@ extern_protocol!(
         /// `TKErrorCodeAuthenticationNeeded`should be used.
         ///
         /// Returns: Resulting decrypted plaintext, or nil if an error happened.
+        ///
+        /// # Safety
+        ///
+        /// `key_object_id` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenSession:decryptData:usingKey:algorithm:error:_))]
         #[unsafe(method_family = none)]
@@ -335,6 +351,10 @@ extern_protocol!(
         /// `TKErrorCodeAuthenticationNeeded`should be used.
         ///
         /// Returns: Result of key exchange operation, or nil if the operation failed.
+        ///
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[optional]
         #[unsafe(method(tokenSession:performKeyExchangeWithPublicKey:usingKey:algorithm:parameters:error:_))]
         #[unsafe(method_family = none)]

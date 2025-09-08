@@ -58,6 +58,10 @@ impl AVCustomRoutingEvent {
         /// route.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(reason))]
         #[unsafe(method_family = none)]
         pub unsafe fn reason(&self) -> AVCustomRoutingEventReason;
@@ -66,6 +70,10 @@ impl AVCustomRoutingEvent {
         /// A route for the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(route))]
         #[unsafe(method_family = none)]
         pub unsafe fn route(&self) -> Retained<AVCustomDeviceRoute>;

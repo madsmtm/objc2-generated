@@ -86,6 +86,9 @@ impl NSDocumentController {
         #[unsafe(method_family = none)]
         pub unsafe fn removeDocument(&self, document: &NSDocument);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(newDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newDocument(&self, sender: Option<&AnyObject>);
@@ -106,6 +109,9 @@ impl NSDocumentController {
             type_name: &NSString,
         ) -> Result<Retained<NSDocument>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(openDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openDocument(&self, sender: Option<&AnyObject>);
@@ -203,6 +209,9 @@ impl NSDocumentController {
         #[unsafe(method_family = none)]
         pub unsafe fn setAutosavingDelay(&self, autosaving_delay: NSTimeInterval);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(saveAllDocuments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveAllDocuments(&self, sender: Option<&AnyObject>);
@@ -211,6 +220,10 @@ impl NSDocumentController {
         #[unsafe(method_family = none)]
         pub unsafe fn hasEditedDocuments(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// - `did_review_all_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reviewUnsavedDocumentsWithAlertTitle_cancellable_delegate_didReviewAllSelector_contextInfo(
@@ -222,6 +235,10 @@ impl NSDocumentController {
             context_info: *mut c_void,
         );
 
+        /// # Safety
+        ///
+        /// - `did_close_all_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeAllDocumentsWithDelegate_didCloseAllSelector_contextInfo(
@@ -251,6 +268,10 @@ impl NSDocumentController {
         pub unsafe fn standardShareMenuItem(&self) -> Retained<NSMenuItem>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+        /// # Safety
+        ///
+        /// - `did_present_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
@@ -274,6 +295,9 @@ impl NSDocumentController {
         #[unsafe(method_family = none)]
         pub unsafe fn maximumRecentDocumentCount(&self) -> NSUInteger;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(clearRecentDocuments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn clearRecentDocuments(&self, sender: Option<&AnyObject>);
@@ -396,6 +420,9 @@ impl NSDocumentController {
             r#type: &NSString,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `type` might not allow `None`.
         #[deprecated]
         #[unsafe(method(makeDocumentWithContentsOfURL:ofType:))]
         #[unsafe(method_family = none)]

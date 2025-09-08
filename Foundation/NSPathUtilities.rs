@@ -90,6 +90,9 @@ impl NSString {
         #[unsafe(method_family = none)]
         pub unsafe fn fileSystemRepresentation(&self) -> NonNull<c_char>;
 
+        /// # Safety
+        ///
+        /// `cname` must be a valid pointer.
         #[unsafe(method(getFileSystemRepresentation:maxLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFileSystemRepresentation_maxLength(

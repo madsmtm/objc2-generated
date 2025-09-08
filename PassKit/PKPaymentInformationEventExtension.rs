@@ -48,6 +48,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentinformationrequesthandling?language=objc)
     pub unsafe trait PKPaymentInformationRequestHandling {
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[unsafe(method(handleInformationRequest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleInformationRequest_completion(
@@ -57,6 +60,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer.
         #[unsafe(method(handleSignatureRequest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSignatureRequest_completion(

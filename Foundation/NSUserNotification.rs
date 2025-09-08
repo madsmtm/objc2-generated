@@ -135,6 +135,10 @@ impl NSUserNotification {
         /// Setter for [`userInfo`][Self::userInfo].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
@@ -422,6 +426,10 @@ impl NSUserNotificationCenter {
         ) -> Option<Retained<ProtocolObject<dyn NSUserNotificationCenterDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

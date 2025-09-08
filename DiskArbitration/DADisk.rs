@@ -248,6 +248,10 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
+    ///
+    /// # Safety
+    ///
+    /// `name` must be a valid pointer.
     #[doc(alias = "DADiskCreateFromBSDName")]
     #[cfg(feature = "DASession")]
     #[inline]

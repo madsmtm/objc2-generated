@@ -88,6 +88,10 @@ impl CNPostalAddressFormatter {
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted postal address as an attributed string.
+        ///
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(attributedStringFromPostalAddress:style:withDefaultAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromPostalAddress_style_withDefaultAttributes(
@@ -135,6 +139,10 @@ impl CNPostalAddressFormatter {
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted postal address as an attributed string.
+        ///
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(attributedStringFromPostalAddress:withDefaultAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromPostalAddress_withDefaultAttributes(

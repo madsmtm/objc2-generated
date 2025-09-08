@@ -139,6 +139,10 @@ impl MPSNDArrayDescriptor {
         ///
         ///
         /// This permutation is applied on top of whatever transpostions/permutations that may have been performed on the descriptor before.
+        ///
+        /// # Safety
+        ///
+        /// `dimension_order` must be a valid pointer.
         #[unsafe(method(permuteWithDimensionOrder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn permuteWithDimensionOrder(&self, dimension_order: NonNull<NSUInteger>);
@@ -174,6 +178,10 @@ impl MPSNDArrayDescriptor {
         /// Additional system memory limits may apply
         ///
         /// Returns: A valid MPSNDArrayDescriptor object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `dimension_sizes` must be a valid pointer.
         #[unsafe(method(descriptorWithDataType:dimensionCount:dimensionSizes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithDataType_dimensionCount_dimensionSizes(
@@ -218,6 +226,10 @@ impl MPSNDArrayDescriptor {
         /// moving to slowest moving dimension.
         /// The product of all dimension lengths must be less than 2**31.
         /// Additional system memory limits may apply
+        ///
+        /// # Safety
+        ///
+        /// `dimension_sizes` must be a valid pointer.
         #[unsafe(method(reshapeWithDimensionCount:dimensionSizes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithDimensionCount_dimensionSizes(
@@ -554,6 +566,11 @@ impl MPSNDArray {
         ///
         ///
         /// Returns: A new MPSNDArray, if it is possible to make one. Otherwise nil is returned. The MPSNDArray is autoreleased.
+        ///
+        /// # Safety
+        ///
+        /// - `dimension_sizes` must be a valid pointer.
+        /// - `dim_strides` must be a valid pointer.
         #[unsafe(method(arrayViewWithDimensionCount:dimensionSizes:strides:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayViewWithDimensionCount_dimensionSizes_strides(
@@ -587,6 +604,10 @@ impl MPSNDArray {
         ///
         /// Parameter `rowStrides`: An optional array of (numberOfDimensions-1) byte counts which describe
         /// the byte offset from position 0 of the respective dimension to position 1.
+        ///
+        /// # Safety
+        ///
+        /// `row_strides` must be a valid pointer or null.
         #[unsafe(method(exportDataWithCommandBuffer:toBuffer:destinationDataType:offset:rowStrides:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportDataWithCommandBuffer_toBuffer_destinationDataType_offset_rowStrides(
@@ -613,6 +634,10 @@ impl MPSNDArray {
         ///
         /// Parameter `rowStrides`: An optional array of (numberOfDimensions-1) byte counts which describe
         /// the byte offset from position 0 of the respective dimension to position 1.
+        ///
+        /// # Safety
+        ///
+        /// `row_strides` must be a valid pointer or null.
         #[unsafe(method(importDataWithCommandBuffer:fromBuffer:sourceDataType:offset:rowStrides:))]
         #[unsafe(method_family = none)]
         pub unsafe fn importDataWithCommandBuffer_fromBuffer_sourceDataType_offset_rowStrides(
@@ -681,6 +706,11 @@ impl MPSNDArray {
         /// and so forth.  If the value is nil, these are calculated for you assuming that the
         /// data is packed without additional space in between elements, rows, etc.
         /// 0 and negative values are permitted.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` must be a valid pointer.
+        /// - `stride_bytes_per_dimension` must be a valid pointer or null.
         #[unsafe(method(readBytes:strideBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readBytes_strideBytes(
@@ -702,6 +732,11 @@ impl MPSNDArray {
         /// and so forth.  If strideBytesPerDimension is nil, these are calculated for you assuming that the
         /// data is packed without additional space in between elements, rows, etc.
         /// 0 and negative values are permitted.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` must be a valid pointer.
+        /// - `stride_bytes_per_dimension` must be a valid pointer or null.
         #[unsafe(method(writeBytes:strideBytes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_strideBytes(

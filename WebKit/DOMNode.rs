@@ -211,6 +211,10 @@ impl DOMNode {
         #[unsafe(method_family = none)]
         pub unsafe fn isContentEditable(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// - `new_child` might not allow `None`.
+        /// - `ref_child` might not allow `None`.
         #[unsafe(method(insertBefore:refChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertBefore_refChild(
@@ -219,6 +223,10 @@ impl DOMNode {
             ref_child: Option<&DOMNode>,
         ) -> Option<Retained<DOMNode>>;
 
+        /// # Safety
+        ///
+        /// - `new_child` might not allow `None`.
+        /// - `old_child` might not allow `None`.
         #[unsafe(method(replaceChild:oldChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceChild_oldChild(
@@ -227,11 +235,17 @@ impl DOMNode {
             old_child: Option<&DOMNode>,
         ) -> Option<Retained<DOMNode>>;
 
+        /// # Safety
+        ///
+        /// `old_child` might not allow `None`.
         #[deprecated]
         #[unsafe(method(removeChild:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChild(&self, old_child: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
+        /// # Safety
+        ///
+        /// `new_child` might not allow `None`.
         #[deprecated]
         #[unsafe(method(appendChild:))]
         #[unsafe(method_family = none)]
@@ -252,6 +266,10 @@ impl DOMNode {
         #[unsafe(method_family = none)]
         pub unsafe fn normalize(&self);
 
+        /// # Safety
+        ///
+        /// - `feature` might not allow `None`.
+        /// - `version` might not allow `None`.
         #[unsafe(method(isSupported:version:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported_version(
@@ -265,14 +283,23 @@ impl DOMNode {
         #[unsafe(method_family = none)]
         pub unsafe fn hasAttributes(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `other` might not allow `None`.
         #[unsafe(method(isSameNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSameNode(&self, other: Option<&DOMNode>) -> bool;
 
+        /// # Safety
+        ///
+        /// `other` might not allow `None`.
         #[unsafe(method(isEqualNode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualNode(&self, other: Option<&DOMNode>) -> bool;
 
+        /// # Safety
+        ///
+        /// `namespace_uri` might not allow `None`.
         #[unsafe(method(lookupPrefix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookupPrefix(
@@ -280,6 +307,9 @@ impl DOMNode {
             namespace_uri: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `prefix` might not allow `None`.
         #[unsafe(method(lookupNamespaceURI:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookupNamespaceURI(
@@ -287,14 +317,23 @@ impl DOMNode {
             prefix: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `namespace_uri` might not allow `None`.
         #[unsafe(method(isDefaultNamespace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDefaultNamespace(&self, namespace_uri: Option<&NSString>) -> bool;
 
+        /// # Safety
+        ///
+        /// `other` might not allow `None`.
         #[unsafe(method(compareDocumentPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compareDocumentPosition(&self, other: Option<&DOMNode>) -> c_ushort;
 
+        /// # Safety
+        ///
+        /// `other` might not allow `None`.
         #[unsafe(method(contains:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contains(&self, other: Option<&DOMNode>) -> bool;
@@ -327,6 +366,10 @@ impl DOMNode {
 #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
 impl DOMNode {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `new_child` might not allow `None`.
+        /// - `ref_child` might not allow `None`.
         #[deprecated]
         #[unsafe(method(insertBefore::))]
         #[unsafe(method_family = none)]
@@ -336,6 +379,10 @@ impl DOMNode {
             ref_child: Option<&DOMNode>,
         ) -> Option<Retained<DOMNode>>;
 
+        /// # Safety
+        ///
+        /// - `new_child` might not allow `None`.
+        /// - `old_child` might not allow `None`.
         #[deprecated]
         #[unsafe(method(replaceChild::))]
         #[unsafe(method_family = none)]
@@ -345,6 +392,10 @@ impl DOMNode {
             old_child: Option<&DOMNode>,
         ) -> Option<Retained<DOMNode>>;
 
+        /// # Safety
+        ///
+        /// - `feature` might not allow `None`.
+        /// - `version` might not allow `None`.
         #[deprecated]
         #[unsafe(method(isSupported::))]
         #[unsafe(method_family = none)]

@@ -393,6 +393,10 @@ impl AVCaptionRegion {
         /// NSObject protocol method override
         ///
         /// This method throws an exception if the caption region's size has different units for width and height, or if the units are unrecognizeable.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(isEqual:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
@@ -400,6 +404,10 @@ impl AVCaptionRegion {
         /// NSMutableCopying protocol method override
         ///
         /// This method throws an exception if the caption region contains an identifier.
+        ///
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(mutableCopyWithZone:))]
         #[unsafe(method_family = mutableCopy)]
         pub unsafe fn mutableCopyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
@@ -950,6 +958,10 @@ impl AVCaption {
         /// Cyan    (RGB:0.0, 1.0, 1.0)
         /// Magenta    (RGB:1.0, 0.0, 1.0)
         /// Black    (RGB:0.0, 0.0, 0.0)
+        ///
+        /// # Safety
+        ///
+        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(textColorAtIndex:range:))]
         // required for soundness, method has `returns_retained` attribute.
         #[unsafe(method_family = copy)]
@@ -975,6 +987,10 @@ impl AVCaption {
         /// Cyan    (RGB:0.0, 1.0, 1.0)
         /// Magenta    (RGB:1.0, 0.0, 1.0)
         /// Black    (RGB:0.0, 0.0, 0.0)
+        ///
+        /// # Safety
+        ///
+        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(backgroundColorAtIndex:range:))]
         // required for soundness, method has `returns_retained` attribute.
         #[unsafe(method_family = copy)]
@@ -991,6 +1007,10 @@ impl AVCaption {
         /// CEA608 closed captions ignore this property.
         ///
         /// A visible distinction between AVCaptionFontWeightNormal and AVCaptionFontWeightBold may not exist if the font used has only one weight. This can be more common with CJK fonts where individual fonts can be quite large in terms of storage. Nevertheless, AVCaption still carries the font weight semantics so if the same AVCaption is applied to a different font having multiple weights, the distinction will become visible.
+        ///
+        /// # Safety
+        ///
+        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(fontWeightAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontWeightAtIndex_range(
@@ -1004,6 +1024,10 @@ impl AVCaption {
         /// The range parameter receives UTF-16 code unit index range the style is effective. After returning from the call, the range will indicate where the current style returned will be active and allows discovery of the next change in the style.
         ///
         /// Some writing systems may not have italic glyphs for characters and so fonts with italic forms are not available. For example, Japanese fonts do not typically have italic forms for most characters although there may be special cases for Latin characters. Nevertheless, AVCaption still carries the font style semantics even though there may be no visible rendering distinction between using AVCaptionFontStyleNormal and AVCaptionFontStyleItalic with that language.
+        ///
+        /// # Safety
+        ///
+        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(fontStyleAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontStyleAtIndex_range(
@@ -1017,6 +1041,10 @@ impl AVCaption {
         /// The value of OR-ed value of AVCaptionDecoration as NSInteger. The range parameter receives UTF-16 code unit index range the style is effective. After returning from the call, the range will indicate where the current style returned will be active and allows discovery of the next change in the style.
         ///
         /// CEA608 closed captions support only AVCaptionDecorationNone and AVCaptionDecorationUnderline.
+        ///
+        /// # Safety
+        ///
+        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(decorationAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decorationAtIndex_range(
@@ -1030,6 +1058,10 @@ impl AVCaption {
         /// The style is effective only in a vertical text region.
         ///
         /// When specified, the renderer combines all the characters in the style range so that their glyph areas consume the nominal bounding box of a single em square of the surrounding vertical text.
+        ///
+        /// # Safety
+        ///
+        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(textCombineAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textCombineAtIndex_range(
@@ -1045,6 +1077,10 @@ impl AVCaption {
         /// It returns nil when the text doesn't have a ruby at the position.
         ///
         /// CEA608 closed captions ignore this property.
+        ///
+        /// # Safety
+        ///
+        /// `out_range` must be a valid pointer or null.
         #[unsafe(method(rubyAtIndex:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rubyAtIndex_range(
@@ -1375,6 +1411,10 @@ impl AVCaptionRuby {
         /// The ruby text
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
@@ -1382,6 +1422,10 @@ impl AVCaptionRuby {
         /// The position of ruby text with respect to the ruby base.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> AVCaptionRubyPosition;
@@ -1389,6 +1433,10 @@ impl AVCaptionRuby {
         /// The alignment of ruby text.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> AVCaptionRubyAlignment;

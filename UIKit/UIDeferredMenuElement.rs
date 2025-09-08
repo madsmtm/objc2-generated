@@ -53,6 +53,10 @@ impl UIDeferredMenuElement {
         ///
         /// Parameter `elementProvider`: Called by the system to request the deferred menu items when the containing menu is presented.
         /// Call this block's completion handler when the menu items are available.
+        ///
+        /// # Safety
+        ///
+        /// `element_provider` block's argument block's argument must be a valid pointer.
         #[unsafe(method(elementWithProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementWithProvider(
@@ -72,6 +76,10 @@ impl UIDeferredMenuElement {
         ///
         /// Parameter `elementProvider`: Called by the system to request the deferred menu items when the containing menu is presented.
         /// Call this block's completion handler when the menu items are available.
+        ///
+        /// # Safety
+        ///
+        /// `element_provider` block's argument block's argument must be a valid pointer.
         #[unsafe(method(elementWithUncachedProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementWithUncachedProvider(

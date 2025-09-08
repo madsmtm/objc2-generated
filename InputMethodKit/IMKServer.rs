@@ -49,6 +49,11 @@ impl IMKServer {
         /// Create a IMKServer from information in the bundle's Info.plist.
         ///
         /// This method will look into the info.plist for a controller class and delegate class.  The class names will be loaded, no classes will be instantiated.  Additionally, an NSConnection will be allocated and registered with the name parameter.
+        ///
+        /// # Safety
+        ///
+        /// - `name` might not allow `None`.
+        /// - `bundle_identifier` might not allow `None`.
         #[unsafe(method(initWithName:bundleIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_bundleIdentifier(
@@ -60,6 +65,14 @@ impl IMKServer {
         /// Creates an IMKServer using the parameters.
         ///
         /// This method creates an IMKServer object without attempting to examine the bundle instead the class names provided as parameters are used to create input controller objects and delegate objects.
+        ///
+        /// # Safety
+        ///
+        /// - `name` might not allow `None`.
+        /// - `controller_class_id` probably has further requirements.
+        /// - `controller_class_id` might not allow `None`.
+        /// - `delegate_class_id` probably has further requirements.
+        /// - `delegate_class_id` might not allow `None`.
         #[unsafe(method(initWithName:controllerClass:delegateClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_controllerClass_delegateClass(

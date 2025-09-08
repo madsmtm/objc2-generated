@@ -107,6 +107,10 @@ impl UIFindInteraction {
         /// This provider is consulted when the search options menu is being populated. A default set of search options is provided, representing the options
         /// available in
         /// `UITextSearchOptions,`which can be either modified, augmented, or omitted.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(optionsMenuProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn optionsMenuProvider(
@@ -117,6 +121,10 @@ impl UIFindInteraction {
         /// Setter for [`optionsMenuProvider`][Self::optionsMenuProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `options_menu_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setOptionsMenuProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOptionsMenuProvider(

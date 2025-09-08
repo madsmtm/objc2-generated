@@ -79,6 +79,10 @@ impl AVSampleBufferVideoRenderer {
         /// Parameter `handler`: The handler to invoke when flush operation is complete. May be nil.
         ///
         /// A flush resets decoder state. The next frame passed to enqueueSampleBuffer: should be an IDR frame (also known as a key frame or sync sample).
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(flushWithRemovalOfDisplayedImage:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn flushWithRemovalOfDisplayedImage_completionHandler(
@@ -165,6 +169,10 @@ impl AVSampleBufferVideoRenderer {
         /// Parameter `completionHandler`: The handler to invoke with the video performance metrics.
         ///
         /// If there are no performance metrics available, the completion handler will be called with nil videoPerformanceMetrics.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadVideoPerformanceMetricsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadVideoPerformanceMetricsWithCompletionHandler(

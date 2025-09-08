@@ -149,6 +149,9 @@ extern_conformance!(
 impl PHContentEditingInputRequestOptions {
     extern_methods!(
         #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(canHandleAdjustmentData))]
         #[unsafe(method_family = none)]
         pub unsafe fn canHandleAdjustmentData(
@@ -178,6 +181,9 @@ impl PHContentEditingInputRequestOptions {
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(

@@ -42,6 +42,9 @@ impl MKMultiPoint {
         pub unsafe fn pointCount(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-location")]
+        /// # Safety
+        ///
+        /// `coords` must be a valid pointer.
         #[unsafe(method(getCoordinates:range:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCoordinates_range(

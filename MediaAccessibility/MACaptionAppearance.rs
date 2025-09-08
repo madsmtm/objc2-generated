@@ -236,6 +236,10 @@ extern "C-unwind" {
     /// Called by clients to inform accessibility products that captions have been displayed onscreen.
     ///
     /// Parameter `strings`: An array of CFStringRef or CFAttributedStringRef objects that represent the text that is being displayed. An empty array is used to indicate that no captions are being displayed.
+    ///
+    /// # Safety
+    ///
+    /// `strings` generic must be of the correct type.
     pub fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray);
 }
 
@@ -414,6 +418,10 @@ extern "C-unwind" {
 /// )
 ///
 /// Returns: User preference for foreground/text color.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
@@ -452,6 +460,10 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
 /// )
 ///
 /// Returns: User preference for background color.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
@@ -490,6 +502,10 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
 /// )
 ///
 /// Returns: User preference for window color.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyWindowColor(
@@ -527,6 +543,10 @@ extern "C-unwind" {
     /// )
     ///
     /// Returns: User preference for foreground opacity.
+    ///
+    /// # Safety
+    ///
+    /// `behavior` must be a valid pointer or null.
     pub fn MACaptionAppearanceGetForegroundOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -553,6 +573,10 @@ extern "C-unwind" {
     /// )
     ///
     /// Returns: User preference for background opacity.
+    ///
+    /// # Safety
+    ///
+    /// `behavior` must be a valid pointer or null.
     pub fn MACaptionAppearanceGetBackgroundOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -579,6 +603,10 @@ extern "C-unwind" {
     /// )
     ///
     /// Returns: User preference for window opacity.
+    ///
+    /// # Safety
+    ///
+    /// `behavior` must be a valid pointer or null.
     pub fn MACaptionAppearanceGetWindowOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -605,6 +633,10 @@ extern "C-unwind" {
     /// )
     ///
     /// Returns: User preference for caption-window corner radius.
+    ///
+    /// # Safety
+    ///
+    /// `behavior` must be a valid pointer or null.
     pub fn MACaptionAppearanceGetWindowRoundedCornerRadius(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -638,6 +670,10 @@ extern "C-unwind" {
 /// .
 ///
 /// Returns: User font preference for the specified style.
+///
+/// # Safety
+///
+/// `behavior` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-text")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyFontDescriptorForStyle(
@@ -678,6 +714,10 @@ extern "C-unwind" {
     /// )
     ///
     /// Returns: User font scaling preference for the specified style.
+    ///
+    /// # Safety
+    ///
+    /// `behavior` must be a valid pointer or null.
     pub fn MACaptionAppearanceGetRelativeCharacterSize(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -704,6 +744,10 @@ extern "C-unwind" {
     /// )
     ///
     /// Returns: User preference for text edge style.
+    ///
+    /// # Safety
+    ///
+    /// `behavior` must be a valid pointer or null.
     pub fn MACaptionAppearanceGetTextEdgeStyle(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,

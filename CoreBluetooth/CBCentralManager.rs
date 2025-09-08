@@ -193,6 +193,10 @@ impl CBCentralManager {
         /// See also: CBCentralManagerOptionShowPowerAlertKey
         ///
         /// See also: CBCentralManagerOptionRestoreIdentifierKey
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithDelegate:queue:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate_queue_options(
@@ -310,6 +314,10 @@ impl CBCentralManager {
         /// See also: CBCentralManagerScanOptionAllowDuplicatesKey
         ///
         /// See also: CBCentralManagerScanOptionSolicitedServiceUUIDsKey
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(scanForPeripheralsWithServices:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanForPeripheralsWithServices_options(
@@ -356,6 +364,10 @@ impl CBCentralManager {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(connectPeripheral:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn connectPeripheral_options(
@@ -408,6 +420,10 @@ impl CBCentralManager {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(registerForConnectionEventsWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForConnectionEventsWithOptions(
@@ -490,6 +506,10 @@ extern_protocol!(
         /// See also: CBCentralManagerRestoredStateScanServicesKey;
         ///
         /// See also: CBCentralManagerRestoredStateScanOptionsKey;
+        ///
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[optional]
         #[unsafe(method(centralManager:willRestoreState:))]
         #[unsafe(method_family = none)]
@@ -546,6 +566,10 @@ extern_protocol!(
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `advertisement_data` generic should be of the correct type.
         #[optional]
         #[unsafe(method(centralManager:didDiscoverPeripheral:advertisementData:RSSI:))]
         #[unsafe(method_family = none)]

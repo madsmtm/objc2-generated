@@ -288,6 +288,9 @@ impl NSRuleEditor {
         #[unsafe(method_family = none)]
         pub unsafe fn displayValuesForRow(&self, row: NSInteger) -> Retained<NSArray>;
 
+        /// # Safety
+        ///
+        /// `display_value` should be of the correct type.
         #[unsafe(method(rowForDisplayValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rowForDisplayValue(&self, display_value: &AnyObject) -> NSInteger;
@@ -300,6 +303,9 @@ impl NSRuleEditor {
         #[unsafe(method_family = none)]
         pub unsafe fn parentRowForRow(&self, row_index: NSInteger) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(addRow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRow(&self, sender: Option<&AnyObject>);
@@ -314,6 +320,10 @@ impl NSRuleEditor {
             should_animate: bool,
         );
 
+        /// # Safety
+        ///
+        /// - `criteria` generic should be of the correct type.
+        /// - `values` generic should be of the correct type.
         #[unsafe(method(setCriteria:andDisplayValues:forRowAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCriteria_andDisplayValues_forRowAtIndex(
@@ -355,6 +365,10 @@ impl NSRuleEditor {
         pub unsafe fn rowClass(&self) -> &'static AnyClass;
 
         /// Setter for [`rowClass`][Self::rowClass].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setRowClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowClass(&self, row_class: &AnyClass);
@@ -446,6 +460,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditordelegate?language=objc)
     pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `criterion` should be of the correct type.
         #[unsafe(method(ruleEditor:numberOfChildrenForCriterion:withRowType:))]
         #[unsafe(method_family = none)]
         unsafe fn ruleEditor_numberOfChildrenForCriterion_withRowType(
@@ -456,6 +473,9 @@ extern_protocol!(
         ) -> NSInteger;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `criterion` should be of the correct type.
         #[unsafe(method(ruleEditor:child:forCriterion:withRowType:))]
         #[unsafe(method_family = none)]
         unsafe fn ruleEditor_child_forCriterion_withRowType(
@@ -467,6 +487,9 @@ extern_protocol!(
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `criterion` should be of the correct type.
         #[unsafe(method(ruleEditor:displayValueForCriterion:inRow:))]
         #[unsafe(method_family = none)]
         unsafe fn ruleEditor_displayValueForCriterion_inRow(
@@ -477,6 +500,10 @@ extern_protocol!(
         ) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// - `criterion` should be of the correct type.
+        /// - `value` should be of the correct type.
         #[optional]
         #[unsafe(method(ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:))]
         #[unsafe(method_family = none)]

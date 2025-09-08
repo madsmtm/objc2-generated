@@ -155,6 +155,9 @@ unsafe impl ConcreteType for CFNumber {
 }
 
 impl CFNumber {
+    /// # Safety
+    ///
+    /// `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberCreate")]
     #[inline]
     pub unsafe fn new(
@@ -201,6 +204,9 @@ impl CFNumber {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberGetValue")]
     #[inline]
     pub unsafe fn value(&self, the_type: CFNumberType, value_ptr: *mut c_void) -> bool {
@@ -215,6 +221,9 @@ impl CFNumber {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFNumberCompare")]
     #[inline]
     pub unsafe fn compare(

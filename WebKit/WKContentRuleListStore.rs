@@ -25,6 +25,9 @@ impl WKContentRuleListStore {
         #[unsafe(method_family = none)]
         pub unsafe fn defaultStore(mtm: MainThreadMarker) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[unsafe(method(storeWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn storeWithURL(
@@ -33,6 +36,11 @@ impl WKContentRuleListStore {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "WKContentRuleList", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - `identifier` might not allow `None`.
+        /// - `encoded_content_rule_list` might not allow `None`.
+        /// - `completion_handler` might not allow `None`.
         #[unsafe(method(compileContentRuleListForIdentifier:encodedContentRuleList:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileContentRuleListForIdentifier_encodedContentRuleList_completionHandler(
@@ -45,6 +53,10 @@ impl WKContentRuleListStore {
         );
 
         #[cfg(all(feature = "WKContentRuleList", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - `identifier` might not allow `None`.
+        /// - `completion_handler` might not allow `None`.
         #[unsafe(method(lookUpContentRuleListForIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lookUpContentRuleListForIdentifier_completionHandler(
@@ -56,6 +68,10 @@ impl WKContentRuleListStore {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// - `identifier` might not allow `None`.
+        /// - `completion_handler` might not allow `None`.
         #[unsafe(method(removeContentRuleListForIdentifier:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeContentRuleListForIdentifier_completionHandler(
@@ -65,6 +81,9 @@ impl WKContentRuleListStore {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` might not allow `None`.
         #[unsafe(method(getAvailableContentRuleListIdentifiers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getAvailableContentRuleListIdentifiers(

@@ -264,6 +264,10 @@ impl ICDevice {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ICDeviceDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn ICDeviceDelegate>>);
@@ -395,6 +399,10 @@ impl ICDevice {
         /// This request will execute the completion handler provided upon return.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestOpenSessionWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestOpenSessionWithOptions_completion(
@@ -409,6 +417,10 @@ impl ICDevice {
         /// This request will execute the completion handler provided upon return.
         ///
         /// Note: The completion block will execute on an any available queue, often this will not be the main queue.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(requestCloseSessionWithOptions:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestCloseSessionWithOptions_completion(
@@ -475,6 +487,11 @@ impl ICDevice {
         /// Please refer to 'requestSendPTPCommand:outData:sendCommandDelegate:sendCommandDelegate:contextInfo:' defined in ICCameraDevice.h for sending PTP pass-through commands.
         ///
         /// Note: Execution of the delegate callback will occur on the main thread.
+        ///
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(requestSendMessage:outData:maxReturnedDataSize:sendMessageDelegate:didSendMessageSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestSendMessage_outData_maxReturnedDataSize_sendMessageDelegate_didSendMessageSelector_contextInfo(
@@ -579,6 +596,10 @@ extern_protocol!(
         /// The 'status' dictionary contains two keys, ICStatusNotificationKey and ICLocalizedStatusNotificationKey, which are defined above.  Status information keys are located in their respective ICDevice type class header.
         ///
         /// Note: Execution of the delegate callback will occur on the main thread.
+        ///
+        /// # Safety
+        ///
+        /// `status` generic should be of the correct type.
         #[optional]
         #[unsafe(method(device:didReceiveStatusInformation:))]
         #[unsafe(method_family = none)]

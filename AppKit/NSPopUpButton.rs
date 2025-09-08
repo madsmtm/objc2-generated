@@ -159,6 +159,10 @@ impl NSPopUpButton {
         /// If `menu` is non-empty, the pop-up button uses the first item for its initial selection.
         ///
         /// Returns: An initialized pop-up button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(popUpButtonWithMenu:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn popUpButtonWithMenu_target_action(
@@ -337,11 +341,17 @@ impl NSPopUpButton {
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithTag(&self, tag: NSInteger) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(indexOfItemWithRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithRepresentedObject(&self, obj: Option<&AnyObject>)
             -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `action_selector` must be a valid selector.
         #[unsafe(method(indexOfItemWithTarget:andAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithTarget_andAction(
@@ -438,6 +448,10 @@ impl NSPopUpButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithTitle:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_image_target_action(
@@ -457,6 +471,10 @@ impl NSPopUpButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_target_action(
@@ -476,6 +494,10 @@ impl NSPopUpButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithImage:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithImage_target_action(
@@ -494,6 +516,10 @@ impl NSPopUpButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(checkboxWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkboxWithTitle_target_action(
@@ -512,6 +538,10 @@ impl NSPopUpButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(radioButtonWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn radioButtonWithTitle_target_action(

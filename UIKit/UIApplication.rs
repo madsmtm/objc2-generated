@@ -231,6 +231,10 @@ impl UIApplication {
         ) -> Option<Retained<ProtocolObject<dyn UIApplicationDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -272,6 +276,9 @@ impl UIApplication {
         pub unsafe fn canOpenURL(&self, url: &NSURL) -> bool;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(openURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openURL_options_completionHandler(
@@ -299,6 +306,11 @@ impl UIApplication {
         pub fn windows(&self) -> Retained<NSArray<UIWindow>>;
 
         #[cfg(feature = "UIEvent")]
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `sender` should be of the correct type.
         #[unsafe(method(sendAction:to:from:forEvent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendAction_to_from_forEvent(
@@ -824,6 +836,9 @@ extern_protocol!(
         unsafe fn applicationDidFinishLaunching(&self, application: &UIApplication);
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `launch_options` generic should be of the correct type.
         #[optional]
         #[unsafe(method(application:willFinishLaunchingWithOptions:))]
         #[unsafe(method_family = none)]
@@ -834,6 +849,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `launch_options` generic should be of the correct type.
         #[optional]
         #[unsafe(method(application:didFinishLaunchingWithOptions:))]
         #[unsafe(method_family = none)]
@@ -867,6 +885,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `annotation` should be of the correct type.
         #[deprecated]
         #[optional]
         #[unsafe(method(application:openURL:sourceApplication:annotation:))]
@@ -880,6 +901,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[optional]
         #[unsafe(method(application:openURL:options:))]
         #[unsafe(method_family = none)]
@@ -985,6 +1009,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:] for user visible notifications and -[UIApplicationDelegate application:didReceiveRemoteNotification:fetchCompletionHandler:] for silent remote notifications"]
         #[optional]
         #[unsafe(method(application:didReceiveRemoteNotification:))]
@@ -1024,6 +1051,10 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - `user_info` generic should be of the correct type.
+        /// - `response_info` generic should be of the correct type.
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
         #[optional]
         #[unsafe(method(application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:))]
@@ -1038,6 +1069,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
         #[optional]
         #[unsafe(method(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:))]
@@ -1055,6 +1089,9 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `response_info` generic should be of the correct type.
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
         #[optional]
         #[unsafe(method(application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:))]
@@ -1072,6 +1109,10 @@ extern_protocol!(
         /// This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
         ///
         /// This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(application:didReceiveRemoteNotification:fetchCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -1121,6 +1162,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(application:handleWatchKitExtensionRequest:reply:))]
         #[unsafe(method_family = none)]
@@ -1455,6 +1499,9 @@ impl UIApplication {
 
 #[cfg(feature = "UIResponder")]
 impl UIApplication {
+    /// # Safety
+    ///
+    /// `argv` must be a valid pointer.
     #[doc(alias = "UIApplicationMain")]
     #[inline]
     pub(crate) unsafe fn __main(

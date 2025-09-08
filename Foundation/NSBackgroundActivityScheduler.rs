@@ -100,6 +100,9 @@ impl NSBackgroundActivityScheduler {
         pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(scheduleWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleWithBlock(

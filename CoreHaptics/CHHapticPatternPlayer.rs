@@ -167,12 +167,20 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// The block or enclosure that will be called when the player finishes.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer or null.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         unsafe fn completionHandler(&self) -> CHHapticAdvancedPatternPlayerCompletionHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setCompletionHandler(

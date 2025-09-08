@@ -332,6 +332,10 @@ impl NSAccessibilityCustomRotorItemResult {
         /// Creates an item result with a given item load token and custom label.
         /// Use this initializer if the application has not yet loaded the element
         /// backing the item result.
+        ///
+        /// # Safety
+        ///
+        /// `item_loading_token` should be of the correct type.
         #[unsafe(method(initWithItemLoadingToken:customLabel:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItemLoadingToken_customLabel(

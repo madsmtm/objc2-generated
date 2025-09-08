@@ -126,6 +126,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `slice` must be a valid pointer.
+    /// - `remainder` must be a valid pointer.
     pub fn CGRectDivide(
         rect: CGRect,
         slice: NonNull<CGRect>,
@@ -161,6 +165,10 @@ pub unsafe extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `dict` generics must be of the correct type.
+    /// - `point` must be a valid pointer or null.
     pub fn CGPointMakeWithDictionaryRepresentation(
         dict: Option<&CFDictionary>,
         point: *mut CGPoint,
@@ -180,6 +188,10 @@ pub unsafe extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `dict` generics must be of the correct type.
+    /// - `size` must be a valid pointer or null.
     pub fn CGSizeMakeWithDictionaryRepresentation(
         dict: Option<&CFDictionary>,
         size: *mut CGSize,
@@ -199,6 +211,10 @@ pub unsafe extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `dict` generics must be of the correct type.
+    /// - `rect` must be a valid pointer or null.
     pub fn CGRectMakeWithDictionaryRepresentation(
         dict: Option<&CFDictionary>,
         rect: *mut CGRect,

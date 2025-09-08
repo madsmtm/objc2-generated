@@ -243,6 +243,10 @@ unsafe impl ConcreteType for CFXMLParser {
 }
 
 impl CFXMLParser {
+    /// # Safety
+    ///
+    /// - `call_backs` must be a valid pointer.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFXMLParserCreate")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -281,6 +285,10 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `call_backs` must be a valid pointer.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFXMLParserCreateWithDataFromURL")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -316,6 +324,9 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFXMLParserGetContext")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -326,6 +337,9 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetContext(self, context) }
     }
 
+    /// # Safety
+    ///
+    /// `call_backs` must be a valid pointer.
     #[doc(alias = "CFXMLParserGetCallBacks")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -400,6 +414,9 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `error_description` might not allow `None`.
     #[doc(alias = "CFXMLParserAbort")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -430,6 +447,11 @@ impl CFXMLParser {
     }
 }
 
+/// # Safety
+///
+/// - `allocator` might not allow `None`.
+/// - `xml_data` might not allow `None`.
+/// - `data_source` might not allow `None`.
 #[cfg(all(
     feature = "CFData",
     feature = "CFTree",
@@ -466,6 +488,9 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `error_dict` must be a valid pointer.
 #[cfg(all(
     feature = "CFData",
     feature = "CFDictionary",
@@ -506,6 +531,10 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `allocator` might not allow `None`.
+/// - `data_source` might not allow `None`.
 #[cfg(all(feature = "CFTree", feature = "CFURL", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
@@ -529,6 +558,10 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `allocator` might not allow `None`.
+/// - `xml_tree` might not allow `None`.
 #[cfg(all(feature = "CFData", feature = "CFTree", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
@@ -546,6 +579,10 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `entities_dictionary` generics must be of the correct type.
+/// - `entities_dictionary` might not allow `None`.
 #[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
@@ -565,6 +602,10 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `entities_dictionary` generics must be of the correct type.
+/// - `entities_dictionary` might not allow `None`.
 #[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLCreateStringByUnescapingEntities(

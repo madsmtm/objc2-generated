@@ -498,6 +498,10 @@ impl UIMutableUserNotificationAction {
         /// Setter for [`parameters`][Self::parameters].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `parameters` generic should be of the correct type.
         #[unsafe(method(setParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setParameters(&self, parameters: &NSDictionary);

@@ -120,6 +120,10 @@ impl NSComboButton {
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(comboButtonWithTitle:menu:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithTitle_menu_target_action(
@@ -140,6 +144,10 @@ impl NSComboButton {
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(comboButtonWithImage:menu:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithImage_menu_target_action(
@@ -162,6 +170,10 @@ impl NSComboButton {
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(comboButtonWithTitle:image:menu:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithTitle_image_menu_target_action(

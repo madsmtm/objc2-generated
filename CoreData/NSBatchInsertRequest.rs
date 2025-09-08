@@ -51,6 +51,10 @@ impl NSBatchInsertRequest {
         /// Setter for [`objectsToInsert`][Self::objectsToInsert].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `objects_to_insert` generic generic should be of the correct type.
         #[unsafe(method(setObjectsToInsert:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectsToInsert(
@@ -59,6 +63,9 @@ impl NSBatchInsertRequest {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(dictionaryHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryHandler(
@@ -81,6 +88,9 @@ impl NSBatchInsertRequest {
         );
 
         #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(managedObjectHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectHandler(
@@ -111,6 +121,9 @@ impl NSBatchInsertRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setResultType(&self, result_type: NSBatchInsertRequestResultType);
 
+        /// # Safety
+        ///
+        /// `dictionaries` generic generic should be of the correct type.
         #[unsafe(method(batchInsertRequestWithEntityName:objects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchInsertRequestWithEntityName_objects(
@@ -141,6 +154,9 @@ impl NSBatchInsertRequest {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `dictionaries` generic generic should be of the correct type.
         #[unsafe(method(initWithEntityName:objects:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityName_objects(
@@ -150,6 +166,9 @@ impl NSBatchInsertRequest {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSEntityDescription")]
+        /// # Safety
+        ///
+        /// `dictionaries` generic generic should be of the correct type.
         #[unsafe(method(initWithEntity:objects:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntity_objects(

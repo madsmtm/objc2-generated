@@ -129,6 +129,9 @@ impl CKNotification {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `notification_dictionary` generic should be of the correct type.
         #[unsafe(method(notificationFromRemoteNotificationDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
@@ -139,16 +142,28 @@ impl CKNotification {
         /// subclass defined below.  Use `notificationType` to avoid `as?` or `-isKindOfClass:` checks.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(notificationType))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationType(&self) -> CKNotificationType;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(notificationID))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationID(&self) -> Option<Retained<CKNotificationID>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(containerIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn containerIdentifier(&self) -> Option<Retained<NSString>>;
@@ -157,6 +172,10 @@ impl CKNotification {
         /// The user `recordID` of the owner of the subscription for which this notification was generated
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subscriptionOwnerUserRecordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionOwnerUserRecordID(&self) -> Option<Retained<CKRecordID>>;
@@ -168,6 +187,10 @@ impl CKNotification {
         /// The order in which properties are dropped from a push notification is defined in each `CKNotification` subclass below.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isPruned))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPruned(&self) -> bool;
@@ -176,6 +199,10 @@ impl CKNotification {
         /// The ID of the subscription that caused this notification to fire.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subscriptionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionID(&self) -> Option<Retained<CKSubscriptionID>>;
@@ -187,78 +214,134 @@ impl CKNotification {
 impl CKNotification {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[unsafe(method(alertBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn alertBody(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[unsafe(method(alertLocalizationKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn alertLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[unsafe(method(alertLocalizationArgs))]
         #[unsafe(method_family = none)]
         pub unsafe fn alertLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(titleLocalizationKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(titleLocalizationArgs))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subtitleLocalizationKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(subtitleLocalizationArgs))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[unsafe(method(alertActionLocalizationKey))]
         #[unsafe(method_family = none)]
         pub unsafe fn alertActionLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[unsafe(method(alertLaunchImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn alertLaunchImage(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[unsafe(method(badge))]
         #[unsafe(method_family = none)]
         pub unsafe fn badge(&self) -> Option<Retained<NSNumber>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
         #[unsafe(method(soundName))]
         #[unsafe(method_family = none)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(category))]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
@@ -331,6 +414,10 @@ extern_conformance!(
 impl CKQueryNotification {
     extern_methods!(
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(queryNotificationReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryNotificationReason(&self) -> CKQueryNotificationReason;
@@ -340,18 +427,30 @@ impl CKQueryNotification {
         /// You request the server fill out this property via the `desiredKeys` property of `CKSubscription.NotificationInfo`
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFields(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "CKRecordID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKDatabase")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(databaseScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
@@ -369,6 +468,9 @@ impl CKQueryNotification {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `notification_dictionary` generic should be of the correct type.
         #[unsafe(method(notificationFromRemoteNotificationDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
@@ -420,12 +522,20 @@ impl CKRecordZoneNotification {
     extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordZoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKDatabase")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(databaseScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
@@ -443,6 +553,9 @@ impl CKRecordZoneNotification {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `notification_dictionary` generic should be of the correct type.
         #[unsafe(method(notificationFromRemoteNotificationDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
@@ -493,6 +606,10 @@ impl CKDatabaseNotification {
     extern_methods!(
         #[cfg(feature = "CKDatabase")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(databaseScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
@@ -510,6 +627,9 @@ impl CKDatabaseNotification {
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `notification_dictionary` generic should be of the correct type.
         #[unsafe(method(notificationFromRemoteNotificationDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(

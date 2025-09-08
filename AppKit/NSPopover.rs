@@ -235,6 +235,9 @@ impl NSPopover {
         #[unsafe(method_family = none)]
         pub unsafe fn showRelativeToToolbarItem(&self, toolbar_item: &NSToolbarItem);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(performClose:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performClose(&self, sender: Option<&AnyObject>);

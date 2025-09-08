@@ -20,12 +20,18 @@ extern_conformance!(
 
 impl NSTreeNode {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `model_object` should be of the correct type.
         #[unsafe(method(treeNodeWithRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn treeNodeWithRepresentedObject(
             model_object: Option<&AnyObject>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `model_object` should be of the correct type.
         #[unsafe(method(initWithRepresentedObject:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRepresentedObject(

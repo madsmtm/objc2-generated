@@ -39,6 +39,10 @@ impl CKFetchWebAuthTokenOperation {
         /// APIToken is expected to be set before you begin this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(APIToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn APIToken(&self) -> Option<Retained<NSString>>;
@@ -46,6 +50,10 @@ impl CKFetchWebAuthTokenOperation {
         /// Setter for [`APIToken`][Self::APIToken].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAPIToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAPIToken(&self, api_token: Option<&NSString>);
@@ -67,6 +75,12 @@ impl CKFetchWebAuthTokenOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(fetchWebAuthTokenCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchWebAuthTokenCompletionBlock(
@@ -77,6 +91,10 @@ impl CKFetchWebAuthTokenOperation {
         /// Setter for [`fetchWebAuthTokenCompletionBlock`][Self::fetchWebAuthTokenCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchWebAuthTokenCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchWebAuthTokenCompletionBlock(

@@ -130,6 +130,10 @@ impl NSButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithTitle:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_image_target_action(
@@ -149,6 +153,10 @@ impl NSButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_target_action(
@@ -168,6 +176,10 @@ impl NSButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(buttonWithImage:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithImage_target_action(
@@ -186,6 +198,10 @@ impl NSButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(checkboxWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkboxWithTitle_target_action(
@@ -204,6 +220,10 @@ impl NSButton {
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(radioButtonWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn radioButtonWithTitle_target_action(
@@ -318,6 +338,11 @@ impl NSButton {
         pub unsafe fn setPeriodicDelay_interval(&self, delay: c_float, interval: c_float);
 
         /// Gets the initial delay and repeat interval, in seconds, for repeated action messages sent when `continuous` is YES. Both parameters to this method must not be NULL.
+        ///
+        /// # Safety
+        ///
+        /// - `delay` must be a valid pointer.
+        /// - `interval` must be a valid pointer.
         #[unsafe(method(getPeriodicDelay:interval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPeriodicDelay_interval(
@@ -604,6 +629,9 @@ impl NSButton {
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSButton {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `string_with_ampersand` might not allow `None`.
         #[deprecated = "Mnemonics are not used on macOS. Set the title property directly instead."]
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]

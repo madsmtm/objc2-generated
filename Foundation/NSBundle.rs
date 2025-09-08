@@ -61,6 +61,9 @@ impl NSBundle {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `a_class` probably has further requirements.
         #[unsafe(method(bundleForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleForClass(a_class: &AnyClass) -> Retained<NSBundle>;
@@ -520,6 +523,9 @@ impl NSBundleResourceRequest {
         pub unsafe fn bundle(&self) -> Retained<NSBundle>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(beginAccessingResourcesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginAccessingResourcesWithCompletionHandler(
@@ -528,6 +534,9 @@ impl NSBundleResourceRequest {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(conditionallyBeginAccessingResourcesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn conditionallyBeginAccessingResourcesWithCompletionHandler(

@@ -92,6 +92,10 @@ impl UIDocumentInteractionController {
         pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`annotation`][Self::annotation].
+        ///
+        /// # Safety
+        ///
+        /// `annotation` should be of the correct type.
         #[unsafe(method(setAnnotation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&AnyObject>);
@@ -270,6 +274,9 @@ extern_protocol!(
             application: Option<&NSString>,
         );
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated]
         #[optional]
         #[unsafe(method(documentInteractionController:canPerformAction:))]
@@ -280,6 +287,9 @@ extern_protocol!(
             action: Option<Sel>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated]
         #[optional]
         #[unsafe(method(documentInteractionController:performAction:))]

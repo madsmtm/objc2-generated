@@ -304,6 +304,10 @@ impl UISearchTextField {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tokenBackgroundColor`][Self::tokenBackgroundColor].
+        ///
+        /// # Safety
+        ///
+        /// `token_background_color` might not allow `None`.
         #[unsafe(method(setTokenBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTokenBackgroundColor(&self, token_background_color: Option<&UIColor>);
@@ -458,6 +462,10 @@ impl UISearchToken {
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
+        ///
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[unsafe(method(setRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);

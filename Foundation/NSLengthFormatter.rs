@@ -124,6 +124,9 @@ impl NSLengthFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `unitp` must be a valid pointer or null.
         #[unsafe(method(unitStringFromMeters:usedUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromMeters_usedUnit(

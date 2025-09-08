@@ -125,6 +125,10 @@ impl AUGenericView {
         /// Parameter `au`: The Audio Unit associated with the view
         ///
         /// Returns: Returns the newly created view object
+        ///
+        /// # Safety
+        ///
+        /// `au` must be a valid pointer.
         #[unsafe(method(initWithAudioUnit:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioUnit(
@@ -140,6 +144,10 @@ impl AUGenericView {
         /// Parameter `inFlags`: The flags specifying display properties (multiple flags can be combined using the or '|' operator)
         ///
         /// Returns: Returns the newly created view object
+        ///
+        /// # Safety
+        ///
+        /// `in_audio_unit` must be a valid pointer.
         #[unsafe(method(initWithAudioUnit:displayFlags:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioUnit_displayFlags(

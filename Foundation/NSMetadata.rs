@@ -29,6 +29,10 @@ impl NSMetadataQuery {
         ) -> Option<Retained<ProtocolObject<dyn NSMetadataQueryDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -111,6 +115,10 @@ impl NSMetadataQuery {
         /// Setter for [`searchScopes`][Self::searchScopes].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `search_scopes` generic should be of the correct type.
         #[unsafe(method(setSearchScopes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchScopes(&self, search_scopes: &NSArray);
@@ -124,6 +132,10 @@ impl NSMetadataQuery {
         /// Setter for [`searchItems`][Self::searchItems].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `search_items` generic should be of the correct type.
         #[unsafe(method(setSearchItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSearchItems(&self, search_items: Option<&NSArray>);
@@ -197,6 +209,9 @@ impl NSMetadataQuery {
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Retained<NSArray>;
 
+        /// # Safety
+        ///
+        /// `result` should be of the correct type.
         #[unsafe(method(indexOfResult:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfResult(&self, result: &AnyObject) -> NSUInteger;
@@ -250,6 +265,9 @@ extern_protocol!(
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `attr_value` should be of the correct type.
         #[optional]
         #[unsafe(method(metadataQuery:replacementValueForAttribute:value:))]
         #[unsafe(method_family = none)]

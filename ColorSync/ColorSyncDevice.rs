@@ -147,6 +147,9 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `device_info` generics must be of the correct type.
     pub fn ColorSyncRegisterDevice(
         device_class: &CFString,
         device_id: &CFUUID,
@@ -159,6 +162,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `profile_info` generics must be of the correct type.
     pub fn ColorSyncDeviceSetCustomProfiles(
         device_class: &CFString,
         device_id: &CFUUID,
@@ -186,6 +192,10 @@ pub type ColorSyncDeviceProfileIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<CFDictionary>, *mut c_void) -> bool>;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `call_back` must be implemented correctly.
+    /// - `user_info` must be a valid pointer or null.
     pub fn ColorSyncIterateDeviceProfiles(
         call_back: ColorSyncDeviceProfileIterateCallback,
         user_info: *mut c_void,

@@ -51,6 +51,10 @@ impl CKFetchDatabaseChangesOperation {
 
         #[cfg(feature = "CKServerChangeToken")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(previousServerChangeToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
@@ -59,6 +63,10 @@ impl CKFetchDatabaseChangesOperation {
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPreviousServerChangeToken:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviousServerChangeToken(
@@ -67,11 +75,19 @@ impl CKFetchDatabaseChangesOperation {
         );
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(resultsLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
         /// Setter for [`resultsLimit`][Self::resultsLimit].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setResultsLimit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
@@ -89,11 +105,19 @@ impl CKFetchDatabaseChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(fetchAllChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
 
         /// Setter for [`fetchAllChanges`][Self::fetchAllChanges].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchAllChanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
@@ -105,6 +129,11 @@ impl CKFetchDatabaseChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[unsafe(method(recordZoneWithIDChangedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDChangedBlock(
@@ -115,6 +144,10 @@ impl CKFetchDatabaseChangesOperation {
         /// Setter for [`recordZoneWithIDChangedBlock`][Self::recordZoneWithIDChangedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneWithIDChangedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDChangedBlock(
@@ -131,6 +164,11 @@ impl CKFetchDatabaseChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[unsafe(method(recordZoneWithIDWasDeletedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedBlock(
@@ -141,6 +179,10 @@ impl CKFetchDatabaseChangesOperation {
         /// Setter for [`recordZoneWithIDWasDeletedBlock`][Self::recordZoneWithIDWasDeletedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneWithIDWasDeletedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasDeletedBlock(
@@ -162,6 +204,11 @@ impl CKFetchDatabaseChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[unsafe(method(recordZoneWithIDWasPurgedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasPurgedBlock(
@@ -172,6 +219,10 @@ impl CKFetchDatabaseChangesOperation {
         /// Setter for [`recordZoneWithIDWasPurgedBlock`][Self::recordZoneWithIDWasPurgedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneWithIDWasPurgedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasPurgedBlock(
@@ -193,6 +244,11 @@ impl CKFetchDatabaseChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[unsafe(method(recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
@@ -203,6 +259,10 @@ impl CKFetchDatabaseChangesOperation {
         /// Setter for [`recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock`][Self::recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
@@ -219,6 +279,11 @@ impl CKFetchDatabaseChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[unsafe(method(changeTokenUpdatedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeTokenUpdatedBlock(
@@ -229,6 +294,10 @@ impl CKFetchDatabaseChangesOperation {
         /// Setter for [`changeTokenUpdatedBlock`][Self::changeTokenUpdatedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setChangeTokenUpdatedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChangeTokenUpdatedBlock(
@@ -256,6 +325,12 @@ impl CKFetchDatabaseChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(fetchDatabaseChangesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchDatabaseChangesCompletionBlock(
@@ -266,6 +341,10 @@ impl CKFetchDatabaseChangesOperation {
         /// Setter for [`fetchDatabaseChangesCompletionBlock`][Self::fetchDatabaseChangesCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchDatabaseChangesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchDatabaseChangesCompletionBlock(

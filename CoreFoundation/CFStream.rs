@@ -200,6 +200,10 @@ extern "C" {
 }
 
 impl CFReadStream {
+    /// # Safety
+    ///
+    /// - `bytes` must be a valid pointer.
+    /// - `bytes_deallocator` might not allow `None`.
     #[doc(alias = "CFReadStreamCreateWithBytesNoCopy")]
     #[inline]
     pub unsafe fn with_bytes_no_copy(
@@ -223,6 +227,9 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFWriteStreamCreateWithBuffer")]
     #[inline]
     pub unsafe fn with_buffer(
@@ -297,6 +304,10 @@ impl CFWriteStream {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `read_stream` must be a valid pointer.
+    /// - `write_stream` must be a valid pointer.
     pub fn CFStreamCreateBoundPair(
         alloc: Option<&CFAllocator>,
         read_stream: *mut *mut CFReadStream,
@@ -418,6 +429,10 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `read_stream` must be a valid pointer.
+    /// - `write_stream` must be a valid pointer.
     #[cfg(feature = "CFSocket")]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithSocket(
@@ -429,6 +444,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `read_stream` must be a valid pointer.
+    /// - `write_stream` must be a valid pointer.
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithSocketToHost(
         alloc: Option<&CFAllocator>,
@@ -440,6 +459,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `signature` must be a valid pointer.
+    /// - `read_stream` must be a valid pointer.
+    /// - `write_stream` must be a valid pointer.
     #[cfg(all(feature = "CFData", feature = "CFSocket"))]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithPeerSocketSignature(
@@ -555,6 +579,9 @@ impl CFReadStream {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFReadStreamRead")]
     #[inline]
     pub unsafe fn read(&self, buffer: *mut u8, buffer_length: CFIndex) -> CFIndex {
@@ -568,6 +595,9 @@ impl CFReadStream {
         unsafe { CFReadStreamRead(self, buffer, buffer_length) }
     }
 
+    /// # Safety
+    ///
+    /// `num_bytes_read` must be a valid pointer.
     #[doc(alias = "CFReadStreamGetBuffer")]
     #[inline]
     pub unsafe fn buffer(
@@ -597,6 +627,9 @@ impl CFWriteStream {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFWriteStreamWrite")]
     #[inline]
     pub unsafe fn write(&self, buffer: *const u8, buffer_length: CFIndex) -> CFIndex {
@@ -648,6 +681,11 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// # Safety
+    ///
+    /// - `property_name` might not allow `None`.
+    /// - `property_value` should be of the correct type.
+    /// - `property_value` might not allow `None`.
     #[doc(alias = "CFReadStreamSetProperty")]
     #[inline]
     pub unsafe fn set_property(
@@ -668,6 +706,11 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// # Safety
+    ///
+    /// - `property_name` might not allow `None`.
+    /// - `property_value` should be of the correct type.
+    /// - `property_value` might not allow `None`.
     #[doc(alias = "CFWriteStreamSetProperty")]
     #[inline]
     pub unsafe fn set_property(
@@ -688,6 +731,10 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// # Safety
+    ///
+    /// - `client_cb` must be implemented correctly.
+    /// - `client_context` must be a valid pointer.
     #[doc(alias = "CFReadStreamSetClient")]
     #[inline]
     pub unsafe fn set_client(
@@ -710,6 +757,10 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// # Safety
+    ///
+    /// - `client_cb` must be implemented correctly.
+    /// - `client_context` must be a valid pointer.
     #[doc(alias = "CFWriteStreamSetClient")]
     #[inline]
     pub unsafe fn set_client(
@@ -812,6 +863,9 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
+    /// # Safety
+    ///
+    /// `q` might not allow `None`.
     #[doc(alias = "CFReadStreamSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -824,6 +878,9 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
+    /// # Safety
+    ///
+    /// `q` might not allow `None`.
     #[doc(alias = "CFWriteStreamSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

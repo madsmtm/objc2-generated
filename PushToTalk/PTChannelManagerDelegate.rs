@@ -144,6 +144,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "PTChannelManager", feature = "PTPushResult"))]
         /// This method is called for each incoming push. You must instantiate and return nonnil PTPushResult for each incoming push. The system will fulfill the action specified by the PTPushResult on your behalf automatically.
+        ///
+        /// # Safety
+        ///
+        /// `push_payload` generic should be of the correct type.
         #[unsafe(method(incomingPushResultForChannelManager:channelUUID:pushPayload:))]
         #[unsafe(method_family = none)]
         unsafe fn incomingPushResultForChannelManager_channelUUID_pushPayload(
@@ -224,6 +228,10 @@ extern_protocol!(
         /// <
         /// =5) are not subject
         /// to a budget limit and should be used whenever possible.
+        ///
+        /// # Safety
+        ///
+        /// `push_payload` generic should be of the correct type.
         #[optional]
         #[unsafe(method(incomingServiceUpdatePushForChannelManager:channelUUID:pushPayload:isHighPriority:remainingHighPriorityBudget:withCompletionHandler:))]
         #[unsafe(method_family = none)]

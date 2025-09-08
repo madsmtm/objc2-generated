@@ -35,6 +35,10 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `requirement` must be a valid pointer.
     #[doc(alias = "SecRequirementCreateWithData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -66,6 +70,10 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `requirement` must be a valid pointer.
     #[doc(alias = "SecRequirementCreateWithString")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -84,6 +92,10 @@ impl SecRequirement {
         unsafe { SecRequirementCreateWithString(text, flags, requirement) }
     }
 
+    /// # Safety
+    ///
+    /// - `errors` must be a valid pointer or null.
+    /// - `requirement` must be a valid pointer.
     #[doc(alias = "SecRequirementCreateWithStringAndErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -118,6 +130,10 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `data` must be a valid pointer.
     #[doc(alias = "SecRequirementCopyData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -151,6 +167,10 @@ impl SecRequirement {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `text` must be a valid pointer.
     #[doc(alias = "SecRequirementCopyString")]
     #[cfg(feature = "CSCommon")]
     #[inline]

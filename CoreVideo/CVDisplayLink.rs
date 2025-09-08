@@ -78,6 +78,11 @@ impl CVDisplayLink {
     /// Parameter `displayLinkOut`: The new display link will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// - `display_array` must be a valid pointer.
+    /// - `display_link_out` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkCreateWithCGDisplays")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -106,6 +111,10 @@ impl CVDisplayLink {
     /// Parameter `displayLinkOut`: The new display link will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// `display_link_out` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkCreateWithOpenGLDisplayMask")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -132,6 +141,10 @@ impl CVDisplayLink {
     /// Parameter `displayLinkOut`: The new display link will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// `display_link_out` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkCreateWithCGDisplay")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -154,6 +167,10 @@ impl CVDisplayLink {
     /// Parameter `displayLinkOut`: The newly created CVDisplayLink
     ///
     /// Returns: kCVReturnSuccess if the device was created, or failure
+    ///
+    /// # Safety
+    ///
+    /// `display_link_out` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkCreateWithActiveCGDisplays")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -202,6 +219,11 @@ impl CVDisplayLink {
     /// Parameter `cglPixelFormat`: The OpenGL pixel format used to create the passed in OpenGL context
     ///
     /// Returns: kCVReturnSuccess if a device was found, or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `cgl_context` must be a valid pointer.
+    /// - `cgl_pixel_format` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
@@ -253,6 +275,11 @@ impl CVDisplayLink {
     /// Parameter `userInfo`: User data for the callback to identify the context.
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successfull.
+    ///
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `user_info` must be a valid pointer or null.
     #[doc(alias = "CVDisplayLinkSetOutputCallback")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -281,6 +308,10 @@ impl CVDisplayLink {
     /// Parameter `handler`: CVDisplayLinkOutputHandler block
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successful.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkSetOutputHandler")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -416,6 +447,10 @@ impl CVDisplayLink {
     /// Parameter `outTime`: A pointer to a CVTimeStamp struct.  This struct's version field must currently be set correctly (currently 0) to indicate which version of the timestamp struct is desired.
     ///
     /// Returns: kCVReturnSuccess if the current time could be retrieved, otherwise an error indicating why the operation failed.
+    ///
+    /// # Safety
+    ///
+    /// `out_time` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkGetCurrentTime")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -442,6 +477,11 @@ impl CVDisplayLink {
     /// which representations to translate to.
     ///
     /// Returns: kCVReturnSuccess if the time could be translated, otherwise an error indicating why the operation failed.
+    ///
+    /// # Safety
+    ///
+    /// - `in_time` must be a valid pointer.
+    /// - `out_time` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkTranslateTime")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]

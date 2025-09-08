@@ -34,11 +34,19 @@ impl AVAssetTrackSegment {
 
         #[cfg(feature = "objc2-core-media")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timeMapping))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeMapping(&self) -> CMTimeMapping;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEmpty(&self) -> bool;

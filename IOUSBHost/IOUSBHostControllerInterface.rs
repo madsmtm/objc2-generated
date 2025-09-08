@@ -92,6 +92,12 @@ impl IOUSBHostControllerInterface {
         /// in IOKitLib for more details. All notifications will be serviced on an internal serial queue separate from command and doorbell handlers.
         ///
         /// Returns: An IOUSBHostControllerInterface. The object is to be released by the caller.
+        ///
+        /// # Safety
+        ///
+        /// - `command_handler` must be a valid pointer.
+        /// - `doorbell_handler` must be a valid pointer.
+        /// - `interest_handler` must be implemented correctly.
         #[unsafe(method(initWithCapabilities:queue:interruptRateHz:error:commandHandler:doorbellHandler:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCapabilities_queue_interruptRateHz_error_commandHandler_doorbellHandler_interestHandler(
@@ -127,6 +133,10 @@ impl IOUSBHostControllerInterface {
         /// delivered to the kernel service.
         ///
         /// Parameter `interrupt`: An IOUSBHostCIMessage structure representing an interrupt message
+        ///
+        /// # Safety
+        ///
+        /// `interrupt` must be a valid pointer.
         #[unsafe(method(enqueueInterrupt:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueInterrupt_error(
@@ -143,6 +153,10 @@ impl IOUSBHostControllerInterface {
         ///
         /// Parameter `expedite`: Bool NO to use interruptRateHz to determine when the interrupt message is delivered to the kernel service. Bool YES if interruptRateHz
         /// should be ignored, sending the message to the kernel driver at the next opportunity while maintaining in-order delivery of all interrupt messages.
+        ///
+        /// # Safety
+        ///
+        /// `interrupt` must be a valid pointer.
         #[unsafe(method(enqueueInterrupt:expedite:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueInterrupt_expedite_error(
@@ -160,6 +174,10 @@ impl IOUSBHostControllerInterface {
         /// Parameter `interrupts`: An IOUSBHostCIMessage structure representing one or more interrupt messages
         ///
         /// Parameter `count`: The number of interrupt messages represented by the interrupts parameter
+        ///
+        /// # Safety
+        ///
+        /// `interrupts` must be a valid pointer.
         #[unsafe(method(enqueueInterrupts:count:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueInterrupts_count_error(
@@ -180,6 +198,10 @@ impl IOUSBHostControllerInterface {
         ///
         /// Parameter `expedite`: Bool NO to use interruptRateHz to determine when the interrupt message is delivered to the kernel service. Bool YES if interruptRateHz
         /// should be ignored, sending the message to the kernel driver at the next opportunity while maintaining in-order delivery of all interrupt messages.
+        ///
+        /// # Safety
+        ///
+        /// `interrupts` must be a valid pointer.
         #[unsafe(method(enqueueInterrupts:count:expedite:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueInterrupts_count_expedite_error(
@@ -203,6 +225,9 @@ impl IOUSBHostControllerInterface {
         pub unsafe fn setInterruptRateHz(&self, interrupt_rate_hz: NSUInteger);
 
         #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
+        /// # Safety
+        ///
+        /// `message` must be a valid pointer.
         #[unsafe(method(descriptionForMessage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionForMessage(
@@ -219,6 +244,9 @@ impl IOUSBHostControllerInterface {
             feature = "IOUSBHostCIPortStateMachine",
             feature = "IOUSBHostControllerInterfaceDefinitions"
         ))]
+        /// # Safety
+        ///
+        /// `command` must be a valid pointer.
         #[unsafe(method(getPortStateMachineForCommand:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPortStateMachineForCommand_error(

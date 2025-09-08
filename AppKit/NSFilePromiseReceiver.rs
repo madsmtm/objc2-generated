@@ -38,6 +38,9 @@ impl NSFilePromiseReceiver {
         pub unsafe fn fileNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(receivePromisedFilesAtDestination:options:operationQueue:reader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn receivePromisedFilesAtDestination_options_operationQueue_reader(

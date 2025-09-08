@@ -142,6 +142,9 @@ impl UIBarButtonItem {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIImage")]
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(initWithImage:style:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_style_target_action(
@@ -153,6 +156,9 @@ impl UIBarButtonItem {
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(initWithImage:landscapeImagePhone:style:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_landscapeImagePhone_style_target_action(
@@ -164,6 +170,9 @@ impl UIBarButtonItem {
             action: Option<Sel>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(initWithTitle:style:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_style_target_action(
@@ -174,6 +183,9 @@ impl UIBarButtonItem {
             action: Option<Sel>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(initWithBarButtonSystemItem:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBarButtonSystemItem_target_action(
@@ -267,6 +279,10 @@ impl UIBarButtonItem {
 
         #[cfg(all(feature = "UIImage", feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item with the given title and image.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(initWithTitle:image:target:action:menu:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_target_action_menu(
@@ -334,11 +350,19 @@ impl UIBarButtonItem {
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomView(&self, custom_view: Option<&UIView>);
 
+        /// # Safety
+        ///
+        /// You must ensure this is still alive.
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
@@ -350,6 +374,10 @@ impl UIBarButtonItem {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);

@@ -34,6 +34,9 @@ impl CMStepCounter {
         pub unsafe fn isStepCountingAvailable() -> bool;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(queryStepCountStartingFrom:to:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryStepCountStartingFrom_to_toQueue_withHandler(
@@ -45,6 +48,9 @@ impl CMStepCounter {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(startStepCountingUpdatesToQueue:updateOn:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startStepCountingUpdatesToQueue_updateOn_withHandler(

@@ -164,6 +164,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn handleRemoteNowPlayingActivity(&self);
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(handleUserActivity:))]
         #[unsafe(method_family = none)]
@@ -209,6 +212,10 @@ extern_protocol!(
         /// This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
         ///
         /// This method will be invoked even if the application was launched or resumed because of the remote background notification.!
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(didReceiveRemoteNotification:fetchCompletionHandler:))]
         #[unsafe(method_family = none)]

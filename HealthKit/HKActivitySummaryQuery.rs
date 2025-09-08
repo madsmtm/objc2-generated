@@ -36,6 +36,11 @@ impl HKActivitySummaryQuery {
         /// the query must be manually stopped.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block must be sendable.
+        /// - This might not be thread-safe.
         #[unsafe(method(updateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
@@ -48,6 +53,11 @@ impl HKActivitySummaryQuery {
         /// Setter for [`updateHandler`][Self::updateHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// - `update_handler` block must be sendable.
+        /// - This might not be thread-safe.
         #[unsafe(method(setUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateHandler(
@@ -73,6 +83,10 @@ impl HKActivitySummaryQuery {
         /// Parameter `predicate`: The predicate which HKActivitySummaries should match.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(initWithPredicate:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPredicate_resultsHandler(

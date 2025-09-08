@@ -49,6 +49,10 @@ impl ARGeometrySource {
         /// A Metal buffer containing per-vector data for the source.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
@@ -56,6 +60,10 @@ impl ARGeometrySource {
         /// The number of vectors in the source.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSInteger;
@@ -64,6 +72,10 @@ impl ARGeometrySource {
         /// The type of per-vector data in the buffer.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> MTLVertexFormat;
@@ -71,6 +83,10 @@ impl ARGeometrySource {
         /// The number of scalar components in each vector.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(componentsPerVector))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentsPerVector(&self) -> NSInteger;
@@ -78,6 +94,10 @@ impl ARGeometrySource {
         /// The offset (in bytes) from the beginning of the buffer.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSInteger;
@@ -85,6 +105,10 @@ impl ARGeometrySource {
         /// The number of bytes from a vector to the next one in the buffer.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stride))]
         #[unsafe(method_family = none)]
         pub unsafe fn stride(&self) -> NSInteger;
@@ -167,6 +191,10 @@ impl ARGeometryElement {
         /// A Metal buffer containing index data that defines the geometry.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
@@ -174,6 +202,10 @@ impl ARGeometryElement {
         /// The number of primitives in the buffer.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSInteger;
@@ -181,6 +213,10 @@ impl ARGeometryElement {
         /// The number of bytes that represent an index value.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bytesPerIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn bytesPerIndex(&self) -> NSInteger;
@@ -192,6 +228,10 @@ impl ARGeometryElement {
         /// This is based on the primitiveType. For ARGeometryPrimitiveTypeTriangle the value is 3.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(indexCountPerPrimitive))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexCountPerPrimitive(&self) -> NSInteger;
@@ -199,6 +239,10 @@ impl ARGeometryElement {
         /// The type of the geometry element.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(primitiveType))]
         #[unsafe(method_family = none)]
         pub unsafe fn primitiveType(&self) -> ARGeometryPrimitiveType;
@@ -290,6 +334,10 @@ impl ARMeshGeometry {
         /// The vertices of the mesh.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(vertices))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertices(&self) -> Retained<ARGeometrySource>;
@@ -297,6 +345,10 @@ impl ARMeshGeometry {
         /// Normal of each vertex in the mesh.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(normals))]
         #[unsafe(method_family = none)]
         pub unsafe fn normals(&self) -> Retained<ARGeometrySource>;
@@ -304,6 +356,10 @@ impl ARMeshGeometry {
         /// A list of all faces in the mesh.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(faces))]
         #[unsafe(method_family = none)]
         pub unsafe fn faces(&self) -> Retained<ARGeometryElement>;
@@ -311,6 +367,10 @@ impl ARMeshGeometry {
         /// Classification for each face in the mesh.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(classification))]
         #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> Option<Retained<ARGeometrySource>>;

@@ -254,6 +254,9 @@ impl VNVideoProcessor {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "VNTypes"))]
+        /// # Safety
+        ///
+        /// `processing_options` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(addRequest:withProcessingOptions:error:_))]
         #[unsafe(method_family = none)]

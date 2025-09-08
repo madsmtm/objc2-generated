@@ -54,6 +54,9 @@ unsafe impl ConcreteType for CFBitVector {
 }
 
 impl CFBitVector {
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "CFBitVectorCreate")]
     #[inline]
     pub unsafe fn new(
@@ -72,6 +75,10 @@ impl CFBitVector {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -90,6 +97,9 @@ impl CFBitVector {
 }
 
 impl CFMutableBitVector {
+    /// # Safety
+    ///
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFBitVectorCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -106,6 +116,10 @@ impl CFMutableBitVector {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -163,6 +177,9 @@ impl CFBitVector {
         unsafe { CFBitVectorGetBitAtIndex(self, idx) }
     }
 
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "CFBitVectorGetBits")]
     #[inline]
     pub unsafe fn bits(&self, range: CFRange, bytes: *mut u8) {
@@ -200,6 +217,9 @@ impl CFBitVector {
 }
 
 impl CFMutableBitVector {
+    /// # Safety
+    ///
+    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorSetCount")]
     #[inline]
     pub unsafe fn set_count(bv: Option<&CFMutableBitVector>, count: CFIndex) {
@@ -209,6 +229,9 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetCount(bv, count) }
     }
 
+    /// # Safety
+    ///
+    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorFlipBitAtIndex")]
     #[inline]
     pub unsafe fn flip_bit_at_index(bv: Option<&CFMutableBitVector>, idx: CFIndex) {
@@ -218,6 +241,9 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorFlipBitAtIndex(bv, idx) }
     }
 
+    /// # Safety
+    ///
+    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorFlipBits")]
     #[inline]
     pub unsafe fn flip_bits(bv: Option<&CFMutableBitVector>, range: CFRange) {
@@ -227,6 +253,9 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorFlipBits(bv, range) }
     }
 
+    /// # Safety
+    ///
+    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorSetBitAtIndex")]
     #[inline]
     pub unsafe fn set_bit_at_index(bv: Option<&CFMutableBitVector>, idx: CFIndex, value: CFBit) {
@@ -240,6 +269,9 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetBitAtIndex(bv, idx, value) }
     }
 
+    /// # Safety
+    ///
+    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorSetBits")]
     #[inline]
     pub unsafe fn set_bits(bv: Option<&CFMutableBitVector>, range: CFRange, value: CFBit) {
@@ -249,6 +281,9 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetBits(bv, range, value) }
     }
 
+    /// # Safety
+    ///
+    /// `bv` might not allow `None`.
     #[doc(alias = "CFBitVectorSetAllBits")]
     #[inline]
     pub unsafe fn set_all_bits(bv: Option<&CFMutableBitVector>, value: CFBit) {

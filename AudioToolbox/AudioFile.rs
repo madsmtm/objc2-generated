@@ -704,6 +704,11 @@ extern "C-unwind" {
     /// Parameter `outAudioFile`: if successful, an AudioFileID that can be used for subsequent AudioFile calls.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_format` must be a valid pointer.
+    /// - `out_audio_file` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioFileCreateWithURL(
         in_file_ref: &CFURL,
@@ -732,6 +737,10 @@ extern "C-unwind" {
     /// AudioFile calls.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `out_audio_file` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioFileOpenURL(
         in_file_ref: &CFURL,
@@ -846,6 +855,16 @@ extern "C-unwind" {
     /// AudioFile calls.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_client_data` must be a valid pointer.
+    /// - `in_read_func` must be implemented correctly.
+    /// - `in_write_func` must be implemented correctly.
+    /// - `in_get_size_func` must be implemented correctly.
+    /// - `in_set_size_func` must be implemented correctly.
+    /// - `in_format` must be a valid pointer.
+    /// - `out_audio_file` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioFileInitializeWithCallbacks(
         in_client_data: NonNull<c_void>,
@@ -884,6 +903,15 @@ extern "C-unwind" {
     /// AudioFile calls.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_client_data` must be a valid pointer.
+    /// - `in_read_func` must be implemented correctly.
+    /// - `in_write_func` must be implemented correctly.
+    /// - `in_get_size_func` must be implemented correctly.
+    /// - `in_set_size_func` must be implemented correctly.
+    /// - `out_audio_file` must be a valid pointer.
     pub fn AudioFileOpenWithCallbacks(
         in_client_data: NonNull<c_void>,
         in_read_func: AudioFile_ReadProc,
@@ -901,6 +929,10 @@ extern "C-unwind" {
     /// Parameter `inAudioFile`: an AudioFileID.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `in_audio_file` must be a valid pointer.
     pub fn AudioFileClose(in_audio_file: AudioFileID) -> OSStatus;
 }
 
@@ -918,6 +950,10 @@ extern "C-unwind" {
     /// Parameter `inAudioFile`: an AudioFileID.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `in_audio_file` must be a valid pointer.
     pub fn AudioFileOptimize(in_audio_file: AudioFileID) -> OSStatus;
 }
 
@@ -938,6 +974,12 @@ extern "C-unwind" {
 /// Parameter `outBuffer`: outBuffer should be a void * to user allocated memory large enough for the requested bytes.
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `io_num_bytes` must be a valid pointer.
+/// - `out_buffer` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadBytes(
     in_audio_file: AudioFileID,
@@ -980,6 +1022,12 @@ pub unsafe extern "C-unwind" fn AudioFileReadBytes(
 /// Parameter `inBuffer`: inBuffer should be a void * containing the bytes to be written
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `io_num_bytes` must be a valid pointer.
+/// - `in_buffer` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
     in_audio_file: AudioFileID,
@@ -1042,6 +1090,14 @@ pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
 /// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory.
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `io_num_bytes` must be a valid pointer.
+/// - `out_packet_descriptions` must be a valid pointer or null.
+/// - `io_num_packets` must be a valid pointer.
+/// - `out_buffer` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
@@ -1107,6 +1163,14 @@ pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
 /// packet size.
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `out_num_bytes` must be a valid pointer.
+/// - `out_packet_descriptions` must be a valid pointer or null.
+/// - `io_num_packets` must be a valid pointer.
+/// - `out_buffer` must be a valid pointer or null.
 #[cfg(feature = "objc2-core-audio-types")]
 #[deprecated = "no longer supported"]
 #[inline]
@@ -1165,6 +1229,13 @@ pub unsafe extern "C-unwind" fn AudioFileReadPackets(
 /// Parameter `inBuffer`: a void * to user allocated memory containing the packets to write.
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_audio_file` must be a valid pointer.
+/// - `in_packet_descriptions` must be a valid pointer or null.
+/// - `io_num_packets` must be a valid pointer.
+/// - `in_buffer` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWritePackets(
@@ -1214,6 +1285,11 @@ extern "C-unwind" {
     /// Parameter `outNumberItems`: on output, if successful, number of chunks of this type in the file.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `out_number_items` must be a valid pointer.
     pub fn AudioFileCountUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1233,6 +1309,11 @@ extern "C-unwind" {
     /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `out_user_data_size` must be a valid pointer.
     pub fn AudioFileGetUserDataSize(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1253,6 +1334,11 @@ extern "C-unwind" {
     /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `out_user_data_size` must be a valid pointer.
     pub fn AudioFileGetUserDataSize64(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1275,6 +1361,12 @@ extern "C-unwind" {
     /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `io_user_data_size` must be a valid pointer.
+    /// - `out_user_data` must be a valid pointer.
     pub fn AudioFileGetUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1300,6 +1392,12 @@ extern "C-unwind" {
     /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `io_user_data_size` must be a valid pointer.
+    /// - `out_user_data` must be a valid pointer.
     pub fn AudioFileGetUserDataAtOffset(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1325,6 +1423,11 @@ extern "C-unwind" {
     /// (only the contents of the chunk, not including the chunk header).
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `in_user_data` must be a valid pointer.
     pub fn AudioFileSetUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1344,6 +1447,10 @@ extern "C-unwind" {
     /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `in_audio_file` must be a valid pointer.
     pub fn AudioFileRemoveUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1439,6 +1546,12 @@ extern "C-unwind" {
     /// Parameter `isWritable`: will be set to 1 if writable, or 0 if read only.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `out_data_size` must be a valid pointer or null.
+    /// - `is_writable` must be a valid pointer or null.
     pub fn AudioFileGetPropertyInfo(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1459,6 +1572,12 @@ extern "C-unwind" {
     /// Parameter `outPropertyData`: the buffer in which to write the property data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `io_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     pub fn AudioFileGetProperty(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1479,6 +1598,11 @@ extern "C-unwind" {
     /// Parameter `inPropertyData`: the buffer containing the property data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_file` must be a valid pointer.
+    /// - `in_property_data` must be a valid pointer.
     pub fn AudioFileSetProperty(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1564,6 +1688,11 @@ extern "C-unwind" {
     /// you will need a buffer of this size.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `out_data_size` must be a valid pointer.
     pub fn AudioFileGetGlobalInfoSize(
         in_property_id: AudioFilePropertyID,
         in_specifier_size: u32,
@@ -1586,6 +1715,12 @@ extern "C-unwind" {
     /// Parameter `outPropertyData`: the buffer in which to write the property data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `io_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     pub fn AudioFileGetGlobalInfo(
         in_property_id: AudioFilePropertyID,
         in_specifier_size: u32,

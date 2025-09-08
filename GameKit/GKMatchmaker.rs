@@ -182,6 +182,10 @@ impl GKMatchRequest {
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// An recipientResponseHandler can be set in order to receive responses from programmatically invited players.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(recipientResponseHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn recipientResponseHandler(
@@ -202,6 +206,9 @@ impl GKMatchRequest {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[deprecated]
         #[unsafe(method(inviteeResponseHandler))]
         #[unsafe(method_family = none)]
@@ -261,6 +268,10 @@ impl GKMatchRequest {
         /// Setter for [`properties`][Self::properties].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(setProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProperties(&self, properties: Option<&GKMatchProperties>);
@@ -277,6 +288,10 @@ impl GKMatchRequest {
         /// Setter for [`recipientProperties`][Self::recipientProperties].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `recipient_properties` generic generic should be of the correct type.
         #[unsafe(method(setRecipientProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecipientProperties(
@@ -622,6 +637,10 @@ impl GKMatchmaker {
 impl GKMatchmaker {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
         #[deprecated = "Use the ``GKLocalPlayer/register(_:)`` method instead."]
         #[unsafe(method(inviteHandler))]
         #[unsafe(method_family = none)]

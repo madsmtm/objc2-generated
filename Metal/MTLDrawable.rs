@@ -41,6 +41,10 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Add a block to be called when this drawable is presented on screen.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(addPresentedHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addPresentedHandler(&self, block: MTLDrawablePresentedHandler);

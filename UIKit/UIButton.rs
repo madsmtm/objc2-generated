@@ -247,6 +247,9 @@ impl UIButton {
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(systemButtonWithImage:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemButtonWithImage_target_action(
@@ -322,6 +325,10 @@ impl UIButton {
 
         #[cfg(feature = "block2")]
         /// Block-based equivalent to overriding -updateConfiguration in a subclass. Setting this handler will force the button into configuration-based behavior (see the `configuration` property). This block is called after `-updateConfiguration`
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(configurationUpdateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationUpdateHandler(&self) -> UIButtonConfigurationUpdateHandler;
@@ -330,6 +337,10 @@ impl UIButton {
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `configuration_update_handler` must be a valid pointer or null.
         #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationUpdateHandler(
@@ -357,6 +368,10 @@ impl UIButton {
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
+        ///
+        /// # Safety
+        ///
+        /// `tint_color` might not allow `None`.
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
@@ -404,6 +419,12 @@ impl UIButton {
         /// a customized version of the system provided style or return an entirely custom one.
         /// Setting this property automatically enables the button's pointer interaction and sets
         /// `pointerInteractionEnabled`to true.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(pointerStyleProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointerStyleProvider(&self) -> UIButtonPointerStyleProvider;
@@ -416,6 +437,10 @@ impl UIButton {
         /// Setter for [`pointerStyleProvider`][Self::pointerStyleProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `pointer_style_provider` must be a valid pointer or null.
         #[unsafe(method(setPointerStyleProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointerStyleProvider(

@@ -251,10 +251,16 @@ impl NSColorPanel {
         #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> CGFloat;
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, selector: Option<Sel>);
 
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -336,6 +342,9 @@ impl NSColorPanel {
 #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
 impl NSApplication {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontColorPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontColorPanel(&self, sender: Option<&AnyObject>);

@@ -105,6 +105,11 @@ extern "C-unwind" {
     /// Returns: An OSStatus indicating success (errSecSuccess) or an error cause.
     ///
     /// errSessionInvalidId -60500 Invalid session id specified
+    ///
+    /// # Safety
+    ///
+    /// - `session_id` must be a valid pointer or null.
+    /// - `attributes` must be a valid pointer or null.
     pub fn SessionGetInfo(
         session: SecuritySessionId,
         session_id: *mut SecuritySessionId,

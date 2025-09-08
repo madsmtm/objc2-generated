@@ -146,6 +146,10 @@ impl MPSNNGraph {
         /// result image, or is needed to update training parameters.
         ///
         /// Returns: A new MPSNNGraph.
+        ///
+        /// # Safety
+        ///
+        /// `are_results_needed` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:resultImages:resultsAreNeeded:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resultImages_resultsAreNeeded(
@@ -156,6 +160,9 @@ impl MPSNNGraph {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSNNGraphNodes")]
+        /// # Safety
+        ///
+        /// `are_results_needed` must be a valid pointer or null.
         #[unsafe(method(graphWithDevice:resultImages:resultsAreNeeded:))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphWithDevice_resultImages_resultsAreNeeded(
@@ -528,6 +535,10 @@ impl MPSNNGraph {
         ///
         /// Returns: A MPSImage to receive the result. The data in the image will not be valid until
         /// the completionHandler is called.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(executeAsyncWithSourceImages:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeAsyncWithSourceImages_completionHandler(

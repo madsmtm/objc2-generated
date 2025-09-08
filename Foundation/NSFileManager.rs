@@ -183,6 +183,9 @@ impl NSFileManager {
         ) -> Option<Retained<NSArray<NSURL>>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(unmountVolumeAtURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unmountVolumeAtURL_options_completionHandler(
@@ -228,6 +231,9 @@ impl NSFileManager {
         ) -> Result<Retained<NSURL>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
+        /// # Safety
+        ///
+        /// `out_relationship` must be a valid pointer.
         #[unsafe(method(getRelationship:ofDirectoryAtURL:toItemAtURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRelationship_ofDirectoryAtURL_toItemAtURL_error(
@@ -238,6 +244,9 @@ impl NSFileManager {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSPathUtilities", feature = "NSURL"))]
+        /// # Safety
+        ///
+        /// `out_relationship` must be a valid pointer.
         #[unsafe(method(getRelationship:ofDirectory:inDomain:toItemAtURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRelationship_ofDirectory_inDomain_toItemAtURL_error(
@@ -254,6 +263,9 @@ impl NSFileManager {
             feature = "NSString",
             feature = "NSURL"
         ))]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(createDirectoryAtURL:withIntermediateDirectories:attributes:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn createDirectoryAtURL_withIntermediateDirectories_attributes_error(
@@ -282,6 +294,10 @@ impl NSFileManager {
         ) -> Option<Retained<ProtocolObject<dyn NSFileManagerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -290,6 +306,9 @@ impl NSFileManager {
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(setAttributes:ofItemAtPath:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributes_ofItemAtPath_error(
@@ -299,6 +318,9 @@ impl NSFileManager {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(createDirectoryAtPath:withIntermediateDirectories:attributes:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn createDirectoryAtPath_withIntermediateDirectories_attributes_error(
@@ -444,6 +466,9 @@ impl NSFileManager {
         ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[deprecated = "Use -setAttributes:ofItemAtPath:error: instead"]
         #[unsafe(method(changeFileAttributes:atPath:))]
         #[unsafe(method_family = none)]
@@ -488,6 +513,9 @@ impl NSFileManager {
         ) -> bool;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[deprecated = "Use -createDirectoryAtPath:withIntermediateDirectories:attributes:error: instead"]
         #[unsafe(method(createDirectoryAtPath:attributes:))]
         #[unsafe(method_family = none)]
@@ -498,6 +526,9 @@ impl NSFileManager {
         ) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `handler` should be of the correct type.
         #[deprecated = "Not supported"]
         #[unsafe(method(linkPath:toPath:handler:))]
         #[unsafe(method_family = none)]
@@ -509,6 +540,9 @@ impl NSFileManager {
         ) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `handler` should be of the correct type.
         #[deprecated = "Not supported"]
         #[unsafe(method(copyPath:toPath:handler:))]
         #[unsafe(method_family = none)]
@@ -520,6 +554,9 @@ impl NSFileManager {
         ) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `handler` should be of the correct type.
         #[deprecated = "Not supported"]
         #[unsafe(method(movePath:toPath:handler:))]
         #[unsafe(method_family = none)]
@@ -531,6 +568,9 @@ impl NSFileManager {
         ) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `handler` should be of the correct type.
         #[deprecated = "Not supported"]
         #[unsafe(method(removeFileAtPath:handler:))]
         #[unsafe(method_family = none)]
@@ -556,6 +596,9 @@ impl NSFileManager {
         pub unsafe fn fileExistsAtPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `is_directory` must be a valid pointer or null.
         #[unsafe(method(fileExistsAtPath:isDirectory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileExistsAtPath_isDirectory(
@@ -644,6 +687,9 @@ impl NSFileManager {
         pub unsafe fn contentsAtPath(&self, path: &NSString) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `attr` generic should be of the correct type.
         #[unsafe(method(createFileAtPath:contents:attributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createFileAtPath_contents_attributes(
@@ -659,6 +705,9 @@ impl NSFileManager {
         pub unsafe fn fileSystemRepresentationWithPath(&self, path: &NSString) -> NonNull<c_char>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `str` must be a valid pointer.
         #[unsafe(method(stringWithFileSystemRepresentation:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithFileSystemRepresentation_length(
@@ -741,6 +790,9 @@ impl NSFileManager {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getFileProviderServicesForItemAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFileProviderServicesForItemAtURL_completionHandler(
@@ -1078,6 +1130,9 @@ extern_conformance!(
 impl NSFileProviderService {
     extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSXPCConnection", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getFileProviderConnectionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFileProviderConnectionWithCompletionHandler(

@@ -504,6 +504,9 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub fn hide(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(unhide:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unhide(&self, sender: Option<&AnyObject>);
@@ -599,6 +602,9 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub fn hideOtherApplications(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(unhideAllApplications:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unhideAllApplications(&self, sender: Option<&AnyObject>);
@@ -642,14 +648,23 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn beginModalSessionForWindow(&self, window: &NSWindow) -> NSModalSession;
 
+        /// # Safety
+        ///
+        /// `session` must be a valid pointer.
         #[unsafe(method(runModalSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalSession(&self, session: NSModalSession) -> NSModalResponse;
 
+        /// # Safety
+        ///
+        /// `session` must be a valid pointer.
         #[unsafe(method(endModalSession:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endModalSession(&self, session: NSModalSession);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(terminate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn terminate(&self, sender: Option<&AnyObject>);
@@ -721,6 +736,10 @@ impl NSApplication {
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`applicationIconImage`][Self::applicationIconImage].
+        ///
+        /// # Safety
+        ///
+        /// `application_icon_image` might not allow `None`.
         #[unsafe(method(setApplicationIconImage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setApplicationIconImage(&self, application_icon_image: Option<&NSImage>);
@@ -752,6 +771,11 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn reportException(&self, exception: &NSException);
 
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `argument` should be of the correct type.
         #[unsafe(method(detachDrawingThread:toTarget:withObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detachDrawingThread_toTarget_withObject(
@@ -909,6 +933,11 @@ impl NSApplication {
 #[cfg(feature = "NSResponder")]
 impl NSApplication {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `sender` should be of the correct type.
         #[unsafe(method(sendAction:to:from:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendAction_to_from(
@@ -918,10 +947,18 @@ impl NSApplication {
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(targetForAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetForAction(&self, action: Sel) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `sender` should be of the correct type.
         #[unsafe(method(targetForAction:to:from:))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetForAction_to_from(
@@ -931,6 +968,10 @@ impl NSApplication {
             sender: Option<&AnyObject>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `object` should be of the correct type.
         #[unsafe(method(tryToPerform:with:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
@@ -961,6 +1002,9 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn setWindowsMenu(&self, windows_menu: Option<&NSMenu>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(arrangeInFront:))]
         #[unsafe(method_family = none)]
         pub unsafe fn arrangeInFront(&self, sender: Option<&AnyObject>);
@@ -995,6 +1039,9 @@ impl NSApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn updateWindowsItem(&self, win: &NSWindow);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(miniaturizeAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn miniaturizeAll(&self, sender: Option<&AnyObject>);
@@ -1133,6 +1180,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn applicationOpenUntitledFile(&self, sender: &NSApplication) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(application:openFileWithoutUI:))]
         #[unsafe(method_family = none)]
@@ -1150,6 +1200,9 @@ extern_protocol!(
             -> bool;
 
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder"))]
+        /// # Safety
+        ///
+        /// `print_settings` generic should be of the correct type.
         #[optional]
         #[unsafe(method(application:printFiles:withSettings:showPrintPanels:))]
         #[unsafe(method_family = none)]
@@ -1217,6 +1270,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSResponder")]
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(application:didReceiveRemoteNotification:))]
         #[unsafe(method_family = none)]
@@ -1525,6 +1581,10 @@ impl NSApplication {
         pub unsafe fn servicesProvider(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`servicesProvider`][Self::servicesProvider].
+        ///
+        /// # Safety
+        ///
+        /// `services_provider` should be of the correct type.
         #[unsafe(method(setServicesProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setServicesProvider(&self, services_provider: Option<&AnyObject>);
@@ -1579,10 +1639,16 @@ extern "C" {
 #[cfg(feature = "NSResponder")]
 impl NSApplication {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontStandardAboutPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontStandardAboutPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `options_dictionary` generic should be of the correct type.
         #[unsafe(method(orderFrontStandardAboutPanelWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontStandardAboutPanelWithOptions(
@@ -1685,6 +1751,10 @@ impl NSApplication {
 #[cfg(feature = "NSResponder")]
 impl NSApplication {
     /// An Application's startup function.
+    ///
+    /// # Safety
+    ///
+    /// `argv` must be a valid pointer.
     #[doc(alias = "NSApplicationMain")]
     #[inline]
     pub(crate) unsafe fn __main(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int {
@@ -1751,6 +1821,10 @@ pub type NSServiceProviderName = NSString;
 
 extern "C-unwind" {
     /// Apps should use -setServicesProvider.
+    ///
+    /// # Safety
+    ///
+    /// `provider` should be of the correct type.
     pub fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
 }
 
@@ -1885,6 +1959,11 @@ impl NSApplication {
     extern_methods!(
         #[cfg(feature = "NSWindow")]
         /// `-runModalForWindow:relativeToWindow:` was deprecated in Mac OS X 10.0. Please use `-[NSWindow beginSheet:completionHandler:]` instead.
+        ///
+        /// # Safety
+        ///
+        /// - `window` might not allow `None`.
+        /// - `doc_window` might not allow `None`.
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[unsafe(method(runModalForWindow:relativeToWindow:))]
         #[unsafe(method_family = none)]
@@ -1896,6 +1975,11 @@ impl NSApplication {
 
         #[cfg(feature = "NSWindow")]
         /// `-beginModalSessionForWindow:relativeToWindow:` was deprecated in Mac OS X 10.0. Please use `-[NSWindow beginSheet:completionHandler:]` instead.
+        ///
+        /// # Safety
+        ///
+        /// - `window` might not allow `None`.
+        /// - `doc_window` might not allow `None`.
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[unsafe(method(beginModalSessionForWindow:relativeToWindow:))]
         #[unsafe(method_family = none)]
@@ -1907,6 +1991,11 @@ impl NSApplication {
 
         /// `-application:printFiles:` was deprecated in Mac OS X 10.4.
         /// Implement `-application:printFiles:withSettings:showPrintPanels:` in your application delegate instead.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `filenames` might not allow `None`.
         #[deprecated]
         #[unsafe(method(application:printFiles:))]
         #[unsafe(method_family = none)]
@@ -1918,6 +2007,11 @@ impl NSApplication {
 
         #[cfg(feature = "NSWindow")]
         /// `NSWindow`'s `-beginSheet:completionHandler:` and `-endSheet:returnCode:` should be used instead.  `NSApplication`'s `-beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:` will continue to work as it previously did, leaking contextInfo and failing when there is already an existing sheet.
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[unsafe(method(beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
@@ -1943,6 +2037,9 @@ impl NSApplication {
         pub unsafe fn endSheet_returnCode(&self, sheet: &NSWindow, return_code: NSInteger);
 
         #[cfg(feature = "NSWindow")]
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[deprecated = "Use -enumerateWindowsWithOptions:usingBlock: instead"]
         #[unsafe(method(makeWindowsPerform:inOrder:))]
         #[unsafe(method_family = none)]

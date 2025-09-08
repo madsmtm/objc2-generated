@@ -63,6 +63,10 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         /// Setter for [`client`][Self::client].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `client` must implement NSTextInputClient.
         #[unsafe(method(setClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClient(&self, client: Option<&NSView>);
@@ -122,6 +126,9 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(attributedStringForCandidate))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForCandidate(
@@ -134,6 +141,10 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
         /// Setter for [`attributedStringForCandidate`][Self::attributedStringForCandidate].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `attributed_string_for_candidate` block's return must be a valid pointer.
         #[unsafe(method(setAttributedStringForCandidate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedStringForCandidate(
@@ -211,6 +222,9 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "NSTouchBarItem")]
+        /// # Safety
+        ///
+        /// `an_item` generic should be of the correct type.
         #[optional]
         #[unsafe(method(candidateListTouchBarItem:beginSelectingCandidateAtIndex:))]
         #[unsafe(method_family = none)]
@@ -221,6 +235,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
+        /// # Safety
+        ///
+        /// `an_item` generic should be of the correct type.
         #[optional]
         #[unsafe(method(candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:))]
         #[unsafe(method_family = none)]
@@ -232,6 +249,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
+        /// # Safety
+        ///
+        /// `an_item` generic should be of the correct type.
         #[optional]
         #[unsafe(method(candidateListTouchBarItem:endSelectingCandidateAtIndex:))]
         #[unsafe(method_family = none)]
@@ -242,6 +262,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
+        /// # Safety
+        ///
+        /// `an_item` generic should be of the correct type.
         #[optional]
         #[unsafe(method(candidateListTouchBarItem:changedCandidateListVisibility:))]
         #[unsafe(method_family = none)]

@@ -118,6 +118,10 @@ impl MPSImageConvolution {
         /// These are in row major order.
         ///
         /// Returns: A valid MPSImageConvolution object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `kernel_weights` must be a valid pointer.
         #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:weights:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_weights(
@@ -848,6 +852,10 @@ impl MPSImageSobel {
         ///
         ///
         /// Returns: A valid object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `transform` must be a valid pointer.
         #[unsafe(method(initWithDevice:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_linearGrayColorTransform(
@@ -1039,6 +1047,10 @@ impl MPSImageCanny {
         /// as rough estimate of filter width
         ///
         /// Returns: A valid object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `transform` must be a valid pointer.
         #[unsafe(method(initWithDevice:linearToGrayScaleTransform:sigma:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_linearToGrayScaleTransform_sigma(
@@ -1264,6 +1276,10 @@ impl MPSImagePyramid {
         /// MPSImageConvolution.
         ///
         /// Returns: A valid object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `kernel_weights` must be a valid pointer.
         #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:weights:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_weights(
@@ -1458,6 +1474,10 @@ impl MPSImageGaussianPyramid {
         /// MPSImageConvolution.
         ///
         /// Returns: A valid object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `kernel_weights` must be a valid pointer.
         #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:weights:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_weights(
@@ -1674,6 +1694,10 @@ impl MPSImageLaplacianPyramid {
         /// MPSImageConvolution.
         ///
         /// Returns: A valid object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `kernel_weights` must be a valid pointer.
         #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:weights:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_weights(
@@ -1833,6 +1857,10 @@ impl MPSImageLaplacianPyramidSubtract {
         /// MPSImageConvolution.
         ///
         /// Returns: A valid object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `kernel_weights` must be a valid pointer.
         #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:weights:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_weights(
@@ -1992,6 +2020,10 @@ impl MPSImageLaplacianPyramidAdd {
         /// MPSImageConvolution.
         ///
         /// Returns: A valid object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// `kernel_weights` must be a valid pointer.
         #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:weights:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_weights(

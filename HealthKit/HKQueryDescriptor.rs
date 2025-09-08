@@ -43,6 +43,10 @@ impl HKQueryDescriptor {
         /// The type of sample to retrieve in an HKQuery.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sampleType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleType(&self) -> Retained<HKSampleType>;
@@ -50,6 +54,10 @@ impl HKQueryDescriptor {
         /// The predicate which samples should match.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;

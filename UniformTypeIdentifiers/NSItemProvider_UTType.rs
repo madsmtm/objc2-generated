@@ -62,6 +62,10 @@ pub unsafe trait NSItemProviderUTType:
         /// Parameter `visibility`: Specifies which processes have access to this representation.
         ///
         /// Parameter `loadHandler`: A block called to provide the data representation.
+        ///
+        /// # Safety
+        ///
+        /// `load_handler` block must be sendable.
         #[unsafe(method(registerDataRepresentationForContentType:visibility:loadHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn registerDataRepresentationForContentType_visibility_loadHandler(
@@ -100,6 +104,10 @@ pub unsafe trait NSItemProviderUTType:
         /// Parameter `openInPlace`: Specifies whether the file should be openable in place.
         ///
         /// Parameter `loadHandler`: A block called to provide the file representation.
+        ///
+        /// # Safety
+        ///
+        /// `load_handler` block must be sendable.
         #[unsafe(method(registerFileRepresentationForContentType:visibility:openInPlace:loadHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn registerFileRepresentationForContentType_visibility_openInPlace_loadHandler(
@@ -160,6 +168,10 @@ pub unsafe trait NSItemProviderUTType:
         /// `error`parameter.
         ///
         /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadDataRepresentationForContentType:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadDataRepresentationForContentType_completionHandler(
@@ -201,6 +213,10 @@ pub unsafe trait NSItemProviderUTType:
         /// created in a temporary directory.
         ///
         /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadFileRepresentationForContentType:openInPlace:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFileRepresentationForContentType_openInPlace_completionHandler(

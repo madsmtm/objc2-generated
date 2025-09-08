@@ -41,6 +41,9 @@ extern_conformance!(
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceAuthorizationAppleIDButton {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated = "Use initWithStyle:target:action:"]
         #[unsafe(method(initWithTarget:action:))]
         #[unsafe(method_family = init)]
@@ -50,6 +53,9 @@ impl WKInterfaceAuthorizationAppleIDButton {
             action: Sel,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(initWithStyle:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle_target_action(

@@ -205,6 +205,11 @@ unsafe impl ConcreteType for WSMethodInvocation {
 }
 
 impl WSMethodInvocation {
+    /// # Safety
+    ///
+    /// - `url` might not allow `None`.
+    /// - `method_name` might not allow `None`.
+    /// - `protocol` might not allow `None`.
     #[doc(alias = "WSMethodInvocationCreate")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -224,6 +229,9 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `contract` might not allow `None`.
     #[doc(alias = "WSMethodInvocationCreateFromSerialization")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -252,6 +260,12 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` might not allow `None`.
+    /// - `parameter_order` generic must be of the correct type.
+    /// - `parameter_order` might not allow `None`.
     #[doc(alias = "WSMethodInvocationSetParameters")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -270,6 +284,9 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetParameters(self, parameters, parameter_order) }
     }
 
+    /// # Safety
+    ///
+    /// `parameter_order` must be a valid pointer.
     #[doc(alias = "WSMethodInvocationCopyParameters")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -287,6 +304,11 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `property_name` might not allow `None`.
+    /// - `property_value` should be of the correct type.
+    /// - `property_value` might not allow `None`.
     #[doc(alias = "WSMethodInvocationSetProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -305,6 +327,9 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetProperty(self, property_name, property_value) }
     }
 
+    /// # Safety
+    ///
+    /// `property_name` might not allow `None`.
     #[doc(alias = "WSMethodInvocationCopyProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -339,6 +364,10 @@ pub type WSMethodInvocationCallBackProcPtr =
     Option<unsafe extern "C-unwind" fn(*mut WSMethodInvocation, *mut c_void, *const CFDictionary)>;
 
 impl WSMethodInvocation {
+    /// # Safety
+    ///
+    /// - `client_cb` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "WSMethodInvocationSetCallBack")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
@@ -358,6 +387,10 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetCallBack(self, client_cb, context) }
     }
 
+    /// # Safety
+    ///
+    /// - `run_loop` might not allow `None`.
+    /// - `run_loop_mode` might not allow `None`.
     #[doc(alias = "WSMethodInvocationScheduleWithRunLoop")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -376,6 +409,10 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// # Safety
+    ///
+    /// - `run_loop` might not allow `None`.
+    /// - `run_loop_mode` might not allow `None`.
     #[doc(alias = "WSMethodInvocationUnscheduleFromRunLoop")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -395,6 +432,10 @@ impl WSMethodInvocation {
     }
 }
 
+/// # Safety
+///
+/// - `method_result` generics must be of the correct type.
+/// - `method_result` might not allow `None`.
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn WSMethodResultIsFault(
@@ -418,6 +459,10 @@ pub type WSMethodInvocationSerializationProcPtr = Option<
 >;
 
 impl WSMethodInvocation {
+    /// # Safety
+    ///
+    /// - `serialization_proc` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "WSMethodInvocationAddSerializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]
@@ -454,6 +499,10 @@ pub type WSMethodInvocationDeserializationProcPtr = Option<
 >;
 
 impl WSMethodInvocation {
+    /// # Safety
+    ///
+    /// - `deserialization_proc` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "WSMethodInvocationAddDeserializationOverride")]
     #[cfg(feature = "WSTypes")]
     #[deprecated = "No longer supported"]

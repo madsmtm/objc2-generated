@@ -216,6 +216,9 @@ impl NSDocument {
             block: &block2::DynBlock<dyn Fn(NonNull<block2::DynBlock<dyn Fn()>>)>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(revertDocumentToSaved:))]
         #[unsafe(method_family = none)]
         pub unsafe fn revertDocumentToSaved(&self, sender: Option<&AnyObject>);
@@ -323,18 +326,31 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn backupFileURL(&self) -> Option<Retained<NSURL>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(saveDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveDocument(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(saveDocumentAs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveDocumentAs(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(saveDocumentTo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveDocumentTo(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// - `did_save_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(saveDocumentWithDelegate:didSaveSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveDocumentWithDelegate_didSaveSelector_contextInfo(
@@ -344,6 +360,10 @@ impl NSDocument {
             context_info: *mut c_void,
         );
 
+        /// # Safety
+        ///
+        /// - `did_save_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(runModalSavePanelForSaveOperation:delegate:didSaveSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalSavePanelForSaveOperation_delegate_didSaveSelector_contextInfo(
@@ -376,6 +396,10 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn fileTypeFromLastRunSavePanel(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// - `did_save_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(saveToURL:ofType:forSaveOperation:delegate:didSaveSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveToURL_ofType_forSaveOperation_delegate_didSaveSelector_contextInfo(
@@ -420,6 +444,10 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn hasUnautosavedChanges(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// - `did_autosave_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn autosaveDocumentWithDelegate_didAutosaveSelector_contextInfo(
@@ -446,6 +474,9 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn preservesVersions(mtm: MainThreadMarker) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(browseDocumentVersions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn browseDocumentVersions(&self, sender: Option<&AnyObject>);
@@ -484,6 +515,10 @@ impl NSDocument {
             autosaved_contents_file_url: Option<&NSURL>,
         );
 
+        /// # Safety
+        ///
+        /// - `should_close_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canCloseDocumentWithDelegate_shouldCloseSelector_contextInfo(
@@ -497,10 +532,17 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(duplicateDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn duplicateDocument(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// - `did_duplicate_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(duplicateDocumentWithDelegate:didDuplicateSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn duplicateDocumentWithDelegate_didDuplicateSelector_contextInfo(
@@ -516,14 +558,23 @@ impl NSDocument {
             &self,
         ) -> Result<Retained<NSDocument>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(renameDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renameDocument(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(moveDocumentToUbiquityContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveDocumentToUbiquityContainer(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(moveDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn moveDocument(&self, sender: Option<&AnyObject>);
@@ -545,10 +596,16 @@ impl NSDocument {
             completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(lockDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lockDocument(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(unlockDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unlockDocument(&self, sender: Option<&AnyObject>);
@@ -589,11 +646,18 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn isLocked(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(runPageLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runPageLayout(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSPrintInfo")]
+        /// # Safety
+        ///
+        /// - `did_run_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(runModalPageLayoutWithPrintInfo:delegate:didRunSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalPageLayoutWithPrintInfo_delegate_didRunSelector_contextInfo(
@@ -627,11 +691,18 @@ impl NSDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(printDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn printDocument(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSPrintInfo")]
+        /// # Safety
+        ///
+        /// - `did_print_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo(
@@ -644,6 +715,9 @@ impl NSDocument {
         );
 
         #[cfg(all(feature = "NSPrintInfo", feature = "NSPrintOperation"))]
+        /// # Safety
+        ///
+        /// `print_settings` generic should be of the correct type.
         #[unsafe(method(printOperationWithSettings:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn printOperationWithSettings_error(
@@ -652,6 +726,10 @@ impl NSDocument {
         ) -> Result<Retained<NSPrintOperation>, Retained<NSError>>;
 
         #[cfg(feature = "NSPrintOperation")]
+        /// # Safety
+        ///
+        /// - `did_run_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(runModalPrintOperation:delegate:didRunSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalPrintOperation_delegate_didRunSelector_contextInfo(
@@ -662,6 +740,9 @@ impl NSDocument {
             context_info: *mut c_void,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(saveDocumentToPDF:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveDocumentToPDF(&self, sender: Option<&AnyObject>);
@@ -731,6 +812,9 @@ impl NSDocument {
             save_operation: NSSaveOperationType,
         ) -> Retained<AnyObject>;
 
+        /// # Safety
+        ///
+        /// `change_count_token` should be of the correct type.
         #[unsafe(method(updateChangeCountWithToken:forSaveOperation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateChangeCountWithToken_forSaveOperation(
@@ -758,6 +842,10 @@ impl NSDocument {
         pub unsafe fn setHasUndoManager(&self, has_undo_manager: bool);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
+        /// # Safety
+        ///
+        /// - `did_present_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentError_modalForWindow_delegate_didPresentSelector_contextInfo(
@@ -825,6 +913,10 @@ impl NSDocument {
         pub unsafe fn windowControllers(&self) -> Retained<NSArray<NSWindowController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
+        /// # Safety
+        ///
+        /// - `should_close_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(shouldCloseWindowController:delegate:shouldCloseSelector:contextInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldCloseWindowController_delegate_shouldCloseSelector_contextInfo(
@@ -898,6 +990,9 @@ impl NSDocument {
         ) -> Retained<NSSet<NSURLResourceKey>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `reader` block must be sendable.
         #[unsafe(method(relinquishPresentedItemToReader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relinquishPresentedItemToReader(
@@ -906,6 +1001,9 @@ impl NSDocument {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `writer` block must be sendable.
         #[unsafe(method(relinquishPresentedItemToWriter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn relinquishPresentedItemToWriter(
@@ -914,6 +1012,9 @@ impl NSDocument {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(savePresentedItemChangesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn savePresentedItemChangesWithCompletionHandler(
@@ -922,6 +1023,9 @@ impl NSDocument {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(accommodatePresentedItemDeletionWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
@@ -1088,6 +1192,10 @@ impl NSDocument {
         pub unsafe fn runModalPageLayoutWithPrintInfo(&self, print_info: &NSPrintInfo)
             -> NSInteger;
 
+        /// # Safety
+        ///
+        /// - `did_save_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(saveToFile:saveOperation:delegate:didSaveSelector:contextInfo:))]
         #[unsafe(method_family = none)]

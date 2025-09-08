@@ -49,6 +49,10 @@ impl AVAssetTrackGroup {
         /// group.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(trackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackIDs(&self) -> Retained<NSArray<NSNumber>>;

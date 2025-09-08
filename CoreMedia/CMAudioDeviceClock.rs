@@ -14,6 +14,10 @@ extern "C-unwind" {
     /// the device starts up again.
     /// Pass NULL for deviceUID to create a clock that tracks the default device.
     /// deviceUID must be NULL on iOS.
+    ///
+    /// # Safety
+    ///
+    /// `clock_out` must be a valid pointer.
     #[cfg(feature = "CMSync")]
     pub fn CMAudioDeviceClockCreate(
         allocator: Option<&CFAllocator>,
@@ -24,6 +28,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Creates a clock that tracks playback through a particular CoreAudio device.
+    ///
+    /// # Safety
+    ///
+    /// `clock_out` must be a valid pointer.
     #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
     pub fn CMAudioDeviceClockCreateFromAudioDeviceID(
         allocator: Option<&CFAllocator>,
@@ -61,6 +69,12 @@ extern "C-unwind" {
     /// and *trackingDefaultDeviceOut == false.
     /// If a NULL deviceUID has been set (which means "track the default device"), CMAudioDeviceClockGetAudioDevice
     /// returns NULL UID, the ID of the current default device, and *trackingDefaultDeviceOut == true.
+    ///
+    /// # Safety
+    ///
+    /// - `device_uid_out` must be a valid pointer or null.
+    /// - `device_id_out` must be a valid pointer or null.
+    /// - `tracking_default_device_out` must be a valid pointer or null.
     #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
     pub fn CMAudioDeviceClockGetAudioDevice(
         clock: &CMClock,

@@ -299,6 +299,10 @@ impl sec_trust {
     ///
     ///
     /// Returns: The underlying `SecTrustRef` instance.
+    ///
+    /// # Safety
+    ///
+    /// `trust` must be a valid pointer.
     #[doc(alias = "sec_trust_copy_ref")]
     #[cfg(feature = "SecTrust")]
     #[inline]
@@ -342,6 +346,10 @@ impl sec_identity {
     ///
     ///
     /// Returns: a `sec_identity_t` instance.
+    ///
+    /// # Safety
+    ///
+    /// `certificates` generic must be of the correct type.
     #[doc(alias = "sec_identity_create_with_certificates")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -368,6 +376,10 @@ impl sec_identity {
     ///
     ///
     /// Returns: Returns true if the peer certificates were accessible, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `identity` must be a valid pointer.
     #[doc(alias = "sec_identity_access_certificates")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -391,6 +403,10 @@ impl sec_identity {
     ///
     ///
     /// Returns: The underlying `SecIdentityRef` instance.
+    ///
+    /// # Safety
+    ///
+    /// `identity` must be a valid pointer.
     #[doc(alias = "sec_identity_copy_ref")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -409,6 +425,10 @@ impl sec_identity {
     ///
     ///
     /// Returns: The underlying `CFArrayRef` container with `SecCertificateRef` instances.
+    ///
+    /// # Safety
+    ///
+    /// `identity` must be a valid pointer.
     #[doc(alias = "sec_identity_copy_certificates_ref")]
     #[inline]
     pub unsafe fn certificates_ref(identity: sec_identity_t) -> Option<CFRetained<CFArray>> {
@@ -447,6 +467,10 @@ impl sec_certificate {
     ///
     ///
     /// Returns: The underlying `SecCertificateRef` instance.
+    ///
+    /// # Safety
+    ///
+    /// `certificate` must be a valid pointer.
     #[doc(alias = "sec_certificate_copy_ref")]
     #[cfg(feature = "SecBase")]
     #[inline]

@@ -68,6 +68,9 @@ impl NSPersistentDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectModel(&self) -> Option<Retained<NSManagedObjectModel>>;
 
+        /// # Safety
+        ///
+        /// `store_options` generic should be of the correct type.
         #[unsafe(method(configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurePersistentStoreCoordinatorForURL_ofType_modelConfiguration_storeOptions_error(
@@ -161,6 +164,10 @@ impl NSPersistentDocument {
 #[cfg(feature = "NSDocument")]
 impl NSPersistentDocument {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `url` might not allow `None`.
+        /// - `file_type` might not allow `None`.
         #[deprecated]
         #[unsafe(method(configurePersistentStoreCoordinatorForURL:ofType:error:_))]
         #[unsafe(method_family = none)]

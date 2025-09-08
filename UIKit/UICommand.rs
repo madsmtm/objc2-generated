@@ -96,6 +96,10 @@ impl UICommandAlternate {
         /// Parameter `modifierFlags`: Bitmask of modifier flags to choose this command alternate.
         ///
         /// Returns: A new command alternate.
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(alternateWithTitle:action:modifierFlags:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateWithTitle_action_modifierFlags(
@@ -252,6 +256,11 @@ impl UICommand {
         /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
         ///
         /// Returns: A new keyless command.
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `property_list` should be of the correct type.
         #[unsafe(method(commandWithTitle:image:action:propertyList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_propertyList(
@@ -277,6 +286,11 @@ impl UICommand {
         /// Parameter `alternates`: Alternates that differ in modifier flags.
         ///
         /// Returns: A new keyless command with alternates.
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `property_list` should be of the correct type.
         #[unsafe(method(commandWithTitle:image:action:propertyList:alternates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_propertyList_alternates(

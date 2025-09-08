@@ -244,6 +244,10 @@ impl AVAssetTrack {
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending an AVAssetTrackSegment or an error.
         ///
         /// If the trackTime does not map to a sample presentation time (e.g. it's outside the track's timeRange), the segment closest in time to the specified trackTime is returned.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadSegmentForTrackTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSegmentForTrackTime_completionHandler(
@@ -269,6 +273,10 @@ impl AVAssetTrack {
         /// Parameter `trackTime`: The trackTime for which a sample presentation time is requested.
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending a CMTime (which will be invalid if the trackTime is out of range) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadSamplePresentationTimeForTrackTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSamplePresentationTimeForTrackTime_completionHandler(
@@ -325,6 +333,10 @@ impl AVAssetTrack {
         /// Parameter `format`: The metadata format for which items are requested.
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the array of metadata items (which may be empty if there is no metadata of the specified format) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMetadataForFormat:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMetadataForFormat_completionHandler(
@@ -406,6 +418,10 @@ impl AVAssetTrack {
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is comlete, vending an array of tracks (which may be empty if there is no associated tracks of the specified type) or an error.
         /// `
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadAssociatedTracksOfType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadAssociatedTracksOfType_completionHandler(

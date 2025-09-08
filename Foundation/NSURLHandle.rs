@@ -112,6 +112,10 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait NSURLHandleClient {
         #[cfg(feature = "NSData")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `new_bytes` might not allow `None`.
         #[deprecated]
         #[unsafe(method(URLHandle:resourceDataDidBecomeAvailable:))]
         #[unsafe(method_family = none)]
@@ -121,22 +125,35 @@ extern_protocol!(
             new_bytes: Option<&NSData>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[unsafe(method(URLHandleResourceDidBeginLoading:))]
         #[unsafe(method_family = none)]
         unsafe fn URLHandleResourceDidBeginLoading(&self, sender: Option<&NSURLHandle>);
 
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[unsafe(method(URLHandleResourceDidFinishLoading:))]
         #[unsafe(method_family = none)]
         unsafe fn URLHandleResourceDidFinishLoading(&self, sender: Option<&NSURLHandle>);
 
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[deprecated]
         #[unsafe(method(URLHandleResourceDidCancelLoading:))]
         #[unsafe(method_family = none)]
         unsafe fn URLHandleResourceDidCancelLoading(&self, sender: Option<&NSURLHandle>);
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// - `sender` might not allow `None`.
+        /// - `reason` might not allow `None`.
         #[deprecated]
         #[unsafe(method(URLHandle:resourceDidFailLoadingWithReason:))]
         #[unsafe(method_family = none)]
@@ -161,12 +178,19 @@ extern_conformance!(
 
 impl NSURLHandle {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `an_url_handle_subclass` probably has further requirements.
+        /// - `an_url_handle_subclass` might not allow `None`.
         #[deprecated]
         #[unsafe(method(registerURLHandleClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerURLHandleClass(an_url_handle_subclass: Option<&AnyClass>);
 
         #[cfg(feature = "NSURL")]
+        /// # Safety
+        ///
+        /// `an_url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(URLHandleClassForURL:))]
         #[unsafe(method_family = none)]
@@ -183,11 +207,17 @@ impl NSURLHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn failureReason(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `client` might not allow `None`.
         #[deprecated]
         #[unsafe(method(addClient:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addClient(&self, client: Option<&ProtocolObject<dyn NSURLHandleClient>>);
 
+        /// # Safety
+        ///
+        /// `client` might not allow `None`.
         #[deprecated]
         #[unsafe(method(removeClient:))]
         #[unsafe(method_family = none)]
@@ -226,30 +256,45 @@ impl NSURLHandle {
         pub unsafe fn flushCachedData(&self);
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `reason` might not allow `None`.
         #[deprecated]
         #[unsafe(method(backgroundLoadDidFailWithReason:))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundLoadDidFailWithReason(&self, reason: Option<&NSString>);
 
         #[cfg(feature = "NSData")]
+        /// # Safety
+        ///
+        /// `new_bytes` might not allow `None`.
         #[deprecated]
         #[unsafe(method(didLoadBytes:loadComplete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn didLoadBytes_loadComplete(&self, new_bytes: Option<&NSData>, yorn: bool);
 
         #[cfg(feature = "NSURL")]
+        /// # Safety
+        ///
+        /// `an_url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(canInitWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canInitWithURL(an_url: Option<&NSURL>) -> bool;
 
         #[cfg(feature = "NSURL")]
+        /// # Safety
+        ///
+        /// `an_url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(cachedHandleForURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>) -> Option<Retained<NSURLHandle>>;
 
         #[cfg(feature = "NSURL")]
+        /// # Safety
+        ///
+        /// `an_url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(initWithURL:cached:))]
         #[unsafe(method_family = init)]
@@ -260,6 +305,9 @@ impl NSURLHandle {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `property_key` might not allow `None`.
         #[deprecated]
         #[unsafe(method(propertyForKey:))]
         #[unsafe(method_family = none)]
@@ -269,6 +317,9 @@ impl NSURLHandle {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `property_key` might not allow `None`.
         #[deprecated]
         #[unsafe(method(propertyForKeyIfAvailable:))]
         #[unsafe(method_family = none)]
@@ -278,6 +329,11 @@ impl NSURLHandle {
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// - `property_value` should be of the correct type.
+        /// - `property_value` might not allow `None`.
+        /// - `property_key` might not allow `None`.
         #[deprecated]
         #[unsafe(method(writeProperty:forKey:))]
         #[unsafe(method_family = none)]
@@ -288,6 +344,9 @@ impl NSURLHandle {
         ) -> bool;
 
         #[cfg(feature = "NSData")]
+        /// # Safety
+        ///
+        /// `data` might not allow `None`.
         #[deprecated]
         #[unsafe(method(writeData:))]
         #[unsafe(method_family = none)]

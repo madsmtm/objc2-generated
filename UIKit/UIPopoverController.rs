@@ -190,6 +190,10 @@ impl UIPopoverController {
         pub unsafe fn popoverBackgroundViewClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`popoverBackgroundViewClass`][Self::popoverBackgroundViewClass].
+        ///
+        /// # Safety
+        ///
+        /// `popover_background_view_class` probably has further requirements.
         #[unsafe(method(setPopoverBackgroundViewClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPopoverBackgroundViewClass(
@@ -238,6 +242,9 @@ extern_protocol!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `rect` must be a valid pointer.
         #[deprecated]
         #[optional]
         #[unsafe(method(popoverController:willRepositionPopoverToRect:inView:))]

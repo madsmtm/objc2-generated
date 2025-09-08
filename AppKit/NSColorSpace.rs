@@ -78,6 +78,9 @@ impl NSColorSpace {
         #[unsafe(method_family = none)]
         pub unsafe fn ICCProfileData(&self) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// `prof` must be a valid pointer.
         #[unsafe(method(initWithColorSyncProfile:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithColorSyncProfile(

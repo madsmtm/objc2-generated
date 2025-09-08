@@ -35,6 +35,10 @@ impl AVAudioSession {
         /// that have no support for audio input.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(availableCategories))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableCategories(&self) -> Retained<NSArray<AVAudioSessionCategory>>;
@@ -229,6 +233,10 @@ impl AVAudioSession {
         ) -> Result<(), Retained<NSError>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(prefersNoInterruptionsFromSystemAlerts))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersNoInterruptionsFromSystemAlerts(&self) -> bool;
@@ -264,6 +272,10 @@ impl AVAudioSession {
         ) -> Result<(), Retained<NSError>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(prefersEchoCancelledInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersEchoCancelledInput(&self) -> bool;
@@ -272,6 +284,10 @@ impl AVAudioSession {
         /// Please see `prefersEchoCancelledInput` above for more details.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isEchoCancelledInputEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputEnabled(&self) -> bool;
@@ -280,6 +296,10 @@ impl AVAudioSession {
         /// Returns YES if device model supports echo cancellation and the audio category is PlayAndRecord and the mode is Default.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isEchoCancelledInputAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputAvailable(&self) -> bool;

@@ -78,6 +78,9 @@ impl CIRenderDestination {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-metal"))]
+        /// # Safety
+        ///
+        /// `block` block's return must be a valid pointer.
         #[unsafe(method(initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWidth_height_pixelFormat_commandBuffer_mtlTextureProvider(
@@ -100,6 +103,9 @@ impl CIRenderDestination {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer.
         #[unsafe(method(initWithBitmapData:width:height:bytesPerRow:format:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBitmapData_width_height_bytesPerRow_format(

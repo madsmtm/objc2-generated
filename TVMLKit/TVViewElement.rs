@@ -201,6 +201,9 @@ impl TVViewElement {
         pub unsafe fn resetProperty(&self, resettable_property: TVElementResettableProperty);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `extra_info` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(dispatchEventOfType:canBubble:cancellable:extraInfo:completion:))]
         #[unsafe(method_family = none)]
@@ -214,6 +217,9 @@ impl TVViewElement {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `extra_info` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(dispatchEventWithName:canBubble:cancellable:extraInfo:completion:))]
         #[unsafe(method_family = none)]

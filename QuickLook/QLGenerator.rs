@@ -138,6 +138,11 @@ impl QLThumbnailRequest {
     /// Parameter `callbacks`: Callbacks to retain/release/etc. the object.
     ///
     /// You can only call this function once per request.
+    ///
+    /// # Safety
+    ///
+    /// - `object` must be a valid pointer.
+    /// - `callbacks` must be a valid pointer.
     #[doc(alias = "QLThumbnailRequestSetDocumentObject")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -179,6 +184,11 @@ impl QLThumbnailRequest {
     /// Parameter `image`: The thumbnail image response.
     ///
     /// Parameter `properties`: See possible properties below.
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types"]
@@ -201,6 +211,11 @@ impl QLThumbnailRequest {
     /// Parameter `data`: The thumbnail image response as data. The image format should be supported by ImageIO
     ///
     /// Parameter `properties`: See possible properties below. Additional useful properties: kCGImageSourceTypeIdentifierHint (see ImageIO documentation).
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImageWithData")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -232,6 +247,11 @@ impl QLThumbnailRequest {
     /// Returns: A graphic context to draw to.
     ///
     /// Once the thumbnail is fully drawn, you should call QLThumbnailRequestFlushContext().
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -260,6 +280,10 @@ impl QLThumbnailRequest {
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Parameter `context`: The graphic context created by QLThumbnailRequestCreateContext().
+    ///
+    /// # Safety
+    ///
+    /// `context` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestFlushContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -281,6 +305,11 @@ impl QLThumbnailRequest {
     /// Parameter `url`: The url to the thumbnail image response.
     ///
     /// Parameter `properties`: Currently unused.
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -308,6 +337,13 @@ impl QLThumbnailRequest {
     /// Parameter `properties`: Currently unused.
     ///
     /// Currently supported UTIs are: none. This call only works if your generator is set to be run in the main thread
+    ///
+    /// # Safety
+    ///
+    /// - `preview_properties` generics must be of the correct type.
+    /// - `preview_properties` might not allow `None`.
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithDataRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -349,6 +385,13 @@ impl QLThumbnailRequest {
     /// Parameter `properties`: Additional properties for the preview response.
     ///
     /// Currently supported UTIs are: none. This call only works if your generator is set to be run in the main thread
+    ///
+    /// # Safety
+    ///
+    /// - `preview_properties` generics must be of the correct type.
+    /// - `preview_properties` might not allow `None`.
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithURLRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -623,6 +666,11 @@ impl QLPreviewRequest {
     /// Parameter `callbacks`: Callbacks to retain/release/etc. the object.
     ///
     /// You can only call this function once per request.
+    ///
+    /// # Safety
+    ///
+    /// - `object` must be a valid pointer.
+    /// - `callbacks` must be a valid pointer.
     #[doc(alias = "QLPreviewRequestSetDocumentObject")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -685,6 +733,11 @@ impl QLPreviewRequest {
     /// Currently supported UTIs are: kUTTypeImage, kUTTypePDF, kUTTypeHTML,
     /// kUTTypeXML, kUTTypePlainText, kUTTypeRTF, kUTTypeMovie, kUTTypeAudio,
     /// and "org.khronos.collada.digital-asset-exchange" (from OSX 10.9)
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -718,6 +771,11 @@ impl QLPreviewRequest {
     /// Currently supported UTIs are: kUTTypeImage, kUTTypePDF, kUTTypeHTML,
     /// kUTTypeXML, kUTTypePlainText, kUTTypeRTF, kUTTypeRTFD, kUTTypeMovie, kUTTypeAudio,
     /// and "org.khronos.collada.digital-asset-exchange" (from OSX 10.9)
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetURLRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -747,6 +805,11 @@ impl QLPreviewRequest {
     /// Parameter `isBitmap`: true if preview is bitmap-based.
     ///
     /// Parameter `properties`: Additional properties for the preview response.
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -778,6 +841,14 @@ impl QLPreviewRequest {
     /// Parameter `auxiliaryInfo`: The PDF auxiliary info. see CGPDFContextCreate().
     ///
     /// Parameter `properties`: Additional properties for the preview response.
+    ///
+    /// # Safety
+    ///
+    /// - `media_box` must be a valid pointer.
+    /// - `auxiliary_info` generics must be of the correct type.
+    /// - `auxiliary_info` might not allow `None`.
+    /// - `properties` generics must be of the correct type.
+    /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestCreatePDFContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -807,6 +878,10 @@ impl QLPreviewRequest {
     /// Parameter `preview`: The preview request.
     ///
     /// Parameter `context`: context previously created by QLPreviewRequestCreateContext() or QLPreviewRequestCreatePDFContext().
+    ///
+    /// # Safety
+    ///
+    /// `context` might not allow `None`.
     #[doc(alias = "QLPreviewRequestFlushContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]

@@ -95,6 +95,10 @@ impl AVPlayerItem {
         /// Parameter `timoutInterval`: The maximum amount of time to wait for the user to authorize the content in seconds before calling the handler block with a timeout result.
         ///
         /// Parameter `handler`: Block to be called upon completion.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestContentAuthorizationAsynchronouslyWithTimeoutInterval_completionHandler(

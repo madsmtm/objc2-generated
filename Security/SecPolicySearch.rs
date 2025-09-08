@@ -56,6 +56,12 @@ impl SecPolicySearch {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in 10.7. To create a SecPolicyRef, use one of the SecPolicyCreate functions in SecPolicy.h.
+    ///
+    /// # Safety
+    ///
+    /// - `policy_oid` must be a valid pointer.
+    /// - `value` must be a valid pointer or null.
+    /// - `search_ref` must be a valid pointer.
     #[doc(alias = "SecPolicySearchCreate")]
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -86,6 +92,10 @@ impl SecPolicySearch {
     /// Returns: A result code.  When there are no more policies that match the parameters specified to SecPolicySearchCreate, errSecPolicyNotFound is returned. See "Security Error Codes" (SecBase.h).
     ///
     /// This function is deprecated in 10.7. To create a SecPolicyRef, use one of the SecPolicyCreate functions in SecPolicy.h.
+    ///
+    /// # Safety
+    ///
+    /// `policy_ref` must be a valid pointer.
     #[doc(alias = "SecPolicySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]

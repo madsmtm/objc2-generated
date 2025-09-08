@@ -29,6 +29,9 @@ impl NSUbiquitousKeyValueStore {
         pub unsafe fn objectForKey(&self, a_key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `an_object` should be of the correct type.
         #[unsafe(method(setObject:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKey(&self, an_object: Option<&AnyObject>, a_key: &NSString);
@@ -87,11 +90,17 @@ impl NSUbiquitousKeyValueStore {
         pub unsafe fn setData_forKey(&self, a_data: Option<&NSData>, a_key: &NSString);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `an_array` generic should be of the correct type.
         #[unsafe(method(setArray:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArray_forKey(&self, an_array: Option<&NSArray>, a_key: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `a_dictionary` generic should be of the correct type.
         #[unsafe(method(setDictionary:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDictionary_forKey(

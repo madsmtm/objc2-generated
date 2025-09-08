@@ -45,6 +45,9 @@ extern_conformance!(
 impl AVAudioTime {
     extern_methods!(
         #[cfg(feature = "objc2-core-audio-types")]
+        /// # Safety
+        ///
+        /// `ts` must be a valid pointer.
         #[unsafe(method(initWithAudioTimeStamp:sampleRate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioTimeStamp_sampleRate(
@@ -77,6 +80,9 @@ impl AVAudioTime {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// # Safety
+        ///
+        /// `ts` must be a valid pointer.
         #[unsafe(method(timeWithAudioTimeStamp:sampleRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeWithAudioTimeStamp_sampleRate(
@@ -147,6 +153,10 @@ impl AVAudioTime {
         /// Whether the hostTime property is valid.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isHostTimeValid))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHostTimeValid(&self) -> bool;
@@ -154,6 +164,10 @@ impl AVAudioTime {
         /// The host time.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(hostTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn hostTime(&self) -> u64;
@@ -161,6 +175,10 @@ impl AVAudioTime {
         /// Whether the sampleTime and sampleRate properties are valid.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isSampleTimeValid))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSampleTimeValid(&self) -> bool;
@@ -169,6 +187,10 @@ impl AVAudioTime {
         /// The time as a number of audio samples, as tracked by the current audio device.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sampleTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleTime(&self) -> AVAudioFramePosition;
@@ -176,6 +198,10 @@ impl AVAudioTime {
         /// The sample rate at which sampleTime is being expressed.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sampleRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleRate(&self) -> c_double;
@@ -186,6 +212,10 @@ impl AVAudioTime {
         /// This may be useful for compatibility with lower-level CoreAudio and AudioToolbox API's.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(audioTimeStamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimeStamp(&self) -> AudioTimeStamp;

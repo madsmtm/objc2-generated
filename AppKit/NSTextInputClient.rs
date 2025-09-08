@@ -46,6 +46,9 @@ unsafe impl RefEncode for NSTextCursorAccessoryPlacement {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputclient?language=objc)
     pub unsafe trait NSTextInputClient {
+        /// # Safety
+        ///
+        /// `string` should be of the correct type.
         #[unsafe(method(insertText:replacementRange:))]
         #[unsafe(method_family = none)]
         unsafe fn insertText_replacementRange(
@@ -54,10 +57,16 @@ extern_protocol!(
             replacement_range: NSRange,
         );
 
+        /// # Safety
+        ///
+        /// `selector` must be a valid selector.
         #[unsafe(method(doCommandBySelector:))]
         #[unsafe(method_family = none)]
         unsafe fn doCommandBySelector(&self, selector: Sel);
 
+        /// # Safety
+        ///
+        /// `string` should be of the correct type.
         #[unsafe(method(setMarkedText:selectedRange:replacementRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setMarkedText_selectedRange_replacementRange(
@@ -83,6 +92,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn hasMarkedText(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `actual_range` must be a valid pointer or null.
         #[unsafe(method(attributedSubstringForProposedRange:actualRange:))]
         #[unsafe(method_family = none)]
         unsafe fn attributedSubstringForProposedRange_actualRange(
@@ -95,6 +107,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn validAttributesForMarkedText(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
+        /// # Safety
+        ///
+        /// `actual_range` must be a valid pointer or null.
         #[unsafe(method(firstRectForCharacterRange:actualRange:))]
         #[unsafe(method_family = none)]
         unsafe fn firstRectForCharacterRange_actualRange(

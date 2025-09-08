@@ -495,6 +495,10 @@ pub unsafe extern "C-unwind" fn CVImageBufferGetColorSpace(
 /// 1. kCVImageBufferICCProfile
 /// 2. kCVImageBufferColorPrimariesKey, kCVImageBufferTransferFunctionKey, and kCVImageBufferYCbCrMatrixKey (and possibly kCVImageBufferGammaLevelKey)
 /// The client is responsible for releasing the CGColorSpaceRef when it is done with it (CGColorSpaceRelease() or CFRelease())
+///
+/// # Safety
+///
+/// `attachments` generics must be of the correct type.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn CVImageBufferCreateColorSpaceFromAttachments(

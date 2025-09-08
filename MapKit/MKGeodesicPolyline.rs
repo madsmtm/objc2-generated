@@ -45,6 +45,9 @@ extern_conformance!(
 impl MKGeodesicPolyline {
     extern_methods!(
         #[cfg(feature = "MKGeometry")]
+        /// # Safety
+        ///
+        /// `points` must be a valid pointer.
         #[unsafe(method(polylineWithPoints:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn polylineWithPoints_count(
@@ -53,6 +56,9 @@ impl MKGeodesicPolyline {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// # Safety
+        ///
+        /// `coords` must be a valid pointer.
         #[unsafe(method(polylineWithCoordinates:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn polylineWithCoordinates_count(

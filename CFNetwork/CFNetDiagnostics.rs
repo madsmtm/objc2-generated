@@ -123,6 +123,9 @@ impl CFNetDiagnostic {
         unsafe { CFNetDiagnosticDiagnoseProblemInteractively(self) }
     }
 
+    /// # Safety
+    ///
+    /// `description` must be a valid pointer or null.
     #[doc(alias = "CFNetDiagnosticCopyNetworkStatusPassively")]
     #[deprecated]
     #[inline]

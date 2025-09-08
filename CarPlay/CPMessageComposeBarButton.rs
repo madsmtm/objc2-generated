@@ -69,6 +69,9 @@ impl CPMessageComposeBarButton {
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(all(feature = "block2", feature = "objc2-ui-kit"))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(initWithImage:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_handler(
@@ -78,6 +81,9 @@ impl CPMessageComposeBarButton {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[unsafe(method(initWithTitle:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_handler(
@@ -93,6 +99,9 @@ impl CPMessageComposeBarButton {
 impl CPMessageComposeBarButton {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(initWithType:handler:))]
         #[unsafe(method_family = init)]

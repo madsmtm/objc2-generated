@@ -196,6 +196,10 @@ impl CTRun {
     ///
     /// Parameter `buffer`: The buffer where the glyphs will be copied to. The buffer must be
     /// allocated to at least the value specified by the range's length.
+    ///
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CTRunGetGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -251,6 +255,10 @@ impl CTRun {
     /// Parameter `buffer`: The buffer where the glyph positions will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
+    ///
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CTRunGetPositions")]
     #[inline]
     pub unsafe fn positions(&self, range: CFRange, buffer: NonNull<CGPoint>) {
@@ -303,6 +311,10 @@ impl CTRun {
     /// Parameter `buffer`: The buffer where the glyph advances will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
+    ///
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CTRunGetAdvances")]
     #[inline]
     pub unsafe fn advances(&self, range: CFRange, buffer: NonNull<CGSize>) {
@@ -359,6 +371,10 @@ impl CTRun {
     /// Parameter `buffer`: The buffer where the string indices will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
+    ///
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CTRunGetStringIndices")]
     #[inline]
     pub unsafe fn string_indices(&self, range: CFRange, buffer: NonNull<CFIndex>) {
@@ -412,6 +428,12 @@ impl CTRun {
     ///
     /// Returns: The typographic width of the run. If run or range is
     /// invalid, then this function will always return zero.
+    ///
+    /// # Safety
+    ///
+    /// - `ascent` must be a valid pointer or null.
+    /// - `descent` must be a valid pointer or null.
+    /// - `leading` must be a valid pointer or null.
     #[doc(alias = "CTRunGetTypographicBounds")]
     #[inline]
     pub unsafe fn typographic_bounds(
@@ -535,6 +557,11 @@ impl CTRun {
     /// Parameter `originsBuffer`: The buffer where the origins will be copied to, or NULL. If not
     /// NULL, the buffer must allow for at least as many elements as
     /// specified by the range's length.
+    ///
+    /// # Safety
+    ///
+    /// - `advances_buffer` must be a valid pointer or null.
+    /// - `origins_buffer` must be a valid pointer or null.
     #[doc(alias = "CTRunGetBaseAdvancesAndOrigins")]
     #[inline]
     pub unsafe fn base_advances_and_origins(

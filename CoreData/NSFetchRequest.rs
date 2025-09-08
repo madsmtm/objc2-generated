@@ -269,6 +269,10 @@ impl<ResultType: Message> NSFetchRequest<ResultType> {
         /// Setter for [`propertiesToFetch`][Self::propertiesToFetch].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `properties_to_fetch` generic should be of the correct type.
         #[unsafe(method(setPropertiesToFetch:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesToFetch(&self, properties_to_fetch: Option<&NSArray>);
@@ -310,6 +314,10 @@ impl<ResultType: Message> NSFetchRequest<ResultType> {
         /// Setter for [`propertiesToGroupBy`][Self::propertiesToGroupBy].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `properties_to_group_by` generic should be of the correct type.
         #[unsafe(method(setPropertiesToGroupBy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesToGroupBy(&self, properties_to_group_by: Option<&NSArray>);
@@ -386,6 +394,9 @@ impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
         pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest<ResultType>>;
 
         #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(completionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionBlock(

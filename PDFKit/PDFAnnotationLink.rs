@@ -46,6 +46,9 @@ impl PDFAnnotationLink {
         pub unsafe fn destination(&self) -> Option<Retained<PDFDestination>>;
 
         #[cfg(feature = "PDFDestination")]
+        /// # Safety
+        ///
+        /// `destination` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setDestination:))]
         #[unsafe(method_family = none)]
@@ -56,6 +59,9 @@ impl PDFAnnotationLink {
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
@@ -67,6 +73,9 @@ impl PDFAnnotationLink {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationLink {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

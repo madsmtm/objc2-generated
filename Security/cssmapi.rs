@@ -5,6 +5,12 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `version` must be a valid pointer.
+    /// - `caller_guid` must be a valid pointer.
+    /// - `pvc_policy` must be a valid pointer.
+    /// - `reserved` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_Init(
@@ -24,6 +30,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `module_guid` must be a valid pointer.
+    /// - `app_notify_callback` must be implemented correctly.
+    /// - `app_notify_callback_ctx` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_ModuleLoad(
@@ -35,6 +46,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `module_guid` must be a valid pointer.
+    /// - `app_notify_callback` must be implemented correctly.
+    /// - `app_notify_callback_ctx` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_ModuleUnload(
@@ -45,6 +61,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `module_id` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_Introduce(
@@ -54,12 +73,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `module_id` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_Unintroduce(module_id: *const CSSM_GUID) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `module_guid` must be a valid pointer.
+    /// - `version` must be a valid pointer.
+    /// - `memory_funcs` must be a valid pointer.
+    /// - `function_table` must be a valid pointer.
+    /// - `reserved` must be a valid pointer.
+    /// - `new_module_handle` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_ModuleAttach(
@@ -90,12 +120,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `privilege` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GetPrivilege(privilege: *mut CSSM_PRIVILEGE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `module_guid` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GetModuleGUIDFromHandle(
@@ -105,6 +141,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `subservice_uid` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GetSubserviceUIDFromHandle(
@@ -114,6 +153,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `number_of_module_managers` must be a valid pointer.
+    /// - `module_manager_guids` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_ListAttachedModuleManagers(
@@ -123,6 +166,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `app_memory_funcs` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GetAPIMemoryFunctions(
@@ -132,6 +178,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `key` must be a valid pointer.
+    /// - `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreateSignatureContext(
@@ -144,6 +195,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `key` must be a valid pointer.
+    /// - `init_vector` must be a valid pointer.
+    /// - `reserved` must be a valid pointer.
+    /// - `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreateSymmetricContext(
@@ -160,6 +218,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreateDigestContext(
@@ -170,6 +231,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer.
+    /// - `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreateMacContext(
@@ -181,6 +246,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `seed` must be a valid pointer.
+    /// - `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreateRandomGenContext(
@@ -193,6 +262,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `key` must be a valid pointer.
+    /// - `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreateAsymmetricContext(
@@ -206,6 +280,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `base_key` must be a valid pointer.
+    /// - `salt` must be a valid pointer.
+    /// - `seed` must be a valid pointer.
+    /// - `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreateDeriveKeyContext(
@@ -223,6 +304,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `seed` must be a valid pointer.
+    /// - `salt` must be a valid pointer.
+    /// - `start_date` must be a valid pointer.
+    /// - `end_date` must be a valid pointer.
+    /// - `params` must be a valid pointer.
+    /// - `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreateKeyGenContext(
@@ -239,6 +328,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer.
+    /// - `new_context_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_CreatePassThroughContext(
@@ -249,6 +342,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "cssmconfig",
@@ -263,6 +359,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "cssmconfig",
@@ -274,6 +373,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "cssmconfig",
@@ -291,6 +393,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer.
+    /// - `context_attribute` must be a valid pointer.
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "cssmconfig",
@@ -306,6 +412,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `context_attributes` must be a valid pointer.
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "cssmconfig",
@@ -321,6 +430,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `context_attributes` must be a valid pointer.
     #[cfg(all(
         feature = "SecAsn1Types",
         feature = "cssmconfig",
@@ -336,6 +448,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `login_name` must be a valid pointer.
+    /// - `reserved` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_Login(
@@ -353,6 +470,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `selection_tag` must be a valid pointer.
+    /// - `number_of_acl_infos` must be a valid pointer.
+    /// - `acl_infos` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_GetLoginAcl(
@@ -364,6 +486,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `acl_edit` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_ChangeLoginAcl(
@@ -374,6 +500,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer.
+    /// - `selection_tag` must be a valid pointer.
+    /// - `number_of_acl_infos` must be a valid pointer.
+    /// - `acl_infos` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GetKeyAcl(
@@ -386,6 +518,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `acl_edit` must be a valid pointer.
+    /// - `key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_ChangeKeyAcl(
@@ -397,6 +534,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer.
+    /// - `owner` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GetKeyOwner(
@@ -407,6 +548,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `key` must be a valid pointer.
+    /// - `new_owner` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_ChangeKeyOwner(
@@ -418,6 +564,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `owner` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_GetLoginOwner(
@@ -427,6 +576,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `new_owner` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_ChangeLoginOwner(
@@ -437,6 +590,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `data_bufs` must be a valid pointer.
+    /// - `signature` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_SignData(
@@ -455,6 +612,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `data_bufs` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_SignDataUpdate(
@@ -465,12 +625,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `signature` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_SignDataFinal(cc_handle: CSSM_CC_HANDLE, signature: CSSM_DATA_PTR) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `data_bufs` must be a valid pointer.
+    /// - `signature` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyData(
@@ -489,6 +656,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `data_bufs` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyDataUpdate(
@@ -499,6 +669,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `signature` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyDataFinal(
@@ -508,6 +681,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `data_bufs` must be a valid pointer.
+    /// - `digest` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DigestData(
@@ -525,6 +702,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `data_bufs` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DigestDataUpdate(
@@ -535,6 +715,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `clonednew_cc_handle` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DigestDataClone(
@@ -544,12 +727,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `digest` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DigestDataFinal(cc_handle: CSSM_CC_HANDLE, digest: CSSM_DATA_PTR) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `data_bufs` must be a valid pointer.
+    /// - `mac` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateMac(
@@ -567,6 +757,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `data_bufs` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateMacUpdate(
@@ -577,12 +770,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `mac` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateMacFinal(cc_handle: CSSM_CC_HANDLE, mac: CSSM_DATA_PTR) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `data_bufs` must be a valid pointer.
+    /// - `mac` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyMac(
@@ -600,6 +800,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `data_bufs` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyMacUpdate(
@@ -610,12 +813,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `mac` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyMacFinal(cc_handle: CSSM_CC_HANDLE, mac: *const SecAsn1Item) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `data_block_sizes` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_QuerySize(
@@ -627,6 +836,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `clear_bufs` must be a valid pointer.
+    /// - `cipher_bufs` must be a valid pointer.
+    /// - `bytes_encrypted` must be a valid pointer.
+    /// - `rem_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_EncryptData(
@@ -641,6 +856,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `clear_bufs` must be a valid pointer.
+    /// - `cipher_bufs` must be a valid pointer.
+    /// - `bytes_encrypted` must be a valid pointer.
+    /// - `rem_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_EncryptDataP(
@@ -671,6 +892,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `clear_bufs` must be a valid pointer.
+    /// - `cipher_bufs` must be a valid pointer.
+    /// - `bytes_encrypted` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_EncryptDataUpdate(
@@ -684,6 +910,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `rem_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_EncryptDataFinal(cc_handle: CSSM_CC_HANDLE, rem_data: CSSM_DATA_PTR)
@@ -691,6 +920,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cipher_bufs` must be a valid pointer.
+    /// - `clear_bufs` must be a valid pointer.
+    /// - `bytes_decrypted` must be a valid pointer.
+    /// - `rem_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DecryptData(
@@ -705,6 +940,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cipher_bufs` must be a valid pointer.
+    /// - `clear_bufs` must be a valid pointer.
+    /// - `bytes_decrypted` must be a valid pointer.
+    /// - `rem_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DecryptDataP(
@@ -735,6 +976,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cipher_bufs` must be a valid pointer.
+    /// - `clear_bufs` must be a valid pointer.
+    /// - `bytes_decrypted` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DecryptDataUpdate(
@@ -748,6 +994,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `rem_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DecryptDataFinal(cc_handle: CSSM_CC_HANDLE, rem_data: CSSM_DATA_PTR)
@@ -755,6 +1004,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key` must be a valid pointer.
+    /// - `key_size` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_QueryKeySizeInBits(
@@ -766,6 +1019,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key_label` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
+    /// - `key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateKey(
@@ -779,6 +1037,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `key_label` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
+    /// - `key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateKeyP(
@@ -793,6 +1056,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `public_key_label` must be a valid pointer.
+    /// - `public_key` must be a valid pointer.
+    /// - `private_key_label` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
+    /// - `private_key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateKeyPair(
@@ -810,6 +1080,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `public_key_label` must be a valid pointer.
+    /// - `public_key` must be a valid pointer.
+    /// - `private_key_label` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
+    /// - `private_key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateKeyPairP(
@@ -828,6 +1105,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `random_number` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateRandom(
@@ -837,6 +1117,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `public_key` must be a valid pointer.
+    /// - `private_key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_ObtainPrivateKeyFromPublicKey(
@@ -847,6 +1131,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `key` must be a valid pointer.
+    /// - `descriptive_data` must be a valid pointer.
+    /// - `wrapped_key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_WrapKey(
@@ -859,6 +1149,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `public_key` must be a valid pointer.
+    /// - `wrapped_key` must be a valid pointer.
+    /// - `key_label` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
+    /// - `unwrapped_key` must be a valid pointer.
+    /// - `descriptive_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_UnwrapKey(
@@ -875,6 +1173,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `key` must be a valid pointer.
+    /// - `descriptive_data` must be a valid pointer.
+    /// - `wrapped_key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_WrapKeyP(
@@ -888,6 +1192,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `public_key` must be a valid pointer.
+    /// - `wrapped_key` must be a valid pointer.
+    /// - `key_label` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
+    /// - `unwrapped_key` must be a valid pointer.
+    /// - `descriptive_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_UnwrapKeyP(
@@ -905,6 +1217,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `param` must be a valid pointer.
+    /// - `key_label` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
+    /// - `derived_key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DeriveKey(
@@ -919,6 +1237,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `key_ptr` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_FreeKey(
@@ -930,6 +1252,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `param` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GenerateAlgorithmParams(
@@ -940,6 +1265,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `statistics` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_GetOperationalStatistics(
@@ -949,6 +1277,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `time_data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_GetTimeValue(
@@ -959,6 +1290,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `unique_id` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_RetrieveUniqueId(
@@ -968,6 +1302,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `counter` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_RetrieveCounter(csp_handle: CSSM_CSP_HANDLE, counter: CSSM_DATA_PTR)
@@ -975,6 +1312,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `device_cert` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_VerifyDevice(
@@ -984,6 +1324,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_data` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CSP_PassThrough(
@@ -995,6 +1339,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `preferred_authority` must be a valid pointer.
+    /// - `request_input` must be a valid pointer.
+    /// - `caller_auth_context` must be a valid pointer.
+    /// - `estimated_time` must be a valid pointer.
+    /// - `reference_identifier` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_SubmitCredRequest(
@@ -1009,6 +1360,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `reference_identifier` must be a valid pointer.
+    /// - `caller_auth_credentials` must be a valid pointer.
+    /// - `estimated_time` must be a valid pointer.
+    /// - `confirmation_required` must be a valid pointer.
+    /// - `retrieve_output` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_RetrieveCredResult(
@@ -1022,6 +1380,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `reference_identifier` must be a valid pointer.
+    /// - `caller_auth_credentials` must be a valid pointer.
+    /// - `responses` must be a valid pointer.
+    /// - `preferred_authority` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_ConfirmCredResult(
@@ -1034,6 +1398,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `reference_identifier` must be a valid pointer.
+    /// - `responses` must be a valid pointer.
+    /// - `elapsed_time` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_ReceiveConfirmation(
@@ -1045,6 +1414,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_group` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertReclaimKey(
@@ -1067,6 +1440,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `preferred_authority` must be a valid pointer.
+    /// - `blank_form` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_FormRequest(
@@ -1078,6 +1455,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `form` must be a valid pointer.
+    /// - `clearance_authority` must be a valid pointer.
+    /// - `represented_authority` must be a valid pointer.
+    /// - `credentials` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_FormSubmit(
@@ -1091,6 +1474,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_group_to_be_verified` must be a valid pointer.
+    /// - `verify_context` must be a valid pointer.
+    /// - `verify_context_result` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertGroupVerify(
@@ -1104,6 +1492,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_fields` must be a valid pointer.
+    /// - `cert_template` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertCreateTemplate(
@@ -1116,6 +1508,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_template` must be a valid pointer.
+    /// - `number_of_fields` must be a valid pointer.
+    /// - `cert_fields` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertGetAllTemplateFields(
@@ -1128,6 +1525,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_template_to_be_signed` must be a valid pointer.
+    /// - `signer_cert_group` must be a valid pointer.
+    /// - `signer_verify_context` must be a valid pointer.
+    /// - `signer_verify_result` must be a valid pointer.
+    /// - `signed_cert` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertSign(
@@ -1143,6 +1547,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_to_be_verified` must be a valid pointer.
+    /// - `signer_cert_group` must be a valid pointer.
+    /// - `verify_context` must be a valid pointer.
+    /// - `revoker_verify_result` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CrlVerify(
@@ -1157,6 +1567,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_fields` must be a valid pointer.
+    /// - `new_crl_template` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CrlCreateTemplate(
@@ -1169,6 +1583,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `old_crl_template` must be a valid pointer.
+    /// - `cert_group_to_be_revoked` must be a valid pointer.
+    /// - `revoker_cert_group` must be a valid pointer.
+    /// - `revoker_verify_context` must be a valid pointer.
+    /// - `revoker_verify_result` must be a valid pointer.
+    /// - `new_crl_template` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertRevoke(
@@ -1186,6 +1608,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `old_crl_template` must be a valid pointer.
+    /// - `cert_group_to_be_removed` must be a valid pointer.
+    /// - `revoker_cert_group` must be a valid pointer.
+    /// - `revoker_verify_context` must be a valid pointer.
+    /// - `revoker_verify_result` must be a valid pointer.
+    /// - `new_crl_template` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertRemoveFromCrlTemplate(
@@ -1202,6 +1632,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_to_be_signed` must be a valid pointer.
+    /// - `signer_cert_group` must be a valid pointer.
+    /// - `signer_verify_context` must be a valid pointer.
+    /// - `signer_verify_result` must be a valid pointer.
+    /// - `signed_crl` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CrlSign(
@@ -1217,6 +1654,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_to_be_applied` must be a valid pointer.
+    /// - `signer_cert_group` must be a valid pointer.
+    /// - `apply_crl_verify_context` must be a valid pointer.
+    /// - `apply_crl_verify_result` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_ApplyCrlToDb(
@@ -1231,6 +1674,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `db_list` must be a valid pointer.
+    /// - `construct_params` must be a valid pointer.
+    /// - `cert_group_frag` must be a valid pointer.
+    /// - `cert_group` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertGroupConstruct(
@@ -1245,6 +1694,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `db_list` must be a valid pointer.
+    /// - `ordered_cert_group` must be a valid pointer.
+    /// - `pruned_cert_group` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertGroupPrune(
@@ -1257,6 +1711,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_group` must be a valid pointer.
+    /// - `tuple_group` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_CertGroupToTupleGroup(
@@ -1268,6 +1726,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `tuple_group` must be a valid pointer.
+    /// - `cert_templates` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_TupleGroupToCertGroup(
@@ -1279,6 +1741,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `db_list` must be a valid pointer.
+    /// - `input_params` must be a valid pointer.
+    /// - `output_params` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_TP_PassThrough(
@@ -1293,6 +1760,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `base_authorizations` must be a valid pointer.
+    /// - `credentials` must be a valid pointer.
+    /// - `requestors` must be a valid pointer.
+    /// - `requested_authorization_period` must be a valid pointer.
+    /// - `requested_authorization` must be a valid pointer.
+    /// - `authorization_result` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_AC_AuthCompute(
@@ -1308,6 +1783,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `db_list` must be a valid pointer.
+    /// - `input_params` must be a valid pointer.
+    /// - `output_params` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_AC_PassThrough(
@@ -1323,6 +1803,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_fields` must be a valid pointer.
+    /// - `cert_template` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertCreateTemplate(
@@ -1334,6 +1818,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_template` must be a valid pointer.
+    /// - `number_of_fields` must be a valid pointer.
+    /// - `cert_fields` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGetAllTemplateFields(
@@ -1345,6 +1834,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_template` must be a valid pointer.
+    /// - `sign_scope` must be a valid pointer.
+    /// - `signed_cert` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertSign(
@@ -1358,6 +1852,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_to_be_verified` must be a valid pointer.
+    /// - `signer_cert` must be a valid pointer.
+    /// - `verify_scope` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertVerify(
@@ -1371,6 +1870,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `cert_to_be_verified` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertVerifyWithKey(
@@ -1381,6 +1883,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert` must be a valid pointer.
+    /// - `cert_field` must be a valid pointer.
+    /// - `results_handle` must be a valid pointer.
+    /// - `number_of_matched_fields` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGetFirstFieldValue(
@@ -1394,6 +1903,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGetNextFieldValue(
@@ -1413,6 +1925,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert` must be a valid pointer.
+    /// - `key` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGetKeyInfo(
@@ -1423,6 +1939,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert` must be a valid pointer.
+    /// - `number_of_fields` must be a valid pointer.
+    /// - `cert_fields` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGetAllFields(
@@ -1434,6 +1955,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `fields` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_FreeFields(
@@ -1444,6 +1968,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_or_crl_oid` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_FreeFieldValue(
@@ -1454,6 +1982,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert` must be a valid pointer.
+    /// - `cert_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertCache(
@@ -1464,6 +1996,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_field` must be a valid pointer.
+    /// - `results_handle` must be a valid pointer.
+    /// - `number_of_matched_fields` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGetFirstCachedFieldValue(
@@ -1477,6 +2015,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGetNextCachedFieldValue(
@@ -1496,6 +2037,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_group_to_bundle` must be a valid pointer.
+    /// - `bundle_info` must be a valid pointer.
+    /// - `signed_bundle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGroupToSignedBundle(
@@ -1508,6 +2054,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert_bundle` must be a valid pointer.
+    /// - `signer_cert` must be a valid pointer.
+    /// - `cert_group` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertGroupFromVerifiedBundle(
@@ -1520,6 +2071,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `number_of_fields` must be a valid pointer.
+    /// - `oid_list` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CertDescribeFormat(
@@ -1530,6 +2085,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_template` must be a valid pointer.
+    /// - `new_crl` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlCreateTemplate(
@@ -1541,6 +2100,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_template` must be a valid pointer.
+    /// - `old_crl` must be a valid pointer.
+    /// - `modified_crl` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlSetFields(
@@ -1553,6 +2117,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert` must be a valid pointer.
+    /// - `crl_entry_fields` must be a valid pointer.
+    /// - `old_crl` must be a valid pointer.
+    /// - `new_crl` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlAddCert(
@@ -1567,6 +2137,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert` must be a valid pointer.
+    /// - `old_crl` must be a valid pointer.
+    /// - `new_crl` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlRemoveCert(
@@ -1578,6 +2153,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `unsigned_crl` must be a valid pointer.
+    /// - `sign_scope` must be a valid pointer.
+    /// - `signed_crl` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlSign(
@@ -1591,6 +2171,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_to_be_verified` must be a valid pointer.
+    /// - `signer_cert` must be a valid pointer.
+    /// - `verify_scope` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlVerify(
@@ -1604,6 +2189,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `crl_to_be_verified` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlVerifyWithKey(
@@ -1614,6 +2202,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert` must be a valid pointer.
+    /// - `crl` must be a valid pointer.
+    /// - `cert_found` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_IsCertInCrl(
@@ -1625,6 +2218,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl` must be a valid pointer.
+    /// - `crl_field` must be a valid pointer.
+    /// - `results_handle` must be a valid pointer.
+    /// - `number_of_matched_fields` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlGetFirstFieldValue(
@@ -1638,6 +2238,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlGetNextFieldValue(
@@ -1657,6 +2260,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl` must be a valid pointer.
+    /// - `number_of_crl_fields` must be a valid pointer.
+    /// - `crl_fields` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlGetAllFields(
@@ -1668,6 +2276,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl` must be a valid pointer.
+    /// - `crl_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlCache(
@@ -1678,6 +2290,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cert` must be a valid pointer.
+    /// - `cert_found` must be a valid pointer.
+    /// - `crl_record_index` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_IsCertInCachedCrl(
@@ -1690,6 +2307,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_record_index` must be a valid pointer.
+    /// - `crl_field` must be a valid pointer.
+    /// - `results_handle` must be a valid pointer.
+    /// - `number_of_matched_fields` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlGetFirstCachedFieldValue(
@@ -1704,6 +2328,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `value` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlGetNextCachedFieldValue(
@@ -1714,6 +2341,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `crl_record_index` must be a valid pointer.
+    /// - `number_of_fields` must be a valid pointer.
+    /// - `crl_fields` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlGetAllCachedRecordFields(
@@ -1733,6 +2365,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `number_of_fields` must be a valid pointer.
+    /// - `oid_list` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_CrlDescribeFormat(
@@ -1743,6 +2379,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `input_params` must be a valid pointer.
+    /// - `output_params` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_CL_PassThrough(
@@ -1755,6 +2395,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `db_name` must be a valid pointer.
+    /// - `db_location` must be a valid pointer.
+    /// - `access_cred` must be a valid pointer.
+    /// - `open_parameters` must be a valid pointer.
+    /// - `db_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DbOpen(
@@ -1775,6 +2422,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `db_name` must be a valid pointer.
+    /// - `db_location` must be a valid pointer.
+    /// - `db_info` must be a valid pointer.
+    /// - `cred_and_acl_entry` must be a valid pointer.
+    /// - `open_parameters` must be a valid pointer.
+    /// - `db_handle` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DbCreate(
@@ -1790,6 +2445,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `db_name` must be a valid pointer.
+    /// - `db_location` must be a valid pointer.
+    /// - `access_cred` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DbDelete(
@@ -1801,6 +2461,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `relation_name` must be a valid pointer.
+    /// - `p_attribute_info` must be a valid pointer.
+    /// - `p_index_info` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_CreateRelation(
@@ -1824,6 +2489,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `access_cred` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_Authenticate(
@@ -1834,6 +2502,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `selection_tag` must be a valid pointer.
+    /// - `number_of_acl_infos` must be a valid pointer.
+    /// - `acl_infos` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_GetDbAcl(
@@ -1845,6 +2518,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `acl_edit` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_ChangeDbAcl(
@@ -1855,6 +2532,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `owner` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_GetDbOwner(
@@ -1864,6 +2544,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `access_cred` must be a valid pointer.
+    /// - `new_owner` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_ChangeDbOwner(
@@ -1874,6 +2558,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `name_list` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_GetDbNames(
@@ -1883,6 +2570,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `db_name` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_GetDbNameFromHandle(
@@ -1892,6 +2582,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `name_list` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_FreeNameList(
@@ -1901,6 +2594,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `attributes` must be a valid pointer.
+    /// - `data` must be a valid pointer.
+    /// - `unique_id` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DataInsert(
@@ -1913,6 +2611,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `unique_record_identifier` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DataDelete(
@@ -1922,6 +2623,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `unique_record_identifier` must be a valid pointer.
+    /// - `attributes_to_be_modified` must be a valid pointer.
+    /// - `data_to_be_modified` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DataModify(
@@ -1935,6 +2641,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `query` must be a valid pointer.
+    /// - `results_handle` must be a valid pointer.
+    /// - `attributes` must be a valid pointer.
+    /// - `data` must be a valid pointer.
+    /// - `unique_id` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DataGetFirst(
@@ -1948,6 +2661,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `attributes` must be a valid pointer.
+    /// - `data` must be a valid pointer.
+    /// - `unique_id` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DataGetNext(
@@ -1969,6 +2687,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `unique_record` must be a valid pointer.
+    /// - `attributes` must be a valid pointer.
+    /// - `data` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_DataGetFromUniqueRecordId(
@@ -1980,6 +2703,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `unique_record` must be a valid pointer.
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_FreeUniqueRecord(
@@ -1989,6 +2715,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `input_params` must be a valid pointer.
+    /// - `output_params` must be a valid pointer.
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn CSSM_DL_PassThrough(

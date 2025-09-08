@@ -74,6 +74,11 @@ extern "C-unwind" {
     /// Parameter `pixelBufferOut`: The new pixel buffer will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",

@@ -227,6 +227,10 @@ impl CTRubyAnnotation {
     ///
     ///
     /// Returns: This function will return a reference to a CTRubyAnnotation object.
+    ///
+    /// # Safety
+    ///
+    /// `attributes` generics must be of the correct type.
     #[doc(alias = "CTRubyAnnotationCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(

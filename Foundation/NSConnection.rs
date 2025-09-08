@@ -81,6 +81,9 @@ impl NSConnection {
         ) -> Option<Retained<NSDistantObject>>;
 
         #[cfg(all(feature = "NSPortNameServer", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `root` should be of the correct type.
         #[unsafe(method(serviceConnectionWithName:rootObject:usingNameServer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceConnectionWithName_rootObject_usingNameServer(
@@ -90,6 +93,9 @@ impl NSConnection {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `root` should be of the correct type.
         #[unsafe(method(serviceConnectionWithName:rootObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceConnectionWithName_rootObject(
@@ -129,6 +135,10 @@ impl NSConnection {
         pub unsafe fn rootObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`rootObject`][Self::rootObject].
+        ///
+        /// # Safety
+        ///
+        /// `root_object` should be of the correct type.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(setRootObject:))]
         #[unsafe(method_family = none)]
@@ -144,6 +154,10 @@ impl NSConnection {
             -> Option<Retained<ProtocolObject<dyn NSConnectionDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -292,6 +306,9 @@ impl NSConnection {
         pub unsafe fn localObjects(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
+        /// # Safety
+        ///
+        /// `components` generic should be of the correct type.
         #[unsafe(method(dispatchWithComponents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchWithComponents(&self, components: &NSArray);
@@ -350,6 +367,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
+        /// # Safety
+        ///
+        /// `components` generic should be of the correct type.
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[unsafe(method(authenticationDataForComponents:))]
@@ -357,6 +377,9 @@ extern_protocol!(
         unsafe fn authenticationDataForComponents(&self, components: &NSArray) -> Retained<NSData>;
 
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
+        /// # Safety
+        ///
+        /// `components` generic should be of the correct type.
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[unsafe(method(authenticateComponents:withData:))]

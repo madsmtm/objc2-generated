@@ -205,6 +205,10 @@ impl NSComboBoxCell {
         ) -> Option<Retained<ProtocolObject<dyn NSComboBoxCellDataSource>>>;
 
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
@@ -212,14 +216,23 @@ impl NSComboBoxCell {
             data_source: Option<&ProtocolObject<dyn NSComboBoxCellDataSource>>,
         );
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(addItemWithObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemWithObjectValue(&self, object: &AnyObject);
 
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(addItemsWithObjectValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addItemsWithObjectValues(&self, objects: &NSArray);
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(insertItemWithObjectValue:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertItemWithObjectValue_atIndex(
@@ -228,6 +241,9 @@ impl NSComboBoxCell {
             index: NSInteger,
         );
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(removeItemWithObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeItemWithObjectValue(&self, object: &AnyObject);
@@ -240,6 +256,9 @@ impl NSComboBoxCell {
         #[unsafe(method_family = none)]
         pub unsafe fn removeAllItems(&self);
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(selectItemWithObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectItemWithObjectValue(&self, object: Option<&AnyObject>);
@@ -252,6 +271,9 @@ impl NSComboBoxCell {
         #[unsafe(method_family = none)]
         pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(indexOfItemWithObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &AnyObject) -> NSInteger;

@@ -54,6 +54,10 @@ impl AVMediaSelectionGroup {
         /// Parameter `plist`: A property list previously obtained from an option in the group via -[AVMediaSelectionOption propertyList].
         ///
         /// Returns: If the specified properties match those of an option in the group, an instance of AVMediaSelectionOption. Otherwise nil.
+        ///
+        /// # Safety
+        ///
+        /// `plist` should be of the correct type.
         #[unsafe(method(mediaSelectionOptionWithPropertyList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionWithPropertyList(

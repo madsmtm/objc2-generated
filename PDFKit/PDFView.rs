@@ -228,6 +228,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn canGoToFirstPage(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(goToFirstPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goToFirstPage(&self, sender: Option<&AnyObject>);
@@ -236,6 +239,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn canGoToLastPage(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(goToLastPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goToLastPage(&self, sender: Option<&AnyObject>);
@@ -244,6 +250,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn canGoToNextPage(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(goToNextPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goToNextPage(&self, sender: Option<&AnyObject>);
@@ -252,6 +261,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn canGoToPreviousPage(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(goToPreviousPage:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goToPreviousPage(&self, sender: Option<&AnyObject>);
@@ -260,6 +272,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn canGoBack(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(goBack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goBack(&self, sender: Option<&AnyObject>);
@@ -268,6 +283,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn canGoForward(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(goForward:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goForward(&self, sender: Option<&AnyObject>);
@@ -473,6 +491,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn scaleFactorForSizeToFit(&self) -> CGFloat;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(zoomIn:))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomIn(&self, sender: Option<&AnyObject>);
@@ -481,6 +502,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn canZoomIn(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(zoomOut:))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomOut(&self, sender: Option<&AnyObject>);
@@ -533,10 +557,16 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn clearSelection(&self);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectAll:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(scrollSelectionToVisible:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollSelectionToVisible(&self, sender: Option<&AnyObject>);
@@ -567,6 +597,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn drawPagePost_toContext(&self, page: &PDFPage, context: &CGContext);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(copy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copy(&self, sender: Option<&AnyObject>);
@@ -779,6 +812,9 @@ extern_protocol!(
 #[cfg(target_os = "macos")]
 impl PDFView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated]
         #[unsafe(method(takePasswordFrom:))]
         #[unsafe(method_family = none)]
@@ -820,6 +856,9 @@ impl PDFView {
         #[unsafe(method_family = none)]
         pub unsafe fn setGreekingThreshold(&self, greeking_threshold: CGFloat);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated]
         #[unsafe(method(takeBackgroundColorFrom:))]
         #[unsafe(method_family = none)]

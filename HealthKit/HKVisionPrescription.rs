@@ -75,6 +75,10 @@ impl HKVisionPrescription {
         /// A vision prescription type (glasses or contacts)
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(prescriptionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn prescriptionType(&self) -> HKVisionPrescriptionType;
@@ -82,6 +86,10 @@ impl HKVisionPrescription {
         /// The date the prescription was issued
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(dateIssued))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateIssued(&self) -> Retained<NSDate>;
@@ -89,6 +97,10 @@ impl HKVisionPrescription {
         /// The date the prescription will expire
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(expirationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
@@ -103,6 +115,10 @@ impl HKVisionPrescription {
         /// Parameter `device`: The device that generated the sample
         ///
         /// Parameter `metadata`: The metadata for the sample
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(prescriptionWithType:dateIssued:expirationDate:device:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prescriptionWithType_dateIssued_expirationDate_device_metadata(

@@ -18,6 +18,10 @@ pub unsafe trait NSObjectIKSaveOptionsDelegate:
     ClassType + Sized + private_NSObjectIKSaveOptionsDelegate::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `save_options` might not allow `None`.
+        /// - `ut_type` might not allow `None`.
         #[unsafe(method(saveOptions:shouldShowUTType:))]
         #[unsafe(method_family = none)]
         unsafe fn saveOptions_shouldShowUTType(
@@ -56,6 +60,10 @@ impl IKSaveOptions {
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -76,6 +84,12 @@ impl IKSaveOptions {
         pub unsafe fn userSelection(&self) -> Option<Retained<NSDictionary>>;
 
         /// Initializes IKSaveOptions with metadata and UTType.
+        ///
+        /// # Safety
+        ///
+        /// - `image_properties` generic should be of the correct type.
+        /// - `image_properties` might not allow `None`.
+        /// - `image_ut_type` might not allow `None`.
         #[unsafe(method(initWithImageProperties:imageUTType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImageProperties_imageUTType(
@@ -85,6 +99,10 @@ impl IKSaveOptions {
         ) -> Option<Retained<Self>>;
 
         /// Adds IKSaveOptions UI to a NSSavePanel.
+        ///
+        /// # Safety
+        ///
+        /// `save_panel` might not allow `None`.
         #[unsafe(method(addSaveOptionsAccessoryViewToSavePanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSaveOptionsAccessoryViewToSavePanel(
@@ -93,6 +111,10 @@ impl IKSaveOptions {
         );
 
         /// Adds IKSaveOptions UI to a NSView.
+        ///
+        /// # Safety
+        ///
+        /// `view` might not allow `None`.
         #[unsafe(method(addSaveOptionsToView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSaveOptionsToView(&self, view: Option<&NSView>);

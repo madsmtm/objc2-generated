@@ -454,6 +454,9 @@ pub unsafe trait NSAttributedStringDocumentFormats:
     ClassType + Sized + private_NSAttributedStringDocumentFormats::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:documentAttributes:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithURL_options_documentAttributes_error(
@@ -467,6 +470,9 @@ pub unsafe trait NSAttributedStringDocumentFormats:
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:options:documentAttributes:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithData_options_documentAttributes_error(
@@ -480,6 +486,9 @@ pub unsafe trait NSAttributedStringDocumentFormats:
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(dataFromRange:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn dataFromRange_documentAttributes_error(
@@ -488,6 +497,9 @@ pub unsafe trait NSAttributedStringDocumentFormats:
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(fileWrapperFromRange:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn fileWrapperFromRange_documentAttributes_error(
@@ -510,6 +522,9 @@ pub unsafe trait NSMutableAttributedStringDocumentFormats:
     ClassType + Sized + private_NSMutableAttributedStringDocumentFormats::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `opts` generic should be of the correct type.
         #[unsafe(method(readFromURL:options:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn readFromURL_options_documentAttributes_error(
@@ -523,6 +538,9 @@ pub unsafe trait NSMutableAttributedStringDocumentFormats:
             >,
         ) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `opts` generic should be of the correct type.
         #[unsafe(method(readFromData:options:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn readFromData_options_documentAttributes_error(

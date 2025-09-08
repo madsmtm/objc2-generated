@@ -144,6 +144,10 @@ impl CGDisplayStreamUpdate {
     /// Parameter `rectCount`: A pointer to where the count of the number of rectangles in the array is to be returned. Must not be NULL.
     ///
     /// Returns: A pointer to the array of CGRectangles.  This array should not be freed by the caller.
+    ///
+    /// # Safety
+    ///
+    /// `rect_count` must be a valid pointer.
     #[doc(alias = "CGDisplayStreamUpdateGetRects")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -201,6 +205,11 @@ impl CGDisplayStreamUpdate {
     /// Parameter `dy`: A pointer to a CGFloat to store the y component of the movement delta
     ///
     /// The delta values describe the offset from the moved rectangles back to the source location.
+    ///
+    /// # Safety
+    ///
+    /// - `dx` must be a valid pointer.
+    /// - `dy` must be a valid pointer.
     #[doc(alias = "CGDisplayStreamUpdateGetMovedRectsDelta")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -369,6 +378,11 @@ impl CGDisplayStream {
     /// Parameter `handler`: A block that will be called for frame deliver.
     ///
     /// Returns: The new CGDisplayStream object.
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `handler` must be a valid pointer or null.
     #[doc(alias = "CGDisplayStreamCreate")]
     #[cfg(all(
         feature = "CGDirectDisplay",
@@ -429,6 +443,11 @@ impl CGDisplayStream {
     /// Parameter `handler`: A block that will be called for frame deliver.
     ///
     /// Returns: The new CGDisplayStream object.
+    ///
+    /// # Safety
+    ///
+    /// - `properties` generics must be of the correct type.
+    /// - `handler` must be a valid pointer or null.
     #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
     #[cfg(all(
         feature = "CGDirectDisplay",

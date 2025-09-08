@@ -78,6 +78,9 @@ impl EAAccessoryManager {
         pub unsafe fn sharedAccessoryManager() -> Retained<EAAccessoryManager>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(showBluetoothAccessoryPickerWithNameFilter:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showBluetoothAccessoryPickerWithNameFilter_completion(

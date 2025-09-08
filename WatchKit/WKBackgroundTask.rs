@@ -163,6 +163,9 @@ impl WKSnapshotRefreshBackgroundTask {
         #[unsafe(method_family = none)]
         pub unsafe fn reasonForSnapshot(&self) -> WKSnapshotReason;
 
+        /// # Safety
+        ///
+        /// `user_info` should be of the correct type.
         #[unsafe(method(setTaskCompletedWithDefaultStateRestored:estimatedSnapshotExpiration:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTaskCompletedWithDefaultStateRestored_estimatedSnapshotExpiration_userInfo(
@@ -340,6 +343,9 @@ impl WKBluetoothAlertRefreshBackgroundTask {
 impl WKExtension {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `user_info` should be of the correct type.
         #[unsafe(method(scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBackgroundRefreshWithPreferredDate_userInfo_scheduledCompletion(
@@ -350,6 +356,9 @@ impl WKExtension {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `user_info` should be of the correct type.
         #[unsafe(method(scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSnapshotRefreshWithPreferredDate_userInfo_scheduledCompletion(
@@ -366,6 +375,9 @@ impl WKExtension {
 impl WKApplication {
     extern_methods!(
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `user_info` should be of the correct type.
         #[unsafe(method(scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleBackgroundRefreshWithPreferredDate_userInfo_scheduledCompletion(
@@ -376,6 +388,9 @@ impl WKApplication {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `user_info` should be of the correct type.
         #[unsafe(method(scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleSnapshotRefreshWithPreferredDate_userInfo_scheduledCompletion(

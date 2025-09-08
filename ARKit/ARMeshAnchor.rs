@@ -60,6 +60,10 @@ impl ARMeshAnchor {
         /// Geometry of the mesh in anchor's coordinate system.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Retained<ARMeshGeometry>;

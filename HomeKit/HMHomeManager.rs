@@ -62,6 +62,10 @@ impl HMHomeManager {
         /// Delegate that receives updates on the collection of homes.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -71,6 +75,10 @@ impl HMHomeManager {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -89,6 +97,10 @@ impl HMHomeManager {
         /// The primary home for this collection.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported."]
         #[unsafe(method(primaryHome))]
         #[unsafe(method_family = none)]
@@ -103,6 +115,10 @@ impl HMHomeManager {
         /// until the homeManagerDidUpdateHomes: delegate method has been invoked.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(homes))]
         #[unsafe(method_family = none)]
         pub unsafe fn homes(&self) -> Retained<NSArray<HMHome>>;

@@ -48,6 +48,10 @@ impl ASAccountAuthenticationModificationExtensionContext {
         ///
         /// Once a Sign in with Apple upgrade is completed, the system will delete
         /// the password-based credential from the Keychain, if it is saved there.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(completeUpgradeToSignInWithAppleWithUserInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeUpgradeToSignInWithAppleWithUserInfo(
@@ -62,6 +66,10 @@ impl ASAccountAuthenticationModificationExtensionContext {
         ///
         /// Parameter `userInfo`: For upgrades invoked within the extension's containing app, any
         /// information the extension wants to pass back to the app.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(completeChangePasswordRequestWithUpdatedCredential:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeChangePasswordRequestWithUpdatedCredential_userInfo(

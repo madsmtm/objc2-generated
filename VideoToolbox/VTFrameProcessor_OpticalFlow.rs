@@ -157,6 +157,10 @@ impl VTOpticalFlowConfiguration {
         /// Width of source frame in pixels.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(frameWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameWidth(&self) -> NSInteger;
@@ -164,6 +168,10 @@ impl VTOpticalFlowConfiguration {
         /// Height of source frame in pixels.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(frameHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameHeight(&self) -> NSInteger;
@@ -171,6 +179,10 @@ impl VTOpticalFlowConfiguration {
         /// parameter used to control quality and performance levels. See VTOpticalFlowConfigurationQualityPrioritization for more info.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(qualityPrioritization))]
         #[unsafe(method_family = none)]
         pub unsafe fn qualityPrioritization(
@@ -180,6 +192,10 @@ impl VTOpticalFlowConfiguration {
         /// The specific algorithm or configuration revision that is to be used to perform the request.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(revision))]
         #[unsafe(method_family = none)]
         pub unsafe fn revision(&self) -> VTOpticalFlowConfigurationRevision;
@@ -201,6 +217,10 @@ impl VTOpticalFlowConfiguration {
         /// list of source frame supported pixel formats for current configuration
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(frameSupportedPixelFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
@@ -209,6 +229,10 @@ impl VTOpticalFlowConfiguration {
         /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as source frames and reference frames.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcePixelBufferAttributes(
@@ -219,6 +243,10 @@ impl VTOpticalFlowConfiguration {
         /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as OpticalFlow buffers
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(destinationPixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationPixelBufferAttributes(

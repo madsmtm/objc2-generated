@@ -201,6 +201,9 @@ extern_conformance!(
 
 impl TVPlaybackCustomEventUserInfo {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[deprecated = "Please use SwiftUI or UIKit"]
         #[unsafe(method(initWithProperties:expectsReturnValue:))]
         #[unsafe(method_family = init)]

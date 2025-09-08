@@ -143,6 +143,10 @@ impl GKRuleSystem {
         ///
         ///
         /// Returns: The membership grade by applying the AND operator on the given facts, in the range [0.0, 1.0].
+        ///
+        /// # Safety
+        ///
+        /// `facts` generic should be of the correct type.
         #[unsafe(method(minimumGradeForFacts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumGradeForFacts(&self, facts: &NSArray) -> c_float;
@@ -153,6 +157,10 @@ impl GKRuleSystem {
         ///
         ///
         /// Returns: The membership grade by applying the OR operator on the given facts, in the range [0.0, 1.0].
+        ///
+        /// # Safety
+        ///
+        /// `facts` generic should be of the correct type.
         #[unsafe(method(maximumGradeForFacts:))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumGradeForFacts(&self, facts: &NSArray) -> c_float;

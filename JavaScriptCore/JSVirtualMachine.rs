@@ -55,6 +55,13 @@ impl JSVirtualMachine {
         /// Parameter `object`: The object that the owner points to.
         ///
         /// Parameter `owner`: The object that owns the pointed to object.
+        ///
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
+        /// - `owner` should be of the correct type.
+        /// - `owner` might not allow `None`.
         #[unsafe(method(addManagedReference:withOwner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addManagedReference_withOwner(
@@ -71,6 +78,13 @@ impl JSVirtualMachine {
         /// Parameter `object`: The object that was formerly owned.
         ///
         /// Parameter `owner`: The former owner.
+        ///
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
+        /// - `owner` should be of the correct type.
+        /// - `owner` might not allow `None`.
         #[unsafe(method(removeManagedReference:withOwner:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeManagedReference_withOwner(

@@ -44,6 +44,9 @@ impl PDFAnnotationStamp {
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
@@ -55,6 +58,9 @@ impl PDFAnnotationStamp {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationStamp {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

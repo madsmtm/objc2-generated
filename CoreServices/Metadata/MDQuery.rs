@@ -101,6 +101,13 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryRef, or NULL on failure. If the query string
     /// is empty or malformed (invalid syntax), returns NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `value_list_attrs` generic must be of the correct type.
+    /// - `value_list_attrs` might not allow `None`.
+    /// - `sorting_attrs` generic must be of the correct type.
+    /// - `sorting_attrs` might not allow `None`.
     #[doc(alias = "MDQueryCreate")]
     #[inline]
     pub unsafe fn new(
@@ -163,6 +170,13 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryRef, or NULL on failure. If the query string
     /// is empty or malformed (invalid syntax), returns NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `value_list_attrs` generic must be of the correct type.
+    /// - `value_list_attrs` might not allow `None`.
+    /// - `sorting_attrs` generic must be of the correct type.
+    /// - `sorting_attrs` might not allow `None`.
     #[doc(alias = "MDQueryCreateSubset")]
     #[inline]
     pub unsafe fn new_subset(
@@ -232,6 +246,15 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryRef, or NULL on failure. If the query string
     /// is empty or malformed (invalid syntax), returns NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `value_list_attrs` generic must be of the correct type.
+    /// - `value_list_attrs` might not allow `None`.
+    /// - `sorting_attrs` generic must be of the correct type.
+    /// - `sorting_attrs` might not allow `None`.
+    /// - `items` generic must be of the correct type.
+    /// - `items` might not allow `None`.
     #[doc(alias = "MDQueryCreateForItems")]
     #[inline]
     pub unsafe fn new_for_items(
@@ -517,6 +540,12 @@ impl MDQuery {
     /// assume that the retain function will be unused or that
     /// additional reference counts will not be taken on the
     /// created results.
+    ///
+    /// # Safety
+    ///
+    /// - `func` must be implemented correctly.
+    /// - `context` must be a valid pointer.
+    /// - `cb` must be a valid pointer.
     #[doc(alias = "MDQuerySetCreateResultFunction")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -638,6 +667,12 @@ impl MDQuery {
     /// matched set -- do not assume that the retain function will
     /// be unused or that additional reference counts will not be
     /// taken on the created values.
+    ///
+    /// # Safety
+    ///
+    /// - `func` must be implemented correctly.
+    /// - `context` must be a valid pointer.
+    /// - `cb` must be a valid pointer.
     #[doc(alias = "MDQuerySetCreateValueFunction")]
     #[inline]
     pub unsafe fn set_create_value_function(
@@ -666,6 +701,10 @@ impl MDQuery {
     /// Parameter `query`: The query for which the dispatch queue should be set.
     ///
     /// Parameter `queue`: The dispatch queue on which results should be delivered.
+    ///
+    /// # Safety
+    ///
+    /// `queue` might not allow `None`.
     #[doc(alias = "MDQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -866,6 +905,10 @@ impl MDQuery {
     /// you provided a custom result creation function,
     /// as well as a custom object comparator function,
     /// result will be objects created by that function.
+    ///
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[doc(alias = "MDQueryGetIndexOfResult")]
     #[inline]
     pub unsafe fn index_of_result(&self, result: *const c_void) -> CFIndex {
@@ -891,6 +934,10 @@ impl MDQuery {
     ///
     /// Returns: The value of the attribute, or NULL if the attribute
     /// doesn't exist in the query on that result.
+    ///
+    /// # Safety
+    ///
+    /// `name` might not allow `None`.
     #[doc(alias = "MDQueryGetAttributeValueOfResultAtIndex")]
     #[inline]
     pub unsafe fn attribute_value_of_result_at_index(
@@ -922,6 +969,10 @@ impl MDQuery {
     /// functions, the behavior is undefined.
     ///
     /// Returns: A CFArray holding the value objects for that attribute.
+    ///
+    /// # Safety
+    ///
+    /// `name` might not allow `None`.
     #[doc(alias = "MDQueryCopyValuesOfAttribute")]
     #[inline]
     pub unsafe fn values_of_attribute(
@@ -956,6 +1007,12 @@ impl MDQuery {
     /// the named attribute is returned.
     ///
     /// Returns: The number of results with that attribute and value.
+    ///
+    /// # Safety
+    ///
+    /// - `name` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
     #[doc(alias = "MDQueryGetCountOfResultsWithAttributeValue")]
     #[inline]
     pub unsafe fn count_of_results_with_attribute_value(
@@ -984,6 +1041,11 @@ impl MDQuery {
     /// are CFStrings
     ///
     /// Returns: A boolean, true on success, false on failure.
+    ///
+    /// # Safety
+    ///
+    /// - `sorting_attrs` generic must be of the correct type.
+    /// - `sorting_attrs` might not allow `None`.
     #[doc(alias = "MDQuerySetSortOrder")]
     #[inline]
     pub unsafe fn set_sort_order(&self, sorting_attrs: Option<&CFArray>) -> bool {
@@ -1025,6 +1087,10 @@ impl MDQuery {
     /// Parameter `flags`: A uint32_t containing MDQuerySortOptionFlags to be applied to the attibute
     ///
     /// Returns: A boolean, true on success, false on failure.
+    ///
+    /// # Safety
+    ///
+    /// `field_name` might not allow `None`.
     #[doc(alias = "MDQuerySetSortOptionFlagsForAttribute")]
     #[inline]
     pub unsafe fn set_sort_option_flags_for_attribute(
@@ -1050,6 +1116,10 @@ impl MDQuery {
     /// Parameter `fieldName`: The attribute name for which sort option flags are to be fetched.
     ///
     /// Returns: A uint32_t, with MDQuerySortOptionFlags set for the attribute.
+    ///
+    /// # Safety
+    ///
+    /// `field_name` might not allow `None`.
     #[doc(alias = "MDQueryGetSortOptionFlagsForAttribute")]
     #[inline]
     pub unsafe fn sort_option_flags_for_attribute(&self, field_name: Option<&CFString>) -> u32 {
@@ -1134,6 +1204,11 @@ impl MDQuery {
     /// valid for the lifetime of the query or until the sort
     /// function is set again. If the context is not what is
     /// expected by the comparator, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `comparator` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "MDQuerySetSortComparator")]
     #[inline]
     pub unsafe fn set_sort_comparator(
@@ -1151,6 +1226,9 @@ impl MDQuery {
         unsafe { MDQuerySetSortComparator(self, comparator, context) }
     }
 
+    /// # Safety
+    ///
+    /// `comparator` might not allow `None`.
     #[doc(alias = "MDQuerySetSortComparatorBlock")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1316,6 +1394,11 @@ impl MDQuery {
     ///
     /// Parameter `scopeOptions`: additional options for modifying the search.
     /// Currently, pass 0 (zero).
+    ///
+    /// # Safety
+    ///
+    /// - `scope_directories` generic must be of the correct type.
+    /// - `scope_directories` might not allow `None`.
     #[doc(alias = "MDQuerySetSearchScope")]
     #[inline]
     pub unsafe fn set_search_scope(

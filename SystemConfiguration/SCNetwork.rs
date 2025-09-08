@@ -51,6 +51,11 @@ pub type SCNetworkConnectionFlags = u32;
 ///
 /// Returns: Returns TRUE if the network connection flags are valid;
 /// FALSE if the status could not be determined.
+///
+/// # Safety
+///
+/// - `address` must be a valid pointer.
+/// - `flags` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -97,6 +102,11 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByAddress(
 ///
 /// Returns: Returns TRUE if the network connection flags are valid;
 /// FALSE if the status could not be determined.
+///
+/// # Safety
+///
+/// - `nodename` must be a valid pointer.
+/// - `flags` must be a valid pointer.
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByName(

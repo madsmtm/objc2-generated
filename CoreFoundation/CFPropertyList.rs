@@ -32,6 +32,9 @@ unsafe impl RefEncode for CFPropertyListMutabilityOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// # Safety
+///
+/// `error_string` must be a valid pointer.
 #[cfg(feature = "CFData")]
 #[deprecated = "Use CFPropertyListCreateWithData instead."]
 #[inline]
@@ -55,6 +58,11 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `allocator` might not allow `None`.
+/// - `property_list` should be of the correct type.
+/// - `property_list` might not allow `None`.
 #[cfg(feature = "CFData")]
 #[deprecated = "Use CFPropertyListCreateData instead."]
 #[inline]
@@ -72,6 +80,11 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `allocator` might not allow `None`.
+/// - `property_list` should be of the correct type.
+/// - `property_list` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateDeepCopy(
     allocator: Option<&CFAllocator>,
@@ -113,6 +126,9 @@ unsafe impl RefEncode for CFPropertyListFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// # Safety
+///
+/// `plist` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
     plist: &CFPropertyList,
@@ -126,6 +142,9 @@ pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `error_string` must be a valid pointer.
     #[cfg(feature = "CFStream")]
     #[deprecated = "Use CFPropertyListWrite instead."]
     pub fn CFPropertyListWriteToStream(
@@ -136,6 +155,10 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
+/// # Safety
+///
+/// - `format` must be a valid pointer.
+/// - `error_string` must be a valid pointer.
 #[cfg(feature = "CFStream")]
 #[deprecated = "Use CFPropertyListCreateWithStream instead."]
 #[inline]
@@ -179,6 +202,10 @@ pub const kCFPropertyListReadStreamError: CFIndex = 3842;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistwritestreamerror?language=objc)
 pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 
+/// # Safety
+///
+/// - `format` must be a valid pointer.
+/// - `error` must be a valid pointer.
 #[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
@@ -201,6 +228,10 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `format` must be a valid pointer.
+/// - `error` must be a valid pointer.
 #[cfg(all(feature = "CFError", feature = "CFStream"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
@@ -228,6 +259,9 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[cfg(all(feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListWrite(
         property_list: &CFPropertyList,
@@ -238,6 +272,9 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
+/// # Safety
+///
+/// `error` must be a valid pointer.
 #[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateData(

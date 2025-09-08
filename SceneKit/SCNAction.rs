@@ -142,6 +142,10 @@ impl SCNAction {
 
         #[cfg(feature = "block2")]
         /// Setter for [`timingFunction`][Self::timingFunction].
+        ///
+        /// # Safety
+        ///
+        /// `timing_function` must be a valid pointer or null.
         #[unsafe(method(setTimingFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTimingFunction(&self, timing_function: SCNActionTimingFunction);

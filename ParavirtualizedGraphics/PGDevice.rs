@@ -110,6 +110,10 @@ impl PGDeviceDescriptor {
         /// Setter for [`raiseInterrupt`][Self::raiseInterrupt].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `raise_interrupt` must be a valid pointer or null.
         #[unsafe(method(setRaiseInterrupt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRaiseInterrupt(&self, raise_interrupt: PGRaiseInterrupt);

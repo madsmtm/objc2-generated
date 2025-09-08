@@ -38,6 +38,10 @@ impl HMAccessory {
         /// provided by the accessory information service of the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -48,6 +52,10 @@ impl HMAccessory {
         /// Use uniqueIdentifier to obtain the identifier for this object.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
@@ -56,6 +64,10 @@ impl HMAccessory {
         /// A unique identifier for the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
@@ -63,6 +75,10 @@ impl HMAccessory {
         /// Delegate object that receives updates on the state of the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn HMAccessoryDelegate>>>;
@@ -70,6 +86,10 @@ impl HMAccessory {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -80,6 +100,10 @@ impl HMAccessory {
         /// TRUE if the accessory is currently reachable, FALSE otherwise.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isReachable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isReachable(&self) -> bool;
@@ -90,6 +114,10 @@ impl HMAccessory {
         /// from the home.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isBridged))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBridged(&self) -> bool;
@@ -102,6 +130,10 @@ impl HMAccessory {
         /// bridged accessories.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported."]
         #[unsafe(method(identifiersForBridgedAccessories))]
         #[unsafe(method_family = none)]
@@ -120,6 +152,10 @@ impl HMAccessory {
         /// its 'uniqueIdentifiersForBridgedAccessories' property set to nil.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(uniqueIdentifiersForBridgedAccessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifiersForBridgedAccessories(
@@ -130,6 +166,10 @@ impl HMAccessory {
         /// Category information for the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(category))]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Retained<HMAccessoryCategory>;
@@ -138,6 +178,10 @@ impl HMAccessory {
         /// Room containing the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(room))]
         #[unsafe(method_family = none)]
         pub unsafe fn room(&self) -> Option<Retained<HMRoom>>;
@@ -146,6 +190,10 @@ impl HMAccessory {
         /// Array of HMService objects that represent all the services provided by the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(services))]
         #[unsafe(method_family = none)]
         pub unsafe fn services(&self) -> Retained<NSArray<HMService>>;
@@ -159,6 +207,10 @@ impl HMAccessory {
         /// TRUE if the accessory is blocked, FALSE otherwise.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(isBlocked))]
         #[unsafe(method_family = none)]
         pub unsafe fn isBlocked(&self) -> bool;
@@ -166,6 +218,10 @@ impl HMAccessory {
         /// Model of the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(model))]
         #[unsafe(method_family = none)]
         pub unsafe fn model(&self) -> Option<Retained<NSString>>;
@@ -173,6 +229,10 @@ impl HMAccessory {
         /// Manufacturer of the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(manufacturer))]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
@@ -180,6 +240,10 @@ impl HMAccessory {
         /// Accessory's firmware version.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(firmwareVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn firmwareVersion(&self) -> Option<Retained<NSString>>;
@@ -192,6 +256,10 @@ impl HMAccessory {
         /// The node identifier used to identify the device on Apple’s Matter fabric.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(matterNodeID))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterNodeID(&self) -> Option<Retained<NSNumber>>;

@@ -38,6 +38,10 @@ impl UIDocumentProperties {
         /// To support drag
         /// &
         /// drop, assign a closure to return an array of drag items corresponding to the represented document.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(dragItemsProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn dragItemsProvider(
@@ -50,6 +54,10 @@ impl UIDocumentProperties {
         /// Setter for [`dragItemsProvider`][Self::dragItemsProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `drag_items_provider` block's return must be a valid pointer.
         #[unsafe(method(setDragItemsProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDragItemsProvider(
@@ -85,6 +93,10 @@ impl UIDocumentProperties {
         /// Setter for [`activityViewControllerProvider`][Self::activityViewControllerProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `activity_view_controller_provider` block's return must be a valid pointer.
         #[unsafe(method(setActivityViewControllerProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityViewControllerProvider(

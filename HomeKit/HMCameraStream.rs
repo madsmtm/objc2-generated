@@ -35,6 +35,10 @@ impl HMCameraStream {
         /// Represents the audio setting for the current stream.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(audioStreamSetting))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioStreamSetting(&self) -> HMCameraAudioStreamSetting;

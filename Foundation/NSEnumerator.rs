@@ -8,6 +8,10 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfastenumeration?language=objc)
     pub unsafe trait NSFastEnumeration {
+        /// # Safety
+        ///
+        /// - `state` must be a valid pointer.
+        /// - `buffer` must be a valid pointer.
         #[unsafe(method(countByEnumeratingWithState:objects:count:))]
         #[unsafe(method_family = none)]
         unsafe fn countByEnumeratingWithState_objects_count(

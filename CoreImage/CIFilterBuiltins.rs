@@ -5001,6 +5001,10 @@ extern_protocol!(
         unsafe fn mesh(&self) -> Retained<NSArray>;
 
         /// Setter for [`mesh`][Self::mesh].
+        ///
+        /// # Safety
+        ///
+        /// `mesh` generic should be of the correct type.
         #[unsafe(method(setMesh:))]
         #[unsafe(method_family = none)]
         unsafe fn setMesh(&self, mesh: &NSArray);

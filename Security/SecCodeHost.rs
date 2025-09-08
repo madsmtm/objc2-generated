@@ -11,6 +11,10 @@ pub const kSecCSDedicatedHost: u32 = 1;
 pub const kSecCSGenerateGuestHash: u32 = 2;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `attributes` generics must be of the correct type.
+    /// - `new_guest` must be a valid pointer.
     #[cfg(feature = "CSCommon")]
     #[deprecated]
     pub fn SecHostCreateGuest(
@@ -37,12 +41,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `guest_ref` must be a valid pointer.
     #[cfg(feature = "CSCommon")]
     #[deprecated]
     pub fn SecHostSelectedGuest(flags: SecCSFlags, guest_ref: NonNull<SecGuestRef>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `attributes` generics must be of the correct type.
     #[cfg(feature = "CSCommon")]
     #[deprecated]
     pub fn SecHostSetGuestStatus(

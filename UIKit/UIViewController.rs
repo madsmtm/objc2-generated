@@ -253,6 +253,9 @@ impl UIViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn storyboard(&self) -> Option<Retained<UIStoryboard>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(performSegueWithIdentifier:sender:))]
         #[unsafe(method_family = none)]
@@ -262,6 +265,9 @@ impl UIViewController {
             sender: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(shouldPerformSegueWithIdentifier:sender:))]
         #[unsafe(method_family = none)]
@@ -272,6 +278,9 @@ impl UIViewController {
         ) -> bool;
 
         #[cfg(feature = "UIStoryboardSegue")]
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(prepareForSegue:sender:))]
         #[unsafe(method_family = none)]
@@ -281,6 +290,10 @@ impl UIViewController {
             sender: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(canPerformUnwindSegueAction:fromViewController:sender:))]
         #[unsafe(method_family = none)]
@@ -291,6 +304,10 @@ impl UIViewController {
             sender: Option<&AnyObject>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[deprecated]
         #[unsafe(method(canPerformUnwindSegueAction:fromViewController:withSender:))]
         #[unsafe(method_family = none)]
@@ -319,6 +336,10 @@ impl UIViewController {
             source: &UIStoryboardUnwindSegueSource,
         ) -> Option<Retained<UIViewController>>;
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[deprecated]
         #[unsafe(method(viewControllerForUnwindSegueAction:fromViewController:withSender:))]
         #[unsafe(method_family = none)]
@@ -696,6 +717,10 @@ impl UIViewController {
         #[unsafe(method_family = none)]
         pub fn setNeedsStatusBarAppearanceUpdate(&self);
 
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[unsafe(method(targetViewControllerForAction:sender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetViewControllerForAction_sender(
@@ -704,6 +729,9 @@ impl UIViewController {
             sender: Option<&AnyObject>,
         ) -> Option<Retained<UIViewController>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showViewController:sender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showViewController_sender(
@@ -712,6 +740,9 @@ impl UIViewController {
             sender: Option<&AnyObject>,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showDetailViewController:sender:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showDetailViewController_sender(
@@ -1052,6 +1083,11 @@ impl UIViewController {
 
         #[cfg(feature = "UIStateRestoration")]
         /// Setter for [`restorationClass`][Self::restorationClass].
+        ///
+        /// # Safety
+        ///
+        /// - `restoration_class` must implement UIViewControllerRestoration.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setRestorationClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&AnyClass>);
@@ -1605,6 +1641,10 @@ extern_conformance!(
 impl UIPreviewAction {
     extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(

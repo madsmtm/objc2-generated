@@ -178,6 +178,10 @@ extern "C-unwind" {
 /// Parameter `address`: A CMIOObjectPropertyAddress indicating which property is being queried.
 ///
 /// Returns: A Boolean indicating whether or not the CMIOObject has the given property.
+///
+/// # Safety
+///
+/// `address` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn CMIOObjectHasProperty(
     object_id: CMIOObjectID,
@@ -203,6 +207,11 @@ extern "C-unwind" {
     /// Parameter `isSettable`: A Boolean indicating whether or not the property can be set.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `address` must be a valid pointer.
+    /// - `is_settable` must be a valid pointer.
     pub fn CMIOObjectIsPropertySettable(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -225,6 +234,12 @@ extern "C-unwind" {
     /// Parameter `dataSize`: A UInt32 indicating how many bytes the data for the given property occupies.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `address` must be a valid pointer.
+    /// - `qualifier_data` must be a valid pointer.
+    /// - `data_size` must be a valid pointer.
     pub fn CMIOObjectGetPropertyDataSize(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -253,6 +268,13 @@ extern "C-unwind" {
     /// Parameter `data`: The buffer into which the CMIOObject will put the data for the given property.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `address` must be a valid pointer.
+    /// - `qualifier_data` must be a valid pointer.
+    /// - `data_used` must be a valid pointer.
+    /// - `data` must be a valid pointer.
     pub fn CMIOObjectGetPropertyData(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -283,6 +305,12 @@ extern "C-unwind" {
     /// Parameter `data`: The buffer containing the data to be used to change the property's value.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `address` must be a valid pointer.
+    /// - `qualifier_data` must be a valid pointer.
+    /// - `data` must be a valid pointer.
     pub fn CMIOObjectSetPropertyData(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -305,6 +333,12 @@ extern "C-unwind" {
     /// Parameter `clientData`: A pointer to client data that is passed to the listener when it is called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `address` must be a valid pointer.
+    /// - `listener` must be implemented correctly.
+    /// - `client_data` must be a valid pointer.
     pub fn CMIOObjectAddPropertyListener(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -325,6 +359,12 @@ extern "C-unwind" {
     /// Parameter `clientData`: A pointer to client data that is passed to the listener when it is called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `address` must be a valid pointer.
+    /// - `listener` must be implemented correctly.
+    /// - `client_data` must be a valid pointer.
     pub fn CMIOObjectRemovePropertyListener(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -348,6 +388,12 @@ extern "C-unwind" {
     /// CMIOObjectRemovePropertyListenerBlock is made.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `address` must be a valid pointer.
+    /// - `dispatch_queue` might not allow `None`.
+    /// - `listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn CMIOObjectAddPropertyListenerBlock(
         object_id: CMIOObjectID,
@@ -371,6 +417,12 @@ extern "C-unwind" {
     /// Parameter `listener`: The CMIOObjectPropertyListenerBlock being removed.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `address` must be a valid pointer.
+    /// - `dispatch_queue` might not allow `None`.
+    /// - `listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn CMIOObjectRemovePropertyListenerBlock(
         object_id: CMIOObjectID,

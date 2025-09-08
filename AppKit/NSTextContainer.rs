@@ -91,6 +91,10 @@ impl NSTextContainer {
 
         #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
         /// ************************** Line fragments ***************************
+        ///
+        /// # Safety
+        ///
+        /// `remaining_rect` must be a valid pointer or null.
         #[unsafe(method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
@@ -151,6 +155,10 @@ impl NSTextContainer {
 
         #[cfg(feature = "NSLayoutManager")]
         /// Setter for [`layoutManager`][Self::layoutManager].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setLayoutManager:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLayoutManager(&self, layout_manager: Option<&NSLayoutManager>);
@@ -274,6 +282,9 @@ impl NSTextContainer {
         #[unsafe(method_family = none)]
         pub unsafe fn setContainerSize(&self, container_size: NSSize);
 
+        /// # Safety
+        ///
+        /// `remaining_rect` must be a valid pointer or null.
         #[unsafe(method(lineFragmentRectForProposedRect:sweepDirection:movementDirection:remainingRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect(

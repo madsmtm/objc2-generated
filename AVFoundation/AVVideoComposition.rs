@@ -113,6 +113,10 @@ impl AVVideoComposition {
         /// - A nil animationTool.
         ///
         /// If the specified asset has no video tracks, this method will return an AVVideoComposition instance with an empty collection of instructions.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithPropertiesOfAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
@@ -241,6 +245,10 @@ impl AVVideoComposition {
         /// else
         /// [request finishWithError:err];
         /// }];
+        ///
+        /// # Safety
+        ///
+        /// `applier` block must be sendable.
         #[deprecated = "Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead"]
         #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:))]
         #[unsafe(method_family = none)]
@@ -296,6 +304,11 @@ impl AVVideoComposition {
         /// else {
         /// // handle error
         /// }];
+        ///
+        /// # Safety
+        ///
+        /// - `applier` block must be sendable.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
@@ -378,6 +391,10 @@ impl AVMutableVideoComposition {
         /// - A nil animationTool.
         ///
         /// If the specified asset has no video tracks, this method will return an AVMutableVideoComposition instance with an empty collection of instructions.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithPropertiesOfAsset:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
@@ -432,6 +449,10 @@ impl AVMutableVideoComposition {
         /// // handle error
         /// }
         /// }];
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_prototypeInstruction_completionHandler(
@@ -449,6 +470,10 @@ impl AVMutableVideoComposition {
 
         #[cfg(feature = "AVVideoCompositing")]
         /// Setter for [`customVideoCompositorClass`][Self::customVideoCompositorClass].
+        ///
+        /// # Safety
+        ///
+        /// `custom_video_compositor_class` must implement AVVideoCompositing.
         #[unsafe(method(setCustomVideoCompositorClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomVideoCompositorClass(
@@ -656,6 +681,10 @@ impl AVMutableVideoComposition {
         /// else
         /// [request finishWithError:err];
         /// }];
+        ///
+        /// # Safety
+        ///
+        /// `applier` block must be sendable.
         #[deprecated = "Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead"]
         #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:))]
         #[unsafe(method_family = none)]
@@ -709,6 +738,11 @@ impl AVMutableVideoComposition {
         /// else {
         /// // handle error
         /// }];
+        ///
+        /// # Safety
+        ///
+        /// - `applier` block must be sendable.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
@@ -976,6 +1010,11 @@ impl AVVideoCompositionLayerInstruction {
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+        /// # Safety
+        ///
+        /// - `start_transform` must be a valid pointer or null.
+        /// - `end_transform` must be a valid pointer or null.
+        /// - `time_range` must be a valid pointer or null.
         #[unsafe(method(getTransformRampForTime:startTransform:endTransform:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTransformRampForTime_startTransform_endTransform_timeRange(
@@ -987,6 +1026,11 @@ impl AVVideoCompositionLayerInstruction {
         ) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
+        /// # Safety
+        ///
+        /// - `start_opacity` must be a valid pointer or null.
+        /// - `end_opacity` must be a valid pointer or null.
+        /// - `time_range` must be a valid pointer or null.
         #[unsafe(method(getOpacityRampForTime:startOpacity:endOpacity:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getOpacityRampForTime_startOpacity_endOpacity_timeRange(
@@ -998,6 +1042,11 @@ impl AVVideoCompositionLayerInstruction {
         ) -> bool;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+        /// # Safety
+        ///
+        /// - `start_crop_rectangle` must be a valid pointer or null.
+        /// - `end_crop_rectangle` must be a valid pointer or null.
+        /// - `time_range` must be a valid pointer or null.
         #[unsafe(method(getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCropRectangleRampForTime_startCropRectangle_endCropRectangle_timeRange(
@@ -1248,6 +1297,10 @@ impl AVAsset {
         /// Loads a track ID that will not collide with any existing track
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the track ID or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(findUnusedTrackIDWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findUnusedTrackIDWithCompletionHandler(
@@ -1296,6 +1349,10 @@ impl AVVideoComposition {
         ///
         /// In the course of validation, the receiver will invoke its validationDelegate with reference to any trouble spots in the video composition.
         /// An exception will be raised if the delegate modifies the receiver's array of instructions or the array of layerInstructions of any AVVideoCompositionInstruction contained therein during validation.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(determineValidityForAsset:timeRange:validationDelegate:completionHandler:))]
         #[unsafe(method_family = none)]

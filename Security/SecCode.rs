@@ -33,6 +33,10 @@ impl SecCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `self` must be a valid pointer.
     #[doc(alias = "SecCodeCopySelf")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -49,6 +53,9 @@ pub const kSecCSUseAllArchitectures: u32 = 1;
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
+    /// # Safety
+    ///
+    /// `static_code` must be a valid pointer.
     #[doc(alias = "SecCodeCopyStaticCode")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -83,6 +90,10 @@ impl SecCode {
     ///
     /// Returns: Upon success, errSecSuccess. Upon error, an OSStatus value documented in
     /// CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `host` must be a valid pointer.
     #[doc(alias = "SecCodeCopyHost")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -201,6 +212,11 @@ impl SecCode {
     /// signature.)
     /// errSecCSMultipleGuests The attributes specified do not uniquely identify
     /// a guest (the specification is ambiguous).
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generics must be of the correct type.
+    /// - `guest` must be a valid pointer.
     #[doc(alias = "SecCodeCopyGuestWithAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -288,6 +304,10 @@ impl SecCode {
     ///
     /// Returns: If validation passes, errSecSuccess. If validation fails, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `errors` must be a valid pointer or null.
     #[doc(alias = "SecCodeCheckValidityWithErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -361,6 +381,10 @@ impl SecCode {
     ///
     /// Returns: On success, errSecSuccess. On error, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `path` must be a valid pointer.
     #[doc(alias = "SecCodeCopyPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -401,6 +425,10 @@ impl SecCode {
     ///
     /// Returns: On success, errSecSuccess. On error, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
+    ///
+    /// # Safety
+    ///
+    /// `requirement` must be a valid pointer.
     #[doc(alias = "SecCodeCopyDesignatedRequirement")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -577,6 +605,9 @@ extern "C" {
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
+    /// # Safety
+    ///
+    /// `information` must be a valid pointer.
     #[doc(alias = "SecCodeCopySigningInformation")]
     #[cfg(feature = "CSCommon")]
     #[inline]

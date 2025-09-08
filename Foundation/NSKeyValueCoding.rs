@@ -103,6 +103,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
@@ -140,6 +143,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         unsafe fn valueForKeyPath(&self, key_path: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forKeyPath:))]
         #[unsafe(method_family = none)]
         unsafe fn setValue_forKeyPath(&self, value: Option<&AnyObject>, key_path: &NSString);
@@ -180,6 +186,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         unsafe fn valueForUndefinedKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forUndefinedKey:))]
         #[unsafe(method_family = none)]
         unsafe fn setValue_forUndefinedKey(&self, value: Option<&AnyObject>, key: &NSString);
@@ -198,6 +207,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `keyed_values` generic should be of the correct type.
         #[unsafe(method(setValuesForKeysWithDictionary:))]
         #[unsafe(method_family = none)]
         unsafe fn setValuesForKeysWithDictionary(
@@ -220,6 +232,9 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
@@ -258,6 +273,9 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
@@ -274,6 +292,9 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);

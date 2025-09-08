@@ -53,6 +53,10 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// The number of seconds it takes the system animations to run.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CGFloat;
@@ -61,6 +65,10 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// The number of seconds the system waits before starting its animations.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(delay))]
         #[unsafe(method_family = none)]
         pub unsafe fn delay(&self) -> CGFloat;
@@ -77,6 +85,10 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// the course of the animations, providing an updated completion value each time.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> *mut block2::DynBlock<dyn Fn(c_float)>;
@@ -85,6 +97,10 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(
@@ -101,6 +117,10 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// animation finish.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
@@ -109,6 +129,10 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// Setter for [`completionHandler`][Self::completionHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(

@@ -105,11 +105,17 @@ extern_protocol!(
 #[cfg(feature = "GKGameSession")]
 impl GKGameSession {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `listener` must implement GKGameSessionEventListener.
         #[deprecated]
         #[unsafe(method(addEventListener:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addEventListener(listener: &NSObject);
 
+        /// # Safety
+        ///
+        /// `listener` must implement GKGameSessionEventListener.
         #[deprecated]
         #[unsafe(method(removeEventListener:))]
         #[unsafe(method_family = none)]

@@ -60,6 +60,9 @@ impl AMShellScriptAction {
 #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
 impl AMShellScriptAction {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithDefinition:fromArchive:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefinition_fromArchive(

@@ -52,6 +52,10 @@ impl ODAttributeMap {
         /// Setter for [`customAttributes`][Self::customAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `custom_attributes` generic should be of the correct type.
         #[unsafe(method(setCustomAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomAttributes(&self, custom_attributes: Option<&NSArray>);
@@ -71,6 +75,10 @@ impl ODAttributeMap {
         ///
         ///
         /// Returns an initialized and autoreleased ODAttributeMap object with the given value mapped.
+        ///
+        /// # Safety
+        ///
+        /// `value` might not allow `None`.
         #[unsafe(method(attributeMapWithValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeMapWithValue(value: Option<&NSString>) -> Option<Retained<Self>>;
@@ -79,6 +87,10 @@ impl ODAttributeMap {
         ///
         ///
         /// Returns an initialized and autoreleased ODAttributeMap object with the given static value.
+        ///
+        /// # Safety
+        ///
+        /// `static_value` might not allow `None`.
         #[unsafe(method(attributeMapWithStaticValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeMapWithStaticValue(
@@ -89,6 +101,10 @@ impl ODAttributeMap {
         ///
         ///
         /// Sets a static value that will always be returned for this mapping, i.e., "20".
+        ///
+        /// # Safety
+        ///
+        /// `static_value` might not allow `None`.
         #[unsafe(method(setStaticValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStaticValue(&self, static_value: Option<&NSString>);
@@ -99,6 +115,10 @@ impl ODAttributeMap {
         /// Value should be using the syntax '$native$' for all substited values.  For example,
         /// to form a home directory using the "cn" of an LDAP record, substitution could be done
         /// with "/home/$cn$".
+        ///
+        /// # Safety
+        ///
+        /// `variable_substitution` might not allow `None`.
         #[unsafe(method(setVariableSubstitution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVariableSubstitution(&self, variable_substitution: Option<&NSString>);

@@ -26,6 +26,10 @@ extern "C-unwind" {
 /// Parameter `string`: The JSString to copy into the new CFString.
 ///
 /// Returns: A CFString containing string. Ownership follows the Create Rule.
+///
+/// # Safety
+///
+/// `string` must be a valid pointer.
 #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn JSStringCopyCFString(

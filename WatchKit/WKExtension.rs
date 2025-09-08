@@ -246,6 +246,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn handleRemoteNowPlayingActivity(&self);
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(handleUserActivity:))]
         #[unsafe(method_family = none)]
@@ -291,6 +294,10 @@ extern_protocol!(
         /// This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
         ///
         /// This method will be invoked even if the application was launched or resumed because of the remote background notification.!
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(didReceiveRemoteNotification:fetchCompletionHandler:))]
         #[unsafe(method_family = none)]
@@ -309,6 +316,9 @@ extern_protocol!(
             cloud_kit_share_metadata: &CKShareMetadata,
         );
 
+        /// # Safety
+        ///
+        /// `remote_notification` generic should be of the correct type.
         #[deprecated = "use UNUserNotificationCenterDelegate"]
         #[optional]
         #[unsafe(method(handleActionWithIdentifier:forRemoteNotification:))]
@@ -330,6 +340,10 @@ extern_protocol!(
             local_notification: &UILocalNotification,
         );
 
+        /// # Safety
+        ///
+        /// - `remote_notification` generic should be of the correct type.
+        /// - `response_info` generic should be of the correct type.
         #[deprecated = "use UNUserNotificationCenterDelegate"]
         #[optional]
         #[unsafe(method(handleActionWithIdentifier:forRemoteNotification:withResponseInfo:))]
@@ -342,6 +356,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-ui-kit")]
+        /// # Safety
+        ///
+        /// `response_info` generic should be of the correct type.
         #[deprecated = "use UNUserNotificationCenterDelegate"]
         #[optional]
         #[unsafe(method(handleActionWithIdentifier:forLocalNotification:withResponseInfo:))]
@@ -353,6 +370,9 @@ extern_protocol!(
             response_info: &NSDictionary,
         );
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[deprecated = "use UNUserNotificationCenterDelegate"]
         #[optional]
         #[unsafe(method(didReceiveRemoteNotification:))]

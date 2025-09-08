@@ -97,6 +97,11 @@ pub type MTLDeviceNotificationHandler = *mut block2::DynBlock<
 /// passed to MTLRemoveDeviceObserver() if the application no longer wishes to receive notifications.
 ///
 /// Note: The observer out parameter is returned with a +1 retain count in addition to the retain mentioned above.
+///
+/// # Safety
+///
+/// - `observer` must be a valid pointer.
+/// - `handler` must be a valid pointer.
 #[cfg(feature = "block2")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
@@ -960,6 +965,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Create a buffer by allocating new memory and specifing the initial contents to be copied into it.
+        ///
+        /// # Safety
+        ///
+        /// `pointer` must be a valid pointer.
         #[unsafe(method(newBufferWithBytes:length:options:))]
         #[unsafe(method_family = new)]
         unsafe fn newBufferWithBytes_length_options(
@@ -976,6 +985,10 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create a buffer by wrapping an existing part of the address space.
+        ///
+        /// # Safety
+        ///
+        /// `pointer` must be a valid pointer.
         #[unsafe(method(newBufferWithBytesNoCopy:length:options:deallocator:))]
         #[unsafe(method_family = new)]
         unsafe fn newBufferWithBytesNoCopy_length_options_deallocator(
@@ -1143,6 +1156,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLLibrary", feature = "block2"))]
         /// Load a MTLLibrary from source.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newLibraryWithSource:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newLibraryWithSource_options_completionHandler(
@@ -1167,6 +1184,10 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Generates a new library using the graphs in the descriptor.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newLibraryWithStitchedDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newLibraryWithStitchedDescriptor_completionHandler(
@@ -1197,6 +1218,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newRenderPipelineStateWithDescriptor_completionHandler(
@@ -1207,6 +1232,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously and returns additional reflection information
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newRenderPipelineStateWithDescriptor_options_completionHandler(
@@ -1242,6 +1271,10 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create and compile a new MTLComputePipelineState object asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newComputePipelineStateWithFunction:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newComputePipelineStateWithFunction_completionHandler(
@@ -1256,6 +1289,10 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create and compile a new MTLComputePipelineState object asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newComputePipelineStateWithFunction:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
@@ -1278,6 +1315,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
         /// Create and compile a new MTLComputePipelineState object asynchronously.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newComputePipelineStateWithDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newComputePipelineStateWithDescriptor_options_completionHandler(
@@ -1338,6 +1379,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLTileRenderPipelineDescriptor.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newRenderPipelineStateWithTileDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(
@@ -1360,6 +1405,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLMeshRenderPipelineDescriptor.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newRenderPipelineStateWithMeshDescriptor:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(
@@ -1394,6 +1443,10 @@ extern_protocol!(
         /// Parameter `positions`: The destination array for default sample position data.
         ///
         /// Parameter `count`: Specifies the sample count for which to retrieve the default positions, the length of the positions array, and must be set to a valid sample count.
+        ///
+        /// # Safety
+        ///
+        /// `positions` must be a valid pointer.
         #[unsafe(method(getDefaultSamplePositions:count:))]
         #[unsafe(method_family = none)]
         unsafe fn getDefaultSamplePositions_count(
@@ -1585,6 +1638,11 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         /// Converts regions in pixels to regions in sparse tiles using specified alignment mode.
         /// Tile size can be obtained from tileSizeWithTextureType:pixelFormat:sampleCount: method.
+        ///
+        /// # Safety
+        ///
+        /// - `pixel_regions` must be a valid pointer.
+        /// - `tile_regions` must be a valid pointer.
         #[optional]
         #[unsafe(method(convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:))]
         #[unsafe(method_family = none)]
@@ -1600,6 +1658,11 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         /// Convertes region in sparse tiles to region in pixels
         /// Tile size can be obtained from tileSizeWithTextureType:pixelFormat:sampleCount: method.
+        ///
+        /// # Safety
+        ///
+        /// - `tile_regions` must be a valid pointer.
+        /// - `pixel_regions` must be a valid pointer.
         #[optional]
         #[unsafe(method(convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:))]
         #[unsafe(method_family = none)]
@@ -1667,6 +1730,11 @@ extern_protocol!(
         /// Parameter `cpuTimestamp`: The timestamp on the CPU
         ///
         /// Parameter `gpuTimestamp`: The timestamp on the GPU
+        ///
+        /// # Safety
+        ///
+        /// - `cpu_timestamp` must be a valid pointer.
+        /// - `gpu_timestamp` must be a valid pointer.
         #[unsafe(method(sampleTimestamps:gpuTimestamp:))]
         #[unsafe(method_family = none)]
         unsafe fn sampleTimestamps_gpuTimestamp(

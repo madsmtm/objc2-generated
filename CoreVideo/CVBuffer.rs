@@ -87,6 +87,10 @@ impl CVBuffer {
     ///
     /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
     /// a single mode at a time.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "CVBufferSetAttachment")]
     #[inline]
     pub unsafe fn set_attachment(
@@ -117,6 +121,10 @@ impl CVBuffer {
     /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object
+    ///
+    /// # Safety
+    ///
+    /// `attachment_mode` must be a valid pointer or null.
     #[doc(alias = "CVBufferGetAttachment")]
     #[deprecated]
     #[inline]
@@ -196,6 +204,10 @@ impl CVBuffer {
     /// CVBufferSetAttachments is a convenience call that in turn calls CVBufferSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.
     ///
     /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// # Safety
+    ///
+    /// `the_attachments` generics must be of the correct type.
     #[doc(alias = "CVBufferSetAttachments")]
     #[inline]
     pub unsafe fn set_attachments(
@@ -267,6 +279,10 @@ impl CVBuffer {
     /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object, return the value; otherwize, return NULL.
+    ///
+    /// # Safety
+    ///
+    /// `attachment_mode` must be a valid pointer or null.
     #[doc(alias = "CVBufferCopyAttachment")]
     #[inline]
     pub unsafe fn attachment(

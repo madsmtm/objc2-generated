@@ -18,6 +18,10 @@ extern "C-unwind" {
     /// Returns: Returns success (0) or failure code.
     ///
     /// Pass in most types of strings, such as "001122334455" or "00-11-22-33-44-55" and the conversion should be successful. Also, you should have 2 characters per byte for the conversion to work properly.
+    ///
+    /// # Safety
+    ///
+    /// `out_device_address` must be a valid pointer.
     #[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
     pub fn IOBluetoothNSStringToDeviceAddress(
         in_name_string: Option<&NSString>,
@@ -32,6 +36,10 @@ extern "C-unwind" {
 /// Returns: Returns the created address string.
 ///
 /// The resultant string will be in this format: "00-11-22-33-44-55"
+///
+/// # Safety
+///
+/// `device_address` must be a valid pointer.
 #[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddress(
@@ -53,6 +61,10 @@ pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddress(
 /// Returns: Returns the created address string.
 ///
 /// The resultant string will be in this format: "00:11:22:33:44:55"
+///
+/// # Safety
+///
+/// `device_address` must be a valid pointer.
 #[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddressColon(
@@ -74,6 +86,10 @@ pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddressColon(
 /// Returns: Yes or no, is it Apple-designated PIM data?
 ///
 /// Not much to talk about.
+///
+/// # Safety
+///
+/// `in_file_name` might not allow `None`.
 #[cfg(feature = "objc2-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothIsFileAppleDesignatedPIMData(
@@ -104,6 +120,11 @@ pub unsafe extern "C-unwind" fn IOBluetoothIsFileAppleDesignatedPIMData(
 /// If one already exists, you will be returned:
 /// &#64
 /// "~Documents/TestFile #1.txt".
+///
+/// # Safety
+///
+/// - `in_name` might not allow `None`.
+/// - `in_path` might not allow `None`.
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothGetUniqueFileNameAndPath(
@@ -152,5 +173,9 @@ extern "C-unwind" {
     /// Returns total number of registry entries with the provided device classname. e.g. "IOHIPointing"
     ///
     /// Returns: Number of HID devices.
+    ///
+    /// # Safety
+    ///
+    /// `device_type` must be a valid pointer.
     pub fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(device_type: *const c_char) -> c_long;
 }

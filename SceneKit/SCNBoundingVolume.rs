@@ -22,6 +22,11 @@ extern_protocol!(
         /// Parameter `max`: A pointer to a SCNVector3 to store the max vertex of the bounding box into.
         ///
         /// the returned bounding box is in local space of the receiver.
+        ///
+        /// # Safety
+        ///
+        /// - `min` must be a valid pointer or null.
+        /// - `max` must be a valid pointer or null.
         #[unsafe(method(getBoundingBoxMin:max:))]
         #[unsafe(method_family = none)]
         unsafe fn getBoundingBoxMin_max(&self, min: *mut SCNVector3, max: *mut SCNVector3) -> bool;
@@ -34,6 +39,11 @@ extern_protocol!(
         /// Parameter `max`: A pointer to a SCNVector3 representing the max vertex of the desired bounding box.
         ///
         /// Passing nil as arguments will recompute the original bounding box of the receiver.
+        ///
+        /// # Safety
+        ///
+        /// - `min` must be a valid pointer or null.
+        /// - `max` must be a valid pointer or null.
         #[unsafe(method(setBoundingBoxMin:max:))]
         #[unsafe(method_family = none)]
         unsafe fn setBoundingBoxMin_max(&self, min: *mut SCNVector3, max: *mut SCNVector3);
@@ -46,6 +56,11 @@ extern_protocol!(
         /// Parameter `radius`: A pointer to a CGFloat to store the radius of the bounding sphere into.
         ///
         /// the returned bounding sphere is in local space of the receiver.
+        ///
+        /// # Safety
+        ///
+        /// - `center` must be a valid pointer or null.
+        /// - `radius` must be a valid pointer or null.
         #[unsafe(method(getBoundingSphereCenter:radius:))]
         #[unsafe(method_family = none)]
         unsafe fn getBoundingSphereCenter_radius(

@@ -297,6 +297,10 @@ impl HKWorkoutSession {
         /// This method will asynchronously begin the workout activity. The delegate for this session would be
         /// informed once the activity effectively begins.  Sensor algorithms to generate data would be updated
         /// to match the new activity.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(beginNewActivityWithConfiguration:date:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginNewActivityWithConfiguration_date_metadata(

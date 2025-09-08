@@ -40,6 +40,10 @@ impl CKDiscoverUserIdentitiesOperation {
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(userIdentityLookupInfos))]
         #[unsafe(method_family = none)]
@@ -50,6 +54,10 @@ impl CKDiscoverUserIdentitiesOperation {
         /// Setter for [`userIdentityLookupInfos`][Self::userIdentityLookupInfos].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(setUserIdentityLookupInfos:))]
         #[unsafe(method_family = none)]
@@ -72,6 +80,12 @@ impl CKDiscoverUserIdentitiesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(userIdentityDiscoveredBlock))]
         #[unsafe(method_family = none)]
@@ -87,6 +101,10 @@ impl CKDiscoverUserIdentitiesOperation {
         /// Setter for [`userIdentityDiscoveredBlock`][Self::userIdentityDiscoveredBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(setUserIdentityDiscoveredBlock:))]
         #[unsafe(method_family = none)]
@@ -116,6 +134,11 @@ impl CKDiscoverUserIdentitiesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(discoverUserIdentitiesCompletionBlock))]
         #[unsafe(method_family = none)]
@@ -127,6 +150,10 @@ impl CKDiscoverUserIdentitiesOperation {
         /// Setter for [`discoverUserIdentitiesCompletionBlock`][Self::discoverUserIdentitiesCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(setDiscoverUserIdentitiesCompletionBlock:))]
         #[unsafe(method_family = none)]

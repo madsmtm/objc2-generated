@@ -181,6 +181,10 @@ impl MLCInferenceGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeWithInputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -215,6 +219,10 @@ impl MLCInferenceGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeWithInputsData:outputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -252,6 +260,10 @@ impl MLCInferenceGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -292,6 +304,10 @@ impl MLCInferenceGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]

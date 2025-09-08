@@ -148,6 +148,10 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFTPURL(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `buffer` must be a valid pointer.
+    /// - `parsed` must be a valid pointer or null.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub fn CFFTPCreateParsedResourceListing(
         alloc: Option<&CFAllocator>,

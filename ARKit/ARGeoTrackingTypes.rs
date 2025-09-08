@@ -207,6 +207,10 @@ impl ARGeoTrackingStatus {
         /// The state of geo tracking.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> ARGeoTrackingState;
@@ -214,6 +218,10 @@ impl ARGeoTrackingStatus {
         /// The accuracy of geo tracking.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn accuracy(&self) -> ARGeoTrackingAccuracy;
@@ -221,6 +229,10 @@ impl ARGeoTrackingStatus {
         /// Reason for geo tracking state.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stateReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateReason(&self) -> ARGeoTrackingStateReason;

@@ -127,6 +127,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue whose type you want to obtain.
     ///
     /// Returns: A value of type JSType that identifies value's type.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueGetType")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -144,6 +149,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the undefined type, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsUndefined")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -161,6 +171,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the null type, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsNull")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -178,6 +193,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the boolean type, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -195,6 +215,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the number type, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -212,6 +237,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the string type, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -229,6 +259,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the symbol type, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsSymbol")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -246,6 +281,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the BigInt type, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsBigInt")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -263,6 +303,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value's type is the object type, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -282,6 +327,12 @@ impl JSValue {
     /// Parameter `jsClass`: The JSClass to test against.
     ///
     /// Returns: true if value is an object and has jsClass in its class chain, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `js_class` must be a valid pointer.
     #[doc(alias = "JSValueIsObjectOfClass")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -307,6 +358,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value is an array, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsArray")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -324,6 +380,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to test.
     ///
     /// Returns: true if value is a date, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueIsDate")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -343,6 +404,12 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A value of type JSTypedArrayType that identifies value's Typed Array type, or kJSTypedArrayTypeNone if the value is not a Typed Array object.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[doc(alias = "JSValueGetTypedArrayType")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -372,6 +439,13 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: true if the two values are equal, false if they are not equal or an exception is thrown.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `a` must be a valid pointer.
+    /// - `b` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[doc(alias = "JSValueIsEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -401,6 +475,12 @@ impl JSValue {
     /// Parameter `b`: The second value to test.
     ///
     /// Returns: true if the two values are strict equal, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `a` must be a valid pointer.
+    /// - `b` must be a valid pointer.
     #[doc(alias = "JSValueIsStrictEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -422,6 +502,13 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: true if value is an object constructed by constructor, as compared by the JS instanceof operator, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `constructor` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[doc(alias = "JSValueIsInstanceOfConstructor")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -457,6 +544,13 @@ impl JSValue {
     /// The result is computed by comparing the results of JavaScript's `==`, `
     /// <
     /// `, and `>` operators. If either `left` or `right` is (or would coerce to) `NaN` in JavaScript, then the result is kJSRelationConditionUndefined.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `left` must be a valid pointer.
+    /// - `right` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[doc(alias = "JSValueCompare")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -490,6 +584,12 @@ impl JSValue {
     /// Returns: A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
     ///
     /// `left` is converted to an integer according to the rules specified by the JavaScript language then compared with `right`.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `left` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[doc(alias = "JSValueCompareInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -523,6 +623,12 @@ impl JSValue {
     /// Returns: A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
     ///
     /// `left` is converted to an integer according to the rules specified by the JavaScript language then compared with `right`.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `left` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[doc(alias = "JSValueCompareUInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -556,6 +662,12 @@ impl JSValue {
     /// Returns: A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
     ///
     /// `left` is converted to a double according to the rules specified by the JavaScript language then compared with `right`.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `left` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[doc(alias = "JSValueCompareDouble")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -581,6 +693,10 @@ impl JSValue {
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Returns: The unique undefined value.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[doc(alias = "JSValueMakeUndefined")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -596,6 +712,10 @@ impl JSValue {
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Returns: The unique null value.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[doc(alias = "JSValueMakeNull")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -613,6 +733,10 @@ impl JSValue {
     /// Parameter `boolean`: The bool to assign to the newly created JSValue.
     ///
     /// Returns: A JSValue of the boolean type, representing the value of boolean.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[doc(alias = "JSValueMakeBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -630,6 +754,10 @@ impl JSValue {
     /// Parameter `number`: The double to assign to the newly created JSValue.
     ///
     /// Returns: A JSValue of the number type, representing the value of number.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     #[doc(alias = "JSValueMakeNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -648,6 +776,11 @@ impl JSValue {
     /// newly created JSValue retains string, and releases it upon garbage collection.
     ///
     /// Returns: A JSValue of the string type, representing the value of string.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `string` must be a valid pointer.
     #[doc(alias = "JSValueMakeString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -665,6 +798,11 @@ impl JSValue {
     /// Parameter `description`: A description of the newly created symbol value.
     ///
     /// Returns: A unique JSValue of the symbol type, whose description matches the one provided.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `description` must be a valid pointer.
     #[doc(alias = "JSValueMakeSymbol")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -688,6 +826,11 @@ extern "C-unwind" {
     /// Returns: A BigInt JSValue of the value, or NULL if an exception is thrown.
     ///
     /// If the value is not an integer, an exception is thrown.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithDouble(
         ctx: JSContextRef,
@@ -706,6 +849,11 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A BigInt JSValue of the integer, or NULL if an exception is thrown.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithInt64(
         ctx: JSContextRef,
@@ -724,6 +872,11 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A BigInt JSValue of the integer, or NULL if an exception is thrown.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithUInt64(
         ctx: JSContextRef,
@@ -744,6 +897,12 @@ extern "C-unwind" {
     /// Returns: A BigInt JSValue of the string, or NULL if an exception is thrown.
     ///
     /// This is equivalent to calling the `BigInt` constructor from JavaScript with a string argument.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `string` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithString(
         ctx: JSContextRef,
@@ -761,6 +920,11 @@ impl JSValue {
     /// Parameter `string`: The JSString containing the JSON string to be parsed.
     ///
     /// Returns: A JSValue containing the parsed value, or NULL if the input is invalid.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `string` must be a valid pointer.
     #[doc(alias = "JSValueMakeFromJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -782,6 +946,12 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSString with the result of serialization, or NULL if an exception is thrown.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[doc(alias = "JSValueCreateJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -809,6 +979,11 @@ impl JSValue {
     /// Parameter `value`: The JSValue to convert.
     ///
     /// Returns: The boolean result of conversion.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueToBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -830,6 +1005,12 @@ impl JSValue {
     /// Returns: The numeric result of conversion, or NaN if an exception is thrown.
     ///
     /// The result is equivalent to `Number(value)` in JavaScript.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[doc(alias = "JSValueToNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -859,6 +1040,12 @@ impl JSValue {
     /// Returns: An int32_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to an int32_t.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[doc(alias = "JSValueToInt32")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -888,6 +1075,12 @@ impl JSValue {
     /// Returns: A uint32_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to a uint32_t.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[doc(alias = "JSValueToUInt32")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -917,6 +1110,12 @@ impl JSValue {
     /// Returns: An int64_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to an int64_t.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[doc(alias = "JSValueToInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -946,6 +1145,12 @@ impl JSValue {
     /// Returns: A uint64_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
     ///
     /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to a uint64_t.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer or null.
     #[doc(alias = "JSValueToUInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -973,6 +1178,12 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSString with the result of conversion, or NULL if an exception is thrown. Ownership follows the Create Rule.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[doc(alias = "JSValueToStringCopy")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1000,6 +1211,12 @@ impl JSValue {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The JSObject result of conversion, or NULL if an exception is thrown.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[doc(alias = "JSValueToObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1027,6 +1244,11 @@ impl JSValue {
     /// Use this method when you want to store a JSValue in a global or on the heap, where the garbage collector will not be able to discover your reference to it.
     ///
     /// A value may be protected multiple times and must be unprotected an equal number of times before becoming eligible for garbage collection.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueProtect")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1045,6 +1267,11 @@ impl JSValue {
     ///
     /// A value may be protected multiple times and must be unprotected an
     /// equal number of times before becoming eligible for garbage collection.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "JSValueUnprotect")]
     #[cfg(feature = "JSBase")]
     #[inline]

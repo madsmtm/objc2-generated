@@ -51,6 +51,12 @@ extern_conformance!(
 
 impl SLRequest {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `service_type` might not allow `None`.
+        /// - `url` might not allow `None`.
+        /// - `parameters` generic should be of the correct type.
+        /// - `parameters` might not allow `None`.
         #[unsafe(method(requestForServiceType:requestMethod:URL:parameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestForServiceType_requestMethod_URL_parameters(
@@ -67,6 +73,10 @@ impl SLRequest {
 
         #[cfg(feature = "objc2-accounts")]
         /// Setter for [`account`][Self::account].
+        ///
+        /// # Safety
+        ///
+        /// `account` might not allow `None`.
         #[unsafe(method(setAccount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccount(&self, account: Option<&ACAccount>);
@@ -83,6 +93,12 @@ impl SLRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn parameters(&self) -> Option<Retained<NSDictionary>>;
 
+        /// # Safety
+        ///
+        /// - `data` might not allow `None`.
+        /// - `name` might not allow `None`.
+        /// - `type` might not allow `None`.
+        /// - `filename` might not allow `None`.
         #[unsafe(method(addMultipartData:withName:type:filename:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMultipartData_withName_type_filename(
@@ -93,6 +109,11 @@ impl SLRequest {
             filename: Option<&NSString>,
         );
 
+        /// # Safety
+        ///
+        /// - `data` might not allow `None`.
+        /// - `name` might not allow `None`.
+        /// - `type` might not allow `None`.
         #[deprecated]
         #[unsafe(method(addMultipartData:withName:type:))]
         #[unsafe(method_family = none)]
@@ -108,6 +129,9 @@ impl SLRequest {
         pub unsafe fn preparedURLRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(performRequestWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performRequestWithHandler(&self, handler: SLRequestHandler);

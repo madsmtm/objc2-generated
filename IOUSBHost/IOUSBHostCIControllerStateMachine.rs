@@ -55,6 +55,10 @@ impl IOUSBHostCIControllerStateMachine {
         ///
         /// Returns: BOOL YES if the command is targeting a controller, and can be handled in the current state
         /// BOOL NO if the command does not target a controller, or cannot be handled in the current state
+        ///
+        /// # Safety
+        ///
+        /// `command` must be a valid pointer.
         #[unsafe(method(inspectCommand:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn inspectCommand_error(
@@ -76,6 +80,10 @@ impl IOUSBHostCIControllerStateMachine {
         ///
         /// Returns: BOOL YES if the command response was sent to the kernel driver
         /// BOOL NO if the command response was not sent to the kernel driver
+        ///
+        /// # Safety
+        ///
+        /// `command` must be a valid pointer.
         #[unsafe(method(respondToCommand:status:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondToCommand_status_error(
@@ -102,6 +110,10 @@ impl IOUSBHostCIControllerStateMachine {
         ///
         /// Returns: BOOL YES if the command response was sent to the kernel driver
         /// BOOL NO if the command response was not sent to the kernel driver
+        ///
+        /// # Safety
+        ///
+        /// `command` must be a valid pointer.
         #[unsafe(method(respondToCommand:status:frame:timestamp:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondToCommand_status_frame_timestamp_error(

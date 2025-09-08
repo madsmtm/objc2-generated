@@ -544,6 +544,11 @@ extern "C-unwind" {
     /// Parameter `resolvedDictionaryOut`: The resulting dictionary will be placed here.
     ///
     /// Returns: Return value that may be useful in discovering why resolution failed.
+    ///
+    /// # Safety
+    ///
+    /// - `attributes` generic must be of the correct type.
+    /// - `resolved_dictionary_out` must be a valid pointer.
     #[cfg(feature = "CVReturn")]
     pub fn CVPixelBufferCreateResolvedAttributesDictionary(
         allocator: Option<&CFAllocator>,
@@ -568,6 +573,11 @@ extern "C-unwind" {
     /// Parameter `pixelBufferOut`: The new pixel buffer will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreate(
         allocator: Option<&CFAllocator>,
@@ -607,6 +617,14 @@ extern "C-unwind" {
     /// Parameter `pixelBufferOut`: The new pixel buffer will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// - `base_address` must be a valid pointer.
+    /// - `release_callback` must be implemented correctly.
+    /// - `release_ref_con` must be a valid pointer or null.
+    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithBytes(
         allocator: Option<&CFAllocator>,
@@ -661,6 +679,18 @@ extern "C-unwind" {
     /// Parameter `pixelBufferOut`: The new pixel buffer will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
+    ///
+    /// # Safety
+    ///
+    /// - `data_ptr` must be a valid pointer or null.
+    /// - `plane_base_address` must be a valid pointer.
+    /// - `plane_width` must be a valid pointer.
+    /// - `plane_height` must be a valid pointer.
+    /// - `plane_bytes_per_row` must be a valid pointer.
+    /// - `release_callback` must be implemented correctly.
+    /// - `release_ref_con` must be a valid pointer or null.
+    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithPlanarBytes(
         allocator: Option<&CFAllocator>,
@@ -897,6 +927,13 @@ extern "C-unwind" {
     /// Parameter `extraColumnsOnRight`: Returns the pixel row padding to the right. May be NULL.
     ///
     /// Parameter `extraRowsOnBottom`: Returns the pixel row padding to the bottom. May be NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `extra_columns_on_left` must be a valid pointer or null.
+    /// - `extra_columns_on_right` must be a valid pointer or null.
+    /// - `extra_rows_on_top` must be a valid pointer or null.
+    /// - `extra_rows_on_bottom` must be a valid pointer or null.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     pub fn CVPixelBufferGetExtendedPixels(
         pixel_buffer: &CVPixelBuffer,

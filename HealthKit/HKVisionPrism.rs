@@ -96,6 +96,10 @@ impl HKVisionPrism {
         /// The compensation in prism diopters to correct eye misalignment [polar coordinates]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(amount))]
         #[unsafe(method_family = none)]
         pub unsafe fn amount(&self) -> Retained<HKQuantity>;
@@ -104,6 +108,10 @@ impl HKVisionPrism {
         /// The direction of the prism base [polar coordinates]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(angle))]
         #[unsafe(method_family = none)]
         pub unsafe fn angle(&self) -> Retained<HKQuantity>;
@@ -112,6 +120,10 @@ impl HKVisionPrism {
         /// The vertical component of compensation in prism diopters [rectangular coordinates]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(verticalAmount))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalAmount(&self) -> Retained<HKQuantity>;
@@ -120,6 +132,10 @@ impl HKVisionPrism {
         /// The horizontal component of compensation in prism diopters [rectangular coordinates]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(horizontalAmount))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalAmount(&self) -> Retained<HKQuantity>;
@@ -128,6 +144,10 @@ impl HKVisionPrism {
         /// base up or base down. [rectangular coordinates]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(verticalBase))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalBase(&self) -> HKPrismBase;
@@ -136,6 +156,10 @@ impl HKVisionPrism {
         /// base in (toward the nose) or base out (away from the nose). [rectangular coordinates]
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(horizontalBase))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalBase(&self) -> HKPrismBase;
@@ -143,6 +167,10 @@ impl HKVisionPrism {
         /// Which eye (left or right)
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(eye))]
         #[unsafe(method_family = none)]
         pub unsafe fn eye(&self) -> HKVisionEye;

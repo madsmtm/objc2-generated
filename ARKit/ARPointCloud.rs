@@ -44,6 +44,10 @@ impl ARPointCloud {
         /// The number of points in the point cloud.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
@@ -51,6 +55,10 @@ impl ARPointCloud {
         /// The 3D point identifiers comprising the point cloud.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifiers(&self) -> NonNull<u64>;

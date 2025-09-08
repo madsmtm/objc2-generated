@@ -105,6 +105,9 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ref` should be of the correct type.
     #[deprecated = "No longer supported"]
     pub fn WSGetWSTypeIDFromCFType(r#ref: &CFType) -> WSTypeID;
 }

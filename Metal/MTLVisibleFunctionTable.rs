@@ -78,6 +78,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFunctionHandle")]
+        /// # Safety
+        ///
+        /// `functions` must be a valid pointer.
         #[unsafe(method(setFunctions:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunctions_withRange(

@@ -58,6 +58,10 @@ impl HKAudiogramSample {
         /// Parameter `metadata`: Optional meta data associated with the sample.
         ///
         /// Returns: A new instance of an audiogram sample.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:))]
         #[unsafe(method_family = none)]
@@ -82,6 +86,10 @@ impl HKAudiogramSample {
         /// Parameter `metadata`: Optional metadata associated with the sample.
         ///
         /// Returns: A new instance of an audiogram sample.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_device_metadata(

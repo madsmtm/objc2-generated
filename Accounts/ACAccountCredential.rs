@@ -21,6 +21,10 @@ extern_conformance!(
 
 impl ACAccountCredential {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `token` might not allow `None`.
+        /// - `secret` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(initWithOAuthToken:tokenSecret:))]
         #[unsafe(method_family = init)]
@@ -30,6 +34,11 @@ impl ACAccountCredential {
             secret: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// - `token` might not allow `None`.
+        /// - `refresh_token` might not allow `None`.
+        /// - `expiry_date` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(initWithOAuth2Token:refreshToken:expiryDate:))]
         #[unsafe(method_family = init)]

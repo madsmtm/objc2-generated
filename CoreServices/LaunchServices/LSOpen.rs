@@ -78,10 +78,17 @@ unsafe impl RefEncode for LSLaunchURLSpec {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `out_launched_url` must be a valid pointer or null.
     pub fn LSOpenCFURLRef(in_url: &CFURL, out_launched_url: *mut *const CFURL) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_launch_spec` must be a valid pointer.
+    /// - `out_launched_url` must be a valid pointer or null.
     #[cfg(all(feature = "AE", feature = "AEDataModel"))]
     pub fn LSOpenFromURLSpec(
         in_launch_spec: NonNull<LSLaunchURLSpec>,

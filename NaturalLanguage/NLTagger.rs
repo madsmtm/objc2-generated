@@ -138,6 +138,9 @@ impl NLTagger {
         );
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer"))]
+        /// # Safety
+        ///
+        /// `token_range` must be a valid pointer or null.
         #[unsafe(method(tagAtIndex:unit:scheme:tokenRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagAtIndex_unit_scheme_tokenRange(
@@ -161,6 +164,9 @@ impl NLTagger {
         ) -> Retained<NSArray<NLTag>>;
 
         #[cfg(all(feature = "NLTagScheme", feature = "NLTokenizer"))]
+        /// # Safety
+        ///
+        /// `token_range` must be a valid pointer or null.
         #[unsafe(method(tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tagHypothesesAtIndex_unit_scheme_maximumCount_tokenRange(

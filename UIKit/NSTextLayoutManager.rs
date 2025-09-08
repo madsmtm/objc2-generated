@@ -274,6 +274,9 @@ impl NSTextLayoutManager {
         );
 
         #[cfg(feature = "NSTextRange")]
+        /// # Safety
+        ///
+        /// `rendering_attributes` generic should be of the correct type.
         #[unsafe(method(setRenderingAttributes:forTextRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderingAttributes_forTextRange(
@@ -283,6 +286,9 @@ impl NSTextLayoutManager {
         );
 
         #[cfg(feature = "NSTextRange")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(addRenderingAttribute:value:forTextRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRenderingAttribute_value_forTextRange(
@@ -307,6 +313,10 @@ impl NSTextLayoutManager {
         pub unsafe fn invalidateRenderingAttributesForTextRange(&self, text_range: &NSTextRange);
 
         #[cfg(all(feature = "NSTextLayoutFragment", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(renderingAttributesValidator))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingAttributesValidator(
@@ -336,6 +346,9 @@ impl NSTextLayoutManager {
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// # Safety
+        ///
+        /// `link` should be of the correct type.
         #[unsafe(method(renderingAttributesForLink:atLocation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingAttributesForLink_atLocation(
@@ -421,6 +434,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "NSTextRange")]
+        /// # Safety
+        ///
+        /// - `link` should be of the correct type.
+        /// - `rendering_attributes` generic should be of the correct type.
         #[optional]
         #[unsafe(method(textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:))]
         #[unsafe(method_family = none)]

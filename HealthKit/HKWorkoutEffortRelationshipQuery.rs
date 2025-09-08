@@ -42,12 +42,20 @@ impl HKWorkoutEffortRelationship {
     extern_methods!(
         #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKWorkout"))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(workout))]
         #[unsafe(method_family = none)]
         pub unsafe fn workout(&self) -> Retained<HKWorkout>;
 
         #[cfg(feature = "HKWorkoutActivity")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(activity))]
         #[unsafe(method_family = none)]
         pub unsafe fn activity(&self) -> Option<Retained<HKWorkoutActivity>>;
@@ -56,6 +64,10 @@ impl HKWorkoutEffortRelationship {
         /// The samples related to the workout but not any sub-activities
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(samples))]
         #[unsafe(method_family = none)]
         pub unsafe fn samples(&self) -> Option<Retained<NSArray<HKSample>>>;
@@ -138,6 +150,10 @@ impl HKWorkoutEffortRelationshipQuery {
         /// Parameter `options`: The options for the query, one of types from `HKWorkoutEffortRelationshipQueryOptions`
         ///
         /// Parameter `resultsHandler`: The block to invoke with related sample results
+        ///
+        /// # Safety
+        ///
+        /// `results_handler` block must be sendable.
         #[unsafe(method(initWithPredicate:anchor:options:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPredicate_anchor_options_resultsHandler(

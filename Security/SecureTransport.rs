@@ -296,6 +296,9 @@ pub unsafe extern "C-unwind" fn SSLCreateContext(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `context_ptr` must be a valid pointer.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLNewContext(
@@ -314,6 +317,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `state` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetSessionState(context: &SSLContext, state: NonNull<SSLSessionState>) -> OSStatus;
 }
@@ -336,6 +342,9 @@ pub unsafe extern "C-unwind" fn SSLSetSessionOption(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `value` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetSessionOption(
         context: &SSLContext,
@@ -345,6 +354,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `read_func` must be implemented correctly.
+    /// - `write_func` must be implemented correctly.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetIOFuncs(
         context: &SSLContext,
@@ -365,6 +378,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `min_version` must be a valid pointer.
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetProtocolVersionMin(
@@ -380,6 +396,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `max_version` must be a valid pointer.
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetProtocolVersionMax(
@@ -407,6 +426,9 @@ pub unsafe extern "C-unwind" fn SSLSetProtocolVersionEnabled(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `enable` must be a valid pointer.
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetProtocolVersionEnabled(
@@ -423,22 +445,34 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `protocol` must be a valid pointer.
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetProtocolVersion(context: &SSLContext, protocol: NonNull<SSLProtocol>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `cert_refs` generic must be of the correct type.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetCertificate(context: &SSLContext, cert_refs: Option<&CFArray>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `connection` must be a valid pointer or null.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetConnection(context: &SSLContext, connection: SSLConnectionRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `connection` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetConnection(
         context: &SSLContext,
@@ -447,6 +481,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `peer_name` must be a valid pointer or null.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetPeerDomainName(
         context: &SSLContext,
@@ -456,6 +493,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `peer_name_len` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetPeerDomainNameLength(
         context: &SSLContext,
@@ -464,6 +504,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `peer_name` must be a valid pointer.
+    /// - `peer_name_len` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetPeerDomainName(
         context: &SSLContext,
@@ -473,6 +517,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `peer_name_len` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyRequestedPeerNameLength(
         ctx: &SSLContext,
@@ -481,6 +528,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `peer_name` must be a valid pointer.
+    /// - `peer_name_len` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyRequestedPeerName(
         context: &SSLContext,
@@ -490,6 +541,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `cookie` must be a valid pointer or null.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetDatagramHelloCookie(
         dtls_context: &SSLContext,
@@ -504,6 +558,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `max_size` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetMaxDatagramRecordSize(
         dtls_context: &SSLContext,
@@ -512,6 +569,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `protocol` must be a valid pointer.
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetNegotiatedProtocolVersion(
@@ -521,6 +581,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `num_ciphers` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetNumberSupportedCiphers(
         context: &SSLContext,
@@ -529,6 +592,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `ciphers` must be a valid pointer.
+    /// - `num_ciphers` must be a valid pointer.
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetSupportedCiphers(
@@ -539,6 +606,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `num_ciphers` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetNumberEnabledCiphers(
         context: &SSLContext,
@@ -547,6 +617,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ciphers` must be a valid pointer.
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetEnabledCiphers(
@@ -557,6 +630,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `ciphers` must be a valid pointer.
+    /// - `num_ciphers` must be a valid pointer.
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetEnabledCiphers(
@@ -591,6 +668,9 @@ pub unsafe extern "C-unwind" fn SSLSetEnableCertVerify(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `enable_verify` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetEnableCertVerify(
         context: &SSLContext,
@@ -611,6 +691,9 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredCerts(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `allows_expired` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetAllowsExpiredCerts(
         context: &SSLContext,
@@ -631,6 +714,9 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredRoots(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `allows_expired` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetAllowsExpiredRoots(
         context: &SSLContext,
@@ -651,10 +737,16 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsAnyRoot(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `any_root` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetAllowsAnyRoot(context: &SSLContext, any_root: NonNull<Boolean>) -> OSStatus;
 }
 
+/// # Safety
+///
+/// `trusted_roots` generic must be of the correct type.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetTrustedRoots(
@@ -673,6 +765,9 @@ pub unsafe extern "C-unwind" fn SSLSetTrustedRoots(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `trusted_roots` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyTrustedRoots(
         context: &SSLContext,
@@ -681,6 +776,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `certs` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyPeerCertificates(
         context: &SSLContext,
@@ -689,12 +787,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `trust` must be a valid pointer.
     #[cfg(feature = "SecTrust")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyPeerTrust(context: &SSLContext, trust: NonNull<*mut SecTrust>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `peer_id` must be a valid pointer or null.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetPeerID(
         context: &SSLContext,
@@ -704,6 +808,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `peer_id` must be a valid pointer.
+    /// - `peer_id_len` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetPeerID(
         context: &SSLContext,
@@ -713,6 +821,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `cipher_suite` must be a valid pointer.
     #[cfg(feature = "CipherSuite")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetNegotiatedCipher(
@@ -722,11 +833,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `protocols` generic must be of the correct type.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetALPNProtocols(context: &SSLContext, protocols: &CFArray) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `protocols` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyALPNProtocols(
         context: &SSLContext,
@@ -740,6 +857,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `cert_refs` generic must be of the correct type.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetEncryptionCertificate(context: &SSLContext, cert_refs: &CFArray) -> OSStatus;
 }
@@ -774,6 +894,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `der_dn` must be a valid pointer or null.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLAddDistinguishedName(
         context: &SSLContext,
@@ -782,6 +905,9 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// # Safety
+///
+/// `certificate_or_array` should be of the correct type.
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetCertificateAuthorities(
@@ -800,6 +926,9 @@ pub unsafe extern "C-unwind" fn SSLSetCertificateAuthorities(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `certificates` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyCertificateAuthorities(
         context: &SSLContext,
@@ -808,6 +937,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `names` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyDistinguishedNames(
         context: &SSLContext,
@@ -816,6 +948,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `client_state` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetClientCertificateState(
         context: &SSLContext,
@@ -824,6 +959,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `dh_params` must be a valid pointer or null.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetDiffieHellmanParams(
         context: &SSLContext,
@@ -833,6 +971,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `dh_params` must be a valid pointer.
+    /// - `dh_params_len` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetDiffieHellmanParams(
         context: &SSLContext,
@@ -854,6 +996,9 @@ pub unsafe extern "C-unwind" fn SSLSetRsaBlinding(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `blinding` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetRsaBlinding(context: &SSLContext, blinding: NonNull<Boolean>) -> OSStatus;
 }
@@ -869,6 +1014,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `data` must be a valid pointer or null.
+    /// - `processed` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLWrite(
         context: &SSLContext,
@@ -879,6 +1028,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `data` must be a valid pointer.
+    /// - `processed` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLRead(
         context: &SSLContext,
@@ -889,11 +1042,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `buffer_size` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetBufferedReadSize(context: &SSLContext, buffer_size: NonNull<usize>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `buf_size` must be a valid pointer.
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLGetDatagramWriteSize(dtls_context: &SSLContext, buf_size: NonNull<usize>)
         -> OSStatus;

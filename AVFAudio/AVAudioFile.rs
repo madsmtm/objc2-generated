@@ -77,6 +77,10 @@ impl AVAudioFile {
         /// inferred from the file extension. Will overwrite a file at the specified URL if a file exists.
         ///
         /// This opens the file for writing using the standard format (deinterleaved floating point).
+        ///
+        /// # Safety
+        ///
+        /// `settings` generic should be of the correct type.
         #[unsafe(method(initForWriting:settings:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initForWriting_settings_error(
@@ -102,6 +106,10 @@ impl AVAudioFile {
         ///
         /// The file type to create can be set through the corresponding settings key. If not set, it will be
         /// inferred from the file extension. Will overwrite a file at the specified URL if a file exists.
+        ///
+        /// # Safety
+        ///
+        /// `settings` generic should be of the correct type.
         #[unsafe(method(initForWriting:settings:commonFormat:interleaved:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initForWriting_settings_commonFormat_interleaved_error(

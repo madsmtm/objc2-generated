@@ -50,6 +50,11 @@ impl SCNRenderer {
         /// Parameter `context`: The context to render into.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
+        ///
+        /// # Safety
+        ///
+        /// - `context` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(rendererWithContext:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererWithContext_options(
@@ -64,6 +69,10 @@ impl SCNRenderer {
         /// Parameter `device`: The metal device to use. Pass nil to let SceneKit choose a default device.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(rendererWithDevice:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererWithDevice_options(

@@ -161,6 +161,10 @@ impl NSTextInsertionIndicator {
         /// Sets-returns a block that inserts a view into the view hierarchy.
         ///
         /// During dictation the NSTextInsertionIndicator displays a glow effect by inserting a view below the text view. If an application needs to insert the view in a different way, the application can specify a block of code that will be called when the glow effect needs to be displayed.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(effectsViewInserter))]
         #[unsafe(method_family = none)]
         pub unsafe fn effectsViewInserter(&self) -> *mut block2::DynBlock<dyn Fn(NonNull<NSView>)>;

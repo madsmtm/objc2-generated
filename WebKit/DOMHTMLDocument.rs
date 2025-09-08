@@ -184,11 +184,17 @@ impl DOMHTMLDocument {
         #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
 
+        /// # Safety
+        ///
+        /// `text` might not allow `None`.
         #[deprecated]
         #[unsafe(method(write:))]
         #[unsafe(method_family = none)]
         pub unsafe fn write(&self, text: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// `text` might not allow `None`.
         #[deprecated]
         #[unsafe(method(writeln:))]
         #[unsafe(method_family = none)]

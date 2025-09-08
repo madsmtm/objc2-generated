@@ -77,6 +77,9 @@ impl MLUpdateTask {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
+        /// # Safety
+        ///
+        /// `update_parameters` generic should be of the correct type.
         #[unsafe(method(resumeWithParameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeWithParameters(

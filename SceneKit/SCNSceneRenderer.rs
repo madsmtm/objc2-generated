@@ -168,6 +168,10 @@ extern_protocol!(
         /// Parameter `point`: A point in the coordinate system of the receiver.
         ///
         /// Parameter `options`: Optional parameters (see the "Hit test options" group for the available options).
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(hitTest:options:))]
         #[unsafe(method_family = none)]
         unsafe fn hitTest_options(
@@ -303,6 +307,10 @@ extern_protocol!(
         /// Parameter `block`: This block will be called repeatedly while the object is prepared. Return YES if you want the operation to abort.
         ///
         /// Returns YES if the object was prepared successfully, NO if it was canceled. This method may be triggered from a secondary thread. This method is observable using NSProgress.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(prepareObject:shouldAbortBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn prepareObject_shouldAbortBlock(
@@ -319,6 +327,10 @@ extern_protocol!(
         /// Parameter `completionHandler`: This block will be called when all objects has been prepared, or on failure.
         ///
         /// This method is observable using NSProgress.
+        ///
+        /// # Safety
+        ///
+        /// `objects` generic should be of the correct type.
         #[unsafe(method(prepareObjects:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn prepareObjects_withCompletionHandler(

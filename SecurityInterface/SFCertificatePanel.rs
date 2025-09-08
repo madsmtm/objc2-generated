@@ -75,6 +75,10 @@ impl SFCertificatePanel {
         /// Parameter `trust`: A trust reference which contains the certificates to display.
         ///
         /// Parameter `showGroup`: Specifies whether additional certificates (other than the leaf certificate) are displayed.
+        ///
+        /// # Safety
+        ///
+        /// `trust` might not allow `None`.
         #[unsafe(method(runModalForTrust:showGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForTrust_showGroup(
@@ -91,6 +95,11 @@ impl SFCertificatePanel {
         ///
         /// Parameter `showGroup`: Specifies whether additional certificates (other than the leaf certificate) are displayed.
         /// To show only a single certificate, specify only one SecCertificateRef in the array and set showGroup to NO.
+        ///
+        /// # Safety
+        ///
+        /// - `certificates` generic should be of the correct type.
+        /// - `certificates` might not allow `None`.
         #[unsafe(method(runModalForCertificates:showGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runModalForCertificates_showGroup(
@@ -118,6 +127,12 @@ impl SFCertificatePanel {
         ///
         /// The didEndSelector method should have the following signature:
         /// - (void)certificateSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
+        /// - `trust` might not allow `None`.
         #[unsafe(method(beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:trust:showGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetForWindow_modalDelegate_didEndSelector_contextInfo_trust_showGroup(
@@ -147,6 +162,13 @@ impl SFCertificatePanel {
         ///
         /// The didEndSelector method should have the following signature:
         /// - (void)certificateSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+        ///
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer.
+        /// - `certificates` generic should be of the correct type.
+        /// - `certificates` might not allow `None`.
         #[unsafe(method(beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:certificates:showGroup:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginSheetForWindow_modalDelegate_didEndSelector_contextInfo_certificates_showGroup(
@@ -167,6 +189,11 @@ impl SFCertificatePanel {
         ///
         /// Applications will typically display a SFCertificatePanel in the context of a specific usage, such as SSL or S/MIME.
         /// You should set only the policy references which apply to your intended usage.
+        ///
+        /// # Safety
+        ///
+        /// - `policies` should be of the correct type.
+        /// - `policies` might not allow `None`.
         #[unsafe(method(setPolicies:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolicies(&self, policies: Option<&AnyObject>);
@@ -181,6 +208,10 @@ impl SFCertificatePanel {
         /// Customizes the title of the default button.
         ///
         /// Parameter `title`: The new title for the default button.
+        ///
+        /// # Safety
+        ///
+        /// `title` might not allow `None`.
         #[unsafe(method(setDefaultButtonTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultButtonTitle(&self, title: Option<&NSString>);
@@ -188,6 +219,10 @@ impl SFCertificatePanel {
         /// Customizes the title of the alternate button.
         ///
         /// Parameter `title`: The new title for the alternate button. If title is set to nil, the button will not be shown.
+        ///
+        /// # Safety
+        ///
+        /// `title` might not allow `None`.
         #[unsafe(method(setAlternateButtonTitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAlternateButtonTitle(&self, title: Option<&NSString>);
@@ -200,6 +235,9 @@ impl SFCertificatePanel {
         #[unsafe(method_family = none)]
         pub unsafe fn showsHelp(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `anchor` might not allow `None`.
         #[unsafe(method(setHelpAnchor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHelpAnchor(&self, anchor: Option<&NSString>);
@@ -280,6 +318,9 @@ pub unsafe trait NSObjectSFCertificatePanelDelegate:
     ClassType + Sized + private_NSObjectSFCertificatePanelDelegate::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` might not allow `None`.
         #[unsafe(method(certificatePanelShowHelp:))]
         #[unsafe(method_family = none)]
         unsafe fn certificatePanelShowHelp(&self, sender: Option<&SFCertificatePanel>) -> bool;

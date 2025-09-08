@@ -139,6 +139,9 @@ impl NLEmbedding {
             string: &NSString,
         ) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// # Safety
+        ///
+        /// `vector` must be a valid pointer.
         #[unsafe(method(getVector:forString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getVector_forString(

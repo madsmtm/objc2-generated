@@ -91,6 +91,10 @@ impl DOMHTMLTableElement {
 
         #[cfg(feature = "DOMHTMLTableCaptionElement")]
         /// Setter for [`caption`][Self::caption].
+        ///
+        /// # Safety
+        ///
+        /// `caption` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setCaption:))]
         #[unsafe(method_family = none)]
@@ -104,6 +108,10 @@ impl DOMHTMLTableElement {
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
         /// Setter for [`tHead`][Self::tHead].
+        ///
+        /// # Safety
+        ///
+        /// `t_head` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setTHead:))]
         #[unsafe(method_family = none)]
@@ -117,6 +125,10 @@ impl DOMHTMLTableElement {
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
         /// Setter for [`tFoot`][Self::tFoot].
+        ///
+        /// # Safety
+        ///
+        /// `t_foot` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setTFoot:))]
         #[unsafe(method_family = none)]

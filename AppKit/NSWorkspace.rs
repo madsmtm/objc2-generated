@@ -178,6 +178,11 @@ impl NSWorkspace {
             >,
         );
 
+        /// # Safety
+        ///
+        /// - `removable_flag` must be a valid pointer or null.
+        /// - `writable_flag` must be a valid pointer or null.
+        /// - `unmountable_flag` must be a valid pointer or null.
         #[unsafe(method(getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getFileSystemInfoForPath_isRemovable_isWritable_isUnmountable_description_type(
@@ -496,6 +501,9 @@ extern "C" {
 impl NSWorkspace {
     extern_methods!(
         #[cfg(feature = "NSScreen")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(setDesktopImageURL:forScreen:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDesktopImageURL_forScreen_options_error(
@@ -856,6 +864,9 @@ impl NSWorkspace {
         pub unsafe fn launchApplication(&self, app_name: &NSString) -> bool;
 
         #[cfg(feature = "NSRunningApplication")]
+        /// # Safety
+        ///
+        /// `configuration` generic should be of the correct type.
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
         #[unsafe(method(launchApplicationAtURL:options:configuration:error:_))]
         #[unsafe(method_family = none)]
@@ -867,6 +878,9 @@ impl NSWorkspace {
         ) -> Result<Retained<NSRunningApplication>, Retained<NSError>>;
 
         #[cfg(feature = "NSRunningApplication")]
+        /// # Safety
+        ///
+        /// `configuration` generic should be of the correct type.
         #[deprecated = "Use -[NSWorkspace openURL:configuration:completionHandler:] instead."]
         #[unsafe(method(openURL:options:configuration:error:_))]
         #[unsafe(method_family = none)]
@@ -878,6 +892,9 @@ impl NSWorkspace {
         ) -> Result<Retained<NSRunningApplication>, Retained<NSError>>;
 
         #[cfg(feature = "NSRunningApplication")]
+        /// # Safety
+        ///
+        /// `configuration` generic should be of the correct type.
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
         #[unsafe(method(openURLs:withApplicationAtURL:options:configuration:error:_))]
         #[unsafe(method_family = none)]
@@ -1021,6 +1038,9 @@ impl NSWorkspace {
             view: Option<&NSView>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `tag` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(performFileOperation:source:destination:files:tag:))]
         #[unsafe(method_family = none)]

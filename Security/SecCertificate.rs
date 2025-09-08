@@ -104,6 +104,10 @@ impl SecCertificate {
     /// All the data in this string comes from the certificate itself, and thus it's in whatever language the certificate itself is in.
     /// Note that the certificate's common name field may not be present, or may be inadequate to describe the certificate; for display purposes,
     /// you should consider using SecCertificateCopySubjectSummary instead of this function.
+    ///
+    /// # Safety
+    ///
+    /// `common_name` must be a valid pointer.
     #[doc(alias = "SecCertificateCopyCommonName")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -125,6 +129,10 @@ impl SecCertificate {
     /// Your code must release this array reference by calling the CFRelease function.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `email_addresses` must be a valid pointer.
     #[doc(alias = "SecCertificateCopyEmailAddresses")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -204,6 +212,10 @@ impl SecCertificate {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// NOTE: Deprecated in macOS 10.14; use SecCertificateCopyKey instead for cross-platform availability.
+    ///
+    /// # Safety
+    ///
+    /// `key` must be a valid pointer.
     #[doc(alias = "SecCertificateCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -229,6 +241,10 @@ impl SecCertificate {
     /// Parameter `error`: An optional pointer to a CFErrorRef which will be set on return from the function if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
     ///
     /// Return the content of a DER-encoded integer (without the tag and length fields) for this certificate's serial number. The caller must CFRelease the value returned.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopySerialNumberData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -291,6 +307,10 @@ impl SecCertificate {
     /// Parameter `error`: An optional pointer to a CFErrorRef which will be set on return from the function if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
     ///
     /// Return the content of a DER-encoded integer (without the tag and length fields) for this certificate's serial number. The caller must CFRelease the value returned. NOTE: Deprecated in macOS 10.13; use SecCertificateCopySerialNumberData instead for cross-platform availability.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopySerialNumber")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -341,6 +361,11 @@ impl SecCertificate {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7  Please use the SecCertificateCreateWithData API instead.
+    ///
+    /// # Safety
+    ///
+    /// - `data` must be a valid pointer.
+    /// - `certificate` must be a valid pointer.
     #[doc(alias = "SecCertificateCreateFromData")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -399,6 +424,10 @@ impl SecCertificate {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyData API instead.
+    ///
+    /// # Safety
+    ///
+    /// `data` must be a valid pointer.
     #[doc(alias = "SecCertificateGetData")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "cssmtype"))]
     #[deprecated]
@@ -420,6 +449,10 @@ impl SecCertificate {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
+    ///
+    /// # Safety
+    ///
+    /// `certificate_type` must be a valid pointer.
     #[doc(alias = "SecCertificateGetType")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -455,6 +488,10 @@ impl SecCertificate {
     /// // subject is valid
     /// }
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
+    ///
+    /// # Safety
+    ///
+    /// `subject` must be a valid pointer.
     #[doc(alias = "SecCertificateGetSubject")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -495,6 +532,10 @@ impl SecCertificate {
     /// // issuer is valid
     /// }
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
+    ///
+    /// # Safety
+    ///
+    /// `issuer` must be a valid pointer.
     #[doc(alias = "SecCertificateGetIssuer")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -523,6 +564,10 @@ impl SecCertificate {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
+    ///
+    /// # Safety
+    ///
+    /// `cl_handle` must be a valid pointer.
     #[doc(alias = "SecCertificateGetCLHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -545,6 +590,10 @@ impl SecCertificate {
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     /// discussion This API is deprecated in 10.7. Please use the SecCertificateCopyValues API instead.
+    ///
+    /// # Safety
+    ///
+    /// `algid` must be a valid pointer.
     #[doc(alias = "SecCertificateGetAlgorithmID")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -571,6 +620,10 @@ impl SecCertificate {
     ///
     /// This function will typically be used to obtain the preferred encryption certificate for an email recipient.
     /// This API is deprecated in 10.7. Please use the SecCertificateCopyPreferred API instead.
+    ///
+    /// # Safety
+    ///
+    /// `certificate` must be a valid pointer.
     #[doc(alias = "SecCertificateCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated]
@@ -600,6 +653,10 @@ impl SecCertificate {
     ///
     /// This function will typically be used to obtain the preferred encryption certificate for an email recipient. If a preferred certificate has not been set
     /// for the supplied name, the returned reference will be NULL. Your code should then perform a search for possible certificates, using the SecItemCopyMatching API.
+    ///
+    /// # Safety
+    ///
+    /// `key_usage` generic must be of the correct type.
     #[doc(alias = "SecCertificateCopyPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -664,6 +721,10 @@ impl SecCertificate {
     ///
     /// This function will typically be used to set the preferred encryption certificate for an email recipient, either manually (when encrypting email to a recipient)
     /// or automatically upon receipt of encrypted email.
+    ///
+    /// # Safety
+    ///
+    /// `key_usage` generic must be of the correct type.
     #[doc(alias = "SecCertificateSetPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -828,6 +889,11 @@ impl SecCertificate {
     /// OID string. The kSecPropertyKeyType describes the type in the
     /// value entry. The value entry may be any CFType, although it
     /// is usually a CFStringRef, CFArrayRef or a CFDictionaryRef.
+    ///
+    /// # Safety
+    ///
+    /// - `keys` generic must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyValues")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -865,6 +931,10 @@ impl SecCertificate {
     /// parameter is supplied the error will be returned in the error parameter
     ///
     /// Note that the format of this string may change in the future
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyLongDescription")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -902,6 +972,10 @@ impl SecCertificate {
     /// parameter is supplied the error will be returned in the error parameter
     ///
     /// Note that the format of this string may change in the future
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyShortDescription")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -934,6 +1008,10 @@ impl SecCertificate {
     /// X.509 distinguished name. For a display version of the issuer,
     /// call SecCertificateCopyValues. The caller must CFRelease
     /// the value returned.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyNormalizedIssuerContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecCertificateCopyNormalizedIssuerContent is deprecated. Use SecCertificateCopyNormalizedIssuerSequence instead."]
@@ -965,6 +1043,10 @@ impl SecCertificate {
     /// X.509 distinguished name. For a display version of the subject,
     /// call SecCertificateCopyValues. The caller must CFRelease
     /// the value returned.
+    ///
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "SecCertificateCopyNormalizedSubjectContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecCertificateCopyNormalizedSubjectContent is deprecated. Use SecCertificateCopyNormalizedSubjectSequence instead."]

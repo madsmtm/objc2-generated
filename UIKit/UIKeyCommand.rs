@@ -198,6 +198,11 @@ impl UIKeyCommand {
         /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
         ///
         /// Returns: A new key command.
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `property_list` should be of the correct type.
         #[unsafe(method(commandWithTitle:image:action:input:modifierFlags:propertyList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_input_modifierFlags_propertyList(
@@ -229,6 +234,11 @@ impl UIKeyCommand {
         /// Parameter `alternates`: Alternates that differ in modifier flags.
         ///
         /// Returns: A new key command.
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `property_list` should be of the correct type.
         #[unsafe(method(commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_input_modifierFlags_propertyList_alternates(
@@ -242,6 +252,9 @@ impl UIKeyCommand {
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(keyCommandWithInput:modifierFlags:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyCommandWithInput_modifierFlags_action(
@@ -251,6 +264,9 @@ impl UIKeyCommand {
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[deprecated]
         #[unsafe(method(keyCommandWithInput:modifierFlags:action:discoverabilityTitle:))]
         #[unsafe(method_family = none)]
@@ -263,6 +279,10 @@ impl UIKeyCommand {
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `property_list` should be of the correct type.
         #[unsafe(method(commandWithTitle:image:action:propertyList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_propertyList(
@@ -274,6 +294,10 @@ impl UIKeyCommand {
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `property_list` should be of the correct type.
         #[unsafe(method(commandWithTitle:image:action:propertyList:alternates:))]
         #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_propertyList_alternates(

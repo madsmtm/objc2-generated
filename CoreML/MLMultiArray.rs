@@ -250,6 +250,10 @@ impl MLMultiArray {
         /// - strides: The strides.
         /// - deallocator: Block to be called on the deallocation of the instance.
         /// - error: Filled with error information on error.
+        ///
+        /// # Safety
+        ///
+        /// `data_pointer` must be a valid pointer.
         #[unsafe(method(initWithDataPointer:shape:dataType:strides:deallocator:error:_))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDataPointer_shape_dataType_strides_deallocator_error(

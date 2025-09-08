@@ -129,6 +129,10 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
+        /// # Safety
+        ///
+        /// - `objects` must be a valid pointer or null.
+        /// - `keys` must be a valid pointer or null.
         #[unsafe(method(initWithObjects:forKeys:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_forKeys_count(
@@ -194,6 +198,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub unsafe fn descriptionInStringsFileFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(descriptionWithLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale(
@@ -202,6 +209,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(descriptionWithLocale:indent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale_indent(
@@ -237,6 +247,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSArray")]
+        /// # Safety
+        ///
+        /// `comparator` must be a valid selector.
         #[unsafe(method(keysSortedByValueUsingSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keysSortedByValueUsingSelector(
@@ -244,6 +257,10 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
             comparator: Sel,
         ) -> Retained<NSArray<KeyType>>;
 
+        /// # Safety
+        ///
+        /// - `objects` must be a valid pointer or null.
+        /// - `keys` must be a valid pointer or null.
         #[unsafe(method(getObjects:andKeys:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjects_andKeys_count(
@@ -280,6 +297,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(keysSortedByValueUsingComparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keysSortedByValueUsingComparator(
@@ -288,6 +308,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         ) -> Retained<NSArray<KeyType>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `cmptr` must be a valid pointer.
         #[unsafe(method(keysSortedByValueWithOptions:usingComparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keysSortedByValueWithOptions_usingComparator(
@@ -323,6 +346,11 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
 impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
     extern_methods!(
         /// This method is unsafe because it could potentially cause buffer overruns. You should use -getObjects:andKeys:count:
+        ///
+        /// # Safety
+        ///
+        /// - `objects` must be a valid pointer or null.
+        /// - `keys` must be a valid pointer or null.
         #[deprecated = "Use -getObjects:andKeys:count: instead"]
         #[unsafe(method(getObjects:andKeys:))]
         #[unsafe(method_family = none)]
@@ -400,6 +428,10 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
+        /// # Safety
+        ///
+        /// - `objects` must be a valid pointer or null.
+        /// - `keys` must be a valid pointer or null.
         #[unsafe(method(dictionaryWithObjects:forKeys:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
@@ -466,6 +498,10 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
+        /// # Safety
+        ///
+        /// - `objects` must be a valid pointer or null.
+        /// - `keys` must be a valid pointer or null.
         #[unsafe(method(dictionaryWithObjects:forKeys:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
@@ -657,6 +693,10 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
 impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSObject")]
+        /// # Safety
+        ///
+        /// - `objects` must be a valid pointer or null.
+        /// - `keys` must be a valid pointer or null.
         #[unsafe(method(initWithObjects:forKeys:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_forKeys_count(
@@ -774,6 +814,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
 /// NSSharedKeySetDictionary.
 impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `keyset` should be of the correct type.
         #[unsafe(method(dictionaryWithSharedKeySet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithSharedKeySet(

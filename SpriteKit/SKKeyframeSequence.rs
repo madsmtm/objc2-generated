@@ -80,6 +80,9 @@ extern_conformance!(
 
 impl SKKeyframeSequence {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `values` generic should be of the correct type.
         #[unsafe(method(initWithKeyframeValues:times:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyframeValues_times(
@@ -108,6 +111,9 @@ impl SKKeyframeSequence {
         pub unsafe fn count(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(addKeyframeValue:time:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addKeyframeValue_time(&self, value: &AnyObject, time: CGFloat);
@@ -120,6 +126,9 @@ impl SKKeyframeSequence {
         #[unsafe(method_family = none)]
         pub unsafe fn removeKeyframeAtIndex(&self, index: NSUInteger);
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setKeyframeValue:forIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyframeValue_forIndex(&self, value: &AnyObject, index: NSUInteger);
@@ -130,6 +139,9 @@ impl SKKeyframeSequence {
         pub unsafe fn setKeyframeTime_forIndex(&self, time: CGFloat, index: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setKeyframeValue:time:forIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyframeValue_time_forIndex(

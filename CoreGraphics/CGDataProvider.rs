@@ -129,6 +129,10 @@ unsafe impl ConcreteType for CGDataProvider {
 }
 
 impl CGDataProvider {
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `callbacks` must be a valid pointer or null.
     #[doc(alias = "CGDataProviderCreateSequential")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -146,6 +150,10 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `callbacks` must be a valid pointer or null.
     #[doc(alias = "CGDataProviderCreateDirect")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -171,6 +179,11 @@ pub type CGDataProviderReleaseDataCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize)>;
 
 impl CGDataProvider {
+    /// # Safety
+    ///
+    /// - `info` must be a valid pointer or null.
+    /// - `data` must be a valid pointer or null.
+    /// - `release_data` must be implemented correctly.
     #[doc(alias = "CGDataProviderCreateWithData")]
     #[inline]
     pub unsafe fn with_data(
@@ -213,6 +226,9 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `filename` must be a valid pointer or null.
     #[doc(alias = "CGDataProviderCreateWithFilename")]
     #[inline]
     pub unsafe fn with_filename(filename: *const c_char) -> Option<CFRetained<CGDataProvider>> {

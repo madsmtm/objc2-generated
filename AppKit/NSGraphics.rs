@@ -423,6 +423,9 @@ unsafe impl RefEncode for NSWindowDepth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// # Safety
+///
+/// `exact_match` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSBestDepth(
     color_space: &NSColorSpaceName,
@@ -566,15 +569,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `rects` must be a valid pointer.
     pub fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `rects` must be a valid pointer.
+    /// - `grays` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn NSRectFillListWithGrays(rects: NonNull<NSRect>, grays: NonNull<CGFloat>, num: NSInteger);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `rects` must be a valid pointer.
+    /// - `colors` must be a valid pointer.
     #[cfg(feature = "NSColor")]
     pub fn NSRectFillListWithColors(
         rects: NonNull<NSRect>,
@@ -588,6 +602,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `rects` must be a valid pointer.
     pub fn NSRectFillListUsingOperation(
         rects: NonNull<NSRect>,
         count: NSInteger,
@@ -596,6 +613,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `rects` must be a valid pointer.
+    /// - `colors` must be a valid pointer.
     #[cfg(feature = "NSColor")]
     pub fn NSRectFillListWithColorsUsingOperation(
         rects: NonNull<NSRect>,
@@ -628,10 +649,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `rects` must be a valid pointer.
     pub fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `sides` must be a valid pointer.
+    /// - `grays` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDrawTiledRects(
         bounds_rect: NSRect,
@@ -683,6 +711,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `virtual_memory` must be a valid pointer.
+    /// - `window_backing_memory` must be a valid pointer.
+    /// - `window_dump_string` must be a valid pointer.
     #[deprecated = "Doesn't return anything useful since 10.0"]
     pub fn NSGetWindowServerMemory(
         context: NSInteger,
@@ -693,6 +726,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `sides` must be a valid pointer.
+    /// - `colors` must be a valid pointer.
     #[cfg(feature = "NSColor")]
     pub fn NSDrawColorTiledRects(
         bounds_rect: NSRect,
@@ -755,6 +792,10 @@ unsafe impl RefEncode for NSAnimationEffect {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `did_end_selector` must be a valid selector.
+    /// - `context_info` must be a valid pointer or null.
     #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
     pub fn NSShowAnimationEffect(
         animation_effect: NSAnimationEffect,
@@ -767,21 +808,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `count` must be a valid pointer.
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
     pub fn NSCountWindows(count: NonNull<NSInteger>);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `list` must be a valid pointer.
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
     pub fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `count` must be a valid pointer.
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
     pub fn NSCountWindowsForContext(context: NSInteger, count: NonNull<NSInteger>);
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `list` must be a valid pointer.
     #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
     pub fn NSWindowListForContext(context: NSInteger, size: NSInteger, list: NonNull<NSInteger>);
 }

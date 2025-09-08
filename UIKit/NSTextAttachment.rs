@@ -21,6 +21,9 @@ extern_protocol!(
             feature = "UIImage",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(imageForBounds:attributes:location:textContainer:))]
         #[unsafe(method_family = none)]
         unsafe fn imageForBounds_attributes_location_textContainer(
@@ -36,6 +39,9 @@ extern_protocol!(
             feature = "NSTextRange",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:))]
         #[unsafe(method_family = none)]
         unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(
@@ -171,6 +177,9 @@ impl NSTextAttachment {
             file_type: &NSString,
         ) -> Option<&'static AnyClass>;
 
+        /// # Safety
+        ///
+        /// `text_attachment_view_provider_class` probably has further requirements.
         #[unsafe(method(registerTextAttachmentViewProviderClass:forFileType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerTextAttachmentViewProviderClass_forFileType(
@@ -221,6 +230,9 @@ pub unsafe trait NSAttributedStringAttachmentConveniences:
             attachment: &NSTextAttachment,
         ) -> Retained<NSAttributedString>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(attributedStringWithAttachment:attributes:))]
         #[unsafe(method_family = none)]
         unsafe fn attributedStringWithAttachment_attributes(
@@ -316,6 +328,9 @@ impl NSTextAttachmentViewProvider {
             feature = "NSTextRange",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachmentBoundsForAttributes_location_textContainer_proposedLineFragment_position(

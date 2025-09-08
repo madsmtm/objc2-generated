@@ -56,6 +56,10 @@ impl NSNotification {
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `user_info` generic should be of the correct type.
         #[unsafe(method(initWithName:object:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_object_userInfo(
@@ -79,6 +83,9 @@ impl NSNotification {
 impl NSNotification {
     extern_methods!(
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `an_object` should be of the correct type.
         #[unsafe(method(notificationWithName:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationWithName_object(
@@ -87,6 +94,10 @@ impl NSNotification {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `an_object` should be of the correct type.
+        /// - `a_user_info` generic should be of the correct type.
         #[unsafe(method(notificationWithName:object:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationWithName_object_userInfo(
@@ -121,6 +132,10 @@ impl NSNotificationCenter {
         pub unsafe fn defaultCenter() -> Retained<NSNotificationCenter>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// - `a_selector` must be a valid selector.
+        /// - `an_object` should be of the correct type.
         #[unsafe(method(addObserver:selector:name:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_selector_name_object(
@@ -136,6 +151,9 @@ impl NSNotificationCenter {
         pub unsafe fn postNotification(&self, notification: &NSNotification);
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `an_object` should be of the correct type.
         #[unsafe(method(postNotificationName:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object(
@@ -145,6 +163,10 @@ impl NSNotificationCenter {
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `an_object` should be of the correct type.
+        /// - `a_user_info` generic should be of the correct type.
         #[unsafe(method(postNotificationName:object:userInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object_userInfo(
@@ -154,11 +176,18 @@ impl NSNotificationCenter {
             a_user_info: Option<&NSDictionary>,
         );
 
+        /// # Safety
+        ///
+        /// `observer` should be of the correct type.
         #[unsafe(method(removeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver(&self, observer: &AnyObject);
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// - `observer` should be of the correct type.
+        /// - `an_object` should be of the correct type.
         #[unsafe(method(removeObserver:name:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserver_name_object(
@@ -169,6 +198,9 @@ impl NSNotificationCenter {
         );
 
         #[cfg(all(feature = "NSOperation", feature = "NSString", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addObserverForName:object:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserverForName_object_queue_usingBlock(

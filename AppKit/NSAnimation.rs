@@ -347,6 +347,9 @@ extern_conformance!(
 
 impl NSViewAnimation {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `view_animations` generic generic should be of the correct type.
         #[unsafe(method(initWithViewAnimations:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithViewAnimations(
@@ -363,6 +366,10 @@ impl NSViewAnimation {
         /// Setter for [`viewAnimations`][Self::viewAnimations].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `view_animations` generic generic should be of the correct type.
         #[unsafe(method(setViewAnimations:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setViewAnimations(
@@ -422,6 +429,10 @@ extern_protocol!(
         /// Setter for [`animations`][Self::animations].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `animations` generic should be of the correct type.
         #[unsafe(method(setAnimations:))]
         #[unsafe(method_family = none)]
         unsafe fn setAnimations(

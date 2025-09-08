@@ -353,6 +353,9 @@ impl NSSpeechSynthesizer {
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesFeedbackWindow(&self, uses_feedback_window: bool);
 
+        /// # Safety
+        ///
+        /// `speech_dictionary` generic should be of the correct type.
         #[unsafe(method(addSpeechDictionary:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSpeechDictionary(
@@ -371,6 +374,9 @@ impl NSSpeechSynthesizer {
             property: &NSSpeechPropertyKey,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(setObject:forProperty:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forProperty_error(

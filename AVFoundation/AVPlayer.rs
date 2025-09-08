@@ -460,6 +460,10 @@ impl AVPlayer {
         /// set to NO. If the new request completes without being interrupted by another seek request or by any other operation the specified
         /// completion handler will be invoked with the finished parameter set to YES.  If no item is attached, the completion handler will be
         /// invoked immediately with the finished parameter set to NO.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToDate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
@@ -507,6 +511,10 @@ impl AVPlayer {
         /// set to NO. If the new request completes without being interrupted by another seek request or by any other operation the specified
         /// completion handler will be invoked with the finished parameter set to YES.  If no item is attached, the completion handler will be
         /// invoked immediately with the finished parameter set to NO.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_completionHandler(
@@ -528,6 +536,10 @@ impl AVPlayer {
         /// The completion handler for any prior seek request that is still in process will be invoked immediately with the finished parameter set to NO. If the new
         /// request completes without being interrupted by another seek request or by any other operation the specified completion handler will be invoked with the
         /// finished parameter set to YES.  If no item is attached, the completion handler will be invoked immediately with the finished parameter set to NO.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
@@ -613,6 +625,10 @@ impl AVPlayer {
         /// Parameter `rate`: The intended rate for subsequent playback.
         ///
         /// Parameter `completionHandler`: The block that will be called when the preroll is either completed or is interrupted.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(prerollAtRate:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prerollAtRate_completionHandler(
@@ -671,6 +687,10 @@ impl AVPlayer {
         /// of the current time appropriately in its end-user interface.
         /// Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:.
         /// Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
@@ -695,6 +715,10 @@ impl AVPlayer {
         ///
         /// Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:.
         /// Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addBoundaryTimeObserverForTimes:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForTimes_queue_usingBlock(
@@ -719,6 +743,10 @@ impl AVPlayer {
         /// - observer was added by a different instance of AVPlayer
         /// - observer was not returned by -addPeriodicTimeObserverForInterval:queue:usingBlock:
         /// - observer was not returned by -addBoundaryTimeObserverForTimes:queue:usingBlock:
+        ///
+        /// # Safety
+        ///
+        /// `observer` should be of the correct type.
         #[unsafe(method(removeTimeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeObserver(&self, observer: &AnyObject);

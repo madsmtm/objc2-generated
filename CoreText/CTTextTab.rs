@@ -70,6 +70,10 @@ impl CTTextTab {
     ///
     ///
     /// Returns: The new CTTextTab.
+    ///
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CTTextTabCreate")]
     #[cfg(feature = "CTParagraphStyle")]
     #[inline]

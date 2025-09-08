@@ -16,6 +16,11 @@ extern_protocol!(
     pub unsafe trait GCPressedStateInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block if you want to be notified when the pressed state changes.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(pressedDidChangeHandler))]
         #[unsafe(method_family = none)]
         unsafe fn pressedDidChangeHandler(

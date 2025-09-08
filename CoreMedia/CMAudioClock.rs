@@ -19,6 +19,10 @@ extern "C-unwind" {
     ///
     /// Parameter `clockOut`: Points to a CMClockRef to receive the newly created clock.
     /// The caller is responsible for calling CFRelease to release this clock.
+    ///
+    /// # Safety
+    ///
+    /// `clock_out` must be a valid pointer.
     #[cfg(feature = "CMSync")]
     pub fn CMAudioClockCreate(
         allocator: Option<&CFAllocator>,

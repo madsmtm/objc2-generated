@@ -501,6 +501,9 @@ impl WKWebView {
             feature = "WKFrameInfo",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[unsafe(method(callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn callAsyncJavaScript_arguments_inFrame_inContentWorld_completionHandler(
@@ -838,6 +841,10 @@ impl WKWebView {
         /// Setter for [`interactionState`][Self::interactionState].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `interaction_state` should be of the correct type.
         #[unsafe(method(setInteractionState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: Option<&AnyObject>);
@@ -1058,6 +1065,10 @@ impl WKWebView {
         /// back-forward list.
         ///
         /// Parameter `sender`: The object that sent this message.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(goBack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goBack_(&self, sender: Option<&AnyObject>);
@@ -1066,6 +1077,10 @@ impl WKWebView {
         /// back-forward list.
         ///
         /// Parameter `sender`: The object that sent this message.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(goForward:))]
         #[unsafe(method_family = none)]
         pub unsafe fn goForward_(&self, sender: Option<&AnyObject>);
@@ -1073,6 +1088,10 @@ impl WKWebView {
         /// Action method that reloads the current page.
         ///
         /// Parameter `sender`: The object that sent this message.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(reload:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reload_(&self, sender: Option<&AnyObject>);
@@ -1081,6 +1100,10 @@ impl WKWebView {
         /// end-to-end revalidation using cache-validating conditionals if possible.
         ///
         /// Parameter `sender`: The object that sent this message.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(reloadFromOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadFromOrigin_(&self, sender: Option<&AnyObject>);
@@ -1089,6 +1112,10 @@ impl WKWebView {
         /// page.
         ///
         /// Parameter `sender`: The object that sent this message.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(stopLoading:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopLoading_(&self, sender: Option<&AnyObject>);

@@ -114,6 +114,10 @@ impl NSUserDefaults {
 
         #[cfg(feature = "NSString")]
         /// -setObject:forKey: immediately stores a value (or removes the value if nil is passed as the value) for the provided key in the search list entry for the receiver's suite name in the current user and any host, then asynchronously stores the value persistently, where it is made available to other processes.
+        ///
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setObject:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKey(&self, value: Option<&AnyObject>, default_name: &NSString);
@@ -226,6 +230,10 @@ impl NSUserDefaults {
         /// -registerDefaults: adds the registrationDictionary to the last item in every search list. This means that after NSUserDefaults has looked for a value in every other valid location, it will look in registered defaults, making them useful as a "fallback" value. Registered defaults are never stored between runs of an application, and are visible only to the application that registers them.
         ///
         /// Default values from Defaults Configuration Files will automatically be registered.
+        ///
+        /// # Safety
+        ///
+        /// `registration_dictionary` generic should be of the correct type.
         #[unsafe(method(registerDefaults:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerDefaults(
@@ -267,6 +275,9 @@ impl NSUserDefaults {
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `domain` generic should be of the correct type.
         #[unsafe(method(setVolatileDomain:forName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVolatileDomain_forName(
@@ -298,6 +309,10 @@ impl NSUserDefaults {
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// -setPersistentDomain:forName: replaces all values in the search list entry specified by 'domainName', the current user, and any host, with the values in 'domain'. The change will be persisted.
+        ///
+        /// # Safety
+        ///
+        /// `domain` generic should be of the correct type.
         #[unsafe(method(setPersistentDomain:forName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPersistentDomain_forName(

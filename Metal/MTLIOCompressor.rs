@@ -34,6 +34,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `path` must be a valid pointer.
     #[cfg(feature = "MTLDevice")]
     pub fn MTLIOCreateCompressionContext(
         path: NonNull<c_char>,
@@ -43,6 +46,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `context` must be a valid pointer.
+    /// - `data` must be a valid pointer.
     pub fn MTLIOCompressionContextAppendData(
         context: MTLIOCompressionContext,
         data: NonNull<c_void>,
@@ -51,6 +58,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     pub fn MTLIOFlushAndDestroyCompressionContext(
         context: MTLIOCompressionContext,
     ) -> MTLIOCompressionStatus;

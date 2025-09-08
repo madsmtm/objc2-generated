@@ -77,6 +77,11 @@ unsafe impl ConcreteType for CFMachPort {
 }
 
 impl CFMachPort {
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
+    /// - `should_free_info` must be a valid pointer.
     #[doc(alias = "CFMachPortCreate")]
     #[inline]
     pub unsafe fn new(
@@ -97,6 +102,11 @@ impl CFMachPort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
+    /// - `should_free_info` must be a valid pointer.
     #[doc(alias = "CFMachPortCreateWithPort")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -132,6 +142,9 @@ impl CFMachPort {
         unsafe { CFMachPortGetPort(self) }
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFMachPortGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFMachPortContext) {
@@ -171,6 +184,9 @@ impl CFMachPort {
         unsafe { CFMachPortGetInvalidationCallBack(self) }
     }
 
+    /// # Safety
+    ///
+    /// `callout` must be implemented correctly.
     #[doc(alias = "CFMachPortSetInvalidationCallBack")]
     #[inline]
     pub unsafe fn set_invalidation_call_back(&self, callout: CFMachPortInvalidationCallBack) {

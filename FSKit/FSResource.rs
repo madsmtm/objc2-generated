@@ -296,6 +296,10 @@ impl FSBlockDeviceResource {
         /// - offset: The offset into the resource from which to start reading.
         /// - length: A maximum number of bytes to read. The completion handler receives a parameter with the actual number of bytes read.
         /// - completionHandler: A block that executes after the read operation completes. If successful, the first parameter contains the number of bytes actually read. In the case of an error, the second parameter contains a non-`nil` error. This value is `EFAULT` if `buffer` is `NULL`, or `errno` if reading from the resource failed.
+        ///
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(readInto:startingAt:length:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readInto_startingAt_length_completionHandler(
@@ -320,6 +324,10 @@ impl FSBlockDeviceResource {
         /// - error: On return, any error encountered while reading data, or `nil` if no error occurred.
         ///
         /// - Returns: The actual number of bytes read.
+        ///
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(readInto:startingAt:length:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readInto_startingAt_length_error(
@@ -341,6 +349,10 @@ impl FSBlockDeviceResource {
         /// - offset: The offset into the resource from which to start writing.
         /// - length: A maximum number of bytes to write. The completion handler receives a parameter with the actual number of bytes write.
         /// - completionHandler: A block that executes after the write operation completes. If successful, the first parameter contains the number of bytes actually written. In the case of an error, the second parameter contains a non-`nil` error. This value is `EFAULT` if `buffer` is `NULL`, or `errno` if writing to the resource failed.
+        ///
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(writeFrom:startingAt:length:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeFrom_startingAt_length_completionHandler(
@@ -365,6 +377,10 @@ impl FSBlockDeviceResource {
         /// - error: On return, any error encountered while writing data, or `nil` if no error occurred.
         ///
         /// - Returns: The actual number of bytes written.
+        ///
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(writeFrom:startingAt:length:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeFrom_startingAt_length_error(
@@ -393,6 +409,10 @@ impl FSBlockDeviceResource {
         /// - error: On return, any error encountered while reading data, or `nil` if no error occurred.
         ///
         /// - Returns: A Boolean value indicating whether the metadata read succeeded.
+        ///
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(metadataReadInto:startingAt:length:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataReadInto_startingAt_length_error(
@@ -420,6 +440,10 @@ impl FSBlockDeviceResource {
         /// - error: On return, any error encountered while writing data, or `nil` if no error occurred.
         ///
         /// - Returns: A Boolean value indicating whether the metadata write succeeded.
+        ///
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(metadataWriteFrom:startingAt:length:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataWriteFrom_startingAt_length_error(
@@ -454,6 +478,10 @@ impl FSBlockDeviceResource {
         /// - error: On return, any error encountered while writing data, or `nil` if no error occurred.
         ///
         /// - Returns: A Boolean value indicating whether the metadata write succeeded.
+        ///
+        /// # Safety
+        ///
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(delayedMetadataWriteFrom:startingAt:length:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn delayedMetadataWriteFrom_startingAt_length_error(

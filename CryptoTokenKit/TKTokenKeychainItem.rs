@@ -26,6 +26,10 @@ impl TKTokenKeychainItem {
     extern_methods!(
         #[cfg(feature = "TKToken")]
         /// Initializes item with objectID.
+        ///
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(initWithObjectID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjectID(
@@ -67,6 +71,10 @@ impl TKTokenKeychainItem {
         /// Setter for [`constraints`][Self::constraints].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `constraints` generic should be of the correct type.
         #[unsafe(method(setConstraints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstraints(
@@ -103,6 +111,10 @@ impl TKTokenKeychainCertificate {
         #[cfg(all(feature = "TKToken", feature = "objc2-security"))]
         /// initialize TKTokenKeychainCertificate with data from SecCertificateRef.  Use SecCertificateCreateWithData to obtain SecCertificateRef.
         /// `constraints`property is initialized indicating that reading of certificate is always allowed, all other operations are disallowed.
+        ///
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(initWithCertificate:objectID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCertificate_objectID(
@@ -112,6 +124,9 @@ impl TKTokenKeychainCertificate {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "TKToken")]
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(initWithObjectID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjectID(
@@ -161,6 +176,10 @@ impl TKTokenKeychainKey {
     extern_methods!(
         #[cfg(all(feature = "TKToken", feature = "objc2-security"))]
         /// Initialize TKTokenKeychainKey with informations from SecCertificateRef associated with the key.  Use SecCertificateCreateWithData to obtain SecCertificateRef.  If NULL is passed instead of certificate, all properties of created instance must be initialized manually.
+        ///
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(initWithCertificate:objectID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCertificate_objectID(
@@ -170,6 +189,9 @@ impl TKTokenKeychainKey {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "TKToken")]
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(initWithObjectID:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjectID(
@@ -324,6 +346,10 @@ impl TKTokenKeychainContents {
 
         #[cfg(feature = "TKToken")]
         /// Returns key with specified objectID.  Fills error with TKTokenErrorCodeObjectNotFound if no such key exists.
+        ///
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(keyForObjectID:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyForObjectID_error(
@@ -333,6 +359,10 @@ impl TKTokenKeychainContents {
 
         #[cfg(feature = "TKToken")]
         /// Returns certificate with specified objectID.  Fills error with TKTokenErrorCodeObjectNotFound if no such certificate exists.
+        ///
+        /// # Safety
+        ///
+        /// `object_id` should be of the correct type.
         #[unsafe(method(certificateForObjectID:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn certificateForObjectID_error(

@@ -147,6 +147,10 @@ impl VNCoreMLRequest {
         ///
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithModel:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithModel_completionHandler(
@@ -160,6 +164,9 @@ impl VNCoreMLRequest {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(

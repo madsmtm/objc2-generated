@@ -196,6 +196,9 @@ impl NSFontDescriptor {
             &self,
         ) -> Retained<NSDictionary<NSFontDescriptorAttributeName, AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(fontDescriptorWithFontAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontDescriptorWithFontAttributes(
@@ -217,6 +220,9 @@ impl NSFontDescriptor {
             matrix: &NSAffineTransform,
         ) -> Retained<NSFontDescriptor>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(initWithFontAttributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFontAttributes(
@@ -238,6 +244,9 @@ impl NSFontDescriptor {
             mandatory_keys: Option<&NSSet<NSFontDescriptorAttributeName>>,
         ) -> Option<Retained<NSFontDescriptor>>;
 
+        /// # Safety
+        ///
+        /// `attributes` generic should be of the correct type.
         #[unsafe(method(fontDescriptorByAddingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontDescriptorByAddingAttributes(
@@ -624,6 +633,9 @@ extern "C" {
 /// NSFontDescriptor_TextStyles.
 impl NSFontDescriptor {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(preferredFontDescriptorForTextStyle:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFontDescriptorForTextStyle_options(

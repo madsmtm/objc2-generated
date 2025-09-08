@@ -135,6 +135,11 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a reference to the new SCDynamicStore session.
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "SCDynamicStoreCreate")]
     #[inline]
     pub unsafe fn new(
@@ -213,6 +218,12 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a reference to the new SCDynamicStore session.
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// - `store_options` generics must be of the correct type.
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "SCDynamicStoreCreateWithOptions")]
     #[inline]
     pub unsafe fn with_options(
@@ -346,6 +357,10 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the key was added; FALSE if the key was already
     /// present in the dynamic store or if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "SCDynamicStoreAddValue")]
     #[inline]
     pub unsafe fn add_value(
@@ -377,6 +392,10 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the key was added; FALSE if the key was already
     /// present in the dynamic store or if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "SCDynamicStoreAddTemporaryValue")]
     #[inline]
     pub unsafe fn add_temporary_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -430,6 +449,11 @@ impl SCDynamicStore {
     /// key-value pairs of keys that matched the specified patterns;
     /// NULL if an error was encountered.
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// - `keys` generic must be of the correct type.
+    /// - `patterns` generic must be of the correct type.
     #[doc(alias = "SCDynamicStoreCopyMultiple")]
     #[inline]
     pub unsafe fn multiple(
@@ -458,6 +482,10 @@ impl SCDynamicStore {
     /// Parameter `value`: The value to add to or replace in the dynamic store.
     ///
     /// Returns: Returns TRUE if the key was updated; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// `value` should be of the correct type.
     #[doc(alias = "SCDynamicStoreSetValue")]
     #[inline]
     pub unsafe fn set_value(
@@ -487,6 +515,12 @@ impl SCDynamicStore {
     /// Parameter `keysToNotify`: An array of keys to flag as changed (without changing their values).
     ///
     /// Returns: Returns TRUE if the dynamic store updates were successful; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// - `keys_to_set` generics must be of the correct type.
+    /// - `keys_to_remove` generic must be of the correct type.
+    /// - `keys_to_notify` generic must be of the correct type.
     #[doc(alias = "SCDynamicStoreSetMultiple")]
     #[inline]
     pub unsafe fn set_multiple(
@@ -563,6 +597,11 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the set of notification keys and patterns was successfully
     /// updated; FALSE if an error was encountered.
+    ///
+    /// # Safety
+    ///
+    /// - `keys` generic must be of the correct type.
+    /// - `patterns` generic must be of the correct type.
     #[doc(alias = "SCDynamicStoreSetNotificationKeys")]
     #[inline]
     pub unsafe fn set_notification_keys(

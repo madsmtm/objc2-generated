@@ -159,6 +159,9 @@ impl SKOverlayAppConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setUserDismissible(&self, user_dismissible: bool);
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setAdditionalValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
@@ -261,6 +264,9 @@ impl SKOverlayAppClipConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: SKOverlayPosition);
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setAdditionalValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);

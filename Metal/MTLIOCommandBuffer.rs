@@ -43,6 +43,10 @@ extern_protocol!(
     pub unsafe trait MTLIOCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "block2")]
         /// Add a block to be called when this command buffer has completed execution.
+        ///
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(addCompletedHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn addCompletedHandler(&self, block: MTLIOCommandBufferHandler);
@@ -50,6 +54,10 @@ extern_protocol!(
         #[cfg(feature = "MTLIOCommandQueue")]
         /// Encodes a command that loads from a handle
         /// and offset into a memory location.
+        ///
+        /// # Safety
+        ///
+        /// `pointer` must be a valid pointer.
         #[unsafe(method(loadBytes:size:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn loadBytes_size_sourceHandle_sourceHandleOffset(

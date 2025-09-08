@@ -168,6 +168,10 @@ impl ARCoachingOverlayView {
         /// Setter for [`sessionProvider`][Self::sessionProvider].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `session_provider` must implement ARSessionProviding.
         #[unsafe(method(setSessionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSessionProvider(&self, session_provider: Option<&NSObject>);

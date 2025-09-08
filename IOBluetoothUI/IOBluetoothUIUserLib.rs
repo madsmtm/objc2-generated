@@ -73,6 +73,10 @@ pub const kIOBluetoothUISuccess: c_int = -1000;
 pub const kIOBluetoothUIUserCanceledErr: c_int = -1001;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `cancel_button_title` might not allow `None`.
+    /// - `description_text` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn IOBluetoothValidateHardwareWithDescription(
         cancel_button_title: Option<&CFString>,

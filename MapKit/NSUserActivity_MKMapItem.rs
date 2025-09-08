@@ -23,6 +23,10 @@ pub unsafe trait NSUserActivityMKMapItem:
 
         #[cfg(feature = "MKMapItem")]
         /// Setter for [`mapItem`][Self::mapItem].
+        ///
+        /// # Safety
+        ///
+        /// `map_item` might not allow `None`.
         #[unsafe(method(setMapItem:))]
         #[unsafe(method_family = none)]
         unsafe fn setMapItem(&self, map_item: Option<&MKMapItem>);

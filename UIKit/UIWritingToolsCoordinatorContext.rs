@@ -126,6 +126,10 @@ impl UIWritingToolsCoordinatorContext {
         /// in your text storage.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
@@ -136,6 +140,10 @@ impl UIWritingToolsCoordinatorContext {
         /// at creation time. Use this value to identify the context object within your app.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(range))]
         #[unsafe(method_family = none)]
         pub unsafe fn range(&self) -> NSRange;
@@ -147,6 +155,10 @@ impl UIWritingToolsCoordinatorContext {
         /// context object within your app.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
@@ -169,6 +181,10 @@ impl UIWritingToolsCoordinatorContext {
         /// don’t let someone edit the text in this range directly until Writing Tools finishes.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(resolvedRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedRange(&self) -> NSRange;

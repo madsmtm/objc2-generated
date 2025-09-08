@@ -136,6 +136,11 @@ extern "C-unwind" {
     /// Note that only parameter changes issued through AUParameterSet will generate
     /// notifications to listeners; thus, in most cases, AudioUnit clients should use
     /// AUParameterSet in preference to AudioUnitSetParameterValue.
+    ///
+    /// # Safety
+    ///
+    /// - `out_listener` must be a valid pointer.
+    /// - `in_block` must be a valid pointer.
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioComponent",
@@ -175,6 +180,12 @@ extern "C-unwind" {
     /// Note that only parameter changes issued through AUParameterSet will generate
     /// notifications to listeners; thus, in most cases, AudioUnit clients should use
     /// AUParameterSet in preference to AudioUnitSetParameter.
+    ///
+    /// # Safety
+    ///
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer.
+    /// - `out_listener` must be a valid pointer.
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioComponent",
@@ -194,6 +205,10 @@ extern "C-unwind" {
     /// Dispose a parameter listener object.
     ///
     /// Parameter `inListener`: The parameter listener to dispose.
+    ///
+    /// # Safety
+    ///
+    /// `in_listener` must be a valid pointer.
     pub fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus;
 }
 
@@ -211,6 +226,12 @@ extern "C-unwind" {
     /// Associates an arbitrary object (often a user interface widget) with an
     /// AudioUnitParameter, and delivers notifications to the specified listener, telling it
     /// that the object needs to be informed of the parameter's value change.
+    ///
+    /// # Safety
+    ///
+    /// - `in_listener` must be a valid pointer.
+    /// - `in_object` must be a valid pointer or null.
+    /// - `in_parameter` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUListenerAddParameter(
         in_listener: AUParameterListenerRef,
@@ -227,6 +248,12 @@ extern "C-unwind" {
     /// Parameter `inObject`: The object which is no longer interested in the value of the parameter.
     ///
     /// Parameter `inParameter`: The parameter whose value changes are to stop generating callbacks.
+    ///
+    /// # Safety
+    ///
+    /// - `in_listener` must be a valid pointer.
+    /// - `in_object` must be a valid pointer or null.
+    /// - `in_parameter` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUListenerRemoveParameter(
         in_listener: AUParameterListenerRef,
@@ -256,6 +283,12 @@ extern "C-unwind" {
     /// Calls AudioUnitSetParameter, and performs/schedules notification callbacks to all
     /// parameter listeners, for that parameter -- except that no callback will be generated to
     /// the inListener/inObject pair.
+    ///
+    /// # Safety
+    ///
+    /// - `in_sending_listener` must be a valid pointer or null.
+    /// - `in_sending_object` must be a valid pointer or null.
+    /// - `in_parameter` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterSet(
         in_sending_listener: AUParameterListenerRef,
@@ -290,6 +323,12 @@ extern "C-unwind" {
     /// kAUParameterListener_AnyParameter. In this case, ANY listener for ANY parameter value
     /// changes on the specified AudioUnit will be notified of the current value of that
     /// parameter.
+    ///
+    /// # Safety
+    ///
+    /// - `in_sending_listener` must be a valid pointer or null.
+    /// - `in_sending_object` must be a valid pointer or null.
+    /// - `in_parameter` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterListenerNotify(
         in_sending_listener: AUParameterListenerRef,
@@ -308,6 +347,10 @@ extern "C-unwind" {
     /// the supplied linear value to a value that is natural to that parameter.
     ///
     /// Returns: The converted parameter value, in the parameter's natural units.
+    ///
+    /// # Safety
+    ///
+    /// `in_parameter` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterValueFromLinear(
         in_linear_value: f32,
@@ -326,6 +369,10 @@ extern "C-unwind" {
     /// the supplied parameter value to a corresponding linear value.
     ///
     /// Returns: A number 0.0-1.0.
+    ///
+    /// # Safety
+    ///
+    /// `in_parameter` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterValueToLinear(
         in_parameter_value: AudioUnitParameterValue,
@@ -363,6 +410,11 @@ extern "C-unwind" {
 /// 2     | 100-999      |  0
 /// 3     | 1000-9990    |  -1
 /// 4     | 10000-99900  |  -2
+///
+/// # Safety
+///
+/// - `in_parameter` must be a valid pointer.
+/// - `in_text_buffer` must be a valid pointer.
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AUParameterFormatValue(

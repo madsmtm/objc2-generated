@@ -267,6 +267,10 @@ extern "C-unwind" {
     ///
     /// Parameter `inCompletionBlock`: Optional block to execute once preparation is complete.  May be NULL.
     /// The block is given the OSStatus result of the preparation.
+    ///
+    /// # Safety
+    ///
+    /// `io_reserved` must be a valid pointer or null.
     #[cfg(feature = "block2")]
     pub fn AudioConverterPrepare(
         in_flags: u32,
@@ -332,6 +336,12 @@ extern "C-unwind" {
     /// by the newly created AudioConverter can be obtained by getting the
     /// properties `kAudioConverterCurrentInputStreamDescription` and
     /// `kAudioConverterCurrentOutputStreamDescription` from it.
+    ///
+    /// # Safety
+    ///
+    /// - `in_source_format` must be a valid pointer.
+    /// - `in_destination_format` must be a valid pointer.
+    /// - `out_audio_converter` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNew(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -358,6 +368,13 @@ extern "C-unwind" {
     ///
     /// This function is identical to AudioConverterNew(), except that the client may
     /// explicitly choose which codec to instantiate if there is more than one choice.
+    ///
+    /// # Safety
+    ///
+    /// - `in_source_format` must be a valid pointer.
+    /// - `in_destination_format` must be a valid pointer.
+    /// - `in_class_descriptions` must be a valid pointer.
+    /// - `out_audio_converter` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNewSpecific(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -384,6 +401,12 @@ extern "C-unwind" {
     ///
     /// This is an alternative to AudioConverterNew which supports enabling
     /// one or more optional configurations for the new AudioConverter.
+    ///
+    /// # Safety
+    ///
+    /// - `in_source_format` must be a valid pointer.
+    /// - `in_destination_format` must be a valid pointer.
+    /// - `out_audio_converter` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNewWithOptions(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -400,6 +423,10 @@ extern "C-unwind" {
     /// Parameter `inAudioConverter`: The AudioConverter to dispose.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// `in_audio_converter` must be a valid pointer.
     pub fn AudioConverterDispose(in_audio_converter: AudioConverterRef) -> OSStatus;
 }
 
@@ -414,6 +441,10 @@ extern "C-unwind" {
     /// Should be called whenever there is a discontinuity in the source audio stream
     /// being provided to the converter. This will flush any internal buffers in the
     /// converter.
+    ///
+    /// # Safety
+    ///
+    /// `in_audio_converter` must be a valid pointer.
     pub fn AudioConverterReset(in_audio_converter: AudioConverterRef) -> OSStatus;
 }
 
@@ -430,6 +461,12 @@ extern "C-unwind" {
     /// Parameter `outWritable`: If non-null, on exit, indicates whether the property value is writable.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_converter` must be a valid pointer.
+    /// - `out_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     pub fn AudioConverterGetPropertyInfo(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -452,6 +489,12 @@ extern "C-unwind" {
     /// Parameter `outPropertyData`: On exit, the property value.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_converter` must be a valid pointer.
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     pub fn AudioConverterGetProperty(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -473,6 +516,11 @@ extern "C-unwind" {
     /// Parameter `inPropertyData`: Points to the new property value.
     ///
     /// Returns: An OSStatus result code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_converter` must be a valid pointer.
+    /// - `in_property_data` must be a valid pointer.
     pub fn AudioConverterSetProperty(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -504,6 +552,13 @@ extern "C-unwind" {
     /// includes sample rate conversions and most compressed formats. In these cases,
     /// use AudioConverterFillComplexBuffer. Generally this function is only appropriate for
     /// PCM-to-PCM conversions where there is no sample rate conversion.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_converter` must be a valid pointer.
+    /// - `in_input_data` must be a valid pointer.
+    /// - `io_output_data_size` must be a valid pointer.
+    /// - `out_output_data` must be a valid pointer.
     pub fn AudioConverterConvertBuffer(
         in_audio_converter: AudioConverterRef,
         in_input_data_size: u32,
@@ -617,6 +672,15 @@ extern "C-unwind" {
     /// pointed to by outPacketDescription.  The array must have the capacity to hold a packet description
     /// for each output packet that may be written.  A packet description array is expected even if only
     /// a single output packet is to be written.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_converter` must be a valid pointer.
+    /// - `in_input_data_proc` must be implemented correctly.
+    /// - `in_input_data_proc_user_data` must be a valid pointer or null.
+    /// - `io_output_data_packet_size` must be a valid pointer.
+    /// - `out_output_data` must be a valid pointer.
+    /// - `out_packet_description` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBuffer(
         in_audio_converter: AudioConverterRef,
@@ -648,6 +712,12 @@ extern "C-unwind" {
     /// includes sample rate conversions and most compressed formats. In these cases,
     /// use AudioConverterFillComplexBuffer. Generally this function is only appropriate for
     /// PCM-to-PCM conversions where there is no sample rate conversion.
+    ///
+    /// # Safety
+    ///
+    /// - `in_audio_converter` must be a valid pointer.
+    /// - `in_input_data` must be a valid pointer.
+    /// - `out_output_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterConvertComplexBuffer(
         in_audio_converter: AudioConverterRef,
@@ -705,6 +775,13 @@ pub type AudioConverterInputDataProc = Option<
 >;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_audio_converter` must be a valid pointer.
+    /// - `in_input_data_proc` must be implemented correctly.
+    /// - `in_input_data_proc_user_data` must be a valid pointer or null.
+    /// - `io_output_data_size` must be a valid pointer.
+    /// - `out_output_data` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AudioConverterFillBuffer(
         in_audio_converter: AudioConverterRef,

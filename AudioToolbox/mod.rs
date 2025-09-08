@@ -4408,6 +4408,10 @@ pub const kAudioHardwareServiceDeviceProperty_VirtualMasterBalance: AudioObjectP
 /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
 ///
 /// Returns: A Boolean indicating whether or not the AudioObject has the given property.
+///
+/// # Safety
+///
+/// `in_address` must be a valid pointer.
 #[cfg(feature = "objc2-core-audio")]
 #[deprecated = "no longer supported"]
 #[inline]
@@ -4436,6 +4440,11 @@ extern "C-unwind" {
     /// Parameter `outIsSettable`: A Boolean indicating whether or not the property can be set.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `out_is_settable` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceIsPropertySettable(
@@ -4463,6 +4472,12 @@ extern "C-unwind" {
     /// Parameter `outDataSize`: A UInt32 indicating how many bytes the data for the given property occupies.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_qualifier_data` must be a valid pointer.
+    /// - `out_data_size` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceGetPropertyDataSize(
@@ -4497,6 +4512,13 @@ extern "C-unwind" {
     /// property.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_qualifier_data` must be a valid pointer.
+    /// - `io_data_size` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceGetPropertyData(
@@ -4534,6 +4556,12 @@ extern "C-unwind" {
     /// Parameter `inData`: The buffer containing the data to be used to change the property's value.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_qualifier_data` must be a valid pointer.
+    /// - `in_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceSetPropertyData(
@@ -4560,6 +4588,12 @@ extern "C-unwind" {
     /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_listener` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceAddPropertyListener(
@@ -4584,6 +4618,12 @@ extern "C-unwind" {
     /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_listener` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceRemovePropertyListener(
@@ -4622,6 +4662,11 @@ extern "C-unwind" {
     /// if not set, then the Create call will fail if the URL is an existing file
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_format` must be a valid pointer.
     #[cfg(all(
         feature = "AudioComponent",
         feature = "objc2-core-audio-types",
@@ -4649,6 +4694,10 @@ extern "C-unwind" {
     /// Parameter `inFileDescriptor`: an open file descriptor.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `in_component` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     pub fn AudioFileComponentOpenURL(
         in_component: AudioFileComponent,
@@ -4674,6 +4723,15 @@ extern "C-unwind" {
     /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_client_data` must be a valid pointer.
+    /// - `in_read_func` must be implemented correctly.
+    /// - `in_write_func` must be implemented correctly.
+    /// - `in_get_size_func` must be implemented correctly.
+    /// - `in_set_size_func` must be implemented correctly.
     #[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
     pub fn AudioFileComponentOpenWithCallbacks(
         in_component: AudioFileComponent,
@@ -4708,6 +4766,16 @@ extern "C-unwind" {
     /// Parameter `inFlags`: relevant flags for creating/opening the file. Currently zero.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_client_data` must be a valid pointer.
+    /// - `in_read_func` must be implemented correctly.
+    /// - `in_write_func` must be implemented correctly.
+    /// - `in_get_size_func` must be implemented correctly.
+    /// - `in_set_size_func` must be implemented correctly.
+    /// - `in_format` must be a valid pointer.
     #[cfg(all(
         feature = "AudioComponent",
         feature = "AudioFile",
@@ -4732,6 +4800,10 @@ extern "C-unwind" {
     /// Parameter `inComponent`: an AudioFileComponent
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `in_component` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentCloseFile(in_component: AudioFileComponent) -> OSStatus;
 }
@@ -4742,6 +4814,10 @@ extern "C-unwind" {
     /// Parameter `inComponent`: an AudioFileComponent
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `in_component` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentOptimize(in_component: AudioFileComponent) -> OSStatus;
 }
@@ -4763,6 +4839,12 @@ extern "C-unwind" {
 /// Parameter `outBuffer`: outBuffer should be a void * to user allocated memory large enough for the requested bytes.
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `io_num_bytes` must be a valid pointer.
+/// - `out_buffer` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentReadBytes(
@@ -4806,6 +4888,12 @@ pub unsafe extern "C-unwind" fn AudioFileComponentReadBytes(
 /// Parameter `inBuffer`: inBuffer should be a void * containing the bytes to be written
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `io_num_bytes` must be a valid pointer.
+/// - `in_buffer` must be a valid pointer.
 #[cfg(feature = "AudioComponent")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentWriteBytes(
@@ -4861,6 +4949,14 @@ pub unsafe extern "C-unwind" fn AudioFileComponentWriteBytes(
 /// packet size.
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `out_num_bytes` must be a valid pointer.
+/// - `out_packet_descriptions` must be a valid pointer or null.
+/// - `io_num_packets` must be a valid pointer.
+/// - `out_buffer` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentReadPackets(
@@ -4926,6 +5022,14 @@ pub unsafe extern "C-unwind" fn AudioFileComponentReadPackets(
 /// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory.
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `io_num_bytes` must be a valid pointer.
+/// - `out_packet_descriptions` must be a valid pointer or null.
+/// - `io_num_packets` must be a valid pointer.
+/// - `out_buffer` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentReadPacketData(
@@ -4983,6 +5087,13 @@ pub unsafe extern "C-unwind" fn AudioFileComponentReadPacketData(
 /// Parameter `inBuffer`: a void * to user allocated memory containing the packets to write.
 ///
 /// Returns: returns noErr if successful.
+///
+/// # Safety
+///
+/// - `in_component` must be a valid pointer.
+/// - `in_packet_descriptions` must be a valid pointer or null.
+/// - `io_num_packets` must be a valid pointer.
+/// - `in_buffer` must be a valid pointer.
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentWritePackets(
@@ -5031,6 +5142,12 @@ extern "C-unwind" {
     /// Parameter `outWritable`: will be set to 1 if writable, or 0 if read only.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_property_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetPropertyInfo(
         in_component: AudioFileComponent,
@@ -5052,6 +5169,12 @@ extern "C-unwind" {
     /// Parameter `outPropertyData`: the buffer in which to write the property data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetProperty(
         in_component: AudioFileComponent,
@@ -5073,6 +5196,11 @@ extern "C-unwind" {
     /// Parameter `inPropertyData`: the buffer containing the property data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_property_data` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentSetProperty(
         in_component: AudioFileComponent,
@@ -5096,6 +5224,11 @@ extern "C-unwind" {
     /// Parameter `outNumberItems`: on output, if successful, number of chunks of this type in the file.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_number_items` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentCountUserData(
         in_component: AudioFileComponent,
@@ -5116,6 +5249,11 @@ extern "C-unwind" {
     /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_user_data_size` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataSize(
         in_component: AudioFileComponent,
@@ -5137,6 +5275,11 @@ extern "C-unwind" {
     /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_user_data_size` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataSize64(
         in_component: AudioFileComponent,
@@ -5160,6 +5303,12 @@ extern "C-unwind" {
     /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `io_user_data_size` must be a valid pointer.
+    /// - `out_user_data` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserData(
         in_component: AudioFileComponent,
@@ -5186,6 +5335,12 @@ extern "C-unwind" {
     /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `io_user_data_size` must be a valid pointer.
+    /// - `out_user_data` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataAtOffset(
         in_component: AudioFileComponent,
@@ -5212,6 +5367,11 @@ extern "C-unwind" {
     /// (only the contents of the chunk, not including the chunk header).
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_user_data` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentSetUserData(
         in_component: AudioFileComponent,
@@ -5232,6 +5392,10 @@ extern "C-unwind" {
     /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `in_component` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentRemoveUserData(
         in_component: AudioFileComponent,
@@ -5250,6 +5414,11 @@ extern "C-unwind" {
     /// Parameter `outResult`: on output, is set to 1 if the extension is recognized by this component, 0 if not.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_result` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     pub fn AudioFileComponentExtensionIsThisFormat(
         in_component: AudioFileComponent,
@@ -5270,6 +5439,12 @@ extern "C-unwind" {
     /// Parameter `outResult`: on output, is set to 1 if the file is recognized by this component, 0 if not.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_data` must be a valid pointer.
+    /// - `out_result` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentFileDataIsThisFormat(
         in_component: AudioFileComponent,
@@ -5289,6 +5464,11 @@ extern "C-unwind" {
     /// Parameter `outResult`: on output, is set to 1 if the file is recognized by this component, 0 if not.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `out_result` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     #[deprecated = "no longer supported"]
     pub fn AudioFileComponentFileIsThisFormat(
@@ -5316,6 +5496,16 @@ extern "C-unwind" {
     /// Parameter `outResult`: on output, is set to 1 if the file data is recognized by this component, 0 if not.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_client_data` must be a valid pointer or null.
+    /// - `in_read_func` must be implemented correctly.
+    /// - `in_write_func` must be implemented correctly.
+    /// - `in_get_size_func` must be implemented correctly.
+    /// - `in_set_size_func` must be implemented correctly.
+    /// - `out_result` must be a valid pointer.
     #[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
     #[deprecated = "no longer supported"]
     pub fn AudioFileComponentDataIsThisFormat(
@@ -5344,6 +5534,12 @@ extern "C-unwind" {
     /// you will need a buffer of this size.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `out_property_size` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetGlobalInfoSize(
         in_component: AudioFileComponent,
@@ -5370,6 +5566,13 @@ extern "C-unwind" {
     /// Parameter `outPropertyData`: the buffer in which to write the property data.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `in_component` must be a valid pointer.
+    /// - `in_specifier` must be a valid pointer or null.
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetGlobalInfo(
         in_component: AudioFileComponent,
@@ -6344,6 +6547,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `out_ca_clock` must be a valid pointer.
     pub fn CAClockNew(in_reserved_flags: u32, out_ca_clock: NonNull<CAClockRef>) -> OSStatus;
 }
 
@@ -6355,6 +6562,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` must be a valid pointer.
     pub fn CAClockDispose(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -6377,6 +6588,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `out_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     pub fn CAClockGetPropertyInfo(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -6405,6 +6622,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     pub fn CAClockGetProperty(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -6430,6 +6653,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `in_property_data` must be a valid pointer.
     pub fn CAClockSetProperty(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -6457,6 +6685,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `in_listener_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer.
     pub fn CAClockAddListener(
         in_ca_clock: CAClockRef,
         in_listener_proc: CAClockListenerProc,
@@ -6481,6 +6715,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `in_listener_proc` must be implemented correctly.
+    /// - `in_user_data` must be a valid pointer.
     pub fn CAClockRemoveListener(
         in_ca_clock: CAClockRef,
         in_listener_proc: CAClockListenerProc,
@@ -6496,6 +6736,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` must be a valid pointer.
     pub fn CAClockStart(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -6507,6 +6751,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` must be a valid pointer.
     pub fn CAClockStop(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -6525,6 +6773,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` must be a valid pointer.
     pub fn CAClockArm(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -6536,6 +6788,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` must be a valid pointer.
     pub fn CAClockDisarm(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -6553,6 +6809,10 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// `in_ca_clock` must be a valid pointer.
     pub fn CAClockSetPlayRate(in_ca_clock: CAClockRef, in_play_rate: f64) -> OSStatus;
 }
 
@@ -6573,6 +6833,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `out_play_rate` must be a valid pointer.
     pub fn CAClockGetPlayRate(in_ca_clock: CAClockRef, out_play_rate: NonNull<f64>) -> OSStatus;
 }
 
@@ -6596,6 +6861,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `out_smpte_time` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CAClockSecondsToSMPTETime(
         in_ca_clock: CAClockRef,
@@ -6622,6 +6892,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `in_smpte_time` must be a valid pointer.
+    /// - `out_seconds` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CAClockSMPTETimeToSeconds(
         in_ca_clock: CAClockRef,
@@ -6657,6 +6933,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `out_bar_beat_time` must be a valid pointer.
     #[cfg(feature = "MusicPlayer")]
     pub fn CAClockBeatsToBarBeatTime(
         in_ca_clock: CAClockRef,
@@ -6683,6 +6964,12 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `in_bar_beat_time` must be a valid pointer.
+    /// - `out_beats` must be a valid pointer.
     #[cfg(feature = "MusicPlayer")]
     pub fn CAClockBarBeatTimeToBeats(
         in_ca_clock: CAClockRef,
@@ -6707,6 +6994,11 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ca_clock` must be a valid pointer.
+    /// - `in_midi_packet_list` must be a valid pointer.
     #[cfg(feature = "objc2-core-midi")]
     pub fn CAClockParseMIDI(
         in_ca_clock: CAClockRef,
@@ -6724,6 +7016,10 @@ extern "C-unwind" {
     /// Parameter `outName`: A pointer to a CFStringRef to be created and returned by the function.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `out_name` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CopyNameFromSoundBank(in_url: &CFURL, out_name: NonNull<*const CFString>) -> OSStatus;
 }
@@ -6749,6 +7045,10 @@ extern "C-unwind" {
     /// Parameter `outInstrumentInfo`: A pointer to a CFArrayRef to be created and returned by the function.
     ///
     /// Returns: returns noErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `out_instrument_info` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CopyInstrumentInfoFromSoundBank(
         in_url: &CFURL,

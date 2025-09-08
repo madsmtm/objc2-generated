@@ -229,6 +229,10 @@ impl CBPeripheralManager {
         /// See also: CBPeripheralManagerOptionShowPowerAlertKey
         ///
         /// See also: CBPeripheralManagerOptionRestoreIdentifierKey
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithDelegate:queue:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate_queue_options(
@@ -264,6 +268,10 @@ impl CBPeripheralManager {
         /// See: peripheralManagerDidStartAdvertising:error:
         ///
         /// See also: CBAdvertisementData.h
+        ///
+        /// # Safety
+        ///
+        /// `advertisement_data` generic should be of the correct type.
         #[unsafe(method(startAdvertising:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAdvertising(
@@ -530,6 +538,10 @@ extern_protocol!(
         /// See also: CBPeripheralManagerRestoredStateServicesKey;
         ///
         /// See also: CBPeripheralManagerRestoredStateAdvertisementDataKey;
+        ///
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[optional]
         #[unsafe(method(peripheralManager:willRestoreState:))]
         #[unsafe(method_family = none)]

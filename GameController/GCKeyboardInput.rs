@@ -56,6 +56,10 @@ impl GCKeyboardInput {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(keyChangedHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyChangedHandler(&self) -> GCKeyboardValueChangedHandler;
@@ -70,6 +74,10 @@ impl GCKeyboardInput {
         /// Setter for [`keyChangedHandler`][Self::keyChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `key_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setKeyChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyChangedHandler(

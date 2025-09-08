@@ -171,6 +171,11 @@ impl CTRunDelegate {
     /// Returns: If run delegate creation was successful, this function will
     /// return a valid reference to an immutable CTRunDelegate
     /// object. Otherwise, this function will return NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `callbacks` must be a valid pointer.
+    /// - `ref_con` must be a valid pointer or null.
     #[doc(alias = "CTRunDelegateCreate")]
     #[inline]
     pub unsafe fn new(
@@ -215,6 +220,10 @@ extern_protocol!(
     #[cfg(feature = "objc2")]
     pub unsafe trait CTAdaptiveImageProviding {
         #[cfg(feature = "objc2-core-graphics")]
+        /// # Safety
+        ///
+        /// - `out_image_offset` must be a valid pointer.
+        /// - `out_image_size` must be a valid pointer.
         #[unsafe(method(imageForProposedSize:scaleFactor:imageOffset:imageSize:))]
         #[unsafe(method_family = none)]
         unsafe fn imageForProposedSize_scaleFactor_imageOffset_imageSize(

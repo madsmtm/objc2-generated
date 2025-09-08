@@ -409,6 +409,9 @@ impl CIRAWFilter {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(filterWithCVPixelBuffer:properties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithCVPixelBuffer_properties(

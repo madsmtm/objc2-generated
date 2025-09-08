@@ -28,6 +28,9 @@ extern_conformance!(
 
 impl CIImageProcessorKernel {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[unsafe(method(processWithInputs:arguments:output:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn processWithInputs_arguments_output_error(
@@ -37,6 +40,9 @@ impl CIImageProcessorKernel {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[unsafe(method(roiForInput:arguments:outputRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn roiForInput_arguments_outputRect(
@@ -46,6 +52,9 @@ impl CIImageProcessorKernel {
         ) -> CGRect;
 
         #[cfg(all(feature = "CIVector", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[unsafe(method(roiTileArrayForInput:arguments:outputRect:))]
         #[unsafe(method_family = none)]
         pub unsafe fn roiTileArrayForInput_arguments_outputRect(
@@ -73,6 +82,9 @@ impl CIImageProcessorKernel {
         pub unsafe fn synchronizeInputs() -> bool;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `args` generic should be of the correct type.
         #[unsafe(method(applyWithExtent:inputs:arguments:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_inputs_arguments_error(

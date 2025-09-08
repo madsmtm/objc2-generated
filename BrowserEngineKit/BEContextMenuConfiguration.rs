@@ -47,6 +47,11 @@ impl BEContextMenuConfiguration {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// For a concrete configuration, use the parent `UIContextMenuConfiguration` class instead.
+        ///
+        /// # Safety
+        ///
+        /// - `preview_provider` must be a valid pointer or null.
+        /// - `action_provider` must be a valid pointer or null.
         #[unsafe(method(configurationWithIdentifier:previewProvider:actionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithIdentifier_previewProvider_actionProvider(

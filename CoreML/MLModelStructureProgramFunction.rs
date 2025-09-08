@@ -37,6 +37,10 @@ impl MLModelStructureProgramFunction {
         /// The named inputs to the function.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<MLModelStructureProgramNamedValueType>>;
@@ -45,6 +49,10 @@ impl MLModelStructureProgramFunction {
         /// The active block in the function.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(block))]
         #[unsafe(method_family = none)]
         pub unsafe fn block(&self) -> Retained<MLModelStructureProgramBlock>;

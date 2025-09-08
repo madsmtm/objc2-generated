@@ -107,6 +107,10 @@ impl private_NSObjectNSDiscardableContentProxy::Sealed for NSObject {}
 unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 
 /// *********    Object Allocation / Deallocation        ******
+///
+/// # Safety
+///
+/// `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllocateObject(
@@ -127,9 +131,15 @@ pub unsafe extern "C-unwind" fn NSAllocateObject(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `object` should be of the correct type.
     pub fn NSDeallocateObject(object: &AnyObject);
 }
 
+/// # Safety
+///
+/// `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[deprecated = "Not supported"]
 #[inline]
@@ -150,6 +160,9 @@ pub unsafe extern "C-unwind" fn NSCopyObject(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// # Safety
+///
+/// `requested_zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSShouldRetainWithZone(
@@ -163,9 +176,15 @@ pub unsafe extern "C-unwind" fn NSShouldRetainWithZone(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `object` should be of the correct type.
     pub fn NSIncrementExtraRefCount(object: &AnyObject);
 }
 
+/// # Safety
+///
+/// `object` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> bool {
     extern "C-unwind" {
@@ -175,5 +194,8 @@ pub unsafe extern "C-unwind" fn NSDecrementExtraRefCountWasZero(object: &AnyObje
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `object` should be of the correct type.
     pub fn NSExtraRefCount(object: &AnyObject) -> NSUInteger;
 }

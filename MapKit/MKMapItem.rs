@@ -110,6 +110,9 @@ impl MKMapItem {
             placemark: &MKPlacemark,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `launch_options` generic should be of the correct type.
         #[unsafe(method(openInMapsWithLaunchOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openInMapsWithLaunchOptions(
@@ -117,6 +120,9 @@ impl MKMapItem {
             launch_options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `launch_options` generic should be of the correct type.
         #[unsafe(method(openMapsWithItems:launchOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openMapsWithItems_launchOptions(
@@ -125,6 +131,9 @@ impl MKMapItem {
         ) -> bool;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `launch_options` generic should be of the correct type.
         #[unsafe(method(openInMapsWithLaunchOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openInMapsWithLaunchOptions_completionHandler(
@@ -134,6 +143,9 @@ impl MKMapItem {
         );
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `launch_options` generic should be of the correct type.
         #[unsafe(method(openMapsWithItems:launchOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openMapsWithItems_launchOptions_completionHandler(

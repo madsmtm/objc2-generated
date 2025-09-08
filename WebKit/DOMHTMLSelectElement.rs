@@ -192,10 +192,17 @@ impl DOMHTMLSelectElement {
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMNode>>;
 
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[unsafe(method(namedItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Retained<DOMNode>>;
 
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `before` might not allow `None`.
         #[unsafe(method(add:before:))]
         #[unsafe(method_family = none)]
         pub unsafe fn add_before(
@@ -255,6 +262,10 @@ impl DOMHTMLSelectElement {
 ))]
 impl DOMHTMLSelectElement {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `element` might not allow `None`.
+        /// - `before` might not allow `None`.
         #[deprecated]
         #[unsafe(method(add::))]
         #[unsafe(method_family = none)]

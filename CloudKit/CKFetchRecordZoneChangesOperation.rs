@@ -49,6 +49,10 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordZoneIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneIDs(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
@@ -57,12 +61,20 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`recordZoneIDs`][Self::recordZoneIDs].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneIDs:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(configurationsByRecordZoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationsByRecordZoneID(
@@ -73,6 +85,10 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`configurationsByRecordZoneID`][Self::configurationsByRecordZoneID].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setConfigurationsByRecordZoneID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationsByRecordZoneID(
@@ -97,11 +113,19 @@ impl CKFetchRecordZoneChangesOperation {
         /// `fetchAllChanges`is YES by default
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(fetchAllChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
 
         /// Setter for [`fetchAllChanges`][Self::fetchAllChanges].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchAllChanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
@@ -115,6 +139,11 @@ impl CKFetchRecordZoneChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[unsafe(method(recordChangedBlock))]
         #[unsafe(method_family = none)]
@@ -125,6 +154,10 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`recordChangedBlock`][Self::recordChangedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[unsafe(method(setRecordChangedBlock:))]
         #[unsafe(method_family = none)]
@@ -142,6 +175,13 @@ impl CKFetchRecordZoneChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(recordWasChangedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordWasChangedBlock(
@@ -152,6 +192,10 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`recordWasChangedBlock`][Self::recordWasChangedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordWasChangedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordWasChangedBlock(
@@ -168,6 +212,12 @@ impl CKFetchRecordZoneChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - This might not be thread-safe.
         #[unsafe(method(recordWithIDWasDeletedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordWithIDWasDeletedBlock(
@@ -178,6 +228,10 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`recordWithIDWasDeletedBlock`][Self::recordWithIDWasDeletedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordWithIDWasDeletedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
@@ -211,6 +265,13 @@ impl CKFetchRecordZoneChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(recordZoneChangeTokensUpdatedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneChangeTokensUpdatedBlock(
@@ -227,6 +288,10 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`recordZoneChangeTokensUpdatedBlock`][Self::recordZoneChangeTokensUpdatedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneChangeTokensUpdatedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneChangeTokensUpdatedBlock(
@@ -244,6 +309,14 @@ impl CKFetchRecordZoneChangesOperation {
             feature = "block2"
         ))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - The returned block's argument 5 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(recordZoneFetchCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneFetchCompletionBlock(
@@ -266,6 +339,10 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`recordZoneFetchCompletionBlock`][Self::recordZoneFetchCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRecordZoneFetchCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneFetchCompletionBlock(
@@ -298,6 +375,11 @@ impl CKFetchRecordZoneChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[unsafe(method(fetchRecordZoneChangesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordZoneChangesCompletionBlock(
@@ -308,6 +390,10 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`fetchRecordZoneChangesCompletionBlock`][Self::fetchRecordZoneChangesCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setFetchRecordZoneChangesCompletionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordZoneChangesCompletionBlock(
@@ -347,6 +433,10 @@ impl CKFetchRecordZoneChangesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(optionsByRecordZoneID))]
         #[unsafe(method_family = none)]
@@ -358,6 +448,10 @@ impl CKFetchRecordZoneChangesOperation {
         /// Setter for [`optionsByRecordZoneID`][Self::optionsByRecordZoneID].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setOptionsByRecordZoneID:))]
         #[unsafe(method_family = none)]

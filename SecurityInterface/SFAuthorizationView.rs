@@ -82,6 +82,10 @@ impl SFAuthorizationView {
         /// A convenience method to specify an authorization rights set containing a single item with the name set to the specified string.
         ///
         /// Parameter `authorizationString`: Authorization string.
+        ///
+        /// # Safety
+        ///
+        /// `authorization_string` must be a valid pointer.
         #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, authorization_string: AuthorizationString);
@@ -90,6 +94,10 @@ impl SFAuthorizationView {
         /// Sets the authorization rights for this view.
         ///
         /// Parameter `authorizationRights`: Authorization rights.
+        ///
+        /// # Safety
+        ///
+        /// `authorization_rights` must be a valid pointer.
         #[unsafe(method(setAuthorizationRights:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthorizationRights(
@@ -112,6 +120,11 @@ impl SFAuthorizationView {
         /// This method is called when the state of the authorization object has changed.
         ///
         /// Parameter `inSender`: The action that is marked for updateStatus.
+        ///
+        /// # Safety
+        ///
+        /// - `in_sender` should be of the correct type.
+        /// - `in_sender` might not allow `None`.
         #[unsafe(method(updateStatus:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateStatus(&self, in_sender: Option<&AnyObject>) -> bool;
@@ -152,6 +165,11 @@ impl SFAuthorizationView {
         /// Sets the delegate for this authorization view. If you want to hear state changes (for example, the user clicked the button), set your delegate and implement the delegate methods mentioned for SFAuthorizationViewDelegate
         ///
         /// Parameter `delegate`: The client's delegate object.
+        ///
+        /// # Safety
+        ///
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -160,10 +178,18 @@ impl SFAuthorizationView {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// - `in_sender` should be of the correct type.
+        /// - `in_sender` might not allow `None`.
         #[unsafe(method(authorize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorize(&self, in_sender: Option<&AnyObject>) -> bool;
 
+        /// # Safety
+        ///
+        /// - `in_sender` should be of the correct type.
+        /// - `in_sender` might not allow `None`.
         #[unsafe(method(deauthorize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deauthorize(&self, in_sender: Option<&AnyObject>) -> bool;
@@ -217,16 +243,28 @@ pub unsafe trait NSObjectSFAuthorizationViewDelegate:
 {
     extern_methods!(
         /// Parameter `view`:
+        ///
+        /// # Safety
+        ///
+        /// `view` might not allow `None`.
         #[unsafe(method(authorizationViewDidAuthorize:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationViewDidAuthorize(&self, view: Option<&SFAuthorizationView>);
 
         /// Parameter `view`:
+        ///
+        /// # Safety
+        ///
+        /// `view` might not allow `None`.
         #[unsafe(method(authorizationViewDidDeauthorize:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationViewDidDeauthorize(&self, view: Option<&SFAuthorizationView>);
 
         /// Parameter `view`:
+        ///
+        /// # Safety
+        ///
+        /// `view` might not allow `None`.
         #[unsafe(method(authorizationViewShouldDeauthorize:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationViewShouldDeauthorize(
@@ -235,16 +273,28 @@ pub unsafe trait NSObjectSFAuthorizationViewDelegate:
         ) -> bool;
 
         /// Parameter `view`:
+        ///
+        /// # Safety
+        ///
+        /// `view` might not allow `None`.
         #[unsafe(method(authorizationViewCreatedAuthorization:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationViewCreatedAuthorization(&self, view: Option<&SFAuthorizationView>);
 
         /// Parameter `view`:
+        ///
+        /// # Safety
+        ///
+        /// `view` might not allow `None`.
         #[unsafe(method(authorizationViewReleasedAuthorization:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationViewReleasedAuthorization(&self, view: Option<&SFAuthorizationView>);
 
         /// Parameter `view`:
+        ///
+        /// # Safety
+        ///
+        /// `view` might not allow `None`.
         #[unsafe(method(authorizationViewDidHide:))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationViewDidHide(&self, view: Option<&SFAuthorizationView>);

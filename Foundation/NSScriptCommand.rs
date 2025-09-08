@@ -73,6 +73,10 @@ impl NSScriptCommand {
         pub unsafe fn directParameter(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`directParameter`][Self::directParameter].
+        ///
+        /// # Safety
+        ///
+        /// `direct_parameter` should be of the correct type.
         #[unsafe(method(setDirectParameter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDirectParameter(&self, direct_parameter: Option<&AnyObject>);
@@ -104,6 +108,10 @@ impl NSScriptCommand {
         /// Setter for [`arguments`][Self::arguments].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[unsafe(method(setArguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArguments(&self, arguments: Option<&NSDictionary<NSString, AnyObject>>);
@@ -194,6 +202,9 @@ impl NSScriptCommand {
         #[unsafe(method_family = none)]
         pub unsafe fn suspendExecution(&self);
 
+        /// # Safety
+        ///
+        /// `result` should be of the correct type.
         #[unsafe(method(resumeExecutionWithResult:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeExecutionWithResult(&self, result: Option<&AnyObject>);

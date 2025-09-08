@@ -121,6 +121,10 @@ impl NSURLCredentialStorage {
         /// are removed, the credential will be removed on all devices that contain this credential.
         ///
         /// The credential is removed from both persistent and temporary storage.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(removeCredential:forProtectionSpace:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCredential_forProtectionSpace_options(
@@ -183,6 +187,9 @@ impl NSURLCredentialStorage {
             feature = "NSURLSession",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getCredentialsForProtectionSpace:task:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getCredentialsForProtectionSpace_task_completionHandler(
@@ -215,6 +222,9 @@ impl NSURLCredentialStorage {
             feature = "NSURLProtectionSpace",
             feature = "NSURLSession"
         ))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(removeCredential:forProtectionSpace:options:task:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeCredential_forProtectionSpace_options_task(
@@ -231,6 +241,9 @@ impl NSURLCredentialStorage {
             feature = "NSURLSession",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getDefaultCredentialForProtectionSpace:task:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDefaultCredentialForProtectionSpace_task_completionHandler(

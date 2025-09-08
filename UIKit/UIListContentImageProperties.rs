@@ -82,6 +82,10 @@ impl UIListContentImageProperties {
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the tint color. A nil value means the `tintColor` is used as-is.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(tintColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColorTransformer(&self) -> UIConfigurationColorTransformer;
@@ -94,6 +98,10 @@ impl UIListContentImageProperties {
         /// Setter for [`tintColorTransformer`][Self::tintColorTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `tint_color_transformer` must be a valid pointer or null.
         #[unsafe(method(setTintColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColorTransformer(
@@ -211,6 +219,10 @@ impl UIListContentImageProperties {
             feature = "block2"
         ))]
         /// Optional color transformer that is used to resolve the stroke color. A nil value means the `strokeColor` is used as-is.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(strokeColorTransformer))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColorTransformer(&self) -> UIConfigurationColorTransformer;
@@ -223,6 +235,10 @@ impl UIListContentImageProperties {
         /// Setter for [`strokeColorTransformer`][Self::strokeColorTransformer].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `stroke_color_transformer` must be a valid pointer or null.
         #[unsafe(method(setStrokeColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColorTransformer(

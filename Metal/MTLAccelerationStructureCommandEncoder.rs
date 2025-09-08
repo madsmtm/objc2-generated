@@ -330,6 +330,10 @@ extern_protocol!(
         /// For tracked MTL Resources, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resources through an argument buffer.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
+        ///
+        /// # Safety
+        ///
+        /// `resources` must be a valid pointer.
         #[unsafe(method(useResources:count:usage:))]
         #[unsafe(method_family = none)]
         unsafe fn useResources_count_usage(
@@ -355,6 +359,10 @@ extern_protocol!(
         /// For tracked MTLHeaps, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resources allocated from the heaps through an argument buffer. This method may cause all of the color attachments allocated from the heaps to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
+        ///
+        /// # Safety
+        ///
+        /// `heaps` must be a valid pointer.
         #[unsafe(method(useHeaps:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useHeaps_count(

@@ -130,6 +130,11 @@ impl UIContextMenuConfiguration {
         /// Parameter `previewProvider`: Optional preview view controller provider block, called when the menu is about to be presented.
         ///
         /// Parameter `actionProvider`: Optional action provider block, called when the menu is about to be presented.
+        ///
+        /// # Safety
+        ///
+        /// - `preview_provider` must be a valid pointer or null.
+        /// - `action_provider` must be a valid pointer or null.
         #[unsafe(method(configurationWithIdentifier:previewProvider:actionProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithIdentifier_previewProvider_actionProvider(

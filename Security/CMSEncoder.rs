@@ -37,6 +37,9 @@ unsafe impl ConcreteType for CMSEncoder {
 }
 
 impl CMSEncoder {
+    /// # Safety
+    ///
+    /// `cms_encoder_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCreate")]
     #[inline]
     pub unsafe fn create(cms_encoder_out: NonNull<*mut CMSEncoder>) -> OSStatus {
@@ -70,6 +73,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetSignerAlgorithm(self, digest_algorithm) }
     }
 
+    /// # Safety
+    ///
+    /// `signer_or_array` should be of the correct type.
     #[doc(alias = "CMSEncoderAddSigners")]
     #[inline]
     pub unsafe fn add_signers(&self, signer_or_array: &CFType) -> OSStatus {
@@ -80,6 +86,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddSigners(self, signer_or_array) }
     }
 
+    /// # Safety
+    ///
+    /// `signers_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopySigners")]
     #[inline]
     pub unsafe fn copy_signers(&self, signers_out: NonNull<*const CFArray>) -> OSStatus {
@@ -92,6 +101,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopySigners(self, signers_out) }
     }
 
+    /// # Safety
+    ///
+    /// `recipient_or_array` should be of the correct type.
     #[doc(alias = "CMSEncoderAddRecipients")]
     #[inline]
     pub unsafe fn add_recipients(&self, recipient_or_array: &CFType) -> OSStatus {
@@ -104,6 +116,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddRecipients(self, recipient_or_array) }
     }
 
+    /// # Safety
+    ///
+    /// `recipients_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopyRecipients")]
     #[inline]
     pub unsafe fn copy_recipients(&self, recipients_out: NonNull<*const CFArray>) -> OSStatus {
@@ -128,6 +143,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetHasDetachedContent(self, detached_content as _) }
     }
 
+    /// # Safety
+    ///
+    /// `detached_content_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderGetHasDetachedContent")]
     #[inline]
     pub unsafe fn has_detached_content(&self, detached_content_out: NonNull<Boolean>) -> OSStatus {
@@ -140,6 +158,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderGetHasDetachedContent(self, detached_content_out) }
     }
 
+    /// # Safety
+    ///
+    /// `e_content_type` must be a valid pointer.
     #[doc(alias = "CMSEncoderSetEncapsulatedContentType")]
     #[cfg(feature = "SecAsn1Types")]
     #[deprecated]
@@ -157,6 +178,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetEncapsulatedContentType(self, e_content_type) }
     }
 
+    /// # Safety
+    ///
+    /// `e_content_type_oid` should be of the correct type.
     #[doc(alias = "CMSEncoderSetEncapsulatedContentTypeOID")]
     #[inline]
     pub unsafe fn set_encapsulated_content_type_oid(
@@ -172,6 +196,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetEncapsulatedContentTypeOID(self, e_content_type_oid) }
     }
 
+    /// # Safety
+    ///
+    /// `e_content_type_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopyEncapsulatedContentType")]
     #[inline]
     pub unsafe fn copy_encapsulated_content_type(
@@ -187,6 +214,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopyEncapsulatedContentType(self, e_content_type_out) }
     }
 
+    /// # Safety
+    ///
+    /// `cert_or_array` should be of the correct type.
     #[doc(alias = "CMSEncoderAddSupportingCerts")]
     #[inline]
     pub unsafe fn add_supporting_certs(&self, cert_or_array: &CFType) -> OSStatus {
@@ -199,6 +229,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddSupportingCerts(self, cert_or_array) }
     }
 
+    /// # Safety
+    ///
+    /// `certs_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopySupportingCerts")]
     #[inline]
     pub unsafe fn copy_supporting_certs(&self, certs_out: NonNull<*const CFArray>) -> OSStatus {
@@ -306,6 +339,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetCertificateChainMode(self, chain_mode) }
     }
 
+    /// # Safety
+    ///
+    /// `chain_mode_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderGetCertificateChainMode")]
     #[inline]
     pub unsafe fn certificate_chain_mode(
@@ -321,6 +357,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderGetCertificateChainMode(self, chain_mode_out) }
     }
 
+    /// # Safety
+    ///
+    /// `content` must be a valid pointer.
     #[doc(alias = "CMSEncoderUpdateContent")]
     #[inline]
     pub unsafe fn update_content(&self, content: NonNull<c_void>, content_len: usize) -> OSStatus {
@@ -334,6 +373,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderUpdateContent(self, content, content_len) }
     }
 
+    /// # Safety
+    ///
+    /// `encoded_content_out` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopyEncodedContent")]
     #[inline]
     pub unsafe fn copy_encoded_content(
@@ -350,6 +392,11 @@ impl CMSEncoder {
     }
 }
 
+/// # Safety
+///
+/// - `e_content_type` must be a valid pointer or null.
+/// - `content` must be a valid pointer.
+/// - `encoded_content_out` must be a valid pointer.
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[inline]
@@ -389,6 +436,10 @@ pub unsafe extern "C-unwind" fn CMSEncode(
     }
 }
 
+/// # Safety
+///
+/// - `content` must be a valid pointer.
+/// - `encoded_content_out` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn CMSEncodeContent(
     signers: Option<&CFType>,
@@ -427,6 +478,9 @@ pub unsafe extern "C-unwind" fn CMSEncodeContent(
 }
 
 impl CMSEncoder {
+    /// # Safety
+    ///
+    /// `timestamp` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopySignerTimestamp")]
     #[inline]
     pub unsafe fn copy_signer_timestamp(
@@ -444,6 +498,9 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopySignerTimestamp(self, signer_index, timestamp) }
     }
 
+    /// # Safety
+    ///
+    /// `timestamp` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopySignerTimestampWithPolicy")]
     #[inline]
     pub unsafe fn copy_signer_timestamp_with_policy(

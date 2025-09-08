@@ -71,6 +71,9 @@ impl NSLocale {
         pub unsafe fn objectForKey(&self, key: &NSLocaleKey) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(displayNameForKey:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayNameForKey_value(

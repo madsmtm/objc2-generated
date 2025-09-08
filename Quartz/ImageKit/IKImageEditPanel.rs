@@ -23,6 +23,12 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Sets an image with the specifies properties.
+        ///
+        /// # Safety
+        ///
+        /// - `image` might not allow `None`.
+        /// - `meta_data` generic should be of the correct type.
+        /// - `meta_data` might not allow `None`.
         #[unsafe(method(setImage:imageProperties:))]
         #[unsafe(method_family = none)]
         unsafe fn setImage_imageProperties(
@@ -123,6 +129,10 @@ impl IKImageEditPanel {
         ) -> Option<Retained<ProtocolObject<dyn IKImageEditPanelDataSource>>>;
 
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(

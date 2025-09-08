@@ -41,6 +41,12 @@ impl CLMonitorConfiguration {
             feature = "block2"
         ))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - This might not be thread-safe.
         #[unsafe(method(eventHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn eventHandler(

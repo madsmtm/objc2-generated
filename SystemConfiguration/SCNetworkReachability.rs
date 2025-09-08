@@ -205,6 +205,10 @@ impl SCNetworkReachability {
     /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
     ///
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// `address` must be a valid pointer.
     #[doc(alias = "SCNetworkReachabilityCreateWithAddress")]
     #[cfg(feature = "libc")]
     #[deprecated]
@@ -236,6 +240,11 @@ impl SCNetworkReachability {
     /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
     ///
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// - `local_address` must be a valid pointer or null.
+    /// - `remote_address` must be a valid pointer or null.
     #[doc(alias = "SCNetworkReachabilityCreateWithAddressPair")]
     #[cfg(feature = "libc")]
     #[deprecated]
@@ -269,6 +278,10 @@ impl SCNetworkReachability {
     /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
     ///
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// `nodename` must be a valid pointer.
     #[doc(alias = "SCNetworkReachabilityCreateWithName")]
     #[deprecated]
     #[inline]
@@ -313,6 +326,10 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the network connection flags are valid;
     /// FALSE if the status could not be determined.
+    ///
+    /// # Safety
+    ///
+    /// `flags` must be a valid pointer.
     #[doc(alias = "SCNetworkReachabilityGetFlags")]
     #[deprecated]
     #[inline]
@@ -341,6 +358,11 @@ impl SCNetworkReachability {
     /// the callout.  The value may be NULL.
     ///
     /// Returns: Returns TRUE if the notification client was successfully set.
+    ///
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer or null.
     #[doc(alias = "SCNetworkReachabilitySetCallback")]
     #[deprecated]
     #[inline]

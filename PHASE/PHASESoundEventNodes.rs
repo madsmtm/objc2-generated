@@ -1217,6 +1217,12 @@ impl PHASEPullStreamNode {
         ///
         /// The renderBlock must be set before the PHASESoundEvent is prepared or started.  The callback will be called from a high priority realtime thread.
         /// Your implementation must be performant and not perform any realtime unsafe operations such as lock mutexes or allocate memory.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 4 must be a valid pointer.
         #[unsafe(method(renderBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderBlock(&self) -> PHASEPullStreamRenderBlock;
@@ -1227,6 +1233,10 @@ impl PHASEPullStreamNode {
             feature = "objc2-core-audio-types"
         ))]
         /// Setter for [`renderBlock`][Self::renderBlock].
+        ///
+        /// # Safety
+        ///
+        /// `render_block` must be a valid pointer.
         #[unsafe(method(setRenderBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenderBlock(&self, render_block: PHASEPullStreamRenderBlock);

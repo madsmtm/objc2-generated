@@ -454,6 +454,9 @@ pub unsafe trait NSAttributedStringDocumentFormats:
     ClassType + Sized + private_NSAttributedStringDocumentFormats::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:documentAttributes:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithURL_options_documentAttributes_error(
@@ -467,6 +470,9 @@ pub unsafe trait NSAttributedStringDocumentFormats:
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithData:options:documentAttributes:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithData_options_documentAttributes_error(
@@ -480,6 +486,9 @@ pub unsafe trait NSAttributedStringDocumentFormats:
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(dataFromRange:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn dataFromRange_documentAttributes_error(
@@ -488,6 +497,9 @@ pub unsafe trait NSAttributedStringDocumentFormats:
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(fileWrapperFromRange:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn fileWrapperFromRange_documentAttributes_error(
@@ -510,6 +522,9 @@ pub unsafe trait NSMutableAttributedStringDocumentFormats:
     ClassType + Sized + private_NSMutableAttributedStringDocumentFormats::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `opts` generic should be of the correct type.
         #[unsafe(method(readFromURL:options:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn readFromURL_options_documentAttributes_error(
@@ -523,6 +538,9 @@ pub unsafe trait NSMutableAttributedStringDocumentFormats:
             >,
         ) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `opts` generic should be of the correct type.
         #[unsafe(method(readFromData:options:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn readFromData_options_documentAttributes_error(
@@ -896,6 +914,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             >,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithHTML:options:documentAttributes:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithHTML_options_documentAttributes(
@@ -921,6 +942,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             >,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(RTFFromRange:documentAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn RTFFromRange_documentAttributes(
@@ -929,6 +953,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(RTFDFromRange:documentAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn RTFDFromRange_documentAttributes(
@@ -937,6 +964,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(RTFDFileWrapperFromRange:documentAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn RTFDFileWrapperFromRange_documentAttributes(
@@ -945,6 +975,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Retained<NSFileWrapper>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(docFormatFromRange:documentAttributes:))]
         #[unsafe(method_family = none)]
         unsafe fn docFormatFromRange_documentAttributes(
@@ -1255,6 +1288,9 @@ pub unsafe trait NSAttributedStringNSDeprecatedKitAdditions:
             dict: Option<&mut Option<Retained<NSDictionary>>>,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `effective_range` must be a valid pointer.
         #[deprecated = "Use NSDataDetector instead"]
         #[unsafe(method(URLAtIndex:effectiveRange:))]
         #[unsafe(method_family = none)]

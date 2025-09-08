@@ -260,6 +260,10 @@ impl CGEvent {
         unsafe { CGEventSetFlags(event, flags) }
     }
 
+    /// # Safety
+    ///
+    /// - `actual_string_length` must be a valid pointer or null.
+    /// - `unicode_string` must be a valid pointer or null.
     #[doc(alias = "CGEventKeyboardGetUnicodeString")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -287,6 +291,9 @@ impl CGEvent {
         }
     }
 
+    /// # Safety
+    ///
+    /// `unicode_string` must be a valid pointer or null.
     #[doc(alias = "CGEventKeyboardSetUnicodeString")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -362,6 +369,10 @@ impl CGEvent {
         unsafe { CGEventSetDoubleValueField(event, field, value) }
     }
 
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `user_info` must be a valid pointer or null.
     #[doc(alias = "CGEventTapCreate")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -389,6 +400,11 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `process_serial_number` must be a valid pointer.
+    /// - `callback` must be implemented correctly.
+    /// - `user_info` must be a valid pointer or null.
     #[doc(alias = "CGEventTapCreateForPSN")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -423,6 +439,10 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `callback` must be implemented correctly.
+    /// - `user_info` must be a valid pointer or null.
     #[doc(alias = "CGEventTapCreateForPid")]
     #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
     #[inline]
@@ -468,6 +488,9 @@ impl CGEvent {
         unsafe { CGEventTapIsEnabled(tap) }
     }
 
+    /// # Safety
+    ///
+    /// `proxy` must be a valid pointer or null.
     #[doc(alias = "CGEventTapPostEvent")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -488,6 +511,9 @@ impl CGEvent {
         unsafe { CGEventPost(tap, event) }
     }
 
+    /// # Safety
+    ///
+    /// `process_serial_number` must be a valid pointer or null.
     #[doc(alias = "CGEventPostToPSN")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -510,6 +536,10 @@ impl CGEvent {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `tap_list` must be a valid pointer or null.
+    /// - `event_tap_count` must be a valid pointer or null.
     #[cfg(all(feature = "CGError", feature = "CGEventTypes", feature = "libc"))]
     pub fn CGGetEventTapList(
         max_number_of_taps: u32,

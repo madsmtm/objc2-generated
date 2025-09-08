@@ -408,6 +408,11 @@ extern "C-unwind" {
     /// is interrupted.
     ///
     /// Parameter `inClientData`: The client user data to use when calling the interruption listener.
+    ///
+    /// # Safety
+    ///
+    /// - `in_interruption_listener` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub fn AudioSessionInitialize(
@@ -483,6 +488,11 @@ extern "C-unwind" {
     /// write-only property or only available by way of property listeners,
     /// kAudioSessionUnsupportedPropertyError will be returned.  Other error codes
     /// listed under AudioSession Error Constants also apply to this function.
+    ///
+    /// # Safety
+    ///
+    /// - `io_data_size` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AudioSessionGetProperty(
         in_id: AudioSessionPropertyID,
@@ -508,6 +518,10 @@ extern "C-unwind" {
     /// kAudioSessionUnsupportedPropertyError will be returned.  Other error codes
     /// listed under AudioSession Error Constants also apply to
     /// this function.
+    ///
+    /// # Safety
+    ///
+    /// `in_data` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AudioSessionSetProperty(
         in_id: AudioSessionPropertyID,
@@ -525,6 +539,10 @@ extern "C-unwind" {
     /// Parameter `inID`: The AudioSessionPropertyID for which we want to get the size of the payload.
     ///
     /// Parameter `outDataSize`: The size of the data payload will be copied here.
+    ///
+    /// # Safety
+    ///
+    /// `out_data_size` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AudioSessionGetPropertySize(
         in_id: AudioSessionPropertyID,
@@ -549,6 +567,11 @@ extern "C-unwind" {
     /// not support listeners, kAudioSessionUnsupportedPropertyError will be returned.
     /// Other error codes listed under AudioSession Error Constants also apply to
     /// this function.
+    ///
+    /// # Safety
+    ///
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AudioSessionAddPropertyListener(
         in_id: AudioSessionPropertyID,
@@ -584,6 +607,11 @@ extern "C-unwind" {
     /// not support listeners, kAudioSessionUnsupportedPropertyError will be returned.
     /// Other error codes listed under AudioSession Error Constants also apply to
     /// this function.
+    ///
+    /// # Safety
+    ///
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn AudioSessionRemovePropertyListenerWithUserData(
         in_id: AudioSessionPropertyID,

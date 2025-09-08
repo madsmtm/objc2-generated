@@ -21,6 +21,9 @@ extern_conformance!(
 #[cfg(feature = "NSClassDescription")]
 impl NSScriptClassDescription {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `a_class` probably has further requirements.
         #[unsafe(method(classDescriptionForClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn classDescriptionForClass(
@@ -28,6 +31,9 @@ impl NSScriptClassDescription {
         ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `class_declaration` generic should be of the correct type.
         #[unsafe(method(initWithSuiteName:className:dictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSuiteName_className_dictionary(

@@ -107,10 +107,16 @@ impl NSPopoverTouchBarItem {
         #[unsafe(method_family = none)]
         pub unsafe fn setShowsCloseButton(&self, shows_close_button: bool);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(showPopover:))]
         #[unsafe(method_family = none)]
         pub unsafe fn showPopover(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(dismissPopover:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dismissPopover(&self, sender: Option<&AnyObject>);

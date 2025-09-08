@@ -192,6 +192,10 @@ impl AVPlayerInterstitialEvent {
         /// Parameter `userDefinedAttributes`: Storage for attributes defined by the client or the content vendor. Attribute names should begin with X- for uniformity with server insertion.
         ///
         /// Returns: An instance of AVPlayerInterstitialEvent.
+        ///
+        /// # Safety
+        ///
+        /// `user_defined_attributes` generic should be of the correct type.
         #[deprecated = "Use interstitialEventWithPrimaryItem:time: instead"]
         #[unsafe(method(interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:))]
         #[unsafe(method_family = none)]
@@ -226,6 +230,10 @@ impl AVPlayerInterstitialEvent {
         /// Parameter `userDefinedAttributes`: Storage for attributes defined by the client or the content vendor. Attribute names should begin with X- for uniformity with server insertion.
         ///
         /// Returns: An instance of AVPlayerInterstitialEvent.
+        ///
+        /// # Safety
+        ///
+        /// `user_defined_attributes` generic should be of the correct type.
         #[deprecated = "Use interstitialEventWithPrimaryItem:date: instead"]
         #[unsafe(method(interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:))]
         #[unsafe(method_family = none)]
@@ -439,6 +447,10 @@ impl AVPlayerInterstitialEventMonitor {
         /// The AVPlayer that will play the primaryItems of the receiver's interstitial events.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(primaryPlayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryPlayer(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayer>>;
@@ -447,6 +459,10 @@ impl AVPlayerInterstitialEventMonitor {
         /// The AVQueuePlayer that will play interstitial items during suspension of playback of primary items.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(interstitialPlayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialPlayer(&self, mtm: MainThreadMarker) -> Retained<AVQueuePlayer>;

@@ -84,6 +84,9 @@ impl NSFileVersion {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(getNonlocalVersionsOfItemAtURL:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getNonlocalVersionsOfItemAtURL_completionHandler(
@@ -94,6 +97,9 @@ impl NSFileVersion {
         );
 
         #[cfg(feature = "NSURL")]
+        /// # Safety
+        ///
+        /// `persistent_identifier` should be of the correct type.
         #[unsafe(method(versionOfItemAtURL:forPersistentIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn versionOfItemAtURL_forPersistentIdentifier(

@@ -268,6 +268,10 @@ impl AVAssetWriter {
         /// This method determines whether the output settings for the specified media type can be used with the receiver's file format. For example, video compression settings that specify H.264 compression are not compatible with file formats that cannot contain H.264-compressed video.
         ///
         /// Attempting to add an input with output settings and a media type for which this method returns NO will cause an exception to be thrown.
+        ///
+        /// # Safety
+        ///
+        /// `output_settings` generic should be of the correct type.
         #[unsafe(method(canApplyOutputSettings:forMediaType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canApplyOutputSettings_forMediaType(
@@ -408,6 +412,10 @@ impl AVAssetWriter {
         /// When the writing of the output file is finished, or if a failure or a cancellation occurs in the meantime, the specified handler will be invoked to indicate completion of the operation. To determine whether the operation succeeded, your handler can check the value of AVAssetWriter.status. If the status is AVAssetWriterStatusFailed, AVAsset.error will contain an instance of NSError that describes the failure.
         ///
         /// To guarantee that all sample buffers are successfully written, ensure all calls to -[AVAssetWriterInput appendSampleBuffer:] or -[AVAssetWriterInputPixelBufferAdaptor appendPixelBuffer:withPresentationTime:] have returned before invoking this method.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(finishWritingWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWritingWithCompletionHandler(

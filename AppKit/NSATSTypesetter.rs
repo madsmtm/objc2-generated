@@ -49,6 +49,9 @@ impl NSATSTypesetter {
 #[cfg(feature = "NSTypesetter")]
 impl NSATSTypesetter {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `remaining_rect` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(lineFragmentRectForProposedRect:remainingRect:))]
         #[unsafe(method_family = none)]
@@ -140,6 +143,10 @@ impl NSATSTypesetter {
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedString`][Self::attributedString].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setAttributedString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
@@ -160,6 +167,9 @@ impl NSATSTypesetter {
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphSeparatorGlyphRange(&self) -> NSRange;
 
+        /// # Safety
+        ///
+        /// `line_fragment_origin` must be a valid pointer.
         #[unsafe(method(layoutParagraphAtPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutParagraphAtPoint(
@@ -214,6 +224,10 @@ impl NSATSTypesetter {
         #[unsafe(method_family = none)]
         pub unsafe fn setHardInvalidation_forGlyphRange(&self, flag: bool, glyph_range: NSRange);
 
+        /// # Safety
+        ///
+        /// - `line_fragment_rect` must be a valid pointer.
+        /// - `line_fragment_used_rect` must be a valid pointer.
         #[unsafe(method(getLineFragmentRect:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineFragmentRect_usedRect_forParagraphSeparatorGlyphRange_atProposedOrigin(
@@ -231,6 +245,11 @@ impl NSATSTypesetter {
 impl NSATSTypesetter {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `line_rect` must be a valid pointer.
+        /// - `used_rect` must be a valid pointer.
+        /// - `baseline_offset` must be a valid pointer.
         #[unsafe(method(willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willSetLineFragmentRect_forGlyphRange_usedRect_baselineOffset(
@@ -282,6 +301,12 @@ impl NSATSTypesetter {
 impl NSATSTypesetter {
     extern_methods!(
         #[cfg(all(feature = "NSFont", feature = "NSLayoutManager"))]
+        /// # Safety
+        ///
+        /// - `glyph_buffer` must be a valid pointer.
+        /// - `char_index_buffer` must be a valid pointer.
+        /// - `inscribe_buffer` must be a valid pointer.
+        /// - `elastic_buffer` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:))]
         #[unsafe(method_family = none)]

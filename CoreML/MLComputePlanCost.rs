@@ -36,6 +36,10 @@ impl MLComputePlanCost {
         /// The estimated workload of executing the operation over the total model execution. The value is between [0.0, 1.0].
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_double;

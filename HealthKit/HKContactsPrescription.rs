@@ -93,6 +93,10 @@ impl HKContactsPrescription {
         /// The right eye lens specification
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(rightEye))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightEye(&self) -> Option<Retained<HKContactsLensSpecification>>;
@@ -104,6 +108,10 @@ impl HKContactsPrescription {
         /// The left eye lens specification
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(leftEye))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftEye(&self) -> Option<Retained<HKContactsLensSpecification>>;
@@ -111,6 +119,10 @@ impl HKContactsPrescription {
         /// The prescribed brand after contact lens fitting
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(brand))]
         #[unsafe(method_family = none)]
         pub unsafe fn brand(&self) -> Retained<NSString>;
@@ -133,6 +145,10 @@ impl HKContactsPrescription {
         /// Parameter `device`: The device that generated the sample
         ///
         /// Parameter `metadata`: The metadata for the sample
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(prescriptionWithRightEyeSpecification:leftEyeSpecification:brand:dateIssued:expirationDate:device:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prescriptionWithRightEyeSpecification_leftEyeSpecification_brand_dateIssued_expirationDate_device_metadata(
@@ -154,6 +170,9 @@ impl HKContactsPrescription {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HKDevice")]
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(prescriptionWithType:dateIssued:expirationDate:device:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prescriptionWithType_dateIssued_expirationDate_device_metadata(

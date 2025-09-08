@@ -334,6 +334,9 @@ impl GLKTextureLoader {
             options: Option<&NSDictionary<NSString, NSNumber>>,
         ) -> Result<Retained<GLKTextureInfo>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `paths` generic should be of the correct type.
         #[unsafe(method(cubeMapWithContentsOfFiles:options:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFiles_options_error(
@@ -365,6 +368,9 @@ impl GLKTextureLoader {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(textureWithContentsOfFile:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfFile_options_queue_completionHandler(
@@ -376,6 +382,9 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(textureWithContentsOfURL:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfURL_options_queue_completionHandler(
@@ -391,6 +400,9 @@ impl GLKTextureLoader {
             feature = "dispatch2",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(textureWithName:scaleFactor:bundle:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithName_scaleFactor_bundle_options_queue_completionHandler(
@@ -404,6 +416,9 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(textureWithContentsOfData:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfData_options_queue_completionHandler(
@@ -419,6 +434,9 @@ impl GLKTextureLoader {
             feature = "dispatch2",
             feature = "objc2-core-graphics"
         ))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(textureWithCGImage:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithCGImage_options_queue_completionHandler(
@@ -430,6 +448,9 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(cubeMapWithContentsOfFiles:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFiles_options_queue_completionHandler(
@@ -441,6 +462,9 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(cubeMapWithContentsOfFile:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFile_options_queue_completionHandler(
@@ -452,6 +476,9 @@ impl GLKTextureLoader {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `block` must be a valid pointer.
         #[unsafe(method(cubeMapWithContentsOfURL:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfURL_options_queue_completionHandler(

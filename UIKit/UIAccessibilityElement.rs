@@ -36,6 +36,9 @@ extern_conformance!(
 #[cfg(feature = "UIResponder")]
 impl UIAccessibilityElement {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `container` should be of the correct type.
         #[unsafe(method(initWithAccessibilityContainer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAccessibilityContainer(
@@ -50,6 +53,10 @@ impl UIAccessibilityElement {
         /// Setter for [`accessibilityContainer`][Self::accessibilityContainer].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `accessibility_container` should be of the correct type.
         #[unsafe(method(setAccessibilityContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityContainer(&self, accessibility_container: Option<&AnyObject>);

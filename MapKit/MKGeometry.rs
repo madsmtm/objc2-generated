@@ -279,6 +279,10 @@ impl MKMapRect {
         unsafe { MKMapRectOffset(self, dx, dy) }
     }
 
+    /// # Safety
+    ///
+    /// - `slice` must be a valid pointer.
+    /// - `remainder` must be a valid pointer.
     #[doc(alias = "MKMapRectDivide")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

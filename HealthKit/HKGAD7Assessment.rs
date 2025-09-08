@@ -151,6 +151,10 @@ impl HKGAD7Assessment {
         /// Answers on the GAD-7 assessment. There are exactly 7 answers, one for each multiple choice question. Each answer is of type `HKGAD7AssessmentAnswer`.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(answers))]
         #[unsafe(method_family = none)]
         pub unsafe fn answers(&self) -> Retained<NSArray<NSNumber>>;
@@ -158,6 +162,10 @@ impl HKGAD7Assessment {
         /// The risk determined by the score on a GAD-7 assessment.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(risk))]
         #[unsafe(method_family = none)]
         pub unsafe fn risk(&self) -> HKGAD7AssessmentRisk;
@@ -171,6 +179,10 @@ impl HKGAD7Assessment {
         ) -> Retained<Self>;
 
         /// Creates a new GAD-7 sample. There must be exactly 7 elements in answers, each answer must be of type `HKGAD7AssessmentAnswer`.
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(assessmentWithDate:answers:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assessmentWithDate_answers_metadata(

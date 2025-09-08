@@ -226,6 +226,9 @@ impl NSTextField {
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectable(&self, selectable: bool);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(selectText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectText(&self, sender: Option<&AnyObject>);
@@ -561,6 +564,9 @@ extern_protocol!(
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSTextField {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `string_with_ampersand` might not allow `None`.
         #[deprecated = "Use `-setTitle:` instead"]
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]

@@ -190,6 +190,9 @@ impl NSBezierPath {
         #[unsafe(method_family = none)]
         pub unsafe fn strokeLineFromPoint_toPoint(point1: NSPoint, point2: NSPoint);
 
+        /// # Safety
+        ///
+        /// `packed_glyphs` must be a valid pointer.
         #[unsafe(method(drawPackedGlyphs:atPoint:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawPackedGlyphs_atPoint(packed_glyphs: NonNull<c_char>, point: NSPoint);
@@ -369,6 +372,11 @@ impl NSBezierPath {
         pub unsafe fn setFlatness(&self, flatness: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `pattern` must be a valid pointer or null.
+        /// - `count` must be a valid pointer or null.
+        /// - `phase` must be a valid pointer or null.
         #[unsafe(method(getLineDash:count:phase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineDash_count_phase(
@@ -379,6 +387,9 @@ impl NSBezierPath {
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `pattern` must be a valid pointer or null.
         #[unsafe(method(setLineDash:count:phase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLineDash_count_phase(
@@ -436,6 +447,9 @@ impl NSBezierPath {
         #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `points` must be a valid pointer or null.
         #[unsafe(method(elementAtIndex:associatedPoints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementAtIndex_associatedPoints(
@@ -448,6 +462,9 @@ impl NSBezierPath {
         #[unsafe(method_family = none)]
         pub unsafe fn elementAtIndex(&self, index: NSInteger) -> NSBezierPathElement;
 
+        /// # Safety
+        ///
+        /// `points` must be a valid pointer or null.
         #[unsafe(method(setAssociatedPoints:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAssociatedPoints_atIndex(&self, points: NSPointArray, index: NSInteger);
@@ -460,6 +477,9 @@ impl NSBezierPath {
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithRect(&self, rect: NSRect);
 
+        /// # Safety
+        ///
+        /// `points` must be a valid pointer.
         #[unsafe(method(appendBezierPathWithPoints:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithPoints_count(
@@ -513,6 +533,9 @@ impl NSBezierPath {
 
         #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// `glyphs` must be a valid pointer.
         #[unsafe(method(appendBezierPathWithCGGlyphs:count:inFont:))]
         #[unsafe(method_family = none)]
         pub unsafe fn appendBezierPathWithCGGlyphs_count_inFont(
@@ -571,6 +594,9 @@ impl NSBezierPath {
         pub unsafe fn appendBezierPathWithGlyph_inFont(&self, glyph: NSGlyph, font: &NSFont);
 
         #[cfg(feature = "NSFont")]
+        /// # Safety
+        ///
+        /// `glyphs` must be a valid pointer.
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
         #[unsafe(method(appendBezierPathWithGlyphs:count:inFont:))]
         #[unsafe(method_family = none)]
@@ -581,6 +607,9 @@ impl NSBezierPath {
             font: &NSFont,
         );
 
+        /// # Safety
+        ///
+        /// `packed_glyphs` must be a valid pointer.
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
         #[unsafe(method(appendBezierPathWithPackedGlyphs:))]
         #[unsafe(method_family = none)]

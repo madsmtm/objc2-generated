@@ -131,6 +131,10 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMBlockBufferCreateEmpty")]
     #[inline]
     pub unsafe fn create_empty(
@@ -197,6 +201,12 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `memory_block` must be a valid pointer or null.
+    /// - `custom_block_source` must be a valid pointer or null.
+    /// - `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMBlockBufferCreateWithMemoryBlock")]
     #[inline]
     pub unsafe fn create_with_memory_block(
@@ -261,6 +271,10 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMBlockBufferCreateWithBufferReference")]
     #[inline]
     pub unsafe fn create_with_buffer_reference(
@@ -326,6 +340,11 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful
+    ///
+    /// # Safety
+    ///
+    /// - `custom_block_source` must be a valid pointer or null.
+    /// - `block_buffer_out` must be a valid pointer.
     #[doc(alias = "CMBlockBufferCreateContiguous")]
     #[inline]
     pub unsafe fn create_contiguous(
@@ -422,6 +441,11 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
+    ///
+    /// # Safety
+    ///
+    /// - `memory_block` must be a valid pointer or null.
+    /// - `custom_block_source` must be a valid pointer or null.
     #[doc(alias = "CMBlockBufferAppendMemoryBlock")]
     #[inline]
     pub unsafe fn append_memory_block(
@@ -551,6 +575,11 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the desired amount of data could be accessed at the given offset.
+    ///
+    /// # Safety
+    ///
+    /// - `temporary_block` must be a valid pointer.
+    /// - `returned_pointer_out` must be a valid pointer.
     #[doc(alias = "CMBlockBufferAccessDataBytes")]
     #[inline]
     pub unsafe fn access_data_bytes(
@@ -599,6 +628,10 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the copy succeeded, returns an error otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `destination` must be a valid pointer.
     #[doc(alias = "CMBlockBufferCopyDataBytes")]
     #[inline]
     pub unsafe fn copy_data_bytes(
@@ -636,6 +669,10 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the replacement succeeded, returns an error otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `source_bytes` must be a valid pointer.
     #[doc(alias = "CMBlockBufferReplaceDataBytes")]
     #[inline]
     pub unsafe fn replace_data_bytes(
@@ -734,6 +771,12 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if data was accessible at the specified offset within the given CMBlockBuffer, false otherwise.
+    ///
+    /// # Safety
+    ///
+    /// - `length_at_offset_out` must be a valid pointer or null.
+    /// - `total_length_out` must be a valid pointer or null.
+    /// - `data_pointer_out` must be a valid pointer or null.
     #[doc(alias = "CMBlockBufferGetDataPointer")]
     #[inline]
     pub unsafe fn data_pointer(

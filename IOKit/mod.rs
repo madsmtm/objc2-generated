@@ -9839,6 +9839,10 @@ extern "C-unwind" {
     /// Parameter `mainPort`: The main port is returned.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `main_port` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOMainPort(
         bootstrap_port: libc::mach_port_t,
@@ -9857,6 +9861,10 @@ extern "C" {
 
 extern "C-unwind" {
     /// Deprecated name for IOMainPort().
+    ///
+    /// # Safety
+    ///
+    /// `main_port` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOMasterPort(
@@ -9902,6 +9910,10 @@ impl IONotificationPort {
     /// </code>
     ///
     /// Parameter `notify`: A reference to the notification object.
+    ///
+    /// # Safety
+    ///
+    /// `notify` must be a valid pointer.
     #[doc(alias = "IONotificationPortDestroy")]
     #[inline]
     pub unsafe fn destroy(notify: IONotificationPortRef) {
@@ -9930,6 +9942,10 @@ impl IONotificationPort {
     /// Parameter `notify`: The notification object.
     ///
     /// Returns: A CFRunLoopSourceRef for the notification object.
+    ///
+    /// # Safety
+    ///
+    /// `notify` must be a valid pointer.
     #[doc(alias = "IONotificationPortGetRunLoopSource")]
     #[inline]
     pub unsafe fn run_loop_source(
@@ -9965,6 +9981,10 @@ impl IONotificationPort {
     /// Parameter `notify`: The notification object.
     ///
     /// Returns: A mach_port for the notification object.
+    ///
+    /// # Safety
+    ///
+    /// `notify` must be a valid pointer.
     #[doc(alias = "IONotificationPortGetMachPort")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -9985,6 +10005,10 @@ impl IONotificationPort {
     /// Parameter `notify`: The notification object.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `notify` must be a valid pointer.
     #[doc(alias = "IONotificationPortSetImportanceReceiver")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -10004,6 +10028,11 @@ impl IONotificationPort {
     /// Parameter `notify`: The notification object.
     ///
     /// Parameter `queue`: A dispatch queue.
+    ///
+    /// # Safety
+    ///
+    /// - `notify` must be a valid pointer.
+    /// - `queue` might not allow `None`.
     #[doc(alias = "IONotificationPortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -10032,6 +10061,10 @@ extern "C-unwind" {
     /// Parameter `recvPort`: The created port is returned.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `recv_port` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOCreateReceivePort(
         msg_type: u32,
@@ -10073,6 +10106,10 @@ extern "C-unwind" {
     /// Parameter `className`: Caller allocated buffer to receive the name string.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `class_name` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IOObjectGetClass(object: io_object_t, class_name: io_name_t) -> libc::kern_return_t;
 }
@@ -10103,6 +10140,10 @@ pub unsafe extern "C-unwind" fn IOObjectCopyClass(
 /// Parameter `classname`: The name of the class as a CFString.
 ///
 /// Returns: The resulting CFStringRef. This should be released by the caller. If there is no superclass, or a valid class name is not passed in, then NULL is returned.
+///
+/// # Safety
+///
+/// `classname` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn IOObjectCopySuperclassForClass(
     classname: Option<&CFString>,
@@ -10123,6 +10164,10 @@ pub unsafe extern "C-unwind" fn IOObjectCopySuperclassForClass(
 /// Parameter `classname`: The name of the class as a CFString.
 ///
 /// Returns: The resulting CFStringRef. This should be released by the caller. If a valid class name is not passed in, then NULL is returned.
+///
+/// # Safety
+///
+/// `classname` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn IOObjectCopyBundleIdentifierForClass(
     classname: Option<&CFString>,
@@ -10145,6 +10190,10 @@ pub unsafe extern "C-unwind" fn IOObjectCopyBundleIdentifierForClass(
 /// Parameter `className`: The name of the class, as a C-string.
 ///
 /// Returns: If the object handle is valid, and represents an object in the kernel that dynamic casts to the class true is returned, otherwise false.
+///
+/// # Safety
+///
+/// `class_name` Array TODO.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOObjectConformsTo(
@@ -10256,6 +10305,12 @@ pub unsafe extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bo
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `notification_type` Array TODO.
+    /// - `matching` generics must be of the correct type.
+    /// - `matching` might not allow `None`.
+    /// - `notification` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOServiceAddNotification(
@@ -10288,6 +10343,14 @@ extern "C-unwind" {
     /// Parameter `notification`: An object handle is returned on success, and should be released by the caller when the notification is to be destroyed.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `notify_port` must be a valid pointer.
+    /// - `interest_type` Array TODO.
+    /// - `callback` must be implemented correctly.
+    /// - `ref_con` must be a valid pointer.
+    /// - `notification` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOServiceAddInterestNotification(
         notify_port: IONotificationPortRef,
@@ -10311,6 +10374,12 @@ extern "C-unwind" {
     /// Parameter `matches`: The boolean result is returned.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `matching` generics must be of the correct type.
+    /// - `matching` might not allow `None`.
+    /// - `matches` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOServiceMatchPropertyTable(
         service: io_service_t,
@@ -10329,6 +10398,10 @@ extern "C-unwind" {
     /// Parameter `busyState`: The busyState count is returned.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `busy_state` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOServiceGetBusyState(
         service: io_service_t,
@@ -10346,6 +10419,10 @@ extern "C-unwind" {
     /// Parameter `busyState`: The busyState count is returned.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `busy_state` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOKitGetBusyState(
         main_port: libc::mach_port_t,
@@ -10369,6 +10446,10 @@ extern "C-unwind" {
     /// Parameter `connect`: An io_connect_t handle is returned on success, to be used with the IOConnectXXX APIs. It should be destroyed with IOServiceClose().
     ///
     /// Returns: A return code generated by IOService::newUserClient.
+    ///
+    /// # Safety
+    ///
+    /// `connect` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOServiceOpen(
         service: io_service_t,
@@ -10460,6 +10541,10 @@ extern "C-unwind" {
     /// Parameter `service`: On success, the service handle the connection was opened on, which should be released with IOObjectRelease.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `service` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectGetService(
         connect: io_connect_t,
@@ -10491,6 +10576,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `at_address` must be a valid pointer.
+    /// - `of_size` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectMapMemory(
         connect: io_connect_t,
@@ -10518,6 +10607,11 @@ extern "C-unwind" {
     /// Parameter `ofSize`: The size of the mapping created is passed back on success.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `at_address` must be a valid pointer.
+    /// - `of_size` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectMapMemory64(
         connect: io_connect_t,
@@ -10572,6 +10666,11 @@ extern "C-unwind" {
     /// Parameter `properties`: A CF container - commonly a CFDictionary but this is not enforced. The container should consist of objects which are understood by IOKit - these are currently : CFDictionary, CFArray, CFSet, CFString, CFData, CFNumber, CFBoolean, and are passed in the kernel as the corresponding OSDictionary etc. objects.
     ///
     /// Returns: A kern_return_t error code returned by the family.
+    ///
+    /// # Safety
+    ///
+    /// - `properties` should be of the correct type.
+    /// - `properties` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IOConnectSetCFProperties(
         connect: io_connect_t,
@@ -10591,6 +10690,12 @@ extern "C-unwind" {
     /// Parameter `property`: A CF container - should consist of objects which are understood by IOKit - these are currently : CFDictionary, CFArray, CFSet, CFString, CFData, CFNumber, CFBoolean, and are passed in the kernel as the corresponding OSDictionary etc. objects.
     ///
     /// Returns: A kern_return_t error code returned by the object.
+    ///
+    /// # Safety
+    ///
+    /// - `property_name` might not allow `None`.
+    /// - `property` should be of the correct type.
+    /// - `property` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IOConnectSetCFProperty(
         connect: io_connect_t,
@@ -10600,6 +10705,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `input` must be a valid pointer.
+    /// - `input_struct` must be a valid pointer.
+    /// - `output` must be a valid pointer.
+    /// - `output_cnt` must be a valid pointer.
+    /// - `output_struct` must be a valid pointer.
+    /// - `output_struct_cnt` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectCallMethod(
         connection: libc::mach_port_t,
@@ -10616,6 +10729,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `reference` must be a valid pointer.
+    /// - `input` must be a valid pointer.
+    /// - `input_struct` must be a valid pointer.
+    /// - `output` must be a valid pointer.
+    /// - `output_cnt` must be a valid pointer.
+    /// - `output_struct` must be a valid pointer.
+    /// - `output_struct_cnt` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectCallAsyncMethod(
         connection: libc::mach_port_t,
@@ -10635,6 +10757,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `input_struct` must be a valid pointer.
+    /// - `output_struct` must be a valid pointer.
+    /// - `output_struct_cnt` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectCallStructMethod(
         connection: libc::mach_port_t,
@@ -10647,6 +10774,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `reference` must be a valid pointer.
+    /// - `input_struct` must be a valid pointer.
+    /// - `output_struct` must be a valid pointer.
+    /// - `output_struct_cnt` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectCallAsyncStructMethod(
         connection: libc::mach_port_t,
@@ -10662,6 +10795,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `input` must be a valid pointer.
+    /// - `output` must be a valid pointer.
+    /// - `output_cnt` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectCallScalarMethod(
         connection: libc::mach_port_t,
@@ -10674,6 +10812,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `reference` must be a valid pointer.
+    /// - `input` must be a valid pointer.
+    /// - `output` must be a valid pointer.
+    /// - `output_cnt` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOConnectCallAsyncScalarMethod(
         connection: libc::mach_port_t,
@@ -10796,6 +10940,10 @@ extern "C-unwind" {
     /// Parameter `path`: A C-string path.
     ///
     /// Returns: A handle to the IORegistryEntry which was found with the path, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.
+    ///
+    /// # Safety
+    ///
+    /// `path` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryFromPath(
         main_port: libc::mach_port_t,
@@ -10815,6 +10963,10 @@ extern "C-unwind" {
     /// Parameter `path`: A CFString path.
     ///
     /// Returns: A handle to the IORegistryEntry which was found with the path, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.
+    ///
+    /// # Safety
+    ///
+    /// `path` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryCopyFromPath(
         main_port: libc::mach_port_t,
@@ -10841,6 +10993,11 @@ extern "C-unwind" {
     /// Parameter `iterator`: A created iterator handle, to be released by the caller when it has finished with it.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `iterator` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryCreateIterator(
         main_port: libc::mach_port_t,
@@ -10864,6 +11021,11 @@ extern "C-unwind" {
     /// Parameter `iterator`: A created iterator handle, to be released by the caller when it has finished with it.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `iterator` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryCreateIterator(
         entry: io_registry_entry_t,
@@ -10903,6 +11065,10 @@ extern "C-unwind" {
     /// Parameter `name`: The caller's buffer to receive the name.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `name` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetName(
         entry: io_registry_entry_t,
@@ -10922,6 +11088,11 @@ extern "C-unwind" {
     /// Parameter `name`: The caller's buffer to receive the name.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `name` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetNameInPlane(
         entry: io_registry_entry_t,
@@ -10942,6 +11113,11 @@ extern "C-unwind" {
     /// Parameter `location`: The caller's buffer to receive the location string.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `location` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetLocationInPlane(
         entry: io_registry_entry_t,
@@ -10962,6 +11138,11 @@ extern "C-unwind" {
     /// Parameter `path`: A char buffer allocated by the caller.
     ///
     /// Returns: IORegistryEntryGetPath will fail if the entry is not attached in the plane, or if the buffer is not large enough to contain the path.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `path` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetPath(
         entry: io_registry_entry_t,
@@ -10979,6 +11160,10 @@ extern "C-unwind" {
 /// Parameter `plane`: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
 ///
 /// Returns: An instance of CFString on success, to be released by the caller. IORegistryEntryCopyPath will fail if the entry is not attached in the plane.
+///
+/// # Safety
+///
+/// `plane` Array TODO.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryCopyPath(
@@ -11005,6 +11190,10 @@ extern "C-unwind" {
     /// Parameter `entryID`: The resulting ID.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// `entry_id` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetRegistryEntryID(
         entry: io_registry_entry_t,
@@ -11026,6 +11215,11 @@ extern "C-unwind" {
     /// Parameter `options`: No options are currently defined.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `properties` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryCreateCFProperties(
         entry: io_registry_entry_t,
@@ -11048,6 +11242,11 @@ extern "C-unwind" {
 /// Parameter `options`: No options are currently defined.
 ///
 /// Returns: A CF container is created and returned the caller on success. The caller should release with CFRelease.
+///
+/// # Safety
+///
+/// - `key` might not allow `None`.
+/// - `allocator` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
@@ -11084,6 +11283,12 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
 /// Parameter `options`: kIORegistryIterateRecursively may be set to recurse automatically into the registry hierarchy. Without this option, this method degenerates into the standard IORegistryEntryCreateCFProperty() call. kIORegistryIterateParents may be set to iterate the parents of the entry, in place of the children.
 ///
 /// Returns: A CF container is created and returned the caller on success. The caller should release with CFRelease.
+///
+/// # Safety
+///
+/// - `plane` Array TODO.
+/// - `key` might not allow `None`.
+/// - `allocator` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
@@ -11107,6 +11312,11 @@ pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `property_name` Array TODO.
+    /// - `buffer` Array TODO.
+    /// - `size` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetProperty(
         entry: io_registry_entry_t,
@@ -11126,6 +11336,11 @@ extern "C-unwind" {
     /// Parameter `properties`: A CF container - commonly a CFDictionary but this is not enforced. The container should consist of objects which are understood by IOKit - these are currently : CFDictionary, CFArray, CFSet, CFString, CFData, CFNumber, CFBoolean, and are passed in the kernel as the corresponding OSDictionary etc. objects.
     ///
     /// Returns: A kern_return_t error code returned by the object.
+    ///
+    /// # Safety
+    ///
+    /// - `properties` should be of the correct type.
+    /// - `properties` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntrySetCFProperties(
         entry: io_registry_entry_t,
@@ -11145,6 +11360,12 @@ extern "C-unwind" {
     /// Parameter `property`: A CF container - should consist of objects which are understood by IOKit - these are currently : CFDictionary, CFArray, CFSet, CFString, CFData, CFNumber, CFBoolean, and are passed in the kernel as the corresponding OSDictionary etc. objects.
     ///
     /// Returns: A kern_return_t error code returned by the object.
+    ///
+    /// # Safety
+    ///
+    /// - `property_name` might not allow `None`.
+    /// - `property` should be of the correct type.
+    /// - `property` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntrySetCFProperty(
         entry: io_registry_entry_t,
@@ -11165,6 +11386,11 @@ extern "C-unwind" {
     /// Parameter `iterator`: The created iterator over the children of the entry, on success. The iterator must be released when the iteration is finished.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `iterator` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetChildIterator(
         entry: io_registry_entry_t,
@@ -11185,6 +11411,11 @@ extern "C-unwind" {
     /// Parameter `child`: The first child of the registry entry, on success. The child must be released by the caller.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `child` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetChildEntry(
         entry: io_registry_entry_t,
@@ -11205,6 +11436,11 @@ extern "C-unwind" {
     /// Parameter `iterator`: The created iterator over the parents of the entry, on success. The iterator must be released when the iteration is finished.
     ///
     /// Returns: A kern_return_t error.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `iterator` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetParentIterator(
         entry: io_registry_entry_t,
@@ -11225,6 +11461,11 @@ extern "C-unwind" {
     /// Parameter `parent`: The first parent of the registry entry, on success. The parent must be released by the caller.
     ///
     /// Returns: A kern_return_t error code.
+    ///
+    /// # Safety
+    ///
+    /// - `plane` Array TODO.
+    /// - `parent` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetParentEntry(
         entry: io_registry_entry_t,
@@ -11242,6 +11483,10 @@ extern "C-unwind" {
 /// Parameter `plane`: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
 ///
 /// Returns: If the entry has a parent in the plane, true is returned, otherwise false is returned.
+///
+/// # Safety
+///
+/// `plane` Array TODO.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
@@ -11262,6 +11507,10 @@ pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
 /// Parameter `name`: The class name, as a const C-string. Class matching is successful on IOService's of this class or any subclass.
 ///
 /// Returns: The matching dictionary created, is returned on success, or zero on failure. The dictionary is commonly passed to IOServiceGetMatchingServices or IOServiceAddNotification which will consume a reference, otherwise it should be released with CFRelease by the caller.
+///
+/// # Safety
+///
+/// `name` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOServiceMatching(
     name: *const c_char,
@@ -11280,6 +11529,10 @@ pub unsafe extern "C-unwind" fn IOServiceMatching(
 /// Parameter `name`: The IOService name, as a const C-string.
 ///
 /// Returns: The matching dictionary created, is returned on success, or zero on failure. The dictionary is commonly passed to IOServiceGetMatchingServices or IOServiceAddNotification which will consume a reference, otherwise it should be released with CFRelease by the caller.
+///
+/// # Safety
+///
+/// `name` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOServiceNameMatching(
     name: *const c_char,
@@ -11302,6 +11555,10 @@ pub unsafe extern "C-unwind" fn IOServiceNameMatching(
 /// Parameter `bsdName`: The BSD name, as a const char *.
 ///
 /// Returns: The matching dictionary created, is returned on success, or zero on failure. The dictionary is commonly passed to IOServiceGetMatchingServices or IOServiceAddNotification which will consume a reference, otherwise it should be released with CFRelease by the caller.
+///
+/// # Safety
+///
+/// `bsd_name` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBSDNameMatching(
@@ -11320,6 +11577,9 @@ pub unsafe extern "C-unwind" fn IOBSDNameMatching(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `path` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -11358,6 +11618,10 @@ pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `open_firmware_path` Array TODO.
+    /// - `bsd_name` Array TODO.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOServiceOFPathToBSDName(
@@ -11421,6 +11685,9 @@ pub type IOAsyncCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut *mut c_void, u32)>;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOCatalogueSendData(
         main_port: libc::mach_port_t,
@@ -11431,6 +11698,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `description` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IOCatalogueTerminate(
         main_port: libc::mach_port_t,
@@ -11440,6 +11710,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `buffer` must be a valid pointer.
+    /// - `size` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOCatalogueGetData(
         main_port: libc::mach_port_t,
@@ -11450,6 +11724,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `name` Array TODO.
     #[cfg(feature = "libc")]
     pub fn IOCatalogueModuleLoaded(
         main_port: libc::mach_port_t,
@@ -11528,6 +11805,10 @@ unsafe impl RefEncode for IODataQueueMemory {
 /// Parameter `dataQueue`: The IODataQueueMemory region mapped from the kernel.
 ///
 /// Returns: Returns true if data is available and false if not.
+///
+/// # Safety
+///
+/// `data_queue` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IODataQueueDataAvailable(
     data_queue: *mut IODataQueueMemory,
@@ -11547,6 +11828,10 @@ extern "C-unwind" {
     /// Parameter `dataQueue`: The IODataQueueMemory region mapped from the kernel.
     ///
     /// Returns: Returns a pointer to the next IODataQueueEntry if one is available.  Zero is returned if the queue is empty.
+    ///
+    /// # Safety
+    ///
+    /// `data_queue` must be a valid pointer.
     pub fn IODataQueuePeek(data_queue: *mut IODataQueueMemory) -> *mut IODataQueueEntry;
 }
 
@@ -11562,6 +11847,12 @@ extern "C-unwind" {
     /// Parameter `dataSize`: A pointer to the size of the data parameter.  On return, this contains the size of the actual entry data - even if the original size was not large enough.
     ///
     /// Returns: Returns kIOReturnSuccess on success.  Other return values possible are: kIOReturnUnderrun - queue is empty, kIOReturnBadArgument - no dataQueue or no dataSize, kIOReturnNoSpace - dataSize is too small for entry.
+    ///
+    /// # Safety
+    ///
+    /// - `data_queue` must be a valid pointer.
+    /// - `data` must be a valid pointer.
+    /// - `data_size` must be a valid pointer.
     pub fn IODataQueueDequeue(
         data_queue: *mut IODataQueueMemory,
         data: *mut c_void,
@@ -11579,6 +11870,10 @@ extern "C-unwind" {
     /// Parameter `notificationPort`: Mach port on which to listen for incoming messages.
     ///
     /// Returns: Returns kIOReturnSuccess on success.  Returns kIOReturnBadArgument if either dataQueue is 0 (NULL) or notifyPort is MACH_PORT_NULL.  Returns the result of the mach_msg() listen call on the given port.
+    ///
+    /// # Safety
+    ///
+    /// `data_queue` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IODataQueueWaitForAvailableData(
         data_queue: *mut IODataQueueMemory,
@@ -11614,6 +11909,11 @@ extern "C-unwind" {
     /// Parameter `dataSize`: Size of the data pointed to by data.
     ///
     /// Returns: Returns kIOReturnSuccess on success.  Other return values possible are: kIOReturnOverrun - queue is full.
+    ///
+    /// # Safety
+    ///
+    /// - `data_queue` must be a valid pointer.
+    /// - `data` must be a valid pointer.
     pub fn IODataQueueEnqueue(
         data_queue: *mut IODataQueueMemory,
         data: *mut c_void,
@@ -11634,6 +11934,10 @@ extern "C-unwind" {
     /// Parameter `notifyPort`: The mach port to target with the notification message.
     ///
     /// Returns: Returns kIOReturnSuccess on success.  Returns kIOReturnBadArgument if either dataQueue is 0 (NULL).
+    ///
+    /// # Safety
+    ///
+    /// `data_queue` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IODataQueueSetNotificationPort(
         data_queue: *mut IODataQueueMemory,
@@ -11693,6 +11997,10 @@ unsafe impl RefEncode for IOCFPlugInInterfaceStruct {
 pub type IOCFPlugInInterface = IOCFPlugInInterfaceStruct;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `the_interface` must be a valid pointer.
+    /// - `the_score` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOCreatePlugInInterfaceForService(
         service: io_service_t,
@@ -11704,6 +12012,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `interface` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IODestroyPlugInInterface(
         interface: *mut *mut IOCFPlugInInterface,
@@ -11713,6 +12024,10 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocfserializetobinary?language=objc)
 pub const kIOCFSerializeToBinary: c_uint = 0x00000001;
 
+/// # Safety
+///
+/// - `object` should be of the correct type.
+/// - `object` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn IOCFSerialize(
     object: Option<&CFType>,
@@ -11728,6 +12043,9 @@ pub unsafe extern "C-unwind" fn IOCFSerialize(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `error_code` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOURLCreatePropertyFromResource(
     alloc: Option<&CFAllocator>,
@@ -11747,6 +12065,13 @@ pub unsafe extern "C-unwind" fn IOURLCreatePropertyFromResource(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `resource_data` must be a valid pointer.
+/// - `properties` must be a valid pointer.
+/// - `desired_properties` generic must be of the correct type.
+/// - `desired_properties` might not allow `None`.
+/// - `error_code` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOURLCreateDataAndPropertiesFromResource(
     alloc: Option<&CFAllocator>,
@@ -11779,6 +12104,11 @@ pub unsafe extern "C-unwind" fn IOURLCreateDataAndPropertiesFromResource(
     ret != 0
 }
 
+/// # Safety
+///
+/// - `properties_to_write` generics must be of the correct type.
+/// - `properties_to_write` might not allow `None`.
+/// - `error_code` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOURLWriteDataAndPropertiesToResource(
     url: Option<&CFURL>,
@@ -11875,6 +12205,11 @@ pub const kIOCatalogModuleTerminate: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocatalogserviceterminate?language=objc)
 pub const kIOCatalogServiceTerminate: c_uint = 3;
 
+/// # Safety
+///
+/// - `buffer` must be a valid pointer.
+/// - `allocator` might not allow `None`.
+/// - `error_string` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOCFUnserialize(
     buffer: *const c_char,
@@ -11894,6 +12229,11 @@ pub unsafe extern "C-unwind" fn IOCFUnserialize(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `buffer` must be a valid pointer.
+/// - `allocator` might not allow `None`.
+/// - `error_string` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOCFUnserializeBinary(
     buffer: *const c_char,
@@ -11916,6 +12256,11 @@ pub unsafe extern "C-unwind" fn IOCFUnserializeBinary(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `buffer` must be a valid pointer.
+/// - `allocator` might not allow `None`.
+/// - `error_string` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOCFUnserializeWithSize(
     buffer: *const c_char,

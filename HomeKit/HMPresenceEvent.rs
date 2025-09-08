@@ -78,6 +78,10 @@ impl HMPresenceEvent {
         /// presenceEventType The event type that will trigger the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(presenceEventType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceEventType(&self) -> HMPresenceEventType;
@@ -86,6 +90,10 @@ impl HMPresenceEvent {
         /// presenceUserType The user type whose presence will trigger the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(presenceUserType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceUserType(&self) -> HMPresenceEventUserType;
@@ -155,12 +163,20 @@ impl HMMutablePresenceEvent {
         /// presenceEventType The event type that will trigger the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(presenceEventType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceEventType(&self) -> HMPresenceEventType;
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// Setter for [`presenceEventType`][Self::presenceEventType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPresenceEventType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresenceEventType(&self, presence_event_type: HMPresenceEventType);
@@ -169,12 +185,20 @@ impl HMMutablePresenceEvent {
         /// presenceUserType The user type whose presence will trigger the event.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(presenceUserType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceUserType(&self) -> HMPresenceEventUserType;
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// Setter for [`presenceUserType`][Self::presenceUserType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPresenceUserType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPresenceUserType(&self, presence_user_type: HMPresenceEventUserType);

@@ -33,6 +33,10 @@ impl UIZoomTransitionOptions {
         #[cfg(feature = "block2")]
         /// Called when an interactive dismissal of this transition begins.
         /// Return value indicates whether the interaction should begin for the given context.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(interactiveDismissShouldBegin))]
         #[unsafe(method_family = none)]
         pub unsafe fn interactiveDismissShouldBegin(
@@ -55,6 +59,10 @@ impl UIZoomTransitionOptions {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Return a frame in the zoomed view controller's view to which to align the source view.
         /// Return `CGRectNull` to indicate no preference.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(alignmentRectProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentRectProvider(

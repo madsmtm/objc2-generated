@@ -51,6 +51,10 @@ impl CPRouteInformation {
         /// maneuvers is an array of CPManeuver objects, each describes a single maneuver.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maneuvers))]
         #[unsafe(method_family = none)]
         pub unsafe fn maneuvers(&self) -> Retained<NSArray<CPManeuver>>;
@@ -59,6 +63,10 @@ impl CPRouteInformation {
         /// laneGuidances is an array of CPLaneGuidance objects, each describes a single lane guidance.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(laneGuidances))]
         #[unsafe(method_family = none)]
         pub unsafe fn laneGuidances(&self) -> Retained<NSArray<CPLaneGuidance>>;
@@ -67,6 +75,10 @@ impl CPRouteInformation {
         /// currentManeuvers is an array of CPManeuver objects, describing the current maneuvers.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(currentManeuvers))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentManeuvers(&self) -> Retained<NSArray<CPManeuver>>;
@@ -75,6 +87,10 @@ impl CPRouteInformation {
         /// currentLaneGuidance is a CPLaneGuidance object, describing the current lane guidance.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(currentLaneGuidance))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentLaneGuidance(&self) -> Retained<CPLaneGuidance>;
@@ -83,6 +99,10 @@ impl CPRouteInformation {
         /// tripTravelEstimates is a CPTravelEstimates object, describing the travel estimates for the current trip.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(tripTravelEstimates))]
         #[unsafe(method_family = none)]
         pub unsafe fn tripTravelEstimates(&self) -> Retained<CPTravelEstimates>;
@@ -91,6 +111,10 @@ impl CPRouteInformation {
         /// maneuverTravelEstimates is a CPTravelEstimates object, describing the travel estimates for the first maneuver in the list of current maneuvers.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maneuverTravelEstimates))]
         #[unsafe(method_family = none)]
         pub unsafe fn maneuverTravelEstimates(&self) -> Retained<CPTravelEstimates>;

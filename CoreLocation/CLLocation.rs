@@ -333,61 +333,109 @@ impl CLLocation {
         ) -> Retained<Self>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(coordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(altitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(ellipsoidalAltitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn ellipsoidalAltitude(&self) -> CLLocationDistance;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(horizontalAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalAccuracy(&self) -> CLLocationAccuracy;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(verticalAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalAccuracy(&self) -> CLLocationAccuracy;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(course))]
         #[unsafe(method_family = none)]
         pub unsafe fn course(&self) -> CLLocationDirection;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(courseAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn courseAccuracy(&self) -> CLLocationDirectionAccuracy;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(speed))]
         #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CLLocationSpeed;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(speedAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn speedAccuracy(&self) -> CLLocationSpeedAccuracy;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(floor))]
         #[unsafe(method_family = none)]
         pub unsafe fn floor(&self) -> Option<Retained<CLFloor>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sourceInformation))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceInformation(&self) -> Option<Retained<CLLocationSourceInformation>>;

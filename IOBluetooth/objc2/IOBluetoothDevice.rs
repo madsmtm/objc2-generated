@@ -12,6 +12,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceasynccallbacks?language=objc)
     pub unsafe trait IOBluetoothDeviceAsyncCallbacks {
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `device` might not allow `None`.
         #[unsafe(method(remoteNameRequestComplete:status:))]
         #[unsafe(method_family = none)]
         unsafe fn remoteNameRequestComplete_status(
@@ -21,6 +24,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `device` might not allow `None`.
         #[unsafe(method(connectionComplete:status:))]
         #[unsafe(method_family = none)]
         unsafe fn connectionComplete_status(
@@ -30,6 +36,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "IOBluetoothObject")]
+        /// # Safety
+        ///
+        /// `device` might not allow `None`.
         #[unsafe(method(sdpQueryComplete:status:))]
         #[unsafe(method_family = none)]
         unsafe fn sdpQueryComplete_status(
@@ -100,6 +109,10 @@ impl IOBluetoothDevice {
         /// IOBluetoothUserNotification object will be valid for as long as the notification is registered.
         /// It is not necessary to retain the result.  Once -unregister is called on it, it will no longer
         /// be valid.
+        ///
+        /// # Safety
+        ///
+        /// `in_selector` must be a valid selector.
         #[unsafe(method(registerForConnectNotifications:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForConnectNotifications_selector(
@@ -121,6 +134,10 @@ impl IOBluetoothDevice {
         /// Returns: Returns an IOBluetoothUserNotification representing the outstanding device disconnect notification.
         /// To unregister the notification, call -unregister of the returned IOBluetoothUserNotification
         /// object.  If an error is encountered creating the notification, nil is returned.
+        ///
+        /// # Safety
+        ///
+        /// `in_selector` must be a valid selector.
         #[unsafe(method(registerForDisconnectNotification:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForDisconnectNotification_selector(
@@ -138,6 +155,10 @@ impl IOBluetoothDevice {
         /// Parameter `address`: Pointer to a BluetoothDeviceAddress for which an IOBluetoothDevice instance is desired
         ///
         /// Returns: Returns the IOBluetoothDevice object for the given BluetoothDeviceAddress
+        ///
+        /// # Safety
+        ///
+        /// `address` must be a valid pointer.
         #[unsafe(method(deviceWithAddress:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceWithAddress(
@@ -145,6 +166,9 @@ impl IOBluetoothDevice {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "Bluetooth")]
+        /// # Safety
+        ///
+        /// `address` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(withAddress:))]
         #[unsafe(method_family = none)]
@@ -160,6 +184,10 @@ impl IOBluetoothDevice {
         /// Parameter `address`: Pointer to an NSString containing the BD_ADDR for which an IOBluetoothDevice instance is desired.  The string should be of the form xx:xx:xx:xx:xx:xx
         ///
         /// Returns: Returns the IOBluetoothDevice object for the given BluetoothDeviceAddress
+        ///
+        /// # Safety
+        ///
+        /// `address` might not allow `None`.
         #[unsafe(method(deviceWithAddressString:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceWithAddressString(address: Option<&NSString>)
@@ -173,6 +201,10 @@ impl IOBluetoothDevice {
         /// Parameter `deviceRef`: IOBluetoothDeviceRef for which an IOBluetoothDevice * is desired.
         ///
         /// Returns: Returns the IOBluetoothDevice * for the given IOBluetoothDeviceRef.
+        ///
+        /// # Safety
+        ///
+        /// `device_ref` might not allow `None`.
         #[deprecated]
         #[unsafe(method(withDeviceRef:))]
         #[unsafe(method_family = none)]
@@ -218,6 +250,11 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the open process was successfully started (or if an existing
         /// L2CAP channel was found).
+        ///
+        /// # Safety
+        ///
+        /// - `channel_delegate` should be of the correct type.
+        /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openL2CAPChannelSync:withPSM:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openL2CAPChannelSync_withPSM_delegate(
@@ -254,6 +291,11 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the open process was successfully started (or if an existing
         /// L2CAP channel was found).
+        ///
+        /// # Safety
+        ///
+        /// - `channel_delegate` should be of the correct type.
+        /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openL2CAPChannelAsync:withPSM:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openL2CAPChannelAsync_withPSM_delegate(
@@ -308,6 +350,10 @@ impl IOBluetoothDevice {
         /// Parameter `length`: (UInt16) - Length of the buffer to send
         ///
         /// Returns: Returns kIOReturnSuccess if the echo request was able to be sent.
+        ///
+        /// # Safety
+        ///
+        /// `data` must be a valid pointer.
         #[unsafe(method(sendL2CAPEchoRequest:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendL2CAPEchoRequest_length(
@@ -377,6 +423,11 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the open process was successfully started (or if an existing
         /// RFCOMM channel was found). The channel must be released when the caller is done with it.
+        ///
+        /// # Safety
+        ///
+        /// - `channel_delegate` should be of the correct type.
+        /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openRFCOMMChannelSync:withChannelID:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openRFCOMMChannelSync_withChannelID_delegate(
@@ -422,6 +473,11 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the open process was successfully started (or if an existing
         /// RFCOMM channel was found). The channel must be released when the caller is done with it.
+        ///
+        /// # Safety
+        ///
+        /// - `channel_delegate` should be of the correct type.
+        /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openRFCOMMChannelAsync:withChannelID:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openRFCOMMChannelAsync_withChannelID_delegate(
@@ -700,6 +756,11 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the connection was successfully created (or if asynchronous, if the
         /// CREATE_CONNECTION command was successfully issued).
+        ///
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `target` might not allow `None`.
         #[unsafe(method(openConnection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openConnection_(&self, target: Option<&AnyObject>) -> IOReturn;
@@ -726,6 +787,11 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the connection was successfully created (or if asynchronous, if the
         /// CREATE_CONNECTION command was successfully issued).
+        ///
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `target` might not allow `None`.
         #[unsafe(method(openConnection:withPageTimeout:authenticationRequired:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openConnection_withPageTimeout_authenticationRequired(
@@ -760,6 +826,11 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the remote name request was successfully issued (and if synchronous, if
         /// the request completed successfully).
+        ///
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `target` might not allow `None`.
         #[unsafe(method(remoteNameRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteNameRequest(&self, target: Option<&AnyObject>) -> IOReturn;
@@ -780,6 +851,11 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the remote name request was successfully issued (and if synchronous, if
         /// the request completed successfully).
+        ///
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `target` might not allow `None`.
         #[unsafe(method(remoteNameRequest:withPageTimeout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteNameRequest_withPageTimeout(
@@ -866,6 +942,11 @@ impl IOBluetoothDevice {
         /// Parameter `target`: The target to message when the SDP query is complete
         ///
         /// Returns: Returns kIOReturnSuccess if the SDP query was successfully started.
+        ///
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `target` might not allow `None`.
         #[unsafe(method(performSDPQuery:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performSDPQuery(&self, target: Option<&AnyObject>) -> IOReturn;
@@ -888,6 +969,13 @@ impl IOBluetoothDevice {
         ///
         ///
         /// Returns: Returns kIOReturnSuccess if the SDP query was successfully started.
+        ///
+        /// # Safety
+        ///
+        /// - `target` should be of the correct type.
+        /// - `target` might not allow `None`.
+        /// - `uuid_array` generic should be of the correct type.
+        /// - `uuid_array` might not allow `None`.
         #[unsafe(method(performSDPQuery:uuids:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performSDPQuery_uuids(
@@ -944,6 +1032,10 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns the first service record that contains the given uuid.  If no service record is found,
         /// nil is returned.
+        ///
+        /// # Safety
+        ///
+        /// `sdp_uuid` might not allow `None`.
         #[unsafe(method(getServiceRecordForUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getServiceRecordForUUID(
@@ -1096,6 +1188,13 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the open process was successfully started (or if an existing
         /// L2CAP channel was found). The channel must be released when the caller is done with it.
+        ///
+        /// # Safety
+        ///
+        /// - `channel_configuration` generic should be of the correct type.
+        /// - `channel_configuration` might not allow `None`.
+        /// - `channel_delegate` should be of the correct type.
+        /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openL2CAPChannelSync:withPSM:withConfiguration:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openL2CAPChannelSync_withPSM_withConfiguration_delegate(
@@ -1141,6 +1240,13 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the open process was successfully started (or if an existing
         /// L2CAP channel was found). The channel must be released when the caller is done with it.
+        ///
+        /// # Safety
+        ///
+        /// - `channel_configuration` generic should be of the correct type.
+        /// - `channel_configuration` might not allow `None`.
+        /// - `channel_delegate` should be of the correct type.
+        /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openL2CAPChannelAsync:withPSM:withConfiguration:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn openL2CAPChannelAsync_withPSM_withConfiguration_delegate(

@@ -99,6 +99,9 @@ impl SCNTransaction {
         #[unsafe(method_family = none)]
         pub unsafe fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(value: Option<&AnyObject>, key: &NSString);

@@ -262,11 +262,21 @@ impl UIColor {
         pub unsafe fn setStroke(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `white` must be a valid pointer or null.
+        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getWhite:alpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getWhite_alpha(&self, white: *mut CGFloat, alpha: *mut CGFloat) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `hue` must be a valid pointer or null.
+        /// - `saturation` must be a valid pointer or null.
+        /// - `brightness` must be a valid pointer or null.
+        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getHue:saturation:brightness:alpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getHue_saturation_brightness_alpha(
@@ -278,6 +288,12 @@ impl UIColor {
         ) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// - `red` must be a valid pointer or null.
+        /// - `green` must be a valid pointer or null.
+        /// - `blue` must be a valid pointer or null.
+        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getRed:green:blue:alpha:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRed_green_blue_alpha(
@@ -295,6 +311,10 @@ impl UIColor {
 
         #[cfg(feature = "objc2-core-graphics")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(CGColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGColor(&self) -> Retained<CGColor>;
@@ -302,6 +322,10 @@ impl UIColor {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(CIColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn CIColor(&self) -> Retained<CIColor>;
@@ -379,6 +403,9 @@ impl UIColor {
 impl UIColor {
     extern_methods!(
         #[cfg(all(feature = "UITraitCollection", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `dynamic_provider` block's return must be a valid pointer.
         #[unsafe(method(colorWithDynamicProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorWithDynamicProvider(
@@ -388,6 +415,9 @@ impl UIColor {
         ) -> Retained<UIColor>;
 
         #[cfg(all(feature = "UITraitCollection", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `dynamic_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithDynamicProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDynamicProvider(
@@ -418,6 +448,10 @@ impl UIColor {
         ) -> Retained<UIColor>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(prominence))]
         #[unsafe(method_family = none)]
         pub unsafe fn prominence(&self) -> UIColorProminence;

@@ -12,6 +12,10 @@ extern_protocol!(
     pub unsafe trait SFSafariExtensionHandling: NSObjectProtocol {
         #[cfg(feature = "SFSafariPage")]
         /// This is called when a content script from an extension dispatches a message to the app extension.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(messageReceivedWithName:fromPage:userInfo:))]
         #[unsafe(method_family = none)]
@@ -23,6 +27,10 @@ extern_protocol!(
         );
 
         /// This is called when the extension's containing app dispatches a message to the app extension.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(messageReceivedFromContainingAppWithName:userInfo:))]
         #[unsafe(method_family = none)]
@@ -52,6 +60,10 @@ extern_protocol!(
 
         #[cfg(feature = "SFSafariPage")]
         /// This is called when one of the extension's context menu items is selected.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(contextMenuItemSelectedWithCommand:inPage:userInfo:))]
         #[unsafe(method_family = none)]
@@ -64,6 +76,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "SFSafariPage", feature = "block2"))]
         /// This is called before context menu is shown, and provides a way to validate individual context menu items.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[optional]
         #[unsafe(method(validateContextMenuItemWithCommand:inPage:userInfo:validationHandler:))]
         #[unsafe(method_family = none)]

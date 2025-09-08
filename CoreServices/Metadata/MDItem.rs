@@ -52,6 +52,11 @@ impl MDItem {
     /// may not be uniqued. Use CFEqual() to compare them.]]
     ///
     /// Returns: An MDItemRef, or NULL on failure.
+    ///
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `path` might not allow `None`.
     #[doc(alias = "MDItemCreate")]
     #[inline]
     pub unsafe fn new(
@@ -80,6 +85,11 @@ impl MDItem {
     /// may not be uniqued. Use CFEqual() to compare them.]]
     ///
     /// Returns: An MDItemRef, or NULL on failure.
+    ///
+    /// # Safety
+    ///
+    /// - `allocator` might not allow `None`.
+    /// - `url` might not allow `None`.
     #[doc(alias = "MDItemCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -106,6 +116,11 @@ impl MDItem {
 /// Parameter `urls`: A CFArray of urls to the file for which to create the MDItem.
 ///
 /// Returns: A CFArrayRef of MDItemRefs, or NULL on failure. Missing items will have kCFNull entries in the result array.
+///
+/// # Safety
+///
+/// - `urls` generic must be of the correct type.
+/// - `urls` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDItemsCreateWithURLs(
     allocator: Option<&CFAllocator>,
@@ -130,6 +145,10 @@ impl MDItem {
     ///
     /// Returns: A CFTypeRef, or NULL on failure, or if the attribute
     /// does not exist, of if the attribute is not readable.
+    ///
+    /// # Safety
+    ///
+    /// `name` might not allow `None`.
     #[doc(alias = "MDItemCopyAttribute")]
     #[inline]
     pub unsafe fn attribute(&self, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
@@ -154,6 +173,11 @@ impl MDItem {
     /// failure. If an attribute does not exist, or is
     /// unreadable, there will be no key-value pair for it
     /// in the dictionary.
+    ///
+    /// # Safety
+    ///
+    /// - `names` generic must be of the correct type.
+    /// - `names` might not allow `None`.
     #[doc(alias = "MDItemCopyAttributes")]
     #[inline]
     pub unsafe fn attributes(&self, names: Option<&CFArray>) -> Option<CFRetained<CFDictionary>> {
@@ -194,6 +218,13 @@ impl MDItem {
 /// Returns: A CFArrayRef, or NULL on failure. Each entry in the array is either kCFNull,
 /// if the item is not accessible, or a CFArray of attribute values.
 /// If an attribute is not available, there will be a kCFNull in its slot in the nested array.
+///
+/// # Safety
+///
+/// - `items` generic must be of the correct type.
+/// - `items` might not allow `None`.
+/// - `names` generic must be of the correct type.
+/// - `names` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
     items: Option<&CFArray>,
@@ -210,6 +241,11 @@ pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
 }
 
 impl MDItem {
+    /// # Safety
+    ///
+    /// - `items` generic must be of the correct type.
+    /// - `items` might not allow `None`.
+    /// - `completion_handler` might not allow `None`.
     #[doc(alias = "MDItemGetCacheFileDescriptors")]
     #[cfg(feature = "block2")]
     #[inline]

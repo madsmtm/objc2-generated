@@ -12,6 +12,10 @@ use crate::*;
 /// Parameter `utiType`: the UTI type to be interrogated.
 ///
 /// Returns: A CFDictionaryRef with keys ==  to kMDAttributeDisplayValues etc..
+///
+/// # Safety
+///
+/// `content_type_uti` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
     content_type_uti: Option<&CFString>,
@@ -30,6 +34,10 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
 /// Parameter `name`: the attribute whose schema you are interested in.
 ///
 /// Returns: A CFDictionary of the description of the attribute.
+///
+/// # Safety
+///
+/// `name` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyMetaAttributesForAttribute(
     name: Option<&CFString>,
@@ -61,6 +69,10 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAllAttributes() -> Option<CFRetained
 ///
 /// Returns: the localized name of the passed in attribute, or NULL if there is
 /// no localized name is avaliable.
+///
+/// # Safety
+///
+/// `name` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
     name: Option<&CFString>,
@@ -80,6 +92,10 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
 ///
 /// Returns: the localized description of the passed in attribute, or NULL if there is
 /// no localized description is avaliable.
+///
+/// # Safety
+///
+/// `name` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayDescriptionForAttribute(
     name: Option<&CFString>,

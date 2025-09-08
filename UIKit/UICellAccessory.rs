@@ -804,6 +804,10 @@ impl UICellAccessoryPopUpMenu {
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// An optional handler to call when the selected element in the menu changes.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(selectedElementDidChangeHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedElementDidChangeHandler(
@@ -952,6 +956,10 @@ pub type UICellAccessoryPosition =
 
 impl UICellAccessory {
     /// Positions the accessory before the accessory matching the class specified, or at the beginning if not found.
+    ///
+    /// # Safety
+    ///
+    /// The returned block's argument must be a valid pointer.
     #[doc(alias = "UICellAccessoryPositionBeforeAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -967,6 +975,10 @@ impl UICellAccessory {
     }
 
     /// Positions the accessory after the accessory matching the class specified, or at the end if not found.
+    ///
+    /// # Safety
+    ///
+    /// The returned block's argument must be a valid pointer.
     #[doc(alias = "UICellAccessoryPositionAfterAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1047,6 +1059,10 @@ impl UICellAccessoryCustomView {
         #[cfg(feature = "block2")]
         /// Allows customizing the relative position of the accessory amongst any other accessories displayed on the same edge.
         /// The default is to insert the accessory at a position closest to the inside of the cell.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> UICellAccessoryPosition;
@@ -1055,6 +1071,10 @@ impl UICellAccessoryCustomView {
         /// Setter for [`position`][Self::position].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `position` must be a valid pointer.
         #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: UICellAccessoryPosition);

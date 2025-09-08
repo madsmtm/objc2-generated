@@ -103,6 +103,10 @@ extern "C-unwind" {
     ///
     ///
     /// Allocates a new ExtAudioFileRef, for reading an existing audio file.
+    ///
+    /// # Safety
+    ///
+    /// `out_ext_audio_file` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn ExtAudioFileOpenURL(
         in_url: &CFURL,
@@ -126,6 +130,11 @@ extern "C-unwind" {
 /// ExtAudioFileRef is disposed. Disposing the ExtAudioFileRef will not close
 /// the AudioFileID when this Wrap API call is used, so the client is also
 /// responsible for closing the AudioFileID when finished with it.
+///
+/// # Safety
+///
+/// - `in_file_id` must be a valid pointer.
+/// - `out_ext_audio_file` must be a valid pointer.
 #[cfg(feature = "AudioFile")]
 #[inline]
 pub unsafe extern "C-unwind" fn ExtAudioFileWrapAudioFileID(
@@ -170,6 +179,12 @@ extern "C-unwind" {
     /// sample rate in inStreamDesc to be 0, since in all cases, the file's encoding
     /// AudioConverter may produce audio at a different sample rate than the source. The
     /// file will be created with the audio format actually produced by the encoder.
+    ///
+    /// # Safety
+    ///
+    /// - `in_stream_desc` must be a valid pointer.
+    /// - `in_channel_layout` must be a valid pointer or null.
+    /// - `out_ext_audio_file` must be a valid pointer.
     #[cfg(all(
         feature = "AudioFile",
         feature = "objc2-core-audio-types",
@@ -194,6 +209,10 @@ extern "C-unwind" {
     ///
     ///
     /// Closes the file and deletes the object.
+    ///
+    /// # Safety
+    ///
+    /// `in_ext_audio_file` must be a valid pointer.
     pub fn ExtAudioFileDispose(in_ext_audio_file: ExtAudioFileRef) -> OSStatus;
 }
 
@@ -221,6 +240,12 @@ extern "C-unwind" {
     /// (Note that the use of sequential reads/writes means that an ExtAudioFile must
     /// not be read on multiple threads; clients wishing to do this should use the
     /// lower-level AudioFile API set).
+    ///
+    /// # Safety
+    ///
+    /// - `in_ext_audio_file` must be a valid pointer.
+    /// - `io_number_frames` must be a valid pointer.
+    /// - `io_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileRead(
         in_ext_audio_file: ExtAudioFileRef,
@@ -245,6 +270,11 @@ extern "C-unwind" {
     /// If the file has a client data format, then the audio data in ioData is
     /// translated from the client format to the file data format, via the
     /// ExtAudioFile's internal AudioConverter.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ext_audio_file` must be a valid pointer.
+    /// - `io_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileWrite(
         in_ext_audio_file: ExtAudioFileRef,
@@ -280,6 +310,11 @@ extern "C-unwind" {
     ///
     /// N.B. Errors may occur after this call has returned. Such errors may be returned
     /// from subsequent calls to this function.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ext_audio_file` must be a valid pointer.
+    /// - `io_data` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileWriteAsync(
         in_ext_audio_file: ExtAudioFileRef,
@@ -306,6 +341,10 @@ extern "C-unwind" {
     /// is located in the middle of a packet.
     ///
     /// This function's behavior with files open for writing is currently undefined.
+    ///
+    /// # Safety
+    ///
+    /// `in_ext_audio_file` must be a valid pointer.
     pub fn ExtAudioFileSeek(in_ext_audio_file: ExtAudioFileRef, in_frame_offset: i64) -> OSStatus;
 }
 
@@ -319,6 +358,11 @@ extern "C-unwind" {
     /// sample rate and frame count of the file's format (not the client format)
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ext_audio_file` must be a valid pointer.
+    /// - `out_frame_offset` must be a valid pointer.
     pub fn ExtAudioFileTell(
         in_ext_audio_file: ExtAudioFileRef,
         out_frame_offset: NonNull<i64>,
@@ -338,6 +382,12 @@ extern "C-unwind" {
     /// Parameter `outWritable`: If non-null, on exit, this indicates whether the property value is settable.
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ext_audio_file` must be a valid pointer.
+    /// - `out_size` must be a valid pointer or null.
+    /// - `out_writable` must be a valid pointer or null.
     pub fn ExtAudioFileGetPropertyInfo(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,
@@ -360,6 +410,12 @@ extern "C-unwind" {
     /// Parameter `outPropertyData`: The value of the property is copied to the memory this points to.
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ext_audio_file` must be a valid pointer.
+    /// - `io_property_data_size` must be a valid pointer.
+    /// - `out_property_data` must be a valid pointer.
     pub fn ExtAudioFileGetProperty(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,
@@ -381,6 +437,11 @@ extern "C-unwind" {
     /// Parameter `inPropertyData`: Points to the property's new value.
     ///
     /// Returns: An OSStatus error code.
+    ///
+    /// # Safety
+    ///
+    /// - `in_ext_audio_file` must be a valid pointer.
+    /// - `in_property_data` must be a valid pointer.
     pub fn ExtAudioFileSetProperty(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,

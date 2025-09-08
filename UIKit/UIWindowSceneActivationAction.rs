@@ -94,6 +94,10 @@ impl UIWindowSceneActivationAction {
         ///
         /// Parameter `configurationProvider`: Called when the action has been triggered. It should return a
         /// `UIWindowSceneActivationConfiguration`whose user activity will be used to request scene activation.
+        ///
+        /// # Safety
+        ///
+        /// `configuration_provider` must be a valid pointer.
         #[unsafe(method(actionWithIdentifier:alternateAction:configurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_alternateAction_configurationProvider(
@@ -104,6 +108,9 @@ impl UIWindowSceneActivationAction {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(actionWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithHandler(
@@ -112,6 +119,9 @@ impl UIWindowSceneActivationAction {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(actionWithTitle:image:identifier:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithTitle_image_identifier_handler(

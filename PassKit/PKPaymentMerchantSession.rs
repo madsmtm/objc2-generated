@@ -19,6 +19,9 @@ extern_conformance!(
 
 impl PKPaymentMerchantSession {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `dictionary` generic should be of the correct type.
         #[unsafe(method(initWithDictionary:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary(

@@ -207,6 +207,10 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `package_type` must be a valid pointer.
+    /// - `package_creator` must be a valid pointer.
     #[doc(alias = "CFBundleGetPackageInfo")]
     #[inline]
     pub unsafe fn package_info(&self, package_type: *mut u32, package_creator: *mut u32) {
@@ -330,6 +334,10 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `package_type` must be a valid pointer.
+    /// - `package_creator` must be a valid pointer.
     #[doc(alias = "CFBundleGetPackageInfoInDirectory")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -418,6 +426,11 @@ impl CFBundle {
     /// - tableName: The name of the strings file to search.
     /// - localizations: An array of BCP 47 language codes corresponding to available localizations. Bundle compares the array against its available localizations, and uses the best result to retrieve the localized string. If empty, we treat it as no localization is available, and may return a fallback.
     /// - Returns: A localized version of the string designated by ``key`` in table ``tableName``.
+    ///
+    /// # Safety
+    ///
+    /// - `localizations` generic must be of the correct type.
+    /// - `localizations` might not allow `None`.
     #[doc(alias = "CFBundleCopyLocalizedStringForLocalizations")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -503,6 +516,10 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `loc_array` generic must be of the correct type.
+    /// - `loc_array` might not allow `None`.
     #[doc(alias = "CFBundleCopyPreferredLocalizationsFromArray")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -518,6 +535,12 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `loc_array` generic must be of the correct type.
+    /// - `loc_array` might not allow `None`.
+    /// - `pref_array` generic must be of the correct type.
+    /// - `pref_array` might not allow `None`.
     #[doc(alias = "CFBundleCopyLocalizationsForPreferences")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -666,6 +689,9 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFBundlePreflightExecutable")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -677,6 +703,9 @@ impl CFBundle {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer.
     #[doc(alias = "CFBundleLoadExecutableAndReturnError")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -732,6 +761,11 @@ impl CFBundle {
         unsafe { CFBundleGetFunctionPointerForName(self, function_name) }
     }
 
+    /// # Safety
+    ///
+    /// - `function_names` generic must be of the correct type.
+    /// - `function_names` might not allow `None`.
+    /// - `ftbl` must be a valid pointer.
     #[doc(alias = "CFBundleGetFunctionPointersForNames")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -762,6 +796,11 @@ impl CFBundle {
         unsafe { CFBundleGetDataPointerForName(self, symbol_name) }
     }
 
+    /// # Safety
+    ///
+    /// - `symbol_names` generic must be of the correct type.
+    /// - `symbol_names` might not allow `None`.
+    /// - `stbl` must be a valid pointer.
     #[doc(alias = "CFBundleGetDataPointersForNames")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -849,6 +888,10 @@ impl CFBundle {
         unsafe { CFBundleOpenBundleResourceMap(self) }
     }
 
+    /// # Safety
+    ///
+    /// - `ref_num` must be a valid pointer.
+    /// - `localized_ref_num` must be a valid pointer.
     #[doc(alias = "CFBundleOpenBundleResourceFiles")]
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     #[inline]

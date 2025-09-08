@@ -77,6 +77,10 @@ impl CPAlertAction {
         #[cfg(feature = "block2")]
         /// Create an alert action with a title, display style, and a callback handler that is invoked
         /// when the user taps this action.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(initWithTitle:style:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_style_handler(
@@ -94,6 +98,10 @@ impl CPAlertAction {
         /// If the provided color does not meet contrast requirements, the system default will be used.
         /// Font color will automatically be adjusted by the system to correspond with this color.
         /// Alpha values will be ignored.
+        ///
+        /// # Safety
+        ///
+        /// `handler` must be a valid pointer.
         #[unsafe(method(initWithTitle:color:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_color_handler(
@@ -112,6 +120,9 @@ impl CPAlertAction {
         pub unsafe fn style(&self) -> CPAlertActionStyle;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> CPAlertActionHandler;

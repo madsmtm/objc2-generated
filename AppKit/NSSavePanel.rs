@@ -394,10 +394,16 @@ impl NSSavePanel {
         #[unsafe(method_family = none)]
         pub unsafe fn validateVisibleColumns(&self);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(ok:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ok(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(cancel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self, sender: Option<&AnyObject>);
@@ -497,6 +503,10 @@ extern_protocol!(
         /// Optional — Enabling URLs.
         /// `NSSavePanel`: This method is not sent. All urls are always disabled.
         /// `NSOpenPanel`: Return `YES` to allow the `url` to be enabled in the panel. Delegate implementations should be fast to avoid stalling the UI. Applications linked on Mac OS 10.7 and later should be prepared to handle non-file URL schemes.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(panel:shouldEnableURL:))]
         #[unsafe(method_family = none)]
@@ -507,6 +517,10 @@ extern_protocol!(
         /// - Note: An item at `url` may not physically exist yet, unless the user decided to overwrite an existing item.
         /// `NSOpenPanel`: Sent once for each selected filename (or directory) when the user chooses the Open button. Return `YES` if the `url` is acceptable to open. Return `NO` and return by reference `outError` with a user displayable message for why the `url` is not valid for opening. If a recovery option is provided by the error, and recovery succeeded, the panel will attempt to close again.
         /// - Note: Implement this delegate method instead of  `panel:shouldEnableURL:` if the processing of the selected item takes a long time.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(panel:validateURL:error:_))]
         #[unsafe(method_family = none)]
@@ -517,12 +531,20 @@ extern_protocol!(
         ) -> Result<(), Retained<NSError>>;
 
         /// Optional — Sent when the user selected the directory located at `url`. `url` may be `nil`. if the current directory can't be represented by an NSURL object (ie: the media sidebar directory, or the "Computer").
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(panel:didChangeToDirectoryURL:))]
         #[unsafe(method_family = none)]
         unsafe fn panel_didChangeToDirectoryURL(&self, sender: &AnyObject, url: Option<&NSURL>);
 
         /// Optional — Filename customization for the NSSavePanel. Allows the delegate to customize the filename entered by the user, before the extension is appended, and before the user is potentially asked to replace a file.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(panel:userEnteredFilename:confirmed:))]
         #[unsafe(method_family = none)]
@@ -534,12 +556,20 @@ extern_protocol!(
         ) -> Option<Retained<NSString>>;
 
         /// Optional — Sent when the user clicks the disclosure triangle to expand or collapse the file browser while in NSOpenPanel.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(panel:willExpand:))]
         #[unsafe(method_family = none)]
         unsafe fn panel_willExpand(&self, sender: &AnyObject, expanding: bool);
 
         /// Optional — Sent when the user has changed the selection.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(panelSelectionDidChange:))]
         #[unsafe(method_family = none)]
@@ -549,6 +579,10 @@ extern_protocol!(
         #[cfg(target_vendor = "apple")]
         /// `NSSavePanel`: Optional — Sent when the content type popup is displayed and the save panel needs the display name for a type. If `nil` is returned, the save panel will display type's `localizedDescription`.
         /// `NSOpenPanel`: Not sent.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(panel:displayNameForType:))]
         #[unsafe(method_family = none)]
@@ -562,6 +596,10 @@ extern_protocol!(
         #[cfg(target_vendor = "apple")]
         /// `NSSavePanel`: Optional — Sent when the user changes the current type.
         /// `NSOpenPanel`: Not sent.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(panel:didSelectType:))]
         #[unsafe(method_family = none)]
@@ -598,6 +636,10 @@ impl NSSavePanel {
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiredFileType(&self, r#type: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated = "Use beginSheetModalForWindow:completionHandler: instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]
         #[unsafe(method(beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
@@ -620,6 +662,9 @@ impl NSSavePanel {
             name: Option<&NSString>,
         ) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "Default implementation does nothing."]
         #[unsafe(method(selectText:))]
         #[unsafe(method_family = none)]

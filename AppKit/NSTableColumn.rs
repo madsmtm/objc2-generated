@@ -258,6 +258,10 @@ impl NSTableColumn {
         pub unsafe fn dataCell(&self) -> Retained<AnyObject>;
 
         /// Setter for [`dataCell`][Self::dataCell].
+        ///
+        /// # Safety
+        ///
+        /// `data_cell` should be of the correct type.
         #[unsafe(method(setDataCell:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataCell(&self, data_cell: &AnyObject);

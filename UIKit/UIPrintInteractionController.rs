@@ -181,6 +181,10 @@ impl UIPrintInteractionController {
         /// Setter for [`printingItem`][Self::printingItem].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `printing_item` should be of the correct type.
         #[unsafe(method(setPrintingItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrintingItem(&self, printing_item: Option<&AnyObject>);
@@ -192,11 +196,18 @@ impl UIPrintInteractionController {
         /// Setter for [`printingItems`][Self::printingItems].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `printing_items` generic should be of the correct type.
         #[unsafe(method(setPrintingItems:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrintingItems(&self, printing_items: Option<&NSArray>);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentAnimated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentAnimated_completionHandler(
@@ -211,6 +222,9 @@ impl UIPrintInteractionController {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentFromRect:inView:animated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentFromRect_inView_animated_completionHandler(
@@ -222,6 +236,9 @@ impl UIPrintInteractionController {
         ) -> bool;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentFromBarButtonItem:animated:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentFromBarButtonItem_animated_completionHandler(
@@ -235,6 +252,10 @@ impl UIPrintInteractionController {
         /// Use to print without showing the standard print panel. Use with a
         /// UIPrinter found using the UIPrinterPickerController.
         /// The value for the duplex property on printInfo will be ignored.
+        ///
+        /// # Safety
+        ///
+        /// `completion` must be a valid pointer or null.
         #[unsafe(method(printToPrinter:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn printToPrinter_completionHandler(
@@ -344,6 +365,9 @@ extern_protocol!(
             paper: &UIPrintPaper,
         ) -> CGFloat;
 
+        /// # Safety
+        ///
+        /// `available_behaviors` generic should be of the correct type.
         #[optional]
         #[unsafe(method(printInteractionController:chooseCutterBehavior:))]
         #[unsafe(method_family = none)]

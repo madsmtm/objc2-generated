@@ -51,6 +51,10 @@ impl CAGradientLayer {
         /// Setter for [`colors`][Self::colors].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `colors` generic should be of the correct type.
         #[unsafe(method(setColors:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray>);
@@ -114,6 +118,9 @@ impl CAGradientLayer {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `layer` should be of the correct type.
         #[unsafe(method(initWithLayer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;

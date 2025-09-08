@@ -16,6 +16,9 @@ pub extern "C-unwind" fn SKDocumentGetTypeID() -> CFTypeID {
     unsafe { SKDocumentGetTypeID() }
 }
 
+/// # Safety
+///
+/// `in_url` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn SKDocumentCreateWithURL(
     in_url: Option<&CFURL>,
@@ -27,6 +30,9 @@ pub unsafe extern "C-unwind" fn SKDocumentCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `in_document` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SKDocumentCopyURL(
     in_document: &SKDocument,
@@ -38,6 +44,12 @@ pub unsafe extern "C-unwind" fn SKDocumentCopyURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// - `in_scheme` might not allow `None`.
+/// - `in_parent` should be of the correct type.
+/// - `in_parent` might not allow `None`.
+/// - `in_name` might not allow `None`.
 #[inline]
 pub unsafe extern "C-unwind" fn SKDocumentCreate(
     in_scheme: Option<&CFString>,
@@ -55,6 +67,9 @@ pub unsafe extern "C-unwind" fn SKDocumentCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// # Safety
+///
+/// `in_document` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SKDocumentGetSchemeName(
     in_document: &SKDocument,
@@ -66,6 +81,9 @@ pub unsafe extern "C-unwind" fn SKDocumentGetSchemeName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// # Safety
+///
+/// `in_document` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SKDocumentGetName(
     in_document: &SKDocument,
@@ -77,6 +95,9 @@ pub unsafe extern "C-unwind" fn SKDocumentGetName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// # Safety
+///
+/// `in_document` should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SKDocumentGetParent(
     in_document: &SKDocument,

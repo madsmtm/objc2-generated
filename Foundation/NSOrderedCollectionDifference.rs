@@ -130,6 +130,9 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         pub unsafe fn hasChanges(&self) -> bool;
 
         #[cfg(all(feature = "NSOrderedCollectionChange", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `block` block's return must be a valid pointer.
         #[unsafe(method(differenceByTransformingChangesWithBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn differenceByTransformingChangesWithBlock(

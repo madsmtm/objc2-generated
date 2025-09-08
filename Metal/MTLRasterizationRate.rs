@@ -110,6 +110,11 @@ impl MTLRasterizationRateLayerDescriptor {
         /// Parameter `vertical`: The initial sample values on the vertical axis. Must point to an array of sampleCount.height elements, of which the values will be copied into the MTLRasterizationRateLayerDescriptor.
         ///
         /// Use initWithSampleCount: to initialize with zeroes instead.
+        ///
+        /// # Safety
+        ///
+        /// - `horizontal` must be a valid pointer.
+        /// - `vertical` must be a valid pointer.
         #[unsafe(method(initWithSampleCount:horizontal:vertical:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleCount_horizontal_vertical(

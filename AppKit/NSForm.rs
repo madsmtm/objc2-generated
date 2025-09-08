@@ -265,6 +265,9 @@ impl NSForm {
             cols_wide: NSInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `factory_id` probably has further requirements.
         #[unsafe(method(initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(

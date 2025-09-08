@@ -78,6 +78,10 @@ impl IOUSBHostStream {
         /// transferred during the request
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `bytes_transferred` must be a valid pointer or null.
         #[unsafe(method(sendIORequestWithData:bytesTransferred:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendIORequestWithData_bytesTransferred_error(
@@ -95,6 +99,10 @@ impl IOUSBHostStream {
         /// Parameter `data`: pointer containing the buffer to use for the transfer
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueIORequestWithData:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueIORequestWithData_error_completionHandler(

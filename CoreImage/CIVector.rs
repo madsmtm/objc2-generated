@@ -38,6 +38,9 @@ extern_conformance!(
 impl CIVector {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `values` must be a valid pointer.
         #[unsafe(method(vectorWithValues:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorWithValues_count(
@@ -90,6 +93,9 @@ impl CIVector {
         pub unsafe fn vectorWithString(representation: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `values` must be a valid pointer.
         #[unsafe(method(initWithValues:count:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithValues_count(

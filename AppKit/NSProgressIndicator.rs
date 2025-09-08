@@ -177,10 +177,16 @@ impl NSProgressIndicator {
         #[unsafe(method_family = none)]
         pub unsafe fn setUsesThreadedAnimation(&self, uses_threaded_animation: bool);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(startAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAnimation(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(stopAnimation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopAnimation(&self, sender: Option<&AnyObject>);
@@ -299,6 +305,9 @@ impl NSProgressIndicator {
         #[unsafe(method_family = none)]
         pub unsafe fn setAnimationDelay(&self, delay: NSTimeInterval);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "Use -startAnimation and -stopAnimation instead."]
         #[unsafe(method(animate:))]
         #[unsafe(method_family = none)]

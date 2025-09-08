@@ -76,6 +76,10 @@ impl NSPageLayout {
         );
 
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSWindow"))]
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
@@ -121,6 +125,9 @@ impl NSPageLayout {
 impl NSPageLayout {
     extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `accessory_view` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setAccessoryView:))]
         #[unsafe(method_family = none)]
@@ -148,6 +155,9 @@ impl NSPageLayout {
 #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
 impl NSApplication {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(runPageLayout:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runPageLayout(&self, sender: Option<&AnyObject>);

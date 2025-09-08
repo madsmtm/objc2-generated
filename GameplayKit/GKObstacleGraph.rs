@@ -105,6 +105,10 @@ impl<NodeType: Message> GKObstacleGraph<NodeType> {
         /// Parameter `bufferRadius`: the circular radius of a potential agent that will navigate this graph.  Obstacles are extruded by this amount to create the graph.  Must be positive.  Negative values are clipped to 0.0f
         ///
         /// Parameter `nodeClass`: the class of the nodes that this graph should create.  Must descend from GKGraphNode2D
+        ///
+        /// # Safety
+        ///
+        /// `node_class` probably has further requirements.
         #[unsafe(method(graphWithObstacles:bufferRadius:nodeClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn graphWithObstacles_bufferRadius_nodeClass(
@@ -114,6 +118,9 @@ impl<NodeType: Message> GKObstacleGraph<NodeType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "GKObstacle")]
+        /// # Safety
+        ///
+        /// `node_class` probably has further requirements.
         #[unsafe(method(initWithObstacles:bufferRadius:nodeClass:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObstacles_bufferRadius_nodeClass(

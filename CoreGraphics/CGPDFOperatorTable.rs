@@ -38,6 +38,9 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableCreate() }
     }
 
+    /// # Safety
+    ///
+    /// `table` must be a valid pointer or null.
     #[doc(alias = "CGPDFOperatorTableRetain")]
     #[inline]
     pub unsafe fn retain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef {
@@ -47,6 +50,9 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableRetain(table) }
     }
 
+    /// # Safety
+    ///
+    /// `table` must be a valid pointer or null.
     #[doc(alias = "CGPDFOperatorTableRelease")]
     #[inline]
     pub unsafe fn release(table: CGPDFOperatorTableRef) {
@@ -56,6 +62,11 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableRelease(table) }
     }
 
+    /// # Safety
+    ///
+    /// - `table` must be a valid pointer or null.
+    /// - `name` must be a valid pointer or null.
+    /// - `callback` must be implemented correctly.
     #[doc(alias = "CGPDFOperatorTableSetCallback")]
     #[cfg(feature = "CGPDFScanner")]
     #[inline]

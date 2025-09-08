@@ -159,6 +159,9 @@ impl DOMCSSPrimitiveValue {
         #[unsafe(method_family = none)]
         pub unsafe fn getFloatValue(&self, unit_type: c_ushort) -> c_float;
 
+        /// # Safety
+        ///
+        /// `string_value` might not allow `None`.
         #[unsafe(method(setStringValue:stringValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStringValue_stringValue(
@@ -235,6 +238,9 @@ impl DOMCSSPrimitiveValue {
         #[unsafe(method_family = none)]
         pub unsafe fn setFloatValue(&self, unit_type: c_ushort, float_value: c_float);
 
+        /// # Safety
+        ///
+        /// `string_value` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setStringValue::))]
         #[unsafe(method_family = none)]

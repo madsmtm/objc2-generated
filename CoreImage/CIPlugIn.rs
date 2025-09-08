@@ -42,6 +42,10 @@ impl CIPlugIn {
         pub unsafe fn loadNonExecutablePlugIns();
 
         /// Loads a plug-in specified by its URL.
+        ///
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(loadPlugIn:allowNonExecutable:))]
         #[unsafe(method_family = none)]
@@ -52,6 +56,10 @@ impl CIPlugIn {
 
         /// Loads a plug-in specified by its URL.
         /// If allowExecutableCode is NO, filters containing executable code will not be loaded. If YES, any kind of filter will be loaded.
+        ///
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[deprecated]
         #[unsafe(method(loadPlugIn:allowExecutableCode:))]
         #[unsafe(method_family = none)]
@@ -62,6 +70,10 @@ impl CIPlugIn {
 
         /// Loads a non-executable plug-in specified by its URL.
         /// If the filters containing executable code, it will not be loaded.
+        ///
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[unsafe(method(loadNonExecutablePlugIn:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadNonExecutablePlugIn(url: Option<&NSURL>);

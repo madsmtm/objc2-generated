@@ -314,6 +314,10 @@ impl NSOpenPanel {
         #[unsafe(method_family = none)]
         pub unsafe fn filenames(&self) -> Retained<NSArray>;
 
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
@@ -328,6 +332,10 @@ impl NSOpenPanel {
             context_info: *mut c_void,
         );
 
+        /// # Safety
+        ///
+        /// - `did_end_selector` must be a valid selector.
+        /// - `context_info` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:))]
         #[unsafe(method_family = none)]
@@ -341,6 +349,9 @@ impl NSOpenPanel {
             context_info: *mut c_void,
         );
 
+        /// # Safety
+        ///
+        /// `file_types` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(runModalForDirectory:file:types:))]
         #[unsafe(method_family = none)]
@@ -351,6 +362,9 @@ impl NSOpenPanel {
             file_types: Option<&NSArray>,
         ) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `file_types` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(runModalForTypes:))]
         #[unsafe(method_family = none)]

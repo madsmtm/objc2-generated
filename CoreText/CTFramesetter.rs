@@ -127,6 +127,10 @@ impl CTFramesetter {
     ///
     ///
     /// Returns: This function will return a reference to a new CTFrame object.
+    ///
+    /// # Safety
+    ///
+    /// `frame_attributes` generics must be of the correct type.
     #[doc(alias = "CTFramesetterCreateFrame")]
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     #[inline]
@@ -211,6 +215,11 @@ impl CTFramesetter {
     ///
     ///
     /// Returns: The actual dimensions for the given string range and constraints.
+    ///
+    /// # Safety
+    ///
+    /// - `frame_attributes` generics must be of the correct type.
+    /// - `fit_range` must be a valid pointer or null.
     #[doc(alias = "CTFramesetterSuggestFrameSizeWithConstraints")]
     #[inline]
     pub unsafe fn suggest_frame_size_with_constraints(

@@ -52,6 +52,10 @@ extern_protocol!(
         /// Parameter `keys`: An instance of NSArray, containing NSStrings for the specified keys.
         ///
         /// Parameter `handler`: The block to be invoked when loading succeeds, fails, or is cancelled.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(loadValuesAsynchronouslyForKeys:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadValuesAsynchronouslyForKeys_completionHandler(

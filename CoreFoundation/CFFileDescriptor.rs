@@ -79,6 +79,10 @@ unsafe impl ConcreteType for CFFileDescriptor {
 }
 
 impl CFFileDescriptor {
+    /// # Safety
+    ///
+    /// - `callout` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFFileDescriptorCreate")]
     #[inline]
     pub unsafe fn new(
@@ -114,6 +118,9 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorGetNativeDescriptor(self) }
     }
 
+    /// # Safety
+    ///
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFFileDescriptorGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFFileDescriptorContext) {

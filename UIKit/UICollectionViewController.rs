@@ -132,6 +132,10 @@ impl UICollectionViewController {
             feature = "UIView"
         ))]
         /// Setter for [`collectionView`][Self::collectionView].
+        ///
+        /// # Safety
+        ///
+        /// `collection_view` might not allow `None`.
         #[unsafe(method(setCollectionView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCollectionView(&self, collection_view: Option<&UICollectionView>);

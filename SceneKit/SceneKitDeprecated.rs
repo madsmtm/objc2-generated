@@ -74,6 +74,10 @@ impl SCNLight {
         /// Parameter `key`: The name of a property.
         ///
         /// Set the specified attribute for the specified key. The valid keys are described in the "Light Attributes" constants.
+        ///
+        /// # Safety
+        ///
+        /// `attribute` should be of the correct type.
         #[deprecated = "Use SCNLight properties instead"]
         #[unsafe(method(setAttribute:forKey:))]
         #[unsafe(method_family = none)]
@@ -211,6 +215,10 @@ impl SCNMaterialProperty {
         pub unsafe fn borderColor(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`borderColor`][Self::borderColor].
+        ///
+        /// # Safety
+        ///
+        /// `border_color` should be of the correct type.
         #[deprecated = "Deprecated"]
         #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]

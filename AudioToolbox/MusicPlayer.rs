@@ -608,6 +608,10 @@ extern "C-unwind" {
     /// mixture/combination of both.
     ///
     /// Parameter `outPlayer`: the newly created player
+    ///
+    /// # Safety
+    ///
+    /// `out_player` must be a valid pointer.
     pub fn NewMusicPlayer(out_player: NonNull<MusicPlayer>) -> OSStatus;
 }
 
@@ -615,6 +619,10 @@ extern "C-unwind" {
     /// Dispose a music player
     ///
     /// Parameter `inPlayer`: the player to dispose
+    ///
+    /// # Safety
+    ///
+    /// `in_player` must be a valid pointer.
     pub fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus;
 }
 
@@ -627,6 +635,11 @@ extern "C-unwind" {
     /// Parameter `inPlayer`: the player
     ///
     /// Parameter `inSequence`: the sequence for the player to play
+    ///
+    /// # Safety
+    ///
+    /// - `in_player` must be a valid pointer.
+    /// - `in_sequence` must be a valid pointer or null.
     pub fn MusicPlayerSetSequence(in_player: MusicPlayer, in_sequence: MusicSequence) -> OSStatus;
 }
 
@@ -638,6 +651,11 @@ extern "C-unwind" {
     /// Parameter `inPlayer`: the player
     ///
     /// Parameter `outSequence`: the sequence currently set on the player
+    ///
+    /// # Safety
+    ///
+    /// - `in_player` must be a valid pointer.
+    /// - `out_sequence` must be a valid pointer.
     pub fn MusicPlayerGetSequence(
         in_player: MusicPlayer,
         out_sequence: NonNull<MusicSequence>,
@@ -655,6 +673,10 @@ extern "C-unwind" {
     /// Parameter `inPlayer`: the player
     ///
     /// Parameter `inTime`: the new time value
+    ///
+    /// # Safety
+    ///
+    /// `in_player` must be a valid pointer.
     pub fn MusicPlayerSetTime(in_player: MusicPlayer, in_time: MusicTimeStamp) -> OSStatus;
 }
 
@@ -667,6 +689,11 @@ extern "C-unwind" {
     /// Parameter `inPlayer`: the player
     ///
     /// Parameter `outTime`: the current time value
+    ///
+    /// # Safety
+    ///
+    /// - `in_player` must be a valid pointer.
+    /// - `out_time` must be a valid pointer.
     pub fn MusicPlayerGetTime(
         in_player: MusicPlayer,
         out_time: NonNull<MusicTimeStamp>,
@@ -690,6 +717,11 @@ extern "C-unwind" {
     /// Parameter `inBeats`: the specified beat-time value
     ///
     /// Parameter `outHostTime`: the corresponding host time
+    ///
+    /// # Safety
+    ///
+    /// - `in_player` must be a valid pointer.
+    /// - `out_host_time` must be a valid pointer.
     pub fn MusicPlayerGetHostTimeForBeats(
         in_player: MusicPlayer,
         in_beats: MusicTimeStamp,
@@ -714,6 +746,11 @@ extern "C-unwind" {
     /// Parameter `inHostTime`: the specified host time value
     ///
     /// Parameter `outBeats`: the corresponding beat time
+    ///
+    /// # Safety
+    ///
+    /// - `in_player` must be a valid pointer.
+    /// - `out_beats` must be a valid pointer.
     pub fn MusicPlayerGetBeatsForHostTime(
         in_player: MusicPlayer,
         in_host_time: u64,
@@ -728,6 +765,10 @@ extern "C-unwind" {
     /// being prerolled, the player will pre-roll itself and then start.
     ///
     /// Parameter `inPlayer`: the player
+    ///
+    /// # Safety
+    ///
+    /// `in_player` must be a valid pointer.
     pub fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus;
 }
 
@@ -737,6 +778,10 @@ extern "C-unwind" {
     /// If the player has not been prerolled, it will pre-roll itself and then start.
     ///
     /// Parameter `inPlayer`: the player
+    ///
+    /// # Safety
+    ///
+    /// `in_player` must be a valid pointer.
     pub fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus;
 }
 
@@ -744,6 +789,10 @@ extern "C-unwind" {
     /// Stop the player
     ///
     /// Parameter `inPlayer`: the player
+    ///
+    /// # Safety
+    ///
+    /// `in_player` must be a valid pointer.
     pub fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus;
 }
 
@@ -758,6 +807,11 @@ extern "C-unwind" {
     /// Parameter `inPlayer`: the player
     ///
     /// Parameter `outIsPlaying`: false if not, true (non-zero) if is playing
+    ///
+    /// # Safety
+    ///
+    /// - `in_player` must be a valid pointer.
+    /// - `out_is_playing` must be a valid pointer.
     pub fn MusicPlayerIsPlaying(
         in_player: MusicPlayer,
         out_is_playing: NonNull<Boolean>,
@@ -771,6 +825,10 @@ extern "C-unwind" {
     ///
     /// Parameter `inScaleRate`: a scalar that will be applied to the playback rate. If 2, playback is twice as fast, if
     /// 0.5 it is half as fast. As a scalar, the value must be greater than zero.
+    ///
+    /// # Safety
+    ///
+    /// `in_player` must be a valid pointer.
     pub fn MusicPlayerSetPlayRateScalar(in_player: MusicPlayer, in_scale_rate: f64) -> OSStatus;
 }
 
@@ -780,6 +838,11 @@ extern "C-unwind" {
     /// Parameter `inPlayer`: the player
     ///
     /// Parameter `outScaleRate`: the current scalar being applied to the player. Default value is 1.0
+    ///
+    /// # Safety
+    ///
+    /// - `in_player` must be a valid pointer.
+    /// - `out_scale_rate` must be a valid pointer.
     pub fn MusicPlayerGetPlayRateScalar(
         in_player: MusicPlayer,
         out_scale_rate: NonNull<f64>,
@@ -799,6 +862,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `outSequence`: the new sequence
+    ///
+    /// # Safety
+    ///
+    /// `out_sequence` must be a valid pointer.
     pub fn NewMusicSequence(out_sequence: NonNull<MusicSequence>) -> OSStatus;
 }
 
@@ -808,6 +875,10 @@ extern "C-unwind" {
     /// A sequence cannot be disposed while a MusicPlayer has it.
     ///
     /// Parameter `inSequence`: the sequence
+    ///
+    /// # Safety
+    ///
+    /// `in_sequence` must be a valid pointer.
     pub fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus;
 }
 
@@ -817,6 +888,11 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `outTrack`: the new track (it is always appended to any existing tracks)
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_track` must be a valid pointer.
     pub fn MusicSequenceNewTrack(
         in_sequence: MusicSequence,
         out_track: NonNull<MusicTrack>,
@@ -829,6 +905,11 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `inTrack`: the track to remove and dispose
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `in_track` must be a valid pointer.
     pub fn MusicSequenceDisposeTrack(in_sequence: MusicSequence, in_track: MusicTrack) -> OSStatus;
 }
 
@@ -839,6 +920,11 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `outNumberOfTracks`: the number of tracks
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_number_of_tracks` must be a valid pointer.
     pub fn MusicSequenceGetTrackCount(
         in_sequence: MusicSequence,
         out_number_of_tracks: NonNull<u32>,
@@ -858,6 +944,11 @@ extern "C-unwind" {
     /// Parameter `inTrackIndex`: the index
     ///
     /// Parameter `outTrack`: the track at that index
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_track` must be a valid pointer.
     pub fn MusicSequenceGetIndTrack(
         in_sequence: MusicSequence,
         in_track_index: u32,
@@ -876,6 +967,12 @@ extern "C-unwind" {
     /// Parameter `inTrack`: the track
     ///
     /// Parameter `outTrackIndex`: the index of the track
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `in_track` must be a valid pointer.
+    /// - `out_track_index` must be a valid pointer.
     pub fn MusicSequenceGetTrackIndex(
         in_sequence: MusicSequence,
         in_track: MusicTrack,
@@ -893,6 +990,11 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `outTrack`: the tempo track of the sequence
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_track` must be a valid pointer.
     pub fn MusicSequenceGetTempoTrack(
         in_sequence: MusicSequence,
         out_track: NonNull<MusicTrack>,
@@ -912,6 +1014,11 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `inGraph`: the graph
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `in_graph` must be a valid pointer or null.
     #[cfg(feature = "AUGraph")]
     pub fn MusicSequenceSetAUGraph(in_sequence: MusicSequence, in_graph: AUGraph) -> OSStatus;
 }
@@ -931,6 +1038,11 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `outGraph`: the graph
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_graph` must be a valid pointer.
     #[cfg(feature = "AUGraph")]
     pub fn MusicSequenceGetAUGraph(
         in_sequence: MusicSequence,
@@ -948,6 +1060,10 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `inEndpoint`: the MIDI endpoint
+    ///
+    /// # Safety
+    ///
+    /// `in_sequence` must be a valid pointer.
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicSequenceSetMIDIEndpoint(
         in_sequence: MusicSequence,
@@ -980,6 +1096,10 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `inType`: the sequence type
+    ///
+    /// # Safety
+    ///
+    /// `in_sequence` must be a valid pointer.
     pub fn MusicSequenceSetSequenceType(
         in_sequence: MusicSequence,
         in_type: MusicSequenceType,
@@ -994,6 +1114,11 @@ extern "C-unwind" {
     /// Parameter `inSequence`: the sequence
     ///
     /// Parameter `outType`: the type
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_type` must be a valid pointer.
     pub fn MusicSequenceGetSequenceType(
         in_sequence: MusicSequence,
         out_type: NonNull<MusicSequenceType>,
@@ -1013,6 +1138,10 @@ extern "C-unwind" {
     ///
     /// Parameter `inFlags`: flags that can control how the data is parsed in the file and laid out in the tracks
     /// that will be created and added to the sequence in this operation
+    ///
+    /// # Safety
+    ///
+    /// `in_sequence` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileLoad(
         in_sequence: MusicSequence,
@@ -1036,6 +1165,10 @@ extern "C-unwind" {
     ///
     /// Parameter `inFlags`: flags that can control how the data is parsed in the file and laid out in the tracks
     /// that will be created and added to the sequence in this operation
+    ///
+    /// # Safety
+    ///
+    /// `in_sequence` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileLoadData(
         in_sequence: MusicSequence,
@@ -1098,6 +1231,10 @@ extern "C-unwind" {
     /// Parameter `inFlags`: flags to control the file creation
     ///
     /// Parameter `inResolution`: the resolution (depending on file type and sequence type)
+    ///
+    /// # Safety
+    ///
+    /// `in_sequence` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileCreate(
         in_sequence: MusicSequence,
@@ -1124,6 +1261,11 @@ extern "C-unwind" {
     /// Parameter `inResolution`: the resolution (depending on file type and sequence type)
     ///
     /// Parameter `outData`: the resulting data object
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileCreateData(
         in_sequence: MusicSequence,
@@ -1138,6 +1280,10 @@ extern "C-unwind" {
     /// Reverse in time all events in a sequence, including the tempo events
     ///
     /// Parameter `inSequence`: the sequence
+    ///
+    /// # Safety
+    ///
+    /// `in_sequence` must be a valid pointer.
     pub fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus;
 }
 
@@ -1151,6 +1297,11 @@ extern "C-unwind" {
     /// Parameter `inBeats`: the beats
     ///
     /// Parameter `outSeconds`: the seconds (time from 0 beat)
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_seconds` must be a valid pointer.
     pub fn MusicSequenceGetSecondsForBeats(
         in_sequence: MusicSequence,
         in_beats: MusicTimeStamp,
@@ -1168,6 +1319,11 @@ extern "C-unwind" {
     /// Parameter `inSeconds`: the seconds
     ///
     /// Parameter `outBeats`: the corresponding beat
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_beats` must be a valid pointer.
     pub fn MusicSequenceGetBeatsForSeconds(
         in_sequence: MusicSequence,
         in_seconds: f64,
@@ -1204,6 +1360,12 @@ extern "C-unwind" {
     /// Parameter `inCallback`: the callback
     ///
     /// Parameter `inClientData`: client (user supplied) data provided back to the callback when it is called by the sequence
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `in_callback` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
     pub fn MusicSequenceSetUserCallback(
         in_sequence: MusicSequence,
         in_callback: MusicSequenceUserCallback,
@@ -1225,6 +1387,11 @@ extern "C-unwind" {
     /// Parameter `inSubbeatDivisor`: The denominator of the fractional number of beats.
     ///
     /// Parameter `outBarBeatTime`: the formatted bar/beat time
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_bar_beat_time` must be a valid pointer.
     pub fn MusicSequenceBeatsToBarBeatTime(
         in_sequence: MusicSequence,
         in_beats: MusicTimeStamp,
@@ -1245,6 +1412,12 @@ extern "C-unwind" {
     /// Parameter `inBarBeatTime`: the bar-beat time
     ///
     /// Parameter `outBeats`: the sequence's beat time for that bar-beat time
+    ///
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `in_bar_beat_time` must be a valid pointer.
+    /// - `out_beats` must be a valid pointer.
     pub fn MusicSequenceBarBeatTimeToBeats(
         in_sequence: MusicSequence,
         in_bar_beat_time: NonNull<CABarBeatTime>,
@@ -1265,6 +1438,10 @@ extern "C-unwind" {
 /// Parameter `inSequence`: the sequence
 ///
 /// Returns: a CFDictionary or NULL if the call fails.
+///
+/// # Safety
+///
+/// `in_sequence` must be a valid pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
@@ -1286,6 +1463,11 @@ extern "C-unwind" {
     /// Parameter `inTrack`: the track
     ///
     /// Parameter `outSequence`: the track's sequence
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `out_sequence` must be a valid pointer.
     pub fn MusicTrackGetSequence(
         in_track: MusicTrack,
         out_sequence: NonNull<MusicSequence>,
@@ -1301,6 +1483,10 @@ extern "C-unwind" {
     /// Parameter `inTrack`: the track
     ///
     /// Parameter `inNode`: the new node
+    ///
+    /// # Safety
+    ///
+    /// `in_track` must be a valid pointer.
     #[cfg(feature = "AUGraph")]
     pub fn MusicTrackSetDestNode(in_track: MusicTrack, in_node: AUNode) -> OSStatus;
 }
@@ -1313,6 +1499,10 @@ extern "C-unwind" {
     /// Parameter `inTrack`: the track
     ///
     /// Parameter `inEndpoint`: the new MIDI endpoint
+    ///
+    /// # Safety
+    ///
+    /// `in_track` must be a valid pointer.
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicTrackSetDestMIDIEndpoint(
         in_track: MusicTrack,
@@ -1329,6 +1519,11 @@ extern "C-unwind" {
     /// Parameter `inTrack`: the track
     ///
     /// Parameter `outNode`: the node target for the track
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `out_node` must be a valid pointer.
     #[cfg(feature = "AUGraph")]
     pub fn MusicTrackGetDestNode(in_track: MusicTrack, out_node: NonNull<AUNode>) -> OSStatus;
 }
@@ -1342,6 +1537,11 @@ extern "C-unwind" {
     /// Parameter `inTrack`: the track
     ///
     /// Parameter `outEndpoint`: the MIDI Endpoint target for the track
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `out_endpoint` must be a valid pointer.
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicTrackGetDestMIDIEndpoint(
         in_track: MusicTrack,
@@ -1361,6 +1561,11 @@ extern "C-unwind" {
     /// Parameter `inData`: the new property value
     ///
     /// Parameter `inLength`: the size of the property value being set
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_data` must be a valid pointer.
     pub fn MusicTrackSetProperty(
         in_track: MusicTrack,
         in_property_id: u32,
@@ -1385,6 +1590,12 @@ extern "C-unwind" {
     ///
     /// Parameter `ioLength`: on input the available size of outData, on output the size of the valid data that outData
     /// will then point too.
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
+    /// - `io_length` must be a valid pointer.
     pub fn MusicTrackGetProperty(
         in_track: MusicTrack,
         in_property_id: u32,
@@ -1411,6 +1622,10 @@ extern "C-unwind" {
     /// Parameter `inEndTime`: the end time up to which will form the range of the events to move
     ///
     /// Parameter `inMoveTime`: amount of beats to move the selected events.
+    ///
+    /// # Safety
+    ///
+    /// `in_track` must be a valid pointer.
     pub fn MusicTrackMoveEvents(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1431,6 +1646,10 @@ extern "C-unwind" {
     /// Parameter `inStartTime`: the start time for the range of events
     ///
     /// Parameter `inEndTime`: the end time up to which will form the range of the events to clear
+    ///
+    /// # Safety
+    ///
+    /// `in_track` must be a valid pointer.
     pub fn MusicTrackClear(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1453,6 +1672,10 @@ extern "C-unwind" {
     /// Parameter `inStartTime`: the start time for the range of events
     ///
     /// Parameter `inEndTime`: the end time up to which will form the range of the events to cut out
+    ///
+    /// # Safety
+    ///
+    /// `in_track` must be a valid pointer.
     pub fn MusicTrackCut(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1481,6 +1704,11 @@ extern "C-unwind" {
     /// Parameter `inDestTrack`: the destination track to copy too
     ///
     /// Parameter `inDestInsertTime`: the time at which the copied events will be inserted.
+    ///
+    /// # Safety
+    ///
+    /// - `in_source_track` must be a valid pointer.
+    /// - `in_dest_track` must be a valid pointer.
     pub fn MusicTrackCopyInsert(
         in_source_track: MusicTrack,
         in_source_start_time: MusicTimeStamp,
@@ -1510,6 +1738,11 @@ extern "C-unwind" {
     /// Parameter `inDestTrack`: the destination track to copy too
     ///
     /// Parameter `inDestInsertTime`: the time at which the copied events will be merged.
+    ///
+    /// # Safety
+    ///
+    /// - `in_source_track` must be a valid pointer.
+    /// - `in_dest_track` must be a valid pointer.
     pub fn MusicTrackMerge(
         in_source_track: MusicTrack,
         in_source_start_time: MusicTimeStamp,
@@ -1529,6 +1762,11 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inMessage`: the event
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_message` must be a valid pointer.
     pub fn MusicTrackNewMIDINoteEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1546,6 +1784,11 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inMessage`: the event
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_message` must be a valid pointer.
     pub fn MusicTrackNewMIDIChannelEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1563,6 +1806,11 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inRawData`: the event
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_raw_data` must be a valid pointer.
     pub fn MusicTrackNewMIDIRawDataEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1580,6 +1828,11 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inInfo`: the event
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_info` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
     pub fn MusicTrackNewExtendedNoteEvent(
         in_track: MusicTrack,
@@ -1598,6 +1851,11 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inInfo`: the event
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_info` must be a valid pointer.
     #[cfg(feature = "AUComponent")]
     pub fn MusicTrackNewParameterEvent(
         in_track: MusicTrack,
@@ -1616,6 +1874,10 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inBPM`: the event
+    ///
+    /// # Safety
+    ///
+    /// `in_track` must be a valid pointer.
     pub fn MusicTrackNewExtendedTempoEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1633,6 +1895,11 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inMetaEvent`: the event
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_meta_event` must be a valid pointer.
     pub fn MusicTrackNewMetaEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1650,6 +1917,11 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inUserData`: the event
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_user_data` must be a valid pointer.
     pub fn MusicTrackNewUserEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1667,6 +1939,11 @@ extern "C-unwind" {
     /// Parameter `inTimeStamp`: the time stamp
     ///
     /// Parameter `inPresetEvent`: the event
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_preset_event` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
     pub fn MusicTrackNewAUPresetEvent(
         in_track: MusicTrack,
@@ -1685,6 +1962,11 @@ extern "C-unwind" {
     /// Parameter `inTrack`: the track upon which to iterate
     ///
     /// Parameter `outIterator`: the new iterator
+    ///
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `out_iterator` must be a valid pointer.
     pub fn NewMusicEventIterator(
         in_track: MusicTrack,
         out_iterator: NonNull<MusicEventIterator>,
@@ -1695,6 +1977,10 @@ extern "C-unwind" {
     /// Dispose an iterator
     ///
     /// Parameter `inIterator`: the iterator
+    ///
+    /// # Safety
+    ///
+    /// `in_iterator` must be a valid pointer.
     pub fn DisposeMusicEventIterator(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
@@ -1711,6 +1997,10 @@ extern "C-unwind" {
     /// Parameter `inIterator`: the iterator
     ///
     /// Parameter `inTimeStamp`: the time stamp to seek too
+    ///
+    /// # Safety
+    ///
+    /// `in_iterator` must be a valid pointer.
     pub fn MusicEventIteratorSeek(
         in_iterator: MusicEventIterator,
         in_time_stamp: MusicTimeStamp,
@@ -1727,6 +2017,10 @@ extern "C-unwind" {
     /// Typically this call is used to move the iterator forwards through the track's events.
     ///
     /// Parameter `inIterator`: the iterator
+    ///
+    /// # Safety
+    ///
+    /// `in_iterator` must be a valid pointer.
     pub fn MusicEventIteratorNextEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
@@ -1739,6 +2033,10 @@ extern "C-unwind" {
     /// Typically this call is used to move the iterator backwards through the track's events.
     ///
     /// Parameter `inIterator`: the iterator
+    ///
+    /// # Safety
+    ///
+    /// `in_iterator` must be a valid pointer.
     pub fn MusicEventIteratorPreviousEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
@@ -1761,6 +2059,14 @@ extern "C-unwind" {
     /// is read only and should not be edited in place.
     ///
     /// Parameter `outEventDataSize`: the size of the data referenced by outEventData
+    ///
+    /// # Safety
+    ///
+    /// - `in_iterator` must be a valid pointer.
+    /// - `out_time_stamp` must be a valid pointer.
+    /// - `out_event_type` must be a valid pointer.
+    /// - `out_event_data` must be a valid pointer.
+    /// - `out_event_data_size` must be a valid pointer.
     pub fn MusicEventIteratorGetEventInfo(
         in_iterator: MusicEventIterator,
         out_time_stamp: NonNull<MusicTimeStamp>,
@@ -1783,6 +2089,11 @@ extern "C-unwind" {
     /// Parameter `inEventType`: the new (or existing) type of the event you are changing
     ///
     /// Parameter `inEventData`: the new event data. The size and type of this event data must match the inEventType
+    ///
+    /// # Safety
+    ///
+    /// - `in_iterator` must be a valid pointer.
+    /// - `in_event_data` must be a valid pointer.
     pub fn MusicEventIteratorSetEventInfo(
         in_iterator: MusicEventIterator,
         in_event_type: MusicEventType,
@@ -1801,6 +2112,10 @@ extern "C-unwind" {
     /// Parameter `inIterator`: the iterator
     ///
     /// Parameter `inTimeStamp`: the new time stamp of the event
+    ///
+    /// # Safety
+    ///
+    /// `in_iterator` must be a valid pointer.
     pub fn MusicEventIteratorSetEventTime(
         in_iterator: MusicEventIterator,
         in_time_stamp: MusicTimeStamp,
@@ -1814,6 +2129,10 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `inIterator`: the iterator
+    ///
+    /// # Safety
+    ///
+    /// `in_iterator` must be a valid pointer.
     pub fn MusicEventIteratorDeleteEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
@@ -1839,6 +2158,11 @@ extern "C-unwind" {
     /// Parameter `inIterator`: the iterator
     ///
     /// Parameter `outHasPrevEvent`: true if there is a previous event, false if not
+    ///
+    /// # Safety
+    ///
+    /// - `in_iterator` must be a valid pointer.
+    /// - `out_has_prev_event` must be a valid pointer.
     pub fn MusicEventIteratorHasPreviousEvent(
         in_iterator: MusicEventIterator,
         out_has_prev_event: NonNull<Boolean>,
@@ -1867,6 +2191,11 @@ extern "C-unwind" {
     /// Parameter `inIterator`: the iterator
     ///
     /// Parameter `outHasNextEvent`: true if there is a next event, false if not
+    ///
+    /// # Safety
+    ///
+    /// - `in_iterator` must be a valid pointer.
+    /// - `out_has_next_event` must be a valid pointer.
     pub fn MusicEventIteratorHasNextEvent(
         in_iterator: MusicEventIterator,
         out_has_next_event: NonNull<Boolean>,
@@ -1879,6 +2208,11 @@ extern "C-unwind" {
     /// Parameter `inIterator`: the iterator
     ///
     /// Parameter `outHasCurEvent`: true if there is an event, false if not
+    ///
+    /// # Safety
+    ///
+    /// - `in_iterator` must be a valid pointer.
+    /// - `out_has_cur_event` must be a valid pointer.
     pub fn MusicEventIteratorHasCurrentEvent(
         in_iterator: MusicEventIterator,
         out_has_cur_event: NonNull<Boolean>,
@@ -1886,6 +2220,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `in_sequence` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub fn MusicSequenceLoadSMFDataWithFlags(
@@ -1896,6 +2233,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_sequence` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub fn MusicSequenceSaveSMFData(
@@ -1906,6 +2247,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_source_track` must be a valid pointer.
+    /// - `out_new_track` must be a valid pointer.
     #[deprecated = "no longer supported"]
     pub fn NewMusicTrackFrom(
         in_source_track: MusicTrack,
@@ -1946,6 +2291,10 @@ unsafe impl RefEncode for ExtendedControlEvent {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `in_track` must be a valid pointer.
+    /// - `in_info` must be a valid pointer.
     #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
     #[deprecated = "no longer supported"]
     pub fn MusicTrackNewExtendedControlEvent(

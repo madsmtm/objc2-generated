@@ -106,6 +106,9 @@ extern_conformance!(
 
 impl CSLocalizedString {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `localized_strings` generic should be of the correct type.
         #[unsafe(method(initWithLocalizedStrings:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedStrings(

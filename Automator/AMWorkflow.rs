@@ -28,6 +28,9 @@ extern_conformance!(
 
 impl AMWorkflow {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `input` should be of the correct type.
         #[unsafe(method(runWorkflowAtURL:withInput:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWorkflowAtURL_withInput_error(
@@ -50,6 +53,9 @@ impl AMWorkflow {
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_error(&self, file_url: &NSURL) -> Result<(), Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forVariableWithName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forVariableWithName(
@@ -102,6 +108,10 @@ impl AMWorkflow {
         pub unsafe fn input(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`input`][Self::input].
+        ///
+        /// # Safety
+        ///
+        /// `input` should be of the correct type.
         #[unsafe(method(setInput:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInput(&self, input: Option<&AnyObject>);

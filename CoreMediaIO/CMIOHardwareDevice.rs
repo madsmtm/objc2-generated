@@ -408,6 +408,10 @@ extern "C-unwind" {
     /// Parameter `ioAVCCommand`: The CMIODeviceAVCCommand to send to the device.
     ///
     /// Returns: An OSStatus indicating success or failure of the command processing.
+    ///
+    /// # Safety
+    ///
+    /// `io_avc_command` must be a valid pointer.
     #[cfg(feature = "CMIOHardwareObject")]
     pub fn CMIODeviceProcessAVCCommand(
         device_id: CMIODeviceID,
@@ -424,6 +428,10 @@ extern "C-unwind" {
     /// Parameter `ioRS422Command`: The CMIODeviceRS422Command to send to the device.
     ///
     /// Returns: An OSStatus indicating success or failure of the command processing.
+    ///
+    /// # Safety
+    ///
+    /// `io_rs422_command` must be a valid pointer.
     #[cfg(feature = "CMIOHardwareObject")]
     pub fn CMIODeviceProcessRS422Command(
         device_id: CMIODeviceID,

@@ -42,6 +42,10 @@ impl UIViewControllerTransition {
         /// }
         /// present(cityViewController, animated: true)
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `source_view_provider` block's return must be a valid pointer or null.
         #[unsafe(method(zoomWithOptions:sourceViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomWithOptions_sourceViewProvider(

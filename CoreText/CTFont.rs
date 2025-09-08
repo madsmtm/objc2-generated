@@ -225,6 +225,10 @@ impl CTFont {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithName")]
     #[inline]
     pub unsafe fn with_name(
@@ -258,6 +262,10 @@ impl CTFont {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithFontDescriptor")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -337,6 +345,10 @@ impl CTFont {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithNameAndOptions")]
     #[inline]
     pub unsafe fn with_name_and_options(
@@ -375,6 +387,10 @@ impl CTFont {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithFontDescriptorAndOptions")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -589,6 +605,10 @@ impl CTFont {
     ///
     ///
     /// Returns: Returns a new font reference converted from the original with the specified attributes.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateCopyWithAttributes")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -631,6 +651,10 @@ impl CTFont {
     ///
     ///
     /// Returns: Returns a new font reference in the same family with the given symbolic traits, or NULL if none found in the system.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateCopyWithSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
@@ -672,6 +696,10 @@ impl CTFont {
     ///
     ///
     /// Returns: Returns a new font reference with the original traits in the given family. NULL if non found in the system.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateCopyWithFamily")]
     #[inline]
     pub unsafe fn copy_with_family(
@@ -897,6 +925,10 @@ impl CTFont {
     ///
     ///
     /// Returns: The ordered list of fallback fonts - ordered array of CTFontDescriptors.
+    ///
+    /// # Safety
+    ///
+    /// `language_pref_list` generic must be of the correct type.
     #[doc(alias = "CTFontCopyDefaultCascadeListForLanguages")]
     #[inline]
     pub unsafe fn default_cascade_list_for_languages(
@@ -1023,6 +1055,10 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a specific localized name from the font reference. The name is localized based on the user's global language precedence. If the font does not have an entry for the requested name, NULL will be returned. The matched language will be returned in the caller's buffer.
+    ///
+    /// # Safety
+    ///
+    /// `actual_language` must be a valid pointer or null.
     #[doc(alias = "CTFontCopyLocalizedName")]
     #[inline]
     pub unsafe fn localized_name(
@@ -1117,6 +1153,11 @@ impl CTFont {
     ///
     ///
     /// See also: CTFontCopyCharacterSet
+    ///
+    /// # Safety
+    ///
+    /// - `characters` must be a valid pointer.
+    /// - `glyphs` must be a valid pointer.
     #[doc(alias = "CTFontGetGlyphsForCharacters")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1376,6 +1417,11 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the overall bounding rectangle for an array or run of glyphs. The bounding rects of the individual glyphs are returned through the boundingRects parameter. These are the design metrics from the font transformed in font space.
+    ///
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer.
+    /// - `bounding_rects` must be a valid pointer or null.
     #[doc(alias = "CTFontGetBoundingRectsForGlyphs")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
@@ -1420,6 +1466,11 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the overall bounding rectangle for an array or run of glyphs. The bounding rects of the individual glyphs are returned through the boundingRects parameter. These are the design metrics from the font transformed in font space.
+    ///
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer.
+    /// - `bounding_rects` must be a valid pointer or null.
     #[doc(alias = "CTFontGetOpticalBoundsForGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1461,6 +1512,11 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the summed glyph advance of an array of glyphs. Individual glyph advances are passed back via the advances parameter. These are the ideal metrics for each glyph scaled and transformed in font space.
+    ///
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer.
+    /// - `advances` must be a valid pointer or null.
     #[doc(alias = "CTFontGetAdvancesForGlyphs")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
@@ -1496,6 +1552,11 @@ impl CTFont {
     ///
     ///
     /// Parameter `count`: The capacity of the glyphs and translations buffers.
+    ///
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer.
+    /// - `translations` must be a valid pointer.
     #[doc(alias = "CTFontGetVerticalTranslationsForGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1532,6 +1593,10 @@ impl CTFont {
     ///
     ///
     /// Returns: A retained CGPath reference containing the glyph outlines or NULL if there is no such glyph or it has no outline.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreatePathForGlyph")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -1843,6 +1908,10 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a CGFontRef for the given font reference. Additional attributes from the font will be passed back as a font descriptor via the attributes parameter. The result must be released by the caller.
+    ///
+    /// # Safety
+    ///
+    /// `attributes` must be a valid pointer or null.
     #[doc(alias = "CTFontCopyGraphicsFont")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
@@ -1878,6 +1947,10 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a new font reference for an existing CGFontRef with the specified size, matrix, and additional attributes.
+    ///
+    /// # Safety
+    ///
+    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithGraphicsFont")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
@@ -1925,6 +1998,10 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns the best font instance matching the Quickdraw instance information.
+    ///
+    /// # Safety
+    ///
+    /// `name` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithQuickdrawInstance")]
     #[deprecated = "Quickdraw font references are deprecated"]
     #[inline]
@@ -2227,6 +2304,11 @@ impl CTFont {
     ///
     ///
     /// Parameter `context`: CGContext used to render the glyphs.
+    ///
+    /// # Safety
+    ///
+    /// - `glyphs` must be a valid pointer.
+    /// - `positions` must be a valid pointer.
     #[doc(alias = "CTFontDrawGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -2272,6 +2354,10 @@ impl CTFont {
     ///
     ///
     /// Returns: Returns the number of caret positions for the specified glyph.
+    ///
+    /// # Safety
+    ///
+    /// `positions` must be a valid pointer or null.
     #[doc(alias = "CTFontGetLigatureCaretPositions")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]

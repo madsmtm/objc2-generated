@@ -95,6 +95,9 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFHTTPAuthenticationIsValid")]
     #[inline]
     pub unsafe fn is_valid(&self, error: *mut CFStreamError) -> bool {
@@ -135,6 +138,9 @@ impl CFHTTPAuthentication {
 
 #[cfg(feature = "CFHTTPMessage")]
 impl CFHTTPMessage {
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
     #[doc(alias = "CFHTTPMessageApplyCredentials")]
     #[cfg(feature = "CFHTTPMessage")]
     #[inline]
@@ -158,6 +164,10 @@ impl CFHTTPMessage {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `dict` generics must be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "CFHTTPMessageApplyCredentialDictionary")]
     #[cfg(feature = "CFHTTPMessage")]
     #[inline]

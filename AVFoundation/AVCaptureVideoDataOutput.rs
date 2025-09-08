@@ -96,6 +96,10 @@ impl AVCaptureVideoDataOutput {
         /// Setter for [`videoSettings`][Self::videoSettings].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `video_settings` generic should be of the correct type.
         #[unsafe(method(setVideoSettings:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoSettings(

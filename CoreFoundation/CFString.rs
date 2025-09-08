@@ -71,6 +71,10 @@ unsafe impl ConcreteType for CFString {
 
 impl CFString {
     /// * Immutable string creation functions **
+    ///
+    /// # Safety
+    ///
+    /// `p_str` must be a valid pointer.
     #[doc(alias = "CFStringCreateWithPascalString")]
     #[inline]
     pub unsafe fn with_pascal_string(
@@ -89,6 +93,9 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `c_str` must be a valid pointer.
     #[doc(alias = "CFStringCreateWithCString")]
     #[inline]
     pub unsafe fn with_c_string(
@@ -107,6 +114,9 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "CFStringCreateWithBytes")]
     #[inline]
     pub unsafe fn with_bytes(
@@ -137,6 +147,9 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `chars` must be a valid pointer.
     #[doc(alias = "CFStringCreateWithCharacters")]
     #[inline]
     pub unsafe fn with_characters(
@@ -155,6 +168,10 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `p_str` must be a valid pointer.
+    /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithPascalStringNoCopy")]
     #[inline]
     pub unsafe fn with_pascal_string_no_copy(
@@ -177,6 +194,10 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `c_str` must be a valid pointer.
+    /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithCStringNoCopy")]
     #[inline]
     pub unsafe fn with_c_string_no_copy(
@@ -199,6 +220,10 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `bytes` must be a valid pointer.
+    /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithBytesNoCopy")]
     #[inline]
     pub unsafe fn with_bytes_no_copy(
@@ -232,6 +257,10 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `chars` must be a valid pointer.
+    /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithCharactersNoCopy")]
     #[inline]
     pub unsafe fn with_characters_no_copy(
@@ -254,6 +283,10 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `alloc` might not allow `None`.
+    /// - `str` might not allow `None`.
     #[doc(alias = "CFStringCreateWithSubstring")]
     #[inline]
     pub unsafe fn with_substring(
@@ -324,6 +357,10 @@ impl CFMutableString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `chars` must be a valid pointer.
+    /// - `external_characters_allocator` might not allow `None`.
     #[doc(alias = "CFStringCreateMutableWithExternalCharactersNoCopy")]
     #[inline]
     pub unsafe fn with_external_characters_no_copy(
@@ -375,6 +412,9 @@ impl CFString {
         unsafe { CFStringGetCharacterAtIndex(self, idx) }
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFStringGetCharacters")]
     #[inline]
     pub unsafe fn characters(&self, range: CFRange, buffer: *mut UniChar) {
@@ -384,6 +424,9 @@ impl CFString {
         unsafe { CFStringGetCharacters(self, range, buffer) }
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFStringGetPascalString")]
     #[inline]
     pub unsafe fn pascal_string(
@@ -404,6 +447,9 @@ impl CFString {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFStringGetCString")]
     #[inline]
     pub unsafe fn c_string(
@@ -457,6 +503,10 @@ impl CFString {
         unsafe { CFStringGetCharactersPtr(self) }
     }
 
+    /// # Safety
+    ///
+    /// - `buffer` must be a valid pointer.
+    /// - `used_buf_len` must be a valid pointer.
     #[doc(alias = "CFStringGetBytes")]
     #[inline]
     pub unsafe fn bytes(
@@ -576,6 +626,10 @@ impl CFString {
     }
 
     /// * FileSystem path conversion functions **
+    ///
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFStringGetFileSystemRepresentation")]
     #[inline]
     pub unsafe fn file_system_representation(
@@ -603,6 +657,9 @@ impl CFString {
         unsafe { CFStringGetMaximumSizeOfFileSystemRepresentation(self) }
     }
 
+    /// # Safety
+    ///
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFStringCreateWithFileSystemRepresentation")]
     #[inline]
     pub unsafe fn with_file_system_representation(
@@ -659,6 +716,10 @@ unsafe impl RefEncode for CFStringCompareFlags {
 }
 
 impl CFString {
+    /// # Safety
+    ///
+    /// - `the_string2` might not allow `None`.
+    /// - `locale` might not allow `None`.
     #[doc(alias = "CFStringCompareWithOptionsAndLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -689,6 +750,9 @@ impl CFString {
         }
     }
 
+    /// # Safety
+    ///
+    /// `the_string2` might not allow `None`.
     #[doc(alias = "CFStringCompareWithOptions")]
     #[inline]
     pub unsafe fn compare_with_options(
@@ -725,6 +789,9 @@ impl CFString {
         unsafe { CFStringCompare(self, the_string2, compare_options) }
     }
 
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[doc(alias = "CFStringFindWithOptionsAndLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -759,6 +826,9 @@ impl CFString {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[doc(alias = "CFStringFindWithOptions")]
     #[inline]
     pub unsafe fn find_with_options(
@@ -789,6 +859,11 @@ impl CFString {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `alloc` might not allow `None`.
+    /// - `the_string` might not allow `None`.
+    /// - `string_to_find` might not allow `None`.
     #[doc(alias = "CFStringCreateArrayWithFindResults")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -914,6 +989,10 @@ impl CFString {
     ///
     /// Returns: true, if at least a character which is a member of the character
     /// set is found and result is filled, otherwise, false.
+    ///
+    /// # Safety
+    ///
+    /// `result` must be a valid pointer.
     #[doc(alias = "CFStringFindCharacterFromSet")]
     #[cfg(feature = "CFCharacterSet")]
     #[inline]
@@ -939,6 +1018,11 @@ impl CFString {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// - `line_begin_index` must be a valid pointer.
+    /// - `line_end_index` must be a valid pointer.
+    /// - `contents_end_index` must be a valid pointer.
     #[doc(alias = "CFStringGetLineBounds")]
     #[inline]
     pub unsafe fn line_bounds(
@@ -968,6 +1052,11 @@ impl CFString {
         }
     }
 
+    /// # Safety
+    ///
+    /// - `par_begin_index` must be a valid pointer.
+    /// - `par_end_index` must be a valid pointer.
+    /// - `contents_end_index` must be a valid pointer.
     #[doc(alias = "CFStringGetParagraphBounds")]
     #[inline]
     pub unsafe fn paragraph_bounds(
@@ -1026,6 +1115,10 @@ impl CFString {
     ///
     /// Returns: an index in the string where it is appropriate to insert a hyphen, if
     /// one exists; else kCFNotFound
+    ///
+    /// # Safety
+    ///
+    /// `character` must be a valid pointer.
     #[doc(alias = "CFStringGetHyphenationLocationBeforeIndex")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1071,6 +1164,12 @@ impl CFString {
     }
 
     /// * Exploding and joining strings with a separator string **
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
+    /// - `separator_string` might not allow `None`.
     #[doc(alias = "CFStringCreateByCombiningStrings")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -1144,6 +1243,9 @@ impl CFMutableString {
         unsafe { CFStringAppend(the_string, appended_string) }
     }
 
+    /// # Safety
+    ///
+    /// `chars` must be a valid pointer.
     #[doc(alias = "CFStringAppendCharacters")]
     #[inline]
     pub unsafe fn append_characters(
@@ -1161,6 +1263,9 @@ impl CFMutableString {
         unsafe { CFStringAppendCharacters(the_string, chars, num_chars) }
     }
 
+    /// # Safety
+    ///
+    /// `p_str` must be a valid pointer.
     #[doc(alias = "CFStringAppendPascalString")]
     #[inline]
     pub unsafe fn append_pascal_string(
@@ -1178,6 +1283,9 @@ impl CFMutableString {
         unsafe { CFStringAppendPascalString(the_string, p_str, encoding) }
     }
 
+    /// # Safety
+    ///
+    /// `c_str` must be a valid pointer.
     #[doc(alias = "CFStringAppendCString")]
     #[inline]
     pub unsafe fn append_c_string(
@@ -1195,6 +1303,10 @@ impl CFMutableString {
         unsafe { CFStringAppendCString(the_string, c_str, encoding) }
     }
 
+    /// # Safety
+    ///
+    /// - `str` might not allow `None`.
+    /// - `inserted_str` might not allow `None`.
     #[doc(alias = "CFStringInsert")]
     #[inline]
     pub unsafe fn insert(
@@ -1212,6 +1324,9 @@ impl CFMutableString {
         unsafe { CFStringInsert(str, idx, inserted_str) }
     }
 
+    /// # Safety
+    ///
+    /// `the_string` might not allow `None`.
     #[doc(alias = "CFStringDelete")]
     #[inline]
     pub unsafe fn delete(the_string: Option<&CFMutableString>, range: CFRange) {
@@ -1221,6 +1336,10 @@ impl CFMutableString {
         unsafe { CFStringDelete(the_string, range) }
     }
 
+    /// # Safety
+    ///
+    /// - `the_string` might not allow `None`.
+    /// - `replacement` might not allow `None`.
     #[doc(alias = "CFStringReplace")]
     #[inline]
     pub unsafe fn replace(
@@ -1250,6 +1369,11 @@ impl CFMutableString {
         unsafe { CFStringReplaceAll(the_string, replacement) }
     }
 
+    /// # Safety
+    ///
+    /// - `the_string` might not allow `None`.
+    /// - `string_to_find` might not allow `None`.
+    /// - `replacement_string` might not allow `None`.
     #[doc(alias = "CFStringFindAndReplace")]
     #[inline]
     pub unsafe fn find_and_replace(
@@ -1279,6 +1403,9 @@ impl CFMutableString {
         }
     }
 
+    /// # Safety
+    ///
+    /// `chars` must be a valid pointer.
     #[doc(alias = "CFStringSetExternalCharactersNoCopy")]
     #[inline]
     pub unsafe fn set_external_characters_no_copy(
@@ -1298,6 +1425,10 @@ impl CFMutableString {
         unsafe { CFStringSetExternalCharactersNoCopy(the_string, chars, length, capacity) }
     }
 
+    /// # Safety
+    ///
+    /// - `the_string` might not allow `None`.
+    /// - `pad_string` might not allow `None`.
     #[doc(alias = "CFStringPad")]
     #[inline]
     pub unsafe fn pad(
@@ -1407,6 +1538,10 @@ impl CFMutableString {
     /// Parameter `theForm`: The form into which the string is to be normalized.
     /// If this parameter is not a valid CFStringNormalizationForm value,
     /// the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// `the_string` might not allow `None`.
     #[doc(alias = "CFStringNormalize")]
     #[inline]
     pub unsafe fn normalize(
@@ -1463,6 +1598,10 @@ impl CFMutableString {
         unsafe { CFStringFold(the_string, the_flags, the_locale) }
     }
 
+    /// # Safety
+    ///
+    /// - `range` must be a valid pointer.
+    /// - `transform` might not allow `None`.
     #[doc(alias = "CFStringTransform")]
     #[inline]
     pub unsafe fn transform(

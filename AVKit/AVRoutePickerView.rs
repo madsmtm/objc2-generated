@@ -206,6 +206,10 @@ impl AVRoutePickerView {
         pub unsafe fn activeTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`activeTintColor`][Self::activeTintColor].
+        ///
+        /// # Safety
+        ///
+        /// `active_tint_color` might not allow `None`.
         #[unsafe(method(setActiveTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActiveTintColor(&self, active_tint_color: Option<&NSColor>);

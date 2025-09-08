@@ -134,6 +134,10 @@ impl QLPreviewPanel {
         ) -> Option<Retained<ProtocolObject<dyn QLPreviewPanelDataSource>>>;
 
         /// Setter for [`dataSource`][Self::dataSource].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
@@ -190,6 +194,11 @@ impl QLPreviewPanel {
         pub unsafe fn displayState(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`displayState`][Self::displayState].
+        ///
+        /// # Safety
+        ///
+        /// - `display_state` should be of the correct type.
+        /// - `display_state` might not allow `None`.
         #[unsafe(method(setDisplayState:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDisplayState(&self, display_state: Option<&AnyObject>);
@@ -207,6 +216,10 @@ impl QLPreviewPanel {
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -229,6 +242,12 @@ impl QLPreviewPanel {
         /// the panel was able to enter full screen mode; otherwise,
         /// <doc
         /// ://com.apple.documentation/documentation/objectivec/no>.
+        ///
+        /// # Safety
+        ///
+        /// - `screen` might not allow `None`.
+        /// - `options` generic should be of the correct type.
+        /// - `options` might not allow `None`.
         #[unsafe(method(enterFullScreenMode:withOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enterFullScreenMode_withOptions(
@@ -241,6 +260,11 @@ impl QLPreviewPanel {
         ///
         /// - Parameters:
         /// - options: This parameter isn’t used — pass `nil`.
+        ///
+        /// # Safety
+        ///
+        /// - `options` generic should be of the correct type.
+        /// - `options` might not allow `None`.
         #[unsafe(method(exitFullScreenModeWithOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exitFullScreenModeWithOptions(&self, options: Option<&NSDictionary>);
@@ -337,6 +361,10 @@ pub unsafe trait NSObjectQLPreviewPanelController:
         /// Parameter `panel`: The Preview Panel looking for a controller.
         ///
         /// Returns: YES if the receiver accepts to control the panel. You should never call this method directly.
+        ///
+        /// # Safety
+        ///
+        /// `panel` might not allow `None`.
         #[unsafe(method(acceptsPreviewPanelControl:))]
         #[unsafe(method_family = none)]
         unsafe fn acceptsPreviewPanelControl(&self, panel: Option<&QLPreviewPanel>) -> bool;
@@ -347,6 +375,10 @@ pub unsafe trait NSObjectQLPreviewPanelController:
         /// Parameter `panel`: The Preview Panel the receiver will control.
         ///
         /// The receiver should setup the preview panel (data source, delegate, binding, etc.) here. You should never call this method directly.
+        ///
+        /// # Safety
+        ///
+        /// `panel` might not allow `None`.
         #[unsafe(method(beginPreviewPanelControl:))]
         #[unsafe(method_family = none)]
         unsafe fn beginPreviewPanelControl(&self, panel: Option<&QLPreviewPanel>);
@@ -357,6 +389,10 @@ pub unsafe trait NSObjectQLPreviewPanelController:
         /// Parameter `panel`: The Preview Panel that the receiver will stop controlling.
         ///
         /// The receiver should unsetup the preview panel (data source, delegate, binding, etc.) here. You should never call this method directly.
+        ///
+        /// # Safety
+        ///
+        /// `panel` might not allow `None`.
         #[unsafe(method(endPreviewPanelControl:))]
         #[unsafe(method_family = none)]
         unsafe fn endPreviewPanelControl(&self, panel: Option<&QLPreviewPanel>);
@@ -379,6 +415,10 @@ extern_protocol!(
         /// - panel: The preview panel.
         ///
         /// - Returns: The number of items the preview panel should display.
+        ///
+        /// # Safety
+        ///
+        /// `panel` might not allow `None`.
         #[unsafe(method(numberOfPreviewItemsInPreviewPanel:))]
         #[unsafe(method_family = none)]
         unsafe fn numberOfPreviewItemsInPreviewPanel(
@@ -395,6 +435,10 @@ extern_protocol!(
         /// - index: The index of the item to preview.
         ///
         /// - Returns: The item that the preview panel should preview at index `index`.
+        ///
+        /// # Safety
+        ///
+        /// `panel` might not allow `None`.
         #[unsafe(method(previewPanel:previewItemAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn previewPanel_previewItemAtIndex(
@@ -430,6 +474,11 @@ extern_protocol!(
         /// the receiver handled the event; otherwise,
         /// <doc
         /// ://com.apple.documentation/documentation/objectivec/no>.
+        ///
+        /// # Safety
+        ///
+        /// - `panel` might not allow `None`.
+        /// - `event` might not allow `None`.
         #[optional]
         #[unsafe(method(previewPanel:handleEvent:))]
         #[unsafe(method_family = none)]
@@ -455,6 +504,11 @@ extern_protocol!(
         /// <doc
         /// ://com.apple.documentation/documentation/foundation/nszerorect> if there
         /// is no origin point (this will produce a fade of the panel).
+        ///
+        /// # Safety
+        ///
+        /// - `panel` might not allow `None`.
+        /// - `item` might not allow `None`.
         #[optional]
         #[unsafe(method(previewPanel:sourceFrameOnScreenForPreviewItem:))]
         #[unsafe(method_family = none)]
@@ -483,6 +537,10 @@ extern_protocol!(
         /// smaller than the icon itself.
         ///
         /// - Returns: The image to use for the transition zoom effect for the `item`.
+        ///
+        /// # Safety
+        ///
+        /// `content_rect` must be a valid pointer.
         #[optional]
         #[unsafe(method(previewPanel:transitionImageForPreviewItem:contentRect:))]
         #[unsafe(method_family = none)]

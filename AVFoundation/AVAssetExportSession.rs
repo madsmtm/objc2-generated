@@ -371,6 +371,10 @@ impl AVAssetExportSession {
         /// that describes the failure can be obtained from the error property.
         ///
         /// Initiates an asynchronous export operation and returns immediately.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(exportAsynchronouslyWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportAsynchronouslyWithCompletionHandler(
@@ -442,6 +446,10 @@ impl AVAssetExportSession {
         /// Parameter `outputFileType`: An AVFileType indicating a file type to check; or nil, to query whether there are any compatible types.
         ///
         /// Parameter `handler`: A block called with the compatibility result.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn determineCompatibilityOfExportPreset_withAsset_outputFileType_completionHandler(
@@ -467,6 +475,10 @@ impl AVAssetExportSession {
         /// Parameter `handler`: Called when the inspection completes with an array of file types the ExportSession can write.  Note that this may have a count of zero.
         ///
         /// This method is different than the supportedFileTypes property in that it performs an inspection of the AVAsset in order to determine its compatibility with each of the session's supported file types.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(determineCompatibleFileTypesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn determineCompatibleFileTypesWithCompletionHandler(
@@ -516,6 +528,10 @@ impl AVAssetExportSession {
         /// If fileLengthLimit is not set on the export session, fileLengthLimit will be assumed to be the maximum file size specified by the preset (if any); else infinite.
         ///
         /// Parameter `handler`: A block called with the estimated maximum duration, or kCMTimeInvalid if an error occurs.  The error parameter will be non-nil if an error occurs.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(estimateMaximumDurationWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimateMaximumDurationWithCompletionHandler(
@@ -529,6 +545,10 @@ impl AVAssetExportSession {
         /// If timeRange is not set on the export session, timeRange will be assumed to be the full time range of the asset.
         ///
         /// Parameter `handler`: A block called with the estimated output file length in bytes, if it can be determined; 0 otherwise.  The error parameter will be non-nil if an error occurs.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(estimateOutputFileLengthWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimateOutputFileLengthWithCompletionHandler(

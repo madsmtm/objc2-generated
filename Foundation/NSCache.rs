@@ -54,6 +54,10 @@ impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSCacheDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSCacheDelegate>>);
@@ -126,6 +130,10 @@ impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscachedelegate?language=objc)
     pub unsafe trait NSCacheDelegate: NSObjectProtocol {
+        /// # Safety
+        ///
+        /// - `cache` generic should be of the correct type.
+        /// - `obj` should be of the correct type.
         #[optional]
         #[unsafe(method(cache:willEvictObject:))]
         #[unsafe(method_family = none)]

@@ -41,6 +41,9 @@ extern_conformance!(
 impl VNDetectTrajectoriesRequest {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
@@ -58,6 +61,10 @@ impl VNDetectTrajectoriesRequest {
         /// Parameter `trajectoryLength`: The number of points required to analyze a parabola that indicates a trajectory. Must be at least 5.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_trajectoryLength_completionHandler(
@@ -153,6 +160,9 @@ impl VNDetectTrajectoriesRequest {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(

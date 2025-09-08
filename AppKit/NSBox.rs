@@ -313,6 +313,9 @@ impl NSBox {
         #[unsafe(method_family = none)]
         pub unsafe fn setBorderType(&self, border_type: NSBorderType);
 
+        /// # Safety
+        ///
+        /// `string_with_ampersand` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setTitleWithMnemonic:))]
         #[unsafe(method_family = none)]

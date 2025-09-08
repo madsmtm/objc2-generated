@@ -214,6 +214,10 @@ extern_protocol!(
         unsafe fn targetItem(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`targetItem`][Self::targetItem].
+        ///
+        /// # Safety
+        ///
+        /// `target_item` should be of the correct type.
         #[unsafe(method(setTargetItem:))]
         #[unsafe(method_family = none)]
         unsafe fn setTargetItem(&self, target_item: Option<&AnyObject>);

@@ -69,6 +69,10 @@ impl HKCategorySample {
         /// Parameter `endDate`: The end date of the sample.
         ///
         /// Parameter `metadata`: Metadata for the sample (optional).
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(categorySampleWithType:value:startDate:endDate:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn categorySampleWithType_value_startDate_endDate_metadata(
@@ -114,6 +118,10 @@ impl HKCategorySample {
         /// Parameter `device`: The HKDevice that generated the sample (optional).
         ///
         /// Parameter `metadata`: Metadata for the sample (optional).
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(categorySampleWithType:value:startDate:endDate:device:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn categorySampleWithType_value_startDate_endDate_device_metadata(

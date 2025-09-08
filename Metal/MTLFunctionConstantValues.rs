@@ -29,6 +29,9 @@ extern_conformance!(
 impl MTLFunctionConstantValues {
     extern_methods!(
         #[cfg(feature = "MTLArgument")]
+        /// # Safety
+        ///
+        /// `value` must be a valid pointer.
         #[unsafe(method(setConstantValue:type:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantValue_type_atIndex(
@@ -39,6 +42,9 @@ impl MTLFunctionConstantValues {
         );
 
         #[cfg(feature = "MTLArgument")]
+        /// # Safety
+        ///
+        /// `values` must be a valid pointer.
         #[unsafe(method(setConstantValues:type:withRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantValues_type_withRange(
@@ -49,6 +55,9 @@ impl MTLFunctionConstantValues {
         );
 
         #[cfg(feature = "MTLArgument")]
+        /// # Safety
+        ///
+        /// `value` must be a valid pointer.
         #[unsafe(method(setConstantValue:type:withName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantValue_type_withName(

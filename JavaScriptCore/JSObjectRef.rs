@@ -501,6 +501,10 @@ extern "C-unwind" {
     /// Parameter `definition`: A JSClassDefinition that defines the class.
     ///
     /// Returns: A JSClass with the given definition. Ownership follows the Create Rule.
+    ///
+    /// # Safety
+    ///
+    /// `definition` must be a valid pointer.
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSClassCreate(definition: *const JSClassDefinition) -> JSClassRef;
 }
@@ -511,6 +515,10 @@ extern "C-unwind" {
     /// Parameter `jsClass`: The JSClass to retain.
     ///
     /// Returns: A JSClass that is the same as jsClass.
+    ///
+    /// # Safety
+    ///
+    /// `js_class` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSClassRetain(js_class: JSClassRef) -> JSClassRef;
 }
@@ -519,6 +527,10 @@ extern "C-unwind" {
     /// Releases a JavaScript class.
     ///
     /// Parameter `jsClass`: The JSClass to release.
+    ///
+    /// # Safety
+    ///
+    /// `js_class` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSClassRelease(js_class: JSClassRef);
 }
@@ -537,6 +549,12 @@ extern "C-unwind" {
     /// The default object class does not allocate storage for private data, so you must provide a non-NULL jsClass to JSObjectMake if you want your object to be able to store private data.
     ///
     /// data is set on the created object before the intialize methods in its class chain are called. This enables the initialize methods to retrieve and manipulate data through JSObjectGetPrivate.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `js_class` must be a valid pointer.
+    /// - `data` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMake(ctx: JSContextRef, js_class: JSClassRef, data: *mut c_void) -> JSObjectRef;
 }
@@ -551,6 +569,12 @@ extern "C-unwind" {
     /// Parameter `callAsFunction`: The JSObjectCallAsFunctionCallback to invoke when the function is called.
     ///
     /// Returns: A JSObject that is a function. The object's prototype will be the default function prototype.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `name` must be a valid pointer.
+    /// - `call_as_function` must be implemented correctly.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeFunctionWithCallback(
         ctx: JSContextRef,
@@ -571,6 +595,12 @@ extern "C-unwind" {
     /// Returns: A JSObject that is a constructor. The object's prototype will be the default object prototype.
     ///
     /// The default object constructor takes no arguments and constructs an object of class jsClass with no private data. If the constructor is inherited via JS subclassing and the value returned from callAsConstructor was created with jsClass, then the returned object will have it's prototype overridden to the derived class's prototype.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `js_class` must be a valid pointer.
+    /// - `call_as_constructor` must be implemented correctly.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeConstructor(
         ctx: JSContextRef,
@@ -594,6 +624,12 @@ extern "C-unwind" {
     ///
     /// The behavior of this function does not exactly match the behavior of the built-in Array constructor. Specifically, if one argument
     /// is supplied, this function returns an array with one element.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `arguments` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeArray(
         ctx: JSContextRef,
@@ -615,6 +651,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSObject that is a Date.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `arguments` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeDate(
         ctx: JSContextRef,
@@ -636,6 +678,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSObject that is an Error.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `arguments` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeError(
         ctx: JSContextRef,
@@ -657,6 +705,12 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSObject that is a RegExp.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `arguments` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeRegExp(
         ctx: JSContextRef,
@@ -678,6 +732,13 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: A JSObject that is a promise or NULL if an exception occurred.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `resolve` must be a valid pointer.
+    /// - `reject` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeDeferredPromise(
         ctx: JSContextRef,
@@ -709,6 +770,15 @@ extern "C-unwind" {
     /// Returns: A JSObject that is a function, or NULL if either body or parameterNames contains a syntax error. The object's prototype will be the default function prototype.
     ///
     /// Use this method when you want to execute a script repeatedly, to avoid the cost of re-parsing the script before each execution.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `name` must be a valid pointer.
+    /// - `parameter_names` must be a valid pointer.
+    /// - `body` must be a valid pointer.
+    /// - `source_url` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeFunction(
         ctx: JSContextRef,
@@ -730,6 +800,11 @@ extern "C-unwind" {
     /// Parameter `object`: A JSObject whose prototype you want to get.
     ///
     /// Returns: A JSValue that is the object's prototype.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPrototype(ctx: JSContextRef, object: JSObjectRef) -> JSValueRef;
 }
@@ -742,6 +817,12 @@ extern "C-unwind" {
     /// Parameter `object`: The JSObject whose prototype you want to set.
     ///
     /// Parameter `value`: A JSValue to set as the object's prototype.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `value` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPrototype(ctx: JSContextRef, object: JSObjectRef, value: JSValueRef);
 }
@@ -754,6 +835,12 @@ extern "C-unwind" {
     /// Parameter `propertyName`: A JSString containing the property's name.
     ///
     /// Returns: true if the object has a property whose name matches propertyName, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `property_name` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectHasProperty(
         ctx: JSContextRef,
@@ -774,6 +861,13 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The property's value if object has the property, otherwise the undefined value.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `property_name` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetProperty(
         ctx: JSContextRef,
@@ -797,6 +891,14 @@ extern "C-unwind" {
     /// Parameter `attributes`: A logically ORed set of JSPropertyAttributes to give to the property.
     ///
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `property_name` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetProperty(
         ctx: JSContextRef,
@@ -820,6 +922,13 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: true if the delete operation succeeds, otherwise false (for example, if the property has the kJSPropertyAttributeDontDelete attribute set).
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `property_name` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectDeleteProperty(
         ctx: JSContextRef,
@@ -841,6 +950,13 @@ extern "C-unwind" {
     /// Returns: true if the object has a property whose name matches propertyKey, otherwise false.
     ///
     /// This function is the same as performing "propertyKey in object" from JavaScript.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `property_key` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectHasPropertyForKey(
         ctx: JSContextRef,
@@ -864,6 +980,13 @@ extern "C-unwind" {
     /// Returns: The property's value if object has the property key, otherwise the undefined value.
     ///
     /// This function is the same as performing "object[propertyKey]" from JavaScript.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `property_key` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPropertyForKey(
         ctx: JSContextRef,
@@ -889,6 +1012,14 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// This function is the same as performing "object[propertyKey] = value" from JavaScript.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `property_key` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPropertyForKey(
         ctx: JSContextRef,
@@ -914,6 +1045,13 @@ extern "C-unwind" {
     /// Returns: true if the delete operation succeeds, otherwise false (for example, if the property has the kJSPropertyAttributeDontDelete attribute set).
     ///
     /// This function is the same as performing "delete object[propertyKey]" from JavaScript.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `property_key` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectDeletePropertyForKey(
         ctx: JSContextRef,
@@ -937,6 +1075,12 @@ extern "C-unwind" {
     /// Returns: The property's value if object has the property, otherwise the undefined value.
     ///
     /// Calling JSObjectGetPropertyAtIndex is equivalent to calling JSObjectGetProperty with a string containing propertyIndex, but JSObjectGetPropertyAtIndex provides optimized access to numeric properties.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPropertyAtIndex(
         ctx: JSContextRef,
@@ -960,6 +1104,13 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Calling JSObjectSetPropertyAtIndex is equivalent to calling JSObjectSetProperty with a string containing propertyIndex, but JSObjectSetPropertyAtIndex provides optimized access to numeric properties.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `value` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPropertyAtIndex(
         ctx: JSContextRef,
@@ -976,6 +1127,10 @@ extern "C-unwind" {
     /// Parameter `object`: A JSObject whose private data you want to get.
     ///
     /// Returns: A void* that is the object's private data, if the object has private data, otherwise NULL.
+    ///
+    /// # Safety
+    ///
+    /// `object` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPrivate(object: JSObjectRef) -> *mut c_void;
 }
@@ -990,6 +1145,11 @@ extern "C-unwind" {
     /// Returns: true if object can store private data, otherwise false.
     ///
     /// The default object class does not allocate storage for private data. Only objects created with a non-NULL JSClass can store private data.
+    ///
+    /// # Safety
+    ///
+    /// - `object` must be a valid pointer.
+    /// - `data` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPrivate(object: JSObjectRef, data: *mut c_void) -> bool;
 }
@@ -1002,6 +1162,11 @@ extern "C-unwind" {
     /// Parameter `object`: The JSObject to test.
     ///
     /// Returns: true if the object can be called as a function, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectIsFunction(ctx: JSContextRef, object: JSObjectRef) -> bool;
 }
@@ -1022,6 +1187,14 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The JSValue that results from calling object as a function, or NULL if an exception is thrown or object is not a function.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `this_object` must be a valid pointer.
+    /// - `arguments` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCallAsFunction(
         ctx: JSContextRef,
@@ -1041,6 +1214,11 @@ extern "C-unwind" {
     /// Parameter `object`: The JSObject to test.
     ///
     /// Returns: true if the object can be called as a constructor, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectIsConstructor(ctx: JSContextRef, object: JSObjectRef) -> bool;
 }
@@ -1059,6 +1237,13 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The JSObject that results from calling object as a constructor, or NULL if an exception is thrown or object is not a constructor.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `arguments` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCallAsConstructor(
         ctx: JSContextRef,
@@ -1077,6 +1262,11 @@ extern "C-unwind" {
     /// Parameter `object`: The object whose property names you want to get.
     ///
     /// Returns: A JSPropertyNameArray containing the names object's enumerable properties. Ownership follows the Create Rule.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `object` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCopyPropertyNames(
         ctx: JSContextRef,
@@ -1090,6 +1280,10 @@ extern "C-unwind" {
     /// Parameter `array`: The JSPropertyNameArray to retain.
     ///
     /// Returns: A JSPropertyNameArray that is the same as array.
+    ///
+    /// # Safety
+    ///
+    /// `array` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayRetain(array: JSPropertyNameArrayRef) -> JSPropertyNameArrayRef;
 }
@@ -1098,6 +1292,10 @@ extern "C-unwind" {
     /// Releases a JavaScript property name array.
     ///
     /// Parameter `array`: The JSPropetyNameArray to release.
+    ///
+    /// # Safety
+    ///
+    /// `array` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayRelease(array: JSPropertyNameArrayRef);
 }
@@ -1108,6 +1306,10 @@ extern "C-unwind" {
     /// Parameter `array`: The array from which to retrieve the count.
     ///
     /// Returns: An integer count of the number of names in array.
+    ///
+    /// # Safety
+    ///
+    /// `array` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayGetCount(array: JSPropertyNameArrayRef) -> usize;
 }
@@ -1120,6 +1322,10 @@ extern "C-unwind" {
     /// Parameter `index`: The index of the property name to retrieve.
     ///
     /// Returns: A JSStringRef containing the property name.
+    ///
+    /// # Safety
+    ///
+    /// `array` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayGetNameAtIndex(
         array: JSPropertyNameArrayRef,
@@ -1133,6 +1339,11 @@ extern "C-unwind" {
     /// Parameter `accumulator`: The accumulator object to which to add the property name.
     ///
     /// Parameter `propertyName`: The property name to add.
+    ///
+    /// # Safety
+    ///
+    /// - `accumulator` must be a valid pointer.
+    /// - `property_name` must be a valid pointer.
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameAccumulatorAddName(
         accumulator: JSPropertyNameAccumulatorRef,

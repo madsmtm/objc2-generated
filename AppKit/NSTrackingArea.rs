@@ -69,6 +69,11 @@ extern_conformance!(
 
 impl NSTrackingArea {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `owner` should be of the correct type.
+        /// - `user_info` generic should be of the correct type.
+        /// - `user_info` generic should be of the correct type.
         #[unsafe(method(initWithRect:options:owner:userInfo:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRect_options_owner_userInfo(

@@ -42,6 +42,11 @@ impl HKAnchoredObjectQuery {
         /// no limit.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block must be sendable.
+        /// - This might not be thread-safe.
         #[unsafe(method(updateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
@@ -66,6 +71,11 @@ impl HKAnchoredObjectQuery {
         /// Setter for [`updateHandler`][Self::updateHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// - `update_handler` block must be sendable.
+        /// - This might not be thread-safe.
         #[unsafe(method(setUpdateHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateHandler(
@@ -110,6 +120,10 @@ impl HKAnchoredObjectQuery {
         /// for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(initWithType:predicate:anchor:limit:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_predicate_anchor_limit_resultsHandler(
@@ -135,6 +149,9 @@ impl HKAnchoredObjectQuery {
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(initWithType:predicate:anchor:limit:completionHandler:))]
         #[unsafe(method_family = init)]
@@ -180,6 +197,10 @@ impl HKAnchoredObjectQuery {
         /// HKObjectQueryNoLimit for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
+        ///
+        /// # Safety
+        ///
+        /// `handler` block must be sendable.
         #[unsafe(method(initWithQueryDescriptors:anchor:limit:resultsHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueryDescriptors_anchor_limit_resultsHandler(

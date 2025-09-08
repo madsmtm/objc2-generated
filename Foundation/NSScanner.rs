@@ -73,6 +73,10 @@ impl NSScanner {
         pub unsafe fn locale(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`locale`][Self::locale].
+        ///
+        /// # Safety
+        ///
+        /// `locale` should be of the correct type.
         #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&AnyObject>);
@@ -100,42 +104,72 @@ impl NSScanner {
 /// NSExtendedScanner.
 impl NSScanner {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanInt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanInt(&self, result: *mut c_int) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanInteger:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanInteger(&self, result: *mut NSInteger) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanLongLong:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanLongLong(&self, result: *mut c_longlong) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanUnsignedLongLong:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanUnsignedLongLong(&self, result: *mut c_ulonglong) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanFloat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanFloat(&self, result: *mut c_float) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanDouble:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanDouble(&self, result: *mut c_double) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanHexInt:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanHexInt(&self, result: *mut c_uint) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanHexLongLong:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanHexLongLong(&self, result: *mut c_ulonglong) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanHexFloat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanHexFloat(&self, result: *mut c_float) -> bool;
 
+        /// # Safety
+        ///
+        /// `result` must be a valid pointer or null.
         #[unsafe(method(scanHexDouble:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scanHexDouble(&self, result: *mut c_double) -> bool;

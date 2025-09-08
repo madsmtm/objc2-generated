@@ -158,6 +158,9 @@ impl MPSImageDescriptor {
             usage: MTLTextureUsage,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `zone` must be a valid pointer or null.
         #[unsafe(method(copyWithZone:))]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<Self>;
@@ -866,6 +869,10 @@ impl MPSImage {
         ///
         /// Use the enum to set data is coming in with what order. The data type will be determined by the pixelFormat
         /// defined in the Image Descriptor.
+        ///
+        /// # Safety
+        ///
+        /// `data_bytes` must be a valid pointer.
         #[unsafe(method(readBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readBytes_dataLayout_bytesPerRow_region_featureChannelInfo_imageIndex(
@@ -900,6 +907,10 @@ impl MPSImage {
         /// your dataBytes buffer is given by dataLayout. Each image may be stored as either a series of planar images (a series of single WxH images, one per
         /// feature channel) or a single chunky image, WxHxfeature_channels. BytesPerRow and BytesPerImage are there to allow some padding between
         /// successive rows and successive images. No padding is allowed between successive feature channels.
+        ///
+        /// # Safety
+        ///
+        /// `data_bytes` must be a valid pointer.
         #[unsafe(method(writeBytes:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_dataLayout_bytesPerRow_region_featureChannelInfo_imageIndex(
@@ -938,6 +949,10 @@ impl MPSImage {
         /// your dataBytes buffer is given by dataLayout. Each image may be stored as either a series of planar images (a series of single WxH images, one per
         /// feature channel) or a single chunky image, WxHxfeature_channels. BytesPerRow and BytesPerImage are there to allow some padding between
         /// successive rows and successive images. No padding is allowed between successive feature channels.
+        ///
+        /// # Safety
+        ///
+        /// `data_bytes` must be a valid pointer.
         #[unsafe(method(writeBytes:dataLayout:bytesPerColumn:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_dataLayout_bytesPerColumn_bytesPerRow_bytesPerImage_region_featureChannelInfo_imageIndex(
@@ -984,6 +999,10 @@ impl MPSImage {
         /// also be a featureChannelStride in addition to bytesPerRow and bytesPerImage. With the current design, when we finish the
         /// last feature channel, the next byte will contain the 0th feature channel for the next texel or slice, depending
         /// on packing order. This method can not be used to modify some but not all of the feature channels in an image.
+        ///
+        /// # Safety
+        ///
+        /// `data_bytes` must be a valid pointer.
         #[unsafe(method(readBytes:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readBytes_dataLayout_bytesPerRow_bytesPerImage_region_featureChannelInfo_imageIndex(
@@ -1026,6 +1045,10 @@ impl MPSImage {
         /// also be a featureChannelStride in addition to bytesPerRow and bytesPerImage. With the current design, when we finish the
         /// last feature channel, the next byte will contain the 0th feature channel for the next texel or slice, depending
         /// on packing order. This method can not be used to modify some but not all of the feature channels in an image.
+        ///
+        /// # Safety
+        ///
+        /// `data_bytes` must be a valid pointer.
         #[unsafe(method(writeBytes:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_dataLayout_bytesPerRow_bytesPerImage_region_featureChannelInfo_imageIndex(
@@ -1051,6 +1074,10 @@ impl MPSImage {
         ///
         /// Use the enum to set data is coming in with what order. The data type will be determined by the pixelFormat
         /// defined in the Image Descriptor. Region is full image, buffer width and height is same as MPSImage width and height.
+        ///
+        /// # Safety
+        ///
+        /// `data_bytes` must be a valid pointer.
         #[unsafe(method(readBytes:dataLayout:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn readBytes_dataLayout_imageIndex(
@@ -1072,6 +1099,10 @@ impl MPSImage {
         ///
         /// Use the enum to set data is coming in with what order. The data type will be determined by the pixelFormat
         /// defined in the Image Descriptor. Region is full image, buffer width and height is same as MPSImage width and height.
+        ///
+        /// # Safety
+        ///
+        /// `data_bytes` must be a valid pointer.
         #[unsafe(method(writeBytes:dataLayout:imageIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeBytes_dataLayout_imageIndex(

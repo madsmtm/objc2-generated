@@ -4,6 +4,9 @@
 use crate::*;
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer or null.
     #[cfg(feature = "CGLTypes")]
     pub fn CGLSetCurrentContext(ctx: CGLContextObj) -> CGLError;
 }

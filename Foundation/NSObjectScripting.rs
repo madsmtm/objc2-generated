@@ -34,6 +34,10 @@ pub unsafe trait NSObjectNSScripting:
         /// Setter for [`scriptingProperties`][Self::scriptingProperties].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `scripting_properties` generic should be of the correct type.
         #[unsafe(method(setScriptingProperties:))]
         #[unsafe(method_family = none)]
         unsafe fn setScriptingProperties(
@@ -42,6 +46,10 @@ pub unsafe trait NSObjectNSScripting:
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `value` should be of the correct type.
+        /// - `properties` generic should be of the correct type.
         #[unsafe(method(copyScriptingValue:forKey:withProperties:))]
         #[unsafe(method_family = copy)]
         unsafe fn copyScriptingValue_forKey_withProperties(
@@ -52,6 +60,11 @@ pub unsafe trait NSObjectNSScripting:
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `object_class` probably has further requirements.
+        /// - `contents_value` should be of the correct type.
+        /// - `properties` generic should be of the correct type.
         #[unsafe(method(newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:))]
         #[unsafe(method_family = new)]
         unsafe fn newScriptingObjectOfClass_forValueForKey_withContentsValue_properties(

@@ -62,6 +62,10 @@ impl MIDIUMPCIProfile {
 
         #[cfg(all(feature = "MIDIMessages", feature = "MIDIUMPCI"))]
         /// C struct representation of MIDI-CI Profile ID.
+        ///
+        /// # Safety
+        ///
+        /// The returned must be correctly initialized.
         #[unsafe(method(profileID))]
         #[unsafe(method_family = none)]
         pub unsafe fn profileID(&self) -> MIDICIProfileID;

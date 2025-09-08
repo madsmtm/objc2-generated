@@ -309,6 +309,10 @@ impl NSTextView {
 
         #[cfg(feature = "NSTextContainer")]
         /// Setter for [`textContainer`][Self::textContainer].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setTextContainer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextContainer(&self, text_container: Option<&NSTextContainer>);
@@ -362,6 +366,10 @@ impl NSTextView {
         pub unsafe fn textContentStorage(&self) -> Option<Retained<NSTextContentStorage>>;
 
         /// *********************** Key binding entry-point ************************
+        ///
+        /// # Safety
+        ///
+        /// `insert_string` should be of the correct type.
         #[deprecated = "Use -insertText:replacementRange: from NSTextInputClient instead. Since the method is designed to be used solely by the input system, the message should never be sent to a text view from applications. Any content modifications should be via either NSTextStorage or NSText methods."]
         #[unsafe(method(insertText:))]
         #[unsafe(method_family = none)]
@@ -385,85 +393,148 @@ impl NSTextView {
         );
 
         /// ************************* New Font menu commands **************************
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(turnOffKerning:))]
         #[unsafe(method_family = none)]
         pub unsafe fn turnOffKerning(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(tightenKerning:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tightenKerning(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(loosenKerning:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loosenKerning(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(useStandardKerning:))]
         #[unsafe(method_family = none)]
         pub unsafe fn useStandardKerning(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(turnOffLigatures:))]
         #[unsafe(method_family = none)]
         pub unsafe fn turnOffLigatures(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(useStandardLigatures:))]
         #[unsafe(method_family = none)]
         pub unsafe fn useStandardLigatures(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(useAllLigatures:))]
         #[unsafe(method_family = none)]
         pub unsafe fn useAllLigatures(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(raiseBaseline:))]
         #[unsafe(method_family = none)]
         pub unsafe fn raiseBaseline(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(lowerBaseline:))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowerBaseline(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "Use the traditional shaped characters encoded in the Unicode standard. Access the characters via the character palette."]
         #[unsafe(method(toggleTraditionalCharacterShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleTraditionalCharacterShape(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(outline:))]
         #[unsafe(method_family = none)]
         pub unsafe fn outline(&self, sender: Option<&AnyObject>);
 
         /// ************************* Find menu commands **************************
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(performFindPanelAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performFindPanelAction(&self, sender: Option<&AnyObject>);
 
         /// ************************* New Text commands **************************
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(alignJustified:))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignJustified(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(changeColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeColor(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(changeAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeAttributes(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(changeDocumentBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeDocumentBackgroundColor(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontSpacingPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontSpacingPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontLinkPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontLinkPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontListPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontListPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontTablePanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontTablePanel(&self, sender: Option<&AnyObject>);
@@ -589,15 +660,26 @@ impl NSTextView {
         ) -> NSRange;
 
         /// ************************* Especially for subclassers **************************
+        ///
+        /// # Safety
+        ///
+        /// `link` should be of the correct type.
         #[unsafe(method(clickedOnLink:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn clickedOnLink_atIndex(&self, link: &AnyObject, char_index: NSUInteger);
 
         /// *********************** Speech support ************************
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(startSpeaking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startSpeaking(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(stopSpeaking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopSpeaking(&self, sender: Option<&AnyObject>);
@@ -607,6 +689,9 @@ impl NSTextView {
         #[unsafe(method_family = none)]
         pub unsafe fn setLayoutOrientation(&self, orientation: NSTextLayoutOrientation);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(changeLayoutOrientation:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeLayoutOrientation(&self, sender: Option<&AnyObject>);
@@ -668,6 +753,10 @@ impl NSTextView {
 impl NSTextView {
     extern_methods!(
         /// *********************** Completion support ********************
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(complete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn complete(&self, sender: Option<&AnyObject>);
@@ -676,6 +765,9 @@ impl NSTextView {
         #[unsafe(method_family = none)]
         pub unsafe fn rangeForUserCompletion(&self) -> NSRange;
 
+        /// # Safety
+        ///
+        /// `index` must be a valid pointer.
         #[unsafe(method(completionsForPartialWordRange:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionsForPartialWordRange_indexOfSelectedItem(
@@ -765,10 +857,16 @@ impl NSTextView {
             return_type: Option<&NSPasteboardType>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(pasteAsPlainText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteAsPlainText(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(pasteAsRichText:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteAsRichText(&self, sender: Option<&AnyObject>);
@@ -790,6 +888,9 @@ impl NSTextView {
         ) -> bool;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
+        /// # Safety
+        ///
+        /// `origin` must be a valid pointer or null.
         #[unsafe(method(dragImageForSelectionWithEvent:origin:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dragImageForSelectionWithEvent_origin(
@@ -874,6 +975,10 @@ impl NSTextView {
         /// Setter for [`selectedTextAttributes`][Self::selectedTextAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `selected_text_attributes` generic should be of the correct type.
         #[unsafe(method(setSelectedTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedTextAttributes(
@@ -907,6 +1012,10 @@ impl NSTextView {
         /// Setter for [`markedTextAttributes`][Self::markedTextAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `marked_text_attributes` generic should be of the correct type.
         #[unsafe(method(setMarkedTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMarkedTextAttributes(
@@ -923,6 +1032,10 @@ impl NSTextView {
         /// Setter for [`linkTextAttributes`][Self::linkTextAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `link_text_attributes` generic should be of the correct type.
         #[unsafe(method(setLinkTextAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLinkTextAttributes(
@@ -980,6 +1093,9 @@ impl NSTextView {
             continuous_spell_checking_enabled: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleContinuousSpellChecking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleContinuousSpellChecking(&self, sender: Option<&AnyObject>);
@@ -997,6 +1113,9 @@ impl NSTextView {
         #[unsafe(method_family = none)]
         pub unsafe fn setGrammarCheckingEnabled(&self, grammar_checking_enabled: bool);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleGrammarChecking:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleGrammarChecking(&self, sender: Option<&AnyObject>);
@@ -1014,6 +1133,10 @@ impl NSTextView {
         /// Setter for [`typingAttributes`][Self::typingAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `typing_attributes` generic should be of the correct type.
         #[unsafe(method(setTypingAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTypingAttributes(
@@ -1310,6 +1433,9 @@ impl NSTextView {
             proposed_char_range: NSRange,
         ) -> NSRange;
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleSmartInsertDelete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleSmartInsertDelete(&self, sender: Option<&AnyObject>);
@@ -1352,6 +1478,9 @@ impl NSTextView {
             automatic_quote_substitution_enabled: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleAutomaticQuoteSubstitution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleAutomaticQuoteSubstitution(&self, sender: Option<&AnyObject>);
@@ -1368,6 +1497,9 @@ impl NSTextView {
             automatic_link_detection_enabled: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleAutomaticLinkDetection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleAutomaticLinkDetection(&self, sender: Option<&AnyObject>);
@@ -1384,6 +1516,9 @@ impl NSTextView {
             automatic_data_detection_enabled: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleAutomaticDataDetection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleAutomaticDataDetection(&self, sender: Option<&AnyObject>);
@@ -1400,6 +1535,9 @@ impl NSTextView {
             automatic_dash_substitution_enabled: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleAutomaticDashSubstitution:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleAutomaticDashSubstitution(&self, sender: Option<&AnyObject>);
@@ -1416,6 +1554,9 @@ impl NSTextView {
             automatic_text_replacement_enabled: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleAutomaticTextReplacement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleAutomaticTextReplacement(&self, sender: Option<&AnyObject>);
@@ -1432,6 +1573,9 @@ impl NSTextView {
             automatic_spelling_correction_enabled: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleAutomaticSpellingCorrection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleAutomaticSpellingCorrection(&self, sender: Option<&AnyObject>);
@@ -1449,6 +1593,9 @@ impl NSTextView {
         );
 
         #[cfg(feature = "NSSpellChecker")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(checkTextInRange:types:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInRange_types_options(
@@ -1459,6 +1606,9 @@ impl NSTextView {
         );
 
         #[cfg(feature = "NSSpellChecker")]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(handleTextCheckingResults:forRange:types:options:orthography:wordCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleTextCheckingResults_forRange_types_options_orthography_wordCount(
@@ -1471,14 +1621,23 @@ impl NSTextView {
             word_count: NSInteger,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontSubstitutionsPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontSubstitutionsPanel(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(checkTextInSelection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInSelection(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(checkTextInDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkTextInDocument(&self, sender: Option<&AnyObject>);
@@ -1542,6 +1701,10 @@ impl NSTextView {
 impl NSTextView {
     extern_methods!(
         /// ************************* Quick Look support **************************
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleQuickLookPreviewPanel:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleQuickLookPreviewPanel(&self, sender: Option<&AnyObject>);
@@ -1557,6 +1720,10 @@ impl NSTextView {
 impl NSTextView {
     extern_methods!(
         /// ************************* NSSharingService support **************************
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(orderFrontSharingServicePicker:))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderFrontSharingServicePicker(&self, sender: Option<&AnyObject>);
@@ -1579,6 +1746,9 @@ impl NSTextView {
             automatic_text_completion_enabled: bool,
         );
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(toggleAutomaticTextCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn toggleAutomaticTextCompletion(&self, sender: Option<&AnyObject>);
@@ -1679,6 +1849,10 @@ impl NSTextView {
         /// Setter for [`textHighlightAttributes`][Self::textHighlightAttributes].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `text_highlight_attributes` generic should be of the correct type.
         #[unsafe(method(setTextHighlightAttributes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextHighlightAttributes(
@@ -1697,6 +1871,10 @@ impl NSTextView {
 
         /// An action for toggling `NSTextHighlightStyleAttributeName` in the receiver’s selected range.
         /// The sender should be a menu item with a `representedObject` of type (`NSTextHighlightColorScheme`).
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(highlight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn highlight(&self, sender: Option<&AnyObject>);
@@ -1707,6 +1885,9 @@ impl NSTextView {
 #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
 impl NSTextView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[deprecated = "Use NSResponder's makeBaseWritingDirectionNatural:, makeBaseWritingDirectionLeftToRight:, and makeBaseWritingDirectionRightToLeft: instead"]
         #[unsafe(method(toggleBaseWritingDirection:))]
         #[unsafe(method_family = none)]
@@ -1719,6 +1900,9 @@ extern_protocol!(
     #[cfg(feature = "NSText")]
     pub unsafe trait NSTextViewDelegate: NSTextDelegate {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `link` should be of the correct type.
         #[optional]
         #[unsafe(method(textView:clickedOnLink:atIndex:))]
         #[unsafe(method_family = none)]
@@ -1847,6 +2031,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// - `old_typing_attributes` generic should be of the correct type.
+        /// - `new_typing_attributes` generic should be of the correct type.
         #[optional]
         #[unsafe(method(textView:shouldChangeTypingAttributes:toAttributes:))]
         #[unsafe(method_family = none)]
@@ -1879,6 +2067,9 @@ extern_protocol!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `index` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(textView:completions:forPartialWordRange:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
@@ -1902,6 +2093,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// `command_selector` must be a valid selector.
         #[optional]
         #[unsafe(method(textView:doCommandBySelector:))]
         #[unsafe(method_family = none)]
@@ -1944,6 +2138,9 @@ extern_protocol!(
             feature = "NSSpellChecker",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `checking_types` must be a valid pointer.
         #[optional]
         #[unsafe(method(textView:willCheckTextInRange:options:types:))]
         #[unsafe(method_family = none)]
@@ -1960,6 +2157,9 @@ extern_protocol!(
             feature = "NSSpellChecker",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[optional]
         #[unsafe(method(textView:didCheckTextInRange:types:options:results:orthography:wordCount:))]
         #[unsafe(method_family = none)]
@@ -1994,6 +2194,9 @@ extern_protocol!(
             feature = "NSSharingService",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `items` generic should be of the correct type.
         #[optional]
         #[unsafe(method(textView:willShowSharingServicePicker:forItems:))]
         #[unsafe(method_family = none)]
@@ -2081,6 +2284,10 @@ extern_protocol!(
         ) -> Retained<NSArray<NSValue>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// # Safety
+        ///
+        /// - `link` should be of the correct type.
+        /// - `link` might not allow `None`.
         #[deprecated = "Use -textView:clickedOnLink:atIndex: instead"]
         #[optional]
         #[unsafe(method(textView:clickedOnLink:))]
@@ -2096,6 +2303,9 @@ extern_protocol!(
             feature = "NSTextAttachmentCell",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `cell` might not allow `None`.
         #[deprecated = "Use -textView:clickedOnCell:inRect:atIndex: instead"]
         #[optional]
         #[unsafe(method(textView:clickedOnCell:inRect:))]
@@ -2112,6 +2322,9 @@ extern_protocol!(
             feature = "NSTextAttachmentCell",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// `cell` might not allow `None`.
         #[deprecated = "Use -textView:doubleClickedOnCell:inRect:atIndex: instead"]
         #[optional]
         #[unsafe(method(textView:doubleClickedOnCell:inRect:))]
@@ -2129,6 +2342,10 @@ extern_protocol!(
             feature = "NSTextAttachmentCell",
             feature = "NSView"
         ))]
+        /// # Safety
+        ///
+        /// - `cell` might not allow `None`.
+        /// - `event` might not allow `None`.
         #[deprecated = "Use -textView:draggedCell:inRect:event:atIndex: instead"]
         #[optional]
         #[unsafe(method(textView:draggedCell:inRect:event:))]

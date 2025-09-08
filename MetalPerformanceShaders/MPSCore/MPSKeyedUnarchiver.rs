@@ -27,6 +27,9 @@ extern_conformance!(
 
 impl MPSKeyedUnarchiver {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `classes` generic probably has further requirements.
         #[unsafe(method(unarchivedObjectOfClasses:fromData:device:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn unarchivedObjectOfClasses_fromData_device_error(
@@ -35,6 +38,9 @@ impl MPSKeyedUnarchiver {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `cls` probably has further requirements.
         #[unsafe(method(unarchivedObjectOfClass:fromData:device:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn unarchivedObjectOfClass_fromData_device_error(
@@ -57,6 +63,9 @@ impl MPSKeyedUnarchiver {
         #[unsafe(method_family = none)]
         pub unsafe fn mpsMTLDevice(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// # Safety
+        ///
+        /// `classes` generic probably has further requirements.
         #[unsafe(method(unarchivedObjectOfClasses:fromData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn unarchivedObjectOfClasses_fromData_error(
@@ -64,6 +73,9 @@ impl MPSKeyedUnarchiver {
             data: &NSData,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `cls` probably has further requirements.
         #[unsafe(method(unarchivedObjectOfClass:fromData:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn unarchivedObjectOfClass_fromData_error(

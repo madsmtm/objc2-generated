@@ -53,6 +53,10 @@ impl HKScoredAssessment {
         /// The score determined by the answers on an assessment
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(score))]
         #[unsafe(method_family = none)]
         pub unsafe fn score(&self) -> NSInteger;

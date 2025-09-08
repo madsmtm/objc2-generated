@@ -52,6 +52,10 @@ impl CKFetchRecordChangesOperation {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(recordZoneID))]
         #[unsafe(method_family = none)]
@@ -61,6 +65,10 @@ impl CKFetchRecordChangesOperation {
         /// Setter for [`recordZoneID`][Self::recordZoneID].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setRecordZoneID:))]
         #[unsafe(method_family = none)]
@@ -68,6 +76,10 @@ impl CKFetchRecordChangesOperation {
 
         #[cfg(feature = "CKServerChangeToken")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(previousServerChangeToken))]
         #[unsafe(method_family = none)]
@@ -77,6 +89,10 @@ impl CKFetchRecordChangesOperation {
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setPreviousServerChangeToken:))]
         #[unsafe(method_family = none)]
@@ -86,12 +102,20 @@ impl CKFetchRecordChangesOperation {
         );
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(resultsLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
         /// Setter for [`resultsLimit`][Self::resultsLimit].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setResultsLimit:))]
         #[unsafe(method_family = none)]
@@ -106,6 +130,10 @@ impl CKFetchRecordChangesOperation {
         /// `nil.`
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(desiredKeys))]
         #[unsafe(method_family = none)]
@@ -115,6 +143,10 @@ impl CKFetchRecordChangesOperation {
         /// Setter for [`desiredKeys`][Self::desiredKeys].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setDesiredKeys:))]
         #[unsafe(method_family = none)]
@@ -127,6 +159,11 @@ impl CKFetchRecordChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(recordChangedBlock))]
         #[unsafe(method_family = none)]
@@ -137,6 +174,10 @@ impl CKFetchRecordChangesOperation {
         /// Setter for [`recordChangedBlock`][Self::recordChangedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setRecordChangedBlock:))]
         #[unsafe(method_family = none)]
@@ -152,6 +193,11 @@ impl CKFetchRecordChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument must be a valid pointer.
+        /// - This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(recordWithIDWasDeletedBlock))]
         #[unsafe(method_family = none)]
@@ -163,6 +209,10 @@ impl CKFetchRecordChangesOperation {
         /// Setter for [`recordWithIDWasDeletedBlock`][Self::recordWithIDWasDeletedBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setRecordWithIDWasDeletedBlock:))]
         #[unsafe(method_family = none)]
@@ -180,6 +230,10 @@ impl CKFetchRecordChangesOperation {
         /// Another CKFetchRecordChangesOperation operation should be run with the updated serverChangeToken token from this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(moreComing))]
         #[unsafe(method_family = none)]
@@ -203,6 +257,13 @@ impl CKFetchRecordChangesOperation {
         /// should not be concurrently used outside of blocks assigned to this operation.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer or null.
+        /// - The returned block's argument 2 must be a valid pointer or null.
+        /// - The returned block's argument 3 must be a valid pointer or null.
+        /// - This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(fetchRecordChangesCompletionBlock))]
         #[unsafe(method_family = none)]
@@ -214,6 +275,10 @@ impl CKFetchRecordChangesOperation {
         /// Setter for [`fetchRecordChangesCompletionBlock`][Self::fetchRecordChangesCompletionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[deprecated]
         #[unsafe(method(setFetchRecordChangesCompletionBlock:))]
         #[unsafe(method_family = none)]

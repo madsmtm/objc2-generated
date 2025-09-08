@@ -746,6 +746,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[deprecated]
         #[optional]
         #[unsafe(method(tableView:canPerformAction:forRowAtIndexPath:withSender:))]
@@ -759,6 +763,10 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[deprecated]
         #[optional]
         #[unsafe(method(tableView:performAction:forRowAtIndexPath:withSender:))]
@@ -1888,6 +1896,9 @@ impl UITableView {
             identifier: &NSString,
         );
 
+        /// # Safety
+        ///
+        /// `cell_class` probably has further requirements.
         #[unsafe(method(registerClass:forCellReuseIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forCellReuseIdentifier(
@@ -1906,6 +1917,9 @@ impl UITableView {
             identifier: &NSString,
         );
 
+        /// # Safety
+        ///
+        /// `a_class` probably has further requirements.
         #[unsafe(method(registerClass:forHeaderFooterViewReuseIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forHeaderFooterViewReuseIdentifier(
@@ -2600,6 +2614,9 @@ impl UITableViewPlaceholder {
             feature = "UIView",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(cellUpdateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn cellUpdateHandler(
@@ -2646,6 +2663,9 @@ impl UITableViewDropPlaceholder {
             feature = "UIView",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(previewParametersProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn previewParametersProvider(
@@ -2663,6 +2683,10 @@ impl UITableViewDropPlaceholder {
         /// Setter for [`previewParametersProvider`][Self::previewParametersProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `preview_parameters_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setPreviewParametersProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewParametersProvider(

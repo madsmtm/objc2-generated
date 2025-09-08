@@ -60,6 +60,10 @@ impl ASPickerDisplayItem {
         /// The accessory name to display in the picker.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -68,6 +72,10 @@ impl ASPickerDisplayItem {
         /// An image of the accessory to display in the picker.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(productImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn productImage(&self) -> Retained<UIImage>;
@@ -76,6 +84,10 @@ impl ASPickerDisplayItem {
         /// A descriptor that the picker uses to determine which discovered accessories to display.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<ASDiscoveryDescriptor>;
@@ -86,12 +98,20 @@ impl ASPickerDisplayItem {
         /// To permit renaming, include ``SetupOptions-swift.struct/rename`` in the ``setupOptions-c.property``
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(renameOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn renameOptions(&self) -> ASAccessoryRenameOptions;
 
         #[cfg(feature = "ASAccessory")]
         /// Setter for [`renameOptions`][Self::renameOptions].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setRenameOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRenameOptions(&self, rename_options: ASAccessoryRenameOptions);
@@ -99,11 +119,19 @@ impl ASPickerDisplayItem {
         /// Custom setup options for the accessory.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setupOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn setupOptions(&self) -> ASPickerDisplayItemSetupOptions;
 
         /// Setter for [`setupOptions`][Self::setupOptions].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSetupOptions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSetupOptions(&self, setup_options: ASPickerDisplayItemSetupOptions);
@@ -162,6 +190,10 @@ impl ASMigrationDisplayItem {
         /// The Bluetooth identifier of the accessory to migrate.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(peripheralIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn peripheralIdentifier(&self) -> Option<Retained<NSUUID>>;
@@ -169,6 +201,10 @@ impl ASMigrationDisplayItem {
         /// Setter for [`peripheralIdentifier`][Self::peripheralIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPeripheralIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPeripheralIdentifier(&self, peripheral_identifier: Option<&NSUUID>);
@@ -176,6 +212,10 @@ impl ASMigrationDisplayItem {
         /// The Wi-Fi hotspot SSID of the accessory to migrate.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(hotspotSSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn hotspotSSID(&self) -> Option<Retained<NSString>>;
@@ -183,6 +223,10 @@ impl ASMigrationDisplayItem {
         /// Setter for [`hotspotSSID`][Self::hotspotSSID].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setHotspotSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHotspotSSID(&self, hotspot_ssid: Option<&NSString>);

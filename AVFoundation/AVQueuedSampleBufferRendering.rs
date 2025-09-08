@@ -105,6 +105,10 @@ extern_protocol!(
         /// If this method is called multiple times, only the last call is effective. Call stopRequestingMediaData to cancel this request.
         ///
         /// Each call to requestMediaDataWhenReadyOnQueue:usingBlock: should be paired with a corresponding call to stopRequestingMediaData:. Releasing the AVQueuedSampleBufferRendering object without a call to stopRequestingMediaData will result in undefined behavior.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(

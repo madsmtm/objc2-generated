@@ -124,6 +124,10 @@ impl IKImageView {
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`delegate`][Self::delegate].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -249,6 +253,10 @@ impl IKImageView {
 
         #[cfg(feature = "objc2-core-image")]
         /// Setter for [`imageCorrection`][Self::imageCorrection].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setImageCorrection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageCorrection(&self, image_correction: Option<&CIFilter>);
@@ -263,6 +271,10 @@ impl IKImageView {
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`backgroundColor`][Self::backgroundColor].
+        ///
+        /// # Safety
+        ///
+        /// This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
@@ -271,6 +283,12 @@ impl IKImageView {
         /// Sets the image
         /// &
         /// metadata (both retrieved from ImageIO).
+        ///
+        /// # Safety
+        ///
+        /// - `image` might not allow `None`.
+        /// - `meta_data` generic should be of the correct type.
+        /// - `meta_data` might not allow `None`.
         #[unsafe(method(setImage:imageProperties:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImage_imageProperties(
@@ -280,6 +298,10 @@ impl IKImageView {
         );
 
         /// Initializes an image view with the image specified by a URL.
+        ///
+        /// # Safety
+        ///
+        /// `url` might not allow `None`.
         #[unsafe(method(setImageWithURL:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageWithURL(&self, url: Option<&NSURL>);
@@ -311,11 +333,21 @@ impl IKImageView {
         );
 
         /// Rotates the image left.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(rotateImageLeft:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateImageLeft(&self, sender: Option<&AnyObject>);
 
         /// Rotates the image right.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(rotateImageRight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateImageRight(&self, sender: Option<&AnyObject>);
@@ -336,42 +368,82 @@ impl IKImageView {
         pub unsafe fn zoomImageToRect(&self, rect: NSRect);
 
         /// Zooms the image so that it fits in the image view.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(zoomImageToFit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomImageToFit(&self, sender: Option<&AnyObject>);
 
         /// Zooms the image so that it is displayed using its true size.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(zoomImageToActualSize:))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomImageToActualSize(&self, sender: Option<&AnyObject>);
 
         /// Zooms the image in.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(zoomIn:))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomIn(&self, sender: Option<&AnyObject>);
 
         /// Zooms the image out.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(zoomOut:))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomOut(&self, sender: Option<&AnyObject>);
 
         /// Flips an image along the horizontal axis.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(flipImageHorizontal:))]
         #[unsafe(method_family = none)]
         pub unsafe fn flipImageHorizontal(&self, sender: Option<&AnyObject>);
 
         /// Flips an image along the vertical axis.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(flipImageVertical:))]
         #[unsafe(method_family = none)]
         pub unsafe fn flipImageVertical(&self, sender: Option<&AnyObject>);
 
         /// Crops the image using the current selection.
+        ///
+        /// # Safety
+        ///
+        /// - `sender` should be of the correct type.
+        /// - `sender` might not allow `None`.
         #[unsafe(method(crop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn crop(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "objc2-quartz-core")]
         /// Sets an overlay (Core Animation layer) for the image or the image background.
+        ///
+        /// # Safety
+        ///
+        /// - `layer` might not allow `None`.
+        /// - `layer_type` might not allow `None`.
         #[unsafe(method(setOverlay:forType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOverlay_forType(
@@ -382,6 +454,10 @@ impl IKImageView {
 
         #[cfg(feature = "objc2-quartz-core")]
         /// Returns the overlay (Core Animation layer) for the image or the image background.
+        ///
+        /// # Safety
+        ///
+        /// `layer_type` might not allow `None`.
         #[unsafe(method(overlayForType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn overlayForType(

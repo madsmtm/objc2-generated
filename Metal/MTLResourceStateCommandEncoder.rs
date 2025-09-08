@@ -82,6 +82,12 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Updates multiple regions within a sparse texture.
+        ///
+        /// # Safety
+        ///
+        /// - `regions` must be a valid pointer.
+        /// - `mip_levels` must be a valid pointer.
+        /// - `slices` must be a valid pointer.
         #[optional]
         #[unsafe(method(updateTextureMappings:mode:regions:mipLevels:slices:numRegions:))]
         #[unsafe(method_family = none)]

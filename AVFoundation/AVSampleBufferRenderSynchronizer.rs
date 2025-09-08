@@ -209,6 +209,10 @@ impl AVSampleBufferRenderSynchronizer {
         /// - If the renderer has not been added to this synchronizer, completionHandler will be called and didRemoveRenderer will be NO.
         /// - If a removal of a particular renderer is scheduled after another removal of that same renderer has already been scheduled but not yet occurred, the previously-scheduled removal's completionHandler will be called and didRemoveRenderer will be NO.  The new scheduled removal's completionHandler will not be called until it is replaced by another scheduled removal or the renderer is actually removed.
         /// - When the renderer is removed due to a scheduled removal, the completionHandler provided when that removal was scheduled will be called and didRemoveRenderer will be YES.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(removeRenderer:atTime:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeRenderer_atTime_completionHandler(
@@ -243,6 +247,10 @@ impl AVSampleBufferRenderSynchronizer {
         /// If the interval corresponds to a very short interval in real time, the synchronizer may invoke the block less frequently than requested. Even so, the synchronizer will invoke the block sufficiently often for the client to update indications of the current time appropriately in its end-user interface.
         ///
         /// Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:.  Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
@@ -265,6 +273,10 @@ impl AVSampleBufferRenderSynchronizer {
         /// Returns: An object conforming to the NSObject protocol.  You must retain this returned value as long as you want the time observer to be invoked by the synchronizer.  Pass this object to -removeTimeObserver: to cancel time observation.
         ///
         /// Each call to -addPeriodicTimeObserverForInterval:queue:usingBlock: should be paired with a corresponding call to -removeTimeObserver:.  Releasing the observer object without a call to -removeTimeObserver: will result in undefined behavior.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(addBoundaryTimeObserverForTimes:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForTimes_queue_usingBlock(
@@ -285,6 +297,10 @@ impl AVSampleBufferRenderSynchronizer {
         /// - observer was not returned by either
         /// -addPeriodicTimeObserverForInterval:queue:usingBlock:
         /// -addBoundaryTimeObserverForTimes:queue:usingBlock:
+        ///
+        /// # Safety
+        ///
+        /// `observer` should be of the correct type.
         #[unsafe(method(removeTimeObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTimeObserver(&self, observer: &AnyObject);

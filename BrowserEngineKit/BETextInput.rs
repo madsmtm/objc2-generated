@@ -76,6 +76,10 @@ extern_protocol!(
     pub unsafe trait BEResponderEditActions: UIResponderStandardEditActions {
         /// Shares the selected content.
         /// See corresponding share methods in BETextInteraction.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(share:))]
         #[unsafe(method_family = none)]
@@ -83,6 +87,10 @@ extern_protocol!(
 
         /// Adds a text replacement shortcut to the keyboard dictionary.
         /// See corresponding shortcut methods in BETextInteraction.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(addShortcut:))]
         #[unsafe(method_family = none)]
@@ -90,6 +98,10 @@ extern_protocol!(
 
         /// Presents a dictionary definition for the selected content.
         /// See corresponding dictionary methods in BETextInteraction.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(lookup:))]
         #[unsafe(method_family = none)]
@@ -97,6 +109,10 @@ extern_protocol!(
 
         /// Performs a find for the selected content
         /// See find related methods in UIResponderStandardEditActions
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(findSelected:))]
         #[unsafe(method_family = none)]
@@ -104,6 +120,10 @@ extern_protocol!(
 
         /// Shows the replacements for the selected content.
         /// See corresponding replacement methods in BETextInteraction.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(promptForReplace:))]
         #[unsafe(method_family = none)]
@@ -111,6 +131,10 @@ extern_protocol!(
 
         /// Inserts the selected replacement for the selected content.
         /// See corresponding replacement methods in BETextInputDelegate
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(replace:))]
         #[unsafe(method_family = none)]
@@ -118,6 +142,10 @@ extern_protocol!(
 
         /// Presents a translation view for the selected content.
         /// See corresponding translation methods in BETextInteraction.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(translate:))]
         #[unsafe(method_family = none)]
@@ -125,6 +153,10 @@ extern_protocol!(
 
         /// Converts the selected content between traditional and simplified Chinese
         /// See corresponding transliteration methods in BETextInteraction.
+        ///
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[optional]
         #[unsafe(method(transliterateChinese:))]
         #[unsafe(method_family = none)]
@@ -235,6 +267,11 @@ extern_protocol!(
         );
 
         /// Returns whether text related actions, such those included in UIResponderStandardEditActions, can be handled
+        ///
+        /// # Safety
+        ///
+        /// - `action` must be a valid selector.
+        /// - `sender` should be of the correct type.
         #[unsafe(method(canPerformAction:withSender:))]
         #[unsafe(method_family = none)]
         unsafe fn canPerformAction_withSender(

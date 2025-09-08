@@ -320,6 +320,10 @@ impl SecKeychain {
     /// Parameter `returnVers`: On return, a pointer to the version number of the Keychain Manager installed on the current system.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `return_vers` must be a valid pointer.
     #[doc(alias = "SecKeychainGetVersion")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -339,6 +343,11 @@ impl SecKeychain {
     /// Parameter `keychain`: On return, a pointer to the keychain reference. The memory that keychain occupies must be released by calling CFRelease when finished with it.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
+    ///
+    /// # Safety
+    ///
+    /// - `path_name` must be a valid pointer.
+    /// - `keychain` must be a valid pointer.
     #[doc(alias = "SecKeychainOpen")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -371,6 +380,12 @@ impl SecKeychain {
     /// Parameter `keychain`: On return, a pointer to a keychain reference. The memory that keychain occupies must be released by calling CFRelease when finished with it.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
+    ///
+    /// # Safety
+    ///
+    /// - `path_name` must be a valid pointer.
+    /// - `password` must be a valid pointer or null.
+    /// - `keychain` must be a valid pointer.
     #[doc(alias = "SecKeychainCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -428,6 +443,10 @@ impl SecKeychain {
     /// Parameter `newSettings`: A pointer to the new keychain settings.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `new_settings` must be a valid pointer.
     #[doc(alias = "SecKeychainSetSettings")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -452,6 +471,10 @@ impl SecKeychain {
     /// Parameter `outSettings`: A pointer to a keychain settings structure. Since this structure is versioned, you must preallocate it and fill in the version of the structure.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `out_settings` must be a valid pointer.
     #[doc(alias = "SecKeychainCopySettings")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -482,6 +505,10 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// In most cases, your application does not need to call the SecKeychainUnlock function directly, since most Keychain Manager functions that require an unlocked keychain call SecKeychainUnlock automatically. If your application needs to verify that a keychain is unlocked, call the function SecKeychainGetStatus.
+    ///
+    /// # Safety
+    ///
+    /// `password` must be a valid pointer or null.
     #[doc(alias = "SecKeychainUnlock")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -537,6 +564,10 @@ impl SecKeychain {
     /// Parameter `keychain`: On return, a pointer to the default keychain reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `keychain` must be a valid pointer.
     #[doc(alias = "SecKeychainCopyDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -569,6 +600,10 @@ impl SecKeychain {
     /// Parameter `searchList`: The returned list of keychains to search. When finished with the array, you must call CFRelease() to release the memory.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
+    ///
+    /// # Safety
+    ///
+    /// `search_list` must be a valid pointer.
     #[doc(alias = "SecKeychainCopySearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -584,6 +619,10 @@ impl SecKeychain {
     /// Parameter `searchList`: The list of keychains to use in a search list when the SecKeychainCopySearchList function is called. An empty array clears the search list.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
+    ///
+    /// # Safety
+    ///
+    /// `search_list` generic must be of the correct type.
     #[doc(alias = "SecKeychainSetSearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -623,6 +662,9 @@ unsafe impl RefEncode for SecPreferencesDomain {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychain {
+    /// # Safety
+    ///
+    /// `keychain` must be a valid pointer.
     #[doc(alias = "SecKeychainCopyDomainDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -657,6 +699,9 @@ impl SecKeychain {
         unsafe { SecKeychainSetDomainDefault(domain, keychain) }
     }
 
+    /// # Safety
+    ///
+    /// `search_list` must be a valid pointer.
     #[doc(alias = "SecKeychainCopyDomainSearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -673,6 +718,9 @@ impl SecKeychain {
         unsafe { SecKeychainCopyDomainSearchList(domain, search_list) }
     }
 
+    /// # Safety
+    ///
+    /// `search_list` generic must be of the correct type.
     #[doc(alias = "SecKeychainSetDomainSearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -699,6 +747,9 @@ impl SecKeychain {
         unsafe { SecKeychainSetPreferenceDomain(domain) }
     }
 
+    /// # Safety
+    ///
+    /// `domain` must be a valid pointer.
     #[doc(alias = "SecKeychainGetPreferenceDomain")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -716,6 +767,10 @@ impl SecKeychain {
     /// Parameter `keychainStatus`: On return, a pointer to the status of the specified keychain.  See KeychainStatus for valid status constants.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `keychain_status` must be a valid pointer.
     #[doc(alias = "SecKeychainGetStatus")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -742,6 +797,11 @@ impl SecKeychain {
     /// Parameter `pathName`: On return, the POSIX path to the keychain.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `io_path_length` must be a valid pointer.
+    /// - `path_name` must be a valid pointer.
     #[doc(alias = "SecKeychainGetPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -772,6 +832,10 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters were supplied (NULL).
     ///
     /// Warning, this call returns more attributes than are support by the old style Keychain API and passing them into older calls will yield an invalid attribute error. The recommended call to retrieve the attribute values is the SecKeychainItemCopyAttributesAndData function.
+    ///
+    /// # Safety
+    ///
+    /// `info` must be a valid pointer.
     #[doc(alias = "SecKeychainAttributeInfoForItemID")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -796,6 +860,10 @@ impl SecKeychain {
     /// Parameter `info`: A pointer to the keychain attribute information to release.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if not enough valid parameters were supplied (NULL).
+    ///
+    /// # Safety
+    ///
+    /// `info` must be a valid pointer.
     #[doc(alias = "SecKeychainFreeAttributeInfo")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -848,6 +916,11 @@ impl SecKeychain {
     /// Parameter `userContext`: A pointer to application-defined storage that will be passed to your callback function. Your application can use this to associate any particular call of SecKeychainAddCallback with any particular call of your keychain event callback function.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// - `callback_function` must be implemented correctly.
+    /// - `user_context` must be a valid pointer or null.
     #[doc(alias = "SecKeychainAddCallback")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -872,6 +945,10 @@ impl SecKeychain {
     /// Parameter `callbackFunction`: The callback function pointer to remove
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `callback_function` must be implemented correctly.
     #[doc(alias = "SecKeychainRemoveCallback")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -918,6 +995,15 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// The SecKeychainAddInternetPassword function adds a new Internet server password to the specified keychain. Required parameters to identify the password are serverName and accountName (you cannot pass NULL for both parameters). In addition, some protocols may require an optional securityDomain when authentication is requested. SecKeychainAddInternetPassword optionally returns a reference to the newly added item.
+    ///
+    /// # Safety
+    ///
+    /// - `server_name` must be a valid pointer or null.
+    /// - `security_domain` must be a valid pointer or null.
+    /// - `account_name` must be a valid pointer or null.
+    /// - `path` must be a valid pointer or null.
+    /// - `password_data` must be a valid pointer.
+    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainAddInternetPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1014,6 +1100,16 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// The SecKeychainFindInternetPassword function finds the first Internet password item which matches the attributes you provide. Most attributes are optional; you should pass only as many as you need to narrow the search sufficiently for your application's intended use. SecKeychainFindInternetPassword optionally returns a reference to the found item.
+    ///
+    /// # Safety
+    ///
+    /// - `server_name` must be a valid pointer or null.
+    /// - `security_domain` must be a valid pointer or null.
+    /// - `account_name` must be a valid pointer or null.
+    /// - `path` must be a valid pointer or null.
+    /// - `password_length` must be a valid pointer or null.
+    /// - `password_data` must be a valid pointer or null.
+    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainFindInternetPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1096,6 +1192,13 @@ impl SecKeychain {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// The SecKeychainAddGenericPassword function adds a new generic password to the default keychain. Required parameters to identify the password are serviceName and accountName, which are application-defined strings. SecKeychainAddGenericPassword optionally returns a reference to the newly added item.
+    ///
+    /// # Safety
+    ///
+    /// - `service_name` must be a valid pointer or null.
+    /// - `account_name` must be a valid pointer or null.
+    /// - `password_data` must be a valid pointer.
+    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainAddGenericPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1157,6 +1260,14 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// The SecKeychainFindGenericPassword function finds the first generic password item which matches the attributes you provide. Most attributes are optional; you should pass only as many as you need to narrow the search sufficiently for your application's intended use. SecKeychainFindGenericPassword optionally returns a reference to the found item.
+    ///
+    /// # Safety
+    ///
+    /// - `service_name` must be a valid pointer or null.
+    /// - `account_name` must be a valid pointer or null.
+    /// - `password_length` must be a valid pointer or null.
+    /// - `password_data` must be a valid pointer or null.
+    /// - `item_ref` must be a valid pointer or null.
     #[doc(alias = "SecKeychainFindGenericPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1217,6 +1328,10 @@ impl SecKeychain {
     /// Parameter `state`: On return, a pointer to the current state of user interaction.  If this is TRUE then user interaction is allowed, if it is FALSE, then user interaction is not allowed.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `state` must be a valid pointer.
     #[doc(alias = "SecKeychainGetUserInteractionAllowed")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -1236,6 +1351,10 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. It should nho longer be needed.
+    ///
+    /// # Safety
+    ///
+    /// `csp_handle` must be a valid pointer.
     #[doc(alias = "SecKeychainGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1262,6 +1381,10 @@ impl SecKeychain {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated for 10.7. It should nho longer be needed.
+    ///
+    /// # Safety
+    ///
+    /// `dldb_handle` must be a valid pointer.
     #[doc(alias = "SecKeychainGetDLDBHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1286,6 +1409,10 @@ impl SecKeychain {
     /// Parameter `access`: On return, a pointer to the access reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    ///
+    /// # Safety
+    ///
+    /// `access` must be a valid pointer.
     #[doc(alias = "SecKeychainCopyAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

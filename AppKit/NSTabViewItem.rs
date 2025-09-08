@@ -57,6 +57,9 @@ impl NSTabViewItem {
             view_controller: &NSViewController,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
@@ -69,6 +72,10 @@ impl NSTabViewItem {
         pub unsafe fn identifier(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`identifier`][Self::identifier].
+        ///
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(setIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&AnyObject>);

@@ -109,6 +109,10 @@ impl ARSkeletonDefinition {
         /// The number of joints.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(jointCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn jointCount(&self) -> NSUInteger;
@@ -117,6 +121,10 @@ impl ARSkeletonDefinition {
         /// The joint names.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(jointNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn jointNames(&self) -> Retained<NSArray<NSString>>;
@@ -129,6 +137,10 @@ impl ARSkeletonDefinition {
         /// a value of -1.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(parentIndices))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentIndices(&self) -> Retained<NSArray<NSNumber>>;
@@ -139,6 +151,10 @@ impl ARSkeletonDefinition {
         /// The neutral skeleton pose assumes a standardized size of the skeleton in meters. The neutral pose is defined as the skeleton's T-pose.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(neutralBodySkeleton3D))]
         #[unsafe(method_family = none)]
         pub unsafe fn neutralBodySkeleton3D(&self) -> Option<Retained<ARSkeleton3D>>;

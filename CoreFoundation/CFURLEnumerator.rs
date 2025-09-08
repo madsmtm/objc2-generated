@@ -72,6 +72,10 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
 }
 
 impl CFURLEnumerator {
+    /// # Safety
+    ///
+    /// - `property_keys` generic must be of the correct type.
+    /// - `property_keys` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorCreateForDirectoryURL")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -95,6 +99,10 @@ impl CFURLEnumerator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// - `property_keys` generic must be of the correct type.
+    /// - `property_keys` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorCreateForMountedVolumes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -142,6 +150,10 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
 }
 
 impl CFURLEnumerator {
+    /// # Safety
+    ///
+    /// - `url` must be a valid pointer.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLEnumeratorGetNextURL")]
     #[cfg(all(feature = "CFError", feature = "CFURL"))]
     #[inline]

@@ -30,6 +30,11 @@ pub unsafe trait NSObjectWebPlugInContainer:
         /// found, a new window is opened and the main frame of the new window is named
         /// with the specified target.  If nil is specified, the frame that contains
         /// the applet is targeted.
+        ///
+        /// # Safety
+        ///
+        /// - `request` might not allow `None`.
+        /// - `target` might not allow `None`.
         #[unsafe(method(webPlugInContainerLoadRequest:inFrame:))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInContainerLoadRequest_inFrame(
@@ -41,6 +46,10 @@ pub unsafe trait NSObjectWebPlugInContainer:
         /// Tell the application to show the specified status message.
         ///
         /// Parameter `message`: The string to be shown.
+        ///
+        /// # Safety
+        ///
+        /// `message` might not allow `None`.
         #[unsafe(method(webPlugInContainerShowStatus:))]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInContainerShowStatus(&self, message: Option<&NSString>);

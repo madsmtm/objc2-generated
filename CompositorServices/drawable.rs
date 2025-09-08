@@ -80,6 +80,10 @@ impl cp_drawable {
     /// Use the returned value as the maximum number of textures to retrieve
     /// from the ``cp_drawable_get_color_texture`` or ``cp_drawable_get_depth_texture``
     /// functions.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_texture_count")]
     #[inline]
     pub unsafe fn texture_count(drawable: cp_drawable_t) -> usize {
@@ -102,6 +106,10 @@ impl cp_drawable {
     /// for your content. The layer’s texture topology determines the layout and
     /// content for each texture. The drawable’s views contain information
     /// about how those views map to the textures.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_depth_texture")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -133,6 +141,10 @@ impl cp_drawable {
     /// you want to appear onscreen. The layer’s texture topology determines
     /// the layout and content for each texture. The drawable’s views contain
     /// information about how those views map to the textures.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_color_texture")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -160,6 +172,10 @@ impl cp_drawable {
     ///
     /// Use the returned value as the maximum number of rate maps to retrieve
     /// from the ``cp_drawable_get_rasterization_rate_map`` function.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_rasterization_rate_map_count")]
     #[inline]
     pub unsafe fn rasterization_rate_map_count(drawable: cp_drawable_t) -> usize {
@@ -185,6 +201,10 @@ impl cp_drawable {
     /// resolutions. For example, when foveation is enabled, the drawable
     /// includes a rasterization rate map to render the portions of the texture
     /// in someone’s peripheral vision at a lower resolution.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_rasterization_rate_map")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -226,6 +246,10 @@ impl cp_drawable {
     /// In order to generate Y flipped rasterization rate maps in your rendering session,
     /// update the ``cp_layer_renderer_configuration_t`` using the function
     /// ``cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps``.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_flipped_rasterization_rate_map")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -258,6 +282,10 @@ impl cp_drawable {
     /// Simulator.
     ///
     /// Fetch the actual views using the ``cp_drawable_get_view`` function.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_view_count")]
     #[inline]
     pub unsafe fn view_count(drawable: cp_drawable_t) -> usize {
@@ -278,6 +306,10 @@ impl cp_drawable {
     ///
     /// Each view contains information you need to render into the drawable’s
     /// textures.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_view")]
     #[cfg(feature = "view")]
     #[inline]
@@ -305,6 +337,10 @@ impl cp_drawable {
     /// ://com.apple.documentation/documentation/metal/mtlcommandbuffer/1443003-commit>
     /// method. The function adds a presentation event to the buffer that
     /// causes the compositor to display your frame.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_encode_present")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -333,6 +369,10 @@ impl cp_drawable {
     /// drawable types, and the state of the drawable indicates whether
     /// it's ready for you to use. Perform your drawing operations only
     /// when the drawable is in the ``cp_drawable_state/cp_drawable_state_rendering`` state.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_state")]
     #[inline]
     pub unsafe fn state(drawable: cp_drawable_t) -> cp_drawable_state {
@@ -354,6 +394,10 @@ impl cp_drawable {
     /// use these indexes to differentiate frames during drawing or predict
     /// future frame indexes. For example, you might start playback of an
     /// audio file when a specific frame appears onscreen.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_presentation_frame_index")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -375,6 +419,10 @@ impl cp_drawable {
     /// Pass the returned type to the ``cp_frame_timing_get_optimal_input_time``
     /// function to determine when to start the encoding process for a frame.
     /// Pass it to other functions to determine other time-related deadlines.
+    ///
+    /// # Safety
+    ///
+    /// `drawable` must be a valid pointer.
     #[doc(alias = "cp_drawable_get_frame_timing")]
     #[cfg(feature = "frame_timing")]
     #[inline]

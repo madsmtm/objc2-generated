@@ -20,6 +20,10 @@ impl SCDynamicStore {
     /// Returns: Returns the current computer name;
     /// NULL if the name has not been set or if an error was encountered.
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// `name_encoding` must be a valid pointer or null.
     #[doc(alias = "SCDynamicStoreCopyComputerName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
@@ -60,6 +64,11 @@ impl SCDynamicStore {
     /// Returns: Returns the user currently logged into the system;
     /// NULL if no user is logged in or if an error was encountered.
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// - `uid` must be a valid pointer or null.
+    /// - `gid` must be a valid pointer or null.
     #[doc(alias = "SCDynamicStoreCopyConsoleUser")]
     #[cfg(all(feature = "SCDynamicStore", feature = "libc"))]
     #[inline]

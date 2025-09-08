@@ -38,11 +38,19 @@ impl HKQuantitySeriesSampleQuery {
         /// This property may not be modified once the query has been executed.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(includeSample))]
         #[unsafe(method_family = none)]
         pub unsafe fn includeSample(&self) -> bool;
 
         /// Setter for [`includeSample`][Self::includeSample].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setIncludeSample:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIncludeSample(&self, include_sample: bool);
@@ -59,11 +67,19 @@ impl HKQuantitySeriesSampleQuery {
         /// This property may not be modified once the query has been executed.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(orderByQuantitySampleStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderByQuantitySampleStartDate(&self) -> bool;
 
         /// Setter for [`orderByQuantitySampleStartDate`][Self::orderByQuantitySampleStartDate].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setOrderByQuantitySampleStartDate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOrderByQuantitySampleStartDate(
@@ -101,6 +117,10 @@ impl HKQuantitySeriesSampleQuery {
         /// The stopQuery call can be made within the quantityHandler block.
         /// Once done is YES, or stopQuery has been called, the query is
         /// complete and no more calls to quantityHandler will be made.
+        ///
+        /// # Safety
+        ///
+        /// `quantity_handler` block must be sendable.
         #[unsafe(method(initWithQuantityType:predicate:quantityHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQuantityType_predicate_quantityHandler(
@@ -126,6 +146,9 @@ impl HKQuantitySeriesSampleQuery {
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `quantity_handler` block must be sendable.
         #[deprecated]
         #[unsafe(method(initWithSample:quantityHandler:))]
         #[unsafe(method_family = init)]

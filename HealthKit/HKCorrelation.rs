@@ -73,6 +73,10 @@ impl HKCorrelation {
         /// Creates a new HKCorrelation with the given type, start date, end date, objects, and metadata.
         ///
         /// objects must be a set of HKQuantitySamples and HKCategorySamples
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(correlationWithType:startDate:endDate:objects:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn correlationWithType_startDate_endDate_objects_metadata(
@@ -97,6 +101,10 @@ impl HKCorrelation {
         /// Parameter `metadata`: Metadata for the correlation (optional).
         ///
         /// objects must be a set of HKQuantitySamples and HKCategorySamples
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(correlationWithType:startDate:endDate:objects:device:metadata:))]
         #[unsafe(method_family = none)]
         pub unsafe fn correlationWithType_startDate_endDate_objects_device_metadata(

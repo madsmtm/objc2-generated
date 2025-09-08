@@ -304,6 +304,9 @@ impl NSTextCheckingResult {
             feature = "NSRange",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// `details` generic generic should be of the correct type.
         #[unsafe(method(grammarCheckingResultWithRange:details:))]
         #[unsafe(method_family = none)]
         pub unsafe fn grammarCheckingResultWithRange_details(
@@ -387,6 +390,9 @@ impl NSTextCheckingResult {
         ) -> Retained<NSTextCheckingResult>;
 
         #[cfg(all(feature = "NSRange", feature = "NSRegularExpression"))]
+        /// # Safety
+        ///
+        /// `ranges` must be a valid pointer.
         #[unsafe(method(regularExpressionCheckingResultWithRanges:count:regularExpression:))]
         #[unsafe(method_family = none)]
         pub unsafe fn regularExpressionCheckingResultWithRanges_count_regularExpression(

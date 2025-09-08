@@ -23,6 +23,10 @@ pub unsafe trait HKHealthStoreUIKit:
         /// This property can be set before requesting authorization or running a query like HKDocumentQuery for a better user-experience. Since this property will ensure to infer the correct hosting view controller to show the authorization sheet.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(authorizationViewControllerPresenter))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationViewControllerPresenter(
@@ -33,6 +37,10 @@ pub unsafe trait HKHealthStoreUIKit:
         /// Setter for [`authorizationViewControllerPresenter`][Self::authorizationViewControllerPresenter].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setAuthorizationViewControllerPresenter:))]
         #[unsafe(method_family = none)]
         unsafe fn setAuthorizationViewControllerPresenter(

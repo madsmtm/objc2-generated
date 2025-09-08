@@ -14,6 +14,10 @@ extern "C-unwind" {
     ///
     /// Don’t call this function in Swift code or on types you manage using
     /// automatic reference counting (ARC).
+    ///
+    /// # Safety
+    ///
+    /// `obj` must be a valid pointer.
     pub fn cp_retain(obj: *mut c_void) -> *mut c_void;
 }
 
@@ -26,5 +30,9 @@ extern "C-unwind" {
     ///
     /// Don’t call this function in Swift code or on types you manage using
     /// automatic reference counting (ARC).
+    ///
+    /// # Safety
+    ///
+    /// `obj` must be a valid pointer.
     pub fn cp_release(obj: *mut c_void);
 }

@@ -207,6 +207,10 @@ impl AVAsset {
         /// Parameter `trackID`: The trackID of the requested AVAssetTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
@@ -243,6 +247,10 @@ impl AVAsset {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVAssetTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
@@ -279,6 +287,10 @@ impl AVAsset {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVAssetTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
@@ -353,6 +365,10 @@ impl AVAsset {
         /// Parameter `format`: The metadata format for which items are requested.
         ///
         /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the array of metadata items (which may be empty if there is no metadata of the specified format) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMetadataForFormat:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMetadataForFormat_completionHandler(
@@ -415,6 +431,10 @@ impl AVAsset {
         /// An AVMetadataItem with the specified common key will be added to an existing AVTimedMetadataGroup object if the time range (timestamp and duration) of the metadata item and the metadata group overlaps. The locale of items not carrying chapter titles need not match the specified locale parameter.
         ///
         /// Further filtering of the metadata items in AVTimedMetadataGroups according to language can be accomplished using +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:]; filtering of the metadata items according to locale can be accomplished using +[AVMetadataItem metadataItemsFromArray:withLocale:].
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChapterMetadataGroupsWithTitleLocale_containingItemsWithCommonKeys_completionHandler(
@@ -461,6 +481,10 @@ impl AVAsset {
         /// All of the available chapter metadata is included in the metadata groups, including items with the common key AVMetadataCommonKeyArtwork, if such items are present. Items not carrying chapter titles will be added to an existing AVTimedMetadataGroup object if the time range (timestamp and duration) of the metadata item and that of the metadata group overlaps. The locale of such items need not match the locale of the chapter titles.
         ///
         /// Further filtering of the metadata items in AVTimedMetadataGroups according to language can be accomplished using +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:]; filtering of the metadata items according to locale can be accomplished using +[AVMetadataItem metadataItemsFromArray:withLocale:].
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadChapterMetadataGroupsBestMatchingPreferredLanguages_completionHandler(
@@ -527,6 +551,10 @@ impl AVAsset {
         /// If the asset has no AVMediaSelectionGroup containing options with the specified media characteristic, the return value will be nil.
         ///
         /// Filtering of the options in the returned AVMediaSelectionGroup according to playability, locale, and additional media characteristics can be accomplished using the category AVMediaSelectionOptionFiltering defined on AVMediaSelectionGroup.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadMediaSelectionGroupForMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadMediaSelectionGroupForMediaCharacteristic_completionHandler(
@@ -816,6 +844,10 @@ impl AVURLAsset {
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVURLAsset.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(URLAssetWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLAssetWithURL_options(
@@ -830,6 +862,10 @@ impl AVURLAsset {
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVURLAsset.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
@@ -841,6 +877,10 @@ impl AVURLAsset {
         /// Indicates the URL with which the instance of AVURLAsset was initialized.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
@@ -851,6 +891,10 @@ impl AVURLAsset {
         /// Note that copies of an AVURLAsset vend an equivalent httpSessionIdentifier.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(httpSessionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn httpSessionIdentifier(&self) -> Retained<NSUUID>;
@@ -882,6 +926,10 @@ impl AVURLAsset {
         /// Note that copies of an AVAsset will vend the same instance of AVAssetResourceLoader.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(resourceLoader))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceLoader(&self) -> Retained<AVAssetResourceLoader>;
@@ -895,6 +943,10 @@ impl AVURLAsset {
         /// Provides access to an instance of AVAssetCache to use for inspection of locally cached media data. Will be nil if an asset has not been configured to store or access media data from disk.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(assetCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetCache(&self) -> Option<Retained<AVAssetCache>>;
@@ -936,6 +988,10 @@ impl AVURLAsset {
         ///
         /// Finds a track of the target with content that can be accommodated by the specified composition track.
         /// The logical complement of -[AVMutableComposition mutableTrackCompatibleWithTrack:].
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(findCompatibleTrackForCompositionTrack:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findCompatibleTrackForCompositionTrack_completionHandler(
@@ -955,6 +1011,10 @@ impl AVURLAsset {
         /// Some variants may not be playable according to the current device configuration.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(variants))]
         #[unsafe(method_family = none)]
         pub unsafe fn variants(&self) -> Retained<NSArray<AVAssetVariant>>;
@@ -1021,6 +1081,10 @@ impl AVMediaExtensionProperties {
         /// The extension identifier string, corresponding to the ClassImplementationID value from the EXAppExtensionAttributes dictionary in the Info.plist file.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(extensionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionIdentifier(&self) -> Retained<NSString>;
@@ -1030,6 +1094,10 @@ impl AVMediaExtensionProperties {
         /// The localized name of the MediaExtension format reader or video decoder, corresponding to the CFBundleDisplayName.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(extensionName))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionName(&self) -> Retained<NSString>;
@@ -1039,6 +1107,10 @@ impl AVMediaExtensionProperties {
         /// The localized name of the application that hosts the MediaExtension.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(containingBundleName))]
         #[unsafe(method_family = none)]
         pub unsafe fn containingBundleName(&self) -> Retained<NSString>;
@@ -1046,6 +1118,10 @@ impl AVMediaExtensionProperties {
         /// The file URL of the MediaExtension bundle.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(extensionURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionURL(&self) -> Retained<NSURL>;
@@ -1053,6 +1129,10 @@ impl AVMediaExtensionProperties {
         /// The file URL of the host application for the MediaExtension.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(containingBundleURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn containingBundleURL(&self) -> Retained<NSURL>;
@@ -1067,6 +1147,10 @@ impl AVURLAsset {
         /// If the asset is being decoded using a MediaExtension format reader, this property will return a AVMediaExtensionProperties object describing the extension. If the asset is not being decoded with a MediaExtension format reader, this property will return nil.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mediaExtensionProperties))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaExtensionProperties(
@@ -1182,6 +1266,10 @@ impl AVFragmentedAsset {
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVFragmentedAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVFragmentedAsset.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(fragmentedAssetWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentedAssetWithURL_options(
@@ -1195,6 +1283,10 @@ impl AVFragmentedAsset {
         /// The value of this property is an array of tracks the asset contains; the tracks are of type AVFragmentedAssetTrack.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedAssetTrack>>;
@@ -1219,6 +1311,10 @@ impl AVFragmentedAsset {
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVURLAsset.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(URLAssetWithURL:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLAssetWithURL_options(
@@ -1233,6 +1329,10 @@ impl AVFragmentedAsset {
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVURLAsset.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
@@ -1290,6 +1390,10 @@ impl AVFragmentedAsset {
         /// Parameter `trackID`: The trackID of the requested AVFragmentedAssetTrack.
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTrackWithTrackID:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
@@ -1328,6 +1432,10 @@ impl AVFragmentedAsset {
         /// Parameter `mediaType`: The media type according to which AVAsset filters its AVFragmentedAssetTracks. (Media types are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaType:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
@@ -1366,6 +1474,10 @@ impl AVFragmentedAsset {
         /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVFragmentedAssetTracks. (Media characteristics are defined in AVMediaFormat.h.)
         ///
         /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(loadTracksWithMediaCharacteristic:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
@@ -1398,6 +1510,10 @@ impl AVFragmentedAssetMinder {
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
         ///
         /// Returns: A new instance of AVFragmentedAssetMinder.
+        ///
+        /// # Safety
+        ///
+        /// `asset` must implement AVFragmentMinding.
         #[unsafe(method(fragmentedAssetMinderWithAsset:mindingInterval:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentedAssetMinderWithAsset_mindingInterval(
@@ -1412,6 +1528,10 @@ impl AVFragmentedAssetMinder {
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
         ///
         /// Returns: A new instance of AVFragmentedAssetMinder.
+        ///
+        /// # Safety
+        ///
+        /// `asset` must implement AVFragmentMinding.
         #[unsafe(method(initWithAsset:mindingInterval:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_mindingInterval(
@@ -1442,6 +1562,10 @@ impl AVFragmentedAssetMinder {
         /// Parameter `asset`: The fragmented asset to add to the minder.
         ///
         /// This method throws an exception if the asset is not a supported type (AVFragmentedAsset, AVFragmentedMovie), or if the asset is already being minded by another fragment minder.
+        ///
+        /// # Safety
+        ///
+        /// `asset` must implement AVFragmentMinding.
         #[unsafe(method(addFragmentedAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addFragmentedAsset(&self, asset: &AVAsset);
@@ -1451,6 +1575,10 @@ impl AVFragmentedAssetMinder {
         /// Parameter `asset`: The fragmented asset to remove from the minder.
         ///
         /// This method throws an exception if the asset is not a supported type (AVFragmentedAsset, AVFragmentedMovie).
+        ///
+        /// # Safety
+        ///
+        /// `asset` must implement AVFragmentMinding.
         #[unsafe(method(removeFragmentedAsset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFragmentedAsset(&self, asset: &AVAsset);
@@ -1476,6 +1604,10 @@ impl AVURLAsset {
         /// Allows AVURLAsset to be added as a content key recipient to an AVContentKeySession.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mayRequireContentKeysForMediaDataProcessing))]
         #[unsafe(method_family = none)]
         pub unsafe fn mayRequireContentKeysForMediaDataProcessing(&self) -> bool;

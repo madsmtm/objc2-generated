@@ -38,6 +38,12 @@ impl IOBluetoothHandsFreeDevice {
         /// Parameter `inDelegate`: An object to act as delegate
         ///
         /// Returns: A newly created IOBluetoothHandsFreeDevice object on success, nil on failure
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         #[unsafe(method(initWithDevice:delegate:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_delegate(
@@ -52,6 +58,10 @@ impl IOBluetoothHandsFreeDevice {
         /// Calls aNumber
         ///
         /// Parameter `aNumber`: The number to call - the gateway determines acceptable formats.
+        ///
+        /// # Safety
+        ///
+        /// `a_number` might not allow `None`.
         #[unsafe(method(dialNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dialNumber(&self, a_number: Option<&NSString>);
@@ -99,6 +109,10 @@ impl IOBluetoothHandsFreeDevice {
         /// Sends a DTMF tone.
         ///
         /// Parameter `character`: A single character in the set 0-9, #,*,A-D
+        ///
+        /// # Safety
+        ///
+        /// `character` might not allow `None`.
         #[unsafe(method(sendDTMF:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDTMF(&self, character: Option<&NSString>);
@@ -189,6 +203,11 @@ impl IOBluetoothHandsFreeDevice {
         /// Send an SMS to a number.
         ///
         /// Sends an SMS to aNumber with content aMessage. Currently this does not handle long SMS (>160 characters) or unicode messages.
+        ///
+        /// # Safety
+        ///
+        /// - `a_number` might not allow `None`.
+        /// - `a_message` might not allow `None`.
         #[unsafe(method(sendSMS:message:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendSMS_message(
@@ -204,6 +223,10 @@ impl IOBluetoothHandsFreeDevice {
         /// See sendAtCommand:timeout:selector:target for more details.
         ///
         /// Parameter `atCommand`: AT command to send
+        ///
+        /// # Safety
+        ///
+        /// `at_command` might not allow `None`.
         #[unsafe(method(sendATCommand:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendATCommand(&self, at_command: Option<&NSString>);
@@ -215,6 +238,12 @@ impl IOBluetoothHandsFreeDevice {
         /// On command complete (OK, ERROR, TIMEOUT response or after timeout seconds) will perform selector on target.
         ///
         /// Parameter `atCommand`: AT command to send
+        ///
+        /// # Safety
+        ///
+        /// - `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `target` might not allow `None`.
         #[unsafe(method(sendATCommand:timeout:selector:target:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendATCommand_timeout_selector_target(
@@ -253,6 +282,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `isServiceAvailable`: 0 if no service available; 1 otherwise.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `is_service_available` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:isServiceAvailable:))]
         #[unsafe(method_family = none)]
@@ -268,6 +302,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `isCallActive`: 0 if no call is active; 1 otherwise.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `is_call_active` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:isCallActive:))]
         #[unsafe(method_family = none)]
@@ -286,6 +325,11 @@ extern_protocol!(
         /// 1 if an incoming call is in call setup.
         /// 2 if an outgoing call is in call setup.
         /// 3 if the remote party is being alerted for an outgoing call.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `call_setup_mode` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:callSetupMode:))]
         #[unsafe(method_family = none)]
@@ -303,6 +347,11 @@ extern_protocol!(
         /// Parameter `callHoldState`: 0 if no calls are held.
         /// 1 if a call is on hold and an active call exists.
         /// 2 if a call is on hold, but no active call exists.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `call_hold_state` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:callHoldState:))]
         #[unsafe(method_family = none)]
@@ -318,6 +367,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `signalStrength`: 0-5 where 0 represents a weak signal.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `signal_strength` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:signalStrength:))]
         #[unsafe(method_family = none)]
@@ -333,6 +387,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `isRoaming`: 0 if not roaming; 1 otherwise.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `is_roaming` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:isRoaming:))]
         #[unsafe(method_family = none)]
@@ -348,6 +407,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `batteryCharge`: 0-5 where 0 represents a low battery charge.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `battery_charge` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:batteryCharge:))]
         #[unsafe(method_family = none)]
@@ -363,6 +427,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `number`: The remote caller's phone number
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `number` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:incomingCallFrom:))]
         #[unsafe(method_family = none)]
@@ -378,6 +447,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `ringAttempt`: The number or ring alerts received
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `ring_attempt` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:ringAttempt:))]
         #[unsafe(method_family = none)]
@@ -393,6 +467,12 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `currentCall`: A dictionary representing a call. See "Hands free current call dictionary keys" for the keys and their values.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `current_call` generic should be of the correct type.
+        /// - `current_call` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:currentCall:))]
         #[unsafe(method_family = none)]
@@ -408,6 +488,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `subscriberNumber`: A subscriber number. Note that a gateway may have multiple subscriber numbers in which case this will be called for each number.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `subscriber_number` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:subscriberNumber:))]
         #[unsafe(method_family = none)]
@@ -423,6 +508,12 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `incomingSMS`: A dictionary representing an SMS. See "Hands free SMS dictionary keys" for the keys and their values.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `sms` generic should be of the correct type.
+        /// - `sms` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:incomingSMS:))]
         #[unsafe(method_family = none)]
@@ -439,6 +530,11 @@ extern_protocol!(
         /// Parameter `device`: The IOBluetoothHandsFreeDevice object
         ///
         /// Parameter `unhandledResultCode`: The result code.  "/r/n" are stripped from the begining and end of the result code.
+        ///
+        /// # Safety
+        ///
+        /// - `device` might not allow `None`.
+        /// - `result_code` might not allow `None`.
         #[optional]
         #[unsafe(method(handsFree:unhandledResultCode:))]
         #[unsafe(method_family = none)]

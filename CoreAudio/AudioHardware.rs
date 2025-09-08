@@ -707,6 +707,10 @@ extern "C-unwind" {
 /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
 ///
 /// Returns: A Boolean indicating whether or not the AudioObject has the given property.
+///
+/// # Safety
+///
+/// `in_address` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn AudioObjectHasProperty(
     in_object_id: AudioObjectID,
@@ -733,6 +737,11 @@ extern "C-unwind" {
     /// Parameter `outIsSettable`: A Boolean indicating whether or not the property can be set.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `out_is_settable` must be a valid pointer.
     pub fn AudioObjectIsPropertySettable(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -758,6 +767,12 @@ extern "C-unwind" {
     /// Parameter `outDataSize`: A UInt32 indicating how many bytes the data for the given property occupies.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_qualifier_data` must be a valid pointer or null.
+    /// - `out_data_size` must be a valid pointer.
     pub fn AudioObjectGetPropertyDataSize(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -790,6 +805,13 @@ extern "C-unwind" {
     /// property.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_qualifier_data` must be a valid pointer or null.
+    /// - `io_data_size` must be a valid pointer.
+    /// - `out_data` must be a valid pointer.
     pub fn AudioObjectGetPropertyData(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -825,6 +847,12 @@ extern "C-unwind" {
     /// Parameter `inData`: The buffer containing the data to be used to change the property's value.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_qualifier_data` must be a valid pointer or null.
+    /// - `in_data` must be a valid pointer.
     pub fn AudioObjectSetPropertyData(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -849,6 +877,12 @@ extern "C-unwind" {
     /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_listener` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
     pub fn AudioObjectAddPropertyListener(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -871,6 +905,12 @@ extern "C-unwind" {
     /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_listener` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
     pub fn AudioObjectRemovePropertyListener(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -901,6 +941,11 @@ extern "C-unwind" {
     /// AudioObjectRemovePropertyListenerBlock is made.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectAddPropertyListenerBlock(
         in_object_id: AudioObjectID,
@@ -924,6 +969,11 @@ extern "C-unwind" {
     /// Parameter `inListener`: The AudioObjectPropertyListenerBlock being removed.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_address` must be a valid pointer.
+    /// - `in_listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectRemovePropertyListenerBlock(
         in_object_id: AudioObjectID,
@@ -1054,6 +1104,11 @@ extern "C-unwind" {
     /// Parameter `outDeviceID`: The AudioObjectID of the newly created AudioAggregateDevice.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_description` generics must be of the correct type.
+    /// - `out_device_id` must be a valid pointer.
     pub fn AudioHardwareCreateAggregateDevice(
         in_description: &CFDictionary,
         out_device_id: NonNull<AudioObjectID>,
@@ -1394,6 +1449,12 @@ extern "C-unwind" {
     /// Parameter `outIOProcID`: The newly created AudioDeviceIOProcID.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `in_proc` must be implemented correctly.
+    /// - `in_client_data` must be a valid pointer or null.
+    /// - `out_io_proc_id` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceCreateIOProcID(
         in_device: AudioObjectID,
@@ -1420,6 +1481,11 @@ extern "C-unwind" {
     /// AudioDeviceDestroyIOProcID is made.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// - `out_io_proc_id` must be a valid pointer.
+    /// - `in_io_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -1444,6 +1510,10 @@ extern "C-unwind" {
     /// Parameter `inIOProcID`: The AudioDeviceIOProcID to get rid of.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// `in_io_proc_id` must be implemented correctly.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceDestroyIOProcID(
         in_device: AudioObjectID,
@@ -1463,6 +1533,10 @@ extern "C-unwind" {
     /// stop the hardware.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// `in_proc_id` must be implemented correctly.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStart(in_device: AudioObjectID, in_proc_id: AudioDeviceIOProcID) -> OSStatus;
 }
@@ -1485,6 +1559,11 @@ extern "C-unwind" {
     /// kAudioHardwareUnsupportedOperationError will be returned if the AudioDevice does
     /// not support starting at a specific time and inProc and ioRequestedStartTime are
     /// not NULL.
+    ///
+    /// # Safety
+    ///
+    /// - `in_proc_id` must be implemented correctly.
+    /// - `io_requested_start_time` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStartAtTime(
         in_device: AudioObjectID,
@@ -1502,6 +1581,10 @@ extern "C-unwind" {
     /// Parameter `inProcID`: The AudioDeviceIOProcID to stop.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// `in_proc_id` must be implemented correctly.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStop(in_device: AudioObjectID, in_proc_id: AudioDeviceIOProcID) -> OSStatus;
 }
@@ -1519,6 +1602,10 @@ extern "C-unwind" {
     ///
     /// Returns: An OSStatus indicating success or failure. kAudioHardwareNotRunningError will be
     /// returned if the AudioDevice isn't running.
+    ///
+    /// # Safety
+    ///
+    /// `out_time` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceGetCurrentTime(
         in_device: AudioObjectID,
@@ -1541,6 +1628,11 @@ extern "C-unwind" {
     ///
     /// Returns: An OSStatus indicating success or failure. kAudioHardwareNotRunningError will be
     /// returned if the AudioDevice isn't running.
+    ///
+    /// # Safety
+    ///
+    /// - `in_time` must be a valid pointer.
+    /// - `out_time` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceTranslateTime(
         in_device: AudioObjectID,
@@ -1574,6 +1666,10 @@ extern "C-unwind" {
     /// returned if the AudioDevice isn't running.
     /// kAudioHardwareUnsupportedOperationError will be returned if the AudioDevice does
     /// not support starting at a specific time.
+    ///
+    /// # Safety
+    ///
+    /// `io_requested_start_time` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceGetNearestStartTime(
         in_device: AudioObjectID,
@@ -1682,6 +1778,10 @@ extern "C-unwind" {
     /// Parameter `outTapID`: The AudioObjectID of the newly created Tap.
     ///
     /// Returns: An OSStatus indicating success or failure.
+    ///
+    /// # Safety
+    ///
+    /// `out_tap_id` must be a valid pointer.
     #[cfg(feature = "objc2")]
     pub fn AudioHardwareCreateProcessTap(
         in_description: Option<&CATapDescription>,

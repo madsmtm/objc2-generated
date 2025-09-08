@@ -93,6 +93,10 @@ impl WebPreferences {
         /// for the WebPreferences.
         ///
         /// Returns: Returns a new instance of WebPreferences or a previously allocated instance with the same identifier.
+        ///
+        /// # Safety
+        ///
+        /// `an_identifier` might not allow `None`.
         #[deprecated]
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
@@ -263,6 +267,10 @@ impl WebPreferences {
         pub unsafe fn userStyleSheetLocation(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`userStyleSheetLocation`][Self::userStyleSheetLocation].
+        ///
+        /// # Safety
+        ///
+        /// `user_style_sheet_location` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setUserStyleSheetLocation:))]
         #[unsafe(method_family = none)]

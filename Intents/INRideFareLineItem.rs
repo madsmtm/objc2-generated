@@ -35,6 +35,11 @@ extern_conformance!(
 
 impl INRideFareLineItem {
     extern_methods!(
+        /// # Safety
+        ///
+        /// - `title` might not allow `None`.
+        /// - `price` might not allow `None`.
+        /// - `currency_code` might not allow `None`.
         #[unsafe(method(initWithTitle:price:currencyCode:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_price_currencyCode(

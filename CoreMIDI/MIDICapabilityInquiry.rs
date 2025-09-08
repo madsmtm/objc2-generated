@@ -426,6 +426,9 @@ impl MIDICISession {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
+        /// # Safety
+        ///
+        /// `disconnect_handler` must be a valid pointer.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(initWithDiscoveredNode:dataReadyHandler:disconnectHandler:))]
         #[unsafe(method_family = init)]
@@ -509,6 +512,10 @@ impl MIDICISession {
         ) -> bool;
 
         #[cfg(all(feature = "MIDIMessages", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(profileChangedCallback))]
         #[unsafe(method_family = none)]
@@ -518,6 +525,10 @@ impl MIDICISession {
         /// Setter for [`profileChangedCallback`][Self::profileChangedCallback].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `profile_changed_callback` must be a valid pointer or null.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(setProfileChangedCallback:))]
         #[unsafe(method_family = none)]
@@ -531,6 +542,11 @@ impl MIDICISession {
             feature = "block2",
             feature = "objc2-foundation"
         ))]
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 3 must be a valid pointer.
+        /// - The returned block's argument 4 must be a valid pointer.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(profileSpecificDataHandler))]
         #[unsafe(method_family = none)]
@@ -544,6 +560,10 @@ impl MIDICISession {
         /// Setter for [`profileSpecificDataHandler`][Self::profileSpecificDataHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `profile_specific_data_handler` must be a valid pointer or null.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(setProfileSpecificDataHandler:))]
         #[unsafe(method_family = none)]
@@ -588,6 +608,9 @@ impl MIDICIDiscoveryManager {
         pub unsafe fn sharedInstance() -> Retained<MIDICIDiscoveryManager>;
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
+        /// # Safety
+        ///
+        /// `completed_handler` must be a valid pointer.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(discoverWithHandler:))]
         #[unsafe(method_family = none)]

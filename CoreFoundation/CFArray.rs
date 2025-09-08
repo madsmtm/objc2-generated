@@ -236,6 +236,11 @@ impl CFArray {
     /// undefined.
     ///
     /// Returns: A reference to the new immutable CFArray.
+    ///
+    /// # Safety
+    ///
+    /// - `values` must be a valid pointer.
+    /// - `call_backs` must be a valid pointer.
     #[doc(alias = "CFArrayCreate")]
     #[inline]
     pub unsafe fn new(
@@ -274,6 +279,11 @@ impl CFArray {
     /// not a valid CFArray, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFArray.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
     #[doc(alias = "CFArrayCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -334,6 +344,10 @@ impl CFMutableArray {
     /// undefined.
     ///
     /// Returns: A reference to the new mutable CFArray.
+    ///
+    /// # Safety
+    ///
+    /// `call_backs` must be a valid pointer.
     #[doc(alias = "CFArrayCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -380,6 +394,11 @@ impl CFMutableArray {
     /// not a valid CFArray, the behavior is undefined.
     ///
     /// Returns: A reference to the new mutable CFArray.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
     #[doc(alias = "CFArrayCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -436,6 +455,11 @@ impl CFArray {
     ///
     /// Returns: The number of times the given value occurs in the array,
     /// within the specified range.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -470,6 +494,11 @@ impl CFArray {
     ///
     /// Returns: true, if the value is in the specified range of the array,
     /// otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayContainsValue")]
     #[inline]
     pub unsafe fn contains_value(&self, range: CFRange, value: *const c_void) -> bool {
@@ -495,6 +524,10 @@ impl CFArray {
     /// undefined.
     ///
     /// Returns: The value with the given index in the array.
+    ///
+    /// # Safety
+    ///
+    /// `the_array` generic must be of the correct type.
     #[doc(alias = "CFArrayGetValueAtIndex")]
     #[inline]
     pub unsafe fn value_at_index(&self, idx: CFIndex) -> *const c_void {
@@ -522,6 +555,11 @@ impl CFArray {
     /// in the same order in which they appear in the array. If this
     /// parameter is not a valid pointer to a C array of at least
     /// range.length pointers, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `values` must be a valid pointer.
     #[doc(alias = "CFArrayGetValues")]
     #[inline]
     pub unsafe fn values(&self, range: CFRange, values: *mut *const c_void) {
@@ -556,6 +594,12 @@ impl CFArray {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `applier` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFArrayApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
@@ -598,6 +642,11 @@ impl CFArray {
     ///
     /// Returns: The lowest index of the matching values in the range, or
     /// kCFNotFound if no value in the range matched.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayGetFirstIndexOfValue")]
     #[inline]
     pub unsafe fn first_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -634,6 +683,11 @@ impl CFArray {
     ///
     /// Returns: The highest index of the matching values in the range, or
     /// kCFNotFound if no value in the range matched.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayGetLastIndexOfValue")]
     #[inline]
     pub unsafe fn last_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -686,6 +740,13 @@ impl CFArray {
     /// range, or 3) the index of the value greater than the target
     /// value, if the value lies between two of (or less than all
     /// of) the values in the range.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `value` must be a valid pointer.
+    /// - `comparator` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFArrayBSearchValues")]
     #[inline]
     pub unsafe fn b_search_values(
@@ -721,6 +782,12 @@ impl CFMutableArray {
     /// retain callback, the behavior is undefined. The value is
     /// assigned to the index one larger than the previous largest
     /// index, and the count of the array is increased by one.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayAppendValue")]
     #[inline]
     pub unsafe fn append_value(the_array: Option<&CFMutableArray>, value: *const c_void) {
@@ -748,6 +815,12 @@ impl CFMutableArray {
     /// retain callback, the behavior is undefined. The value is
     /// assigned to the given index, and all values with equal and
     /// larger indices have their indexes increased by one.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayInsertValueAtIndex")]
     #[inline]
     pub unsafe fn insert_value_at_index(
@@ -783,6 +856,12 @@ impl CFMutableArray {
     /// released. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The indices of
     /// other values is not affected.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
+    /// - `value` must be a valid pointer.
     #[doc(alias = "CFArraySetValueAtIndex")]
     #[inline]
     pub unsafe fn set_value_at_index(
@@ -810,6 +889,11 @@ impl CFMutableArray {
     /// outside the index space of the array (0 to N-1 inclusive,
     /// where N is the count of the array before the operation), the
     /// behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
     #[doc(alias = "CFArrayRemoveValueAtIndex")]
     #[inline]
     pub unsafe fn remove_value_at_index(the_array: Option<&CFMutableArray>, idx: CFIndex) {
@@ -865,6 +949,12 @@ impl CFMutableArray {
     /// range are simply removed. If this parameter is negative, or
     /// greater than the number of values actually in the newValues
     /// C array, the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
+    /// - `new_values` must be a valid pointer.
     #[doc(alias = "CFArrayReplaceValues")]
     #[inline]
     pub unsafe fn replace_values(
@@ -899,6 +989,11 @@ impl CFMutableArray {
     /// index is outside the index space of the array (0 to N-1
     /// inclusive, where N is the count of the array before the
     /// operation), the behavior is undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
     #[doc(alias = "CFArrayExchangeValuesAtIndices")]
     #[inline]
     pub unsafe fn exchange_values_at_indices(
@@ -944,6 +1039,13 @@ impl CFMutableArray {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the comparator function, the behavior is
     /// undefined.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
+    /// - `comparator` must be implemented correctly.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFArraySortValues")]
     #[inline]
     pub unsafe fn sort_values(
@@ -987,6 +1089,13 @@ impl CFMutableArray {
     /// increased by range.length. The values are assigned new
     /// indices in the array from smallest to largest index in the
     /// order in which they appear in the otherArray.
+    ///
+    /// # Safety
+    ///
+    /// - `the_array` generic must be of the correct type.
+    /// - `the_array` might not allow `None`.
+    /// - `other_array` generic must be of the correct type.
+    /// - `other_array` might not allow `None`.
     #[doc(alias = "CFArrayAppendArray")]
     #[inline]
     pub unsafe fn append_array(

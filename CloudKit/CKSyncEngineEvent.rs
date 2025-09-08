@@ -119,16 +119,28 @@ impl CKSyncEngineEvent {
         pub unsafe fn r#type(&self) -> CKSyncEngineEventType;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stateUpdateEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateUpdateEvent(&self) -> Retained<CKSyncEngineStateUpdateEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(accountChangeEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountChangeEvent(&self) -> Retained<CKSyncEngineAccountChangeEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(fetchedDatabaseChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchedDatabaseChangesEvent(
@@ -136,6 +148,10 @@ impl CKSyncEngineEvent {
         ) -> Retained<CKSyncEngineFetchedDatabaseChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(fetchedRecordZoneChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchedRecordZoneChangesEvent(
@@ -143,6 +159,10 @@ impl CKSyncEngineEvent {
         ) -> Retained<CKSyncEngineFetchedRecordZoneChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sentDatabaseChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn sentDatabaseChangesEvent(
@@ -150,6 +170,10 @@ impl CKSyncEngineEvent {
         ) -> Retained<CKSyncEngineSentDatabaseChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sentRecordZoneChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn sentRecordZoneChangesEvent(
@@ -157,11 +181,19 @@ impl CKSyncEngineEvent {
         ) -> Retained<CKSyncEngineSentRecordZoneChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(willFetchChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn willFetchChangesEvent(&self) -> Retained<CKSyncEngineWillFetchChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(willFetchRecordZoneChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn willFetchRecordZoneChangesEvent(
@@ -169,6 +201,10 @@ impl CKSyncEngineEvent {
         ) -> Retained<CKSyncEngineWillFetchRecordZoneChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(didFetchRecordZoneChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn didFetchRecordZoneChangesEvent(
@@ -176,16 +212,28 @@ impl CKSyncEngineEvent {
         ) -> Retained<CKSyncEngineDidFetchRecordZoneChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(didFetchChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn didFetchChangesEvent(&self) -> Retained<CKSyncEngineDidFetchChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(willSendChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn willSendChangesEvent(&self) -> Retained<CKSyncEngineWillSendChangesEvent>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(didSendChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn didSendChangesEvent(&self) -> Retained<CKSyncEngineDidSendChangesEvent>;
@@ -232,6 +280,10 @@ impl CKSyncEngineStateUpdateEvent {
     extern_methods!(
         #[cfg(feature = "CKSyncEngineState")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(stateSerialization))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateSerialization(&self) -> Retained<CKSyncEngineStateSerialization>;
@@ -319,6 +371,10 @@ impl CKSyncEngineAccountChangeEvent {
         /// The type of account change that occurred.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(changeType))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeType(&self) -> CKSyncEngineAccountChangeType;
@@ -330,6 +386,10 @@ impl CKSyncEngineAccountChangeEvent {
         /// If the user signed out or switched accounts, this will be the old account.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(previousUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousUser(&self) -> Option<Retained<CKRecordID>>;
@@ -341,6 +401,10 @@ impl CKSyncEngineAccountChangeEvent {
         /// If the user signed out, this will be `nil`.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(currentUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUser(&self) -> Option<Retained<CKRecordID>>;
@@ -385,11 +449,19 @@ impl CKSyncEngineFetchedDatabaseChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKRecordZone")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(modifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifications(&self) -> Retained<NSArray<CKRecordZone>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(deletions))]
         #[unsafe(method_family = none)]
         pub unsafe fn deletions(&self) -> Retained<NSArray<CKSyncEngineFetchedZoneDeletion>>;
@@ -434,11 +506,19 @@ impl CKSyncEngineFetchedRecordZoneChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKRecord")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(modifications))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifications(&self) -> Retained<NSArray<CKRecord>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(deletions))]
         #[unsafe(method_family = none)]
         pub unsafe fn deletions(&self) -> Retained<NSArray<CKSyncEngineFetchedRecordDeletion>>;
@@ -481,23 +561,39 @@ impl CKSyncEngineSentDatabaseChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKRecordZone")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(savedZones))]
         #[unsafe(method_family = none)]
         pub unsafe fn savedZones(&self) -> Retained<NSArray<CKRecordZone>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(failedZoneSaves))]
         #[unsafe(method_family = none)]
         pub unsafe fn failedZoneSaves(&self) -> Retained<NSArray<CKSyncEngineFailedZoneSave>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(deletedZoneIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn deletedZoneIDs(&self) -> Retained<NSArray<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(failedZoneDeletes))]
         #[unsafe(method_family = none)]
         pub unsafe fn failedZoneDeletes(&self) -> Retained<NSDictionary<CKRecordZoneID, NSError>>;
@@ -544,23 +640,39 @@ impl CKSyncEngineSentRecordZoneChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKRecord")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(savedRecords))]
         #[unsafe(method_family = none)]
         pub unsafe fn savedRecords(&self) -> Retained<NSArray<CKRecord>>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(failedRecordSaves))]
         #[unsafe(method_family = none)]
         pub unsafe fn failedRecordSaves(&self) -> Retained<NSArray<CKSyncEngineFailedRecordSave>>;
 
         #[cfg(feature = "CKRecordID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(deletedRecordIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn deletedRecordIDs(&self) -> Retained<NSArray<CKRecordID>>;
 
         #[cfg(feature = "CKRecordID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(failedRecordDeletes))]
         #[unsafe(method_family = none)]
         pub unsafe fn failedRecordDeletes(&self) -> Retained<NSDictionary<CKRecordID, NSError>>;
@@ -608,6 +720,10 @@ impl CKSyncEngineWillFetchChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKSyncEngine")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Retained<CKSyncEngineFetchChangesContext>;
@@ -650,6 +766,10 @@ impl CKSyncEngineWillFetchRecordZoneChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(zoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
@@ -694,11 +814,19 @@ impl CKSyncEngineDidFetchRecordZoneChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(zoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
@@ -743,6 +871,10 @@ impl CKSyncEngineDidFetchChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKSyncEngine")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Retained<CKSyncEngineFetchChangesContext>;
@@ -783,6 +915,10 @@ impl CKSyncEngineWillSendChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKSyncEngine")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Retained<CKSyncEngineSendChangesContext>;
@@ -825,6 +961,10 @@ impl CKSyncEngineDidSendChangesEvent {
     extern_methods!(
         #[cfg(feature = "CKSyncEngine")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Retained<CKSyncEngineSendChangesContext>;
@@ -871,12 +1011,20 @@ impl CKSyncEngineFetchedRecordDeletion {
 
         #[cfg(feature = "CKRecordID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
 
         #[cfg(feature = "CKRecord")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordType))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordType(&self) -> Retained<CKRecordType>;
@@ -937,11 +1085,19 @@ impl CKSyncEngineFetchedZoneDeletion {
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(zoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(reason))]
         #[unsafe(method_family = none)]
         pub unsafe fn reason(&self) -> CKSyncEngineZoneDeletionReason;
@@ -975,11 +1131,19 @@ impl CKSyncEngineFailedRecordSave {
 
         #[cfg(feature = "CKRecord")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(record))]
         #[unsafe(method_family = none)]
         pub unsafe fn record(&self) -> Retained<CKRecord>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Retained<NSError>;
@@ -1013,11 +1177,19 @@ impl CKSyncEngineFailedZoneSave {
 
         #[cfg(feature = "CKRecordZone")]
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(recordZone))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZone(&self) -> Retained<CKRecordZone>;
 
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Retained<NSError>;

@@ -73,6 +73,9 @@ impl PDFAnnotationButtonWidget {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `color` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
@@ -97,6 +100,9 @@ impl PDFAnnotationButtonWidget {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `font` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
@@ -111,6 +117,9 @@ impl PDFAnnotationButtonWidget {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `color` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFontColor:))]
         #[unsafe(method_family = none)]
@@ -121,6 +130,9 @@ impl PDFAnnotationButtonWidget {
         #[unsafe(method_family = none)]
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setCaption:))]
         #[unsafe(method_family = none)]
@@ -131,6 +143,9 @@ impl PDFAnnotationButtonWidget {
         #[unsafe(method_family = none)]
         pub unsafe fn fieldName(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setFieldName:))]
         #[unsafe(method_family = none)]
@@ -141,6 +156,9 @@ impl PDFAnnotationButtonWidget {
         #[unsafe(method_family = none)]
         pub unsafe fn onStateValue(&self) -> Option<Retained<NSString>>;
 
+        /// # Safety
+        ///
+        /// `name` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setOnStateValue:))]
         #[unsafe(method_family = none)]
@@ -152,6 +170,9 @@ impl PDFAnnotationButtonWidget {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationButtonWidget {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

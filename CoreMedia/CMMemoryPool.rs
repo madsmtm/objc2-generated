@@ -81,6 +81,10 @@ extern "C" {
 
 impl CMMemoryPool {
     /// Creates a new CMMemoryPool.
+    ///
+    /// # Safety
+    ///
+    /// `options` generics must be of the correct type.
     #[doc(alias = "CMMemoryPoolCreate")]
     #[inline]
     pub unsafe fn new(options: Option<&CFDictionary>) -> CFRetained<CMMemoryPool> {

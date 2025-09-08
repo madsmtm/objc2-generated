@@ -28,6 +28,10 @@ impl HKLensSpecification {
         /// The lens power to correct nearsightedness or farsightedness. (-) means nearsighted while (+) farsighted.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sphere))]
         #[unsafe(method_family = none)]
         pub unsafe fn sphere(&self) -> Retained<HKQuantity>;
@@ -36,6 +40,10 @@ impl HKLensSpecification {
         /// The lens power required to correct astigmatism. Can be positive or negative.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(cylinder))]
         #[unsafe(method_family = none)]
         pub unsafe fn cylinder(&self) -> Option<Retained<HKQuantity>>;
@@ -44,6 +52,10 @@ impl HKLensSpecification {
         /// The angle along which cylindrical power should be positioned to correct astigmatism
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(axis))]
         #[unsafe(method_family = none)]
         pub unsafe fn axis(&self) -> Option<Retained<HKQuantity>>;
@@ -52,6 +64,10 @@ impl HKLensSpecification {
         /// The power adjustment applied to a multifocal lens to correct presbyopia
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(addPower))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPower(&self) -> Option<Retained<HKQuantity>>;

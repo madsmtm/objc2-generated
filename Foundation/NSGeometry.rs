@@ -272,6 +272,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `slice` must be a valid pointer.
+    /// - `rem` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDivideRect(
         in_rect: NSRect,

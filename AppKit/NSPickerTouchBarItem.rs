@@ -72,6 +72,9 @@ extern_conformance!(
 #[cfg(feature = "NSTouchBarItem")]
 impl NSPickerTouchBarItem {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action(
@@ -84,6 +87,9 @@ impl NSPickerTouchBarItem {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_images_selectionMode_target_action(
@@ -200,6 +206,10 @@ impl NSPickerTouchBarItem {
         /// Setter for [`target`][Self::target].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target` should be of the correct type.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
@@ -209,6 +219,10 @@ impl NSPickerTouchBarItem {
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
+        ///
+        /// # Safety
+        ///
+        /// `action` must be a valid selector.
         #[unsafe(method(setAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);

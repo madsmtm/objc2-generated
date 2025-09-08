@@ -49,6 +49,10 @@ impl IOBluetoothSDPUUID {
         /// Parameter `length`: The length of the array of bytes.
         ///
         /// Returns: Returns the new IOBluetoothSDPUUID object or nil on failure.
+        ///
+        /// # Safety
+        ///
+        /// `bytes` must be a valid pointer.
         #[unsafe(method(uuidWithBytes:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uuidWithBytes_length(
@@ -63,6 +67,10 @@ impl IOBluetoothSDPUUID {
         /// Parameter `data`: The NSData containing the UUID bytes.
         ///
         /// Returns: Returns the new IOBluetoothSDPUUID object or nil on failure.
+        ///
+        /// # Safety
+        ///
+        /// `data` might not allow `None`.
         #[unsafe(method(uuidWithData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn uuidWithData(data: Option<&NSData>) -> Option<Retained<Self>>;
@@ -93,6 +101,10 @@ impl IOBluetoothSDPUUID {
         /// Parameter `sdpUUIDRef`: IOBluetoothSDPUUIDRef for which an IOBluetoothSDPUUID * is desired.
         ///
         /// Returns: Returns the IOBluetoothSDPUUID * for the given IOBluetoothSDPUUIDRef.
+        ///
+        /// # Safety
+        ///
+        /// `sdp_uuid_ref` might not allow `None`.
         #[deprecated]
         #[unsafe(method(withSDPUUIDRef:))]
         #[unsafe(method_family = none)]
@@ -158,6 +170,10 @@ impl IOBluetoothSDPUUID {
         ///
         /// Returns: Returns true if the UUID values of each object are equal.  This includes the case where the sizes are different
         /// but the data itself is the same when the Bluetooth UUID base is applied.
+        ///
+        /// # Safety
+        ///
+        /// `other_uuid` might not allow `None`.
         #[unsafe(method(isEqualToUUID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToUUID(&self, other_uuid: Option<&IOBluetoothSDPUUID>) -> bool;

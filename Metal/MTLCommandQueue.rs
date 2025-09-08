@@ -71,6 +71,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks the residency sets as part of the command queue execution. This ensures that the residency sets are resident during execution of all the command buffers within the queue.
+        ///
+        /// # Safety
+        ///
+        /// `residency_sets` must be a valid pointer.
         #[unsafe(method(addResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn addResidencySets_count(
@@ -87,6 +91,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLResidencySet")]
         /// Removes the residency sets from the command queue execution. This ensures that only the remaining residency sets are resident during execution of all the command buffers within the queue.
+        ///
+        /// # Safety
+        ///
+        /// `residency_sets` must be a valid pointer.
         #[unsafe(method(removeResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn removeResidencySets_count(

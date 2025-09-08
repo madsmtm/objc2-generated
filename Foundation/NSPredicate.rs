@@ -40,6 +40,9 @@ extern_conformance!(
 impl NSPredicate {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `arguments` generic should be of the correct type.
         #[unsafe(method(predicateWithFormat:argumentArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithFormat_argumentArray(
@@ -73,6 +76,9 @@ impl NSPredicate {
         pub unsafe fn predicateFormat(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `variables` generic should be of the correct type.
         #[unsafe(method(predicateWithSubstitutionVariables:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithSubstitutionVariables(
@@ -80,11 +86,18 @@ impl NSPredicate {
             variables: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(evaluateWithObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluateWithObject(&self, object: Option<&AnyObject>) -> bool;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// - `object` should be of the correct type.
+        /// - `bindings` generic should be of the correct type.
         #[unsafe(method(evaluateWithObject:substitutionVariables:))]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluateWithObject_substitutionVariables(

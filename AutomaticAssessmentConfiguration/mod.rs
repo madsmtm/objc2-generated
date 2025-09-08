@@ -292,6 +292,10 @@ impl AEAssessmentParticipantConfiguration {
         /// Setter for [`configurationInfo`][Self::configurationInfo].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `configuration_info` generic should be of the correct type.
         #[unsafe(method(setConfigurationInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationInfo(

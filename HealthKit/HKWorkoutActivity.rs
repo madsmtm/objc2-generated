@@ -135,6 +135,10 @@ impl HKWorkoutActivity {
         /// Parameter `endDate`: The point in time when the workout activity was ended.
         ///
         /// Parameter `metadata`: Metadata for the workout activity. (Optional)
+        ///
+        /// # Safety
+        ///
+        /// `metadata` generic should be of the correct type.
         #[unsafe(method(initWithWorkoutConfiguration:startDate:endDate:metadata:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWorkoutConfiguration_startDate_endDate_metadata(

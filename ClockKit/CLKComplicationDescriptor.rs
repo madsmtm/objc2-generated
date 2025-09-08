@@ -64,6 +64,9 @@ impl CLKComplicationDescriptor {
             supported_families: &NSArray<NSNumber>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(initWithIdentifier:displayName:supportedFamilies:userInfo:))]
         #[unsafe(method_family = init)]

@@ -318,6 +318,10 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -354,6 +358,10 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -378,6 +386,10 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeForwardWithBatchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -405,6 +417,10 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeForwardWithBatchSize:options:outputsData:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -426,6 +442,10 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeGradientWithBatchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -453,6 +473,10 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeGradientWithBatchSize:options:outputsData:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -472,6 +496,10 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
+        ///
+        /// # Safety
+        ///
+        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeOptimizerUpdateWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]

@@ -139,6 +139,10 @@ extern_protocol!(
 
         /// Called when we begin renaming. Implementing this method allows for customizing the initial text that will show up in the text field as well as the
         /// selected range of that text.
+        ///
+        /// # Safety
+        ///
+        /// `selected_range` must be a valid pointer.
         #[optional]
         #[unsafe(method(navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:))]
         #[unsafe(method_family = none)]
@@ -295,6 +299,10 @@ impl UINavigationItem {
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// When non-nil, UIKit will generate suggestedActions and call this block to generate a menu that is displayed from the title.
+        ///
+        /// # Safety
+        ///
+        /// The returned block's argument must be a valid pointer.
         #[unsafe(method(titleMenuProvider))]
         #[unsafe(method_family = none)]
         pub unsafe fn titleMenuProvider(
@@ -305,6 +313,10 @@ impl UINavigationItem {
         /// Setter for [`titleMenuProvider`][Self::titleMenuProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `title_menu_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setTitleMenuProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleMenuProvider(

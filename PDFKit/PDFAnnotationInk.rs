@@ -49,6 +49,9 @@ impl PDFAnnotationInk {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `path` might not allow `None`.
         #[deprecated]
         #[unsafe(method(addBezierPath:))]
         #[unsafe(method_family = none)]
@@ -56,6 +59,9 @@ impl PDFAnnotationInk {
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// # Safety
+        ///
+        /// `path` might not allow `None`.
         #[deprecated]
         #[unsafe(method(removeBezierPath:))]
         #[unsafe(method_family = none)]
@@ -67,6 +73,9 @@ impl PDFAnnotationInk {
 #[cfg(feature = "PDFAnnotation")]
 impl PDFAnnotationInk {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `properties` generic should be of the correct type.
         #[unsafe(method(initWithBounds:forType:withProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_forType_withProperties(

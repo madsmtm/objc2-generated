@@ -640,6 +640,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTypes")]
         /// Copies a block of pixels from a texture slice into the application's memory.
+        ///
+        /// # Safety
+        ///
+        /// `pixel_bytes` must be a valid pointer.
         #[unsafe(method(getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:))]
         #[unsafe(method_family = none)]
         unsafe fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(
@@ -654,6 +658,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTypes")]
         /// Copy a block of pixel data from the caller's pointer into a texture slice.
+        ///
+        /// # Safety
+        ///
+        /// `pixel_bytes` must be a valid pointer.
         #[unsafe(method(replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:))]
         #[unsafe(method_family = none)]
         unsafe fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(
@@ -668,6 +676,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTypes")]
         /// Convenience for getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice: that doesn't require slice related arguments
+        ///
+        /// # Safety
+        ///
+        /// `pixel_bytes` must be a valid pointer.
         #[unsafe(method(getBytes:bytesPerRow:fromRegion:mipmapLevel:))]
         #[unsafe(method_family = none)]
         unsafe fn getBytes_bytesPerRow_fromRegion_mipmapLevel(
@@ -680,6 +692,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTypes")]
         /// Convenience for replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage: that doesn't require slice related arguments
+        ///
+        /// # Safety
+        ///
+        /// `pixel_bytes` must be a valid pointer.
         #[unsafe(method(replaceRegion:mipmapLevel:withBytes:bytesPerRow:))]
         #[unsafe(method_family = none)]
         unsafe fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(

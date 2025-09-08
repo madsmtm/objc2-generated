@@ -243,6 +243,11 @@ impl MPSUnaryImageKernel {
         /// Returns: On success, YES is returned. The texture may have been replaced with a new
         /// texture if a copyAllocator was provided.  On failure, NO is returned. The
         /// texture is unmodified.
+        ///
+        /// # Safety
+        ///
+        /// - `texture` must be a valid pointer.
+        /// - `copy_allocator` must be a valid pointer or null.
         #[unsafe(method(encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inPlaceTexture_fallbackCopyAllocator(
@@ -580,6 +585,11 @@ impl MPSBinaryImageKernel {
         /// Returns: On success, YES is returned. The texture may have been replaced with a new
         /// texture if a copyAllocator was provided.  On failure, NO is returned. The
         /// texture is unmodified.
+        ///
+        /// # Safety
+        ///
+        /// - `in_place_secondary_texture` must be a valid pointer.
+        /// - `copy_allocator` must be a valid pointer or null.
         #[unsafe(method(encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryTexture_inPlaceSecondaryTexture_fallbackCopyAllocator(
@@ -646,6 +656,11 @@ impl MPSBinaryImageKernel {
         /// Returns: On success, YES is returned. The texture may have been replaced with a new
         /// texture if a copyAllocator was provided.  On failure, NO is returned. The
         /// texture is unmodified.
+        ///
+        /// # Safety
+        ///
+        /// - `in_place_primary_texture` must be a valid pointer.
+        /// - `copy_allocator` must be a valid pointer or null.
         #[unsafe(method(encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inPlacePrimaryTexture_secondaryTexture_fallbackCopyAllocator(

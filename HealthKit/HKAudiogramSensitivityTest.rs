@@ -86,6 +86,10 @@ impl HKAudiogramSensitivityTest {
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sensitivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn sensitivity(&self) -> Retained<HKQuantity>;
@@ -93,6 +97,10 @@ impl HKAudiogramSensitivityTest {
         /// The conduction type
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> HKAudiogramConductionType;
@@ -100,6 +108,10 @@ impl HKAudiogramSensitivityTest {
         /// Indicates if the test was conducted with or without masking
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(masked))]
         #[unsafe(method_family = none)]
         pub unsafe fn masked(&self) -> bool;
@@ -107,6 +119,10 @@ impl HKAudiogramSensitivityTest {
         /// The test side
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(side))]
         #[unsafe(method_family = none)]
         pub unsafe fn side(&self) -> HKAudiogramSensitivityTestSide;
@@ -115,6 +131,10 @@ impl HKAudiogramSensitivityTest {
         /// If present, indicates that the range within which the sensitivity point should be clamped.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(clampingRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn clampingRange(

@@ -50,6 +50,10 @@ impl LAEnvironmentState {
         /// `nil`if biometry is not supported by this device.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(biometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn biometry(&self) -> Option<Retained<LAEnvironmentMechanismBiometry>>;
@@ -63,6 +67,10 @@ impl LAEnvironmentState {
         /// `nil`if user password or passcode is not supported by this device.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(userPassword))]
         #[unsafe(method_family = none)]
         pub unsafe fn userPassword(&self) -> Option<Retained<LAEnvironmentMechanismUserPassword>>;
@@ -82,6 +90,10 @@ impl LAEnvironmentState {
         /// `LACompanionTypeWatch.`
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(companions))]
         #[unsafe(method_family = none)]
         pub unsafe fn companions(&self) -> Retained<NSArray<LAEnvironmentMechanismCompanion>>;
@@ -94,6 +106,10 @@ impl LAEnvironmentState {
         /// authentication mechanisms.
         ///
         /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(allMechanisms))]
         #[unsafe(method_family = none)]
         pub unsafe fn allMechanisms(&self) -> Retained<NSArray<LAEnvironmentMechanism>>;

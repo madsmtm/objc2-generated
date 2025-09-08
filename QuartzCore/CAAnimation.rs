@@ -311,6 +311,10 @@ impl CABasicAnimation {
         pub unsafe fn fromValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`fromValue`][Self::fromValue].
+        ///
+        /// # Safety
+        ///
+        /// `from_value` should be of the correct type.
         #[unsafe(method(setFromValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFromValue(&self, from_value: Option<&AnyObject>);
@@ -320,6 +324,10 @@ impl CABasicAnimation {
         pub unsafe fn toValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`toValue`][Self::toValue].
+        ///
+        /// # Safety
+        ///
+        /// `to_value` should be of the correct type.
         #[unsafe(method(setToValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setToValue(&self, to_value: Option<&AnyObject>);
@@ -329,6 +337,10 @@ impl CABasicAnimation {
         pub unsafe fn byValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`byValue`][Self::byValue].
+        ///
+        /// # Safety
+        ///
+        /// `by_value` should be of the correct type.
         #[unsafe(method(setByValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setByValue(&self, by_value: Option<&AnyObject>);
@@ -414,6 +426,10 @@ impl CAKeyframeAnimation {
         /// Setter for [`values`][Self::values].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `values` generic should be of the correct type.
         #[unsafe(method(setValues:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValues(&self, values: Option<&NSArray>);
@@ -816,6 +832,10 @@ impl CATransition {
         pub unsafe fn filter(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`filter`][Self::filter].
+        ///
+        /// # Safety
+        ///
+        /// `filter` should be of the correct type.
         #[unsafe(method(setFilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFilter(&self, filter: Option<&AnyObject>);

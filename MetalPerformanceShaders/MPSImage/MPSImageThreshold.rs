@@ -61,6 +61,10 @@ impl MPSImageThresholdBinary {
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
+        ///
+        /// # Safety
+        ///
+        /// `transform` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:thresholdValue:maximumValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_maximumValue_linearGrayColorTransform(
@@ -204,6 +208,10 @@ impl MPSImageThresholdBinaryInverse {
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
+        ///
+        /// # Safety
+        ///
+        /// `transform` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:thresholdValue:maximumValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_maximumValue_linearGrayColorTransform(
@@ -345,6 +353,10 @@ impl MPSImageThresholdTruncate {
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
+        ///
+        /// # Safety
+        ///
+        /// `transform` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:thresholdValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_linearGrayColorTransform(
@@ -480,6 +492,10 @@ impl MPSImageThresholdToZero {
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
+        ///
+        /// # Safety
+        ///
+        /// `transform` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:thresholdValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_linearGrayColorTransform(
@@ -615,6 +631,10 @@ impl MPSImageThresholdToZeroInverse {
         ///
         /// Parameter `transform`: This matrix is an array of 3 floats.
         /// The default if no transform is specifed is BT.601/JPEG: {0.299f, 0.587f, 0.114f};
+        ///
+        /// # Safety
+        ///
+        /// `transform` must be a valid pointer or null.
         #[unsafe(method(initWithDevice:thresholdValue:linearGrayColorTransform:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_thresholdValue_linearGrayColorTransform(

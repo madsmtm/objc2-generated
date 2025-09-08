@@ -143,6 +143,14 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store an exception, if any. Pass NULL if you do not care to store an exception.
     ///
     /// Returns: The JSValue that results from evaluating script, or NULL if an exception is thrown.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `script` must be a valid pointer.
+    /// - `this_object` must be a valid pointer.
+    /// - `source_url` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     pub fn JSEvaluateScript(
         ctx: JSContextRef,
         script: JSStringRef,
@@ -167,6 +175,13 @@ extern "C-unwind" {
     /// Parameter `exception`: A pointer to a JSValueRef in which to store a syntax error exception, if any. Pass NULL if you do not care to store a syntax error exception.
     ///
     /// Returns: true if the script is syntactically correct, otherwise false.
+    ///
+    /// # Safety
+    ///
+    /// - `ctx` must be a valid pointer.
+    /// - `script` must be a valid pointer.
+    /// - `source_url` must be a valid pointer.
+    /// - `exception` must be a valid pointer.
     pub fn JSCheckScriptSyntax(
         ctx: JSContextRef,
         script: JSStringRef,
@@ -189,5 +204,9 @@ extern "C-unwind" {
     /// JavaScript engine will garbage collect as needed. JavaScript values created
     /// within a context group are automatically destroyed when the last reference
     /// to the context group is released.
+    ///
+    /// # Safety
+    ///
+    /// `ctx` must be a valid pointer.
     pub fn JSGarbageCollect(ctx: JSContextRef);
 }

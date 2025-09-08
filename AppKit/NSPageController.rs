@@ -125,6 +125,10 @@ impl NSPageController {
         /// Setter for [`arrangedObjects`][Self::arrangedObjects].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `arranged_objects` generic should be of the correct type.
         #[unsafe(method(setArrangedObjects:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArrangedObjects(&self, arranged_objects: &NSArray);
@@ -138,6 +142,9 @@ impl NSPageController {
         #[unsafe(method_family = none)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(navigateForwardToObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigateForwardToObject(&self, object: &AnyObject);
@@ -146,14 +153,23 @@ impl NSPageController {
         #[unsafe(method_family = none)]
         pub unsafe fn completeTransition(&self);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(navigateBack:))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigateBack(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(navigateForward:))]
         #[unsafe(method_family = none)]
         pub unsafe fn navigateForward(&self, sender: Option<&AnyObject>);
 
+        /// # Safety
+        ///
+        /// `sender` should be of the correct type.
         #[unsafe(method(takeSelectedIndexFrom:))]
         #[unsafe(method_family = none)]
         pub unsafe fn takeSelectedIndexFrom(&self, sender: Option<&AnyObject>);
@@ -206,6 +222,9 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate?language=objc)
     pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[optional]
         #[unsafe(method(pageController:identifierForObject:))]
         #[unsafe(method_family = none)]
@@ -226,6 +245,9 @@ extern_protocol!(
         ) -> Retained<NSViewController>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[optional]
         #[unsafe(method(pageController:frameForObject:))]
         #[unsafe(method_family = none)]
@@ -236,6 +258,9 @@ extern_protocol!(
         ) -> NSRect;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[optional]
         #[unsafe(method(pageController:prepareViewController:withObject:))]
         #[unsafe(method_family = none)]
@@ -247,6 +272,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[optional]
         #[unsafe(method(pageController:didTransitionToObject:))]
         #[unsafe(method_family = none)]

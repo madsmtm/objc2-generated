@@ -320,6 +320,9 @@ impl NSImage {
             feature = "NSImageRep",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `hints` generic should be of the correct type.
         #[unsafe(method(drawInRect:fromRect:operation:fraction:respectFlipped:hints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInRect_fromRect_operation_fraction_respectFlipped_hints(
@@ -467,6 +470,10 @@ impl NSImage {
             feature = "objc2-core-graphics"
         ))]
         #[cfg(target_vendor = "apple")]
+        /// # Safety
+        ///
+        /// - `proposed_dest_rect` must be a valid pointer or null.
+        /// - `hints` generic should be of the correct type.
         #[unsafe(method(CGImageForProposedRect:context:hints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGImageForProposedRect_context_hints(
@@ -477,6 +484,9 @@ impl NSImage {
         ) -> Option<Retained<CGImage>>;
 
         #[cfg(all(feature = "NSGraphicsContext", feature = "NSImageRep"))]
+        /// # Safety
+        ///
+        /// `hints` generic should be of the correct type.
         #[unsafe(method(bestRepresentationForRect:context:hints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn bestRepresentationForRect_context_hints(
@@ -487,6 +497,9 @@ impl NSImage {
         ) -> Option<Retained<NSImageRep>>;
 
         #[cfg(all(feature = "NSGraphicsContext", feature = "NSImageRep"))]
+        /// # Safety
+        ///
+        /// `hints` generic should be of the correct type.
         #[unsafe(method(hitTestRect:withImageDestinationRect:context:hints:flipped:))]
         #[unsafe(method_family = none)]
         pub unsafe fn hitTestRect_withImageDestinationRect_context_hints_flipped(
@@ -710,6 +723,10 @@ impl NSImage {
         pub unsafe fn imagePasteboardTypes() -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSImageRep")]
+        /// # Safety
+        ///
+        /// - `device_description` generic should be of the correct type.
+        /// - `device_description` might not allow `None`.
         #[deprecated = "Use -[NSImage bestRepresentationForRect:context:hints:] instead.  Any deviceDescription dictionary is also a valid hints dictionary."]
         #[unsafe(method(bestRepresentationForDevice:))]
         #[unsafe(method_family = none)]
@@ -845,6 +862,9 @@ impl NSImage {
         );
 
         #[cfg(feature = "NSImageRep")]
+        /// # Safety
+        ///
+        /// `image_representation` might not allow `None`.
         #[deprecated = "Create an image using +[NSImage imageWithSize:flipped:drawingHandler:], and begin your custom drawing with -[NSImageRep drawInRect:] instead."]
         #[unsafe(method(lockFocusOnRepresentation:))]
         #[unsafe(method_family = none)]
