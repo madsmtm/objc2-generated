@@ -66,6 +66,7 @@ mod private_CIFilterIKFilterUIAddition {
 }
 
 /// Category "IKFilterUIAddition" on [`CIFilter`].
+///
 /// The IKFilterUIAddition category to IKFilter provides the API for the Image Unit UI generation.
 ///
 /// (comprehensive description)

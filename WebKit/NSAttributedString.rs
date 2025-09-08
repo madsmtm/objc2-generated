@@ -45,6 +45,7 @@ mod private_NSAttributedStringWebKitAdditions {
 }
 
 /// Category on [`NSAttributedString`].
+///
 /// Extension of
 ///
 /// ```text

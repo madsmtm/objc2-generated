@@ -226,6 +226,7 @@ mod private_NSObjectNSArchiverCallback {
 }
 
 /// Category "NSArchiverCallback" on [`NSObject`].
+///
 /// **********        Object call back        ***************
 #[doc(alias = "NSArchiverCallback")]
 pub unsafe trait NSObjectNSArchiverCallback:

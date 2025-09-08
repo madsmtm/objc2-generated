@@ -656,6 +656,7 @@ extern_protocol!(
 );
 
 /// CIFilterRegistry.
+///
 /// Methods to register a filter and get access to the list of registered filters
 /// Use these methods to create filters and find filters.
 impl CIFilter {
@@ -739,6 +740,7 @@ impl CIFilter {
 }
 
 /// CIFilterXMPSerialization.
+///
 /// Methods to serialize arrays of filters to xmp.
 impl CIFilter {
     extern_methods!(

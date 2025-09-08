@@ -617,6 +617,7 @@ impl XCTestCase {
 }
 
 /// XCTActivity.
+///
 /// XCTestCase conforms to XCTActivity, allowing test attachments to be added directly from test methods.
 ///
 /// See XCTAttachment.h for details on how to create attachments. Once created, they can be added directly to XCTestCase:
@@ -651,6 +652,7 @@ extern "C" {
 }
 
 /// XCTPerformanceAnalysis.
+///
 /// Interface extension for measure related API.
 impl XCTestCase {
     extern_methods!(
@@ -2973,6 +2975,7 @@ impl XCTOSSignpostMetric {
 }
 
 /// XCTBuiltinOSSignposts.
+///
 /// Interface extension describing OS Signposts that are instrumented by the OS.
 impl XCTOSSignpostMetric {
     extern_methods!(
@@ -4300,6 +4303,7 @@ impl XCTNSPredicateExpectation {
 pub type XCWaitCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
 /// AsynchronousTesting.
+///
 /// This category introduces support for asynchronous testing in XCTestCase. The mechanism
 /// allows you to specify one or more "expectations" that will occur asynchronously
 /// as a result of actions in the test. Once all expectations have been set, a "wait"

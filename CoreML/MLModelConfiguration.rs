@@ -120,6 +120,7 @@ impl MLModelConfiguration {
 }
 
 /// MLGPUConfigurationOptions.
+///
 /// Allows app to specify  GPU configuration options
 impl MLModelConfiguration {
     extern_methods!(
@@ -158,6 +159,7 @@ impl MLModelConfiguration {
 }
 
 /// MLModelParameterAdditions.
+///
 /// Allows app to set model or update parameters as a dictionary.
 impl MLModelConfiguration {
     extern_methods!(

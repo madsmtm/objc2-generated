@@ -108,6 +108,7 @@ impl CNAssetInfo {
 }
 
 /// AbstractTracks.
+///
 /// Use of these properties where appropriate is preferred to help maintain future compatibility
 impl CNAssetInfo {
     extern_methods!(

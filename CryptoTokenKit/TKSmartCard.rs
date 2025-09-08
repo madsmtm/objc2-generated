@@ -921,6 +921,7 @@ impl TKSmartCard {
 }
 
 /// APDULevelTransmit.
+///
 /// Extension of base TKSmartCard interface implementing ISO7816-3 and ISO7816-4 structured APDU transmission.
 impl TKSmartCard {
     extern_methods!(

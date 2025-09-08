@@ -1409,6 +1409,7 @@ pub type AUInputHandler = *mut block2::DynBlock<
 >;
 
 /// AUAudioInputOutputUnit.
+///
 /// Additional methods for audio units which can do input/output.
 ///
 /// These methods will fail if the audio unit is not an input/output audio unit.

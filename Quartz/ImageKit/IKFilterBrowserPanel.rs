@@ -132,6 +132,7 @@ impl IKFilterBrowserPanel {
 }
 
 /// IKFilterBrowserPanelRuntime.
+///
 /// Use the methods in the IKFilterBrowserPanelRuntime to display and run the IKFilterBrowser.
 ///
 /// These methods are modeled after the NSOpenPanel methods with additions to allow for different UI configurations and to just get a IKFilterBrowserView to be inserted in your UI.

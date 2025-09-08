@@ -265,6 +265,7 @@ impl AVCoordinatedPlaybackParticipant {
 }
 
 /// AVCoordinatedPlaybackPolicies.
+///
 /// Policies used by AVPlaybackCoordinator to determine how to interact with the group.
 impl AVPlaybackCoordinator {
     extern_methods!(

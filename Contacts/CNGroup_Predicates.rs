@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Predicates.
+///
 /// The predicates to match groups against.
 ///
 ///

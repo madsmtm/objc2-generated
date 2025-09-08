@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// MLModelCompilation.
+///
 /// MLModel (MLModelCompilation)
 ///
 /// Class with utilties for performing .mlmodel compilation

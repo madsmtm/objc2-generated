@@ -241,6 +241,7 @@ mod private_NSAttributedStringAttributeFixing {
 }
 
 /// Category on [`NSMutableAttributedString`].
+///
 /// ********************** Attribute fixing ***********************
 pub unsafe trait NSAttributedStringAttributeFixing:
     ClassType + Sized + private_NSAttributedStringAttributeFixing::Sealed
@@ -545,6 +546,7 @@ mod private_NSAttributedStringKitAdditions {
 }
 
 /// Category on [`NSAttributedString`].
+///
 /// ********************** Misc methods ***********************
 pub unsafe trait NSAttributedStringKitAdditions:
     ClassType + Sized + private_NSAttributedStringKitAdditions::Sealed

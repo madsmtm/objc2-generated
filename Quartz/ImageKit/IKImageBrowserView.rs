@@ -50,6 +50,7 @@ mod private_NSObjectIKImageBrowserDataSource {
 }
 
 /// Category "IKImageBrowserDataSource" on [`NSObject`].
+///
 /// The IKImageBrowserDataSource informal protocol declares the methods that an instance of IKImageBrowserView uses to access the contents of its data source object.
 #[doc(alias = "IKImageBrowserDataSource")]
 pub unsafe trait NSObjectIKImageBrowserDataSource:
@@ -151,6 +152,7 @@ mod private_NSObjectIKImageBrowserItem {
 }
 
 /// Category "IKImageBrowserItem" on [`NSObject`].
+///
 /// The IKImageBrowserItem informal protocol declares the methods that an instance of IKImageBrowserView uses to access the contents of its data source for a given item.
 ///
 /// Some of the methods in this protocol, such as
@@ -721,6 +723,7 @@ mod private_NSObjectIKImageBrowserDelegate {
 }
 
 /// Category "IKImageBrowserDelegate" on [`NSObject`].
+///
 /// Informal protocol for image browser 's delegate
 #[doc(alias = "IKImageBrowserDelegate")]
 pub unsafe trait NSObjectIKImageBrowserDelegate:

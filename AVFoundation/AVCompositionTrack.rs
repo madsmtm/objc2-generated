@@ -440,6 +440,7 @@ impl AVMutableCompositionTrack {
 }
 
 /// SynchronousTrackInterface.
+///
 /// Redeclarations of async-only AVAssetTrack interfaces to allow synchronous usage in the synchronous subclass.
 ///
 /// See AVAssetTrack's interface for more information about these interfaces.

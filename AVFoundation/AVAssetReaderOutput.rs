@@ -742,6 +742,7 @@ impl AVAssetReaderOutputCaptionAdaptor {
 }
 
 /// AVAssetReaderCaptionValidation.
+///
 /// Category of AVAssetReaderOutputCaptionAdaptor for caption validation handling
 impl AVAssetReaderOutputCaptionAdaptor {
     extern_methods!(

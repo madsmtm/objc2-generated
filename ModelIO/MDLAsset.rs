@@ -388,6 +388,7 @@ extern_protocol!(
 );
 
 /// MDLLightBaking.
+///
 /// Given a light probe density, method places light probes in the scene according to the
 /// passed in placement heuristic type. The higher the density, the greater the number of
 /// light probes placed in the scene.

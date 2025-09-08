@@ -558,6 +558,7 @@ impl AVMetadataItem {
 }
 
 /// SynchronousMetadataItemInterface.
+///
 /// Redeclarations of async-only AVMetadataItem interfaces to allow synchronous usage in the mutable subclass.
 ///
 /// See AVMetadataItem's interface for more information about these interfaces.

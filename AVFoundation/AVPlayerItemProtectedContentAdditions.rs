@@ -50,6 +50,7 @@ unsafe impl RefEncode for AVContentAuthorizationStatus {
 }
 
 /// AVPlayerItemProtectedContent.
+///
 /// Methods supporting protected content.
 #[cfg(feature = "AVPlayerItem")]
 impl AVPlayerItem {

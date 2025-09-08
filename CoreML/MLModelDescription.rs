@@ -99,6 +99,7 @@ impl MLModelDescription {
 }
 
 /// MLUpdateAdditions.
+///
 /// Additions to model descriptions related to model update API.
 impl MLModelDescription {
     extern_methods!(
@@ -116,6 +117,7 @@ impl MLModelDescription {
 }
 
 /// MLParameters.
+///
 /// Additions to model descriptions related to model parameters
 impl MLModelDescription {
     extern_methods!(

@@ -90,6 +90,7 @@ impl CKContainer {
 }
 
 /// Database.
+///
 /// Database properties:
 /// Records in a public database
 /// - By default are world readable, owner writable.

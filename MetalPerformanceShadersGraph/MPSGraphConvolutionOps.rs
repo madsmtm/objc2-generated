@@ -607,6 +607,7 @@ impl MPSGraphConvolution3DOpDescriptor {
 }
 
 /// MPSGraphConvolutionOps.
+///
 /// This is a category that defines the methods which can be used to add 2D-convolution operator to the graph with properties described by an instance of `MPSGraphConvolution2DOpDescriptor`.
 #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
 impl MPSGraph {

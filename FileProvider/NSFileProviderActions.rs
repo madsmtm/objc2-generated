@@ -12,6 +12,7 @@ use crate::*;
 pub type NSFileProviderExtensionActionIdentifier = NSString;
 
 /// NSFileProviderActions.
+///
 /// This category encapsulates common user-driven actions on FileProvider's items.
 #[cfg(feature = "Extension")]
 impl NSFileProviderExtension {

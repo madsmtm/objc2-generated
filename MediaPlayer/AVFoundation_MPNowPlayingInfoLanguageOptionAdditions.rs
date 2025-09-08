@@ -12,6 +12,7 @@ mod private_AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions {
 }
 
 /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionOption`].
+///
 /// Category for creating language options from AV types
 #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
 pub unsafe trait AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions:

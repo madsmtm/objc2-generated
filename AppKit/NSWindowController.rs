@@ -232,6 +232,7 @@ impl NSWindowController {
 }
 
 /// NSWindowControllerStoryboardingMethods.
+///
 /// These methods are used to support using Storyboards with your app.
 #[cfg(feature = "NSResponder")]
 impl NSWindowController {

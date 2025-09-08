@@ -4828,6 +4828,7 @@ unsafe impl RefEncode for NEHotspotHelperConfidence {
 }
 
 /// HotspotHelper.
+///
 /// Extends NEHotspotNetwork class to support conveying information about the
 /// network to the HotspotHelper. When the HotspotHelper is asked to evaluate
 /// the current network or filter the Wi-Fi scan list, it annotates the NEHotspotNetwork
@@ -5187,6 +5188,7 @@ mod private_NSMutableURLRequestNEHotspotHelper {
 }
 
 /// Category "NEHotspotHelper" on [`NSMutableURLRequest`].
+///
 /// Extend NSMutableURLRequest to include a method to bind the
 /// request to the network interface associated with the specified
 /// NEHotspotHelperCommand object.

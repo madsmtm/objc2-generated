@@ -1609,6 +1609,7 @@ impl AVFragmentedMovieMinder {
 }
 
 /// SynchronousAssetInterface.
+///
 /// Redeclarations of async-only AVAsset interfaces to allow synchronous usage in the synchronous subclass.
 ///
 /// See AVAsset's interface for more information about these interfaces.

@@ -310,6 +310,7 @@ impl NSURLProtectionSpace {
 }
 
 /// NSClientCertificateSpace.
+///
 /// This category supplies additional information for use when a client certificate is required by the server in order to complete authentication.
 impl NSURLProtectionSpace {
     extern_methods!(
@@ -324,6 +325,7 @@ impl NSURLProtectionSpace {
 }
 
 /// NSServerTrustValidationSpace.
+///
 /// This category supplies additional information for use by the client to evaluate whether to trust a given server during a security handshake.
 impl NSURLProtectionSpace {
     extern_methods!();

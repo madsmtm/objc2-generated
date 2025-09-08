@@ -248,6 +248,7 @@ impl JSContext {
 }
 
 /// SubscriptSupport.
+///
 /// Instances of JSContext implement the following methods in order to enable
 /// support for subscript access by key and index, for example:
 ///
@@ -287,6 +288,7 @@ impl JSContext {
 }
 
 /// JSContextRefSupport.
+///
 /// These functions are for bridging between the C API and the Objective-C API.
 #[cfg(feature = "objc2")]
 impl JSContext {

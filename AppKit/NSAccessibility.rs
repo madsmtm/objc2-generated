@@ -12,6 +12,7 @@ mod private_NSObjectNSAccessibility {
 }
 
 /// Category "NSAccessibility" on [`NSObject`].
+///
 /// * Accessibility Informal Protocol **
 #[doc(alias = "NSAccessibility")]
 pub unsafe trait NSObjectNSAccessibility:

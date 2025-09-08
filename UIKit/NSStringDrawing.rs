@@ -227,6 +227,7 @@ impl private_NSAttributedStringNSExtendedStringDrawing::Sealed for NSAttributedS
 unsafe impl NSAttributedStringNSExtendedStringDrawing for NSAttributedString {}
 
 /// NSStringDrawingContextDeprecated.
+///
 /// ********************** Deprecated ***********************
 impl NSStringDrawingContext {
     extern_methods!(

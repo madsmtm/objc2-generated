@@ -75,6 +75,7 @@ impl MLFeatureDescription {
 }
 
 /// MLFeatureValueConstraints.
+///
 /// Feature value constraints for specific types
 impl MLFeatureDescription {
     extern_methods!(

@@ -531,6 +531,7 @@ extern_protocol!(
 );
 
 /// NSURLConnectionSynchronousLoading.
+///
 /// The NSURLConnectionSynchronousLoading category on
 /// NSURLConnection provides the interface to perform
 /// synchronous loading of URL requests.
@@ -587,6 +588,7 @@ impl NSURLConnection {
 }
 
 /// NSURLConnectionQueuedLoading.
+///
 /// The NSURLConnectionQueuedLoading category on NSURLConnection
 /// provides the interface to perform asynchronous loading of URL
 /// requests where the results of the request are delivered to a

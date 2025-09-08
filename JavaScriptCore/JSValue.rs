@@ -915,6 +915,7 @@ impl JSValue {
 }
 
 /// StructSupport.
+///
 /// Objective-C methods exported to JavaScript may have argument and/or return
 /// values of struct types, provided that conversion to and from the struct is
 /// supported by JSValue. Support is provided for any types where JSValue
@@ -1119,6 +1120,7 @@ impl JSValue {
 pub type JSValueProperty = NSString;
 
 /// PropertyAccess.
+///
 /// These methods enable querying properties on a JSValue.
 #[cfg(feature = "objc2")]
 impl JSValue {
@@ -1250,6 +1252,7 @@ impl JSValue {
 }
 
 /// SubscriptSupport.
+///
 /// Instances of JSValue implement the following methods in order to enable
 /// support for subscript access by key and index, for example:
 ///
@@ -1318,6 +1321,7 @@ impl JSValue {
 }
 
 /// JSValueRefSupport.
+///
 /// These functions are for bridging between the C API and the Objective-C API.
 #[cfg(feature = "objc2")]
 impl JSValue {

@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Camera.
+///
 /// Category implementing methods related to camera profile.
 #[cfg(feature = "HMAccessory")]
 impl HMAccessory {

@@ -226,6 +226,7 @@ impl GKAchievementChallenge {
 }
 
 /// GKChallenge.
+///
 /// Use the following category methods to issue GKScoreChallenges and GKAchievementChallenges to an array of playerIDs. Players may not issue challenges to themselves nor to non-friends. Please see the GameKit reference documentation for further details on these methods.
 #[cfg(feature = "GKScore")]
 impl GKScore {

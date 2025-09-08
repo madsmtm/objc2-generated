@@ -125,6 +125,7 @@ extern_protocol!(
 );
 
 /// TestingModeInteractive.
+///
 /// Control the scheduling of operation.
 ///
 /// These methods are available on domain with the NSFileProviderDomainTestingModeInteractive

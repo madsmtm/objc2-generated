@@ -188,6 +188,7 @@ impl SKAudioNode {
 }
 
 /// SKAudioNode.
+///
 /// Actions that are to be used with audio nodes.
 #[cfg(feature = "SKAction")]
 impl SKAction {

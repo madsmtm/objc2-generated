@@ -77,6 +77,7 @@ impl AVMediaSelectionGroup {
 }
 
 /// AVMediaSelectionOptionFiltering.
+///
 /// Filtering of media selection options.
 ///
 /// The AVMediaSelectionOptionFiltering category is provided for convenience in filtering the media selection options in a group

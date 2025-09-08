@@ -35,6 +35,7 @@ mod private_NSObjectNSCoderMethods {
 }
 
 /// Category "NSCoderMethods" on [`NSObject`].
+///
 /// *********    Base class        **********
 #[doc(alias = "NSCoderMethods")]
 pub unsafe trait NSObjectNSCoderMethods:

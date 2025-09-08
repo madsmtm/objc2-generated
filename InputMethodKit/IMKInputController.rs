@@ -34,6 +34,7 @@ mod private_NSObjectIMKServerInput {
 }
 
 /// Category "IMKServerInput" on [`NSObject`].
+///
 /// Informal protocol which is used to send user events to an input method.
 ///
 /// This is not a formal protocol by choice.  The reason for that is that there are three ways to receive events here. An input method should choose one of those ways and  implement the appropriate methods.

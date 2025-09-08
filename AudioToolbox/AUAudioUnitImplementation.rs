@@ -36,6 +36,7 @@ unsafe impl RefEncode for AURenderEventType {
 }
 
 /// AUAudioUnitImplementation.
+///
 /// Aspects of AUAudioUnit of interest only to subclassers.
 #[cfg(feature = "AUAudioUnit")]
 impl AUAudioUnit {
@@ -98,6 +99,7 @@ impl AUAudioUnit {
 }
 
 /// AUAudioUnitImplementation.
+///
 /// Aspects of AUAudioUnitBus of interest only to the implementation of v3 AUs.
 #[cfg(feature = "AUAudioUnit")]
 impl AUAudioUnitBus {
@@ -136,6 +138,7 @@ impl AUAudioUnitBus {
 }
 
 /// AUAudioUnitBusImplementation.
+///
 /// Aspects of AUAudioUnitBusArray of interest only to subclassers.
 #[cfg(feature = "AUAudioUnit")]
 impl AUAudioUnitBusArray {
@@ -148,6 +151,7 @@ impl AUAudioUnitBusArray {
 }
 
 /// Factory.
+///
 /// Factory methods for building parameters, parameter groups, and parameter trees.
 ///
 ///
@@ -267,6 +271,7 @@ pub type AUImplementorDisplayNameWithLengthCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
 
 /// AUParameterNodeImplementation.
+///
 /// Aspects of AUParameterNode of interest only to AUAudioUnit subclassers.
 #[cfg(feature = "AUParameters")]
 impl AUParameterNode {

@@ -13,6 +13,7 @@ mod private_LARightUI {
 }
 
 /// Category "UI" on [`LARight`].
+///
 /// Groups methods that control aspects of the UI used for authorizing a right
 #[doc(alias = "UI")]
 pub unsafe trait LARightUI: ClassType + Sized + private_LARightUI::Sealed {

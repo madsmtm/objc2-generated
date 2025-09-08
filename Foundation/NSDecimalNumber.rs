@@ -431,6 +431,7 @@ impl NSDecimalNumberHandler {
 }
 
 /// NSDecimalNumberExtensions.
+///
 /// *********    Extensions to other classes        ******
 #[cfg(feature = "NSValue")]
 impl NSNumber {

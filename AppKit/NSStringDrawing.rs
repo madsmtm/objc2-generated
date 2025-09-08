@@ -237,6 +237,7 @@ mod private_NSStringDrawingDeprecated {
 }
 
 /// Category on [`NSString`].
+///
 /// ********************** Deprecated ***********************
 pub unsafe trait NSStringDrawingDeprecated:
     ClassType + Sized + private_NSStringDrawingDeprecated::Sealed

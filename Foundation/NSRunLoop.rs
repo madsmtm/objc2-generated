@@ -148,6 +148,7 @@ mod private_NSObjectNSDelayedPerforming {
 }
 
 /// Category "NSDelayedPerforming" on [`NSObject`].
+///
 /// **************     Delayed perform     *****************
 #[doc(alias = "NSDelayedPerforming")]
 pub unsafe trait NSObjectNSDelayedPerforming:

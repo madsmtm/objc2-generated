@@ -735,6 +735,7 @@ extern_conformance!(
 );
 
 /// NSFileContents.
+///
 /// * File Contents **
 impl NSPasteboard {
     extern_methods!(

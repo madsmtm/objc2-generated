@@ -44,6 +44,7 @@ extern_protocol!(
 );
 
 /// NSFileProviderService.
+///
 /// A file provider can override the method in this category to return service
 /// sources that provide custom communication channels to client applications.
 /// The service sources must be tied to the item identified by

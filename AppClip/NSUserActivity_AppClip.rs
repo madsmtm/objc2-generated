@@ -10,6 +10,7 @@ mod private_NSUserActivityAppClip {
 }
 
 /// Category "AppClip" on [`NSUserActivity`].
+///
 /// App clip category for NSUserActivity.
 #[doc(alias = "AppClip")]
 pub unsafe trait NSUserActivityAppClip:

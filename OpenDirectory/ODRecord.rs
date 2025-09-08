@@ -570,6 +570,7 @@ impl ODRecord {
 }
 
 /// ODRecordGroupExtensions.
+///
 /// Record extensions for checking and modifying group membership.
 impl ODRecord {
     extern_methods!(

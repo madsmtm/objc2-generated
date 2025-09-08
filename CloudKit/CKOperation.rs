@@ -253,6 +253,7 @@ impl CKOperationConfiguration {
 }
 
 /// CKOperationDeprecated.
+///
 /// These deprecated properties now read and write from the CKOperation's configuration
 impl CKOperation {
     extern_methods!(

@@ -332,6 +332,7 @@ impl AVAudioSession {
 }
 
 /// AVAudioSessionHardwareConfiguration.
+///
 /// this category deals with the set of properties that reflect the current state of
 /// audio hardware in the current route.  Applications whose functionality depends on these
 /// properties should reevaluate them any time the route changes.

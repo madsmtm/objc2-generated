@@ -270,6 +270,7 @@ extern "C" {
 }
 
 /// CIRAWFilter.
+///
 /// CIRAWFilter is a category of CIFilter which returns a CIFilter initialized with a RAW image. It allows the user to influence key aspects of the raw processing, such as white balance, exposure, sharpening or boost.
 #[cfg(feature = "CIFilter")]
 impl CIFilter {

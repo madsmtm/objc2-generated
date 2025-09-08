@@ -952,6 +952,7 @@ impl AVURLAsset {
 }
 
 /// AVURLAssetNSItemProvider.
+///
 /// AVURLAssets can be shared through any interface that supports passing NSItemProviders. Note that only AVURLAssets with file URLs can be added to NSItemProviders. Attempting to share assets with non file URLs will result in an error.
 ///
 /// AVURLAssets can be retrieved from NSItemProviders by directly requesting an AVURLAsset through -[NSItemProvider loadObjectOfClass:completionHandler:]. Requesting data representations of AVURLAssets is not supported. File representations of AVURLAssets will be sent without copying the underlying media and the receiver will be extended readonly sandbox access to the sender's original URL until the AVURLAsset is deallocated. Use of NSFileCoordinator and NSFilePresenter is recommended for both the sender and receive to coordinate possible changes in the file's state once sharing has been completed.

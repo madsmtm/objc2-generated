@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// MLComputeDevice.
+///
 /// MLModel (MLComputeDevice)
 ///
 /// Class with utilties for getting the available compute devices.

@@ -1144,6 +1144,7 @@ extern_conformance!(
 );
 
 /// XCUIElementKeyboardEvents.
+///
 /// Events that can be synthesized relative to an XCUIElement object. When an event API is called, the element
 /// will be resolved. If zero or multiple matches are found, an error will be raised.
 impl XCUIElement {
@@ -1340,6 +1341,7 @@ impl XCUIElement {
 }
 
 /// XCUIElementTypeSlider.
+///
 /// This category on XCUIElement provides functionality for automating UISlider and NSSlider.
 impl XCUIElement {
     extern_methods!(

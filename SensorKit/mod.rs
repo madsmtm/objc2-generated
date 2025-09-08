@@ -2273,6 +2273,7 @@ impl SRKeyboardMetrics {
 }
 
 /// PositionalMetrics.
+///
 /// Probability metrics for each character in a word in their respective positions (first, second, third, fourth, fifth, and the rest)
 impl SRKeyboardMetrics {
     extern_methods!(
@@ -2389,6 +2390,7 @@ unsafe impl RefEncode for SRKeyboardMetricsSentimentCategory {
 }
 
 /// SentimentCounts.
+///
 /// These metrics describe the number of words and emoji of a particular category typed during
 /// a keyboard session. Words and emoji may be counted in multiple categories.
 impl SRKeyboardMetrics {

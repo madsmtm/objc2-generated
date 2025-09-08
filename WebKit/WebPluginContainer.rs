@@ -14,6 +14,7 @@ mod private_NSObjectWebPlugInContainer {
 }
 
 /// Category "WebPlugInContainer" on [`NSObject`].
+///
 /// This informal protocol enables a plug-in to request that its containing application
 /// perform certain operations.
 #[doc(alias = "WebPlugInContainer")]

@@ -190,6 +190,7 @@ impl SFAuthorizationPluginView {
 }
 
 /// SFHostControl.
+///
 /// Methods called by the AuthorizationPlugin that instantiated the subclass or by the subclass.
 impl SFAuthorizationPluginView {
     extern_methods!(

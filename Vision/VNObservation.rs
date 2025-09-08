@@ -357,6 +357,7 @@ impl VNClassificationObservation {
 }
 
 /// PrecisionRecallAdditions.
+///
 /// VNClassificationObservation mave have precision/recall curves which can be used to decide on an "optimal" operation point.
 /// Precision is a value in the range of [0..1] which represents the fraction of relevant instances among the retrieved instances.
 /// Recall is a value in the range of [0..1] which represents the fraction of relevant instances that have been retrieved over the total amount of relevant instances.

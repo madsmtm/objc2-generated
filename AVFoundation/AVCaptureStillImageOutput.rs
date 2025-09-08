@@ -321,6 +321,7 @@ impl AVCaptureAutoExposureBracketedStillImageSettings {
 }
 
 /// AVCaptureStillImageOutputBracketedCapture.
+///
 /// A category of methods for bracketed still image capture.
 ///
 ///

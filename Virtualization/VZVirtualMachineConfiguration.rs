@@ -384,6 +384,7 @@ impl VZVirtualMachineConfiguration {
 }
 
 /// VZVirtualMachineConfigurationValidation.
+///
 /// Virtual machine configuration runtime validation.
 impl VZVirtualMachineConfiguration {
     extern_methods!(

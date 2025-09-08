@@ -99,6 +99,7 @@ impl NSURLCredential {
 }
 
 /// NSInternetPassword.
+///
 /// This category defines the methods available to an NSURLCredential created to represent an internet password credential.  These are most commonly used for resources that require a username and password combination.
 impl NSURLCredential {
     extern_methods!(
@@ -174,6 +175,7 @@ impl NSURLCredential {
 }
 
 /// NSClientCertificate.
+///
 /// This category defines the methods available to an NSURLCredential created to represent a client certificate credential.  Client certificates are commonly stored on the users computer in the keychain and must be presented to the server during a handshake.
 impl NSURLCredential {
     extern_methods!(
