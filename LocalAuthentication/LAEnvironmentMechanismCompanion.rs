@@ -30,6 +30,8 @@ impl LAEnvironmentMechanismCompanion {
     extern_methods!(
         #[cfg(feature = "LACompanionType")]
         /// Type of the companion.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> LACompanionType;
@@ -42,6 +44,8 @@ impl LAEnvironmentMechanismCompanion {
         /// `stateHash`is not
         /// `nil`and
         /// it changes whenever the set of paired companions of this type is changed.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;

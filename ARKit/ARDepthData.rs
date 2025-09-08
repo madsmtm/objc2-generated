@@ -64,6 +64,8 @@ impl ARDepthData {
         #[cfg(feature = "objc2-core-video")]
         /// A pixel buffer that contains per-pixel depth data (in meters).
         ///
+        /// This property is not atomic.
+        ///
         /// # Safety
         ///
         /// This is not retained internally, you must ensure the object is still alive.
@@ -75,6 +77,8 @@ impl ARDepthData {
         /// A pixel buffer containing the confidence level for each depth value in the `depthMap`.
         ///
         /// See: ARConfidenceLevel
+        ///
+        /// This property is not atomic.
         ///
         /// # Safety
         ///

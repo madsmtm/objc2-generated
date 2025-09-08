@@ -48,6 +48,8 @@ impl LAEnvironmentState {
         /// Information about biometric authentication (Touch ID, Face ID or Optic ID).
         ///
         /// `nil`if biometry is not supported by this device.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(biometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn biometry(&self) -> Option<Retained<LAEnvironmentMechanismBiometry>>;
@@ -59,6 +61,8 @@ impl LAEnvironmentState {
         /// Information about local user password (on macOS) or passcode (on embedded platforms).
         ///
         /// `nil`if user password or passcode is not supported by this device.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(userPassword))]
         #[unsafe(method_family = none)]
         pub unsafe fn userPassword(&self) -> Option<Retained<LAEnvironmentMechanismUserPassword>>;
@@ -76,6 +80,8 @@ impl LAEnvironmentState {
         /// has paired multiple Apple Watch devices for companion authentication, the array will contain only one
         /// `LAEnvironmentMechanimsCompanion`instance of type
         /// `LACompanionTypeWatch.`
+        ///
+        /// This property is not atomic.
         #[unsafe(method(companions))]
         #[unsafe(method_family = none)]
         pub unsafe fn companions(&self) -> Retained<NSArray<LAEnvironmentMechanismCompanion>>;
@@ -86,6 +92,8 @@ impl LAEnvironmentState {
         /// This property aggregates
         /// `biometry,``userPassword,``companions`and any future
         /// authentication mechanisms.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(allMechanisms))]
         #[unsafe(method_family = none)]
         pub unsafe fn allMechanisms(&self) -> Retained<NSArray<LAEnvironmentMechanism>>;

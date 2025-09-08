@@ -1373,16 +1373,22 @@ impl AVCaptionRuby {
         ) -> Retained<Self>;
 
         /// The ruby text
+        ///
+        /// This property is not atomic.
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// The position of ruby text with respect to the ruby base.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> AVCaptionRubyPosition;
 
         /// The alignment of ruby text.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> AVCaptionRubyAlignment;

@@ -30,6 +30,8 @@ extern_conformance!(
 impl HMHomeAccessControl {
     extern_methods!(
         /// Specifies if the user has administrative privileges for the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isAdministrator))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAdministrator(&self) -> bool;

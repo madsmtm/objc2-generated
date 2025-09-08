@@ -93,12 +93,16 @@ impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         /// The value of the characteristic that triggers the event.
         /// A value of nil corresponds to any change in the value of the characteristic.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(triggerValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerValue(&self) -> Option<Retained<TriggerValueType>>;
@@ -207,6 +211,8 @@ impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
@@ -219,6 +225,8 @@ impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
 
         /// The value of the characteristic that triggers the event.
         /// A value of nil corresponds to any change in the value of the characteristic.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(triggerValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerValue(&self) -> Option<Retained<TriggerValueType>>;

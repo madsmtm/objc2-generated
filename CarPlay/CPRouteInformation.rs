@@ -49,36 +49,48 @@ impl CPRouteInformation {
 
         #[cfg(feature = "CPManeuver")]
         /// maneuvers is an array of CPManeuver objects, each describes a single maneuver.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(maneuvers))]
         #[unsafe(method_family = none)]
         pub unsafe fn maneuvers(&self) -> Retained<NSArray<CPManeuver>>;
 
         #[cfg(feature = "CPLaneGuidance")]
         /// laneGuidances is an array of CPLaneGuidance objects, each describes a single lane guidance.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(laneGuidances))]
         #[unsafe(method_family = none)]
         pub unsafe fn laneGuidances(&self) -> Retained<NSArray<CPLaneGuidance>>;
 
         #[cfg(feature = "CPManeuver")]
         /// currentManeuvers is an array of CPManeuver objects, describing the current maneuvers.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentManeuvers))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentManeuvers(&self) -> Retained<NSArray<CPManeuver>>;
 
         #[cfg(feature = "CPLaneGuidance")]
         /// currentLaneGuidance is a CPLaneGuidance object, describing the current lane guidance.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentLaneGuidance))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentLaneGuidance(&self) -> Retained<CPLaneGuidance>;
 
         #[cfg(feature = "CPTravelEstimates")]
         /// tripTravelEstimates is a CPTravelEstimates object, describing the travel estimates for the current trip.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(tripTravelEstimates))]
         #[unsafe(method_family = none)]
         pub unsafe fn tripTravelEstimates(&self) -> Retained<CPTravelEstimates>;
 
         #[cfg(feature = "CPTravelEstimates")]
         /// maneuverTravelEstimates is a CPTravelEstimates object, describing the travel estimates for the first maneuver in the list of current maneuvers.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(maneuverTravelEstimates))]
         #[unsafe(method_family = none)]
         pub unsafe fn maneuverTravelEstimates(&self) -> Retained<CPTravelEstimates>;

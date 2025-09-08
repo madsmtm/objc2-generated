@@ -40,6 +40,7 @@ impl CLMonitorConfiguration {
             feature = "CLMonitoringEvent",
             feature = "block2"
         ))]
+        /// This property is not atomic.
         #[unsafe(method(eventHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn eventHandler(

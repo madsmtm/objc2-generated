@@ -332,50 +332,62 @@ impl CLLocation {
             source_info: &CLLocationSourceInformation,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(coordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
+        /// This property is not atomic.
         #[unsafe(method(altitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
+        /// This property is not atomic.
         #[unsafe(method(ellipsoidalAltitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn ellipsoidalAltitude(&self) -> CLLocationDistance;
 
+        /// This property is not atomic.
         #[unsafe(method(horizontalAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalAccuracy(&self) -> CLLocationAccuracy;
 
+        /// This property is not atomic.
         #[unsafe(method(verticalAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalAccuracy(&self) -> CLLocationAccuracy;
 
+        /// This property is not atomic.
         #[unsafe(method(course))]
         #[unsafe(method_family = none)]
         pub unsafe fn course(&self) -> CLLocationDirection;
 
+        /// This property is not atomic.
         #[unsafe(method(courseAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn courseAccuracy(&self) -> CLLocationDirectionAccuracy;
 
+        /// This property is not atomic.
         #[unsafe(method(speed))]
         #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CLLocationSpeed;
 
+        /// This property is not atomic.
         #[unsafe(method(speedAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn speedAccuracy(&self) -> CLLocationSpeedAccuracy;
 
+        /// This property is not atomic.
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
 
+        /// This property is not atomic.
         #[unsafe(method(floor))]
         #[unsafe(method_family = none)]
         pub unsafe fn floor(&self) -> Option<Retained<CLFloor>>;
 
+        /// This property is not atomic.
         #[unsafe(method(sourceInformation))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceInformation(&self) -> Option<Retained<CLLocationSourceInformation>>;

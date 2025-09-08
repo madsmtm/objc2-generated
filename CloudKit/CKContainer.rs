@@ -78,6 +78,7 @@ impl CKContainer {
             container_identifier: &NSString,
         ) -> Retained<CKContainer>;
 
+        /// This property is not atomic.
         #[unsafe(method(containerIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn containerIdentifier(&self) -> Option<Retained<NSString>>;
@@ -108,16 +109,19 @@ impl CKContainer {
 impl CKContainer {
     extern_methods!(
         #[cfg(feature = "CKDatabase")]
+        /// This property is not atomic.
         #[unsafe(method(privateCloudDatabase))]
         #[unsafe(method_family = none)]
         pub unsafe fn privateCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
+        /// This property is not atomic.
         #[unsafe(method(publicCloudDatabase))]
         #[unsafe(method_family = none)]
         pub unsafe fn publicCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
+        /// This property is not atomic.
         #[unsafe(method(sharedCloudDatabase))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedCloudDatabase(&self) -> Retained<CKDatabase>;

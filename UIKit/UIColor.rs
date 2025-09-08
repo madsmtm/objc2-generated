@@ -294,12 +294,14 @@ impl UIColor {
         pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Retained<UIColor>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// This property is not atomic.
         #[unsafe(method(CGColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGColor(&self) -> Retained<CGColor>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
+        /// This property is not atomic.
         #[unsafe(method(CIColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn CIColor(&self) -> Retained<CIColor>;
@@ -415,6 +417,7 @@ impl UIColor {
             prominence: UIColorProminence,
         ) -> Retained<UIColor>;
 
+        /// This property is not atomic.
         #[unsafe(method(prominence))]
         #[unsafe(method_family = none)]
         pub unsafe fn prominence(&self) -> UIColorProminence;

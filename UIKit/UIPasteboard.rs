@@ -150,6 +150,7 @@ impl UIPasteboard {
         #[unsafe(method_family = none)]
         pub unsafe fn pasteboardWithUniqueName() -> Retained<UIPasteboard>;
 
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<UIPasteboardName>;
@@ -158,6 +159,7 @@ impl UIPasteboard {
         #[unsafe(method_family = none)]
         pub unsafe fn removePasteboardWithName(pasteboard_name: &UIPasteboardName);
 
+        /// This property is not atomic.
         #[unsafe(method(isPersistent))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPersistent(&self) -> bool;
@@ -167,10 +169,12 @@ impl UIPasteboard {
         #[unsafe(method_family = none)]
         pub unsafe fn setPersistent(&self, persistent: bool);
 
+        /// This property is not atomic.
         #[unsafe(method(changeCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeCount(&self) -> NSInteger;
 
+        /// This property is not atomic.
         #[unsafe(method(itemProviders))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemProviders(&self) -> Retained<NSArray<NSItemProvider>>;
@@ -207,6 +211,7 @@ impl UIPasteboard {
             expiration_date: Option<&NSDate>,
         );
 
+        /// This property is not atomic.
         #[unsafe(method(pasteboardTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn pasteboardTypes(&self) -> Retained<NSArray<NSString>>;
@@ -241,6 +246,7 @@ impl UIPasteboard {
         #[unsafe(method_family = none)]
         pub unsafe fn setData_forPasteboardType(&self, data: &NSData, pasteboard_type: &NSString);
 
+        /// This property is not atomic.
         #[unsafe(method(numberOfItems))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
@@ -283,6 +289,7 @@ impl UIPasteboard {
             item_set: Option<&NSIndexSet>,
         ) -> Option<Retained<NSArray<NSData>>>;
 
+        /// This property is not atomic.
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<NSDictionary<NSString, AnyObject>>>;
@@ -306,6 +313,7 @@ impl UIPasteboard {
             options: &NSDictionary<UIPasteboardOption, AnyObject>,
         );
 
+        /// This property is not atomic.
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Option<Retained<NSString>>;
@@ -317,6 +325,7 @@ impl UIPasteboard {
         #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: Option<&NSString>);
 
+        /// This property is not atomic.
         #[unsafe(method(strings))]
         #[unsafe(method_family = none)]
         pub unsafe fn strings(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -328,6 +337,7 @@ impl UIPasteboard {
         #[unsafe(method_family = none)]
         pub unsafe fn setStrings(&self, strings: Option<&NSArray<NSString>>);
 
+        /// This property is not atomic.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
@@ -339,6 +349,7 @@ impl UIPasteboard {
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
+        /// This property is not atomic.
         #[unsafe(method(URLs))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLs(&self) -> Option<Retained<NSArray<NSURL>>>;
@@ -351,6 +362,7 @@ impl UIPasteboard {
         pub unsafe fn setURLs(&self, ur_ls: Option<&NSArray<NSURL>>);
 
         #[cfg(feature = "UIImage")]
+        /// This property is not atomic.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
@@ -364,6 +376,7 @@ impl UIPasteboard {
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
+        /// This property is not atomic.
         #[unsafe(method(images))]
         #[unsafe(method_family = none)]
         pub unsafe fn images(&self) -> Option<Retained<NSArray<UIImage>>>;
@@ -377,6 +390,7 @@ impl UIPasteboard {
         pub unsafe fn setImages(&self, images: Option<&NSArray<UIImage>>);
 
         #[cfg(feature = "UIColor")]
+        /// This property is not atomic.
         #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
@@ -390,6 +404,7 @@ impl UIPasteboard {
         pub unsafe fn setColor(&self, color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
+        /// This property is not atomic.
         #[unsafe(method(colors))]
         #[unsafe(method_family = none)]
         pub unsafe fn colors(&self) -> Option<Retained<NSArray<UIColor>>>;
@@ -402,18 +417,22 @@ impl UIPasteboard {
         #[unsafe(method_family = none)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray<UIColor>>);
 
+        /// This property is not atomic.
         #[unsafe(method(hasStrings))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasStrings(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(hasURLs))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasURLs(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(hasImages))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasImages(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(hasColors))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasColors(&self) -> bool;

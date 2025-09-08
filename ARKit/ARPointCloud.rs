@@ -42,11 +42,15 @@ extern_conformance!(
 impl ARPointCloud {
     extern_methods!(
         /// The number of points in the point cloud.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// The 3D point identifiers comprising the point cloud.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(identifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifiers(&self) -> NonNull<u64>;

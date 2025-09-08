@@ -73,16 +73,22 @@ extern_conformance!(
 impl HKVisionPrescription {
     extern_methods!(
         /// A vision prescription type (glasses or contacts)
+        ///
+        /// This property is not atomic.
         #[unsafe(method(prescriptionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn prescriptionType(&self) -> HKVisionPrescriptionType;
 
         /// The date the prescription was issued
+        ///
+        /// This property is not atomic.
         #[unsafe(method(dateIssued))]
         #[unsafe(method_family = none)]
         pub unsafe fn dateIssued(&self) -> Retained<NSDate>;
 
         /// The date the prescription will expire
+        ///
+        /// This property is not atomic.
         #[unsafe(method(expirationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;

@@ -76,12 +76,16 @@ impl HMPresenceEvent {
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceEventType The event type that will trigger the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(presenceEventType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceEventType(&self) -> HMPresenceEventType;
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceUserType The user type whose presence will trigger the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(presenceUserType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceUserType(&self) -> HMPresenceEventUserType;
@@ -149,6 +153,8 @@ impl HMMutablePresenceEvent {
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceEventType The event type that will trigger the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(presenceEventType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceEventType(&self) -> HMPresenceEventType;
@@ -161,6 +167,8 @@ impl HMMutablePresenceEvent {
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceUserType The user type whose presence will trigger the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(presenceUserType))]
         #[unsafe(method_family = none)]
         pub unsafe fn presenceUserType(&self) -> HMPresenceEventUserType;

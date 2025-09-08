@@ -35,6 +35,8 @@ impl CKDatabaseOperation {
         ///
         /// is used.
         /// This will also set the container property of the operation's configuration to match the container of the passed-in database.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(database))]
         #[unsafe(method_family = none)]
         pub unsafe fn database(&self) -> Option<Retained<CKDatabase>>;

@@ -84,33 +84,40 @@ extern_conformance!(
 impl AVVideoCompositionRenderContext {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(renderTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderTransform(&self) -> CGAffineTransform;
 
+        /// This property is not atomic.
         #[unsafe(method(renderScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderScale(&self) -> c_float;
 
+        /// This property is not atomic.
         #[unsafe(method(pixelAspectRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelAspectRatio(&self) -> AVPixelAspectRatio;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(edgeWidths))]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeWidths(&self) -> AVEdgeWidths;
 
+        /// This property is not atomic.
         #[unsafe(method(highQualityRendering))]
         #[unsafe(method_family = none)]
         pub unsafe fn highQualityRendering(&self) -> bool;
 
         #[cfg(feature = "AVVideoComposition")]
+        /// This property is not atomic.
         #[unsafe(method(videoComposition))]
         #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Retained<AVVideoComposition>;
@@ -157,12 +164,16 @@ impl AVVideoCompositionRenderHint {
     extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The start time of the upcoming composition requests.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(startCompositionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn startCompositionTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// The end time of the upcoming composition requests.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(endCompositionTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn endCompositionTime(&self) -> CMTime;
@@ -193,12 +204,14 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositing?language=objc)
     pub unsafe trait AVVideoCompositing: NSObjectProtocol {
+        /// This property is not atomic.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         unsafe fn sourcePixelBufferAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// This property is not atomic.
         #[unsafe(method(requiredPixelBufferAttributesForRenderContext))]
         #[unsafe(method_family = none)]
         unsafe fn requiredPixelBufferAttributesForRenderContext(
@@ -251,6 +264,8 @@ extern_protocol!(
         ///
         ///
         /// Controls whether the client will receive frames that contain wide color information. Care should be taken to avoid clamping.
+        ///
+        /// This property is not atomic.
         #[optional]
         #[unsafe(method(supportsWideColorSourceFrames))]
         #[unsafe(method_family = none)]
@@ -262,11 +277,14 @@ extern_protocol!(
         /// Controls whether the client will receive frames that contain HDR information.
         /// If this field is omitted or set to NO, the framework will convert HDR frames to standard dynamic range (SDR) with BT.709 transfer function before sending to the client.
         /// If this field is set to YES, the value of supportsWideColorSourceFrames will be ignored and assumed to be YES.
+        ///
+        /// This property is not atomic.
         #[optional]
         #[unsafe(method(supportsHDRSourceFrames))]
         #[unsafe(method_family = none)]
         unsafe fn supportsHDRSourceFrames(&self) -> bool;
 
+        /// This property is not atomic.
         #[optional]
         #[unsafe(method(canConformColorOfSourceFrames))]
         #[unsafe(method_family = none)]

@@ -37,17 +37,23 @@ impl HMZone {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the zone.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMRoom")]
         /// Array of HMRoom objects that correspond to the rooms contained in this zone.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(rooms))]
         #[unsafe(method_family = none)]
         pub unsafe fn rooms(&self) -> Retained<NSArray<HMRoom>>;
 
         /// A unique identifier for the zone.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;

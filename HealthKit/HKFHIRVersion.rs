@@ -46,24 +46,30 @@ extern_conformance!(
 
 impl HKFHIRVersion {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(majorVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn majorVersion(&self) -> NSInteger;
 
+        /// This property is not atomic.
         #[unsafe(method(minorVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn minorVersion(&self) -> NSInteger;
 
+        /// This property is not atomic.
         #[unsafe(method(patchVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn patchVersion(&self) -> NSInteger;
 
         #[cfg(feature = "HKFHIRRelease")]
+        /// This property is not atomic.
         #[unsafe(method(FHIRRelease))]
         #[unsafe(method_family = none)]
         pub unsafe fn FHIRRelease(&self) -> Retained<HKFHIRRelease>;
 
         /// A string representation in the format "{major}.{minor}.{patch}".
+        ///
+        /// This property is not atomic.
         #[unsafe(method(stringRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;

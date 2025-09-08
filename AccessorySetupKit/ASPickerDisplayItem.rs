@@ -58,18 +58,24 @@ extern_conformance!(
 impl ASPickerDisplayItem {
     extern_methods!(
         /// The accessory name to display in the picker.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-ui-kit")]
         /// An image of the accessory to display in the picker.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(productImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn productImage(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "ASDiscoveryDescriptor")]
         /// A descriptor that the picker uses to determine which discovered accessories to display.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<ASDiscoveryDescriptor>;
@@ -78,6 +84,8 @@ impl ASPickerDisplayItem {
         /// Options to allow renaming a matched accessory.
         ///
         /// To permit renaming, include ``SetupOptions-swift.struct/rename`` in the ``setupOptions-c.property``
+        ///
+        /// This property is not atomic.
         #[unsafe(method(renameOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn renameOptions(&self) -> ASAccessoryRenameOptions;
@@ -89,6 +97,8 @@ impl ASPickerDisplayItem {
         pub unsafe fn setRenameOptions(&self, rename_options: ASAccessoryRenameOptions);
 
         /// Custom setup options for the accessory.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(setupOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn setupOptions(&self) -> ASPickerDisplayItemSetupOptions;
@@ -150,6 +160,8 @@ extern_conformance!(
 impl ASMigrationDisplayItem {
     extern_methods!(
         /// The Bluetooth identifier of the accessory to migrate.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(peripheralIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn peripheralIdentifier(&self) -> Option<Retained<NSUUID>>;
@@ -162,6 +174,8 @@ impl ASMigrationDisplayItem {
         pub unsafe fn setPeripheralIdentifier(&self, peripheral_identifier: Option<&NSUUID>);
 
         /// The Wi-Fi hotspot SSID of the accessory to migrate.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(hotspotSSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn hotspotSSID(&self) -> Option<Retained<NSString>>;

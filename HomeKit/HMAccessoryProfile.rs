@@ -30,18 +30,24 @@ impl HMAccessoryProfile {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// A unique identifier for the profile.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HMService")]
         /// Collection of services representing the profile.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(services))]
         #[unsafe(method_family = none)]
         pub unsafe fn services(&self) -> Retained<NSArray<HMService>>;
 
         #[cfg(feature = "HMAccessory")]
         /// Accessory implementing the profile.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(accessory))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessory(&self) -> Option<Retained<HMAccessory>>;

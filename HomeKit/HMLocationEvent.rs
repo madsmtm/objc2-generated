@@ -73,6 +73,8 @@ impl HMLocationEvent {
         #[cfg(feature = "objc2-core-location")]
         /// Region on which events are triggered based on the properties notifyOnEntry and notifyOnExit.
         /// This property will be nil when an application is not authorized for location services.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(region))]
         #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Option<Retained<CLRegion>>;
@@ -161,6 +163,8 @@ impl HMMutableLocationEvent {
         #[cfg(feature = "objc2-core-location")]
         /// Region on which events are triggered based on the properties notifyOnEntry and notifyOnExit.
         /// This property will be nil when an application is not authorized for location services.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(region))]
         #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Option<Retained<CLRegion>>;

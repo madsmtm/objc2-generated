@@ -40,6 +40,7 @@ impl CKFetchSubscriptionsOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
+        /// This property is not atomic.
         #[unsafe(method(subscriptionIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionIDs(&self) -> Option<Retained<NSArray<CKSubscriptionID>>>;
@@ -63,6 +64,8 @@ impl CKFetchSubscriptionsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perSubscriptionCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionCompletionBlock(
@@ -106,6 +109,8 @@ impl CKFetchSubscriptionsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchSubscriptionCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSubscriptionCompletionBlock(

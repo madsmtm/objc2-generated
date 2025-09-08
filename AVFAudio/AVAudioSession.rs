@@ -33,6 +33,8 @@ impl AVAudioSession {
         /// Get the list of categories available on the device.  Certain categories may be unavailable on
         /// particular devices.  For example, AVAudioSessionCategoryRecord will not be available on devices
         /// that have no support for audio input.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(availableCategories))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableCategories(&self) -> Retained<NSArray<AVAudioSessionCategory>>;
@@ -226,6 +228,7 @@ impl AVAudioSession {
             in_value: bool,
         ) -> Result<(), Retained<NSError>>;
 
+        /// This property is not atomic.
         #[unsafe(method(prefersNoInterruptionsFromSystemAlerts))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersNoInterruptionsFromSystemAlerts(&self) -> bool;
@@ -260,18 +263,23 @@ impl AVAudioSession {
             value: bool,
         ) -> Result<(), Retained<NSError>>;
 
+        /// This property is not atomic.
         #[unsafe(method(prefersEchoCancelledInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn prefersEchoCancelledInput(&self) -> bool;
 
         /// Returns YES if echo cancelled input is successfully enabled on an active session.
         /// Please see `prefersEchoCancelledInput` above for more details.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isEchoCancelledInputEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputEnabled(&self) -> bool;
 
         /// Query whether built-in mic / built-in speaker route supports echo cancellation for the session's given category and mode.
         /// Returns YES if device model supports echo cancellation and the audio category is PlayAndRecord and the mode is Default.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isEchoCancelledInputAvailable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputAvailable(&self) -> bool;

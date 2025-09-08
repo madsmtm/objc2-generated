@@ -32,10 +32,12 @@ impl CLMonitor {
             completion_handler: &block2::DynBlock<dyn Fn(NonNull<CLMonitor>)>,
         );
 
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
         #[unsafe(method(monitoredIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn monitoredIdentifiers(&self) -> Retained<NSArray<NSString>>;

@@ -48,6 +48,7 @@ impl CKFetchRecordZoneChangesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// This property is not atomic.
         #[unsafe(method(recordZoneIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneIDs(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
@@ -61,6 +62,7 @@ impl CKFetchRecordZoneChangesOperation {
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// This property is not atomic.
         #[unsafe(method(configurationsByRecordZoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationsByRecordZoneID(
@@ -93,6 +95,8 @@ impl CKFetchRecordZoneChangesOperation {
         /// `recordZoneFetchCompletionBlock`invocation.
         ///
         /// `fetchAllChanges`is YES by default
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchAllChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
@@ -109,6 +113,8 @@ impl CKFetchRecordZoneChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[unsafe(method(recordChangedBlock))]
         #[unsafe(method_family = none)]
@@ -134,6 +140,8 @@ impl CKFetchRecordZoneChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recordWasChangedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordWasChangedBlock(
@@ -158,6 +166,8 @@ impl CKFetchRecordZoneChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recordWithIDWasDeletedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordWithIDWasDeletedBlock(
@@ -199,6 +209,8 @@ impl CKFetchRecordZoneChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recordZoneChangeTokensUpdatedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneChangeTokensUpdatedBlock(
@@ -231,6 +243,7 @@ impl CKFetchRecordZoneChangesOperation {
             feature = "CKServerChangeToken",
             feature = "block2"
         ))]
+        /// This property is not atomic.
         #[unsafe(method(recordZoneFetchCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneFetchCompletionBlock(
@@ -283,6 +296,8 @@ impl CKFetchRecordZoneChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchRecordZoneChangesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordZoneChangesCompletionBlock(
@@ -331,6 +346,7 @@ impl CKFetchRecordZoneChangesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(optionsByRecordZoneID))]
         #[unsafe(method_family = none)]

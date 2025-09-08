@@ -783,6 +783,8 @@ impl AVAssetWriterInputPassDescription {
         ///
         ///
         /// The value of this property is suitable for using as a parameter for -[AVAssetReaderOutput resetForReadingTimeRanges:].
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sourceTimeRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTimeRanges(&self) -> Retained<NSArray<NSValue>>;

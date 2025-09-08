@@ -24,6 +24,7 @@ extern_conformance!(
 
 impl VSAppleSubscription {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(customerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn customerID(&self) -> Retained<NSString>;
@@ -33,6 +34,7 @@ impl VSAppleSubscription {
         #[unsafe(method_family = none)]
         pub unsafe fn setCustomerID(&self, customer_id: &NSString);
 
+        /// This property is not atomic.
         #[unsafe(method(productCodes))]
         #[unsafe(method_family = none)]
         pub unsafe fn productCodes(&self) -> Retained<NSArray<NSString>>;

@@ -34,6 +34,8 @@ impl MLComputePlanCost {
         pub unsafe fn new() -> Retained<Self>;
 
         /// The estimated workload of executing the operation over the total model execution. The value is between [0.0, 1.0].
+        ///
+        /// This property is not atomic.
         #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_double;

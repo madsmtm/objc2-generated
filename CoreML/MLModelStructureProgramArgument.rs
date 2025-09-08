@@ -35,6 +35,8 @@ impl MLModelStructureProgramArgument {
 
         #[cfg(feature = "MLModelStructureProgramBinding")]
         /// The array of bindings.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bindings))]
         #[unsafe(method_family = none)]
         pub unsafe fn bindings(&self) -> Retained<NSArray<MLModelStructureProgramBinding>>;

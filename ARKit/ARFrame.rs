@@ -126,18 +126,24 @@ impl ARFrame {
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// A timestamp identifying the frame.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-core-video")]
         /// The frame’s captured image.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(capturedImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn capturedImage(&self) -> Retained<CVPixelBuffer>;
 
         #[cfg(feature = "objc2-foundation")]
         /// A dictionary of EXIF metadata for the captured image.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(exifData))]
         #[unsafe(method_family = none)]
         pub unsafe fn exifData(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -151,6 +157,8 @@ impl ARFrame {
         /// a grainy look and varies with light conditions.
         /// The variations are stored along the depth dimension of the camera grain texture
         /// and can be selected at runtime using the camera grain intensity of the current frame.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(cameraGrainTexture))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraGrainTexture(&self)
@@ -163,6 +171,8 @@ impl ARFrame {
         /// a grainy look and varies with light conditions.
         /// The camera grain intensity can be used to select a texture slice from the frames
         /// camera grain texture.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(cameraGrainIntensity))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraGrainIntensity(&self) -> c_float;
@@ -171,12 +181,16 @@ impl ARFrame {
         /// The frame’s captured depth data.
         ///
         /// Depth data is only provided with face tracking on frames where depth data was captured.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(capturedDepthData))]
         #[unsafe(method_family = none)]
         pub unsafe fn capturedDepthData(&self) -> Option<Retained<AVDepthData>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// A timestamp identifying the depth data.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(capturedDepthDataTimestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn capturedDepthDataTimestamp(&self) -> NSTimeInterval;
@@ -185,12 +199,16 @@ impl ARFrame {
         /// The camera used to capture the frame’s image.
         ///
         /// The camera provides the device’s position and orientation as well as camera parameters.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(camera))]
         #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Retained<ARCamera>;
 
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// A list of anchors in the scene.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(anchors))]
         #[unsafe(method_family = none)]
         pub unsafe fn anchors(&self) -> Retained<NSArray<ARAnchor>>;
@@ -199,6 +217,8 @@ impl ARFrame {
         /// A light estimate representing the light in the scene.
         ///
         /// Returns nil if there is no light estimation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(lightEstimate))]
         #[unsafe(method_family = none)]
         pub unsafe fn lightEstimate(&self) -> Option<Retained<ARLightEstimate>>;
@@ -207,6 +227,8 @@ impl ARFrame {
         /// Feature points in the scene with respect to the frame’s origin.
         ///
         /// The feature points are only provided for configurations using world tracking.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(rawFeaturePoints))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawFeaturePoints(&self) -> Option<Retained<ARPointCloud>>;
@@ -215,6 +237,8 @@ impl ARFrame {
         ///
         /// This can be used to identify the state of the world map for the visible area and if additional scanning
         /// should be done before saving a world map.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(worldMappingStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn worldMappingStatus(&self) -> ARWorldMappingStatus;
@@ -228,6 +252,8 @@ impl ARFrame {
         /// See: ARSegmentationClass
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(segmentationBuffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentationBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
@@ -240,6 +266,8 @@ impl ARFrame {
         /// See: -[ARConfiguration setFrameSemantics:]
         ///
         /// See: -[ARFrame segmentationBuffer]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(estimatedDepthData))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedDepthData(&self) -> Option<Retained<CVPixelBuffer>>;
@@ -248,12 +276,16 @@ impl ARFrame {
         /// A detected body in the current frame.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(detectedBody))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectedBody(&self) -> Option<Retained<ARBody2D>>;
 
         #[cfg(feature = "ARGeoTrackingTypes")]
         /// The status of geo tracking.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(geoTrackingStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn geoTrackingStatus(&self) -> Option<Retained<ARGeoTrackingStatus>>;
@@ -264,6 +296,8 @@ impl ARFrame {
         /// See: ARFrameSemanticSceneDepth.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sceneDepth))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneDepth(&self) -> Option<Retained<ARDepthData>>;
@@ -274,6 +308,8 @@ impl ARFrame {
         /// See: ARFrameSemanticSmoothedSceneDepth.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(smoothedSceneDepth))]
         #[unsafe(method_family = none)]
         pub unsafe fn smoothedSceneDepth(&self) -> Option<Retained<ARDepthData>>;

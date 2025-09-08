@@ -273,26 +273,36 @@ impl HKStateOfMind {
         /// Feeling types can be understood by the timeframe considered to create this log, possibly indicated by the context used to create it.
         /// For example, a `momentary emotion` log might be in response to 'how are you feeling right now?' while a `daily mood` log
         /// might be in response to 'how have you been feeling today?'.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(kind))]
         #[unsafe(method_family = none)]
         pub unsafe fn kind(&self) -> HKStateOfMindKind;
 
         /// A signed, self-reported measure of how positive or negative one is feeling, on a continuous scale from -1 to +1.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(valence))]
         #[unsafe(method_family = none)]
         pub unsafe fn valence(&self) -> c_double;
 
         /// A general region of pleasantness based on this sample's valence value.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(valenceClassification))]
         #[unsafe(method_family = none)]
         pub unsafe fn valenceClassification(&self) -> HKStateOfMindValenceClassification;
 
         /// Zero or more specific sentiments selected to represent a felt experience.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(labels))]
         #[unsafe(method_family = none)]
         pub unsafe fn labels(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Zero or more facets of life with which this felt experience is associated.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(associations))]
         #[unsafe(method_family = none)]
         pub unsafe fn associations(&self) -> Retained<NSArray<NSNumber>>;

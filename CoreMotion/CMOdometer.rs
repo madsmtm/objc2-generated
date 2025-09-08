@@ -63,56 +63,68 @@ extern_conformance!(
 
 impl CMOdometerData {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
+        /// This property is not atomic.
         #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(deltaDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn deltaDistance(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(deltaDistanceAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn deltaDistanceAccuracy(&self) -> CLLocationAccuracy;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(speed))]
         #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CLLocationSpeed;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(speedAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn speedAccuracy(&self) -> CLLocationSpeedAccuracy;
 
+        /// This property is not atomic.
         #[unsafe(method(gpsDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn gpsDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(deltaAltitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn deltaAltitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(verticalAccuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalAccuracy(&self) -> CLLocationAccuracy;
 
+        /// This property is not atomic.
         #[unsafe(method(originDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn originDevice(&self) -> CMOdometerOriginDevice;
 
+        /// This property is not atomic.
         #[unsafe(method(slope))]
         #[unsafe(method_family = none)]
         pub unsafe fn slope(&self) -> Option<Retained<NSNumber>>;
 
+        /// This property is not atomic.
         #[unsafe(method(maxAbsSlope))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxAbsSlope(&self) -> Option<Retained<NSNumber>>;

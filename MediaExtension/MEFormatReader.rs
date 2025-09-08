@@ -111,6 +111,8 @@ impl MEFormatReaderInstantiationOptions {
         /// Enables support for parsing additional fragments
         ///
         /// If YES, requests that the MEFormatReader be configured to support calls to parseAdditionalFragments. By default the MEFormatReader does not support calls to parseAdditionalFragments.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(allowIncrementalFragmentParsing))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowIncrementalFragmentParsing(&self) -> bool;
@@ -277,6 +279,8 @@ impl MEFileInfo {
     extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The duration of the media asset if known, otherwise kCMTimeInvalid.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
@@ -290,6 +294,8 @@ impl MEFileInfo {
         /// Indicates if the media asset is capable of being extended by fragments or contains fragments
         ///
         /// See the MEFileInfoFragmentsStatus values for details of the return value. The value will default to MEFileInfoCouldNotContainFragments.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fragmentsStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn fragmentsStatus(&self) -> MEFileInfoFragmentsStatus;
@@ -534,6 +540,8 @@ impl METrackInfo {
         /// The media type of the track.
         ///
         /// This value is set through the class initializer.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> CMMediaType;
@@ -542,11 +550,15 @@ impl METrackInfo {
         /// An integer identifying the track within the media asset.
         ///
         /// The track ID is used to uniquely identify the track within the MEFormatReader. Track IDs must be unique within a media asset but do not need to be unique across assets. If a media format does not have a native concept of track IDs, track IDs may be assigned starting from 1. The track ID value of 0 is reserved to indicate an invalid track ID. This value is set through the class initializer.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(trackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         /// A BOOL value indicating whether the track is enabled by default.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
@@ -559,6 +571,8 @@ impl METrackInfo {
         /// The format descriptions for the track, as an NSArray.
         ///
         /// This value is set through the class initializer.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(formatDescriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn formatDescriptions(&self) -> Retained<NSArray>;
@@ -570,6 +584,8 @@ impl METrackInfo {
     extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The natural timescale of the track, as a CMTimeScale value.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(naturalTimescale))]
         #[unsafe(method_family = none)]
         pub unsafe fn naturalTimescale(&self) -> CMTimeScale;
@@ -583,6 +599,8 @@ impl METrackInfo {
         /// Returns the array of edit segments for the given track.
         ///
         /// Each NSValue in the array contains a CMTimeMapping object describing the track edit. The CMTimeMapping.target time ranges for successive edits must partition the time range from 0 to the track's duration. In other words, for edit index = 0 the CMTimeMapping.target.start must be kCMTimeZero, while for edit index > 0, the CMTimeMapping.target.start must match the CMTimeRangeGetEnd(CMTimeMapping.target) for edit (index - 1). It is valid for a track to have an empty trackEdits array; this means that there is nothing at all in the track and the track duration is zero. If this property is implemented for media asset formats that do not support edit segments, it can return nil.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(trackEdits))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackEdits(&self) -> Option<Retained<NSArray<NSValue>>>;
@@ -602,6 +620,8 @@ impl METrackInfo {
         /// Indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
         ///
         /// This property may be used by the MediaToolbox to group similar language tracks together or to match audio and caption tracks. If no language tag is indicated, this property should be set to nil.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(extendedLanguageTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
@@ -622,6 +642,8 @@ impl METrackInfo {
         /// Indicates the natural dimensions of the media data referenced by the track as a CGSize.
         ///
         /// This property is only valid for tracks with visual media types and should return CGSizeZero if implemented for other track types.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(naturalSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn naturalSize(&self) -> CGSize;
@@ -636,6 +658,8 @@ impl METrackInfo {
         /// Indicates the preferred affine display transform of the track media for visual display.
         ///
         /// Returns an CGAffineTransform representing the preferred affine transform of the track for visual display. This property is only valid for tracks with visual media types and should return CGAffineTransformIdentity if implemented for other track types.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(preferredTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
@@ -649,6 +673,8 @@ impl METrackInfo {
         /// The frame rate of the track, in frames per second, as a 32-bit floating point number.
         ///
         /// For field-based video tracks that carry one field per media sample, the value of this property is the field rate, not the frame rate. This information from this property may be used by the MediaToolbox to calculate the maximum playback speed.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(nominalFrameRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn nominalFrameRate(&self) -> f32;
@@ -661,6 +687,8 @@ impl METrackInfo {
         /// Indicates whether frame reordering occurs in the track.
         ///
         /// The value is YES if frame reordering occurs, NO otherwise. This property is only valid for tracks with video media type and should return NO for if implemented for other track types.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(requiresFrameReordering))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresFrameReordering(&self) -> bool;
@@ -1034,6 +1062,8 @@ impl MESampleCursorChunk {
         ) -> Retained<Self>;
 
         /// The MEByteSource to be used to read the data for the sample.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(byteSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn byteSource(&self) -> Retained<MEByteSource>;
@@ -1042,12 +1072,16 @@ impl MESampleCursorChunk {
         /// The offset location and length of the sample's chunk, in bytes, within the MEByteSource.
         ///
         /// The length should be set to 0 if there is no chunk associated with the sample.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(chunkStorageRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn chunkStorageRange(&self) -> AVSampleCursorStorageRange;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Provides information about the chunk of media samples.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(chunkInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn chunkInfo(&self) -> AVSampleCursorChunkInfo;
@@ -1056,6 +1090,8 @@ impl MESampleCursorChunk {
         /// The offset of the sample within the chunk, in samples.
         ///
         /// Index value 0 corresponds to the start of the chunk. You would step back this many samples to position the cursor at the start of the chunk. Subtract from the chunkInfo.chunkSampleCount field to obtain the number of samples to the end of the chunk.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sampleIndexWithinChunk))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleIndexWithinChunk(&self) -> CFIndex;
@@ -1115,11 +1151,15 @@ impl MESampleLocation {
 
         #[cfg(feature = "objc2-av-foundation")]
         /// The starting file offset and size in bytes of the sample.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sampleLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleLocation(&self) -> AVSampleCursorStorageRange;
 
         /// The MEByteSource to be used to read the data for the sample.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(byteSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn byteSource(&self) -> Retained<MEByteSource>;
@@ -1182,6 +1222,8 @@ impl MEEstimatedSampleLocation {
 
         #[cfg(feature = "objc2-av-foundation")]
         /// The estimated starting file offset and size in bytes of the sample.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(estimatedSampleLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedSampleLocation(&self) -> AVSampleCursorStorageRange;
@@ -1190,11 +1232,15 @@ impl MEEstimatedSampleLocation {
         /// The starting file offset and size in bytes of the the data necessary to provide an accurate sample location.
         ///
         /// The refinement data can be provided to the MESampleCursor method refineSampleLocation to determine the exact sample location.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(refinementDataLocation))]
         #[unsafe(method_family = none)]
         pub unsafe fn refinementDataLocation(&self) -> AVSampleCursorStorageRange;
 
         /// The MEByteSource to be used to read the data for the sample.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(byteSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn byteSource(&self) -> Retained<MEByteSource>;
@@ -1233,6 +1279,8 @@ impl MEHEVCDependencyInfo {
         /// YES if the sample is an HEVC 'TSA' picture, NO otherwise.
         ///
         /// Maps to the kCMSampleAttachmentKey_HEVCTemporalSubLayerAccess sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(hasTemporalSubLayerAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasTemporalSubLayerAccess(&self) -> bool;
@@ -1245,6 +1293,8 @@ impl MEHEVCDependencyInfo {
         /// YES if the sample is an HEVC 'STSA' picture, NO otherwise.
         ///
         /// Maps to the kCMSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(hasStepwiseTemporalSubLayerAccess))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasStepwiseTemporalSubLayerAccess(&self) -> bool;
@@ -1260,6 +1310,8 @@ impl MEHEVCDependencyInfo {
         /// The NAL unit type for HEVC 'sync' sample groups, or -1 if this information is not available.
         ///
         /// Maps to the kCMSampleAttachmentKey_HEVCSyncSampleNALUnitType sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(syncSampleNALUnitType))]
         #[unsafe(method_family = none)]
         pub unsafe fn syncSampleNALUnitType(&self) -> i16;
@@ -1294,6 +1346,8 @@ impl MEHEVCDependencyInfo {
         /// The HEVC temporal level, or -1 if this information is not available.
         ///
         /// Maps to the kCMHEVCTemporalLevelInfoKey_TemporalLevel sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(temporalLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn temporalLevel(&self) -> i16;
@@ -1306,6 +1360,8 @@ impl MEHEVCDependencyInfo {
         /// The HEVC profile space, or -1 if this information is not available.
         ///
         /// Maps to the kCMHEVCTemporalLevelInfoKey_ProfileSpace sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(profileSpace))]
         #[unsafe(method_family = none)]
         pub unsafe fn profileSpace(&self) -> i16;
@@ -1318,6 +1374,8 @@ impl MEHEVCDependencyInfo {
         /// The HEVC tier level flag, or -1 if this information is not available.
         ///
         /// Maps to the kCMHEVCTemporalLevelInfoKey_TierFlag sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(tierFlag))]
         #[unsafe(method_family = none)]
         pub unsafe fn tierFlag(&self) -> i16;
@@ -1330,6 +1388,8 @@ impl MEHEVCDependencyInfo {
         /// The HEVC profile index, or -1 if this information is not available.
         ///
         /// Maps to the kCMHEVCTemporalLevelInfoKey_ProfileIndex sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(profileIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn profileIndex(&self) -> i16;
@@ -1342,6 +1402,8 @@ impl MEHEVCDependencyInfo {
         /// The HEVC profile compatibility flags (4 bytes), or nil of this information is not available.
         ///
         /// Maps to the kCMHEVCTemporalLevelInfoKey_ProfileCompatibilityFlags sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(profileCompatibilityFlags))]
         #[unsafe(method_family = none)]
         pub unsafe fn profileCompatibilityFlags(&self) -> Option<Retained<NSData>>;
@@ -1359,6 +1421,8 @@ impl MEHEVCDependencyInfo {
         /// The HEVC constraint indicator flags (6 bytes), or nil of this information is not available.
         ///
         /// Maps to the kCMHEVCTemporalLevelInfoKey_ConstraintIndicatorFlags sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(constraintIndicatorFlags))]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintIndicatorFlags(&self) -> Option<Retained<NSData>>;
@@ -1376,6 +1440,8 @@ impl MEHEVCDependencyInfo {
         /// The HEVC level index, or -1 if this information is not available.
         ///
         /// Maps to the kCMHEVCTemporalLevelInfoKey_LevelIndex sample buffer attachment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(levelIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn levelIndex(&self) -> i16;
@@ -1419,6 +1485,8 @@ impl MEByteSource {
         /// The name of a MEByteSource's file.
         ///
         /// The name of the source file for the MEByteSource.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fileName))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileName(&self) -> Retained<NSString>;
@@ -1427,6 +1495,8 @@ impl MEByteSource {
         /// A UTType indicating the format of the MEByteSource's file.
         ///
         /// A UTType indicating the format of the source file for the MEByteSource.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(contentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentType(&self) -> Option<Retained<UTType>>;
@@ -1434,6 +1504,8 @@ impl MEByteSource {
         /// The length of the MEByteSource's file.
         ///
         /// The length in bytes of the source file for the MEByteSource, or 0 if that information is not available.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fileLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn fileLength(&self) -> i64;
@@ -1441,6 +1513,8 @@ impl MEByteSource {
         /// The array of related file names in the MEByteSource's parent directory.
         ///
         /// The array of related files within the MEByteSource's parent directory that are accessible to the MEByteSource. Only the relative file names are returned, not the paths. If no related files are available, returns an empty array.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(relatedFileNamesInSameDirectory))]
         #[unsafe(method_family = none)]
         pub unsafe fn relatedFileNamesInSameDirectory(&self) -> Retained<NSArray<NSString>>;

@@ -95,6 +95,7 @@ impl CKModifyRecordsOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
+        /// This property is not atomic.
         #[unsafe(method(recordsToSave))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordsToSave(&self) -> Option<Retained<NSArray<CKRecord>>>;
@@ -108,6 +109,7 @@ impl CKModifyRecordsOperation {
         pub unsafe fn setRecordsToSave(&self, records_to_save: Option<&NSArray<CKRecord>>);
 
         #[cfg(feature = "CKRecordID")]
+        /// This property is not atomic.
         #[unsafe(method(recordIDsToDelete))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordID>>>;
@@ -132,6 +134,8 @@ impl CKModifyRecordsOperation {
         /// `CKShare`record is always treated as
         /// `CKRecordSaveIfServerRecordUnchanged,`regardless of the
         /// `savePolicy`specified.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(savePolicy))]
         #[unsafe(method_family = none)]
         pub unsafe fn savePolicy(&self) -> CKRecordSavePolicy;
@@ -143,6 +147,8 @@ impl CKModifyRecordsOperation {
 
         /// This property is kept by the server to identify the last known request from this client.
         /// Multiple requests from the client with the same change token will be ignored by the server.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(clientChangeTokenData))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientChangeTokenData(&self) -> Option<Retained<NSData>>;
@@ -161,6 +167,8 @@ impl CKModifyRecordsOperation {
         /// Server-side write atomicity is only enforced on zones that have
         /// `CKRecordZoneCapabilityAtomic.`If
         /// `isAtomic`is YES, client-side checks are enforced regardless of the zone's capabilities.  (For example, if a record is malformed, and cannot be sent to the server, the client will forcibly fail all other records-to-be-modified in that zone)
+        ///
+        /// This property is not atomic.
         #[unsafe(method(atomic))]
         #[unsafe(method_family = none)]
         pub unsafe fn atomic(&self) -> bool;
@@ -180,6 +188,8 @@ impl CKModifyRecordsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perRecordProgressBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordProgressBlock(
@@ -209,6 +219,8 @@ impl CKModifyRecordsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(perRecordCompletionBlock))]
         #[unsafe(method_family = none)]
@@ -243,6 +255,8 @@ impl CKModifyRecordsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perRecordSaveBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordSaveBlock(
@@ -269,6 +283,8 @@ impl CKModifyRecordsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perRecordDeleteBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordDeleteBlock(
@@ -310,6 +326,8 @@ impl CKModifyRecordsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(modifyRecordsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifyRecordsCompletionBlock(

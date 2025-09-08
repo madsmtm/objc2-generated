@@ -91,6 +91,8 @@ impl HMCalendarEvent {
         /// Minutes are used. Other NSDateComponents such as
         /// year, weekday, quarter, week of the year / month are not used in calculation for next fire date.
         /// If its expected to fire on the same day, it should be at least 1 minute ahead or it could get scheduled for the next recurrent day.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fireDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn fireDateComponents(&self) -> Retained<NSDateComponents>;
@@ -157,6 +159,8 @@ impl HMMutableCalendarEvent {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The date component that specifies the time when the event is fired
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fireDateComponents))]
         #[unsafe(method_family = none)]
         pub unsafe fn fireDateComponents(&self) -> Retained<NSDateComponents>;

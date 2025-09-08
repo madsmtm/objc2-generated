@@ -32,6 +32,8 @@ extern_conformance!(
 impl HMCameraSnapshotControl {
     extern_methods!(
         /// Delegate that receives updates on the camera snapshot changes.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -50,6 +52,8 @@ impl HMCameraSnapshotControl {
 
         #[cfg(all(feature = "HMCameraSnapshot", feature = "HMCameraSource"))]
         /// Represents the most recent snapshot taken from the camera.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(mostRecentSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn mostRecentSnapshot(&self) -> Option<Retained<HMCameraSnapshot>>;

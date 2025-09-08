@@ -137,45 +137,54 @@ impl UIFont {
             weight: UIFontWeight,
         ) -> Retained<UIFont>;
 
+        /// This property is not atomic.
         #[unsafe(method(familyName))]
         #[unsafe(method_family = none)]
         pub unsafe fn familyName(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
         #[unsafe(method(fontName))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(pointSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(ascender))]
         #[unsafe(method_family = none)]
         pub unsafe fn ascender(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(descender))]
         #[unsafe(method_family = none)]
         pub unsafe fn descender(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(capHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn capHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(xHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn xHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(lineHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn lineHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(leading))]
         #[unsafe(method_family = none)]
         pub unsafe fn leading(&self) -> CGFloat;
@@ -194,6 +203,7 @@ impl UIFont {
         ) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFontDescriptor")]
+        /// This property is not atomic.
         #[unsafe(method(fontDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontDescriptor(&self) -> Retained<UIFontDescriptor>;

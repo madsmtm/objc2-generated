@@ -102,6 +102,8 @@ extern_conformance!(
 impl ASAccessory {
     extern_methods!(
         /// The current authorization state of the accessory.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> ASAccessoryState;
@@ -109,16 +111,22 @@ impl ASAccessory {
         /// The accessory's unique Bluetooth identifier, if any.
         ///
         /// Use this identifier to establish a connection to the accessory.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothIdentifier(&self) -> Option<Retained<NSUUID>>;
 
         /// The accessory's Bluetooth identifier, if any, for use when bridging classic transport profiles.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothTransportBridgingIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothTransportBridgingIdentifier(&self) -> Option<Retained<NSData>>;
 
         /// The accessory's name, suitable for displaying to someone using your app.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
@@ -126,12 +134,16 @@ impl ASAccessory {
         /// The accessory's Wi-Fi SSID, if any.
         ///
         /// Use this identifier to establish a connection to the accessory.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ASDiscoveryDescriptor")]
         /// The descriptor used to discover the accessory.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<ASDiscoveryDescriptor>;

@@ -243,10 +243,12 @@ impl CKSyncEnginePendingRecordZoneChange {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
+        /// This property is not atomic.
         #[unsafe(method(recordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
 
+        /// This property is not atomic.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CKSyncEnginePendingRecordZoneChangeType;
@@ -301,10 +303,12 @@ impl CKSyncEnginePendingDatabaseChange {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// This property is not atomic.
         #[unsafe(method(zoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
+        /// This property is not atomic.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CKSyncEnginePendingDatabaseChangeType;
@@ -336,6 +340,7 @@ impl CKSyncEnginePendingZoneSave {
         pub unsafe fn initWithZone(this: Allocated<Self>, zone: &CKRecordZone) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZone")]
+        /// This property is not atomic.
         #[unsafe(method(zone))]
         #[unsafe(method_family = none)]
         pub unsafe fn zone(&self) -> Retained<CKRecordZone>;

@@ -32,6 +32,8 @@ impl HMAccessoryBrowser {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Delegate that receives updates on the state of the accessories discovered.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -52,6 +54,8 @@ impl HMAccessoryBrowser {
         /// This is the array of HMAccessory objects that represents new
         /// accessories that were discovered as part of a search session.
         /// This array is not updated when a search session is not in progress.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(discoveredAccessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn discoveredAccessories(&self) -> Retained<NSArray<HMAccessory>>;

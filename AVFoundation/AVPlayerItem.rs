@@ -1237,6 +1237,8 @@ impl AVPlayerItemAccessLog {
         ///
         /// A string suitable for console output is obtainable by:
         /// [[NSString alloc] initWithData:[myLog extendedLogData] encoding:[myLog extendedLogDataStringEncoding]]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(extendedLogDataStringEncoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLogDataStringEncoding(&self) -> NSStringEncoding;
@@ -1246,6 +1248,8 @@ impl AVPlayerItemAccessLog {
         /// An ordered collection of AVPlayerItemAccessLogEvent instances that represent the chronological
         /// sequence of events contained in the access log.
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemAccessLogEvent>>;
@@ -1306,6 +1310,8 @@ impl AVPlayerItemErrorLog {
         ///
         /// A string suitable for console output is obtainable by:
         /// [[NSString alloc] initWithData:[myLog extendedLogData] encoding:[myLog extendedLogDataStringEncoding]]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(extendedLogDataStringEncoding))]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLogDataStringEncoding(&self) -> NSStringEncoding;
@@ -1315,6 +1321,8 @@ impl AVPlayerItemErrorLog {
         /// An ordered collection of AVPlayerItemErrorLogEvent instances that represent the chronological
         /// sequence of events contained in the error log.
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemErrorLogEvent>>;
@@ -1366,6 +1374,8 @@ impl AVPlayerItemAccessLogEvent {
         /// Value is negative if unknown. A count of media segments downloaded from the server to this client. Corresponds to "sc-count".
         /// This property is not observable.
         /// This property is deprecated. Use numberOfMediaRequests instead.
+        ///
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(numberOfSegmentsDownloaded))]
         #[unsafe(method_family = none)]
@@ -1377,6 +1387,8 @@ impl AVPlayerItemAccessLogEvent {
         /// For HTTP live Streaming, a count of media segments downloaded from the server to this client.
         /// For progressive-style HTTP media downloads, a count of HTTP GET (byte-range) requests for the resource.
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(numberOfMediaRequests))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfMediaRequests(&self) -> NSInteger;
@@ -1385,6 +1397,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// If nil is returned the date is unknown. Corresponds to "date".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(playbackStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackStartDate(&self) -> Option<Retained<NSDate>>;
@@ -1393,6 +1407,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// If nil is returned the URI is unknown. Corresponds to "uri".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(URI))]
         #[unsafe(method_family = none)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
@@ -1401,6 +1417,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// If nil is returned the address is unknown. Can be either an IPv4 or IPv6 address. Corresponds to "s-ip".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(serverAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
@@ -1409,6 +1427,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "s-ip-changes".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(numberOfServerAddressChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfServerAddressChanges(&self) -> NSInteger;
@@ -1417,6 +1437,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// If nil is returned the GUID is unknown. Corresponds to "cs-guid".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(playbackSessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
@@ -1425,6 +1447,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-start-time".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(playbackStartOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackStartOffset(&self) -> NSTimeInterval;
@@ -1433,6 +1457,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-duration-downloaded".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(segmentsDownloadedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentsDownloadedDuration(&self) -> NSTimeInterval;
@@ -1441,6 +1467,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-duration-watched".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(durationWatched))]
         #[unsafe(method_family = none)]
         pub unsafe fn durationWatched(&self) -> NSTimeInterval;
@@ -1449,6 +1477,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-stalls".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(numberOfStalls))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfStalls(&self) -> NSInteger;
@@ -1457,6 +1487,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "bytes".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(numberOfBytesTransferred))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfBytesTransferred(&self) -> c_longlong;
@@ -1465,6 +1497,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-transfer-duration".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(transferDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn transferDuration(&self) -> NSTimeInterval;
@@ -1473,6 +1507,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-observed-bitrate".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(observedBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedBitrate(&self) -> c_double;
@@ -1481,6 +1517,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "sc-indicated-bitrate".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(indicatedBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatedBitrate(&self) -> c_double;
@@ -1489,6 +1527,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "sc-indicated-avg-bitrate".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(indicatedAverageBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatedAverageBitrate(&self) -> c_double;
@@ -1497,6 +1537,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-avg-video-bitrate".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(averageVideoBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageVideoBitrate(&self) -> c_double;
@@ -1505,6 +1547,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-avg-audio-bitrate".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(averageAudioBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageAudioBitrate(&self) -> c_double;
@@ -1513,6 +1557,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-frames-dropped".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(numberOfDroppedVideoFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfDroppedVideoFrames(&self) -> NSInteger;
@@ -1521,6 +1567,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-startup-time".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(startupTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn startupTime(&self) -> NSTimeInterval;
@@ -1529,6 +1577,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-overdue".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(downloadOverdue))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadOverdue(&self) -> NSInteger;
@@ -1537,6 +1587,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-observed-max-bitrate".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[deprecated = "Use observedBitrateStandardDeviation to monitor variance in network bitrate."]
         #[unsafe(method(observedMaxBitrate))]
         #[unsafe(method_family = none)]
@@ -1546,6 +1598,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-observed-min-bitrate".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[deprecated = "Use observedBitrateStandardDeviation to monitor variance in network bitrate."]
         #[unsafe(method(observedMinBitrate))]
         #[unsafe(method_family = none)]
@@ -1555,6 +1609,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-observed-bitrate-sd".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(observedBitrateStandardDeviation))]
         #[unsafe(method_family = none)]
         pub unsafe fn observedBitrateStandardDeviation(&self) -> c_double;
@@ -1563,6 +1619,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// If nil is returned the playback type is unknown. Corresponds to "s-playback-type".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(playbackType))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackType(&self) -> Option<Retained<NSString>>;
@@ -1571,6 +1629,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "sc-wwan-count".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(mediaRequestsWWAN))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaRequestsWWAN(&self) -> NSInteger;
@@ -1579,6 +1639,8 @@ impl AVPlayerItemAccessLogEvent {
         ///
         /// Value is negative if unknown. Corresponds to "c-switch-bitrate".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(switchBitrate))]
         #[unsafe(method_family = none)]
         pub unsafe fn switchBitrate(&self) -> c_double;
@@ -1629,6 +1691,8 @@ impl AVPlayerItemErrorLogEvent {
         ///
         /// If nil is returned the date is unknown. Corresponds to "date".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
@@ -1637,6 +1701,8 @@ impl AVPlayerItemErrorLogEvent {
         ///
         /// If nil is returned the URI is unknown. Corresponds to "uri".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(URI))]
         #[unsafe(method_family = none)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
@@ -1645,6 +1711,8 @@ impl AVPlayerItemErrorLogEvent {
         ///
         /// If nil is returned the address is unknown. Can be either an IPv4 or IPv6 address. Corresponds to "s-ip".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(serverAddress))]
         #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
@@ -1653,6 +1721,8 @@ impl AVPlayerItemErrorLogEvent {
         ///
         /// If nil is returned the GUID is unknown. Corresponds to "cs-guid".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(playbackSessionID))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
@@ -1661,6 +1731,8 @@ impl AVPlayerItemErrorLogEvent {
         ///
         /// Corresponds to "status".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(errorStatusCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorStatusCode(&self) -> NSInteger;
@@ -1669,6 +1741,8 @@ impl AVPlayerItemErrorLogEvent {
         ///
         /// Corresponds to "domain".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(errorDomain))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorDomain(&self) -> Retained<NSString>;
@@ -1677,10 +1751,13 @@ impl AVPlayerItemErrorLogEvent {
         ///
         /// If nil is returned further information is not available. Corresponds to "comment".
         /// This property is not observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(errorComment))]
         #[unsafe(method_family = none)]
         pub unsafe fn errorComment(&self) -> Option<Retained<NSString>>;
 
+        /// This property is not atomic.
         #[unsafe(method(allHTTPResponseHeaderFields))]
         #[unsafe(method_family = none)]
         pub unsafe fn allHTTPResponseHeaderFields(

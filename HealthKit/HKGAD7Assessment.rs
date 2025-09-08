@@ -149,11 +149,15 @@ extern_conformance!(
 impl HKGAD7Assessment {
     extern_methods!(
         /// Answers on the GAD-7 assessment. There are exactly 7 answers, one for each multiple choice question. Each answer is of type `HKGAD7AssessmentAnswer`.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(answers))]
         #[unsafe(method_family = none)]
         pub unsafe fn answers(&self) -> Retained<NSArray<NSNumber>>;
 
         /// The risk determined by the score on a GAD-7 assessment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(risk))]
         #[unsafe(method_family = none)]
         pub unsafe fn risk(&self) -> HKGAD7AssessmentRisk;

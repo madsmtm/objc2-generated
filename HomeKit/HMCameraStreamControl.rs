@@ -32,6 +32,8 @@ extern_conformance!(
 impl HMCameraStreamControl {
     extern_methods!(
         /// Delegate that receives updates on the camera stream changes.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -50,12 +52,16 @@ impl HMCameraStreamControl {
 
         #[cfg(feature = "HMCameraDefines")]
         /// Represents the current streaming state.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(streamState))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamState(&self) -> HMCameraStreamState;
 
         #[cfg(all(feature = "HMCameraSource", feature = "HMCameraStream"))]
         /// Represents the current camera stream.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(cameraStream))]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraStream(&self) -> Option<Retained<HMCameraStream>>;

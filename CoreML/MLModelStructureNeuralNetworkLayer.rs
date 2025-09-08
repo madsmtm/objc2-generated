@@ -34,21 +34,29 @@ impl MLModelStructureNeuralNetworkLayer {
         pub unsafe fn new() -> Retained<Self>;
 
         /// The layer name.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// The type of the layer, e,g, "elementwise", "pooling", etc.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// The input names.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(inputNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputNames(&self) -> Retained<NSArray<NSString>>;
 
         /// The output names.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(outputNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputNames(&self) -> Retained<NSArray<NSString>>;

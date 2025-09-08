@@ -43,12 +43,16 @@ impl PTChannelDescriptor {
         ) -> Retained<Self>;
 
         /// The channel's "group name" shown in system user interface. (This is shown while nobody else is speaking.)
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-ui-kit")]
         /// The channel's "group photo" presented in the system user interface. This image is shown while nobody else is speaking.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;

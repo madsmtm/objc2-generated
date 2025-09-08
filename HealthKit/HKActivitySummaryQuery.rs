@@ -34,6 +34,8 @@ impl HKActivitySummaryQuery {
         ///
         /// This property may not be modified once the query has been executed. If this property is nonnull, then
         /// the query must be manually stopped.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(updateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(

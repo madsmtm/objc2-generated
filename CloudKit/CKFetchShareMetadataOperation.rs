@@ -40,6 +40,7 @@ impl CKFetchShareMetadataOperation {
             share_ur_ls: &NSArray<NSURL>,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(shareURLs))]
         #[unsafe(method_family = none)]
         pub unsafe fn shareURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
@@ -60,6 +61,8 @@ impl CKFetchShareMetadataOperation {
         /// `NO.`The resulting
         /// `CKShareMetadata`will have a
         /// `rootRecordID`property regardless of the value of this property.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(shouldFetchRootRecord))]
         #[unsafe(method_family = none)]
         pub unsafe fn shouldFetchRootRecord(&self) -> bool;
@@ -78,6 +81,8 @@ impl CKFetchShareMetadataOperation {
         /// `YES.`If nil, declares the entire root record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
+        ///
+        /// This property is not atomic.
         #[unsafe(method(rootRecordDesiredKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
@@ -101,6 +106,8 @@ impl CKFetchShareMetadataOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perShareMetadataBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perShareMetadataBlock(
@@ -139,6 +146,8 @@ impl CKFetchShareMetadataOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchShareMetadataCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareMetadataCompletionBlock(

@@ -59,6 +59,7 @@ impl CKDatabase {
         #[unsafe(method_family = none)]
         pub unsafe fn addOperation(&self, operation: &CKDatabaseOperation);
 
+        /// This property is not atomic.
         #[unsafe(method(databaseScope))]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;

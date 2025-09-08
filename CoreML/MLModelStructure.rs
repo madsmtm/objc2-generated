@@ -83,18 +83,24 @@ impl MLModelStructure {
 
         #[cfg(feature = "MLModelStructureNeuralNetwork")]
         /// If the model is of NeuralNetwork type then it is the structure of the NeuralNetwork otherwise `nil`.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(neuralNetwork))]
         #[unsafe(method_family = none)]
         pub unsafe fn neuralNetwork(&self) -> Option<Retained<MLModelStructureNeuralNetwork>>;
 
         #[cfg(feature = "MLModelStructureProgram")]
         /// If the model is of ML Program type then it is the structure of the ML Program otherwise `nil`.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(program))]
         #[unsafe(method_family = none)]
         pub unsafe fn program(&self) -> Option<Retained<MLModelStructureProgram>>;
 
         #[cfg(feature = "MLModelStructurePipeline")]
         /// If the model is of Pipeline type then it is the structure of the Pipeline otherwise `nil`.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(pipeline))]
         #[unsafe(method_family = none)]
         pub unsafe fn pipeline(&self) -> Option<Retained<MLModelStructurePipeline>>;

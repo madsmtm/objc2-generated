@@ -91,6 +91,8 @@ impl HKGlassesPrescription {
             feature = "HKLensSpecification"
         ))]
         /// The right eye lens specification
+        ///
+        /// This property is not atomic.
         #[unsafe(method(rightEye))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightEye(&self) -> Option<Retained<HKGlassesLensSpecification>>;
@@ -100,6 +102,8 @@ impl HKGlassesPrescription {
             feature = "HKLensSpecification"
         ))]
         /// The left eye lens specification
+        ///
+        /// This property is not atomic.
         #[unsafe(method(leftEye))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftEye(&self) -> Option<Retained<HKGlassesLensSpecification>>;

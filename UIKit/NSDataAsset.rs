@@ -59,16 +59,22 @@ impl NSDataAsset {
         ) -> Option<Retained<Self>>;
 
         /// The name used to reference the data asset
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSDataAssetName>;
 
         /// The data for this asset, as stored in the asset catalog
+        ///
+        /// This property is not atomic.
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// The Uniform Type Identifier for this data object.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(typeIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn typeIdentifier(&self) -> Retained<NSString>;

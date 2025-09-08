@@ -52,12 +52,16 @@ impl HKGlassesLensSpecification {
     extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The distance between the back of the eyeglass lens and the eye (measured in mm)
+        ///
+        /// This property is not atomic.
         #[unsafe(method(vertexDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKVisionPrism")]
         /// The object encapsulating the prism fields
+        ///
+        /// This property is not atomic.
         #[unsafe(method(prism))]
         #[unsafe(method_family = none)]
         pub unsafe fn prism(&self) -> Option<Retained<HKVisionPrism>>;
@@ -65,6 +69,8 @@ impl HKGlassesLensSpecification {
         #[cfg(feature = "HKQuantity")]
         /// The distance from each pupil to the center of the nose (measured in mm) when looking at a far target.
         /// Can be described as combined or individual value. For distance prescriptions, the pupillary distance will be a far value.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(farPupillaryDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn farPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
@@ -72,6 +78,8 @@ impl HKGlassesLensSpecification {
         #[cfg(feature = "HKQuantity")]
         /// The distance from each pupil to the center of the nose (measured in mm) when looking at a near target.
         /// Can be described as combined or individual value. For near prescriptions, the pupillary distance will be a near value.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(nearPupillaryDistance))]
         #[unsafe(method_family = none)]
         pub unsafe fn nearPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;

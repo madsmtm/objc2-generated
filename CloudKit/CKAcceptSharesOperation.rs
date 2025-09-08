@@ -36,6 +36,7 @@ impl CKAcceptSharesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKShareMetadata")]
+        /// This property is not atomic.
         #[unsafe(method(shareMetadatas))]
         #[unsafe(method_family = none)]
         pub unsafe fn shareMetadatas(&self) -> Option<Retained<NSArray<CKShareMetadata>>>;
@@ -62,6 +63,8 @@ impl CKAcceptSharesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perShareCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perShareCompletionBlock(
@@ -105,6 +108,8 @@ impl CKAcceptSharesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(acceptSharesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptSharesCompletionBlock(

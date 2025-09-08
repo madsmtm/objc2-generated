@@ -35,6 +35,8 @@ impl MLComputePlanDeviceUsage {
 
         #[cfg(feature = "MLComputeDeviceProtocol")]
         /// The compute devices that can execute the layer/operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(supportedComputeDevices))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedComputeDevices(
@@ -43,6 +45,8 @@ impl MLComputePlanDeviceUsage {
 
         #[cfg(feature = "MLComputeDeviceProtocol")]
         /// The compute device that the framework prefers to execute the layer/operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(preferredComputeDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredComputeDevice(

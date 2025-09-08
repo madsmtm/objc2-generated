@@ -25,11 +25,13 @@ extern_conformance!(
 
 impl PTParticipant {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-ui-kit")]
+        /// This property is not atomic.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;

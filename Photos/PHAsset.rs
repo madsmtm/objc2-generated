@@ -41,80 +41,98 @@ extern_conformance!(
 impl PHAsset {
     extern_methods!(
         #[cfg(feature = "PhotosTypes")]
+        /// This property is not atomic.
         #[unsafe(method(playbackStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackStyle(&self) -> PHAssetPlaybackStyle;
 
         #[cfg(feature = "PhotosTypes")]
+        /// This property is not atomic.
         #[unsafe(method(mediaType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> PHAssetMediaType;
 
         #[cfg(feature = "PhotosTypes")]
+        /// This property is not atomic.
         #[unsafe(method(mediaSubtypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
+        /// This property is not atomic.
         #[unsafe(method(pixelWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelWidth(&self) -> NSUInteger;
 
+        /// This property is not atomic.
         #[unsafe(method(pixelHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelHeight(&self) -> NSUInteger;
 
+        /// This property is not atomic.
         #[unsafe(method(creationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
+        /// This property is not atomic.
         #[unsafe(method(modificationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
+        /// This property is not atomic.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        /// This property is not atomic.
         #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(isFavorite))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFavorite(&self) -> bool;
 
+        /// This property is not atomic.
         #[deprecated = "No longer supported"]
         #[unsafe(method(isSyncFailureHidden))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSyncFailureHidden(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(burstIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn burstIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
+        /// This property is not atomic.
         #[unsafe(method(burstSelectionTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn burstSelectionTypes(&self) -> PHAssetBurstSelectionType;
 
+        /// This property is not atomic.
         #[unsafe(method(representsBurst))]
         #[unsafe(method_family = none)]
         pub unsafe fn representsBurst(&self) -> bool;
 
         #[cfg(feature = "PhotosTypes")]
+        /// This property is not atomic.
         #[unsafe(method(sourceType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceType(&self) -> PHAssetSourceType;
 
+        /// This property is not atomic.
         #[unsafe(method(hasAdjustments))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasAdjustments(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(adjustmentFormatIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustmentFormatIdentifier(&self) -> Option<Retained<NSString>>;

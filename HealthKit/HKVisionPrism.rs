@@ -94,41 +94,55 @@ impl HKVisionPrism {
     extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The compensation in prism diopters to correct eye misalignment [polar coordinates]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(amount))]
         #[unsafe(method_family = none)]
         pub unsafe fn amount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The direction of the prism base [polar coordinates]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(angle))]
         #[unsafe(method_family = none)]
         pub unsafe fn angle(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The vertical component of compensation in prism diopters [rectangular coordinates]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(verticalAmount))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalAmount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The horizontal component of compensation in prism diopters [rectangular coordinates]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(horizontalAmount))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalAmount(&self) -> Retained<HKQuantity>;
 
         /// The direction of the prism base relative to the vertical axis of the lens;
         /// base up or base down. [rectangular coordinates]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(verticalBase))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalBase(&self) -> HKPrismBase;
 
         /// The direction of the prism base relative to the horizontal axis of the lens;
         /// base in (toward the nose) or base out (away from the nose). [rectangular coordinates]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(horizontalBase))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalBase(&self) -> HKPrismBase;
 
         /// Which eye (left or right)
+        ///
+        /// This property is not atomic.
         #[unsafe(method(eye))]
         #[unsafe(method_family = none)]
         pub unsafe fn eye(&self) -> HKVisionEye;

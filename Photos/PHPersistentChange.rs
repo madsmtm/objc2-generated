@@ -32,6 +32,7 @@ impl PHPersistentChange {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "PHPersistentChangeToken")]
+        /// This property is not atomic.
         #[unsafe(method(changeToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeToken(&self) -> Retained<PHPersistentChangeToken>;

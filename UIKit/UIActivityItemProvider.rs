@@ -115,15 +115,18 @@ impl UIActivityItemProvider {
             placeholder_item: &AnyObject,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(placeholderItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderItem(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "UIActivity")]
+        /// This property is not atomic.
         #[unsafe(method(activityType))]
         #[unsafe(method_family = none)]
         pub unsafe fn activityType(&self) -> Option<Retained<UIActivityType>>;
 
+        /// This property is not atomic.
         #[unsafe(method(item))]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self) -> Retained<AnyObject>;

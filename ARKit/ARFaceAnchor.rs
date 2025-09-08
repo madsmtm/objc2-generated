@@ -391,6 +391,8 @@ impl ARFaceAnchor {
     extern_methods!(
         #[cfg(feature = "ARFaceGeometry")]
         /// The face geometry updated based on the computed blend shapes.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Retained<ARFaceGeometry>;
@@ -399,6 +401,8 @@ impl ARFaceAnchor {
         /// A dictionary of blend shape coefficients for each blend shape location.
         ///
         /// Blend shapes coefficients define the amount of displacement of a neutral shape at a specific location on the face.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(blendShapes))]
         #[unsafe(method_family = none)]
         pub unsafe fn blendShapes(&self) -> Retained<NSDictionary<ARBlendShapeLocation, NSNumber>>;

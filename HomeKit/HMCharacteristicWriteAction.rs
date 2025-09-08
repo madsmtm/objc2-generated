@@ -73,11 +73,15 @@ impl<TargetValueType: Message> HMCharacteristicWriteAction<TargetValueType> {
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the action.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         /// The target value for the action.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(targetValue))]
         #[unsafe(method_family = none)]
         pub unsafe fn targetValue(&self) -> Retained<TargetValueType>;

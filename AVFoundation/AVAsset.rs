@@ -839,6 +839,8 @@ impl AVURLAsset {
         ) -> Retained<Self>;
 
         /// Indicates the URL with which the instance of AVURLAsset was initialized.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
@@ -847,6 +849,8 @@ impl AVURLAsset {
         ///
         /// The value is an NSUUID from which the UUID string can be obtained.
         /// Note that copies of an AVURLAsset vend an equivalent httpSessionIdentifier.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(httpSessionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn httpSessionIdentifier(&self) -> Retained<NSUUID>;
@@ -876,6 +880,8 @@ impl AVURLAsset {
         /// Provides access to an instance of AVAssetResourceLoader, which offers limited control over the handling of URLs that may be loaded in the course of performing operations on the asset, such as playback.
         /// The loading of file URLs cannot be mediated via use of AVAssetResourceLoader.
         /// Note that copies of an AVAsset will vend the same instance of AVAssetResourceLoader.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(resourceLoader))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceLoader(&self) -> Retained<AVAssetResourceLoader>;
@@ -887,6 +893,8 @@ impl AVURLAsset {
     extern_methods!(
         #[cfg(feature = "AVAssetCache")]
         /// Provides access to an instance of AVAssetCache to use for inspection of locally cached media data. Will be nil if an asset has not been configured to store or access media data from disk.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(assetCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetCache(&self) -> Option<Retained<AVAssetCache>>;
@@ -945,6 +953,8 @@ impl AVURLAsset {
         /// Provides an array of AVAssetVariants contained in the asset
         ///
         /// Some variants may not be playable according to the current device configuration.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(variants))]
         #[unsafe(method_family = none)]
         pub unsafe fn variants(&self) -> Retained<NSArray<AVAssetVariant>>;
@@ -1009,6 +1019,8 @@ impl AVMediaExtensionProperties {
         /// The identifier of the Media Extension.
         ///
         /// The extension identifier string, corresponding to the ClassImplementationID value from the EXAppExtensionAttributes dictionary in the Info.plist file.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(extensionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionIdentifier(&self) -> Retained<NSString>;
@@ -1016,6 +1028,8 @@ impl AVMediaExtensionProperties {
         /// The name of the MediaExtension.
         ///
         /// The localized name of the MediaExtension format reader or video decoder, corresponding to the CFBundleDisplayName.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(extensionName))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionName(&self) -> Retained<NSString>;
@@ -1023,16 +1037,22 @@ impl AVMediaExtensionProperties {
         /// The name of the containing application bundle.
         ///
         /// The localized name of the application that hosts the MediaExtension.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(containingBundleName))]
         #[unsafe(method_family = none)]
         pub unsafe fn containingBundleName(&self) -> Retained<NSString>;
 
         /// The file URL of the MediaExtension bundle.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(extensionURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionURL(&self) -> Retained<NSURL>;
 
         /// The file URL of the host application for the MediaExtension.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(containingBundleURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn containingBundleURL(&self) -> Retained<NSURL>;
@@ -1045,6 +1065,8 @@ impl AVURLAsset {
         /// The properties of the MediaExtension format reader for the asset.
         ///
         /// If the asset is being decoded using a MediaExtension format reader, this property will return a AVMediaExtensionProperties object describing the extension. If the asset is not being decoded with a MediaExtension format reader, this property will return nil.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(mediaExtensionProperties))]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaExtensionProperties(
@@ -1171,6 +1193,8 @@ impl AVFragmentedAsset {
         /// The tracks in an asset.
         ///
         /// The value of this property is an array of tracks the asset contains; the tracks are of type AVFragmentedAssetTrack.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedAssetTrack>>;
@@ -1450,6 +1474,8 @@ impl AVFragmentedAssetMinder {
 impl AVURLAsset {
     extern_methods!(
         /// Allows AVURLAsset to be added as a content key recipient to an AVContentKeySession.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(mayRequireContentKeysForMediaDataProcessing))]
         #[unsafe(method_family = none)]
         pub unsafe fn mayRequireContentKeysForMediaDataProcessing(&self) -> bool;

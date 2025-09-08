@@ -78,6 +78,8 @@ impl HMSignificantTimeEvent {
 
         #[cfg(feature = "HMSignificantEvents")]
         /// significantEvent The significant event for the trigger.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(significantEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn significantEvent(&self) -> Retained<HMSignificantEvent>;
@@ -85,6 +87,8 @@ impl HMSignificantTimeEvent {
         /// offset An offset from the time of the signficant event. To specify an offset before the significant event, the
         /// properties of the NSDateComponents must be negative value. e.g. To specify 30 mins before sunset, the
         /// 'minute' property must be set to -30.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> Option<Retained<NSDateComponents>>;
@@ -148,6 +152,8 @@ impl HMMutableSignificantTimeEvent {
     extern_methods!(
         #[cfg(feature = "HMSignificantEvents")]
         /// significantEvent The significant event for the trigger.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(significantEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn significantEvent(&self) -> Retained<HMSignificantEvent>;
@@ -161,6 +167,8 @@ impl HMMutableSignificantTimeEvent {
         /// offset An offset from the time of the significant event. To specify an offset before the significant event, the
         /// properties of the NSDateComponents must be negative value. e.g. To specify 30 mins before sunset, the
         /// 'minute' property must be set to -30.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> Retained<NSDateComponents>;

@@ -30,6 +30,7 @@ extern_conformance!(
 
 impl AVAssetCache {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(isPlayableOffline))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPlayableOffline(&self) -> bool;

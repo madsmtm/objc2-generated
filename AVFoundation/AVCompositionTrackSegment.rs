@@ -104,15 +104,18 @@ impl AVCompositionTrackSegment {
             time_range: CMTimeRange,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEmpty(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(sourceURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// This property is not atomic.
         #[unsafe(method(sourceTrackID))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTrackID(&self) -> CMPersistentTrackID;

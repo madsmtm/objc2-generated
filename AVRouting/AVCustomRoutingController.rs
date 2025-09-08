@@ -248,6 +248,8 @@ impl AVCustomRoutingPartialIP {
         /// var mask = Data(bytes: aMaskInBytes, length: aMaskInBytes.count)
         /// var partialIP = AVCustomRoutingPartialIP(address: address, mask: mask)
         /// ```
+        ///
+        /// This property is not atomic.
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> Retained<NSData>;
@@ -262,6 +264,8 @@ impl AVCustomRoutingPartialIP {
         /// var mask = Data(bytes: aMaskInBytes, length: aMaskInBytes.count)
         /// var partialIP =AVCustomRoutingPartialIP(address: address, mask: mask)
         /// ```
+        ///
+        /// This property is not atomic.
         #[unsafe(method(mask))]
         #[unsafe(method_family = none)]
         pub unsafe fn mask(&self) -> Retained<NSData>;

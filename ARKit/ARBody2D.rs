@@ -33,6 +33,8 @@ impl ARBody2D {
     extern_methods!(
         #[cfg(feature = "ARSkeleton")]
         /// The body's skeleton.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(skeleton))]
         #[unsafe(method_family = none)]
         pub unsafe fn skeleton(&self) -> Retained<ARSkeleton2D>;

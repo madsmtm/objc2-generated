@@ -51,6 +51,8 @@ extern_conformance!(
 impl HKScoredAssessment {
     extern_methods!(
         /// The score determined by the answers on an assessment
+        ///
+        /// This property is not atomic.
         #[unsafe(method(score))]
         #[unsafe(method_family = none)]
         pub unsafe fn score(&self) -> NSInteger;

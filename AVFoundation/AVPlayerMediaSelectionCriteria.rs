@@ -27,11 +27,13 @@ extern_conformance!(
 
 impl AVPlayerMediaSelectionCriteria {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(preferredLanguages))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredLanguages(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// This property is not atomic.
         #[unsafe(method(preferredMediaCharacteristics))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredMediaCharacteristics(
@@ -39,6 +41,7 @@ impl AVPlayerMediaSelectionCriteria {
         ) -> Option<Retained<NSArray<AVMediaCharacteristic>>>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// This property is not atomic.
         #[unsafe(method(principalMediaCharacteristics))]
         #[unsafe(method_family = none)]
         pub unsafe fn principalMediaCharacteristics(

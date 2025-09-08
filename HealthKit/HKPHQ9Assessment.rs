@@ -153,11 +153,15 @@ extern_conformance!(
 impl HKPHQ9Assessment {
     extern_methods!(
         /// Answers on the PHQ-9 assessment. There are exactly 9 answers, one for each multiple choice question. Each answer is of type `HKPHQ9AssessmentAnswer`. If the 9th question was unanswered,  the answer is `HKPHQ9AssessmentAnswerPreferNotToAnswer`.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(answers))]
         #[unsafe(method_family = none)]
         pub unsafe fn answers(&self) -> Retained<NSArray<NSNumber>>;
 
         /// The risk determined by the score on a PHQ-9 assessment.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(risk))]
         #[unsafe(method_family = none)]
         pub unsafe fn risk(&self) -> HKPHQ9AssessmentRisk;

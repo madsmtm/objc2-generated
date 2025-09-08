@@ -78,6 +78,7 @@ impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
             >,
         );
 
+        /// This property is not atomic.
         #[unsafe(method(authorizationStateForPlatformCredentials))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStateForPlatformCredentials(

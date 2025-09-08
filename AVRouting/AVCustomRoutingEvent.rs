@@ -56,12 +56,16 @@ impl AVCustomRoutingEvent {
     extern_methods!(
         /// A reason for an event, such as a user request to activate or deactivate a
         /// route.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(reason))]
         #[unsafe(method_family = none)]
         pub unsafe fn reason(&self) -> AVCustomRoutingEventReason;
 
         #[cfg(feature = "AVCustomDeviceRoute")]
         /// A route for the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(route))]
         #[unsafe(method_family = none)]
         pub unsafe fn route(&self) -> Retained<AVCustomDeviceRoute>;

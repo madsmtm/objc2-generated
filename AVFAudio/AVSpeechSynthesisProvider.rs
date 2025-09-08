@@ -54,6 +54,8 @@ extern_conformance!(
 impl AVSpeechSynthesisProviderVoice {
     extern_methods!(
         /// The localized name of the voice
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -62,6 +64,8 @@ impl AVSpeechSynthesisProviderVoice {
         ///
         /// The recommended format is reverse domain notation.
         /// Behavior is undefined if identifiers are not unique for all voices within a given extension.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -69,6 +73,8 @@ impl AVSpeechSynthesisProviderVoice {
         /// A set of BCP 47 codes identifying the languages this synthesizer is primarily used for.
         ///
         /// These languages are what a user would expect a synthesizer to fully support and be primarily used for.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(primaryLanguages))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryLanguages(&self) -> Retained<NSArray<NSString>>;
@@ -80,6 +86,8 @@ impl AVSpeechSynthesisProviderVoice {
         /// `primaryLanguages,`but in
         /// `supportedLanguages`have
         /// `["zh-CN","en-US"]`indicating if it received "你好 means Hello", it would be able to speak the entire phrase.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(supportedLanguages))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedLanguages(&self) -> Retained<NSArray<NSString>>;
@@ -87,6 +95,8 @@ impl AVSpeechSynthesisProviderVoice {
         /// The size of the voice (optional)
         ///
         /// This reported size of the voice package on disk, in bytes. Defaults to 0.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(voiceSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceSize(&self) -> i64;
@@ -99,6 +109,8 @@ impl AVSpeechSynthesisProviderVoice {
         /// The voice version (optional)
         ///
         /// This is an optional property for bookkeeping. This value does not affect system behavior.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
@@ -110,6 +122,8 @@ impl AVSpeechSynthesisProviderVoice {
 
         #[cfg(feature = "AVSpeechSynthesis")]
         /// The gender of the voice (optional)
+        ///
+        /// This property is not atomic.
         #[unsafe(method(gender))]
         #[unsafe(method_family = none)]
         pub unsafe fn gender(&self) -> AVSpeechSynthesisVoiceGender;
@@ -123,6 +137,8 @@ impl AVSpeechSynthesisProviderVoice {
         /// The age of the voice in years (optional)
         ///
         /// This is an optional property that indicates the age of this voice, to be treated as a personality trait. Defaults to 0.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(age))]
         #[unsafe(method_family = none)]
         pub unsafe fn age(&self) -> NSInteger;
@@ -201,11 +217,15 @@ impl AVSpeechSynthesisProviderRequest {
         /// The SSML representation of the text to be synthesized with the corresponding speech synthesis attributes for customization of pitch, rate, intonation, and more.
         ///
         /// See: https://www.w3.org/TR/speech-synthesis11/
+        ///
+        /// This property is not atomic.
         #[unsafe(method(ssmlRepresentation))]
         #[unsafe(method_family = none)]
         pub unsafe fn ssmlRepresentation(&self) -> Retained<NSString>;
 
         /// The voice to be used in this speech request
+        ///
+        /// This property is not atomic.
         #[unsafe(method(voice))]
         #[unsafe(method_family = none)]
         pub unsafe fn voice(&self) -> Retained<AVSpeechSynthesisProviderVoice>;

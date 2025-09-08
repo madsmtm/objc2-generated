@@ -47,6 +47,8 @@ impl AVAssetTrackGroup {
         ///
         /// The value of this property is an NSArray of NSNumbers interpreted as CMPersistentTrackIDs, one for each track in the
         /// group.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(trackIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackIDs(&self) -> Retained<NSArray<NSNumber>>;

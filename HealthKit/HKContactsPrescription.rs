@@ -91,6 +91,8 @@ impl HKContactsPrescription {
             feature = "HKLensSpecification"
         ))]
         /// The right eye lens specification
+        ///
+        /// This property is not atomic.
         #[unsafe(method(rightEye))]
         #[unsafe(method_family = none)]
         pub unsafe fn rightEye(&self) -> Option<Retained<HKContactsLensSpecification>>;
@@ -100,11 +102,15 @@ impl HKContactsPrescription {
             feature = "HKLensSpecification"
         ))]
         /// The left eye lens specification
+        ///
+        /// This property is not atomic.
         #[unsafe(method(leftEye))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftEye(&self) -> Option<Retained<HKContactsLensSpecification>>;
 
         /// The prescribed brand after contact lens fitting
+        ///
+        /// This property is not atomic.
         #[unsafe(method(brand))]
         #[unsafe(method_family = none)]
         pub unsafe fn brand(&self) -> Retained<NSString>;

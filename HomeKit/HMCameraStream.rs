@@ -33,6 +33,8 @@ impl HMCameraStream {
     extern_methods!(
         #[cfg(feature = "HMCameraDefines")]
         /// Represents the audio setting for the current stream.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(audioStreamSetting))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioStreamSetting(&self) -> HMCameraAudioStreamSetting;

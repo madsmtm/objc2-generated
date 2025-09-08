@@ -64,6 +64,7 @@ extern_conformance!(
 
 impl VSUserAccount {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(updateURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateURL(&self) -> Option<Retained<NSURL>>;
@@ -75,6 +76,7 @@ impl VSUserAccount {
         #[unsafe(method_family = none)]
         pub unsafe fn setUpdateURL(&self, update_url: Option<&NSURL>);
 
+        /// This property is not atomic.
         #[unsafe(method(requiresSystemTrust))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiresSystemTrust(&self) -> bool;
@@ -84,6 +86,7 @@ impl VSUserAccount {
         #[unsafe(method_family = none)]
         pub unsafe fn setRequiresSystemTrust(&self, requires_system_trust: bool);
 
+        /// This property is not atomic.
         #[unsafe(method(accountProviderIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountProviderIdentifier(&self) -> Option<Retained<NSString>>;
@@ -96,6 +99,7 @@ impl VSUserAccount {
             account_provider_identifier: Option<&NSString>,
         );
 
+        /// This property is not atomic.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
@@ -107,6 +111,7 @@ impl VSUserAccount {
         #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
+        /// This property is not atomic.
         #[unsafe(method(accountType))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountType(&self) -> VSUserAccountType;
@@ -116,6 +121,7 @@ impl VSUserAccount {
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountType(&self, account_type: VSUserAccountType);
 
+        /// This property is not atomic.
         #[unsafe(method(isSignedOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSignedOut(&self) -> bool;
@@ -125,6 +131,7 @@ impl VSUserAccount {
         #[unsafe(method_family = none)]
         pub unsafe fn setSignedOut(&self, signed_out: bool);
 
+        /// This property is not atomic.
         #[unsafe(method(subscriptionBillingCycleEndDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionBillingCycleEndDate(&self) -> Option<Retained<NSDate>>;
@@ -139,6 +146,7 @@ impl VSUserAccount {
             subscription_billing_cycle_end_date: Option<&NSDate>,
         );
 
+        /// This property is not atomic.
         #[unsafe(method(tierIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn tierIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -150,6 +158,7 @@ impl VSUserAccount {
         #[unsafe(method_family = none)]
         pub unsafe fn setTierIdentifiers(&self, tier_identifiers: Option<&NSArray<NSString>>);
 
+        /// This property is not atomic.
         #[unsafe(method(billingIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn billingIdentifier(&self) -> Option<Retained<NSString>>;
@@ -161,6 +170,7 @@ impl VSUserAccount {
         #[unsafe(method_family = none)]
         pub unsafe fn setBillingIdentifier(&self, billing_identifier: Option<&NSString>);
 
+        /// This property is not atomic.
         #[unsafe(method(authenticationData))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticationData(&self) -> Option<Retained<NSString>>;
@@ -172,15 +182,18 @@ impl VSUserAccount {
         #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticationData(&self, authentication_data: Option<&NSString>);
 
+        /// This property is not atomic.
         #[unsafe(method(isFromCurrentDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFromCurrentDevice(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(deviceCategory))]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceCategory(&self) -> VSOriginatingDeviceCategory;
 
         #[cfg(feature = "VSAppleSubscription")]
+        /// This property is not atomic.
         #[unsafe(method(appleSubscription))]
         #[unsafe(method_family = none)]
         pub unsafe fn appleSubscription(&self) -> Option<Retained<VSAppleSubscription>>;

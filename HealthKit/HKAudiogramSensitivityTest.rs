@@ -84,27 +84,37 @@ impl HKAudiogramSensitivityTest {
         #[cfg(feature = "HKQuantity")]
         /// Ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sensitivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn sensitivity(&self) -> Retained<HKQuantity>;
 
         /// The conduction type
+        ///
+        /// This property is not atomic.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> HKAudiogramConductionType;
 
         /// Indicates if the test was conducted with or without masking
+        ///
+        /// This property is not atomic.
         #[unsafe(method(masked))]
         #[unsafe(method_family = none)]
         pub unsafe fn masked(&self) -> bool;
 
         /// The test side
+        ///
+        /// This property is not atomic.
         #[unsafe(method(side))]
         #[unsafe(method_family = none)]
         pub unsafe fn side(&self) -> HKAudiogramSensitivityTestSide;
 
         #[cfg(feature = "HKAudiogramSensitivityPointClampingRange")]
         /// If present, indicates that the range within which the sensitivity point should be clamped.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(clampingRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn clampingRange(

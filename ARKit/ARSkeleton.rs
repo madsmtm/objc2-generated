@@ -39,11 +39,15 @@ impl ARSkeleton {
     extern_methods!(
         #[cfg(feature = "ARSkeletonDefinition")]
         /// Skeleton definition.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(definition))]
         #[unsafe(method_family = none)]
         pub unsafe fn definition(&self) -> Retained<ARSkeletonDefinition>;
 
         /// The number of joints.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(jointCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn jointCount(&self) -> NSUInteger;

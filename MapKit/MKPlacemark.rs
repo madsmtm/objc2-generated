@@ -77,6 +77,7 @@ impl MKPlacemark {
             postal_address: &CNPostalAddress,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;

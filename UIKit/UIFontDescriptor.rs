@@ -183,20 +183,24 @@ impl UIFontDescriptor {
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// This property is not atomic.
         #[unsafe(method(postscriptName))]
         #[unsafe(method_family = none)]
         pub unsafe fn postscriptName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(pointSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn pointSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(matrix))]
         #[unsafe(method_family = none)]
         pub unsafe fn matrix(&self) -> CGAffineTransform;
 
+        /// This property is not atomic.
         #[unsafe(method(symbolicTraits))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolicTraits(&self) -> UIFontDescriptorSymbolicTraits;
@@ -208,6 +212,7 @@ impl UIFontDescriptor {
             an_attribute: &UIFontDescriptorAttributeName,
         ) -> Option<Retained<AnyObject>>;
 
+        /// This property is not atomic.
         #[unsafe(method(fontAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn fontAttributes(

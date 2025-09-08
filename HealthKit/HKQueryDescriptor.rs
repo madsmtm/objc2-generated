@@ -41,11 +41,15 @@ impl HKQueryDescriptor {
     extern_methods!(
         #[cfg(feature = "HKObjectType")]
         /// The type of sample to retrieve in an HKQuery.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sampleType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleType(&self) -> Retained<HKSampleType>;
 
         /// The predicate which samples should match.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;

@@ -231,6 +231,8 @@ extern_conformance!(
 impl HKSampleType {
     extern_methods!(
         /// Returns YES if the start and end date for samples of this type are restricted by a maximum duration.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isMaximumDurationRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMaximumDurationRestricted(&self) -> bool;
@@ -239,11 +241,15 @@ impl HKSampleType {
         /// calculated as the difference between end and start dates.
         ///
         /// Throws an exception if there is no maximum restriction on duration for samples of this type.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(maximumAllowedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumAllowedDuration(&self) -> NSTimeInterval;
 
         /// Returns YES if the start and end date for samples of this type are restricted by a minimum duration.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isMinimumDurationRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMinimumDurationRestricted(&self) -> bool;
@@ -252,12 +258,16 @@ impl HKSampleType {
         /// calculated as the difference between end and start dates.
         ///
         /// Throws an exception if there is no minimum restriction on duration for samples of this type.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(minimumAllowedDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumAllowedDuration(&self) -> NSTimeInterval;
 
         /// Returns YES if first-party samples of this type are produced using a prediction algorithm, and that algorithm supports recalibration. To recalibrate the
         /// estimates for a sample type, see -[HKHealthStore recalibrateEstimatesForSampleType:atDate:completion:]
+        ///
+        /// This property is not atomic.
         #[unsafe(method(allowsRecalibrationForEstimates))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsRecalibrationForEstimates(&self) -> bool;

@@ -113,22 +113,30 @@ extern_conformance!(
 impl AVAudioSessionChannelDescription {
     extern_methods!(
         /// A human-readable name for the channel.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(channelName))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelName(&self) -> Retained<NSString>;
 
         /// The UID (unique identifier) of the port owning the channel.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(owningPortUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn owningPortUID(&self) -> Retained<NSString>;
 
         /// The index of this channel in its owning port's array of channels.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(channelNumber))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelNumber(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// Description of the physical location of this channel.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(channelLabel))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelLabel(&self) -> AudioChannelLabel;
@@ -262,16 +270,21 @@ extern_conformance!(
 impl AVAudioSessionPortDescription {
     extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// This property is not atomic.
         #[unsafe(method(portType))]
         #[unsafe(method_family = none)]
         pub unsafe fn portType(&self) -> Retained<AVAudioSessionPort>;
 
         /// A descriptive name for the associated hardware port
+        ///
+        /// This property is not atomic.
         #[unsafe(method(portName))]
         #[unsafe(method_family = none)]
         pub unsafe fn portName(&self) -> Retained<NSString>;
 
         /// A system-assigned unique identifier for the associated hardware port
+        ///
+        /// This property is not atomic.
         #[unsafe(method(UID))]
         #[unsafe(method_family = none)]
         pub unsafe fn UID(&self) -> Retained<NSString>;
@@ -307,6 +320,7 @@ impl AVAudioSessionPortDescription {
         #[unsafe(method_family = none)]
         pub unsafe fn isSpatialAudioEnabled(&self) -> bool;
 
+        /// This property is not atomic.
         #[unsafe(method(channels))]
         #[unsafe(method_family = none)]
         pub unsafe fn channels(
@@ -314,6 +328,8 @@ impl AVAudioSessionPortDescription {
         ) -> Option<Retained<NSArray<AVAudioSessionChannelDescription>>>;
 
         /// Will be nil if there are no selectable data sources.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(dataSources))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSources(
@@ -322,6 +338,8 @@ impl AVAudioSessionPortDescription {
 
         /// Will be nil if there are no selectable data sources. In all other cases, this property reflects
         /// the currently selected data source.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(selectedDataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedDataSource(
@@ -330,6 +348,8 @@ impl AVAudioSessionPortDescription {
 
         /// This property reflects the application's preferred data source for the Port. Will be nil if
         /// there are no selectable data sources or if no preference has been set.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(preferredDataSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredDataSource(
@@ -384,11 +404,15 @@ extern_conformance!(
 impl AVAudioSessionRouteDescription {
     extern_methods!(
         /// Flattened list of all input port descriptions associated with all the streams as part of the route.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVAudioSessionPortDescription>>;
 
         /// Flattened list of all output port descriptions associated with all the streams as part of the route.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVAudioSessionPortDescription>>;

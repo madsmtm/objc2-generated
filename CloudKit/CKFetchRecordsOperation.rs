@@ -40,6 +40,7 @@ impl CKFetchRecordsOperation {
         pub unsafe fn fetchCurrentUserRecordOperation() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
+        /// This property is not atomic.
         #[unsafe(method(recordIDs))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSArray<CKRecordID>>>;
@@ -59,6 +60,8 @@ impl CKFetchRecordsOperation {
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
+        ///
+        /// This property is not atomic.
         #[unsafe(method(desiredKeys))]
         #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
@@ -81,6 +84,8 @@ impl CKFetchRecordsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perRecordProgressBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordProgressBlock(
@@ -108,6 +113,8 @@ impl CKFetchRecordsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perRecordCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordCompletionBlock(
@@ -147,6 +154,8 @@ impl CKFetchRecordsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchRecordsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordsCompletionBlock(

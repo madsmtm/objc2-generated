@@ -78,6 +78,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIDevice")]
+        /// This property is not atomic.
         #[unsafe(method(userInterfaceIdiom))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInterfaceIdiom(&self) -> UIUserInterfaceIdiom;
@@ -90,6 +91,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(userInterfaceStyle))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInterfaceStyle(&self) -> UIUserInterfaceStyle;
@@ -102,6 +104,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(layoutDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutDirection(&self) -> UITraitEnvironmentLayoutDirection;
@@ -114,6 +117,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(displayScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayScale(&self) -> CGFloat;
@@ -126,6 +130,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(horizontalSizeClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalSizeClass(&self) -> UIUserInterfaceSizeClass;
@@ -138,6 +143,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(verticalSizeClass))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalSizeClass(&self) -> UIUserInterfaceSizeClass;
@@ -150,6 +156,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITouch")]
+        /// This property is not atomic.
         #[unsafe(method(forceTouchCapability))]
         #[unsafe(method_family = none)]
         pub fn forceTouchCapability(&self) -> UIForceTouchCapability;
@@ -162,6 +169,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIContentSizeCategory")]
+        /// This property is not atomic.
         #[unsafe(method(preferredContentSizeCategory))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredContentSizeCategory(&self) -> Retained<UIContentSizeCategory>;
@@ -174,6 +182,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(displayGamut))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayGamut(&self) -> UIDisplayGamut;
@@ -186,6 +195,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(accessibilityContrast))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityContrast(&self) -> UIAccessibilityContrast;
@@ -198,6 +208,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(userInterfaceLevel))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInterfaceLevel(&self) -> UIUserInterfaceLevel;
@@ -210,6 +221,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(legibilityWeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn legibilityWeight(&self) -> UILegibilityWeight;
@@ -222,6 +234,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(activeAppearance))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeAppearance(&self) -> UIUserInterfaceActiveAppearance;
@@ -234,6 +247,7 @@ impl UITraitCollection {
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// This property is not atomic.
         #[unsafe(method(toolbarItemPresentationSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn toolbarItemPresentationSize(&self) -> UINSToolbarItemPresentationSize;
@@ -248,6 +262,8 @@ impl UITraitCollection {
 
         #[cfg(feature = "UIInterface")]
         /// The imageDynamicRange determines how HDR images will render in the given trait environment. SDR images are unaffected.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(imageDynamicRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageDynamicRange(&self) -> UIImageDynamicRange;
@@ -258,6 +274,7 @@ impl UITraitCollection {
             language: &NSString,
         ) -> Retained<UITraitCollection>;
 
+        /// This property is not atomic.
         #[unsafe(method(typesettingLanguage))]
         #[unsafe(method_family = none)]
         pub unsafe fn typesettingLanguage(&self) -> Retained<NSString>;
@@ -272,6 +289,8 @@ impl UITraitCollection {
 
         #[cfg(feature = "UISceneDefinitions")]
         /// Scene capture state represents whether a scene is currently being mirrored or recorded.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sceneCaptureState))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneCaptureState(&self) -> UISceneCaptureState;
@@ -286,6 +305,8 @@ impl UITraitCollection {
 
         #[cfg(feature = "UITraitListEnvironment")]
         /// The list environment represents whether a given trait collection is from a view in a UITableView or a UICollectionView list section.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(listEnvironment))]
         #[unsafe(method_family = none)]
         pub unsafe fn listEnvironment(&self) -> UIListEnvironment;
@@ -706,6 +727,7 @@ extern_protocol!(
 /// CurrentTraitCollection.
 impl UITraitCollection {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(currentTraitCollection))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTraitCollection() -> Retained<UITraitCollection>;
@@ -741,6 +763,7 @@ impl UITraitCollection {
 impl UITraitCollection {
     extern_methods!(
         #[cfg(feature = "UIImageConfiguration")]
+        /// This property is not atomic.
         #[unsafe(method(imageConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageConfiguration(&self) -> Retained<UIImageConfiguration>;

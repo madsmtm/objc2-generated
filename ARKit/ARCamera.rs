@@ -48,29 +48,39 @@ impl ARCamera {
     extern_methods!(
         #[cfg(feature = "ARTrackingStatusTypes")]
         /// The tracking state of the camera.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(trackingState))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingState(&self) -> ARTrackingState;
 
         #[cfg(feature = "ARTrackingStatusTypes")]
         /// The reason for the camera’s current tracking state.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(trackingStateReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingStateReason(&self) -> ARTrackingStateReason;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The camera image resolution in pixels.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(imageResolution))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageResolution(&self) -> CGSize;
 
         #[cfg(feature = "objc2-foundation")]
         /// The camera exposure duration in seconds.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(exposureDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureDuration(&self) -> NSTimeInterval;
 
         /// The camera exposure offset in EV (exposure value) units.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(exposureOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureOffset(&self) -> c_float;

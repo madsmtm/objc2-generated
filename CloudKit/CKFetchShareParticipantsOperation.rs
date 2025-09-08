@@ -36,6 +36,7 @@ impl CKFetchShareParticipantsOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
+        /// This property is not atomic.
         #[unsafe(method(userIdentityLookupInfos))]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentityLookupInfos(
@@ -63,6 +64,8 @@ impl CKFetchShareParticipantsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[unsafe(method(shareParticipantFetchedBlock))]
         #[unsafe(method_family = none)]
@@ -96,6 +99,8 @@ impl CKFetchShareParticipantsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perShareParticipantCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perShareParticipantCompletionBlock(
@@ -146,6 +151,8 @@ impl CKFetchShareParticipantsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchShareParticipantsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantsCompletionBlock(

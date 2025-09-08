@@ -43,6 +43,8 @@ impl MLGPUComputeDevice {
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The underlying metal device.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(metalDevice))]
         #[unsafe(method_family = none)]
         pub unsafe fn metalDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;

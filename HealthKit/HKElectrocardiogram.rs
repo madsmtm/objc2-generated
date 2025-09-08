@@ -128,28 +128,38 @@ extern_conformance!(
 impl HKElectrocardiogram {
     extern_methods!(
         /// The number of voltage measurements in the electrocardiogram.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(numberOfVoltageMeasurements))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfVoltageMeasurements(&self) -> NSInteger;
 
         #[cfg(feature = "HKQuantity")]
         /// The frequency at which the data was sampled. This is reported in [HKUnit hertzUnit].
+        ///
+        /// This property is not atomic.
         #[unsafe(method(samplingFrequency))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplingFrequency(&self) -> Option<Retained<HKQuantity>>;
 
         /// The classification of this electrocardiogram sample.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(classification))]
         #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> HKElectrocardiogramClassification;
 
         #[cfg(feature = "HKQuantity")]
         /// The average heart rate of the user while the electrocardiogram was recorded.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(averageHeartRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn averageHeartRate(&self) -> Option<Retained<HKQuantity>>;
 
         /// Whether the user experienced symptoms during this electrocardiogram.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(symptomsStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn symptomsStatus(&self) -> HKElectrocardiogramSymptomsStatus;

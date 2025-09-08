@@ -88,11 +88,13 @@ impl CKReference {
             action: CKReferenceAction,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(referenceAction))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceAction(&self) -> CKReferenceAction;
 
         #[cfg(feature = "CKRecordID")]
+        /// This property is not atomic.
         #[unsafe(method(recordID))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordID(&self) -> Retained<CKRecordID>;

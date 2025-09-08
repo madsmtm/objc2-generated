@@ -1232,6 +1232,8 @@ impl AVFragmentedMovie {
         /// The tracks in a movie.
         ///
         /// The value of this property is an array of tracks the movie contains; the tracks are of type AVFragmentedMovieTrack.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(tracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedMovieTrack>>;

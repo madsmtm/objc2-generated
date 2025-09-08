@@ -437,12 +437,16 @@ impl AVPlayerInterstitialEventMonitor {
 
         #[cfg(feature = "AVPlayer")]
         /// The AVPlayer that will play the primaryItems of the receiver's interstitial events.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(primaryPlayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryPlayer(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "AVPlayer")]
         /// The AVQueuePlayer that will play interstitial items during suspension of playback of primary items.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(interstitialPlayer))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialPlayer(&self, mtm: MainThreadMarker) -> Retained<AVQueuePlayer>;

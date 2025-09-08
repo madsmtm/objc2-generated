@@ -64,11 +64,13 @@ impl CKRecordID {
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(recordName))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// This property is not atomic.
         #[unsafe(method(zoneID))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;

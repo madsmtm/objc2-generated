@@ -37,6 +37,8 @@ extern_conformance!(
 impl HKElectrocardiogramVoltageMeasurement {
     extern_methods!(
         /// The time interval between this voltage measurement and the start of the sample.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(timeSinceSampleStart))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeSinceSampleStart(&self) -> NSTimeInterval;

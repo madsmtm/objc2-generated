@@ -262,30 +262,37 @@ impl AVSpeechSynthesisVoice {
             identifier: &NSString,
         ) -> Option<Retained<AVSpeechSynthesisVoice>>;
 
+        /// This property is not atomic.
         #[unsafe(method(language))]
         #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
         #[unsafe(method(quality))]
         #[unsafe(method_family = none)]
         pub unsafe fn quality(&self) -> AVSpeechSynthesisVoiceQuality;
 
+        /// This property is not atomic.
         #[unsafe(method(gender))]
         #[unsafe(method_family = none)]
         pub unsafe fn gender(&self) -> AVSpeechSynthesisVoiceGender;
 
+        /// This property is not atomic.
         #[unsafe(method(audioFileSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioFileSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// This property is not atomic.
         #[unsafe(method(voiceTraits))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceTraits(&self) -> AVSpeechSynthesisVoiceTraits;
@@ -734,6 +741,7 @@ extern_conformance!(
 
 impl AVSpeechSynthesisMarker {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(mark))]
         #[unsafe(method_family = none)]
         pub unsafe fn mark(&self) -> AVSpeechSynthesisMarkerMark;
@@ -744,6 +752,8 @@ impl AVSpeechSynthesisMarker {
         pub unsafe fn setMark(&self, mark: AVSpeechSynthesisMarkerMark);
 
         /// Byte offset into the associated audio buffer
+        ///
+        /// This property is not atomic.
         #[unsafe(method(byteSampleOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn byteSampleOffset(&self) -> NSUInteger;
@@ -754,6 +764,8 @@ impl AVSpeechSynthesisMarker {
         pub unsafe fn setByteSampleOffset(&self, byte_sample_offset: NSUInteger);
 
         /// The location and length of the pertaining speech request's SSML text. This marker applies to the range of characters represented by the NSString.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(textRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn textRange(&self) -> NSRange;
@@ -763,6 +775,7 @@ impl AVSpeechSynthesisMarker {
         #[unsafe(method_family = none)]
         pub unsafe fn setTextRange(&self, text_range: NSRange);
 
+        /// This property is not atomic.
         #[unsafe(method(bookmarkName))]
         #[unsafe(method_family = none)]
         pub unsafe fn bookmarkName(&self) -> Retained<NSString>;
@@ -774,6 +787,7 @@ impl AVSpeechSynthesisMarker {
         #[unsafe(method_family = none)]
         pub unsafe fn setBookmarkName(&self, bookmark_name: &NSString);
 
+        /// This property is not atomic.
         #[unsafe(method(phoneme))]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneme(&self) -> Retained<NSString>;

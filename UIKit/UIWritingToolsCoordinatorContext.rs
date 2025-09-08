@@ -124,6 +124,8 @@ impl UIWritingToolsCoordinatorContext {
         /// this property with a subset of your view’s content, you must adjust
         /// any ranges that Writing Tools provides to get the correct location
         /// in your text storage.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
@@ -132,6 +134,8 @@ impl UIWritingToolsCoordinatorContext {
         ///
         /// The ``UIWritingToolsCoordinator/Context`` object initializes the value of this property
         /// at creation time. Use this value to identify the context object within your app.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(range))]
         #[unsafe(method_family = none)]
         pub unsafe fn range(&self) -> NSRange;
@@ -141,6 +145,8 @@ impl UIWritingToolsCoordinatorContext {
         /// The ``UIWritingToolsCoordinator/Context`` object initializes the value of
         /// this property at creation time. Use this value to identify the
         /// context object within your app.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
@@ -161,6 +167,8 @@ impl UIWritingToolsCoordinatorContext {
         /// object can make changes to the text as part of incorporating Writing Tools
         /// results, but don’t allow changes to come from other sources. For example,
         /// don’t let someone edit the text in this range directly until Writing Tools finishes.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(resolvedRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedRange(&self) -> NSRange;

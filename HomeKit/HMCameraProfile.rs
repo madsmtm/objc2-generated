@@ -38,30 +38,40 @@ impl HMCameraProfile {
 
         #[cfg(all(feature = "HMCameraControl", feature = "HMCameraStreamControl"))]
         /// Object that can be used to control the camera stream.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(streamControl))]
         #[unsafe(method_family = none)]
         pub unsafe fn streamControl(&self) -> Option<Retained<HMCameraStreamControl>>;
 
         #[cfg(all(feature = "HMCameraControl", feature = "HMCameraSnapshotControl"))]
         /// Object that can be used to take image snapshots from the camera.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(snapshotControl))]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotControl(&self) -> Option<Retained<HMCameraSnapshotControl>>;
 
         #[cfg(all(feature = "HMCameraControl", feature = "HMCameraSettingsControl"))]
         /// Object that can be used to control the settings on the camera.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(settingsControl))]
         #[unsafe(method_family = none)]
         pub unsafe fn settingsControl(&self) -> Option<Retained<HMCameraSettingsControl>>;
 
         #[cfg(all(feature = "HMCameraAudioControl", feature = "HMCameraControl"))]
         /// Object that can be used to control the speaker settings on the camera.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(speakerControl))]
         #[unsafe(method_family = none)]
         pub unsafe fn speakerControl(&self) -> Option<Retained<HMCameraAudioControl>>;
 
         #[cfg(all(feature = "HMCameraAudioControl", feature = "HMCameraControl"))]
         /// Object that can be used to control the microphone settings on the camera.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(microphoneControl))]
         #[unsafe(method_family = none)]
         pub unsafe fn microphoneControl(&self) -> Option<Retained<HMCameraAudioControl>>;

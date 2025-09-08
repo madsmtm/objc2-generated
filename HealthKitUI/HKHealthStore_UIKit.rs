@@ -21,6 +21,8 @@ pub unsafe trait HKHealthStoreUIKit:
         /// The view controller from which HealthKit authorization sheets will be presented
         ///
         /// This property can be set before requesting authorization or running a query like HKDocumentQuery for a better user-experience. Since this property will ensure to infer the correct hosting view controller to show the authorization sheet.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(authorizationViewControllerPresenter))]
         #[unsafe(method_family = none)]
         unsafe fn authorizationViewControllerPresenter(

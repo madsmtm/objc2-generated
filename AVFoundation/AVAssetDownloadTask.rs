@@ -106,6 +106,8 @@ impl AVAssetDownloadTask {
     extern_methods!(
         #[cfg(feature = "AVAsset")]
         /// The asset supplied to the download task upon initialization.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(URLAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn URLAsset(&self) -> Retained<AVURLAsset>;
@@ -113,12 +115,16 @@ impl AVAssetDownloadTask {
         /// The file URL supplied to the download task upon initialization.
         ///
         /// This URL may have been appended with the appropriate extension for the asset.
+        ///
+        /// This property is not atomic.
         #[deprecated = "Use the URL property of URLAsset instead"]
         #[unsafe(method(destinationURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationURL(&self) -> Retained<NSURL>;
 
         /// The options supplied to the download task upon initialization.
+        ///
+        /// This property is not atomic.
         #[deprecated = "Use AVAssetDownloadConfiguration instead"]
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
@@ -127,6 +133,8 @@ impl AVAssetDownloadTask {
         /// This property provides a collection of time ranges for which the download task has media data already downloaded and playable. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
+        ///
+        /// This property is not atomic.
         #[deprecated = "Use NSURLSessionTask.progress instead"]
         #[unsafe(method(loadedTimeRanges))]
         #[unsafe(method_family = none)]
@@ -391,6 +399,8 @@ impl AVAggregateAssetDownloadTask {
     extern_methods!(
         #[cfg(feature = "AVAsset")]
         /// The asset supplied to the download task upon initialization.
+        ///
+        /// This property is not atomic.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[unsafe(method(URLAsset))]
         #[unsafe(method_family = none)]

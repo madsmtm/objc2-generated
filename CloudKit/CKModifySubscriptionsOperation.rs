@@ -37,6 +37,7 @@ impl CKModifySubscriptionsOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
+        /// This property is not atomic.
         #[unsafe(method(subscriptionsToSave))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionsToSave(&self) -> Option<Retained<NSArray<CKSubscription>>>;
@@ -53,6 +54,7 @@ impl CKModifySubscriptionsOperation {
         );
 
         #[cfg(feature = "CKSubscription")]
+        /// This property is not atomic.
         #[unsafe(method(subscriptionIDsToDelete))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionIDsToDelete(&self)
@@ -77,6 +79,8 @@ impl CKModifySubscriptionsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perSubscriptionSaveBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionSaveBlock(
@@ -108,6 +112,8 @@ impl CKModifySubscriptionsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perSubscriptionDeleteBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perSubscriptionDeleteBlock(
@@ -148,6 +154,8 @@ impl CKModifySubscriptionsOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(modifySubscriptionsCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifySubscriptionsCompletionBlock(

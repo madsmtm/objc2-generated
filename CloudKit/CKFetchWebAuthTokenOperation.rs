@@ -37,6 +37,8 @@ impl CKFetchWebAuthTokenOperation {
         ) -> Retained<Self>;
 
         /// APIToken is expected to be set before you begin this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(APIToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn APIToken(&self) -> Option<Retained<NSString>>;
@@ -63,6 +65,8 @@ impl CKFetchWebAuthTokenOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchWebAuthTokenCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchWebAuthTokenCompletionBlock(

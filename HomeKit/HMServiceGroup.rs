@@ -36,17 +36,23 @@ impl HMServiceGroup {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the service group.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMService")]
         /// Array of HMService objects that correspond to the services contained in this group.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(services))]
         #[unsafe(method_family = none)]
         pub unsafe fn services(&self) -> Retained<NSArray<HMService>>;
 
         /// A unique identifier for the service group.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;

@@ -50,6 +50,7 @@ impl CKFetchDatabaseChangesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKServerChangeToken")]
+        /// This property is not atomic.
         #[unsafe(method(previousServerChangeToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
@@ -65,6 +66,7 @@ impl CKFetchDatabaseChangesOperation {
             previous_server_change_token: Option<&CKServerChangeToken>,
         );
 
+        /// This property is not atomic.
         #[unsafe(method(resultsLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
@@ -85,6 +87,8 @@ impl CKFetchDatabaseChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
         /// Blocks assigned to this operation may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchAllChanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
@@ -99,6 +103,8 @@ impl CKFetchDatabaseChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recordZoneWithIDChangedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDChangedBlock(
@@ -123,6 +129,8 @@ impl CKFetchDatabaseChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recordZoneWithIDWasDeletedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedBlock(
@@ -152,6 +160,8 @@ impl CKFetchDatabaseChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recordZoneWithIDWasPurgedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasPurgedBlock(
@@ -181,6 +191,8 @@ impl CKFetchDatabaseChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
@@ -205,6 +217,8 @@ impl CKFetchDatabaseChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(changeTokenUpdatedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn changeTokenUpdatedBlock(
@@ -240,6 +254,8 @@ impl CKFetchDatabaseChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fetchDatabaseChangesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchDatabaseChangesCompletionBlock(

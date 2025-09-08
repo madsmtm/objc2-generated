@@ -31,6 +31,8 @@ impl CKOperation {
         ///
         ///
         /// See the CKOperationConfiguration class description for info on how this configuration composes with CKOperationGroup.defaultConfiguration
+        ///
+        /// This property is not atomic.
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<CKOperationConfiguration>;
@@ -44,6 +46,8 @@ impl CKOperation {
 
         #[cfg(feature = "CKOperationGroup")]
         /// The group this operation is associated with
+        ///
+        /// This property is not atomic.
         #[unsafe(method(group))]
         #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Option<Retained<CKOperationGroup>>;
@@ -58,6 +62,8 @@ impl CKOperation {
         ///
         ///
         /// This value is chosen by the system, and will be unique to this instance of a CKOperation.  This identifier will be sent to Apple's servers, and can be used to identify any server-side logging associated with this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(operationID))]
         #[unsafe(method_family = none)]
         pub unsafe fn operationID(&self) -> Retained<CKOperationID>;
@@ -71,6 +77,8 @@ impl CKOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(longLivedOperationWasPersistedBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn longLivedOperationWasPersistedBlock(&self)
@@ -262,6 +270,7 @@ impl CKOperationConfiguration {
 impl CKOperation {
     extern_methods!(
         #[cfg(feature = "CKContainer")]
+        /// This property is not atomic.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(container))]
         #[unsafe(method_family = none)]
@@ -274,6 +283,7 @@ impl CKOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);
 
+        /// This property is not atomic.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(allowsCellularAccess))]
         #[unsafe(method_family = none)]
@@ -285,6 +295,7 @@ impl CKOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
+        /// This property is not atomic.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(isLongLived))]
         #[unsafe(method_family = none)]
@@ -296,6 +307,7 @@ impl CKOperation {
         #[unsafe(method_family = none)]
         pub unsafe fn setLongLived(&self, long_lived: bool);
 
+        /// This property is not atomic.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(timeoutIntervalForRequest))]
         #[unsafe(method_family = none)]
@@ -310,6 +322,7 @@ impl CKOperation {
             timeout_interval_for_request: NSTimeInterval,
         );
 
+        /// This property is not atomic.
         #[deprecated = "Use CKOperationConfiguration"]
         #[unsafe(method(timeoutIntervalForResource))]
         #[unsafe(method_family = none)]

@@ -27,17 +27,23 @@ extern_conformance!(
 impl HMCharacteristic {
     extern_methods!(
         /// The type of the characteristic, e.g. HMCharacteristicTypePowerState.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(characteristicType))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristicType(&self) -> Retained<NSString>;
 
         /// The localized description of the characteristic.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMService")]
         /// Service that contains this characteristic.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(service))]
         #[unsafe(method_family = none)]
         pub unsafe fn service(&self) -> Option<Retained<HMService>>;
@@ -47,12 +53,16 @@ impl HMCharacteristic {
         ///
         /// This value corresponds to the properties associated with this characteristic.
         /// The contents of the array are one or more HMCharacteristicProperty constants.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(properties))]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HMCharacteristicMetadata")]
         /// Meta data associated with the characteristic.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(metadata))]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<HMCharacteristicMetadata>>;
@@ -62,6 +72,8 @@ impl HMCharacteristic {
         ///
         /// The value is a cached value that may have been updated as a result of prior
         /// interaction with the accessory.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
@@ -70,11 +82,15 @@ impl HMCharacteristic {
         ///
         ///
         /// This property is reset to NO if the reachability of the accessory is NO.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isNotificationEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNotificationEnabled(&self) -> bool;
 
         /// A unique identifier for the characteristic.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;

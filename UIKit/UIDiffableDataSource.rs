@@ -332,11 +332,13 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType>
 {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(sectionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIdentifier(&self) -> Retained<SectionIdentifierType>;
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
+        /// This property is not atomic.
         #[unsafe(method(initialSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialSnapshot(
@@ -344,12 +346,14 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
         #[cfg(feature = "NSDiffableDataSourceSectionSnapshot")]
+        /// This property is not atomic.
         #[unsafe(method(finalSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn finalSnapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
+        /// This property is not atomic.
         #[unsafe(method(difference))]
         #[unsafe(method_family = none)]
         pub unsafe fn difference(
@@ -413,24 +417,28 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType>
 {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(initialSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialSnapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
+        /// This property is not atomic.
         #[unsafe(method(finalSnapshot))]
         #[unsafe(method_family = none)]
         pub unsafe fn finalSnapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
 
+        /// This property is not atomic.
         #[unsafe(method(difference))]
         #[unsafe(method_family = none)]
         pub unsafe fn difference(
             &self,
         ) -> Retained<NSOrderedCollectionDifference<ItemIdentifierType>>;
 
+        /// This property is not atomic.
         #[unsafe(method(sectionTransactions))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionTransactions(

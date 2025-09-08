@@ -99,6 +99,8 @@ impl PTChannelManager {
         /// Only one channel can be active at a time -- this is the channel that will handle user events
         /// This being nonnull reflects whether the user can see this channel is active in the user interface
         /// The ephemeral push token is only usable when this is nonnull.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(activeChannelUUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn activeChannelUUID(&self) -> Option<Retained<NSUUID>>;

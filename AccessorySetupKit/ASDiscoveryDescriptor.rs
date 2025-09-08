@@ -54,6 +54,8 @@ impl ASDiscoveryDescriptor {
     extern_methods!(
         #[cfg(feature = "ASAccessory")]
         /// Options supported by an accessory.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(supportedOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedOptions(&self) -> ASAccessorySupportOptions;
@@ -66,6 +68,8 @@ impl ASDiscoveryDescriptor {
 
         #[cfg(feature = "ASCommon")]
         /// The accessory's 16-bit Bluetooth Company Identifier.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothCompanyIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothCompanyIdentifier(&self) -> ASBluetoothCompanyIdentifier;
@@ -80,6 +84,8 @@ impl ASDiscoveryDescriptor {
         );
 
         /// A byte buffer that matches the accessory's Bluetooth manufacturer data.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothManufacturerDataBlob))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothManufacturerDataBlob(&self) -> Option<Retained<NSData>>;
@@ -95,6 +101,8 @@ impl ASDiscoveryDescriptor {
         );
 
         /// The accessory's Bluetooth manufacturer data mask.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothManufacturerDataMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothManufacturerDataMask(&self) -> Option<Retained<NSData>>;
@@ -110,6 +118,8 @@ impl ASDiscoveryDescriptor {
         );
 
         /// The accessory's over-the-air Bluetooth name substring compare options.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothNameSubstringCompareOptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothNameSubstringCompareOptions(&self) -> NSStringCompareOptions;
@@ -123,6 +133,8 @@ impl ASDiscoveryDescriptor {
         );
 
         /// The accessory's over-the-air Bluetooth name substring.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothNameSubstring))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothNameSubstring(&self) -> Option<Retained<NSString>>;
@@ -135,6 +147,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn setBluetoothNameSubstring(&self, bluetooth_name_substring: Option<&NSString>);
 
         /// A property that tells the session to discover accessories within a specific Bluetooth range.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothRange(&self) -> ASDiscoveryDescriptorRange;
@@ -145,6 +159,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn setBluetoothRange(&self, bluetooth_range: ASDiscoveryDescriptorRange);
 
         /// A byte buffer that matches the accessory's Bluetooth service data.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothServiceDataBlob))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothServiceDataBlob(&self) -> Option<Retained<NSData>>;
@@ -160,6 +176,8 @@ impl ASDiscoveryDescriptor {
         );
 
         /// The accessory's Bluetooth service data mask.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothServiceDataMask))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothServiceDataMask(&self) -> Option<Retained<NSData>>;
@@ -176,6 +194,8 @@ impl ASDiscoveryDescriptor {
 
         #[cfg(feature = "objc2-core-bluetooth")]
         /// The accessory's Bluetooth service UUID.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothServiceUUID))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothServiceUUID(&self) -> Option<Retained<CBUUID>>;
@@ -189,6 +209,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn setBluetoothServiceUUID(&self, bluetooth_service_uuid: Option<&CBUUID>);
 
         /// The SSID of the accessory's Wi-Fi network.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
@@ -201,6 +223,8 @@ impl ASDiscoveryDescriptor {
         pub unsafe fn setSSID(&self, ssid: Option<&NSString>);
 
         /// The prefix string of SSID of the accessory's Wi-Fi network.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(SSIDPrefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSIDPrefix(&self) -> Option<Retained<NSString>>;

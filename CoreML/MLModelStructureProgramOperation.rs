@@ -34,12 +34,16 @@ impl MLModelStructureProgramOperation {
         pub unsafe fn new() -> Retained<Self>;
 
         /// The name of the operator, e.g., "conv", "pool", "softmax", etc.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(operatorName))]
         #[unsafe(method_family = none)]
         pub unsafe fn operatorName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLModelStructureProgramArgument")]
         /// The arguments to the Operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputs(
@@ -48,12 +52,16 @@ impl MLModelStructureProgramOperation {
 
         #[cfg(feature = "MLModelStructureProgramNamedValueType")]
         /// The outputs of the Operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(outputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<MLModelStructureProgramNamedValueType>>;
 
         #[cfg(feature = "MLModelStructureProgramBlock")]
         /// Nested blocks for loops and conditionals, e.g., a conditional block will have two entries here.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(blocks))]
         #[unsafe(method_family = none)]
         pub unsafe fn blocks(&self) -> Retained<NSArray<MLModelStructureProgramBlock>>;

@@ -37,6 +37,7 @@ impl CKModifyRecordZonesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZone")]
+        /// This property is not atomic.
         #[unsafe(method(recordZonesToSave))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZonesToSave(&self) -> Option<Retained<NSArray<CKRecordZone>>>;
@@ -53,6 +54,7 @@ impl CKModifyRecordZonesOperation {
         );
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// This property is not atomic.
         #[unsafe(method(recordZoneIDsToDelete))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
@@ -80,6 +82,8 @@ impl CKModifyRecordZonesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perRecordZoneSaveBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneSaveBlock(
@@ -111,6 +115,8 @@ impl CKModifyRecordZonesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(perRecordZoneDeleteBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneDeleteBlock(
@@ -155,6 +161,8 @@ impl CKModifyRecordZonesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(modifyRecordZonesCompletionBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn modifyRecordZonesCompletionBlock(

@@ -156,21 +156,29 @@ impl VTMotionBlurConfiguration {
         pub unsafe fn new() -> Retained<Self>;
 
         /// Width of source frame in pixels.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(frameWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameWidth(&self) -> NSInteger;
 
         /// Height of source frame in pixels.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(frameHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameHeight(&self) -> NSInteger;
 
         /// Indicates that caller will provide optical flow.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(usePrecomputedFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn usePrecomputedFlow(&self) -> bool;
 
         /// parameter used to control quality and performance levels. See VTMotionBlurConfigurationQualityPrioritization for more info.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(qualityPrioritization))]
         #[unsafe(method_family = none)]
         pub unsafe fn qualityPrioritization(
@@ -178,6 +186,8 @@ impl VTMotionBlurConfiguration {
         ) -> VTMotionBlurConfigurationQualityPrioritization;
 
         /// The specific algorithm or configuration revision that is to be used to perform the request.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(revision))]
         #[unsafe(method_family = none)]
         pub unsafe fn revision(&self) -> VTMotionBlurConfigurationRevision;
@@ -197,12 +207,16 @@ impl VTMotionBlurConfiguration {
 
         #[cfg(feature = "objc2-foundation")]
         /// list of source frame supported pixel formats for current configuration
+        ///
+        /// This property is not atomic.
         #[unsafe(method(frameSupportedPixelFormats))]
         #[unsafe(method_family = none)]
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as source frames and reference frames.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcePixelBufferAttributes(
@@ -211,6 +225,8 @@ impl VTMotionBlurConfiguration {
 
         #[cfg(feature = "objc2-foundation")]
         /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as destination frames.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(destinationPixelBufferAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationPixelBufferAttributes(

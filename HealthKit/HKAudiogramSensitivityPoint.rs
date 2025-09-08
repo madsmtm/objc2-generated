@@ -53,6 +53,8 @@ impl HKAudiogramSensitivityPoint {
 
         #[cfg(feature = "HKAudiogramSensitivityTest")]
         /// The tests conducted at this frequency
+        ///
+        /// This property is not atomic.
         #[unsafe(method(tests))]
         #[unsafe(method_family = none)]
         pub unsafe fn tests(&self) -> Retained<NSArray<HKAudiogramSensitivityTest>>;

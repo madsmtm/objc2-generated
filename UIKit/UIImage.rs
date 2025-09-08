@@ -287,30 +287,36 @@ impl UIImage {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// This property is not atomic.
         #[unsafe(method(CGImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGImage(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
+        /// This property is not atomic.
         #[unsafe(method(CIImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn CIImage(&self) -> Option<Retained<CIImage>>;
 
+        /// This property is not atomic.
         #[unsafe(method(imageOrientation))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageOrientation(&self) -> UIImageOrientation;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(scale))]
         #[unsafe(method_family = none)]
         pub unsafe fn scale(&self) -> CGFloat;
 
+        /// This property is not atomic.
         #[unsafe(method(isSymbolImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSymbolImage(&self) -> bool;
@@ -348,10 +354,12 @@ impl UIImage {
             duration: NSTimeInterval,
         ) -> Option<Retained<UIImage>>;
 
+        /// This property is not atomic.
         #[unsafe(method(images))]
         #[unsafe(method_family = none)]
         pub unsafe fn images(&self) -> Option<Retained<NSArray<UIImage>>>;
 
+        /// This property is not atomic.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -409,10 +417,12 @@ impl UIImage {
         ) -> Retained<UIImage>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// This property is not atomic.
         #[unsafe(method(capInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn capInsets(&self) -> UIEdgeInsets;
 
+        /// This property is not atomic.
         #[unsafe(method(resizingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn resizingMode(&self) -> UIImageResizingMode;
@@ -426,6 +436,7 @@ impl UIImage {
         ) -> Retained<UIImage>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// This property is not atomic.
         #[unsafe(method(alignmentRectInsets))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentRectInsets(&self) -> UIEdgeInsets;
@@ -437,21 +448,25 @@ impl UIImage {
             rendering_mode: UIImageRenderingMode,
         ) -> Retained<UIImage>;
 
+        /// This property is not atomic.
         #[unsafe(method(renderingMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingMode(&self) -> UIImageRenderingMode;
 
         #[cfg(all(feature = "UIGraphicsImageRenderer", feature = "UIGraphicsRenderer"))]
+        /// This property is not atomic.
         #[unsafe(method(imageRendererFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRendererFormat(&self) -> Retained<UIGraphicsImageRendererFormat>;
 
         #[cfg(feature = "UITraitCollection")]
+        /// This property is not atomic.
         #[unsafe(method(traitCollection))]
         #[unsafe(method_family = none)]
         pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIImageAsset")]
+        /// This property is not atomic.
         #[unsafe(method(imageAsset))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAsset(&self) -> Option<Retained<UIImageAsset>>;
@@ -460,6 +475,7 @@ impl UIImage {
         #[unsafe(method_family = none)]
         pub unsafe fn imageFlippedForRightToLeftLayoutDirection(&self) -> Retained<UIImage>;
 
+        /// This property is not atomic.
         #[unsafe(method(flipsForRightToLeftLayoutDirection))]
         #[unsafe(method_family = none)]
         pub unsafe fn flipsForRightToLeftLayoutDirection(&self) -> bool;
@@ -469,10 +485,12 @@ impl UIImage {
         pub unsafe fn imageWithHorizontallyFlippedOrientation(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(baselineOffsetFromBottom))]
         #[unsafe(method_family = none)]
         pub unsafe fn baselineOffsetFromBottom(&self) -> CGFloat;
 
+        /// This property is not atomic.
         #[unsafe(method(hasBaseline))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasBaseline(&self) -> bool;
@@ -490,6 +508,7 @@ impl UIImage {
         pub unsafe fn imageWithoutBaseline(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImageConfiguration")]
+        /// This property is not atomic.
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<UIImageConfiguration>>;
@@ -506,6 +525,7 @@ impl UIImage {
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
+        /// This property is not atomic.
         #[unsafe(method(symbolConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Retained<UIImageSymbolConfiguration>>;
@@ -582,6 +602,8 @@ impl UIImage {
         );
 
         /// Indicates that this image is tagged for display of high dynamic range content.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isHighDynamicRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHighDynamicRange(&self) -> bool;
@@ -665,10 +687,12 @@ impl UIImage {
             top_cap_height: NSInteger,
         ) -> Retained<UIImage>;
 
+        /// This property is not atomic.
         #[unsafe(method(leftCapWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn leftCapWidth(&self) -> NSInteger;
 
+        /// This property is not atomic.
         #[unsafe(method(topCapHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn topCapHeight(&self) -> NSInteger;

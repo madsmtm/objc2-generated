@@ -54,6 +54,8 @@ impl ARReferenceObject {
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to identify the object.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
@@ -71,12 +73,16 @@ impl ARReferenceObject {
         ///
         /// If this object was loaded via an AR resource group in the Xcode asset catalogue this property will have the name of the resource group,
         /// else be set to nil.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(resourceGroupName))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceGroupName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ARPointCloud")]
         /// The feature points of the object.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(rawFeaturePoints))]
         #[unsafe(method_family = none)]
         pub unsafe fn rawFeaturePoints(&self) -> Retained<ARPointCloud>;

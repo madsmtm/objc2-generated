@@ -33,12 +33,16 @@ impl HMCameraAudioControl {
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to mute setting on the camera.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(mute))]
         #[unsafe(method_family = none)]
         pub unsafe fn mute(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to volume setting on the camera.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(volume))]
         #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> Option<Retained<HMCharacteristic>>;

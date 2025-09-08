@@ -40,6 +40,8 @@ impl HKAnchoredObjectQuery {
         ///
         /// This property may not be modified once the query has been executed.  It may only be set if the query has
         /// no limit.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(updateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(

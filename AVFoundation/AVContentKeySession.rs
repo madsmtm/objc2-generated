@@ -535,6 +535,7 @@ impl AVContentKeyRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<AnyObject>>;
 
+        /// This property is not atomic.
         #[unsafe(method(initializationData))]
         #[unsafe(method_family = none)]
         pub unsafe fn initializationData(&self) -> Option<Retained<NSData>>;

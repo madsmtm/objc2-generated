@@ -46,12 +46,16 @@ impl HKAudiogramSensitivityPointClampingRange {
     extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// The lower bound of the clamping range, if any, in dBHL.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(lowerBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn lowerBound(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The upper bound of the clamping range, if any, in dBHL.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(upperBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperBound(&self) -> Option<Retained<HKQuantity>>;

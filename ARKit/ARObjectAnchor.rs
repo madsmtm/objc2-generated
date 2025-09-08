@@ -60,6 +60,8 @@ impl ARObjectAnchor {
     extern_methods!(
         #[cfg(feature = "ARReferenceObject")]
         /// Reference to the detected object.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(referenceObject))]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceObject(&self) -> Retained<ARReferenceObject>;

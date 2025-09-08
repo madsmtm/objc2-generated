@@ -31,6 +31,8 @@ extern_conformance!(
 impl HMCameraSnapshot {
     extern_methods!(
         /// Time corresponding to the snapshot request.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(captureDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn captureDate(&self) -> Retained<NSDate>;

@@ -120,6 +120,8 @@ impl HMEventTrigger {
 
         #[cfg(feature = "HMEvent")]
         /// The events associated with the trigger.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(events))]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<HMEvent>>;
@@ -128,27 +130,37 @@ impl HMEventTrigger {
         /// The events that correspond to executing the restore of the scene before the trigger was executed.
         /// E.g. Execute the scene for 10 mins and restore original state is achieved by specifying a corresponding
         /// HMDurationEvent in the list of endEvents.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(endEvents))]
         #[unsafe(method_family = none)]
         pub unsafe fn endEvents(&self) -> Retained<NSArray<HMEvent>>;
 
         /// The predicate to evaluate before executing the action sets associated with the trigger.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// recurrences Specifies the recurrences for when the trigger is evaluated. This only supports days of the week.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recurrences))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrences(&self) -> Option<Retained<NSArray<NSDateComponents>>>;
 
         /// Specifies whether this trigger is executed only once after which the trigger is disabled.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(executeOnce))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeOnce(&self) -> bool;
 
         #[cfg(feature = "HMEventTriggerActivationState")]
         /// Specifies the current activation state of the trigger.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(triggerActivationState))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerActivationState(&self) -> HMEventTriggerActivationState;

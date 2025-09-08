@@ -42,19 +42,25 @@ impl PHProjectTypeDescription {
     extern_methods!(
         #[cfg(feature = "PhotosUITypes")]
         /// Identifier for the project type info. These should be added to the extensible string enum defined in PhotosUITypes.h.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(projectType))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectType(&self) -> Retained<PHProjectType>;
 
         /// Localized title and description of the project type to be displayed to the user. The title is required, but description is optional.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(localizedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
         #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
+        /// This property is not atomic.
         #[unsafe(method(localizedAttributedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedAttributedDescription(&self)
@@ -63,17 +69,23 @@ impl PHProjectTypeDescription {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Optional image to be associated with the project type in the picker; PNG images are recommended.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         /// Array of type descriptions for subtype descriptions, may be empty.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(subtypeDescriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn subtypeDescriptions(&self) -> Retained<NSArray<PHProjectTypeDescription>>;
 
         /// For spase instances canProvideSubtypes is an indicator if subtypes can be fetched from the data source.
         /// If subtypeDescriptions is not empty it will also return YES.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(canProvideSubtypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn canProvideSubtypes(&self) -> bool;

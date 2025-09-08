@@ -30,6 +30,8 @@ impl ASAccessorySettings {
         pub unsafe fn defaultSettings() -> Retained<ASAccessorySettings>;
 
         /// A hotspot identifier that clients can use to connect to an accessory's hotspot.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(SSID))]
         #[unsafe(method_family = none)]
         pub unsafe fn SSID(&self) -> Option<Retained<NSString>>;
@@ -44,6 +46,8 @@ impl ASAccessorySettings {
         /// A 6-byte identifier for bridging classic transport profiles.
         ///
         /// AccessorySetupKit ignores this property if another app already authorized and bridged the accessory.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothTransportBridgingIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothTransportBridgingIdentifier(&self) -> Option<Retained<NSData>>;

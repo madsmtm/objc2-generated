@@ -29,6 +29,8 @@ extern_conformance!(
 impl HMNetworkConfigurationProfile {
     extern_methods!(
         /// The delegate of the receiver.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -46,6 +48,8 @@ impl HMNetworkConfigurationProfile {
         );
 
         /// Indicates if the associated accessory's access to the network is restricted.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isNetworkAccessRestricted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessRestricted(&self) -> bool;

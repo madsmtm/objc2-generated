@@ -153,16 +153,22 @@ extern_conformance!(
 impl ARPlaneExtent {
     extern_methods!(
         /// The rotation angle in radians of the extents around the y-axis in the anchor’s coordinate space.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(rotationOnYAxis))]
         #[unsafe(method_family = none)]
         pub unsafe fn rotationOnYAxis(&self) -> c_float;
 
         /// The width of the plane. Corresponds to the length of the plane along the x-axis prior to applying .rotationOnYAxis.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> c_float;
 
         /// The height the plane. Corresponds to the length of the plane along the z-axis prior to applying .rotationOnYAxis.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(height))]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> c_float;
@@ -241,27 +247,37 @@ impl ARPlaneAnchor {
         pub unsafe fn isClassificationSupported() -> bool;
 
         /// The alignment of the plane.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(alignment))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> ARPlaneAnchorAlignment;
 
         /// The extent of the plane in the anchor’s coordinate space.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(planeExtent))]
         #[unsafe(method_family = none)]
         pub unsafe fn planeExtent(&self) -> Retained<ARPlaneExtent>;
 
         #[cfg(feature = "ARPlaneGeometry")]
         /// Geometry of the plane in the anchor's coordinate space.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(geometry))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Retained<ARPlaneGeometry>;
 
         /// Classification status of the plane.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(classificationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn classificationStatus(&self) -> ARPlaneClassificationStatus;
 
         /// Classification of the plane.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(classification))]
         #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> ARPlaneClassification;

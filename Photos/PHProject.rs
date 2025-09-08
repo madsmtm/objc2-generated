@@ -38,12 +38,15 @@ extern_conformance!(
 #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
 impl PHProject {
     extern_methods!(
+        /// This property is not atomic.
         #[unsafe(method(projectExtensionData))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
         /// Property to determine if a project preview was previously set.
         /// Use -[PHProjectChangeRequest setProjectPreviewImage:] to set a project preview.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(hasProjectPreview))]
         #[unsafe(method_family = none)]
         pub unsafe fn hasProjectPreview(&self) -> bool;

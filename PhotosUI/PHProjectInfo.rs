@@ -94,6 +94,8 @@ extern_conformance!(
 impl PHProjectInfo {
     extern_methods!(
         /// Source from which the project was created.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(creationSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationSource(&self) -> PHProjectCreationSource;
@@ -101,11 +103,15 @@ impl PHProjectInfo {
         #[cfg(feature = "PhotosUITypes")]
         /// Selected projectType value from the extensions options as defined in -[PHProjectExtensionController supportedProjectTypes].
         /// See PHProjectExtensionController.h for more information on configuring the options.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(projectType))]
         #[unsafe(method_family = none)]
         pub unsafe fn projectType(&self) -> Retained<PHProjectType>;
 
         /// Array of project sections each containing one or more PHProjectSectionContent objects.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sections))]
         #[unsafe(method_family = none)]
         pub unsafe fn sections(&self) -> Retained<NSArray<PHProjectSection>>;
@@ -113,21 +119,29 @@ impl PHProjectInfo {
         /// The following properties are only used when the user creates a new project from an existing Apple Print Product.
         ///
         /// YES if the source project had branding enabled.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(brandingEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn brandingEnabled(&self) -> bool;
 
         /// YES if the source project had page numbers enabled.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(pageNumbersEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn pageNumbersEnabled(&self) -> bool;
 
         /// The product identifier of the originating Apple Print Product.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(productIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn productIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// The product theme identifier of the originating Apple Print Product.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(themeIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn themeIdentifier(&self) -> Option<Retained<NSString>>;
@@ -213,16 +227,22 @@ impl PHProjectSection {
         /// Array containing one or more PHProjectSectionContent objects. Ordered by number of elements from least to most.
         /// Projects should only present one level of content to the user at a time as assets will be reused within
         /// individual content objects.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sectionContents))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionContents(&self) -> Retained<NSArray<PHProjectSectionContent>>;
 
         /// The intended usage of the section (e.g., cover, content, auxiliary)
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sectionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionType(&self) -> PHProjectSectionType;
 
         /// Title for the section (e.g., a Moment name or a general geographical location), might be an empty string.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
@@ -267,6 +287,8 @@ extern_conformance!(
 impl PHProjectSectionContent {
     extern_methods!(
         /// Array of asset, text, or journal entry elements contained in the content.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(elements))]
         #[unsafe(method_family = none)]
         pub unsafe fn elements(&self) -> Retained<NSArray<PHProjectElement>>;
@@ -275,11 +297,15 @@ impl PHProjectSectionContent {
         /// where one grid space is the width of the defined project canvas divided by numberOfColumns.
         /// If a project represents a "fixed layout" (e.g., it was created from an existing Apple Book, Card, or Calendar)
         /// the specified numberOfColumns will always be 1.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(numberOfColumns))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
         /// Overall aspect ratio of the full content layout (width/height) to enable faithful replication in the project's layout.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(aspectRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn aspectRatio(&self) -> c_double;
@@ -287,6 +313,8 @@ impl PHProjectSectionContent {
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
         /// Convenience for getting a single array of all cloud asset identifiers referenced in the content without needing to enumerate elements.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(cloudAssetIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn cloudAssetIdentifiers(&self) -> Retained<NSArray<PHCloudIdentifier>>;
@@ -295,6 +323,8 @@ impl PHProjectSectionContent {
         #[cfg(target_os = "macos")]
         /// Background color of the section content.
         /// This property is only used when the user creates a new project from an existing Apple Print Product
+        ///
+        /// This property is not atomic.
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
@@ -342,6 +372,8 @@ impl PHProjectElement {
         /// Projects that allow a user to reduce the number of elements in any section content can use
         /// this hint to determine which elements are most important to keep in order to preserve context.
         /// Default is 0.5.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(weight))]
         #[unsafe(method_family = none)]
         pub unsafe fn weight(&self) -> c_double;
@@ -352,6 +384,8 @@ impl PHProjectElement {
         /// For layout grids with more than one column, the values in the rect will always be integral. For fixed layouts,
         /// rect values will be in fractional unit values. If suggested placement could not be determined at time of project
         /// creation, placement will contain CGRectNull.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(placement))]
         #[unsafe(method_family = none)]
         pub unsafe fn placement(&self) -> CGRect;
@@ -471,11 +505,15 @@ impl PHProjectAssetElement {
         #[cfg(not(target_os = "watchos"))]
         /// Cloud identifier for the underlying PHAsset. This identifier must be converted to a localIdentifier
         /// before fetching, but if archiving the identifier in project data the provided PHCloudIdentifier should always be used.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(cloudAssetIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn cloudAssetIdentifier(&self) -> Retained<PHCloudIdentifier>;
 
         /// If a user has explicitly annotated an asset (e.g., caption) that value will be provided in this property.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(annotation))]
         #[unsafe(method_family = none)]
         pub unsafe fn annotation(&self) -> Retained<NSString>;
@@ -488,6 +526,8 @@ impl PHProjectAssetElement {
         /// area shown to the user will be provided as a crop rect. As a fallback, Photos may suggest a general
         /// "safe crop" based on image content through this property. The rect is in unit coordinates with an upper left origin.
         /// Default value: {(0.0, 0.0), (1.0,1.0)}
+        ///
+        /// This property is not atomic.
         #[unsafe(method(cropRect))]
         #[unsafe(method_family = none)]
         pub unsafe fn cropRect(&self) -> CGRect;
@@ -495,6 +535,8 @@ impl PHProjectAssetElement {
         /// Array of regions of interest (faces, objects, etc.) in the assets.
         /// Note: Photos will filter out features of an asset that it doesn't believe to be meaningful in the context
         /// of the user's full library. For example, random faces in a crowd.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(regionsOfInterest))]
         #[unsafe(method_family = none)]
         pub unsafe fn regionsOfInterest(&self) -> Retained<NSArray<PHProjectRegionOfInterest>>;
@@ -502,11 +544,15 @@ impl PHProjectAssetElement {
         /// The following properties are only used when the user creates a new project from an existing Apple Print Product.
         ///
         /// YES if the asset was presented horizontally flipped in the originating project.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(horizontallyFlipped))]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontallyFlipped(&self) -> bool;
 
         /// YES if the asset was presented vertically flipped in the originating project.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(verticallyFlipped))]
         #[unsafe(method_family = none)]
         pub unsafe fn verticallyFlipped(&self) -> bool;
@@ -584,12 +630,16 @@ extern_conformance!(
 impl PHProjectTextElement {
     extern_methods!(
         /// Unformatted, raw string for the text element
+        ///
+        /// This property is not atomic.
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// If the text was presented to the user in a stylized manner in Photos,
         /// attributedText will provide access to those same attributes.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(attributedText))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
@@ -643,16 +693,22 @@ extern_conformance!(
 impl PHProjectJournalEntryElement {
     extern_methods!(
         /// Date to which the provided asset and/or text pertain
+        ///
+        /// This property is not atomic.
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         /// Representative asset, if any, for that date.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(assetElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetElement(&self) -> Option<Retained<PHProjectAssetElement>>;
 
         /// Descriptive text (e.g., "Mom's Birthday") for that date.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(textElement))]
         #[unsafe(method_family = none)]
         pub unsafe fn textElement(&self) -> Option<Retained<PHProjectTextElement>>;
@@ -702,31 +758,38 @@ impl PHProjectMapElement {
     extern_methods!(
         #[cfg(feature = "objc2-map-kit")]
         /// The type of the map in the project.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(mapType))]
         #[unsafe(method_family = none)]
         pub unsafe fn mapType(&self) -> MKMapType;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(centerCoordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn centerCoordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(heading))]
         #[unsafe(method_family = none)]
         pub unsafe fn heading(&self) -> CLLocationDirection;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(pitch))]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-location")]
+        /// This property is not atomic.
         #[unsafe(method(altitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-map-kit")]
+        /// This property is not atomic.
         #[unsafe(method(annotations))]
         #[unsafe(method_family = none)]
         pub unsafe fn annotations(&self) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;

@@ -194,6 +194,8 @@ impl AVAudioRecorder {
         /// Array of AVAudioSessionChannelDescription objects
         ///
         /// The channels property lets you assign the output to record specific channels as described by AVAudioSessionPortDescription's channels property. This property is nil valued until set. The array must have the same number of channels as returned by the numberOfChannels property.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(channelAssignments))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelAssignments(

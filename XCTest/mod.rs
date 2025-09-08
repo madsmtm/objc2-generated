@@ -3943,6 +3943,8 @@ impl XCTestExpectation {
         /// This value must be greater than 0 and is not meaningful if combined with
         /// @
         /// inverted.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(expectedFulfillmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedFulfillmentCount(&self) -> NSUInteger;
@@ -3955,6 +3957,8 @@ impl XCTestExpectation {
         /// If set, calls to fulfill() after the expectation has already been fulfilled - exceeding the fulfillment
         /// count - will raise. This is the legacy behavior of expectations created through APIs on XCTestCase
         /// but is not enabled for expectations created using XCTestExpectation initializers.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(assertForOverFulfill))]
         #[unsafe(method_family = none)]
         pub unsafe fn assertForOverFulfill(&self) -> bool;
@@ -4301,6 +4305,8 @@ impl XCTNSPredicateExpectation {
         /// Unavailable on this class; XCTNSPredicateExpectation repeatedly evaluates its predicate until it becomes
         /// true. Once the predicate has become true, it is expected to remain true and will not be evaluated again.
         /// Setting expectedFulfillmentCount has no impact on fulfillment of the expectation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(expectedFulfillmentCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedFulfillmentCount(&self) -> NSUInteger;

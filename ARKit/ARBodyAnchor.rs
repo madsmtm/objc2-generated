@@ -69,6 +69,8 @@ impl ARBodyAnchor {
         /// The tracked skeleton in 3D.
         ///
         /// Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(skeleton))]
         #[unsafe(method_family = none)]
         pub unsafe fn skeleton(&self) -> Retained<ARSkeleton3D>;
@@ -81,6 +83,8 @@ impl ARBodyAnchor {
         ///
         /// This value will be estimated if automaticSkeletonScaleEstimationEnabled is set to true on the ARBodyTrackingConfiguration.
         /// It is used to correct the transform's translation. Default value is 1.0.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(estimatedScaleFactor))]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedScaleFactor(&self) -> CGFloat;

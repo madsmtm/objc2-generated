@@ -96,16 +96,22 @@ extern_conformance!(
 impl BADownload {
     extern_methods!(
         /// The current state of the respresented download.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> BADownloadState;
 
         /// A client defined identifier that uniquely identifies this asset.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// A UUID that uniquely identifies the download object.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSString>;

@@ -97,16 +97,22 @@ impl ARAppClipCodeAnchor {
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// The URL encoded in this app clip code. Not nil only if urlDecodingState is .decoded.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(url))]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// The URL decoding state of the app clip code.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(urlDecodingState))]
         #[unsafe(method_family = none)]
         pub unsafe fn urlDecodingState(&self) -> ARAppClipCodeURLDecodingState;
 
         /// The estimated radius of the app clip code in meters.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(radius))]
         #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> c_float;

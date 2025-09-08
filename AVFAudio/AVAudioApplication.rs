@@ -135,6 +135,8 @@ impl AVAudioApplication {
         pub unsafe fn setInputMuted_error(&self, muted: bool) -> Result<(), Retained<NSError>>;
 
         /// Get the input muted state - return value is boolean 0 for unmuted or value 1 for muted (input samples zeroed out)
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isInputMuted))]
         #[unsafe(method_family = none)]
         pub unsafe fn isInputMuted(&self) -> bool;

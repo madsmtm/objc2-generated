@@ -25,11 +25,13 @@ extern_conformance!(
 impl UIScreenMode {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This property is not atomic.
         #[unsafe(method(pixelAspectRatio))]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelAspectRatio(&self) -> CGFloat;

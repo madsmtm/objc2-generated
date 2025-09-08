@@ -36,6 +36,8 @@ impl HMAction {
         pub unsafe fn new() -> Retained<Self>;
 
         /// A unique identifier for the action.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;

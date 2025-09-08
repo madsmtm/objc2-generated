@@ -205,16 +205,22 @@ extern_conformance!(
 impl ARGeoTrackingStatus {
     extern_methods!(
         /// The state of geo tracking.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> ARGeoTrackingState;
 
         /// The accuracy of geo tracking.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(accuracy))]
         #[unsafe(method_family = none)]
         pub unsafe fn accuracy(&self) -> ARGeoTrackingAccuracy;
 
         /// Reason for geo tracking state.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(stateReason))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateReason(&self) -> ARGeoTrackingStateReason;

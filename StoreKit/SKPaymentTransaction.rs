@@ -56,43 +56,51 @@ extern_conformance!(
 
 impl SKPaymentTransaction {
     extern_methods!(
+        /// This property is not atomic.
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
+        /// This property is not atomic.
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(originalTransaction))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalTransaction(&self) -> Option<Retained<SKPaymentTransaction>>;
 
         #[cfg(feature = "SKPayment")]
+        /// This property is not atomic.
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(payment))]
         #[unsafe(method_family = none)]
         pub unsafe fn payment(&self) -> Retained<SKPayment>;
 
         #[cfg(feature = "SKDownload")]
+        /// This property is not atomic.
         #[deprecated = "Hosted content is no longer supported"]
         #[unsafe(method(downloads))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloads(&self) -> Retained<NSArray<SKDownload>>;
 
+        /// This property is not atomic.
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(transactionDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionDate(&self) -> Option<Retained<NSDate>>;
 
+        /// This property is not atomic.
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(transactionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(transactionReceipt))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionReceipt(&self) -> Option<Retained<NSData>>;
 
+        /// This property is not atomic.
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(transactionState))]
         #[unsafe(method_family = none)]

@@ -78,6 +78,8 @@ impl ARCollaborationData {
         /// Network priority of the data.
         ///
         /// The network implementation should respect this flag and choose the appropriate protocol.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(priority))]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> ARCollaborationDataPriority;

@@ -110,6 +110,8 @@ impl AVPlayerItemMetadataCollector {
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -120,6 +122,8 @@ impl AVPlayerItemMetadataCollector {
         /// The dispatch queue on which messages are sent to the delegate.
         ///
         /// This property is not key-value observable.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(delegateQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegateQueue(&self) -> Option<Retained<DispatchQueue>>;

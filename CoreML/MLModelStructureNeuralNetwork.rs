@@ -35,6 +35,8 @@ impl MLModelStructureNeuralNetwork {
 
         #[cfg(feature = "MLModelStructureNeuralNetworkLayer")]
         /// The topologically sorted layers in the NeuralNetwork.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(layers))]
         #[unsafe(method_family = none)]
         pub unsafe fn layers(&self) -> Retained<NSArray<MLModelStructureNeuralNetworkLayer>>;

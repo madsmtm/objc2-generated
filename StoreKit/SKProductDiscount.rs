@@ -73,37 +73,44 @@ extern_conformance!(
 
 impl SKProductDiscount {
     extern_methods!(
+        /// This property is not atomic.
         #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
         #[unsafe(method(price))]
         #[unsafe(method_family = none)]
         pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
+        /// This property is not atomic.
         #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
         #[unsafe(method(priceLocale))]
         #[unsafe(method_family = none)]
         pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
+        /// This property is not atomic.
         #[deprecated = "Use Product.SubscriptionOffer.id"]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SKProduct")]
+        /// This property is not atomic.
         #[deprecated = "Use Product.SubscriptionOffer.period"]
         #[unsafe(method(subscriptionPeriod))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionPeriod(&self) -> Retained<SKProductSubscriptionPeriod>;
 
+        /// This property is not atomic.
         #[deprecated = "Use Product.SubscriptionOffer.periodCount"]
         #[unsafe(method(numberOfPeriods))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfPeriods(&self) -> NSUInteger;
 
+        /// This property is not atomic.
         #[deprecated = "Use Product.SubscriptionOffer.paymentMode"]
         #[unsafe(method(paymentMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn paymentMode(&self) -> SKProductDiscountPaymentMode;
 
+        /// This property is not atomic.
         #[deprecated = "Use Product.SubscriptionOffer.type"]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]

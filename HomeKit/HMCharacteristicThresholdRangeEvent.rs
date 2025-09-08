@@ -78,12 +78,16 @@ impl HMCharacteristicThresholdRangeEvent {
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         #[cfg(feature = "HMNumberRange")]
         /// The range of the characteristic value that triggers the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(thresholdRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;
@@ -152,6 +156,8 @@ impl HMMutableCharacteristicThresholdRangeEvent {
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(characteristic))]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
@@ -164,6 +170,8 @@ impl HMMutableCharacteristicThresholdRangeEvent {
 
         #[cfg(feature = "HMNumberRange")]
         /// The range of the characteristic value that triggers the event.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(thresholdRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;

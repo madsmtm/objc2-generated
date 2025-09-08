@@ -98,12 +98,16 @@ impl AVSampleCursor {
     extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The presentation timestamp (PTS) of the sample at the current position of the cursor.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(presentationTimeStamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationTimeStamp(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// The decode timestamp (DTS) of the sample at the current position of the cursor.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(decodeTimeStamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeTimeStamp(&self) -> CMTime;
@@ -251,6 +255,8 @@ impl AVSampleCursor {
         /// Indicates the decode duration of the sample at the receiver's current position.
         ///
         /// If the receiver must be advanced past its current position in order to determine the decode duration of the current sample, the value of currentSampleDuration is equal to kCMTimeIndefinite. This can occur with streaming formats such as MPEG-2 transport streams.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentSampleDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSampleDuration(&self) -> CMTime;
@@ -262,16 +268,22 @@ impl AVSampleCursor {
         pub unsafe fn copyCurrentSampleFormatDescription(&self) -> Retained<CMFormatDescription>;
 
         /// Provides information about the current sample for consideration when resynchronizing a decoder, as when scrubbing.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentSampleSyncInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSampleSyncInfo(&self) -> AVSampleCursorSyncInfo;
 
         /// Provides information about dependencies between a media sample and other media samples in the same sample sequence, if known.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentSampleDependencyInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSampleDependencyInfo(&self) -> AVSampleCursorDependencyInfo;
 
         /// Provides a dictionary containing dependency related sample buffer attachments, if known.  See kCMSampleAttachmentKey_... in CoreMedia/CMSampleBuffer.h.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentSampleDependencyAttachments))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSampleDependencyAttachments(&self) -> Option<Retained<NSDictionary>>;
@@ -282,6 +294,8 @@ impl AVSampleCursor {
         /// the current sample until you find a sample that is independently decodable, and whose audioSamplePacketRefreshCount is greater than or equal to
         /// the number of steps back you have taken.  This implies that if the current sample (before this walk) is independently decodable, with an
         /// audioSampleRefreshCount of zero, no walk is required.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentSampleAudioDependencyInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSampleAudioDependencyInfo(&self) -> AVSampleCursorAudioDependencyInfo;
@@ -298,6 +312,8 @@ impl AVSampleCursor {
         ///
         /// // cursorForObtainingRefreshSamples is now positioned at the first sample that must be provided to the decoder
         /// // in order to decode the sample at the position of mySampleCursor in full
+        ///
+        /// This property is not atomic.
         #[unsafe(method(samplesRequiredForDecoderRefresh))]
         #[unsafe(method_family = none)]
         pub unsafe fn samplesRequiredForDecoderRefresh(&self) -> NSInteger;
@@ -370,6 +386,8 @@ impl AVSampleCursor {
         /// The URL of the storage container of the current sample, as well as other samples that are intended to be loaded in the same operation as a "chunk".
         ///
         /// May be nil; if nil, the storage location of the chunk is the URL of the sample cursor's track's asset, if it has one.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentChunkStorageURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentChunkStorageURL(&self) -> Option<Retained<NSURL>>;
@@ -377,16 +395,22 @@ impl AVSampleCursor {
         /// The offset and length of samples in currentChunkStorageURL that are intended to be loaded together with the current sample as a "chunk".
         ///
         /// If the current chunk isn't stored contiguously in its storage container, currentChunkStorageRange.offset will be -1. In such cases you can use AVSampleBufferGenerator to obtain the sample data.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentChunkStorageRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentChunkStorageRange(&self) -> AVSampleCursorStorageRange;
 
         /// Provides information about the "chunk" of samples to which the current sample belongs. If the media format that defines the sequence of samples does not signal "chunking" of samples in any way, each sample will be considered by the receiver as belonging to a chunk of one sample only.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentChunkInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentChunkInfo(&self) -> AVSampleCursorChunkInfo;
 
         /// The index of the current sample within the chunk to which it belongs.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentSampleIndexInChunk))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSampleIndexInChunk(&self) -> i64;
@@ -394,6 +418,8 @@ impl AVSampleCursor {
         /// The offset and length of the current sample in currentChunkStorageURL.
         ///
         /// If the current sample isn't stored contiguously in its storage container, currentSampleStorageRange.offset will be -1. In such cases you can use AVSampleBufferGenerator to obtain the sample data.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentSampleStorageRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentSampleStorageRange(&self) -> AVSampleCursorStorageRange;

@@ -35,12 +35,16 @@ impl MLModelStructureProgramFunction {
 
         #[cfg(feature = "MLModelStructureProgramNamedValueType")]
         /// The named inputs to the function.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(inputs))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<MLModelStructureProgramNamedValueType>>;
 
         #[cfg(feature = "MLModelStructureProgramBlock")]
         /// The active block in the function.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(block))]
         #[unsafe(method_family = none)]
         pub unsafe fn block(&self) -> Retained<MLModelStructureProgramBlock>;

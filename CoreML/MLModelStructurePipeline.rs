@@ -34,12 +34,16 @@ impl MLModelStructurePipeline {
         pub unsafe fn new() -> Retained<Self>;
 
         /// The names of the sub models in the pipeline.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(subModelNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn subModelNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "MLModelStructure")]
         /// The structure of the sub models in the pipeline.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(subModels))]
         #[unsafe(method_family = none)]
         pub unsafe fn subModels(&self) -> Retained<NSArray<MLModelStructure>>;

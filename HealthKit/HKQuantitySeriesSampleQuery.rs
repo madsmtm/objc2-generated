@@ -36,6 +36,8 @@ impl HKQuantitySeriesSampleQuery {
         /// be non-nil anytime the quantity parameter is non-nil.
         /// Specifying this option has a performance cost.
         /// This property may not be modified once the query has been executed.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(includeSample))]
         #[unsafe(method_family = none)]
         pub unsafe fn includeSample(&self) -> bool;
@@ -55,6 +57,8 @@ impl HKQuantitySeriesSampleQuery {
         /// Note that individual quantities may not be returned in their
         /// dateInterval.startDate order if more than one quantitySample overlap in time.
         /// This property may not be modified once the query has been executed.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(orderByQuantitySampleStartDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn orderByQuantitySampleStartDate(&self) -> bool;

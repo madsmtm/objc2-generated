@@ -55,6 +55,7 @@ impl AXMathExpressionNumber {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(this: Allocated<Self>, content: &NSString) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
@@ -91,6 +92,7 @@ impl AXMathExpressionIdentifier {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(this: Allocated<Self>, content: &NSString) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
@@ -127,6 +129,7 @@ impl AXMathExpressionOperator {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(this: Allocated<Self>, content: &NSString) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
@@ -163,6 +166,7 @@ impl AXMathExpressionText {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(this: Allocated<Self>, content: &NSString) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(content))]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
@@ -204,14 +208,17 @@ impl AXMathExpressionFenced {
             close_string: &NSString,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(expressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
 
+        /// This property is not atomic.
         #[unsafe(method(openString))]
         #[unsafe(method_family = none)]
         pub unsafe fn openString(&self) -> Retained<NSString>;
 
+        /// This property is not atomic.
         #[unsafe(method(closeString))]
         #[unsafe(method_family = none)]
         pub unsafe fn closeString(&self) -> Retained<NSString>;
@@ -251,6 +258,7 @@ impl AXMathExpressionRow {
             expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(expressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
@@ -290,6 +298,7 @@ impl AXMathExpressionTable {
             expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(expressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
@@ -329,6 +338,7 @@ impl AXMathExpressionTableRow {
             expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(expressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
@@ -368,6 +378,7 @@ impl AXMathExpressionTableCell {
             expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(expressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
@@ -409,14 +420,17 @@ impl AXMathExpressionUnderOver {
             over_expression: &AXMathExpression,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(baseExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseExpression(&self) -> Retained<AXMathExpression>;
 
+        /// This property is not atomic.
         #[unsafe(method(underExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn underExpression(&self) -> Retained<AXMathExpression>;
 
+        /// This property is not atomic.
         #[unsafe(method(overExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn overExpression(&self) -> Retained<AXMathExpression>;
@@ -458,14 +472,17 @@ impl AXMathExpressionSubSuperscript {
             superscript_expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(baseExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseExpression(&self) -> Retained<AXMathExpression>;
 
+        /// This property is not atomic.
         #[unsafe(method(subscriptExpressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptExpressions(&self) -> Retained<NSArray<AXMathExpression>>;
 
+        /// This property is not atomic.
         #[unsafe(method(superscriptExpressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn superscriptExpressions(&self) -> Retained<NSArray<AXMathExpression>>;
@@ -506,10 +523,12 @@ impl AXMathExpressionFraction {
             denimonator_expression: &AXMathExpression,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(numeratorExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn numeratorExpression(&self) -> Retained<AXMathExpression>;
 
+        /// This property is not atomic.
         #[unsafe(method(denimonatorExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn denimonatorExpression(&self) -> Retained<AXMathExpression>;
@@ -551,16 +570,19 @@ impl AXMathExpressionMultiscript {
             postscript_expressions: &NSArray<AXMathExpressionSubSuperscript>,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(baseExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn baseExpression(&self) -> Retained<AXMathExpression>;
 
+        /// This property is not atomic.
         #[unsafe(method(prescriptExpressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn prescriptExpressions(
             &self,
         ) -> Retained<NSArray<AXMathExpressionSubSuperscript>>;
 
+        /// This property is not atomic.
         #[unsafe(method(postscriptExpressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn postscriptExpressions(
@@ -603,10 +625,12 @@ impl AXMathExpressionRoot {
             root_index_expression: &AXMathExpression,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(radicandExpressions))]
         #[unsafe(method_family = none)]
         pub unsafe fn radicandExpressions(&self) -> Retained<NSArray<AXMathExpression>>;
 
+        /// This property is not atomic.
         #[unsafe(method(rootIndexExpression))]
         #[unsafe(method_family = none)]
         pub unsafe fn rootIndexExpression(&self) -> Retained<AXMathExpression>;

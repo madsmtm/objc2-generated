@@ -124,6 +124,7 @@ impl SKPaymentQueue {
             observer: &ProtocolObject<dyn SKPaymentTransactionObserver>,
         );
 
+        /// This property is not atomic.
         #[deprecated = "Use Transaction.updates or PurchaseResult from Product.purchase(confirmIn:options:)"]
         #[unsafe(method(transactionObservers))]
         #[unsafe(method_family = none)]
@@ -132,6 +133,7 @@ impl SKPaymentQueue {
         ) -> Retained<NSArray<ProtocolObject<dyn SKPaymentTransactionObserver>>>;
 
         #[cfg(feature = "SKPaymentTransaction")]
+        /// This property is not atomic.
         #[deprecated = "Use Transaction.unfinished"]
         #[unsafe(method(transactions))]
         #[unsafe(method_family = none)]

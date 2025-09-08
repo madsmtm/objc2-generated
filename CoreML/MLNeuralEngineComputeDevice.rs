@@ -38,6 +38,8 @@ impl MLNeuralEngineComputeDevice {
         pub unsafe fn new() -> Retained<Self>;
 
         /// The total number of cores in the NeuralEngine.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(totalCoreCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn totalCoreCount(&self) -> NSInteger;

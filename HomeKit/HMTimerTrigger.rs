@@ -93,10 +93,13 @@ impl HMTimerTrigger {
         ///
         ///
         /// Note: Should be at least 1 minute ahead for reliable firing.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(fireDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn fireDate(&self) -> Retained<NSDate>;
 
+        /// This property is not atomic.
         #[deprecated = "Use HMEventTrigger with HMCalendarEvent for triggers based on a time-zone-relative time of day"]
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
@@ -113,10 +116,13 @@ impl HMTimerTrigger {
         /// recurrence to 1. The minimum recurrence interval is 5 minutes, maximum recurrence
         /// interval is 5 weeks and the recurrence interval must be specified in multiples of
         /// whole minutes. Examples are 5 minutes, 6 minutes, 1 day, 2 weeks.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(recurrence))]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrence(&self) -> Option<Retained<NSDateComponents>>;
 
+        /// This property is not atomic.
         #[deprecated = "No longer supported"]
         #[unsafe(method(recurrenceCalendar))]
         #[unsafe(method_family = none)]

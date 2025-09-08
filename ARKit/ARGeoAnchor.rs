@@ -73,6 +73,8 @@ impl ARGeoAnchor {
         ///
         ///
         /// The anchor's transform will be automatically updated by the session when ARGeoTrackingConfiguration is set.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(coordinate))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
@@ -82,12 +84,16 @@ impl ARGeoAnchor {
         ///
         ///
         /// Only valid when altitudeSource is not ARAltitudeSourceUnknown.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(altitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "ARGeoTrackingTypes")]
         /// The source of altitude information. If the user did not provide the altitude, ARKit populates this property to indicate the expected accuracy depending on the available altitude data.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(altitudeSource))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitudeSource(&self) -> ARAltitudeSource;

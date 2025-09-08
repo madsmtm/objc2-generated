@@ -95,18 +95,24 @@ impl AVAudioChannelLayout {
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// The layout's tag.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(layoutTag))]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutTag(&self) -> AudioChannelLayoutTag;
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// The underlying AudioChannelLayout.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(layout))]
         #[unsafe(method_family = none)]
         pub unsafe fn layout(&self) -> NonNull<AudioChannelLayout>;
 
         #[cfg(feature = "AVAudioTypes")]
         /// The number of channels of audio data.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(channelCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> AVAudioChannelCount;

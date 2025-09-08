@@ -24,18 +24,22 @@ extern_conformance!(
 impl PHPersistentObjectChangeDetails {
     extern_methods!(
         #[cfg(feature = "PhotosTypes")]
+        /// This property is not atomic.
         #[unsafe(method(objectType))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectType(&self) -> PHObjectType;
 
+        /// This property is not atomic.
         #[unsafe(method(insertedLocalIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
+        /// This property is not atomic.
         #[unsafe(method(updatedLocalIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn updatedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
+        /// This property is not atomic.
         #[unsafe(method(deletedLocalIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn deletedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;

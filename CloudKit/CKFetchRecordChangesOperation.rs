@@ -51,6 +51,7 @@ impl CKFetchRecordChangesOperation {
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(recordZoneID))]
         #[unsafe(method_family = none)]
@@ -66,6 +67,7 @@ impl CKFetchRecordChangesOperation {
         pub unsafe fn setRecordZoneID(&self, record_zone_id: Option<&CKRecordZoneID>);
 
         #[cfg(feature = "CKServerChangeToken")]
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(previousServerChangeToken))]
         #[unsafe(method_family = none)]
@@ -83,6 +85,7 @@ impl CKFetchRecordChangesOperation {
             previous_server_change_token: Option<&CKServerChangeToken>,
         );
 
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(resultsLimit))]
         #[unsafe(method_family = none)]
@@ -101,6 +104,8 @@ impl CKFetchRecordChangesOperation {
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
+        ///
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(desiredKeys))]
         #[unsafe(method_family = none)]
@@ -120,6 +125,8 @@ impl CKFetchRecordChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(recordChangedBlock))]
         #[unsafe(method_family = none)]
@@ -143,6 +150,8 @@ impl CKFetchRecordChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(recordWithIDWasDeletedBlock))]
         #[unsafe(method_family = none)]
@@ -169,6 +178,8 @@ impl CKFetchRecordChangesOperation {
         ///
         /// Will be set before fetchRecordChangesCompletionBlock is called.
         /// Another CKFetchRecordChangesOperation operation should be run with the updated serverChangeToken token from this operation.
+        ///
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(moreComing))]
         #[unsafe(method_family = none)]
@@ -190,6 +201,8 @@ impl CKFetchRecordChangesOperation {
         /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
+        ///
+        /// This property is not atomic.
         #[deprecated]
         #[unsafe(method(fetchRecordChangesCompletionBlock))]
         #[unsafe(method_family = none)]

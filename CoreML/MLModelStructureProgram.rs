@@ -35,6 +35,8 @@ impl MLModelStructureProgram {
 
         #[cfg(feature = "MLModelStructureProgramFunction")]
         /// The functions in the program.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(functions))]
         #[unsafe(method_family = none)]
         pub unsafe fn functions(

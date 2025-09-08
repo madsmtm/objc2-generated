@@ -75,6 +75,8 @@ impl HMDurationEvent {
         ) -> Retained<Self>;
 
         /// duration The duration of time in seconds.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
@@ -141,6 +143,8 @@ impl HMMutableDurationEvent {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// duration The duration of time in seconds.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;

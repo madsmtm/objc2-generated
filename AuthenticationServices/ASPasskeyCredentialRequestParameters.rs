@@ -49,17 +49,23 @@ impl ASPasskeyCredentialRequestParameters {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The relying party identifier for this request.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(relyingPartyIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         /// Hash of client data for credential provider to sign as part of the operation.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(clientDataHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference for whether the authenticator should attempt to verify that it is being used by its owner, such as through a PIN or biometrics.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(userVerificationPreference))]
         #[unsafe(method_family = none)]
         pub unsafe fn userVerificationPreference(
@@ -67,12 +73,16 @@ impl ASPasskeyCredentialRequestParameters {
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         /// A list of allowed credential IDs for this request. An empty list means all credentials are allowed.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(allowedCredentials))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedCredentials(&self) -> Retained<NSArray<NSData>>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
         /// Inputs for WebAuthn extensions used for passkey assertion.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(extensionInput))]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionInput(

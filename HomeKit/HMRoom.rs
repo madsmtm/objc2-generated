@@ -31,6 +31,8 @@ impl HMRoom {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the room.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
@@ -38,11 +40,15 @@ impl HMRoom {
         #[cfg(feature = "HMAccessory")]
         /// Array of HMAccessory objects that correspond to the accessories
         /// associated with this room.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(accessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<HMAccessory>>;
 
         /// A unique identifier for the room.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;

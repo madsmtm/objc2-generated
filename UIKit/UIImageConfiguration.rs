@@ -48,6 +48,7 @@ impl UIImageConfiguration {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
+        /// This property is not atomic.
         #[unsafe(method(traitCollection))]
         #[unsafe(method_family = none)]
         pub unsafe fn traitCollection(&self) -> Option<Retained<UITraitCollection>>;
@@ -67,6 +68,7 @@ impl UIImageConfiguration {
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<Self>;
 
+        /// This property is not atomic.
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;

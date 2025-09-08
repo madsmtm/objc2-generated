@@ -96,12 +96,16 @@ impl ARAnchor {
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// Unique identifier of the anchor.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to associate with the anchor.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
@@ -111,6 +115,8 @@ impl ARAnchor {
         ///
         ///
         /// The session identifier will be assigned to anchor when added to the session.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sessionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionIdentifier(&self) -> Option<Retained<NSUUID>>;

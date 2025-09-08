@@ -59,6 +59,8 @@ impl HMHome {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Delegate that receives updates on the state of the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn HMHomeDelegate>>>;
@@ -71,21 +73,29 @@ impl HMHome {
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn HMHomeDelegate>>);
 
         /// The name of the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Specifies whether this home is the primary home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isPrimary))]
         #[unsafe(method_family = none)]
         pub unsafe fn isPrimary(&self) -> bool;
 
         /// Specifies the state of the home hub.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(homeHubState))]
         #[unsafe(method_family = none)]
         pub unsafe fn homeHubState(&self) -> HMHomeHubState;
 
         /// A unique identifier for the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
@@ -124,6 +134,8 @@ impl HMHome {
     extern_methods!(
         #[cfg(feature = "HMAccessory")]
         /// Array of HMAccessory objects that represents all accessories added to the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(accessories))]
         #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<HMAccessory>>;
@@ -268,6 +280,8 @@ impl HMHome {
         );
 
         /// True if this home supports all of the requirements for adding a network router.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(supportsAddingNetworkRouter))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportsAddingNetworkRouter(&self) -> bool;
@@ -279,12 +293,16 @@ impl HMHome {
     extern_methods!(
         #[cfg(feature = "HMUser")]
         /// HMUser object representing the current user of the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(currentUser))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUser(&self) -> Retained<HMUser>;
 
         #[cfg(feature = "HMUser")]
         /// Array of HMUser objects that represent all users associated with the home.
+        ///
+        /// This property is not atomic.
         #[deprecated = "No longer supported."]
         #[unsafe(method(users))]
         #[unsafe(method_family = none)]
@@ -366,6 +384,8 @@ impl HMHome {
     extern_methods!(
         #[cfg(feature = "HMRoom")]
         /// Array of HMRoom objects that represents all rooms in the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(rooms))]
         #[unsafe(method_family = none)]
         pub unsafe fn rooms(&self) -> Retained<NSArray<HMRoom>>;
@@ -429,6 +449,8 @@ impl HMHome {
     extern_methods!(
         #[cfg(feature = "HMZone")]
         /// Array of HMZone objects that represents all the zones in the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(zones))]
         #[unsafe(method_family = none)]
         pub unsafe fn zones(&self) -> Retained<NSArray<HMZone>>;
@@ -477,6 +499,8 @@ impl HMHome {
     extern_methods!(
         #[cfg(feature = "HMServiceGroup")]
         /// Array of HMServiceGroup objects that represents all service groups in the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(serviceGroups))]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceGroups(&self) -> Retained<NSArray<HMServiceGroup>>;
@@ -525,6 +549,8 @@ impl HMHome {
     extern_methods!(
         #[cfg(feature = "HMActionSet")]
         /// Array of HMActionSet objects that represents all the action sets in the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(actionSets))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionSets(&self) -> Retained<NSArray<HMActionSet>>;
@@ -608,6 +634,8 @@ impl HMHome {
     extern_methods!(
         #[cfg(feature = "HMTrigger")]
         /// Array of HMTrigger objects that represents all the triggers in the home.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(triggers))]
         #[unsafe(method_family = none)]
         pub unsafe fn triggers(&self) -> Retained<NSArray<HMTrigger>>;
@@ -663,6 +691,8 @@ impl HMHome {
         /// Identifier of the Matter controller associated with this home.
         /// This property can be passed as the first argument to +[MTRDeviceController sharedControllerWithId:xpcConnectBlock:] method
         /// to get a MTRDeviceController object.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(matterControllerID))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterControllerID(&self) -> Retained<NSString>;
@@ -671,6 +701,8 @@ impl HMHome {
         /// Block generating XPC connection on demand through which to access the Matter controller associated with this home.
         /// This property can be passed as the second argument to +[MTRDeviceController sharedControllerWithId:xpcConnectBlock:] method
         /// to get a MTRDeviceController object.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(matterControllerXPCConnectBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterControllerXPCConnectBlock(
@@ -680,6 +712,8 @@ impl HMHome {
         #[cfg(feature = "block2")]
         /// Block generating XPC connection on demand through which to access the Matter controller associated with this home.
         /// This property can be passed as part of an MTRXPCDeviceControllerParameters to create an MTRDeviceController that will have access to the Apple Home Fabric.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(matterStartupParametersXPCConnectBlock))]
         #[unsafe(method_family = none)]
         pub unsafe fn matterStartupParametersXPCConnectBlock(

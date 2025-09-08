@@ -51,12 +51,16 @@ impl UIWritingToolsCoordinatorAnimationParameters {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The number of seconds it takes the system animations to run.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The number of seconds the system waits before starting its animations.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(delay))]
         #[unsafe(method_family = none)]
         pub unsafe fn delay(&self) -> CGFloat;
@@ -71,6 +75,8 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// current progress of the animations as a percentage value between
         /// `0.0` to `1.0`. The system executes your block multiple times during
         /// the course of the animations, providing an updated completion value each time.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> *mut block2::DynBlock<dyn Fn(c_float)>;
@@ -93,6 +99,8 @@ impl UIWritingToolsCoordinatorAnimationParameters {
         /// animations finish. The block you provide must have no return value
         /// and no parameters. The system executes this block once when the current
         /// animation finish.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;

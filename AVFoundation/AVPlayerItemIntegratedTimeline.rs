@@ -67,6 +67,8 @@ impl AVPlayerItemSegment {
         pub unsafe fn new() -> Retained<Self>;
 
         /// The type of content this segment represents.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(segmentType))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentType(&self) -> AVPlayerItemSegmentType;
@@ -75,6 +77,8 @@ impl AVPlayerItemSegment {
         /// The timeMapping for this segment.
         ///
         /// The timeMapping source timeRange represents the start and duration in the segment source's timeline (ie: primary item timeline or interstitial event). The target timeRange represents the start point and duration in the integrated timeline. For interstitial events which occupy a single point, the target's duration will be kCMTimeZero.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(timeMapping))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeMapping(&self) -> CMTimeMapping;
@@ -89,6 +93,8 @@ impl AVPlayerItemSegment {
         /// The date this segment starts at.
         ///
         /// The date this segment starts at. This value will be nil if the primary item does not contain dates.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
@@ -97,6 +103,8 @@ impl AVPlayerItemSegment {
         /// The associated interstitial event for this segment.
         ///
         /// The associated interstitial event for this segment. This value will be nil for segments representing playback of the primary itme.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(interstitialEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn interstitialEvent(&self) -> Option<Retained<AVPlayerInterstitialEvent>>;
@@ -139,6 +147,8 @@ impl AVPlayerItemIntegratedTimelineSnapshot {
         ///
         /// This property returns the duration totaling the primary item and scheduled interstitial events and taking into account the interstitial event's playoutLimit and resumption offset.
         /// Before loading the duration of the primary item, the value of this property is kCMTimeInvalid. For livestreams, this value will be kCMTimeIndefinite.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;

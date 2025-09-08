@@ -114,6 +114,7 @@ impl HKStatisticsCollectionQuery {
         pub unsafe fn intervalComponents(&self) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "block2")]
+        /// This property is not atomic.
         #[unsafe(method(initialResultsHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn initialResultsHandler(
@@ -142,6 +143,7 @@ impl HKStatisticsCollectionQuery {
         );
 
         #[cfg(all(feature = "HKStatistics", feature = "block2"))]
+        /// This property is not atomic.
         #[unsafe(method(statisticsUpdateHandler))]
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsUpdateHandler(

@@ -34,6 +34,8 @@ impl LAEnvironmentMechanismBiometry {
         /// This property does not indicate whether biometry is available or not. It always reads the type of biometry
         /// supported by device hardware. You should check
         /// `isUsable`property to see if it is available for use.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(biometryType))]
         #[unsafe(method_family = none)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
@@ -42,6 +44,8 @@ impl LAEnvironmentMechanismBiometry {
         ///
         /// Even if biometry is enrolled, it does not necessarily mean that it can be used. You should check
         /// `isUsable`property to see if it is available for use.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isEnrolled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnrolled(&self) -> bool;
@@ -51,6 +55,8 @@ impl LAEnvironmentMechanismBiometry {
         /// The system might lock the user out of biometry for various reasons. For example, with Face ID, the user is
         /// locked out after 5 failed match attempts in row. To recover from bio lockout, users need to enter their passcode
         /// (e.g. during device ulock).
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isLockedOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn isLockedOut(&self) -> bool;
@@ -61,6 +67,8 @@ impl LAEnvironmentMechanismBiometry {
         /// It does not directly map to the enrolled templates, e.g. if a finger is added to Touch ID enrollement and then
         /// removed, the final state would be different.
         /// It also returns different values to different apps to prevent tracking of user identity.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(stateHash))]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Retained<NSData>;
@@ -70,6 +78,8 @@ impl LAEnvironmentMechanismBiometry {
         /// Currently, the only example of this is a Clamshell Mode on macOS. The user will be not able to use Touch ID
         /// if the MacBook lid is closed while connected to external monitor and keyboard, unless the external keyboard
         /// has Touch ID.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(builtInSensorInaccessible))]
         #[unsafe(method_family = none)]
         pub unsafe fn builtInSensorInaccessible(&self) -> bool;

@@ -34,12 +34,16 @@ impl MLModelStructureProgramNamedValueType {
         pub unsafe fn new() -> Retained<Self>;
 
         /// The name of the parameter.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLModelStructureProgramValueType")]
         /// The type of the parameter.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<MLModelStructureProgramValueType>;

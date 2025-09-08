@@ -187,6 +187,7 @@ impl PHPhotoLibrary {
         ) -> Result<Retained<PHPersistentChangeFetchResult>, Retained<NSError>>;
 
         #[cfg(feature = "PHPersistentChangeToken")]
+        /// This property is not atomic.
         #[unsafe(method(currentChangeToken))]
         #[unsafe(method_family = none)]
         pub unsafe fn currentChangeToken(&self) -> Retained<PHPersistentChangeToken>;

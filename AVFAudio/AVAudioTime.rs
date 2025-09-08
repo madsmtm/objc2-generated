@@ -145,27 +145,37 @@ impl AVAudioTime {
         ) -> Option<Retained<AVAudioTime>>;
 
         /// Whether the hostTime property is valid.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isHostTimeValid))]
         #[unsafe(method_family = none)]
         pub unsafe fn isHostTimeValid(&self) -> bool;
 
         /// The host time.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(hostTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn hostTime(&self) -> u64;
 
         /// Whether the sampleTime and sampleRate properties are valid.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isSampleTimeValid))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSampleTimeValid(&self) -> bool;
 
         #[cfg(feature = "AVAudioTypes")]
         /// The time as a number of audio samples, as tracked by the current audio device.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sampleTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleTime(&self) -> AVAudioFramePosition;
 
         /// The sample rate at which sampleTime is being expressed.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(sampleRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleRate(&self) -> c_double;
@@ -174,6 +184,8 @@ impl AVAudioTime {
         /// The time expressed as an AudioTimeStamp structure.
         ///
         /// This may be useful for compatibility with lower-level CoreAudio and AudioToolbox API's.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(audioTimeStamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn audioTimeStamp(&self) -> AudioTimeStamp;

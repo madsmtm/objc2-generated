@@ -107,12 +107,16 @@ impl ARSkeletonDefinition {
         pub unsafe fn defaultBody2DSkeletonDefinition() -> Retained<ARSkeletonDefinition>;
 
         /// The number of joints.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(jointCount))]
         #[unsafe(method_family = none)]
         pub unsafe fn jointCount(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-foundation")]
         /// The joint names.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(jointNames))]
         #[unsafe(method_family = none)]
         pub unsafe fn jointNames(&self) -> Retained<NSArray<NSString>>;
@@ -123,6 +127,8 @@ impl ARSkeletonDefinition {
         /// This property may be used to identify the hierarchical dependency between joints. If a line is drawn for every joint and its parent joint
         /// the result is a visualization of the underlying skeleton. The joint with no parent is denoted as the root joint. The root joint's parent index has
         /// a value of -1.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(parentIndices))]
         #[unsafe(method_family = none)]
         pub unsafe fn parentIndices(&self) -> Retained<NSArray<NSNumber>>;
@@ -131,6 +137,8 @@ impl ARSkeletonDefinition {
         /// The 3D skeleton in neutral pose.
         ///
         /// The neutral skeleton pose assumes a standardized size of the skeleton in meters. The neutral pose is defined as the skeleton's T-pose.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(neutralBodySkeleton3D))]
         #[unsafe(method_family = none)]
         pub unsafe fn neutralBodySkeleton3D(&self) -> Option<Retained<ARSkeleton3D>>;

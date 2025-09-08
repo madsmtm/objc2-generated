@@ -40,16 +40,22 @@ impl LAEnvironmentMechanism {
         /// `isUsable`reads
         /// `NO,`do not assume that it's because of some particular reason. You should check
         /// properties of the subclass to determine why mechanism can't be used.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(isUsable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isUsable(&self) -> bool;
 
         /// The localized name of the authentication mechanism, e.g. "Touch ID", "Face ID" etc.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         /// Name of the SF Symbol representing this authentication mechanism.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(iconSystemName))]
         #[unsafe(method_family = none)]
         pub unsafe fn iconSystemName(&self) -> Retained<NSString>;

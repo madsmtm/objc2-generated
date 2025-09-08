@@ -47,32 +47,44 @@ impl ARGeometrySource {
     extern_methods!(
         #[cfg(feature = "objc2-metal")]
         /// A Metal buffer containing per-vector data for the source.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// The number of vectors in the source.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-metal")]
         /// The type of per-vector data in the buffer.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(format))]
         #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> MTLVertexFormat;
 
         /// The number of scalar components in each vector.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(componentsPerVector))]
         #[unsafe(method_family = none)]
         pub unsafe fn componentsPerVector(&self) -> NSInteger;
 
         /// The offset (in bytes) from the beginning of the buffer.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSInteger;
 
         /// The number of bytes from a vector to the next one in the buffer.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(stride))]
         #[unsafe(method_family = none)]
         pub unsafe fn stride(&self) -> NSInteger;
@@ -153,16 +165,22 @@ impl ARGeometryElement {
     extern_methods!(
         #[cfg(feature = "objc2-metal")]
         /// A Metal buffer containing index data that defines the geometry.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// The number of primitives in the buffer.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSInteger;
 
         /// The number of bytes that represent an index value.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bytesPerIndex))]
         #[unsafe(method_family = none)]
         pub unsafe fn bytesPerIndex(&self) -> NSInteger;
@@ -172,11 +190,15 @@ impl ARGeometryElement {
         /// See: ARGeometryPrimitiveType
         ///
         /// This is based on the primitiveType. For ARGeometryPrimitiveTypeTriangle the value is 3.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(indexCountPerPrimitive))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexCountPerPrimitive(&self) -> NSInteger;
 
         /// The type of the geometry element.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(primitiveType))]
         #[unsafe(method_family = none)]
         pub unsafe fn primitiveType(&self) -> ARGeometryPrimitiveType;
@@ -266,21 +288,29 @@ extern_conformance!(
 impl ARMeshGeometry {
     extern_methods!(
         /// The vertices of the mesh.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(vertices))]
         #[unsafe(method_family = none)]
         pub unsafe fn vertices(&self) -> Retained<ARGeometrySource>;
 
         /// Normal of each vertex in the mesh.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(normals))]
         #[unsafe(method_family = none)]
         pub unsafe fn normals(&self) -> Retained<ARGeometrySource>;
 
         /// A list of all faces in the mesh.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(faces))]
         #[unsafe(method_family = none)]
         pub unsafe fn faces(&self) -> Retained<ARGeometryElement>;
 
         /// Classification for each face in the mesh.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(classification))]
         #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> Option<Retained<ARGeometrySource>>;

@@ -33,6 +33,8 @@ extern_conformance!(
 impl AVCustomDeviceRoute {
     extern_methods!(
         /// An identifier to use to establish a connection to a Bluetooth device.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(bluetoothIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn bluetoothIdentifier(&self) -> Option<Retained<NSUUID>>;

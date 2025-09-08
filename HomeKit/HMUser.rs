@@ -30,11 +30,15 @@ impl HMUser {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the user.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// A unique identifier for the user.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(uniqueIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;

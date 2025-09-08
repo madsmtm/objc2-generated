@@ -44,6 +44,8 @@ impl ARReferenceImage {
     extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to identify the image.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
@@ -58,6 +60,8 @@ impl ARReferenceImage {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The physical size of the image in meters.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(physicalSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn physicalSize(&self) -> CGSize;
@@ -67,6 +71,8 @@ impl ARReferenceImage {
         ///
         /// If this image was loaded via an AR resource group in the Xcode asset catalogue this property will have the name of the resource group,
         /// else be set to nil.
+        ///
+        /// This property is not atomic.
         #[unsafe(method(resourceGroupName))]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceGroupName(&self) -> Option<Retained<NSString>>;

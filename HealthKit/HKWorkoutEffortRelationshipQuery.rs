@@ -41,17 +41,21 @@ extern_conformance!(
 impl HKWorkoutEffortRelationship {
     extern_methods!(
         #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKWorkout"))]
+        /// This property is not atomic.
         #[unsafe(method(workout))]
         #[unsafe(method_family = none)]
         pub unsafe fn workout(&self) -> Retained<HKWorkout>;
 
         #[cfg(feature = "HKWorkoutActivity")]
+        /// This property is not atomic.
         #[unsafe(method(activity))]
         #[unsafe(method_family = none)]
         pub unsafe fn activity(&self) -> Option<Retained<HKWorkoutActivity>>;
 
         #[cfg(all(feature = "HKObject", feature = "HKSample"))]
         /// The samples related to the workout but not any sub-activities
+        ///
+        /// This property is not atomic.
         #[unsafe(method(samples))]
         #[unsafe(method_family = none)]
         pub unsafe fn samples(&self) -> Option<Retained<NSArray<HKSample>>>;
