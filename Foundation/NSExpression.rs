@@ -181,7 +181,8 @@ impl NSExpression {
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
         /// # Safety
         ///
-        /// `block` block's return must be a valid pointer.
+        /// - `block` block's return must be a valid pointer.
+        /// - `block` block's argument 3 generic should be of the correct type.
         #[unsafe(method(expressionForBlock:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForBlock_arguments(

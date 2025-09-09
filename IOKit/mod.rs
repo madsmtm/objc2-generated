@@ -11510,7 +11510,8 @@ pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
 ///
 /// # Safety
 ///
-/// `name` must be a valid pointer.
+/// - `name` must be a valid pointer.
+/// - The returned generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn IOServiceMatching(
     name: *const c_char,
@@ -11532,7 +11533,8 @@ pub unsafe extern "C-unwind" fn IOServiceMatching(
 ///
 /// # Safety
 ///
-/// `name` must be a valid pointer.
+/// - `name` must be a valid pointer.
+/// - The returned generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn IOServiceNameMatching(
     name: *const c_char,
@@ -11558,7 +11560,8 @@ pub unsafe extern "C-unwind" fn IOServiceNameMatching(
 ///
 /// # Safety
 ///
-/// `bsd_name` must be a valid pointer.
+/// - `bsd_name` must be a valid pointer.
+/// - The returned generics must be of the correct type.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBSDNameMatching(
@@ -11579,7 +11582,8 @@ pub unsafe extern "C-unwind" fn IOBSDNameMatching(
 
 /// # Safety
 ///
-/// `path` must be a valid pointer.
+/// - `path` must be a valid pointer.
+/// - The returned generics must be of the correct type.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -11606,6 +11610,10 @@ pub unsafe extern "C-unwind" fn IOOpenFirmwarePathMatching(
 /// Parameter `entryID`: The registry entry ID to be found.
 ///
 /// Returns: The matching dictionary created, is returned on success, or zero on failure. The dictionary is commonly passed to IOServiceGetMatchingServices or IOServiceAddNotification which will consume a reference, otherwise it should be released with CFRelease by the caller.
+///
+/// # Safety
+///
+/// The returned generics must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
     entry_id: u64,

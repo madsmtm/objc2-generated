@@ -347,7 +347,8 @@ impl CFMutableArray {
     ///
     /// # Safety
     ///
-    /// `call_backs` must be a valid pointer.
+    /// - `call_backs` must be a valid pointer.
+    /// - The returned generic must be of the correct type.
     #[doc(alias = "CFArrayCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -399,6 +400,7 @@ impl CFMutableArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
+    /// - The returned generic must be of the correct type.
     #[doc(alias = "CFArrayCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(

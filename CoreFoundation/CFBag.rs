@@ -202,7 +202,8 @@ impl CFBag {
 impl CFMutableBag {
     /// # Safety
     ///
-    /// `call_backs` must be a valid pointer.
+    /// - `call_backs` must be a valid pointer.
+    /// - The returned generic must be of the correct type.
     #[doc(alias = "CFBagCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -225,6 +226,7 @@ impl CFMutableBag {
     ///
     /// - `the_bag` generic must be of the correct type.
     /// - `the_bag` might not allow `None`.
+    /// - The returned generic must be of the correct type.
     #[doc(alias = "CFBagCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(

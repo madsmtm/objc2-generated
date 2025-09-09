@@ -392,7 +392,8 @@ impl CFMutableSet {
     ///
     /// # Safety
     ///
-    /// `call_backs` must be a valid pointer.
+    /// - `call_backs` must be a valid pointer.
+    /// - The returned generic must be of the correct type.
     #[doc(alias = "CFSetCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -444,6 +445,7 @@ impl CFMutableSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
+    /// - The returned generic must be of the correct type.
     #[doc(alias = "CFSetCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(

@@ -244,6 +244,10 @@ impl SKTileDefinition {
         pub unsafe fn setNormalTextures(&self, normal_textures: &NSArray<SKTexture>);
 
         /// An optional dictionary that can be used to store your own data for each tile definition. Defaults to nil.
+        ///
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(userData))]
         #[unsafe(method_family = none)]
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;

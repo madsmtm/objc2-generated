@@ -118,6 +118,9 @@ impl CLBeaconRegion {
             identifier: &NSString,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(peripheralDataWithMeasuredPower:))]
         #[unsafe(method_family = none)]

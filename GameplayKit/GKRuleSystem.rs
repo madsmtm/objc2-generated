@@ -55,6 +55,10 @@ impl GKRuleSystem {
         ///
         ///
         /// See: evaluate
+        ///
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> Retained<NSMutableDictionary>;

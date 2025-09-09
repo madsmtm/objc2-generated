@@ -76,6 +76,10 @@ impl NSBatchInsertRequest {
         /// Setter for [`dictionaryHandler`][Self::dictionaryHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `dictionary_handler` block's argument generic should be of the correct type.
         #[unsafe(method(setDictionaryHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDictionaryHandler(
@@ -132,6 +136,9 @@ impl NSBatchInsertRequest {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` block's argument generic should be of the correct type.
         #[unsafe(method(batchInsertRequestWithEntityName:dictionaryHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn batchInsertRequestWithEntityName_dictionaryHandler(
@@ -178,6 +185,9 @@ impl NSBatchInsertRequest {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSEntityDescription", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `handler` block's argument generic should be of the correct type.
         #[unsafe(method(initWithEntity:dictionaryHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntity_dictionaryHandler(
@@ -202,6 +212,9 @@ impl NSBatchInsertRequest {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `handler` block's argument generic should be of the correct type.
         #[unsafe(method(initWithEntityName:dictionaryHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityName_dictionaryHandler(

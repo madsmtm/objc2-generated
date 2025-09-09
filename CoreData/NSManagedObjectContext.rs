@@ -212,6 +212,9 @@ impl NSManagedObjectContext {
         #[unsafe(method_family = none)]
         pub unsafe fn hasChanges(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Retained<NSMutableDictionary>;

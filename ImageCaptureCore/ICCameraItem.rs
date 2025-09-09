@@ -202,6 +202,10 @@ impl ICCameraItem {
 
         /// ￼A mutable dictionary to store arbitrary key-value pairs associated with a camera item object. This can be used by
         /// view objects that bind to this object to store "house-keeping" information.
+        ///
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(userData))]
         #[unsafe(method_family = none)]
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;

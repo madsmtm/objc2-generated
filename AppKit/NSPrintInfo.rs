@@ -287,6 +287,9 @@ impl NSPrintInfo {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(dictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionary(
@@ -459,6 +462,9 @@ impl NSPrintInfo {
         #[unsafe(method_family = none)]
         pub unsafe fn defaultPrinter() -> Option<Retained<NSPrinter>>;
 
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(printSettings))]
         #[unsafe(method_family = none)]
         pub unsafe fn printSettings(

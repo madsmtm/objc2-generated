@@ -412,6 +412,10 @@ impl IMKInputController {
         /// Called to obtain a dictionary of text attributes.
         ///
         /// The default implementation returns an empty dictionary.  You should override this method if your input method wants to provide font or glyphInformation. The returned object should be an autoreleased object.
+        ///
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(compositionAttributesAtRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compositionAttributesAtRange(

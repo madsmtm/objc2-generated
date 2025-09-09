@@ -33,6 +33,9 @@ impl NSAtomicStoreCacheNode {
         #[unsafe(method_family = none)]
         pub unsafe fn objectID(&self) -> Retained<NSManagedObjectID>;
 
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(propertyCache))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyCache(

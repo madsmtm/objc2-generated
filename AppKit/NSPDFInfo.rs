@@ -84,6 +84,9 @@ impl NSPDFInfo {
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
         #[cfg(feature = "NSPrintInfo")]
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(

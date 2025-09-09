@@ -120,11 +120,17 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(mutableArrayValueForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn mutableArrayValueForKey(&self, key: &NSString) -> Retained<NSMutableArray>;
 
         #[cfg(all(feature = "NSOrderedSet", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(mutableOrderedSetValueForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn mutableOrderedSetValueForKey(
@@ -133,6 +139,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         ) -> Retained<NSMutableOrderedSet>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(mutableSetValueForKey:))]
         #[unsafe(method_family = none)]
         unsafe fn mutableSetValueForKey(&self, key: &NSString) -> Retained<NSMutableSet>;
@@ -160,6 +169,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(mutableArrayValueForKeyPath:))]
         #[unsafe(method_family = none)]
         unsafe fn mutableArrayValueForKeyPath(
@@ -168,6 +180,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         ) -> Retained<NSMutableArray>;
 
         #[cfg(all(feature = "NSOrderedSet", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(mutableOrderedSetValueForKeyPath:))]
         #[unsafe(method_family = none)]
         unsafe fn mutableOrderedSetValueForKeyPath(
@@ -176,6 +191,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         ) -> Retained<NSMutableOrderedSet>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(mutableSetValueForKeyPath:))]
         #[unsafe(method_family = none)]
         unsafe fn mutableSetValueForKeyPath(&self, key_path: &NSString) -> Retained<NSMutableSet>;

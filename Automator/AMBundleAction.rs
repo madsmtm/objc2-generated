@@ -62,6 +62,9 @@ impl AMBundleAction {
         #[unsafe(method_family = none)]
         pub unsafe fn bundle(&self) -> Retained<NSBundle>;
 
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(parameters))]
         #[unsafe(method_family = none)]
         pub unsafe fn parameters(

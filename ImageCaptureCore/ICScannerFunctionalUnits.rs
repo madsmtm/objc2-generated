@@ -602,6 +602,9 @@ extern_conformance!(
 
 impl ICScannerFeatureTemplate {
     extern_methods!(
+        /// # Safety
+        ///
+        /// The returned generic generic should be of the correct type.
         #[unsafe(method(targets))]
         #[unsafe(method_family = none)]
         pub unsafe fn targets(&self) -> Retained<NSArray<NSMutableArray>>;

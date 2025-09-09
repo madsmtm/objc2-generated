@@ -49,6 +49,9 @@ impl NSThread {
         pub fn isMultiThreaded() -> bool;
 
         #[cfg(feature = "NSDictionary")]
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(threadDictionary))]
         #[unsafe(method_family = none)]
         pub unsafe fn threadDictionary(&self) -> Retained<NSMutableDictionary>;

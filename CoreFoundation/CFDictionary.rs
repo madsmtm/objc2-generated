@@ -512,6 +512,7 @@ impl CFMutableDictionary {
     ///
     /// - `key_call_backs` must be a valid pointer.
     /// - `value_call_backs` must be a valid pointer.
+    /// - The returned generics must be of the correct type.
     #[doc(alias = "CFDictionaryCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -570,6 +571,7 @@ impl CFMutableDictionary {
     ///
     /// - `the_dict` generics must be of the correct type.
     /// - `the_dict` might not allow `None`.
+    /// - The returned generics must be of the correct type.
     #[doc(alias = "CFDictionaryCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(

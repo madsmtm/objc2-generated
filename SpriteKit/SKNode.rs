@@ -329,6 +329,10 @@ impl SKNode {
         pub unsafe fn setPhysicsBody(&self, physics_body: Option<&SKPhysicsBody>);
 
         /// An optional dictionary that can be used to store your own data in a node. Defaults to nil.
+        ///
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(userData))]
         #[unsafe(method_family = none)]
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;

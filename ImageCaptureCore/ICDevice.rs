@@ -334,6 +334,10 @@ impl ICDevice {
         pub unsafe fn hasOpenSession(&self) -> bool;
 
         /// ￼Client convenience bookkeeping object retained by the framework.
+        ///
+        /// # Safety
+        ///
+        /// The returned generic should be of the correct type.
         #[unsafe(method(userData))]
         #[unsafe(method_family = none)]
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;
