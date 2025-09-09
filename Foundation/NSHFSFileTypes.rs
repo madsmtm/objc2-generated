@@ -6,7 +6,7 @@ use crate::*;
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSFileTypeForHFSTypeCode(
+pub extern "C-unwind" fn NSFileTypeForHFSTypeCode(
     hfs_file_type_code: OSType,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {

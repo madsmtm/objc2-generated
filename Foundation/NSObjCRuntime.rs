@@ -203,9 +203,13 @@ impl NSString {
     }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
+#[cfg(feature = "NSString")]
+#[inline]
+pub extern "C-unwind" fn NSSelectorFromString(a_selector_name: &NSString) -> Sel {
+    extern "C-unwind" {
+        fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
+    }
+    unsafe { NSSelectorFromString(a_selector_name) }
 }
 
 #[cfg(feature = "NSString")]
@@ -223,9 +227,13 @@ impl NSString {
     }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub extern "C-unwind" fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass> {
+    extern "C-unwind" {
+        fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass>;
+    }
+    unsafe { NSClassFromString(a_class_name) }
 }
 
 #[cfg(feature = "NSString")]
@@ -248,9 +256,7 @@ impl NSString {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSProtocolFromString(
-    namestr: &NSString,
-) -> Option<Retained<AnyProtocol>> {
+pub extern "C-unwind" fn NSProtocolFromString(namestr: &NSString) -> Option<Retained<AnyProtocol>> {
     extern "C-unwind" {
         fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
     }

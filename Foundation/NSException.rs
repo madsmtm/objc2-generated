@@ -208,8 +208,12 @@ impl NSException {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuncaughtexceptionhandler?language=objc)
 pub type NSUncaughtExceptionHandler = core::ffi::c_void;
 
-extern "C-unwind" {
-    pub fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler;
+#[inline]
+pub extern "C-unwind" fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler {
+    extern "C-unwind" {
+        fn NSGetUncaughtExceptionHandler() -> *mut NSUncaughtExceptionHandler;
+    }
+    unsafe { NSGetUncaughtExceptionHandler() }
 }
 
 extern "C-unwind" {
