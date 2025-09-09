@@ -119,7 +119,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSUserName() -> Retained<NSString> {
+pub extern "C-unwind" fn NSUserName() -> Retained<NSString> {
     extern "C-unwind" {
         fn NSUserName() -> *mut NSString;
     }
@@ -130,7 +130,7 @@ pub unsafe extern "C-unwind" fn NSUserName() -> Retained<NSString> {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
+pub extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
     extern "C-unwind" {
         fn NSFullUserName() -> *mut NSString;
     }
@@ -141,7 +141,7 @@ pub unsafe extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
+pub extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
     extern "C-unwind" {
         fn NSHomeDirectory() -> *mut NSString;
     }
@@ -152,7 +152,7 @@ pub unsafe extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSHomeDirectoryForUser(
+pub extern "C-unwind" fn NSHomeDirectoryForUser(
     user_name: Option<&NSString>,
 ) -> Option<Retained<NSString>> {
     extern "C-unwind" {
@@ -164,7 +164,7 @@ pub unsafe extern "C-unwind" fn NSHomeDirectoryForUser(
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
+pub extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
     extern "C-unwind" {
         fn NSTemporaryDirectory() -> *mut NSString;
     }
@@ -175,7 +175,7 @@ pub unsafe extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
 
 #[cfg(feature = "NSString")]
 #[inline]
-pub unsafe extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> {
+pub extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> {
     extern "C-unwind" {
         fn NSOpenStepRootDirectory() -> *mut NSString;
     }
@@ -284,7 +284,7 @@ unsafe impl RefEncode for NSSearchPathDomainMask {
 
 #[cfg(all(feature = "NSArray", feature = "NSString"))]
 #[inline]
-pub unsafe extern "C-unwind" fn NSSearchPathForDirectoriesInDomains(
+pub extern "C-unwind" fn NSSearchPathForDirectoriesInDomains(
     directory: NSSearchPathDirectory,
     domain_mask: NSSearchPathDomainMask,
     expand_tilde: bool,

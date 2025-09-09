@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 #[inline]
-pub unsafe extern "C-unwind" fn NSDefaultMallocZone() -> NonNull<NSZone> {
+pub extern "C-unwind" fn NSDefaultMallocZone() -> NonNull<NSZone> {
     extern "C-unwind" {
         fn NSDefaultMallocZone() -> Option<NonNull<NSZone>>;
     }
@@ -16,7 +16,7 @@ pub unsafe extern "C-unwind" fn NSDefaultMallocZone() -> NonNull<NSZone> {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn NSCreateZone(
+pub extern "C-unwind" fn NSCreateZone(
     start_size: NSUInteger,
     granularity: NSUInteger,
     can_free: bool,
@@ -138,7 +138,7 @@ pub const NSScannedOption: NSUInteger = 1 << 0;
 pub const NSCollectorDisabledOption: NSUInteger = 1 << 1;
 
 #[inline]
-pub unsafe extern "C-unwind" fn NSAllocateCollectable(
+pub extern "C-unwind" fn NSAllocateCollectable(
     size: NSUInteger,
     options: NSUInteger,
 ) -> NonNull<c_void> {
@@ -169,24 +169,40 @@ pub unsafe extern "C-unwind" fn NSReallocateCollectable(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    pub fn NSPageSize() -> NSUInteger;
-}
-
-extern "C-unwind" {
-    pub fn NSLogPageSize() -> NSUInteger;
-}
-
-extern "C-unwind" {
-    pub fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
-}
-
-extern "C-unwind" {
-    pub fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
+#[inline]
+pub extern "C-unwind" fn NSPageSize() -> NSUInteger {
+    extern "C-unwind" {
+        fn NSPageSize() -> NSUInteger;
+    }
+    unsafe { NSPageSize() }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void> {
+pub extern "C-unwind" fn NSLogPageSize() -> NSUInteger {
+    extern "C-unwind" {
+        fn NSLogPageSize() -> NSUInteger;
+    }
+    unsafe { NSLogPageSize() }
+}
+
+#[inline]
+pub extern "C-unwind" fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
+    extern "C-unwind" {
+        fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
+    }
+    unsafe { NSRoundUpToMultipleOfPageSize(bytes) }
+}
+
+#[inline]
+pub extern "C-unwind" fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
+    extern "C-unwind" {
+        fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
+    }
+    unsafe { NSRoundDownToMultipleOfPageSize(bytes) }
+}
+
+#[inline]
+pub extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void> {
     extern "C-unwind" {
         fn NSAllocateMemoryPages(bytes: NSUInteger) -> Option<NonNull<c_void>>;
     }
@@ -209,7 +225,11 @@ extern "C-unwind" {
     pub fn NSCopyMemoryPages(source: NonNull<c_void>, dest: NonNull<c_void>, bytes: NSUInteger);
 }
 
-extern "C-unwind" {
-    #[deprecated = "Use NSProcessInfo instead"]
-    pub fn NSRealMemoryAvailable() -> NSUInteger;
+#[deprecated = "Use NSProcessInfo instead"]
+#[inline]
+pub extern "C-unwind" fn NSRealMemoryAvailable() -> NSUInteger {
+    extern "C-unwind" {
+        fn NSRealMemoryAvailable() -> NSUInteger;
+    }
+    unsafe { NSRealMemoryAvailable() }
 }
