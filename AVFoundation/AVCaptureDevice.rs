@@ -368,13 +368,45 @@ impl AVCaptureDevice {
             active_video_max_frame_duration: CMTime,
         );
 
+        /// Whether the device's video frame rate (expressed as a duration) is currently locked.
+        ///
+        /// Returns `true` when an ``AVCaptureDeviceInput`` associated with the device has its ``AVCaptureDeviceInput/activeLockedVideoFrameDuration`` property set to something other than `kCMTimeInvalid`. See ``AVCaptureDeviceInput/activeLockedVideoFrameDuration`` for more information on video frame duration locking.
+        #[unsafe(method(isVideoFrameDurationLocked))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isVideoFrameDurationLocked(&self) -> bool;
+
+        #[cfg(feature = "objc2-core-media")]
+        /// The maximum frame rate (expressed as a minimum duration) that can be set on an input associated with this device.
+        ///
+        /// `kCMTimeInvalid` is returned when the device or its current configuration does not support locked frame rate. Use ``AVCaptureDeviceInput/activeLockedVideoFrameDuration`` to set the locked frame rate on the input.
+        #[unsafe(method(minSupportedLockedVideoFrameDuration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn minSupportedLockedVideoFrameDuration(&self) -> CMTime;
+
+        /// Whether the device is following an external sync device.
+        ///
+        /// See ``AVCaptureDeviceInput/followExternalSyncDevice:videoFrameDuration:delegate:`` for more information on external sync.
+        #[unsafe(method(isFollowingExternalSyncDevice))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isFollowingExternalSyncDevice(&self) -> bool;
+
+        #[cfg(feature = "objc2-core-media")]
+        /// The minimum frame duration that can be passed as the `videoFrameDuration` when directing your device input to follow an external sync device.
+        ///
+        /// Use this property as the minimum allowable frame duration to pass to ``AVCaptureDeviceInput/follow:externalSyncDevice:videoFrameDuration:delegate:`` when you want to follow an external sync device. This property returns `kCMTimeInvalid` when the device's' current configuration does not support external sync device following.
+        #[unsafe(method(minSupportedExternalSyncFrameDuration))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn minSupportedExternalSyncFrameDuration(&self) -> CMTime;
+
         /// Indicates whether the receiver should enable auto video frame rate.
         ///
-        /// When enabled the receiver automatically adjusts the active frame rate, depending on light level. Under low light conditions, frame rate is decreased to properly expose the scene. For formats with a maximum frame rate of 30 fps, the frame rate switches between 30 - 24. For formats with a maximum frame rate of 60 fps, the frame rate switches between 60 - 30 - 24.
+        /// When you enable this property, the device automatically adjusts the active frame rate, depending on light level. Under low light conditions, it decreases the frame rate to properly expose the scene. For formats with a maximum frame rate of 30 fps, the device switches the frame rate between 30 - 24. For formats with a maximum frame rate of 60 fps, the device switches the frame rate between 60 - 30 - 24.
         ///
-        /// Setting this property throws an NSInvalidArgumentException if the active format's -isAutoVideoFrameRateSupported returns NO. Changing the device's active format resets isAutoVideoFrameRateEnabled to its default value of NO.
+        /// Setting this property throws an `NSInvalidArgumentException` if the active format's ``AVCaptureDeviceFormat/autoVideoFrameRateSupported`` returns `false`. When you change the device's active format, this property resets to its default value of `false`.
         ///
-        /// When autoVideoFrameRateEnabled is true, setting activeVideoMinFrameDuration or activeVideoMaxFrameDuration throws an NSInvalidArgumentException.
+        /// If you set this property to `true`, frame rate is under device control, and you may not set ``activeVideoMinFrameDuration`` or ``activeVideoMaxFrameDuration``. Doing so throws an `NSInvalidArgumentException`.
+        ///
+        /// - Note: Setting this property to `true` throws an `NSInvalidArgumentException` if ``videoFrameDurationLocked`` or ``followingExternalSyncDevice`` are `true`.
         #[unsafe(method(isAutoVideoFrameRateEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAutoVideoFrameRateEnabled(&self) -> bool;
@@ -1925,6 +1957,46 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceTemperatureAndTintValues {
 }
 
 extern "C" {
+    /// Temperature and tint values ideal for scenes illuminated with a tungsten light source.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluestungsten?language=objc)
+    pub static AVCaptureWhiteBalanceTemperatureAndTintValuesTungsten:
+        AVCaptureWhiteBalanceTemperatureAndTintValues;
+}
+
+extern "C" {
+    /// Temperature and tint values ideal for scenes illuminated with a fluorescent light source.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluesfluorescent?language=objc)
+    pub static AVCaptureWhiteBalanceTemperatureAndTintValuesFluorescent:
+        AVCaptureWhiteBalanceTemperatureAndTintValues;
+}
+
+extern "C" {
+    /// Temperature and tint values ideal for scenes illuminated with natural daylight.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluesdaylight?language=objc)
+    pub static AVCaptureWhiteBalanceTemperatureAndTintValuesDaylight:
+        AVCaptureWhiteBalanceTemperatureAndTintValues;
+}
+
+extern "C" {
+    /// Temperature and tint values ideal for scenes illuminated with natural cloudy daylight.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluescloudy?language=objc)
+    pub static AVCaptureWhiteBalanceTemperatureAndTintValuesCloudy:
+        AVCaptureWhiteBalanceTemperatureAndTintValues;
+}
+
+extern "C" {
+    /// Temperature and tint values ideal for scenes illuminated with daylight but in heavy shade.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluesshadow?language=objc)
+    pub static AVCaptureWhiteBalanceTemperatureAndTintValuesShadow:
+        AVCaptureWhiteBalanceTemperatureAndTintValues;
+}
+
+extern "C" {
     /// A special value that may be passed as a parameter of setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler: to indicate that the caller does not wish to specify a value for deviceWhiteBalanceGains, and that gains should instead be locked at their value at the moment that white balance is locked.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancegainscurrent?language=objc)
@@ -2002,6 +2074,22 @@ impl AVCaptureDevice {
         #[unsafe(method(maxWhiteBalanceGain))]
         #[unsafe(method_family = none)]
         pub unsafe fn maxWhiteBalanceGain(&self) -> c_float;
+
+        #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Sets white balance to locked mode with explicit temperature and tint values.
+        ///
+        /// - Parameter whiteBalanceTemperatureAndTintValues: The white balance temperature and tint values, as computed from ``temperatureAndTintValuesForDeviceWhiteBalanceGains:`` method, ``AVCaptureWhiteBalanceTemperatureAndTintValues`` presets or manual input.
+        ///
+        /// - Parameter handler: A block to be called when white balance values have been set to the values specified and ``whiteBalanceMode`` is set to ``AVCaptureWhiteBalanceModeLocked``. If ``setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:`` is called multiple times, the completion handlers are called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the ``AVCaptureSession/synchronizationClock`` prior to comparison with the timestamps of buffers delivered via an ``AVCaptureVideoDataOutput``. This parameter may be `nil` if synchronization is not required.
+        ///
+        /// This method takes a ``AVCaptureWhiteBalanceTemperatureAndTintValues`` struct and applies the appropriate ``AVCaptureWhiteBalanceGains``. This method throws an `NSRangeException` if any of the values are set to an unsupported level. This method throws an `NSGenericException` if called without first obtaining exclusive access to the device using ``AVCaptureDevice/lockForConfiguration:``.
+        #[unsafe(method(setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues_completionHandler(
+            &self,
+            white_balance_temperature_and_tint_values: AVCaptureWhiteBalanceTemperatureAndTintValues,
+            handler: Option<&block2::DynBlock<dyn Fn(CMTime)>>,
+        );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Sets white balance to locked mode with explicit deviceWhiteBalanceGains values.
@@ -2428,29 +2516,27 @@ impl AVCaptureDevice {
 
 /// Constants indicating active or supported video color space.
 ///
-///
-/// The sRGB color space ( https://www.w3.org/Graphics/Color/srgb )
-///
-/// The P3 D65 wide color space which uses Illuminant D65 as the white point.
-///
-/// The BT2020 wide color space which uses Illuminant D65 as the white point and Hybrid Log-Gamma as the transfer function.
-///
-/// The Apple Log Color space, which uses BT2020 as the color primaries, and an Apple defined Log curve as a transfer function. When this is set as the active color space on an AVCaptureDevice, any AVCapturePhotoOutput or AVCaptureStillImageOutput connected to the same AVCaptureDevice will have its video connection disabled.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureColorSpace(pub NSInteger);
 impl AVCaptureColorSpace {
+    /// The sRGB color space ( https://www.w3.org/Graphics/Color/srgb ).
     #[doc(alias = "AVCaptureColorSpace_sRGB")]
     pub const sRGB: Self = Self(0);
+    /// The P3 D65 wide color space which uses Illuminant D65 as the white point.
     #[doc(alias = "AVCaptureColorSpace_P3_D65")]
     pub const P3_D65: Self = Self(1);
+    /// The BT2020 wide color space which uses Illuminant D65 as the white point and Hybrid Log-Gamma as the transfer function.
     #[doc(alias = "AVCaptureColorSpace_HLG_BT2020")]
     pub const HLG_BT2020: Self = Self(2);
+    /// The Apple Log Color space, which uses BT2020 as the color primaries, and an Apple defined Log curve as a transfer function. When you set this as the active color space on an ``AVCaptureDevice``, any ``AVCapturePhotoOutput`` or ``AVCaptureStillImageOutput`` connected to the same ``AVCaptureDevice`` is made inactive (its ``AVCaptureConnection/active`` property returns `false`).
     #[doc(alias = "AVCaptureColorSpace_AppleLog")]
     pub const AppleLog: Self = Self(3);
+    /// The Apple Log 2 Color space, which uses Apple Gamut as the color primaries, and an Apple defined Log curve as a transfer function. When you set this as the active color space on an ``AVCaptureDevice``, any ``AVCapturePhotoOutput`` or ``AVCaptureStillImageOutput`` connected to the same ``AVCaptureDevice`` is made inactive (its ``AVCaptureConnection/active`` property returns `false`).
+    #[doc(alias = "AVCaptureColorSpace_AppleLog2")]
+    pub const AppleLog2: Self = Self(4);
 }
 
 unsafe impl Encode for AVCaptureColorSpace {
@@ -2566,6 +2652,13 @@ impl AVCaptureDevice {
         ///
         ///
         /// Where supported, the default value is YES. The receiver must be locked for configuration using lockForConfiguration: before clients can set this method, otherwise an NSGenericException is thrown.
+        ///
+        /// In the case of ProRes RAW, when geometricDistortionCorrectionEnabled is YES, GDC is applied to your outputs in different ways:
+        /// - It is always applied to AVCaptureVideoPreviewLayer.
+        /// - It is applied to AVCaptureVideoDataOutput only if deliversPreviewSizedOutputBuffers is set to YES.
+        /// - It is never applied to AVCaptureMovieFileOutput.
+        ///
+        /// When GDC is enabled, AVCaptureVideoDataOutput buffers contain GDC metadata attachments, and AVCaptureMovieFileOutput movies contain GDC metadata which an application supporting ProRes RAW can optionally apply at playback time using the ProRes RAW SDK. To learn more about the ProRes RAW SDK, refer to the Apple ProRes and ProRes RAW Authorized Products article at https://support.apple.com/en-us/118584.
         #[unsafe(method(isGeometricDistortionCorrectionEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isGeometricDistortionCorrectionEnabled(&self) -> bool;
@@ -3035,6 +3128,214 @@ impl AVCaptureDevice {
     );
 }
 
+/// String constants describing the different video aspect ratios you can configure for a particular device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio?language=objc)
+// NS_TYPED_ENUM
+pub type AVCaptureAspectRatio = NSString;
+
+extern "C" {
+    /// An aspect ratio of 1x1.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio1x1?language=objc)
+    pub static AVCaptureAspectRatio1x1: &'static AVCaptureAspectRatio;
+}
+
+extern "C" {
+    /// An aspect ratio of 16x9.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio16x9?language=objc)
+    pub static AVCaptureAspectRatio16x9: &'static AVCaptureAspectRatio;
+}
+
+extern "C" {
+    /// An aspect ratio of 9x16.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio9x16?language=objc)
+    pub static AVCaptureAspectRatio9x16: &'static AVCaptureAspectRatio;
+}
+
+extern "C" {
+    /// An aspect ratio of 4x3.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio4x3?language=objc)
+    pub static AVCaptureAspectRatio4x3: &'static AVCaptureAspectRatio;
+}
+
+extern "C" {
+    /// An aspect ratio of 3x4.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio3x4?language=objc)
+    pub static AVCaptureAspectRatio3x4: &'static AVCaptureAspectRatio;
+}
+
+/// DynamicAspectRatio.
+impl AVCaptureDevice {
+    extern_methods!(
+        /// A key-value observable property indicating the current aspect ratio for a device.
+        ///
+        /// This property is initialized to the first ``AVCaptureAspectRatio`` listed in the device's activeFormat's ``AVCaptureDeviceFormat/supportedDynamicAspectRatios`` property. If the activeFormat's ``AVCaptureDeviceFormat/supportedDynamicAspectRatios`` is an empty array, this property returns nil.
+        #[unsafe(method(dynamicAspectRatio))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dynamicAspectRatio(&self) -> Option<Retained<AVCaptureAspectRatio>>;
+
+        #[cfg(feature = "objc2-core-media")]
+        /// A key-value observable property describing the output dimensions of the video buffer based on the device's dynamic aspect ratio.
+        ///
+        /// If the device's activeFormat's ``AVCaptureDeviceFormat/supportedDynamicAspectRatios`` is an empty array, this property returns {0,0}.
+        #[unsafe(method(dynamicDimensions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dynamicDimensions(&self) -> CMVideoDimensions;
+
+        #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Updates the dynamic aspect ratio of the device.
+        ///
+        /// - Parameter dynamicAspectRatio: The new ``AVCaptureAspectRatio`` the device should output.
+        /// - Parameter handler: A block called by the device when `dynamicAspectRatio` is set to the value specified. If you call ``setDynamicAspectRatio:completionHandler:`` multiple times, the completion handlers are called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the ``AVCaptureSession/synchronizationClock`` prior to comparison with the timestamps of buffers delivered via an ``AVCaptureVideoDataOutput``. You may pass `nil` for the `handler` parameter if you do not need to know when the operation completes.
+        ///
+        /// This is the only way of setting ``dynamicAspectRatio``. This method throws an `NSInvalidArgumentException` if `dynamicAspectRatio` is not a supported aspect ratio found in the device's activeFormat's ``AVCaptureDeviceFormat/supportedDynamicAspectRatios``. This method throws an `NSGenericException` if you call it without first obtaining exclusive access to the device using ``AVCaptureDevice/lockForConfiguration:``.
+        #[unsafe(method(setDynamicAspectRatio:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDynamicAspectRatio_completionHandler(
+            &self,
+            dynamic_aspect_ratio: &AVCaptureAspectRatio,
+            handler: Option<&block2::DynBlock<dyn Fn(CMTime, *mut NSError)>>,
+        );
+    );
+}
+
+/// AVCaptureDeviceSmartFraming.
+impl AVCaptureDevice {
+    extern_methods!(
+        /// A monitor owned by the device that recommends an optimal framing based on the content in the scene.
+        ///
+        /// An ultra wide camera device that supports dynamic aspect ratio configuration may also support "smart framing monitoring". If this property returns non `nil`, you may use it to listen for framing recommendations by configuring its ``AVCaptureSmartFramingMonitor/enabledFramings`` and calling ``AVCaptureSmartFramingMonitor/startMonitoringWithError:``. The smart framing monitor only makes recommendations when the current ``AVCaptureDevice/activeFormat`` supports smart framing (see ``AVCaptureDeviceFormat/smartFramingSupported``).
+        #[unsafe(method(smartFramingMonitor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn smartFramingMonitor(&self) -> Option<Retained<AVCaptureSmartFramingMonitor>>;
+    );
+}
+
+extern_class!(
+    /// An object associated with a capture device that monitors the scene and suggests an optimal framing.
+    ///
+    /// A smart framing monitor observes its associated device for objects of interest entering and exiting the camera's field of view and recommends an optimal framing for good photographic composition. This framing recommendation consists of an aspect ratio and zoom factor. You may respond to the device's framing recommendation by calling ``AVCaptureDevice/setDynamicAspectRatio:completionHandler:`` and setting ``AVCaptureDevice/videoZoomFactor`` on the associated device in whatever order best matches your animation between old and new framings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVCaptureSmartFramingMonitor;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureSmartFramingMonitor {}
+);
+
+impl AVCaptureSmartFramingMonitor {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        /// An array of framings supported by the monitor in its current configuration.
+        ///
+        /// The monitor is capable of recommending any of the framings in this array. This property is key-value observable and may change as the target capture device's ``AVCaptureDevice/activeFormat`` property changes. This array contains the full set of framings supported by the monitor in the device's current configuration. You must tell the monitor which smart framings you are interested in having recommended to you by setting the ``enabledFramings`` property.
+        #[unsafe(method(supportedFramings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedFramings(&self) -> Retained<NSArray<AVCaptureFraming>>;
+
+        /// An array of framings that the monitor is allowed to suggest.
+        ///
+        /// The monitor is capable of recommending any of the framings in the ``supportedFramings`` array. This property contains the subset of ``supportedFramings`` you would like to have recommended to you. You may set this property at any time while running your ``AVCaptureSession``. This property's default value is the empty array.
+        #[unsafe(method(enabledFramings))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn enabledFramings(&self) -> Retained<NSArray<AVCaptureFraming>>;
+
+        /// Setter for [`enabledFramings`][Self::enabledFramings].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setEnabledFramings:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setEnabledFramings(&self, enabled_framings: &NSArray<AVCaptureFraming>);
+
+        /// The latest recommended framing from the monitor.
+        ///
+        /// While your ``AVCaptureSession`` is running, the monitor continuously observes its device's scene to recommend the best framing. This recommended framing is always one of the values in ``enabledFramings``. This property may return `nil` if smart framing isn't supported for the device in its current configuration. Its default value is `nil`. This property is key-value observable, and when you observe a change, you may respond to the new recommendation by calling ``AVCaptureDevice/setDynamicAspectRatio:completionHandler:`` and setting ``AVCaptureDevice/videoZoomFactor`` on the associated device in whatever order best matches your animation between old and new framings.
+        #[unsafe(method(recommendedFraming))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn recommendedFraming(&self) -> Option<Retained<AVCaptureFraming>>;
+
+        /// Begins monitoring the device's active scene and making framing recommendations.
+        ///
+        /// - Parameter outError: A pointer to an ``NSError`` indicating why ``startMonitoringWithError:`` failed, or to a `nil` ``NSError`` on success.
+        /// - Returns: `true` if successful, `false` if monitoring could not be started.
+        ///
+        /// The monitor's ``recommendedFraming`` is `nil` when it is not actively running. Call this method to start monitoring. You may start monitoring before or after calling ``AVCaptureSession/startRunning``,  and you may stop active monitoring without stopping the capture session by calling ``stopMonitoring`` at any time, but you must set ``enabledFramings`` before running your capture session so that the monitor is prepared for your desired framing recommendations. While the monitor is running, you may set ``enabledFramings`` at any time to change the framing choices the monitor should consider in its recommendations.
+        #[unsafe(method(startMonitoringWithError:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn startMonitoringWithError(&self) -> Result<(), Retained<NSError>>;
+
+        /// Stops monitoring the device's active scene and making framing recommendations.
+        ///
+        /// The monitor's ``recommendedFraming`` is `nil` when it is not actively running. Call this method to stop actively monitoring the scene and making framing recommendations. You may start monitoring before or after calling ``AVCaptureSession/startRunning``, and may stop active monitoring without stopping the capture session by calling ``stopMonitoring`` at any time.
+        #[unsafe(method(stopMonitoring))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn stopMonitoring(&self);
+
+        /// Yes when the receiver is actively monitoring.
+        ///
+        /// See ``startMonitoringWithError:`` and ``stopMonitoring``.
+        #[unsafe(method(isMonitoring))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isMonitoring(&self) -> bool;
+    );
+}
+
+extern_class!(
+    /// A framing, consisting of an aspect ratio and a zoom factor.
+    ///
+    /// An ``AVCaptureSmartFramingMonitor`` provides framing recommendations using this object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureframing?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct AVCaptureFraming;
+);
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for AVCaptureFraming {}
+);
+
+impl AVCaptureFraming {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+
+        /// An aspect ratio.
+        ///
+        /// One of the enumerated aspect ratios  suitable for use with the ``AVCaptureDevice`` dynamic aspect ratio APIs.
+        #[unsafe(method(aspectRatio))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn aspectRatio(&self) -> Retained<AVCaptureAspectRatio>;
+
+        /// A zoom factor.
+        ///
+        /// Suitable for use with the ``AVCaptureDevice/videoZoomFactor`` property or ``AVCaptureDevice/rampToVideoZoomFactor:withRate:``.
+        #[unsafe(method(zoomFactor))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn zoomFactor(&self) -> c_float;
+    );
+}
+
 /// AVCaptureDeviceNominalFocalLengthIn35mmFilm.
 impl AVCaptureDevice {
     extern_methods!(
@@ -3371,39 +3672,34 @@ impl AVZoomRange {
 
 /// Constants indicating the modes of video stabilization supported by the device's format.
 ///
-///
-/// Indicates that video should not be stabilized.
-///
-/// Indicates that video should be stabilized using the standard video stabilization algorithm introduced with iOS 5.0. Standard video stabilization has a reduced field of view. Enabling video stabilization may introduce additional latency into the video capture pipeline.
-///
-/// Indicates that video should be stabilized using the cinematic stabilization algorithm for more dramatic results. Cinematic video stabilization has a reduced field of view compared to standard video stabilization. Enabling cinematic video stabilization introduces much more latency into the video capture pipeline than standard video stabilization and consumes significantly more system memory. Use narrow or identical min and max frame durations in conjunction with this mode.
-///
-/// Indicates that the video should be stabilized using the extended cinematic stabilization algorithm. Enabling extended cinematic stabilization introduces longer latency into the video capture pipeline compared to the AVCaptureVideoStabilizationModeCinematic and consumes more memory, but yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode.
-///
-/// Indicates that video should be stabilized using the preview optimized stabilization algorithm. Preview stabilization is a low latency and low power algorithm which is supported only on connections which either have an associated preview layer or have a preview-sized VideoDataOutput.
-///
-/// Indicates that the video should be stabilized using the enhanced extended cinematic stabilization algorithm. Enhanced extended cinematic has a reduced field of view compared to extended cinematic, without any noticeable increase in latency, and it yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode.
-///
-/// Indicates that the most appropriate video stabilization mode for the device and format should be chosen.
-///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureVideoStabilizationMode(pub NSInteger);
 impl AVCaptureVideoStabilizationMode {
+    /// Indicates that video should not be stabilized.
     #[doc(alias = "AVCaptureVideoStabilizationModeOff")]
     pub const Off: Self = Self(0);
+    /// Indicates that video should be stabilized using the standard video stabilization algorithm introduced with iOS 5.0. Standard video stabilization has a reduced field of view. Enabling video stabilization may introduce additional latency into the video capture pipeline.
     #[doc(alias = "AVCaptureVideoStabilizationModeStandard")]
     pub const Standard: Self = Self(1);
+    /// Indicates that video should be stabilized using the cinematic stabilization algorithm for more dramatic results. Cinematic video stabilization has a reduced field of view compared to standard video stabilization. Enabling cinematic video stabilization introduces much more latency into the video capture pipeline than standard video stabilization and consumes significantly more system memory. Use narrow or identical min and max frame durations in conjunction with this mode.
     #[doc(alias = "AVCaptureVideoStabilizationModeCinematic")]
     pub const Cinematic: Self = Self(2);
+    /// Indicates that the video should be stabilized using the extended cinematic stabilization algorithm. Enabling extended cinematic stabilization introduces longer latency into the video capture pipeline compared to the ``AVCaptureVideoStabilizationModeCinematic`` and consumes more memory, but yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode. Cinematic extended mode is face aware when enabled on a front-facing ultra wide camera on iPhone, and prioritizes stabilization of the subject of the frame rather than the background.
     #[doc(alias = "AVCaptureVideoStabilizationModeCinematicExtended")]
     pub const CinematicExtended: Self = Self(3);
+    /// Indicates that video should be stabilized using the preview optimized stabilization algorithm. Preview stabilization is a low latency and low power algorithm which is supported only on connections which either have an associated preview layer or have a preview-sized ``AVCaptureVideoDataOutput``.
     #[doc(alias = "AVCaptureVideoStabilizationModePreviewOptimized")]
     pub const PreviewOptimized: Self = Self(4);
+    /// Indicates that the video should be stabilized using the enhanced extended cinematic stabilization algorithm. Enhanced extended cinematic has a reduced field of view compared to extended cinematic, without any noticeable increase in latency, and it yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode. Cinematic extended enhanced mode is face aware when enabled on a front-facing ultra wide camera on iPhone, and prioritizes stabilization of the subject of the frame rather than the background.
     #[doc(alias = "AVCaptureVideoStabilizationModeCinematicExtendedEnhanced")]
     pub const CinematicExtendedEnhanced: Self = Self(5);
+    /// Indicates that video should be stabilized using the low latency stabilization algorithm. Low Latency stabilization has a reduced field of view. Enabling low latency stabilization introduces no additional latency into the video capture pipeline.
+    #[doc(alias = "AVCaptureVideoStabilizationModeLowLatency")]
+    pub const LowLatency: Self = Self(6);
+    /// Indicates that the most appropriate video stabilization mode for the device and format should be chosen.
     #[doc(alias = "AVCaptureVideoStabilizationModeAuto")]
     pub const Auto: Self = Self(-1);
 }
@@ -4028,6 +4324,43 @@ impl AVCaptureDeviceFormat {
         pub unsafe fn videoFrameRateRangeForCinematicVideo(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
+    );
+}
+
+/// DynamicAspectRatio.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
+        /// Indicates the supported aspect ratios for the device format.
+        ///
+        /// An array that describes the aspect ratios that are supported for this format. If this device format does not support dynamic aspect ratio, this property returns an empty array.
+        #[unsafe(method(supportedDynamicAspectRatios))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn supportedDynamicAspectRatios(
+            &self,
+        ) -> Retained<NSArray<AVCaptureAspectRatio>>;
+
+        /// Indicates the horizontal field of view for an aspect ratio, either uncorrected or corrected for geometric distortion.
+        ///
+        /// A float indicating the field of view for the corresponding ``AVCaptureAspectRatio``. Set ``AVCaptureDevice/geometricDistortionCorrected`` to `true` to receive the field of view corrected for geometric distortion. If this device format does not support dynamic aspect ratio, this function returns `0`.
+        #[unsafe(method(videoFieldOfViewForAspectRatio:geometricDistortionCorrected:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn videoFieldOfViewForAspectRatio_geometricDistortionCorrected(
+            &self,
+            aspect_ratio: &AVCaptureAspectRatio,
+            geometric_distortion_corrected: bool,
+        ) -> c_float;
+    );
+}
+
+/// AVCaptureDeviceFormatSmartFraming.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
+        /// Returns `true` if smart framing is supported by the current format.
+        ///
+        /// An ultra wide camera device that supports dynamic aspect ratio configuration may also support "smart framing monitoring" on particular formats.
+        #[unsafe(method(isSmartFramingSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isSmartFramingSupported(&self) -> bool;
     );
 }
 

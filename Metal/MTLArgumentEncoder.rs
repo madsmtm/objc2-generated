@@ -337,5 +337,29 @@ extern_protocol!(
             >,
             range: NSRange,
         );
+
+        #[cfg(feature = "MTLDepthStencil")]
+        /// Sets a depth stencil state at a given bind point index
+        #[unsafe(method(setDepthStencilState:atIndex:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthStencilState_atIndex(
+            &self,
+            depth_stencil_state: Option<&ProtocolObject<dyn MTLDepthStencilState>>,
+            index: NSUInteger,
+        );
+
+        #[cfg(feature = "MTLDepthStencil")]
+        /// Sets an array of depth stencil states at a given buffer index range
+        ///
+        /// # Safety
+        ///
+        /// `depth_stencil_states` must be a valid pointer.
+        #[unsafe(method(setDepthStencilStates:withRange:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthStencilStates_withRange(
+            &self,
+            depth_stencil_states: NonNull<*const ProtocolObject<dyn MTLDepthStencilState>>,
+            range: NSRange,
+        );
     }
 );

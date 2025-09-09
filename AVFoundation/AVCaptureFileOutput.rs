@@ -680,6 +680,10 @@ impl AVCaptureMovieFileOutput {
         /// This property enables capturing spatial video to a file. By default, this property is set to NO. Check spatialVideoCaptureSupported before setting this property, as setting to YES will throw an exception if the feature is not supported.
         ///
         /// On iOS, enabling spatial video will overwrite the connected AVCaptureDevice's `videoZoomFactor`, `minAvailableVideoZoomFactor`, and `maxAvailableVideoZoomFactor` to the field of view of the narrower camera in the pair.
+        ///
+        /// When spatialVideoCaptureEnabled is true, setting -[AVCaptureDeviceInput activeVideoMinFrameDuration] or -[AVCaptureDeviceInput activeVideoMaxFrameDuration] throws an NSInvalidArgumentException.
+        ///
+        /// Enabling this property throws an NSInvalidArgumentException if -[AVCaptureDevice isVideoFrameDurationLocked] or -[AVCaptureDevice isFollowingExternalSyncDevice] is true.
         #[unsafe(method(isSpatialVideoCaptureEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSpatialVideoCaptureEnabled(&self) -> bool;

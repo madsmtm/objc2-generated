@@ -214,6 +214,38 @@ impl AVCaptureVideoDataOutput {
             output_file_url: Option<&NSURL>,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        #[cfg(all(
+            feature = "AVMediaFormat",
+            feature = "AVMetadataItem",
+            feature = "AVVideoSettings"
+        ))]
+        /// Recommends movie-level metadata for a particular video codec type and output file type, to be used with an asset writer input.
+        ///
+        /// - Parameter videoCodecType: The desired ``AVVideoCodecKey`` to be used for compression (see
+        /// <doc
+        /// ://com.apple.documentation/documentation/avfoundation/video-settings>).
+        /// - Parameter outputFileType: Specifies the UTI of the file type to be written (see
+        /// <doc
+        /// ://com.apple.documentation/documentation/avfoundation/avfiletype>).
+        /// - Returns: A fully populated array of ``AVMetadataItem`` objects compatible with ``AVAssetWriter``.
+        ///
+        /// The value of this property is an array of ``AVMetadataItem`` objects representing the collection of top-level metadata to be written in each output file. This array is suitable to use as the ``AVAssetWriter/metadata`` property before you have called ``AVAssetWriter/startWriting``. For more details see
+        /// <doc
+        /// ://com.apple.documentation/documentation/avfoundation/avassetwriter/startwriting()>.
+        ///
+        /// The ``videoCodecType`` string you provide must be present in ``availableVideoCodecTypesForAssetWriterWithOutputFileType:`` array, or an `NSInvalidArgumentException` is thrown.
+        ///
+        /// For clients writing files using a ProRes Raw codec type, white balance must be locked (call ``AVCaptureDevice/setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:``) before querying this property, or an `NSIvalidArgumentException` is thrown.
+        ///
+        /// - Note: The array of metadata is dependent on the current configuration of the receiver's ``AVCaptureSession`` and its inputs. The array may change when the session's configuration changes. As such, you should configure and start your session first, then query this method.
+        #[unsafe(method(recommendedMovieMetadataForVideoCodecType:assetWriterOutputFileType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn recommendedMovieMetadataForVideoCodecType_assetWriterOutputFileType(
+            &self,
+            video_codec_type: &AVVideoCodecType,
+            output_file_type: &AVFileType,
+        ) -> Option<Retained<NSArray<AVMetadataItem>>>;
+
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the recommended media timescale for the video track.
         ///
@@ -292,6 +324,8 @@ impl AVCaptureVideoDataOutput {
         ///
         ///
         /// If you wish to manually set deliversPreviewSizedOutputBuffers, you must first set automaticallyConfiguresOutputBufferDimensions to NO. When deliversPreviewSizedOutputBuffers is set to YES, auto focus, exposure, and white balance changes are quicker. AVCaptureVideoDataOutput assumes that the buffers are being used for on-screen preview rather than recording.
+        ///
+        /// When AVCaptureDevice.activeFormat supports ProRes Raw video, setting deliversPreviewSizedOutputBuffers gives out buffers with 422 format that can be used for proxy video recording.
         #[unsafe(method(deliversPreviewSizedOutputBuffers))]
         #[unsafe(method_family = none)]
         pub unsafe fn deliversPreviewSizedOutputBuffers(&self) -> bool;

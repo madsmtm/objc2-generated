@@ -268,5 +268,11 @@ extern_protocol!(
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Handle of the GPU resource suitable for storing in an Argument Buffer
+        #[unsafe(method(gpuResourceID))]
+        #[unsafe(method_family = none)]
+        unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
 );

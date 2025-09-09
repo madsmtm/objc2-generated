@@ -120,6 +120,90 @@ impl MTLIndirectCommandBufferDescriptor {
         #[unsafe(method_family = none)]
         pub fn setInheritBuffers(&self, inherit_buffers: bool);
 
+        /// Configures whether the indirect command buffer inherits the depth stencil state from the encoder.
+        ///
+        /// The property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        #[unsafe(method(inheritDepthStencilState))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn inheritDepthStencilState(&self) -> bool;
+
+        /// Setter for [`inheritDepthStencilState`][Self::inheritDepthStencilState].
+        #[unsafe(method(setInheritDepthStencilState:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setInheritDepthStencilState(&self, inherit_depth_stencil_state: bool);
+
+        /// Configures whether the indirect command buffer inherits the depth bias from the encoder.
+        ///
+        /// The property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        #[unsafe(method(inheritDepthBias))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn inheritDepthBias(&self) -> bool;
+
+        /// Setter for [`inheritDepthBias`][Self::inheritDepthBias].
+        #[unsafe(method(setInheritDepthBias:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setInheritDepthBias(&self, inherit_depth_bias: bool);
+
+        /// Configures whether the indirect command buffer inherits the depth clip mode from the encoder.
+        ///
+        /// The property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        #[unsafe(method(inheritDepthClipMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn inheritDepthClipMode(&self) -> bool;
+
+        /// Setter for [`inheritDepthClipMode`][Self::inheritDepthClipMode].
+        #[unsafe(method(setInheritDepthClipMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setInheritDepthClipMode(&self, inherit_depth_clip_mode: bool);
+
+        /// Configures whether the indirect command buffer inherits the cull mode from the encoder.
+        ///
+        /// The property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        #[unsafe(method(inheritCullMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn inheritCullMode(&self) -> bool;
+
+        /// Setter for [`inheritCullMode`][Self::inheritCullMode].
+        #[unsafe(method(setInheritCullMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setInheritCullMode(&self, inherit_cull_mode: bool);
+
+        /// Configures whether the indirect command buffer inherits the front facing winding from the encoder.
+        ///
+        /// The property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        #[unsafe(method(inheritFrontFacingWinding))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn inheritFrontFacingWinding(&self) -> bool;
+
+        /// Setter for [`inheritFrontFacingWinding`][Self::inheritFrontFacingWinding].
+        #[unsafe(method(setInheritFrontFacingWinding:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setInheritFrontFacingWinding(&self, inherit_front_facing_winding: bool);
+
+        /// Configures whether the indirect command buffer inherits the triangle fill mode from the encoder.
+        ///
+        /// The property's default value is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>.
+        #[unsafe(method(inheritTriangleFillMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn inheritTriangleFillMode(&self) -> bool;
+
+        /// Setter for [`inheritTriangleFillMode`][Self::inheritTriangleFillMode].
+        #[unsafe(method(setInheritTriangleFillMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setInheritTriangleFillMode(&self, inherit_triangle_fill_mode: bool);
+
         /// The maximum bind index of vertex argument buffers that can be set per command.
         #[unsafe(method(maxVertexBufferBindCount))]
         #[unsafe(method_family = none)]

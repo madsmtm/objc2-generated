@@ -321,6 +321,8 @@ pub use self::__CVImageBuffer::kCVImageBufferLogTransferFunctionKey;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferLogTransferFunction_AppleLog;
 #[cfg(feature = "CVImageBuffer")]
+pub use self::__CVImageBuffer::kCVImageBufferLogTransferFunction_AppleLog2;
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferMasteringDisplayColorVolumeKey;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferPixelAspectRatioHorizontalSpacingKey;

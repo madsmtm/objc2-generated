@@ -177,7 +177,7 @@ impl AVCapturePhotoOutput {
         /// - If the receiver's autoDeferredPhotoDeliveryEnabled is YES, your delegate must respond to -captureOutput:didFinishCapturingDeferredPhotoProxy:error:.
         /// - The maxPhotoDimensions setting for 24MP (5712, 4284), when supported, is only serviced as 24MP via deferred photo delivery.
         /// Color space rules:
-        /// - Photo capture is not supported when AVCaptureDevice has selected AVCaptureColorSpace_AppleLog as color space.
+        /// - Photo capture is not supported when AVCaptureDevice has selected AVCaptureColorSpace_AppleLog or AVCaptureColorSpace_AppleLog2 as color space.
         #[unsafe(method(capturePhotoWithSettings:delegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn capturePhotoWithSettings_delegate(
@@ -881,6 +881,28 @@ impl AVCapturePhotoOutput {
         #[unsafe(method(isShutterSoundSuppressionSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isShutterSoundSuppressionSupported(&self) -> bool;
+
+        /// A read-only BOOL value indicating whether still image buffers may be rotated to match the sensor orientation of earlier generation hardware.
+        ///
+        /// Value is YES for camera configurations which support compensation for the sensor orientation, which is applied to HEIC, JPEG, and uncompressed processed photos only; compensation is never applied to Bayer RAW or Apple ProRaw captures.
+        #[unsafe(method(isCameraSensorOrientationCompensationSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCameraSensorOrientationCompensationSupported(&self) -> bool;
+
+        /// A BOOL value indicating that still image buffers will be rotated to match the sensor orientation of earlier generation hardware.
+        ///
+        /// Default is YES when cameraSensorOrientationCompensationSupported is YES. Set to NO if your app does not require sensor orientation compensation.
+        #[unsafe(method(isCameraSensorOrientationCompensationEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isCameraSensorOrientationCompensationEnabled(&self) -> bool;
+
+        /// Setter for [`isCameraSensorOrientationCompensationEnabled`][Self::isCameraSensorOrientationCompensationEnabled].
+        #[unsafe(method(setCameraSensorOrientationCompensationEnabled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setCameraSensorOrientationCompensationEnabled(
+            &self,
+            camera_sensor_orientation_compensation_enabled: bool,
+        );
     );
 }
 

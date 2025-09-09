@@ -703,6 +703,60 @@ extern "C" {
 }
 
 extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the sensitivity of the camera to light in terms of ISO exposure index (e.g. "800"). See SMPTE RDD 18.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeycameraisosensitivity?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyCameraISOSensitivity: Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the white balance value defined by the temperature in Kelvin units (e.g. "5500K" or "5500"). See SMPTE RDD 18.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeycamerawhitebalance?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyCameraWhiteBalance: Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_RawData indicating the reference white balance multiplication factor data for ProRes RAW.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeywhitebalancebycctwhitebalancefactors?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors:
+        Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_RawData indicating the reference color translation matrix data for ProRes RAW.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeywhitebalancebycctcolormatrices?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTColorMatrices:
+        Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as an angle in minutes (1/60 degree) (e.g. "21600" or "360.00deg"").
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeycamerashutterspeedangle?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyCameraShutterSpeedAngle:
+        Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as a time per one frame/field period in seconds.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeycamerashutterspeedtime?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyCameraShutterSpeedTime: Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating measure of the amount of light transmitted through the lens. It is the focal length divided by the effective lens aperture diameter (e.g. "F2.8" or "2.8").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeycameralensirisfnumber?language=objc)
+    pub static AVMetadataQuickTimeMetadataKeyCameraLensIrisFNumber: Option<&'static AVMetadataKey>;
+}
+
+extern "C" {
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. "iPhone 16 Pro back camera 6.765mm f/1.78").
     ///
     /// This is track-level metadata for video track that is associated with the camera.

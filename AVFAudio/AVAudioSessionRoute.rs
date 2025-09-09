@@ -353,6 +353,17 @@ impl AVAudioSessionPortExtensionBluetoothMicrophone {
         #[unsafe(method(highQualityRecording))]
         #[unsafe(method_family = none)]
         pub unsafe fn highQualityRecording(&self) -> Retained<AVAudioSessionCapability>;
+
+        /// Describes whether this port supports far-field input capture.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(farFieldCapture))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn farFieldCapture(&self) -> Retained<AVAudioSessionCapability>;
     );
 }
 

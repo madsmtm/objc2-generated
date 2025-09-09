@@ -91,6 +91,8 @@ pub const kVTCouldNotOutputTaggedBufferGroupErr: OSStatus = -17699;
 pub const kVTCouldNotFindExtensionErr: OSStatus = -19510;
 /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtextensionconflicterr?language=objc)
 pub const kVTExtensionConflictErr: OSStatus = -19511;
+/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderautowhitebalancenotlockederr?language=objc)
+pub const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: OSStatus = -19512;
 
 /// Directives for the decompression session and the video decoder, passed into
 /// decodeFlags parameter of VTDecompressionSessionDecodeFrame.

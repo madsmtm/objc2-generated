@@ -547,9 +547,21 @@ extern "C" {
     /// Indicates that the transfer function or gamma of the content is a log format and identifies the specific log curve.
     ///
     /// The value is a CFString holding fully specified reverse DNS identifier.
-    /// Content captured in Apple Log will have this key set to kCVImageBufferLogTransferFunction_AppleLog.
+    /// Log is a specific video format usually processed in a camera's ISP. A Log video format usually defines:
+    /// Scene-referred color primaries designed to preserve the chromaticity range captured by a camera sensor. In cinematography, "scene-referred" color primaries refers to a color space designed to accurately preserve the chromaticity and dynamic range directly captured by a camera sensor.
+    /// A specific gamma curve (or transfer characteristic) tailored to capturing the full dynamic range from the sensor. This gamma curve is usually shaped like a log curve (hence the name Log).
+    /// A set of matrix transforms to go from RGB to Y'CbCr (Y'CbCr being the most common format used to store the bits compressed into a file).
+    /// As described above, a Log video format defines a whole color space (even though the “log” part of the name comes only from the “transfer characteristic” or gamma curve)
+    /// Content captured in Apple Log will have this key set to kCVImageBufferLogTransferFunction_AppleLog or kCVImageBufferLogTransferFunction_AppleLog2.
     ///
     /// Indicates the Apple Log identifier.
+    ///
+    /// Indicates the Apple Log 2 identifier.
+    /// To use Apple Log 2, set other color attachments as follows:
+    /// kCVImageBufferColorPrimariesKey = undefined or absent
+    /// kCVImageBufferTransferFunctionKey = undefined or absent
+    /// kCVImageBufferYCbCrMatrixKey = kCVImageBufferYCbCrMatrix_ITU_R_2020
+    /// https://developer.apple.com/download/all/?q=Apple%20log%20profile
     ///
     /// You can download the Apple Log Profile White Paper from the Apple Developer Downloads website.
     ///
@@ -560,6 +572,11 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunction_applelog?language=objc)
     pub static kCVImageBufferLogTransferFunction_AppleLog: &'static CFString;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunction_applelog2?language=objc)
+    pub static kCVImageBufferLogTransferFunction_AppleLog2: &'static CFString;
 }
 
 extern "C" {

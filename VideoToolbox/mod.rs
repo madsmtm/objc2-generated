@@ -855,6 +855,8 @@ pub use self::__VTErrors::kVTVideoDecoderUnsupportedDataFormatErr;
 #[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::kVTVideoEncoderAuthorizationErr;
 #[cfg(feature = "VTErrors")]
+pub use self::__VTErrors::kVTVideoEncoderAutoWhiteBalanceNotLockedErr;
+#[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::kVTVideoEncoderMVHEVCVideoLayerIDsMismatchErr;
 #[cfg(feature = "VTErrors")]
 pub use self::__VTErrors::kVTVideoEncoderMalfunctionErr;

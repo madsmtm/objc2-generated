@@ -242,6 +242,9 @@ mod __AVCaptureDeskViewApplication;
 #[cfg(feature = "AVCaptureDevice")]
 #[path = "AVCaptureDevice.rs"]
 mod __AVCaptureDevice;
+#[cfg(feature = "AVCaptureExternalDisplayConfigurator")]
+#[path = "AVCaptureExternalDisplayConfigurator.rs"]
+mod __AVCaptureExternalDisplayConfigurator;
 #[cfg(feature = "AVCaptureFileOutput")]
 #[path = "AVCaptureFileOutput.rs"]
 mod __AVCaptureFileOutput;
@@ -290,6 +293,9 @@ mod __AVCaptureSystemPressure;
 #[cfg(feature = "AVCaptureSystemZoomSlider")]
 #[path = "AVCaptureSystemZoomSlider.rs"]
 mod __AVCaptureSystemZoomSlider;
+#[cfg(feature = "AVCaptureTimecodeGenerator")]
+#[path = "AVCaptureTimecodeGenerator.rs"]
+mod __AVCaptureTimecodeGenerator;
 #[cfg(feature = "AVCaptureVideoDataOutput")]
 #[path = "AVCaptureVideoDataOutput.rs"]
 mod __AVCaptureVideoDataOutput;
@@ -320,6 +326,9 @@ mod __AVError;
 #[cfg(feature = "AVExternalStorageDevice")]
 #[path = "AVExternalStorageDevice.rs"]
 mod __AVExternalStorageDevice;
+#[cfg(feature = "AVExternalSyncDevice")]
+#[path = "AVExternalSyncDevice.rs"]
+mod __AVExternalSyncDevice;
 #[cfg(feature = "AVFAudio")]
 #[path = "AVFAudio.rs"]
 mod __AVFAudio;
@@ -937,6 +946,18 @@ pub use self::__AVCaptureDeskViewApplication::AVCaptureDeskViewApplicationLaunch
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVAuthorizationStatus;
 #[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureAspectRatio;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureAspectRatio16x9;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureAspectRatio1x1;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureAspectRatio3x4;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureAspectRatio4x3;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureAspectRatio9x16;
+#[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureAutoFocusRangeRestriction;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureAutoFocusSystem;
@@ -1013,6 +1034,8 @@ pub use self::__AVCaptureDevice::AVCaptureFlashMode;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureFocusMode;
 #[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureFraming;
+#[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureISOCurrent;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureLensPositionCurrent;
@@ -1028,6 +1051,8 @@ pub use self::__AVCaptureDevice::AVCapturePrimaryConstituentDeviceSwitchingBehav
 pub use self::__AVCaptureDevice::AVCaptureSceneMonitoringStatus;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureSceneMonitoringStatusNotEnoughLight;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureSmartFramingMonitor;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureSystemUserInterface;
 #[cfg(feature = "AVCaptureDevice")]
@@ -1045,6 +1070,16 @@ pub use self::__AVCaptureDevice::AVCaptureWhiteBalanceMode;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVCaptureWhiteBalanceTemperatureAndTintValues;
 #[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureWhiteBalanceTemperatureAndTintValuesCloudy;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureWhiteBalanceTemperatureAndTintValuesDaylight;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureWhiteBalanceTemperatureAndTintValuesFluorescent;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureWhiteBalanceTemperatureAndTintValuesShadow;
+#[cfg(feature = "AVCaptureDevice")]
+pub use self::__AVCaptureDevice::AVCaptureWhiteBalanceTemperatureAndTintValuesTungsten;
+#[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVExposureBiasRange;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVFrameRateRange;
@@ -1056,6 +1091,10 @@ pub use self::__AVCaptureDevice::AVSpatialCaptureDiscomfortReasonNotEnoughLight;
 pub use self::__AVCaptureDevice::AVSpatialCaptureDiscomfortReasonSubjectTooClose;
 #[cfg(feature = "AVCaptureDevice")]
 pub use self::__AVCaptureDevice::AVZoomRange;
+#[cfg(feature = "AVCaptureExternalDisplayConfigurator")]
+pub use self::__AVCaptureExternalDisplayConfigurator::AVCaptureExternalDisplayConfiguration;
+#[cfg(feature = "AVCaptureExternalDisplayConfigurator")]
+pub use self::__AVCaptureExternalDisplayConfigurator::AVCaptureExternalDisplayConfigurator;
 #[cfg(all(feature = "AVCaptureFileOutput", feature = "AVCaptureOutputBase"))]
 pub use self::__AVCaptureFileOutput::AVCaptureAudioFileOutput;
 #[cfg(all(feature = "AVCaptureFileOutput", feature = "AVCaptureOutputBase"))]
@@ -1237,6 +1276,32 @@ pub use self::__AVCaptureSystemPressure::AVCaptureSystemPressureLevelShutdown;
 pub use self::__AVCaptureSystemPressure::AVCaptureSystemPressureState;
 #[cfg(all(feature = "AVCaptureControl", feature = "AVCaptureSystemZoomSlider"))]
 pub use self::__AVCaptureSystemZoomSlider::AVCaptureSystemZoomSlider;
+#[cfg(all(feature = "AVCaptureTimecodeGenerator", feature = "objc2-core-media"))]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecode;
+#[cfg(all(feature = "AVCaptureTimecodeGenerator", feature = "objc2-core-media"))]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeAdvancedByFrames;
+#[cfg(all(
+    feature = "AVCaptureTimecodeGenerator",
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-media"
+))]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp;
+#[cfg(all(
+    feature = "AVCaptureTimecodeGenerator",
+    feature = "objc2-core-foundation",
+    feature = "objc2-core-media"
+))]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeCreateMetadataSampleBufferForDuration;
+#[cfg(feature = "AVCaptureTimecodeGenerator")]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeGenerator;
+#[cfg(feature = "AVCaptureTimecodeGenerator")]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeGeneratorDelegate;
+#[cfg(feature = "AVCaptureTimecodeGenerator")]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeGeneratorSynchronizationStatus;
+#[cfg(feature = "AVCaptureTimecodeGenerator")]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeSource;
+#[cfg(feature = "AVCaptureTimecodeGenerator")]
+pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeSourceType;
 #[cfg(all(feature = "AVCaptureOutputBase", feature = "AVCaptureVideoDataOutput"))]
 pub use self::__AVCaptureVideoDataOutput::AVCaptureVideoDataOutput;
 #[cfg(feature = "AVCaptureVideoDataOutput")]
@@ -1346,6 +1411,14 @@ pub use self::__AVError::AVFoundationErrorDomain;
 pub use self::__AVExternalStorageDevice::AVExternalStorageDevice;
 #[cfg(feature = "AVExternalStorageDevice")]
 pub use self::__AVExternalStorageDevice::AVExternalStorageDeviceDiscoverySession;
+#[cfg(feature = "AVExternalSyncDevice")]
+pub use self::__AVExternalSyncDevice::AVExternalSyncDevice;
+#[cfg(feature = "AVExternalSyncDevice")]
+pub use self::__AVExternalSyncDevice::AVExternalSyncDeviceDelegate;
+#[cfg(feature = "AVExternalSyncDevice")]
+pub use self::__AVExternalSyncDevice::AVExternalSyncDeviceDiscoverySession;
+#[cfg(feature = "AVExternalSyncDevice")]
+pub use self::__AVExternalSyncDevice::AVExternalSyncDeviceStatus;
 #[cfg(all(feature = "AVGeometry", feature = "objc2-core-foundation"))]
 pub use self::__AVGeometry::AVMakeRectWithAspectRatioInsideRect;
 #[cfg(feature = "AVGeometry")]
@@ -1851,9 +1924,19 @@ pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraFocalLengt
 #[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraFrameReadoutTime;
 #[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraISOSensitivity;
+#[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraIdentifier;
 #[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraLensIrisFNumber;
+#[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraLensModel;
+#[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraShutterSpeedAngle;
+#[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraShutterSpeedTime;
+#[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCameraWhiteBalance;
 #[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyCinematicVideoIntent;
 #[cfg(feature = "AVMetadataFormat")]
@@ -1924,6 +2007,10 @@ pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyRatingUser;
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeySoftware;
 #[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyTitle;
+#[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTColorMatrices;
+#[cfg(feature = "AVMetadataFormat")]
+pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors;
 #[cfg(feature = "AVMetadataFormat")]
 pub use self::__AVMetadataFormat::AVMetadataQuickTimeMetadataKeyYear;
 #[cfg(feature = "AVMetadataFormat")]
@@ -2401,9 +2488,19 @@ pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCame
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraFrameReadoutTime;
 #[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraISOSensitivity;
+#[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraIdentifier;
 #[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraLensIrisFNumber;
+#[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraLensModel;
+#[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedAngle;
+#[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedTime;
+#[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCameraWhiteBalance;
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataCinematicVideoIntent;
 #[cfg(feature = "AVMetadataIdentifiers")]
@@ -2500,6 +2597,10 @@ pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataSpat
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataTitle;
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataVideoOrientation;
+#[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTColorMatrices;
+#[cfg(feature = "AVMetadataIdentifiers")]
+pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors;
 #[cfg(feature = "AVMetadataIdentifiers")]
 pub use self::__AVMetadataIdentifiers::AVMetadataIdentifierQuickTimeMetadataYear;
 #[cfg(feature = "AVMetadataIdentifiers")]
@@ -3341,6 +3442,10 @@ pub use self::__AVVideoSettings::AVVideoCodecTypeAppleProRes422Proxy;
 pub use self::__AVVideoSettings::AVVideoCodecTypeAppleProRes4444;
 #[cfg(feature = "AVVideoSettings")]
 pub use self::__AVVideoSettings::AVVideoCodecTypeAppleProRes4444XQ;
+#[cfg(feature = "AVVideoSettings")]
+pub use self::__AVVideoSettings::AVVideoCodecTypeAppleProResRAW;
+#[cfg(feature = "AVVideoSettings")]
+pub use self::__AVVideoSettings::AVVideoCodecTypeAppleProResRAWHQ;
 #[cfg(feature = "AVVideoSettings")]
 pub use self::__AVVideoSettings::AVVideoCodecTypeH264;
 #[cfg(feature = "AVVideoSettings")]
