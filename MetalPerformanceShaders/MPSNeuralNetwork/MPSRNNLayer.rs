@@ -1332,6 +1332,10 @@ impl MPSRNNImageInferenceLayer {
         /// Parameter `device`: The MTLDevice on which to make the MPSRNNImageInferenceLayer
         ///
         /// Returns: A new MPSRNNImageInferenceLayer object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1378,6 +1382,10 @@ impl MPSRNNImageInferenceLayer {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1896,6 +1904,10 @@ impl MPSRNNMatrixInferenceLayer {
         /// Parameter `device`: The MTLDevice on which to make the MPSRNNMatrixInferenceLayer
         ///
         /// Returns: A new MPSRNNMatrixInferenceLayer object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1942,6 +1954,10 @@ impl MPSRNNMatrixInferenceLayer {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -2654,6 +2670,10 @@ impl MPSRNNMatrixTrainingLayer {
         /// Parameter `device`: The MTLDevice on which to make the MPSRNNMatrixTrainingLayer
         ///
         /// Returns: A new MPSRNNMatrixTrainingLayer object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -2700,6 +2720,10 @@ impl MPSRNNMatrixTrainingLayer {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

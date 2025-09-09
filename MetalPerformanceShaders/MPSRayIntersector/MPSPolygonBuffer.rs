@@ -49,6 +49,10 @@ impl MPSPolygonBuffer {
         /// Initialize the polygon buffer with an NSCoder. Buffer properties such as the vertex
         /// buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with the
         /// polygon buffer instead.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[deprecated]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]

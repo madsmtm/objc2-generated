@@ -135,6 +135,9 @@ impl MPSNDArrayMatrixMultiplication {
             count: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -178,6 +181,10 @@ impl MPSNDArrayMatrixMultiplication {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

@@ -428,6 +428,10 @@ impl MPSCNNArithmetic {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -450,6 +454,10 @@ impl MPSCNNArithmetic {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -546,6 +554,10 @@ impl MPSCNNAdd {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -568,6 +580,10 @@ impl MPSCNNAdd {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -664,6 +680,10 @@ impl MPSCNNSubtract {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -686,6 +706,10 @@ impl MPSCNNSubtract {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -782,6 +806,10 @@ impl MPSCNNMultiply {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -804,6 +832,10 @@ impl MPSCNNMultiply {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -900,6 +932,10 @@ impl MPSCNNDivide {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -922,6 +958,10 @@ impl MPSCNNDivide {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1075,6 +1115,10 @@ impl MPSNNCompare {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1097,6 +1141,10 @@ impl MPSNNCompare {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1331,6 +1379,10 @@ impl MPSCNNArithmeticGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1353,6 +1405,10 @@ impl MPSCNNArithmeticGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1484,6 +1540,10 @@ impl MPSCNNAddGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1506,6 +1566,10 @@ impl MPSCNNAddGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1639,6 +1703,10 @@ impl MPSCNNSubtractGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1661,6 +1729,10 @@ impl MPSCNNSubtractGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1795,6 +1867,10 @@ impl MPSCNNMultiplyGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1817,6 +1893,10 @@ impl MPSCNNMultiplyGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

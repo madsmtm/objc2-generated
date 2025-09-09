@@ -265,6 +265,10 @@ impl CKRecord {
         /// - any record values you had set on the original instance, but had not saved, will be lost
         /// - the reconstituted CKRecord's
         /// `changedKeys`will be empty
+        ///
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeSystemFieldsWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeSystemFieldsWithCoder(&self, coder: &NSCoder);

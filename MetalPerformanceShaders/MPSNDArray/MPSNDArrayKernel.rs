@@ -158,6 +158,10 @@ impl MPSNDArrayMultiaryBase {
         /// Parameter `device`: The device on which the kernel will run
         ///
         /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
+        ///
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -169,6 +173,10 @@ impl MPSNDArrayMultiaryBase {
         /// Initialize a MPSNDArrayMultiaryKernel from a NSCoder
         ///
         /// Parameter `coder`: The NSCoder that contains the serialized object
+        ///
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
@@ -237,6 +245,10 @@ impl MPSNDArrayMultiaryBase {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -304,6 +316,9 @@ impl MPSNDArrayMultiaryKernel {
             count: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -440,6 +455,10 @@ impl MPSNDArrayMultiaryKernel {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -507,6 +526,9 @@ impl MPSNDArrayMultiaryGradientKernel {
             count: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -583,6 +605,10 @@ impl MPSNDArrayMultiaryGradientKernel {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -703,6 +729,9 @@ impl MPSNDArrayUnaryKernel {
             count: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -801,6 +830,10 @@ impl MPSNDArrayUnaryKernel {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -881,6 +914,9 @@ impl MPSNDArrayUnaryGradientKernel {
             source_gradient_index: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -940,6 +976,10 @@ impl MPSNDArrayUnaryGradientKernel {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1106,6 +1146,9 @@ impl MPSNDArrayBinaryKernel {
             count: NSUInteger,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1216,6 +1259,10 @@ impl MPSNDArrayBinaryKernel {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1298,6 +1345,9 @@ impl MPSNDArrayBinaryPrimaryGradientKernel {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1359,6 +1409,10 @@ impl MPSNDArrayBinaryPrimaryGradientKernel {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1441,6 +1495,9 @@ impl MPSNDArrayBinarySecondaryGradientKernel {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1502,6 +1559,10 @@ impl MPSNDArrayBinarySecondaryGradientKernel {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

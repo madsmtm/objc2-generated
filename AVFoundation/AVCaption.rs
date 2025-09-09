@@ -386,6 +386,10 @@ impl AVCaptionRegion {
         /// NSCoding protocol method override
         ///
         /// This method throws an exception if the caption region's size has different units for width and height, or if the units are unrecognizeable.
+        ///
+        /// # Safety
+        ///
+        /// `encoder` possibly has further requirements.
         #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithCoder(&self, encoder: &NSCoder);

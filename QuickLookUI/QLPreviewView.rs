@@ -243,6 +243,9 @@ impl QLPreviewView {
 #[cfg(feature = "objc2-app-kit")]
 impl QLPreviewView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

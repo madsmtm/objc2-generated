@@ -584,6 +584,9 @@ impl NSWindow {
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
@@ -2517,6 +2520,10 @@ extern_protocol!(
 
         #[cfg(feature = "NSResponder")]
         /// Method called by `-[NSWindow encodeRestorableStateWithCoder:]` to give the delegate a chance to encode any additional state into the NSCoder.  This state is available in the NSCoder passed to `-restoreWindowWithIdentifier:state:handler:`. See the header `NSWindowRestoration.h` for more information.
+        ///
+        /// # Safety
+        ///
+        /// `state` possibly has further requirements.
         #[optional]
         #[unsafe(method(window:willEncodeRestorableState:))]
         #[unsafe(method_family = none)]
@@ -2525,6 +2532,10 @@ extern_protocol!(
         #[cfg(feature = "NSResponder")]
         /// Method called by `-[NSWindow restoreStateWithCoder:]` to give the delegate a chance to restore its own state, which it may decode from the
         /// `NSCoder.`See the header `NSWindowRestoration.h` for more information.
+        ///
+        /// # Safety
+        ///
+        /// `state` possibly has further requirements.
         #[optional]
         #[unsafe(method(window:didDecodeRestorableState:))]
         #[unsafe(method_family = none)]

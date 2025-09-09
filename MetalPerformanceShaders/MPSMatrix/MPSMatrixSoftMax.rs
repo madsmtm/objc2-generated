@@ -160,6 +160,10 @@ impl MPSMatrixSoftMax {
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMax
         ///
         /// Returns: A new MPSMatrixSoftMax object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -206,6 +210,10 @@ impl MPSMatrixSoftMax {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -309,6 +317,10 @@ impl MPSMatrixLogSoftMax {
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMax
         ///
         /// Returns: A new MPSMatrixSoftMax object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -331,6 +343,10 @@ impl MPSMatrixLogSoftMax {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -500,6 +516,10 @@ impl MPSMatrixSoftMaxGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMaxGradient
         ///
         /// Returns: A new MPSMatrixSoftMaxGradient object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -546,6 +566,10 @@ impl MPSMatrixSoftMaxGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -649,6 +673,10 @@ impl MPSMatrixLogSoftMaxGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMaxGradient
         ///
         /// Returns: A new MPSMatrixSoftMaxGradient object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -671,6 +699,10 @@ impl MPSMatrixLogSoftMaxGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

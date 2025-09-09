@@ -124,6 +124,9 @@ impl NSMenu {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;

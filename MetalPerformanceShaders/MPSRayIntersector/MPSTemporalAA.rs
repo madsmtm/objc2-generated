@@ -80,6 +80,9 @@ impl MPSTemporalAA {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -99,6 +102,9 @@ impl MPSTemporalAA {
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
@@ -157,6 +163,10 @@ impl MPSTemporalAA {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

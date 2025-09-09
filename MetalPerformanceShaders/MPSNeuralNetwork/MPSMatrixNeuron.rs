@@ -279,6 +279,10 @@ impl MPSMatrixNeuron {
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixNeuron object.
         ///
         /// Returns: A new MPSMatrixNeuron object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -330,6 +334,10 @@ impl MPSMatrixNeuron {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -605,6 +613,10 @@ impl MPSMatrixNeuronGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixNeuronGradient object.
         ///
         /// Returns: A new MPSMatrixNeuronGradient object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -656,6 +668,10 @@ impl MPSMatrixNeuronGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

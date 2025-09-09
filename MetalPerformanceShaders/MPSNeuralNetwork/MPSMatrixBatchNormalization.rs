@@ -283,6 +283,10 @@ impl MPSMatrixBatchNormalization {
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixBatchNormalization object.
         ///
         /// Returns: A new MPSMatrixBatchNormalization object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -334,6 +338,10 @@ impl MPSMatrixBatchNormalization {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -607,6 +615,10 @@ impl MPSMatrixBatchNormalizationGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixBatchNormalizationGradient object.
         ///
         /// Returns: A new MPSMatrixBatchNormalizationGradient object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -658,6 +670,10 @@ impl MPSMatrixBatchNormalizationGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

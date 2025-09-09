@@ -604,6 +604,9 @@ impl NSCoder {
     );
 }
 
+/// # Safety
+///
+/// `decoder` possibly has further requirements.
 #[deprecated = "Not supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn NXReadNSObjectFromCoder(

@@ -391,6 +391,9 @@ impl UIDocumentBrowserViewController {
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIDocumentBrowserViewController {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

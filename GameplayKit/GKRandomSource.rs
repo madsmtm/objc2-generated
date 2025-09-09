@@ -147,6 +147,10 @@ impl GKRandomSource {
         ///
         /// Note that the sharedRandom instance is an exception as it is explicitly seedless and a shared singleton instance.
         /// When serialized and deserialized it will return the current sharedRandom instance instead.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
@@ -292,6 +296,10 @@ impl GKARC4RandomSource {
         ///
         /// Note that the sharedRandom instance is an exception as it is explicitly seedless and a shared singleton instance.
         /// When serialized and deserialized it will return the current sharedRandom instance instead.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
@@ -382,6 +390,10 @@ impl GKLinearCongruentialRandomSource {
         ///
         /// Note that the sharedRandom instance is an exception as it is explicitly seedless and a shared singleton instance.
         /// When serialized and deserialized it will return the current sharedRandom instance instead.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
@@ -470,6 +482,10 @@ impl GKMersenneTwisterRandomSource {
         ///
         /// Note that the sharedRandom instance is an exception as it is explicitly seedless and a shared singleton instance.
         /// When serialized and deserialized it will return the current sharedRandom instance instead.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;

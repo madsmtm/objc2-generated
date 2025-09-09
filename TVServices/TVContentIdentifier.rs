@@ -83,6 +83,9 @@ impl TVContentIdentifier {
             container: Option<&TVContentIdentifier>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[deprecated = "TVContentIdentifier has been replaced by TVTopShelfContentProvider"]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]

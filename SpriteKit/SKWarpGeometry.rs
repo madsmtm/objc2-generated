@@ -103,6 +103,9 @@ extern_conformance!(
 
 impl SKWarpGeometryGrid {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

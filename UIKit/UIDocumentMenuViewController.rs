@@ -137,6 +137,9 @@ impl UIDocumentMenuViewController {
             mode: UIDocumentPickerMode,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]

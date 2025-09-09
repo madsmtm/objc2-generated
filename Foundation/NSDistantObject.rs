@@ -79,6 +79,9 @@ impl NSDistantObject {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]

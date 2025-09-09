@@ -307,11 +307,18 @@ extern_protocol!(
         unsafe fn epsilon(&self) -> c_float;
 
         /// Optional NSSecureCoding compatibility.
+        ///
+        /// # Safety
+        ///
+        /// `a_coder` possibly has further requirements.
         #[optional]
         #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeWithCoder(&self, a_coder: &NSCoder);
 
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[optional]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
@@ -446,6 +453,10 @@ impl MPSCNNGroupNormalization {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSCNNGroupNormalization object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -524,6 +535,10 @@ impl MPSCNNGroupNormalization {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -620,6 +635,10 @@ impl MPSCNNGroupNormalizationGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -642,6 +661,10 @@ impl MPSCNNGroupNormalizationGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

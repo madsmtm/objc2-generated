@@ -106,6 +106,10 @@ impl MPSNNResizeBilinear {
         /// Parameter `device`: The MTLDevice on which to make the MPSNNResizeBilinear
         ///
         /// Returns: A new MPSNNResizeBilinear object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -128,6 +132,10 @@ impl MPSNNResizeBilinear {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -266,6 +274,10 @@ impl MPSNNCropAndResizeBilinear {
         /// Parameter `device`: The MTLDevice on which to make the MPSNNCropAndResizeBilinear
         ///
         /// Returns: A new MPSNNResizeBilinear object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -288,6 +300,10 @@ impl MPSNNCropAndResizeBilinear {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

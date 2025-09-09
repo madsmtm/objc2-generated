@@ -188,6 +188,9 @@ impl UIViewController {
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1092,10 +1095,16 @@ impl UIViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&AnyClass>);
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(decodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRestorableStateWithCoder(&self, coder: &NSCoder);

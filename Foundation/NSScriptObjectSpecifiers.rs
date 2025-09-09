@@ -142,6 +142,9 @@ impl NSScriptObjectSpecifier {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -391,6 +394,9 @@ impl NSIndexSpecifier {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -460,6 +466,9 @@ impl NSMiddleSpecifier {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -501,6 +510,9 @@ extern_conformance!(
 impl NSNameSpecifier {
     extern_methods!(
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -699,6 +711,9 @@ impl NSPropertySpecifier {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -768,6 +783,9 @@ impl NSRandomSpecifier {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -809,6 +827,9 @@ extern_conformance!(
 impl NSRangeSpecifier {
     extern_methods!(
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -912,6 +933,9 @@ extern_conformance!(
 impl NSRelativeSpecifier {
     extern_methods!(
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1015,6 +1039,9 @@ extern_conformance!(
 impl NSUniqueIDSpecifier {
     extern_methods!(
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1117,6 +1144,9 @@ extern_conformance!(
 impl NSWhoseSpecifier {
     extern_methods!(
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `in_coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

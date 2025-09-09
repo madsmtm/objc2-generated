@@ -16,6 +16,9 @@ extern_protocol!(
             feature = "NSWindow",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `state` possibly has further requirements.
         #[unsafe(method(restoreWindowWithIdentifier:state:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn restoreWindowWithIdentifier_state_completionHandler(
@@ -47,6 +50,9 @@ impl NSApplication {
             feature = "NSWindow",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `state` possibly has further requirements.
         #[unsafe(method(restoreWindowWithIdentifier:state:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreWindowWithIdentifier_state_completionHandler(
@@ -107,10 +113,16 @@ impl NSWindow {
 #[cfg(feature = "NSResponder")]
 impl NSResponder {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeRestorableStateWithCoder:backgroundQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
@@ -119,6 +131,9 @@ impl NSResponder {
             queue: &NSOperationQueue,
         );
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(restoreStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreStateWithCoder(&self, coder: &NSCoder);
@@ -166,6 +181,9 @@ impl NSDocument {
             feature = "NSWindow",
             feature = "block2"
         ))]
+        /// # Safety
+        ///
+        /// `state` possibly has further requirements.
         #[unsafe(method(restoreDocumentWindowWithIdentifier:state:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreDocumentWindowWithIdentifier_state_completionHandler(
@@ -175,10 +193,16 @@ impl NSDocument {
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSWindow, *mut NSError)>,
         );
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeRestorableStateWithCoder:backgroundQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
@@ -187,6 +211,9 @@ impl NSDocument {
             queue: &NSOperationQueue,
         );
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(restoreStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreStateWithCoder(&self, coder: &NSCoder);

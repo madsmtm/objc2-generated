@@ -133,6 +133,10 @@ impl MPSTriangleAccelerationStructure {
         /// Initialize the acceleration structure with an NSCoder and a Metal device. Buffer
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[deprecated]
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
@@ -163,6 +167,10 @@ impl MPSTriangleAccelerationStructure {
         /// structures in the instance hierarchy must share the same group. Buffer properties such as the
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[deprecated]
         #[unsafe(method(initWithCoder:group:))]
         #[unsafe(method_family = init)]
@@ -191,6 +199,10 @@ impl MPSTriangleAccelerationStructure {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

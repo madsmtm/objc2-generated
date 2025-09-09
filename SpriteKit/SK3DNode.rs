@@ -66,6 +66,10 @@ impl SK3DNode {
         ) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

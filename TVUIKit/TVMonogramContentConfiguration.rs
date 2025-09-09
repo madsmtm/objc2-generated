@@ -224,6 +224,9 @@ impl TVMonogramContentView {
 /// Methods declared on superclass `UIView`.
 impl TVMonogramContentView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

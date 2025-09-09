@@ -100,6 +100,9 @@ impl BCChatButton {
             style: BCChatButtonStyle,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[deprecated]
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]

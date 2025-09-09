@@ -1068,6 +1068,10 @@ impl MPSRayIntersector {
         ) -> Retained<Self>;
 
         /// Initialize the raytracer with an NSCoder and a Metal device
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[deprecated]
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
@@ -1123,6 +1127,9 @@ impl MPSRayIntersector {
             ray_count: NSUInteger,
         ) -> NSUInteger;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[deprecated]
         #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
@@ -1404,6 +1411,10 @@ impl MPSRayIntersector {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

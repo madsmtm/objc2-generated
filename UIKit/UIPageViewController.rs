@@ -177,6 +177,9 @@ impl UIPageViewController {
             options: Option<&NSDictionary<UIPageViewControllerOptionsKey, AnyObject>>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

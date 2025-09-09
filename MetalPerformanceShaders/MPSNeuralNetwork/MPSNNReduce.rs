@@ -115,6 +115,10 @@ impl MPSNNReduceUnary {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -137,6 +141,10 @@ impl MPSNNReduceUnary {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -219,6 +227,10 @@ impl MPSNNReduceRowMin {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceRowMin object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -241,6 +253,10 @@ impl MPSNNReduceRowMin {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -323,6 +339,10 @@ impl MPSNNReduceColumnMin {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceColumnMin object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -345,6 +365,10 @@ impl MPSNNReduceColumnMin {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -427,6 +451,10 @@ impl MPSNNReduceFeatureChannelsMin {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceFeatureChannelsMin object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -449,6 +477,10 @@ impl MPSNNReduceFeatureChannelsMin {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -532,6 +564,10 @@ impl MPSNNReduceFeatureChannelsArgumentMin {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceFeatureChannelsArgumentMin object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -554,6 +590,10 @@ impl MPSNNReduceFeatureChannelsArgumentMin {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -636,6 +676,10 @@ impl MPSNNReduceRowMax {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceRowMax object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -658,6 +702,10 @@ impl MPSNNReduceRowMax {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -740,6 +788,10 @@ impl MPSNNReduceColumnMax {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceColumnMax object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -762,6 +814,10 @@ impl MPSNNReduceColumnMax {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -844,6 +900,10 @@ impl MPSNNReduceFeatureChannelsMax {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceFeatureChannelsMax object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -866,6 +926,10 @@ impl MPSNNReduceFeatureChannelsMax {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -949,6 +1013,10 @@ impl MPSNNReduceFeatureChannelsArgumentMax {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceFeatureChannelsArgumentMax object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -971,6 +1039,10 @@ impl MPSNNReduceFeatureChannelsArgumentMax {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1053,6 +1125,10 @@ impl MPSNNReduceRowMean {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceRowMean object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1075,6 +1151,10 @@ impl MPSNNReduceRowMean {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1157,6 +1237,10 @@ impl MPSNNReduceColumnMean {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceColumnMean object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1179,6 +1263,10 @@ impl MPSNNReduceColumnMean {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1261,6 +1349,10 @@ impl MPSNNReduceFeatureChannelsMean {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceFeatureChannelsMean object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1283,6 +1375,10 @@ impl MPSNNReduceFeatureChannelsMean {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1365,6 +1461,10 @@ impl MPSNNReduceRowSum {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceRowSum object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1387,6 +1487,10 @@ impl MPSNNReduceRowSum {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1469,6 +1573,10 @@ impl MPSNNReduceColumnSum {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceColumnSum object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1491,6 +1599,10 @@ impl MPSNNReduceColumnSum {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1586,6 +1698,10 @@ impl MPSNNReduceFeatureChannelsSum {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSNNReduceFeatureChannelsSum object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1608,6 +1724,10 @@ impl MPSNNReduceFeatureChannelsSum {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1763,6 +1883,10 @@ impl MPSNNReduceBinary {
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1785,6 +1909,10 @@ impl MPSNNReduceBinary {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1865,6 +1993,10 @@ impl MPSNNReduceFeatureChannelsAndWeightsMean {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1887,6 +2019,10 @@ impl MPSNNReduceFeatureChannelsAndWeightsMean {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1991,6 +2127,10 @@ impl MPSNNReduceFeatureChannelsAndWeightsSum {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -2013,6 +2153,10 @@ impl MPSNNReduceFeatureChannelsAndWeightsSum {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -2181,6 +2325,10 @@ impl MPSNNLocalCorrelation {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -2203,6 +2351,10 @@ impl MPSNNLocalCorrelation {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

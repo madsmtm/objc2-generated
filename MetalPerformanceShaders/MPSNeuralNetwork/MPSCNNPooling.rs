@@ -101,6 +101,10 @@ impl MPSCNNPooling {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -130,6 +134,10 @@ impl MPSCNNPooling {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -227,6 +235,10 @@ impl MPSCNNPoolingMax {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -280,6 +292,10 @@ impl MPSCNNPoolingMax {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -422,6 +438,10 @@ impl MPSCNNPoolingAverage {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -475,6 +495,10 @@ impl MPSCNNPoolingAverage {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -573,6 +597,10 @@ impl MPSCNNPoolingL2Norm {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -626,6 +654,10 @@ impl MPSCNNPoolingL2Norm {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -740,6 +772,10 @@ impl MPSCNNDilatedPoolingMax {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNDilatedPoolingMax
         ///
         /// Returns: A new MPSCNNDilatedPoolingMax object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -817,6 +853,10 @@ impl MPSCNNDilatedPoolingMax {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -992,6 +1032,10 @@ impl MPSCNNPoolingGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingGradient
         ///
         /// Returns: A new MPSCNNPooling object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1014,6 +1058,10 @@ impl MPSCNNPoolingGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1188,6 +1236,10 @@ impl MPSCNNPoolingAverageGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingAverageGradient
         ///
         /// Returns: A new MPSCNNPoolingAverageGradient object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1241,6 +1293,10 @@ impl MPSCNNPoolingAverageGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1378,6 +1434,10 @@ impl MPSCNNPoolingMaxGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingMaxGradient
         ///
         /// Returns: A new MPSCNNPoolingMaxGradient object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1431,6 +1491,10 @@ impl MPSCNNPoolingMaxGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1554,6 +1618,10 @@ impl MPSCNNPoolingL2NormGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingL2NormGradient
         ///
         /// Returns: A new MPSCNNPoolingL2NormGradient object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1607,6 +1675,10 @@ impl MPSCNNPoolingL2NormGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1727,6 +1799,10 @@ impl MPSCNNDilatedPoolingMaxGradient {
         /// Parameter `device`: The MTLDevice on which to make the MPSCNNPoolingMaxGradient
         ///
         /// Returns: A new MPSCNNPoolingMaxGradient object, or nil if failure.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:device:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
@@ -1780,6 +1856,10 @@ impl MPSCNNDilatedPoolingMaxGradient {
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
+        ///
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

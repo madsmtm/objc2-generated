@@ -1244,6 +1244,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[optional]
         #[unsafe(method(application:viewControllerWithRestorationIdentifierPath:coder:))]
         #[unsafe(method_family = none)]
@@ -1255,6 +1258,9 @@ extern_protocol!(
         ) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[optional]
         #[unsafe(method(application:shouldSaveSecureApplicationState:))]
         #[unsafe(method_family = none)]
@@ -1265,6 +1271,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[optional]
         #[unsafe(method(application:shouldRestoreSecureApplicationState:))]
         #[unsafe(method_family = none)]
@@ -1275,6 +1284,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[optional]
         #[unsafe(method(application:willEncodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
@@ -1285,6 +1297,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[optional]
         #[unsafe(method(application:didDecodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
@@ -1295,6 +1310,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[deprecated = "Use application:shouldSaveSecureApplicationState: instead"]
         #[optional]
         #[unsafe(method(application:shouldSaveApplicationState:))]
@@ -1306,6 +1324,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "UIResponder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[deprecated = "Use application:shouldRestoreSecureApplicationState: instead"]
         #[optional]
         #[unsafe(method(application:shouldRestoreApplicationState:))]

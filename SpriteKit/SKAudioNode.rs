@@ -77,6 +77,9 @@ impl SKAudioNode {
             node: Option<&AVAudioNode>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

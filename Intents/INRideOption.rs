@@ -48,6 +48,9 @@ impl INRideOption {
             estimated_pickup_date: &NSDate,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

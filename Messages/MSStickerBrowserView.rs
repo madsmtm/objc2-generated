@@ -201,6 +201,9 @@ impl MSStickerBrowserView {
 #[cfg(feature = "objc2-ui-kit")]
 impl MSStickerBrowserView {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

@@ -440,6 +440,9 @@ impl UIView {
         #[unsafe(method_family = init)]
         pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1658,10 +1661,16 @@ impl UIView {
         #[unsafe(method_family = none)]
         pub unsafe fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(decodeRestorableStateWithCoder:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeRestorableStateWithCoder(&self, coder: &NSCoder);

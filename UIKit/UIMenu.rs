@@ -209,6 +209,9 @@ impl UIMenu {
             mtm: MainThreadMarker,
         ) -> Retained<UIMenu>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

@@ -159,6 +159,9 @@ impl UIDocumentPickerViewController {
             content_types: &NSArray<UTType>,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

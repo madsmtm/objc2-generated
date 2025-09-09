@@ -10,11 +10,17 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoding?language=objc)
     pub unsafe trait NSCoding {
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(encodeWithCoder:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Retained<Self>>;
@@ -55,6 +61,9 @@ pub unsafe trait NSObjectNSCoderMethods:
         unsafe fn classForCoder(&self) -> &'static AnyClass;
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(replacementObjectForCoder:))]
         #[unsafe(method_family = none)]
         unsafe fn replacementObjectForCoder(&self, coder: &NSCoder) -> Option<Retained<AnyObject>>;

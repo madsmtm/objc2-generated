@@ -123,6 +123,9 @@ impl UICellAccessory {
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -182,6 +185,9 @@ impl UICellAccessoryDisclosureIndicator {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryDisclosureIndicator {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -255,6 +261,9 @@ impl UICellAccessoryDetail {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryDetail {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -314,6 +323,9 @@ impl UICellAccessoryCheckmark {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryCheckmark {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -399,6 +411,9 @@ impl UICellAccessoryDelete {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryDelete {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -484,6 +499,9 @@ impl UICellAccessoryInsert {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryInsert {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -554,6 +572,9 @@ impl UICellAccessoryReorder {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryReorder {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -626,6 +647,9 @@ impl UICellAccessoryMultiselect {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryMultiselect {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -737,6 +761,9 @@ impl UICellAccessoryOutlineDisclosure {
 /// Methods declared on superclass `UICellAccessory`.
 impl UICellAccessoryOutlineDisclosure {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -825,6 +852,9 @@ impl UICellAccessoryPopUpMenu {
             selected_element_did_change_handler: Option<&block2::DynBlock<dyn Fn(NonNull<UIMenu>)>>,
         );
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -908,6 +938,9 @@ impl UICellAccessoryLabel {
             adjusts_font_for_content_size_category: bool,
         );
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1079,6 +1112,9 @@ impl UICellAccessoryCustomView {
         #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: UICellAccessoryPosition);
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

@@ -676,6 +676,9 @@ impl NSMatrix {
 #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
 impl NSMatrix {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(

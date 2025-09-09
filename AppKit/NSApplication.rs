@@ -842,6 +842,9 @@ impl NSApplication {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -1301,6 +1304,10 @@ extern_protocol!(
         #[cfg(feature = "NSResponder")]
         /// Method called by `-[NSApplication encodeRestorableStateWithCoder:]` to give the delegate a chance to encode any additional state into the
         /// `NSCoder.`If the restorable state managed by the delegate changes, you must call `-[NSApplication invalidateRestorableState]` so that it will be re-encoded. See the header `NSWindowRestoration.h` for more information.
+        ///
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[optional]
         #[unsafe(method(application:willEncodeRestorableState:))]
         #[unsafe(method_family = none)]
@@ -1313,6 +1320,10 @@ extern_protocol!(
         #[cfg(feature = "NSResponder")]
         /// Method called by `-[NSApplication restoreStateWithCoder:]` to give the delegate a chance to restore its own state, which it may decode from the
         /// `NSCoder.`See the header `NSWindowRestoration.h` for more information.
+        ///
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[optional]
         #[unsafe(method(application:didDecodeRestorableState:))]
         #[unsafe(method_family = none)]

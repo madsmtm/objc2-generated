@@ -178,6 +178,9 @@ impl CKQuerySubscription {
             query_subscription_options: CKQuerySubscriptionOptions,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
@@ -289,6 +292,9 @@ impl CKRecordZoneSubscription {
             subscription_id: &CKSubscriptionID,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
@@ -377,6 +383,9 @@ impl CKDatabaseSubscription {
             subscription_id: &CKSubscriptionID,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `a_decoder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;

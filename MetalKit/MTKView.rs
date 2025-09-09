@@ -104,6 +104,10 @@ impl MTKView {
         /// Returns a view initalized from data in a given unarchiver
         ///
         /// Parameter `coder`: An unarchiver object
+        ///
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;

@@ -115,6 +115,9 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -458,6 +461,9 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
         pub fn removeObject(&self, object: &ObjectType);
 
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
@@ -633,6 +639,9 @@ impl<ObjectType: Message> NSCountedSet<ObjectType> {
 impl<ObjectType: Message> NSCountedSet<ObjectType> {
     extern_methods!(
         #[cfg(feature = "NSCoder")]
+        /// # Safety
+        ///
+        /// `coder` possibly has further requirements.
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
