@@ -140,6 +140,33 @@ unsafe impl RefEncode for MTLSamplerBorderColor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Configures how the sampler aggregates contributing samples to a final value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct MTLSamplerReductionMode(pub NSUInteger);
+impl MTLSamplerReductionMode {
+    /// A reduction mode that adds together the product of each contributing sample value by its weight.
+    #[doc(alias = "MTLSamplerReductionModeWeightedAverage")]
+    pub const WeightedAverage: Self = Self(0);
+    /// A reduction mode that finds the minimum contributing sample value by separately evaluating each channel.
+    #[doc(alias = "MTLSamplerReductionModeMinimum")]
+    pub const Minimum: Self = Self(1);
+    /// A reduction mode that finds the maximum contributing sample value by separately evaluating each channel.
+    #[doc(alias = "MTLSamplerReductionModeMaximum")]
+    pub const Maximum: Self = Self(2);
+}
+
+unsafe impl Encode for MTLSamplerReductionMode {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for MTLSamplerReductionMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// A mutable descriptor used to configure a sampler.  When complete, this can be used to create an immutable MTLSamplerState.
     ///
@@ -251,6 +278,23 @@ impl MTLSamplerDescriptor {
         #[unsafe(method_family = none)]
         pub fn setBorderColor(&self, border_color: MTLSamplerBorderColor);
 
+        /// Sets the reduction mode for filtering contributing samples.
+        ///
+        /// The property's default value is ``MTLSamplerReductionModeWeightedAverage``.
+        /// The sampler ignores this property if any of the following property values are equal to a specific value:
+        /// - The sampler's ``mipFilter`` property is equal to ``MTLSamplerMipFilterNotMipmapped``.
+        /// - The sampler's ``mipFilter`` property is equal to ``MTLSamplerMipFilterNearest``.
+        /// - The sampler's ``minFilter`` property is equal to ``MTLSamplerMinMagFilterNearest``.
+        /// - The sampler's ``magFilter`` property is equal to ``MTLSamplerMinMagFilterNearest``.
+        #[unsafe(method(reductionMode))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn reductionMode(&self) -> MTLSamplerReductionMode;
+
+        /// Setter for [`reductionMode`][Self::reductionMode].
+        #[unsafe(method(setReductionMode:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setReductionMode(&self, reduction_mode: MTLSamplerReductionMode);
+
         /// If YES, texture coordates are from 0 to 1.  If NO, texture coordinates are 0..width, 0..height.
         ///
         /// normalizedCoordinates defaults to YES.  Non-normalized coordinates should only be used with 1D and 2D textures with the ClampToEdge wrap mode, otherwise the results of sampling are undefined.
@@ -298,6 +342,19 @@ impl MTLSamplerDescriptor {
         #[unsafe(method(setLodAverage:))]
         #[unsafe(method_family = none)]
         pub fn setLodAverage(&self, lod_average: bool);
+
+        /// Sets the level-of-detail (lod) bias when sampling from a texture.
+        ///
+        /// The property's default value is `0.0f`.
+        /// The precision format is `S4.6`, and the range is `[-16.0, 15.999]`.
+        #[unsafe(method(lodBias))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn lodBias(&self) -> c_float;
+
+        /// Setter for [`lodBias`][Self::lodBias].
+        #[unsafe(method(setLodBias:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setLodBias(&self, lod_bias: c_float);
 
         #[cfg(feature = "MTLDepthStencil")]
         /// Set the comparison function used when sampling shadow maps. The default value is MTLCompareFunctionNever.

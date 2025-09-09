@@ -204,6 +204,43 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn clearBarrier(&self);
 
+        #[cfg(feature = "MTLDepthStencil")]
+        #[unsafe(method(setDepthStencilState:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthStencilState(
+            &self,
+            depth_stencil_state: Option<&ProtocolObject<dyn MTLDepthStencilState>>,
+        );
+
+        #[unsafe(method(setDepthBias:slopeScale:clamp:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthBias_slopeScale_clamp(
+            &self,
+            depth_bias: c_float,
+            slope_scale: c_float,
+            clamp: c_float,
+        );
+
+        #[cfg(feature = "MTLRenderCommandEncoder")]
+        #[unsafe(method(setDepthClipMode:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthClipMode(&self, depth_clip_mode: MTLDepthClipMode);
+
+        #[cfg(feature = "MTLRenderCommandEncoder")]
+        #[unsafe(method(setCullMode:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setCullMode(&self, cull_mode: MTLCullMode);
+
+        #[cfg(feature = "MTLRenderCommandEncoder")]
+        #[unsafe(method(setFrontFacingWinding:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setFrontFacingWinding(&self, front_facing_windning: MTLWinding);
+
+        #[cfg(feature = "MTLRenderCommandEncoder")]
+        #[unsafe(method(setTriangleFillMode:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setTriangleFillMode(&self, fill_mode: MTLTriangleFillMode);
+
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
         unsafe fn reset(&self);

@@ -297,6 +297,9 @@ impl MTLDataType {
     /// Represents a data type consisting of a vector four BFloat values.
     #[doc(alias = "MTLDataTypeBFloat4")]
     pub const BFloat4: Self = Self(124);
+    /// Represents a data type corresponding to a depth-stencil state object.
+    #[doc(alias = "MTLDataTypeDepthStencilState")]
+    pub const DepthStencilState: Self = Self(139);
     /// Represents a data type corresponding to a machine learning tensor.
     #[doc(alias = "MTLDataTypeTensor")]
     pub const Tensor: Self = Self(140);

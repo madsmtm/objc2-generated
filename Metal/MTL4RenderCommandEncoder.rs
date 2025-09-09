@@ -191,6 +191,20 @@ extern_protocol!(
             clamp: c_float,
         );
 
+        /// Configures the minimum and maximum bounds for depth bounds testing.
+        ///
+        /// The render command encoder disables depth bounds testing by default.
+        /// The render command encoder also disables depth bounds testing when all of the following properties equal a specific value:
+        /// - The `minBound` property is equal to `0.0f`.
+        /// - The `maxBound` property is equal to `1.0f`.
+        /// Both `minBound` and `maxBound` need to be within `[0.0f, 1.0f]`, and `minBound` needs to be less than or equal to `maxBound`.
+        /// - Parameters:
+        /// - minBound: A minimum bound for depth testing, which discards fragments with a stored depth that is less than `minBound`.
+        /// - maxBound: A maximum bound for depth testing, which discards fragments with a stored depth that is greater than `maxBound`.
+        #[unsafe(method(setDepthTestMinBound:maxBound:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setDepthTestMinBound_maxBound(&self, min_bound: c_float, max_bound: c_float);
+
         #[cfg(feature = "MTLRenderCommandEncoder")]
         /// Sets a scissor rectangle to discard fragments outside a specific area.
         ///

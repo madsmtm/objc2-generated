@@ -88,6 +88,16 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleproresraw?language=objc)
+    pub static AVVideoCodecTypeAppleProResRAW: Option<&'static AVVideoCodecType>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleproresrawhq?language=objc)
+    pub static AVVideoCodecTypeAppleProResRAWHQ: Option<&'static AVVideoCodecType>;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypehevcwithalpha?language=objc)
     pub static AVVideoCodecTypeHEVCWithAlpha: Option<&'static AVVideoCodecType>;
 }

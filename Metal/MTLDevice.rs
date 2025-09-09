@@ -231,6 +231,8 @@ impl MTLGPUFamily {
     pub const Apple8: Self = Self(1008);
     #[doc(alias = "MTLGPUFamilyApple9")]
     pub const Apple9: Self = Self(1009);
+    #[doc(alias = "MTLGPUFamilyApple10")]
+    pub const Apple10: Self = Self(1010);
     #[doc(alias = "MTLGPUFamilyMac1")]
     #[deprecated]
     pub const Mac1: Self = Self(2001);

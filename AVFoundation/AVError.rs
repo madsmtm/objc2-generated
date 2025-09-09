@@ -237,6 +237,12 @@ impl AVError {
         Self = Self(-11888);
     #[doc(alias = "AVErrorContentKeyInvalid")]
     pub const ContentKeyInvalid: Self = Self(-11889);
+    #[doc(alias = "AVErrorNoSmartFramingsEnabled")]
+    pub const NoSmartFramingsEnabled: Self = Self(-11890);
+    #[doc(alias = "AVErrorAutoWhiteBalanceNotLocked")]
+    pub const AutoWhiteBalanceNotLocked: Self = Self(-11891);
+    #[doc(alias = "AVErrorFollowExternalSyncDeviceTimedOut")]
+    pub const FollowExternalSyncDeviceTimedOut: Self = Self(-11892);
 }
 
 unsafe impl Encode for AVError {

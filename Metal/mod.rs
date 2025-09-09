@@ -1254,6 +1254,8 @@ pub use self::__MTLSampler::MTLSamplerMinMagFilter;
 #[cfg(feature = "MTLSampler")]
 pub use self::__MTLSampler::MTLSamplerMipFilter;
 #[cfg(feature = "MTLSampler")]
+pub use self::__MTLSampler::MTLSamplerReductionMode;
+#[cfg(feature = "MTLSampler")]
 pub use self::__MTLSampler::MTLSamplerState;
 #[cfg(feature = "MTLStageInputOutputDescriptor")]
 pub use self::__MTLStageInputOutputDescriptor::MTLAttributeDescriptor;
