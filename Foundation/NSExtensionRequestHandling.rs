@@ -12,6 +12,6 @@ extern_protocol!(
         #[cfg(feature = "NSExtensionContext")]
         #[unsafe(method(beginRequestWithExtensionContext:))]
         #[unsafe(method_family = none)]
-        unsafe fn beginRequestWithExtensionContext(&self, context: &NSExtensionContext);
+        fn beginRequestWithExtensionContext(&self, context: &NSExtensionContext);
     }
 );

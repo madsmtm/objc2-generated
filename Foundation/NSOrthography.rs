@@ -51,7 +51,7 @@ impl NSOrthography {
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(initWithDominantScript:languageMap:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDominantScript_languageMap(
+        pub fn initWithDominantScript_languageMap(
             this: Allocated<Self>,
             script: &NSString,
             map: &NSDictionary<NSString, NSArray<NSString>>,
@@ -75,12 +75,19 @@ impl NSOrthography {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSOrthography {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSOrthographyExtended.
@@ -89,18 +96,12 @@ impl NSOrthography {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(languagesForScript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn languagesForScript(
-            &self,
-            script: &NSString,
-        ) -> Option<Retained<NSArray<NSString>>>;
+        pub fn languagesForScript(&self, script: &NSString) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(dominantLanguageForScript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dominantLanguageForScript(
-            &self,
-            script: &NSString,
-        ) -> Option<Retained<NSString>>;
+        pub fn dominantLanguageForScript(&self, script: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(dominantLanguage))]
@@ -120,7 +121,7 @@ impl NSOrthography {
         #[cfg(feature = "NSString")]
         #[unsafe(method(defaultOrthographyForLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultOrthographyForLanguage(language: &NSString) -> Retained<Self>;
+        pub fn defaultOrthographyForLanguage(language: &NSString) -> Retained<Self>;
     );
 }
 
@@ -130,7 +131,7 @@ impl NSOrthography {
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(orthographyWithDominantScript:languageMap:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orthographyWithDominantScript_languageMap(
+        pub fn orthographyWithDominantScript_languageMap(
             script: &NSString,
             map: &NSDictionary<NSString, NSArray<NSString>>,
         ) -> Retained<Self>;

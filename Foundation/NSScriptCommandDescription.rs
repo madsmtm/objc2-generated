@@ -91,7 +91,7 @@ impl NSScriptCommandDescription {
         #[cfg(feature = "NSString")]
         #[unsafe(method(typeForArgumentWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeForArgumentWithName(
+        pub fn typeForArgumentWithName(
             &self,
             argument_name: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -99,20 +99,17 @@ impl NSScriptCommandDescription {
         #[cfg(feature = "NSString")]
         #[unsafe(method(appleEventCodeForArgumentWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appleEventCodeForArgumentWithName(
-            &self,
-            argument_name: &NSString,
-        ) -> FourCharCode;
+        pub fn appleEventCodeForArgumentWithName(&self, argument_name: &NSString) -> FourCharCode;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(isOptionalArgumentWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isOptionalArgumentWithName(&self, argument_name: &NSString) -> bool;
+        pub fn isOptionalArgumentWithName(&self, argument_name: &NSString) -> bool;
 
         #[cfg(feature = "NSScriptCommand")]
         #[unsafe(method(createCommandInstance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createCommandInstance(&self) -> Retained<NSScriptCommand>;
+        pub fn createCommandInstance(&self) -> Retained<NSScriptCommand>;
 
         #[cfg(all(feature = "NSScriptCommand", feature = "NSZone"))]
         /// # Safety
@@ -132,6 +129,13 @@ impl NSScriptCommandDescription {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSScriptCommandDescription {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

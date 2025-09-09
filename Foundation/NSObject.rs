@@ -50,7 +50,7 @@ pub unsafe trait NSObjectNSCoderMethods:
     extern_methods!(
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
-        unsafe fn version() -> NSInteger;
+        fn version() -> NSInteger;
 
         #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
@@ -80,19 +80,19 @@ extern_protocol!(
     pub unsafe trait NSDiscardableContent {
         #[unsafe(method(beginContentAccess))]
         #[unsafe(method_family = none)]
-        unsafe fn beginContentAccess(&self) -> bool;
+        fn beginContentAccess(&self) -> bool;
 
         #[unsafe(method(endContentAccess))]
         #[unsafe(method_family = none)]
-        unsafe fn endContentAccess(&self);
+        fn endContentAccess(&self);
 
         #[unsafe(method(discardContentIfPossible))]
         #[unsafe(method_family = none)]
-        unsafe fn discardContentIfPossible(&self);
+        fn discardContentIfPossible(&self);
 
         #[unsafe(method(isContentDiscarded))]
         #[unsafe(method_family = none)]
-        unsafe fn isContentDiscarded(&self) -> bool;
+        fn isContentDiscarded(&self) -> bool;
     }
 );
 

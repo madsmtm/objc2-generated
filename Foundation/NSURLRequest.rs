@@ -251,7 +251,7 @@ impl NSURLRequest {
         /// Returns: A newly-created and autoreleased NSURLRequest instance.
         #[unsafe(method(requestWithURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestWithURL(url: &NSURL) -> Retained<Self>;
+        pub fn requestWithURL(url: &NSURL) -> Retained<Self>;
 
         /// Indicates that NSURLRequest implements the NSSecureCoding protocol.
         ///
@@ -279,7 +279,7 @@ impl NSURLRequest {
         /// Returns: A newly-created and autoreleased NSURLRequest instance.
         #[unsafe(method(requestWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
+        pub fn requestWithURL_cachePolicy_timeoutInterval(
             url: &NSURL,
             cache_policy: NSURLRequestCachePolicy,
             timeout_interval: NSTimeInterval,
@@ -297,7 +297,7 @@ impl NSURLRequest {
         /// Returns: An initialized NSURLRequest.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
+        pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSURL"))]
         /// Initializes an NSURLRequest with the given URL and
@@ -321,7 +321,7 @@ impl NSURLRequest {
         /// Returns: An initialized NSURLRequest.
         #[unsafe(method(initWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
+        pub fn initWithURL_cachePolicy_timeoutInterval(
             this: Allocated<Self>,
             url: &NSURL,
             cache_policy: NSURLRequestCachePolicy,
@@ -461,12 +461,19 @@ impl NSURLRequest {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURLRequest {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -752,7 +759,7 @@ impl NSMutableURLRequest {
         /// Returns: A newly-created and autoreleased NSURLRequest instance.
         #[unsafe(method(requestWithURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestWithURL(url: &NSURL) -> Retained<Self>;
+        pub fn requestWithURL(url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSURL"))]
         /// Allocates and initializes a NSURLRequest with the given
@@ -773,7 +780,7 @@ impl NSMutableURLRequest {
         /// Returns: A newly-created and autoreleased NSURLRequest instance.
         #[unsafe(method(requestWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestWithURL_cachePolicy_timeoutInterval(
+        pub fn requestWithURL_cachePolicy_timeoutInterval(
             url: &NSURL,
             cache_policy: NSURLRequestCachePolicy,
             timeout_interval: NSTimeInterval,
@@ -791,7 +798,7 @@ impl NSMutableURLRequest {
         /// Returns: An initialized NSURLRequest.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
+        pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSURL"))]
         /// Initializes an NSURLRequest with the given URL and
@@ -815,7 +822,7 @@ impl NSMutableURLRequest {
         /// Returns: An initialized NSURLRequest.
         #[unsafe(method(initWithURL:cachePolicy:timeoutInterval:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL_cachePolicy_timeoutInterval(
+        pub fn initWithURL_cachePolicy_timeoutInterval(
             this: Allocated<Self>,
             url: &NSURL,
             cache_policy: NSURLRequestCachePolicy,
@@ -829,12 +836,19 @@ impl NSMutableURLRequest {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMutableURLRequest {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSHTTPURLRequest.
@@ -873,10 +887,7 @@ impl NSURLRequest {
         /// there is no value associated with the given header field.
         #[unsafe(method(valueForHTTPHeaderField:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForHTTPHeaderField(
-            &self,
-            field: &NSString,
-        ) -> Option<Retained<NSString>>;
+        pub fn valueForHTTPHeaderField(&self, field: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSData")]
         /// Returns the request body data of the receiver.
@@ -993,11 +1004,7 @@ impl NSMutableURLRequest {
         /// Parameter `field`: the header field name (case-insensitive).
         #[unsafe(method(setValue:forHTTPHeaderField:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setValue_forHTTPHeaderField(
-            &self,
-            value: Option<&NSString>,
-            field: &NSString,
-        );
+        pub fn setValue_forHTTPHeaderField(&self, value: Option<&NSString>, field: &NSString);
 
         #[cfg(feature = "NSString")]
         /// Adds an HTTP header field in the current header
@@ -1016,7 +1023,7 @@ impl NSMutableURLRequest {
         /// Parameter `field`: the header field name (case-insensitive).
         #[unsafe(method(addValue:forHTTPHeaderField:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addValue_forHTTPHeaderField(&self, value: &NSString, field: &NSString);
+        pub fn addValue_forHTTPHeaderField(&self, value: &NSString, field: &NSString);
 
         #[cfg(feature = "NSData")]
         /// Sets the request body data of the receiver.

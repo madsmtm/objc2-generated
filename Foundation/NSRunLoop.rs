@@ -49,7 +49,7 @@ impl NSRunLoop {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(getCFRunLoop))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getCFRunLoop(&self) -> Retained<CFRunLoop>;
+        pub fn getCFRunLoop(&self) -> Retained<CFRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "NSTimer"))]
         #[unsafe(method(addTimer:forMode:))]
@@ -69,16 +69,12 @@ impl NSRunLoop {
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
         #[unsafe(method(limitDateForMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Retained<NSDate>>;
+        pub fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
         #[unsafe(method(acceptInputForMode:beforeDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn acceptInputForMode_beforeDate(
-            &self,
-            mode: &NSRunLoopMode,
-            limit_date: &NSDate,
-        );
+        pub fn acceptInputForMode_beforeDate(&self, mode: &NSRunLoopMode, limit_date: &NSDate);
     );
 }
 
@@ -87,12 +83,19 @@ impl NSRunLoop {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSRunLoop {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSRunLoopConveniences.
@@ -100,22 +103,22 @@ impl NSRunLoop {
     extern_methods!(
         #[unsafe(method(run))]
         #[unsafe(method_family = none)]
-        pub unsafe fn run(&self);
+        pub fn run(&self);
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(runUntilDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runUntilDate(&self, limit_date: &NSDate);
+        pub fn runUntilDate(&self, limit_date: &NSDate);
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
         #[unsafe(method(runMode:beforeDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runMode_beforeDate(&self, mode: &NSRunLoopMode, limit_date: &NSDate) -> bool;
+        pub fn runMode_beforeDate(&self, mode: &NSRunLoopMode, limit_date: &NSDate) -> bool;
 
         #[deprecated = "Not supported"]
         #[unsafe(method(configureAsServer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configureAsServer(&self);
+        pub fn configureAsServer(&self);
 
         #[cfg(all(
             feature = "NSArray",

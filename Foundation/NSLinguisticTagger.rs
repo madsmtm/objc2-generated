@@ -352,7 +352,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(initWithTagSchemes:options:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTagSchemes_options(
+        pub fn initWithTagSchemes_options(
             this: Allocated<Self>,
             tag_schemes: &NSArray<NSLinguisticTagScheme>,
             opts: NSUInteger,
@@ -381,7 +381,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(availableTagSchemesForUnit:language:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableTagSchemesForUnit_language(
+        pub fn availableTagSchemesForUnit_language(
             unit: NSLinguisticTaggerUnit,
             language: &NSString,
         ) -> Retained<NSArray<NSLinguisticTagScheme>>;
@@ -390,7 +390,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(availableTagSchemesForLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableTagSchemesForLanguage(
+        pub fn availableTagSchemesForLanguage(
             language: &NSString,
         ) -> Retained<NSArray<NSLinguisticTagScheme>>;
 
@@ -398,11 +398,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(setOrthography:range:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOrthography_range(
-            &self,
-            orthography: Option<&NSOrthography>,
-            range: NSRange,
-        );
+        pub fn setOrthography_range(&self, orthography: Option<&NSOrthography>, range: NSRange);
 
         #[cfg(all(feature = "NSOrthography", feature = "NSRange"))]
         /// # Safety
@@ -421,17 +417,13 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(stringEditedInRange:changeInLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringEditedInRange_changeInLength(
-            &self,
-            new_range: NSRange,
-            delta: NSInteger,
-        );
+        pub fn stringEditedInRange_changeInLength(&self, new_range: NSRange, delta: NSInteger);
 
         #[cfg(feature = "NSRange")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tokenRangeAtIndex:unit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tokenRangeAtIndex_unit(
+        pub fn tokenRangeAtIndex_unit(
             &self,
             char_index: NSUInteger,
             unit: NSLinguisticTaggerUnit,
@@ -441,13 +433,13 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(sentenceRangeForRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sentenceRangeForRange(&self, range: NSRange) -> NSRange;
+        pub fn sentenceRangeForRange(&self, range: NSRange) -> NSRange;
 
         #[cfg(all(feature = "NSRange", feature = "NSString", feature = "block2"))]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(enumerateTagsInRange:unit:scheme:options:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateTagsInRange_unit_scheme_options_usingBlock(
+        pub fn enumerateTagsInRange_unit_scheme_options_usingBlock(
             &self,
             range: NSRange,
             unit: NSLinguisticTaggerUnit,
@@ -480,7 +472,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagsInRange:unit:scheme:options:tokenRanges:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tagsInRange_unit_scheme_options_tokenRanges(
+        pub fn tagsInRange_unit_scheme_options_tokenRanges(
             &self,
             range: NSRange,
             unit: NSLinguisticTaggerUnit,
@@ -493,7 +485,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(enumerateTagsInRange:scheme:options:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateTagsInRange_scheme_options_usingBlock(
+        pub fn enumerateTagsInRange_scheme_options_usingBlock(
             &self,
             range: NSRange,
             tag_scheme: &NSLinguisticTagScheme,
@@ -528,7 +520,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagsInRange:scheme:options:tokenRanges:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tagsInRange_scheme_options_tokenRanges(
+        pub fn tagsInRange_scheme_options_tokenRanges(
             &self,
             range: NSRange,
             tag_scheme: &NSString,
@@ -546,7 +538,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(dominantLanguageForString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dominantLanguageForString(string: &NSString) -> Option<Retained<NSString>>;
+        pub fn dominantLanguageForString(string: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSOrthography", feature = "NSRange", feature = "NSString"))]
         /// # Safety
@@ -574,7 +566,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagsForString:range:unit:scheme:options:orthography:tokenRanges:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tagsForString_range_unit_scheme_options_orthography_tokenRanges(
+        pub fn tagsForString_range_unit_scheme_options_orthography_tokenRanges(
             string: &NSString,
             range: NSRange,
             unit: NSLinguisticTaggerUnit,
@@ -593,7 +585,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateTagsForString_range_unit_scheme_options_orthography_usingBlock(
+        pub fn enumerateTagsForString_range_unit_scheme_options_orthography_usingBlock(
             string: &NSString,
             range: NSRange,
             unit: NSLinguisticTaggerUnit,
@@ -632,12 +624,19 @@ impl NSLinguisticTagger {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSLinguisticTagger {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSLinguisticAnalysis.
@@ -653,7 +652,7 @@ impl NSString {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(linguisticTagsInRange:scheme:options:orthography:tokenRanges:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn linguisticTagsInRange_scheme_options_orthography_tokenRanges(
+        pub fn linguisticTagsInRange_scheme_options_orthography_tokenRanges(
             &self,
             range: NSRange,
             scheme: &NSLinguisticTagScheme,
@@ -666,7 +665,7 @@ impl NSString {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateLinguisticTagsInRange_scheme_options_orthography_usingBlock(
+        pub fn enumerateLinguisticTagsInRange_scheme_options_orthography_usingBlock(
             &self,
             range: NSRange,
             scheme: &NSLinguisticTagScheme,

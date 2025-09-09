@@ -116,7 +116,7 @@ impl NSKeyValueSharedObservers {
         /// can be assigned to an observable using ``-[NSObject setSharedObservers:]``
         #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]
-        pub unsafe fn snapshot(&self) -> Retained<NSKeyValueSharedObserversSnapshot>;
+        pub fn snapshot(&self) -> Retained<NSKeyValueSharedObserversSnapshot>;
     );
 }
 
@@ -146,10 +146,7 @@ pub unsafe trait NSObjectNSKeyValueSharedObserverRegistration:
         /// match the class with which `sharedObserers` was initialized.
         #[unsafe(method(setSharedObservers:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSharedObservers(
-            &self,
-            shared_observers: Option<&NSKeyValueSharedObserversSnapshot>,
-        );
+        fn setSharedObservers(&self, shared_observers: Option<&NSKeyValueSharedObserversSnapshot>);
     );
 }
 

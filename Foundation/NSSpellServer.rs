@@ -43,7 +43,7 @@ impl NSSpellServer {
         #[cfg(feature = "NSString")]
         #[unsafe(method(registerLanguage:byVendor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerLanguage_byVendor(
+        pub fn registerLanguage_byVendor(
             &self,
             language: Option<&NSString>,
             vendor: Option<&NSString>,
@@ -52,15 +52,11 @@ impl NSSpellServer {
         #[cfg(feature = "NSString")]
         #[unsafe(method(isWordInUserDictionaries:caseSensitive:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isWordInUserDictionaries_caseSensitive(
-            &self,
-            word: &NSString,
-            flag: bool,
-        ) -> bool;
+        pub fn isWordInUserDictionaries_caseSensitive(&self, word: &NSString, flag: bool) -> bool;
 
         #[unsafe(method(run))]
         #[unsafe(method_family = none)]
-        pub unsafe fn run(&self);
+        pub fn run(&self);
     );
 }
 
@@ -69,12 +65,19 @@ impl NSSpellServer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSSpellServer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -118,7 +121,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(spellServer:suggestGuessesForWord:inLanguage:))]
         #[unsafe(method_family = none)]
-        unsafe fn spellServer_suggestGuessesForWord_inLanguage(
+        fn spellServer_suggestGuessesForWord_inLanguage(
             &self,
             sender: &NSSpellServer,
             word: &NSString,
@@ -129,7 +132,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(spellServer:didLearnWord:inLanguage:))]
         #[unsafe(method_family = none)]
-        unsafe fn spellServer_didLearnWord_inLanguage(
+        fn spellServer_didLearnWord_inLanguage(
             &self,
             sender: &NSSpellServer,
             word: &NSString,
@@ -140,7 +143,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(spellServer:didForgetWord:inLanguage:))]
         #[unsafe(method_family = none)]
-        unsafe fn spellServer_didForgetWord_inLanguage(
+        fn spellServer_didForgetWord_inLanguage(
             &self,
             sender: &NSSpellServer,
             word: &NSString,
@@ -151,7 +154,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(spellServer:suggestCompletionsForPartialWordRange:inString:language:))]
         #[unsafe(method_family = none)]
-        unsafe fn spellServer_suggestCompletionsForPartialWordRange_inString_language(
+        fn spellServer_suggestCompletionsForPartialWordRange_inString_language(
             &self,
             sender: &NSSpellServer,
             range: NSRange,
@@ -208,7 +211,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(spellServer:recordResponse:toCorrection:forWord:language:))]
         #[unsafe(method_family = none)]
-        unsafe fn spellServer_recordResponse_toCorrection_forWord_language(
+        fn spellServer_recordResponse_toCorrection_forWord_language(
             &self,
             sender: &NSSpellServer,
             response: NSUInteger,

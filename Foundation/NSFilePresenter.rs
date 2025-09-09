@@ -89,21 +89,18 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(presentedItemDidMoveToURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedItemDidMoveToURL(&self, new_url: &NSURL);
+        fn presentedItemDidMoveToURL(&self, new_url: &NSURL);
 
         #[optional]
         #[unsafe(method(presentedItemDidChange))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedItemDidChange(&self);
+        fn presentedItemDidChange(&self);
 
         #[cfg(all(feature = "NSSet", feature = "NSString", feature = "NSURL"))]
         #[optional]
         #[unsafe(method(presentedItemDidChangeUbiquityAttributes:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedItemDidChangeUbiquityAttributes(
-            &self,
-            attributes: &NSSet<NSURLResourceKey>,
-        );
+        fn presentedItemDidChangeUbiquityAttributes(&self, attributes: &NSSet<NSURLResourceKey>);
 
         #[cfg(all(feature = "NSSet", feature = "NSString", feature = "NSURL"))]
         #[optional]
@@ -115,19 +112,19 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(presentedItemDidGainVersion:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedItemDidGainVersion(&self, version: &NSFileVersion);
+        fn presentedItemDidGainVersion(&self, version: &NSFileVersion);
 
         #[cfg(feature = "NSFileVersion")]
         #[optional]
         #[unsafe(method(presentedItemDidLoseVersion:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedItemDidLoseVersion(&self, version: &NSFileVersion);
+        fn presentedItemDidLoseVersion(&self, version: &NSFileVersion);
 
         #[cfg(feature = "NSFileVersion")]
         #[optional]
         #[unsafe(method(presentedItemDidResolveConflictVersion:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
+        fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
         /// # Safety
@@ -146,37 +143,37 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(presentedSubitemDidAppearAtURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedSubitemDidAppearAtURL(&self, url: &NSURL);
+        fn presentedSubitemDidAppearAtURL(&self, url: &NSURL);
 
         #[cfg(feature = "NSURL")]
         #[optional]
         #[unsafe(method(presentedSubitemAtURL:didMoveToURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedSubitemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
+        fn presentedSubitemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
         #[cfg(feature = "NSURL")]
         #[optional]
         #[unsafe(method(presentedSubitemDidChangeAtURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedSubitemDidChangeAtURL(&self, url: &NSURL);
+        fn presentedSubitemDidChangeAtURL(&self, url: &NSURL);
 
         #[cfg(all(feature = "NSFileVersion", feature = "NSURL"))]
         #[optional]
         #[unsafe(method(presentedSubitemAtURL:didGainVersion:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedSubitemAtURL_didGainVersion(&self, url: &NSURL, version: &NSFileVersion);
+        fn presentedSubitemAtURL_didGainVersion(&self, url: &NSURL, version: &NSFileVersion);
 
         #[cfg(all(feature = "NSFileVersion", feature = "NSURL"))]
         #[optional]
         #[unsafe(method(presentedSubitemAtURL:didLoseVersion:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedSubitemAtURL_didLoseVersion(&self, url: &NSURL, version: &NSFileVersion);
+        fn presentedSubitemAtURL_didLoseVersion(&self, url: &NSURL, version: &NSFileVersion);
 
         #[cfg(all(feature = "NSFileVersion", feature = "NSURL"))]
         #[optional]
         #[unsafe(method(presentedSubitemAtURL:didResolveConflictVersion:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedSubitemAtURL_didResolveConflictVersion(
+        fn presentedSubitemAtURL_didResolveConflictVersion(
             &self,
             url: &NSURL,
             version: &NSFileVersion,

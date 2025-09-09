@@ -278,7 +278,7 @@ impl NSError {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -310,7 +310,7 @@ pub unsafe trait NSObjectNSErrorRecoveryAttempting:
 
         #[unsafe(method(attemptRecoveryFromError:optionIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn attemptRecoveryFromError_optionIndex(
+        fn attemptRecoveryFromError_optionIndex(
             &self,
             error: &NSError,
             recovery_option_index: NSUInteger,

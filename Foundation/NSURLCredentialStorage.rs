@@ -45,7 +45,7 @@ impl NSURLCredentialStorage {
         /// Returns: A dictionary where the keys are usernames and the values are the corresponding NSURLCredentials.
         #[unsafe(method(credentialsForProtectionSpace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn credentialsForProtectionSpace(
+        pub fn credentialsForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
         ) -> Option<Retained<NSDictionary<NSString, NSURLCredential>>>;
@@ -79,7 +79,7 @@ impl NSURLCredentialStorage {
         /// the new one will replace it.
         #[unsafe(method(setCredential:forProtectionSpace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCredential_forProtectionSpace(
+        pub fn setCredential_forProtectionSpace(
             &self,
             credential: &NSURLCredential,
             space: &NSURLProtectionSpace,
@@ -97,7 +97,7 @@ impl NSURLCredentialStorage {
         /// See removeCredential:forProtectionSpace:options.
         #[unsafe(method(removeCredential:forProtectionSpace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeCredential_forProtectionSpace(
+        pub fn removeCredential_forProtectionSpace(
             &self,
             credential: &NSURLCredential,
             space: &NSURLProtectionSpace,
@@ -140,7 +140,7 @@ impl NSURLCredentialStorage {
         /// Parameter `space`: The protection space for which to get the default credential.
         #[unsafe(method(defaultCredentialForProtectionSpace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultCredentialForProtectionSpace(
+        pub fn defaultCredentialForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
         ) -> Option<Retained<NSURLCredential>>;
@@ -155,7 +155,7 @@ impl NSURLCredentialStorage {
         /// If the credential is not yet in the set for the protection space, it will be added to it.
         #[unsafe(method(setDefaultCredential:forProtectionSpace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultCredential_forProtectionSpace(
+        pub fn setDefaultCredential_forProtectionSpace(
             &self,
             credential: &NSURLCredential,
             space: &NSURLProtectionSpace,
@@ -168,12 +168,19 @@ impl NSURLCredentialStorage {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURLCredentialStorage {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSURLSessionTaskAdditions.
@@ -208,7 +215,7 @@ impl NSURLCredentialStorage {
         ))]
         #[unsafe(method(setCredential:forProtectionSpace:task:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCredential_forProtectionSpace_task(
+        pub fn setCredential_forProtectionSpace_task(
             &self,
             credential: &NSURLCredential,
             protection_space: &NSURLProtectionSpace,
@@ -260,7 +267,7 @@ impl NSURLCredentialStorage {
         ))]
         #[unsafe(method(setDefaultCredential:forProtectionSpace:task:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultCredential_forProtectionSpace_task(
+        pub fn setDefaultCredential_forProtectionSpace_task(
             &self,
             credential: &NSURLCredential,
             protection_space: &NSURLProtectionSpace,

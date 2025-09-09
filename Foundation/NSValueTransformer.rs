@@ -65,7 +65,7 @@ impl NSValueTransformer {
         #[cfg(feature = "NSString")]
         #[unsafe(method(setValueTransformer:forName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setValueTransformer_forName(
+        pub fn setValueTransformer_forName(
             transformer: Option<&NSValueTransformer>,
             name: &NSValueTransformerName,
         );
@@ -73,22 +73,22 @@ impl NSValueTransformer {
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueTransformerForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueTransformerForName(
+        pub fn valueTransformerForName(
             name: &NSValueTransformerName,
         ) -> Option<Retained<NSValueTransformer>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(valueTransformerNames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueTransformerNames() -> Retained<NSArray<NSValueTransformerName>>;
+        pub fn valueTransformerNames() -> Retained<NSArray<NSValueTransformerName>>;
 
         #[unsafe(method(transformedValueClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transformedValueClass() -> &'static AnyClass;
+        pub fn transformedValueClass() -> &'static AnyClass;
 
         #[unsafe(method(allowsReverseTransformation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsReverseTransformation() -> bool;
+        pub fn allowsReverseTransformation() -> bool;
 
         /// # Safety
         ///
@@ -117,12 +117,19 @@ impl NSValueTransformer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSValueTransformer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -161,10 +168,17 @@ impl NSSecureUnarchiveFromDataTransformer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSSecureUnarchiveFromDataTransformer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

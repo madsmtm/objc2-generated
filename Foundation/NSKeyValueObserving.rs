@@ -359,17 +359,17 @@ pub unsafe trait NSObjectNSKeyValueObserverNotification:
         #[cfg(feature = "NSString")]
         #[unsafe(method(willChangeValueForKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn willChangeValueForKey(&self, key: &NSString);
+        fn willChangeValueForKey(&self, key: &NSString);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(didChangeValueForKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn didChangeValueForKey(&self, key: &NSString);
+        fn didChangeValueForKey(&self, key: &NSString);
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSString"))]
         #[unsafe(method(willChange:valuesAtIndexes:forKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn willChange_valuesAtIndexes_forKey(
+        fn willChange_valuesAtIndexes_forKey(
             &self,
             change_kind: NSKeyValueChange,
             indexes: &NSIndexSet,
@@ -379,7 +379,7 @@ pub unsafe trait NSObjectNSKeyValueObserverNotification:
         #[cfg(all(feature = "NSIndexSet", feature = "NSString"))]
         #[unsafe(method(didChange:valuesAtIndexes:forKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn didChange_valuesAtIndexes_forKey(
+        fn didChange_valuesAtIndexes_forKey(
             &self,
             change_kind: NSKeyValueChange,
             indexes: &NSIndexSet,
@@ -430,14 +430,12 @@ pub unsafe trait NSObjectNSKeyValueObservingCustomization:
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         #[unsafe(method(keyPathsForValuesAffectingValueForKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn keyPathsForValuesAffectingValueForKey(
-            key: &NSString,
-        ) -> Retained<NSSet<NSString>>;
+        fn keyPathsForValuesAffectingValueForKey(key: &NSString) -> Retained<NSSet<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(automaticallyNotifiesObserversForKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn automaticallyNotifiesObserversForKey(key: &NSString) -> bool;
+        fn automaticallyNotifiesObserversForKey(key: &NSString) -> bool;
 
         #[unsafe(method(observationInfo))]
         #[unsafe(method_family = none)]

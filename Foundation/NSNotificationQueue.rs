@@ -72,7 +72,7 @@ impl NSNotificationQueue {
         #[cfg(feature = "NSNotification")]
         #[unsafe(method(initWithNotificationCenter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNotificationCenter(
+        pub fn initWithNotificationCenter(
             this: Allocated<Self>,
             notification_center: &NSNotificationCenter,
         ) -> Retained<Self>;
@@ -80,7 +80,7 @@ impl NSNotificationQueue {
         #[cfg(feature = "NSNotification")]
         #[unsafe(method(enqueueNotification:postingStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enqueueNotification_postingStyle(
+        pub fn enqueueNotification_postingStyle(
             &self,
             notification: &NSNotification,
             posting_style: NSPostingStyle,
@@ -94,7 +94,7 @@ impl NSNotificationQueue {
         ))]
         #[unsafe(method(enqueueNotification:postingStyle:coalesceMask:forModes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enqueueNotification_postingStyle_coalesceMask_forModes(
+        pub fn enqueueNotification_postingStyle_coalesceMask_forModes(
             &self,
             notification: &NSNotification,
             posting_style: NSPostingStyle,
@@ -105,7 +105,7 @@ impl NSNotificationQueue {
         #[cfg(feature = "NSNotification")]
         #[unsafe(method(dequeueNotificationsMatching:coalesceMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dequeueNotificationsMatching_coalesceMask(
+        pub fn dequeueNotificationsMatching_coalesceMask(
             &self,
             notification: &NSNotification,
             coalesce_mask: NSUInteger,
@@ -118,10 +118,17 @@ impl NSNotificationQueue {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSNotificationQueue {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

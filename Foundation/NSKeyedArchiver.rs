@@ -54,7 +54,7 @@ impl NSKeyedArchiver {
         /// `NSKeyedArchiveRootObjectKey.`
         #[unsafe(method(initRequiringSecureCoding:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initRequiringSecureCoding(
+        pub fn initRequiringSecureCoding(
             this: Allocated<Self>,
             requires_secure_coding: bool,
         ) -> Retained<Self>;
@@ -88,13 +88,13 @@ impl NSKeyedArchiver {
         #[deprecated = "Use -initRequiringSecureCoding: instead"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
         #[deprecated = "Use -initRequiringSecureCoding: instead"]
         #[unsafe(method(initForWritingWithMutableData:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initForWritingWithMutableData(
+        pub fn initForWritingWithMutableData(
             this: Allocated<Self>,
             data: &NSMutableData,
         ) -> Retained<Self>;
@@ -157,7 +157,7 @@ impl NSKeyedArchiver {
 
         #[unsafe(method(finishEncoding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn finishEncoding(&self);
+        pub fn finishEncoding(&self);
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -214,32 +214,32 @@ impl NSKeyedArchiver {
         #[cfg(feature = "NSString")]
         #[unsafe(method(encodeBool:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodeBool_forKey(&self, value: bool, key: &NSString);
+        pub fn encodeBool_forKey(&self, value: bool, key: &NSString);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(encodeInt:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodeInt_forKey(&self, value: c_int, key: &NSString);
+        pub fn encodeInt_forKey(&self, value: c_int, key: &NSString);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(encodeInt32:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodeInt32_forKey(&self, value: i32, key: &NSString);
+        pub fn encodeInt32_forKey(&self, value: i32, key: &NSString);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(encodeInt64:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodeInt64_forKey(&self, value: i64, key: &NSString);
+        pub fn encodeInt64_forKey(&self, value: i64, key: &NSString);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(encodeFloat:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodeFloat_forKey(&self, value: c_float, key: &NSString);
+        pub fn encodeFloat_forKey(&self, value: c_float, key: &NSString);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(encodeDouble:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodeDouble_forKey(&self, value: c_double, key: &NSString);
+        pub fn encodeDouble_forKey(&self, value: c_double, key: &NSString);
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -271,8 +271,16 @@ impl NSKeyedArchiver {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSCoder")]
+impl DefaultRetained for NSKeyedArchiver {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -687,13 +695,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(archiverWillFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn archiverWillFinish(&self, archiver: &NSKeyedArchiver);
+        fn archiverWillFinish(&self, archiver: &NSKeyedArchiver);
 
         #[cfg(feature = "NSCoder")]
         #[optional]
         #[unsafe(method(archiverDidFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn archiverDidFinish(&self, archiver: &NSKeyedArchiver);
+        fn archiverDidFinish(&self, archiver: &NSKeyedArchiver);
     }
 );
 
@@ -704,7 +712,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(unarchiver:cannotDecodeObjectOfClassName:originalClasses:))]
         #[unsafe(method_family = none)]
-        unsafe fn unarchiver_cannotDecodeObjectOfClassName_originalClasses(
+        fn unarchiver_cannotDecodeObjectOfClassName_originalClasses(
             &self,
             unarchiver: &NSKeyedUnarchiver,
             name: &NSString,
@@ -730,13 +738,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(unarchiverWillFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn unarchiverWillFinish(&self, unarchiver: &NSKeyedUnarchiver);
+        fn unarchiverWillFinish(&self, unarchiver: &NSKeyedUnarchiver);
 
         #[cfg(feature = "NSCoder")]
         #[optional]
         #[unsafe(method(unarchiverDidFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn unarchiverDidFinish(&self, unarchiver: &NSKeyedUnarchiver);
+        fn unarchiverDidFinish(&self, unarchiver: &NSKeyedUnarchiver);
     }
 );
 
@@ -757,7 +765,7 @@ pub unsafe trait NSObjectNSKeyedArchiverObjectSubstitution:
         #[cfg(feature = "NSCoder")]
         #[unsafe(method(replacementObjectForKeyedArchiver:))]
         #[unsafe(method_family = none)]
-        unsafe fn replacementObjectForKeyedArchiver(
+        fn replacementObjectForKeyedArchiver(
             &self,
             archiver: &NSKeyedArchiver,
         ) -> Option<Retained<AnyObject>>;
@@ -765,7 +773,7 @@ pub unsafe trait NSObjectNSKeyedArchiverObjectSubstitution:
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(classFallbacksForKeyedArchiver))]
         #[unsafe(method_family = none)]
-        unsafe fn classFallbacksForKeyedArchiver() -> Retained<NSArray<NSString>>;
+        fn classFallbacksForKeyedArchiver() -> Retained<NSArray<NSString>>;
     );
 }
 
@@ -784,7 +792,7 @@ pub unsafe trait NSObjectNSKeyedUnarchiverObjectSubstitution:
     extern_methods!(
         #[unsafe(method(classForKeyedUnarchiver))]
         #[unsafe(method_family = none)]
-        unsafe fn classForKeyedUnarchiver() -> &'static AnyClass;
+        fn classForKeyedUnarchiver() -> &'static AnyClass;
     );
 }
 

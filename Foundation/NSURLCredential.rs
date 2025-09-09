@@ -90,12 +90,19 @@ impl NSURLCredential {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURLCredential {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSInternetPassword.
@@ -115,7 +122,7 @@ impl NSURLCredential {
         /// Returns: The initialized NSURLCredential
         #[unsafe(method(initWithUser:password:persistence:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithUser_password_persistence(
+        pub fn initWithUser_password_persistence(
             this: Allocated<Self>,
             user: &NSString,
             password: &NSString,
@@ -134,7 +141,7 @@ impl NSURLCredential {
         /// Returns: The new autoreleased NSURLCredential
         #[unsafe(method(credentialWithUser:password:persistence:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn credentialWithUser_password_persistence(
+        pub fn credentialWithUser_password_persistence(
             user: &NSString,
             password: &NSString,
             persistence: NSURLCredentialPersistence,

@@ -34,7 +34,7 @@ impl NSMethodSignature {
 
         #[unsafe(method(getArgumentTypeAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getArgumentTypeAtIndex(&self, idx: NSUInteger) -> NonNull<c_char>;
+        pub fn getArgumentTypeAtIndex(&self, idx: NSUInteger) -> NonNull<c_char>;
 
         #[unsafe(method(frameLength))]
         #[unsafe(method_family = none)]
@@ -42,7 +42,7 @@ impl NSMethodSignature {
 
         #[unsafe(method(isOneway))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isOneway(&self) -> bool;
+        pub fn isOneway(&self) -> bool;
 
         #[unsafe(method(methodReturnType))]
         #[unsafe(method_family = none)]
@@ -59,10 +59,17 @@ impl NSMethodSignature {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMethodSignature {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

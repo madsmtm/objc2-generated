@@ -181,28 +181,28 @@ impl NSNumberFormatter {
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[unsafe(method(stringFromNumber:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromNumber(&self, number: &NSNumber) -> Option<Retained<NSString>>;
+        pub fn stringFromNumber(&self, number: &NSNumber) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[unsafe(method(numberFromString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberFromString(&self, string: &NSString) -> Option<Retained<NSNumber>>;
+        pub fn numberFromString(&self, string: &NSString) -> Option<Retained<NSNumber>>;
 
         #[cfg(all(feature = "NSString", feature = "NSValue"))]
         #[unsafe(method(localizedStringFromNumber:numberStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringFromNumber_numberStyle(
+        pub fn localizedStringFromNumber_numberStyle(
             num: &NSNumber,
             nstyle: NSNumberFormatterStyle,
         ) -> Retained<NSString>;
 
         #[unsafe(method(defaultFormatterBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultFormatterBehavior() -> NSNumberFormatterBehavior;
+        pub fn defaultFormatterBehavior() -> NSNumberFormatterBehavior;
 
         #[unsafe(method(setDefaultFormatterBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultFormatterBehavior(behavior: NSNumberFormatterBehavior);
+        pub fn setDefaultFormatterBehavior(behavior: NSNumberFormatterBehavior);
 
         #[unsafe(method(minimumGroupingDigits))]
         #[unsafe(method_family = none)]
@@ -931,12 +931,20 @@ impl NSNumberFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSNumberFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSNumberFormatterCompatibility.

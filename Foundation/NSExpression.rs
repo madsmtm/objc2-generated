@@ -102,17 +102,17 @@ impl NSExpression {
 
         #[unsafe(method(expressionForEvaluatedObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForEvaluatedObject() -> Retained<NSExpression>;
+        pub fn expressionForEvaluatedObject() -> Retained<NSExpression>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(expressionForVariable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForVariable(string: &NSString) -> Retained<NSExpression>;
+        pub fn expressionForVariable(string: &NSString) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(expressionForKeyPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForKeyPath(key_path: &NSString) -> Retained<NSExpression>;
+        pub fn expressionForKeyPath(key_path: &NSString) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// # Safety
@@ -128,27 +128,27 @@ impl NSExpression {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(expressionForAggregate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForAggregate(
+        pub fn expressionForAggregate(
             subexpressions: &NSArray<NSExpression>,
         ) -> Retained<NSExpression>;
 
         #[unsafe(method(expressionForUnionSet:with:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForUnionSet_with(
+        pub fn expressionForUnionSet_with(
             left: &NSExpression,
             right: &NSExpression,
         ) -> Retained<NSExpression>;
 
         #[unsafe(method(expressionForIntersectSet:with:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForIntersectSet_with(
+        pub fn expressionForIntersectSet_with(
             left: &NSExpression,
             right: &NSExpression,
         ) -> Retained<NSExpression>;
 
         #[unsafe(method(expressionForMinusSet:with:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForMinusSet_with(
+        pub fn expressionForMinusSet_with(
             left: &NSExpression,
             right: &NSExpression,
         ) -> Retained<NSExpression>;
@@ -156,7 +156,7 @@ impl NSExpression {
         #[cfg(all(feature = "NSPredicate", feature = "NSString"))]
         #[unsafe(method(expressionForSubquery:usingIteratorVariable:predicate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForSubquery_usingIteratorVariable_predicate(
+        pub fn expressionForSubquery_usingIteratorVariable_predicate(
             expression: &NSExpression,
             variable: &NSString,
             predicate: &NSPredicate,
@@ -176,7 +176,7 @@ impl NSExpression {
 
         #[unsafe(method(expressionForAnyKey))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForAnyKey() -> Retained<NSExpression>;
+        pub fn expressionForAnyKey() -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
         /// # Safety
@@ -199,7 +199,7 @@ impl NSExpression {
         #[cfg(feature = "NSPredicate")]
         #[unsafe(method(expressionForConditional:trueExpression:falseExpression:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expressionForConditional_trueExpression_falseExpression(
+        pub fn expressionForConditional_trueExpression_falseExpression(
             predicate: &NSPredicate,
             true_expression: &NSExpression,
             false_expression: &NSExpression,
@@ -207,7 +207,7 @@ impl NSExpression {
 
         #[unsafe(method(initWithExpressionType:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithExpressionType(
+        pub fn initWithExpressionType(
             this: Allocated<Self>,
             r#type: NSExpressionType,
         ) -> Retained<Self>;
@@ -315,7 +315,7 @@ impl NSExpression {
 
         #[unsafe(method(allowEvaluation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowEvaluation(&self);
+        pub fn allowEvaluation(&self);
     );
 }
 
@@ -324,10 +324,17 @@ impl NSExpression {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSExpression {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

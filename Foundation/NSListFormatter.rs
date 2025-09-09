@@ -64,9 +64,7 @@ impl NSListFormatter {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(localizedStringByJoiningStrings:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringByJoiningStrings(
-            strings: &NSArray<NSString>,
-        ) -> Retained<NSString>;
+        pub fn localizedStringByJoiningStrings(strings: &NSArray<NSString>) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// # Safety
@@ -95,10 +93,18 @@ impl NSListFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSListFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -356,12 +356,19 @@ impl NSMorphology {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMorphology {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -408,7 +415,7 @@ impl NSMorphologyPronoun {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithPronoun:morphology:dependentMorphology:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithPronoun_morphology_dependentMorphology(
+        pub fn initWithPronoun_morphology_dependentMorphology(
             this: Allocated<Self>,
             pronoun: &NSString,
             morphology: &NSMorphology,
@@ -438,7 +445,7 @@ impl NSMorphology {
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(customPronounForLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customPronounForLanguage(
+        pub fn customPronounForLanguage(
             &self,
             language: &NSString,
         ) -> Option<Retained<NSMorphologyCustomPronoun>>;
@@ -447,7 +454,7 @@ impl NSMorphology {
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(setCustomPronoun:forLanguage:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCustomPronoun_forLanguage_error(
+        pub fn setCustomPronoun_forLanguage_error(
             &self,
             features: Option<&NSMorphologyCustomPronoun>,
             language: &NSString,
@@ -493,13 +500,13 @@ impl NSMorphologyCustomPronoun {
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(isSupportedForLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSupportedForLanguage(language: &NSString) -> bool;
+        pub fn isSupportedForLanguage(language: &NSString) -> bool;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use NSTermOfAddress instead"]
         #[unsafe(method(requiredKeysForLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiredKeysForLanguage(language: &NSString) -> Retained<NSArray<NSString>>;
+        pub fn requiredKeysForLanguage(language: &NSString) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSTermOfAddress instead"]
@@ -583,12 +590,19 @@ impl NSMorphologyCustomPronoun {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMorphologyCustomPronoun {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSMorphologyUserSettings.

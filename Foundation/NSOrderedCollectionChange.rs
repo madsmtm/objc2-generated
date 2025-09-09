@@ -54,7 +54,7 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
     extern_methods!(
         #[unsafe(method(changeWithObject:type:index:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn changeWithObject_type_index(
+        pub fn changeWithObject_type_index(
             an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
@@ -62,7 +62,7 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
 
         #[unsafe(method(changeWithObject:type:index:associatedIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn changeWithObject_type_index_associatedIndex(
+        pub fn changeWithObject_type_index_associatedIndex(
             an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
@@ -91,7 +91,7 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
 
         #[unsafe(method(initWithObject:type:index:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithObject_type_index(
+        pub fn initWithObject_type_index(
             this: Allocated<Self>,
             an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
@@ -100,7 +100,7 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
 
         #[unsafe(method(initWithObject:type:index:associatedIndex:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithObject_type_index_associatedIndex(
+        pub fn initWithObject_type_index_associatedIndex(
             this: Allocated<Self>,
             an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
@@ -115,6 +115,13 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl<ObjectType: Message> DefaultRetained for NSOrderedCollectionChange<ObjectType> {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

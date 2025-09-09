@@ -82,7 +82,7 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         /// 3) All associated indexes match a change with the opposite parity.
         #[unsafe(method(initWithChanges:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithChanges(
+        pub fn initWithChanges(
             this: Allocated<Self>,
             changes: &NSArray<NSOrderedCollectionChange<ObjectType>>,
         ) -> Retained<Self>;
@@ -94,7 +94,7 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         ))]
         #[unsafe(method(initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges(
+        pub fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges(
             this: Allocated<Self>,
             inserts: &NSIndexSet,
             inserted_objects: Option<&NSArray<ObjectType>>,
@@ -106,7 +106,7 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
         #[unsafe(method(initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects(
+        pub fn initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects(
             this: Allocated<Self>,
             inserts: &NSIndexSet,
             inserted_objects: Option<&NSArray<ObjectType>>,
@@ -146,7 +146,7 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
 
         #[unsafe(method(inverseDifference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inverseDifference(&self) -> Retained<Self>;
+        pub fn inverseDifference(&self) -> Retained<Self>;
     );
 }
 
@@ -155,10 +155,17 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl<ObjectType: Message> DefaultRetained for NSOrderedCollectionDifference<ObjectType> {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

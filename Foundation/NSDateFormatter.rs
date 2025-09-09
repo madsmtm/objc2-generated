@@ -117,17 +117,17 @@ impl NSDateFormatter {
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(stringFromDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromDate(&self, date: &NSDate) -> Retained<NSString>;
+        pub fn stringFromDate(&self, date: &NSDate) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(dateFromString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dateFromString(&self, string: &NSString) -> Option<Retained<NSDate>>;
+        pub fn dateFromString(&self, string: &NSString) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(localizedStringFromDate:dateStyle:timeStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringFromDate_dateStyle_timeStyle(
+        pub fn localizedStringFromDate_dateStyle_timeStyle(
             date: &NSDate,
             dstyle: NSDateFormatterStyle,
             tstyle: NSDateFormatterStyle,
@@ -136,7 +136,7 @@ impl NSDateFormatter {
         #[cfg(all(feature = "NSLocale", feature = "NSString"))]
         #[unsafe(method(dateFormatFromTemplate:options:locale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dateFormatFromTemplate_options_locale(
+        pub fn dateFormatFromTemplate_options_locale(
             tmplate: &NSString,
             opts: NSUInteger,
             locale: Option<&NSLocale>,
@@ -154,7 +154,7 @@ impl NSDateFormatter {
         #[cfg(feature = "NSString")]
         #[unsafe(method(setLocalizedDateFormatFromTemplate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLocalizedDateFormatFromTemplate(&self, date_format_template: &NSString);
+        pub fn setLocalizedDateFormatFromTemplate(&self, date_format_template: &NSString);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(dateFormat))]
@@ -599,12 +599,20 @@ impl NSDateFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSDateFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSDateFormatterCompatibility.
@@ -615,7 +623,7 @@ impl NSDateFormatter {
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
         #[unsafe(method(initWithDateFormat:allowNaturalLanguage:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDateFormat_allowNaturalLanguage(
+        pub fn initWithDateFormat_allowNaturalLanguage(
             this: Allocated<Self>,
             format: &NSString,
             flag: bool,
@@ -624,6 +632,6 @@ impl NSDateFormatter {
         #[deprecated = "There is no replacement"]
         #[unsafe(method(allowsNaturalLanguage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsNaturalLanguage(&self) -> bool;
+        pub fn allowsNaturalLanguage(&self) -> bool;
     );
 }

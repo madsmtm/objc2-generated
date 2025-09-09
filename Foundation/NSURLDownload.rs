@@ -33,7 +33,7 @@ impl NSURLDownload {
         /// canResumeDownloadDecodedWithEncodingMIMEType: should be used when download:shouldDecodeSourceDataOfMIMEType: is called.
         #[unsafe(method(canResumeDownloadDecodedWithEncodingMIMEType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canResumeDownloadDecodedWithEncodingMIMEType(mime_type: &NSString) -> bool;
+        pub fn canResumeDownloadDecodedWithEncodingMIMEType(mime_type: &NSString) -> bool;
 
         #[cfg(feature = "NSURLRequest")]
         /// Initializes a NSURLDownload object and starts the download.
@@ -46,7 +46,7 @@ impl NSURLDownload {
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[unsafe(method(initWithRequest:delegate:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithRequest_delegate(
+        pub fn initWithRequest_delegate(
             this: Allocated<Self>,
             request: &NSURLRequest,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
@@ -65,7 +65,7 @@ impl NSURLDownload {
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[unsafe(method(initWithResumeData:delegate:path:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithResumeData_delegate_path(
+        pub fn initWithResumeData_delegate_path(
             this: Allocated<Self>,
             resume_data: &NSData,
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
@@ -75,7 +75,7 @@ impl NSURLDownload {
         /// Cancels the download and deletes the downloaded file.
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancel(&self);
+        pub fn cancel(&self);
 
         #[cfg(feature = "NSString")]
         /// Sets the destination path of the downloaded file.
@@ -91,7 +91,7 @@ impl NSURLDownload {
         /// passed with didCreateDestination: to determine the actual path of the downloaded file.
         #[unsafe(method(setDestination:allowOverwrite:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDestination_allowOverwrite(&self, path: &NSString, allow_overwrite: bool);
+        pub fn setDestination_allowOverwrite(&self, path: &NSString, allow_overwrite: bool);
 
         #[cfg(feature = "NSURLRequest")]
         /// Returns the request of the download.
@@ -136,12 +136,19 @@ impl NSURLDownload {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURLDownload {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -155,7 +162,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(downloadDidBegin:))]
         #[unsafe(method_family = none)]
-        unsafe fn downloadDidBegin(&self, download: &NSURLDownload);
+        fn downloadDidBegin(&self, download: &NSURLDownload);
 
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         /// This method is called if the download must load another request because the previous
@@ -173,7 +180,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:willSendRequest:redirectResponse:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_willSendRequest_redirectResponse(
+        fn download_willSendRequest_redirectResponse(
             &self,
             download: &NSURLDownload,
             request: &NSURLRequest,
@@ -198,7 +205,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:canAuthenticateAgainstProtectionSpace:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_canAuthenticateAgainstProtectionSpace(
+        fn download_canAuthenticateAgainstProtectionSpace(
             &self,
             connection: &NSURLDownload,
             protection_space: &NSURLProtectionSpace,
@@ -217,7 +224,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:didReceiveAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_didReceiveAuthenticationChallenge(
+        fn download_didReceiveAuthenticationChallenge(
             &self,
             download: &NSURLDownload,
             challenge: &NSURLAuthenticationChallenge,
@@ -232,7 +239,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:didCancelAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_didCancelAuthenticationChallenge(
+        fn download_didCancelAuthenticationChallenge(
             &self,
             download: &NSURLDownload,
             challenge: &NSURLAuthenticationChallenge,
@@ -255,7 +262,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(downloadShouldUseCredentialStorage:))]
         #[unsafe(method_family = none)]
-        unsafe fn downloadShouldUseCredentialStorage(&self, download: &NSURLDownload) -> bool;
+        fn downloadShouldUseCredentialStorage(&self, download: &NSURLDownload) -> bool;
 
         #[cfg(feature = "NSURLResponse")]
         /// This method is called when the download has received a response from the server.
@@ -271,11 +278,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:didReceiveResponse:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_didReceiveResponse(
-            &self,
-            download: &NSURLDownload,
-            response: &NSURLResponse,
-        );
+        fn download_didReceiveResponse(&self, download: &NSURLDownload, response: &NSURLResponse);
 
         #[cfg(feature = "NSURLResponse")]
         /// This method is called when the download has received a response from the server after attempting to
@@ -293,7 +296,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:willResumeWithResponse:fromByte:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_willResumeWithResponse_fromByte(
+        fn download_willResumeWithResponse_fromByte(
             &self,
             download: &NSURLDownload,
             response: &NSURLResponse,
@@ -310,11 +313,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:didReceiveDataOfLength:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_didReceiveDataOfLength(
-            &self,
-            download: &NSURLDownload,
-            length: NSUInteger,
-        );
+        fn download_didReceiveDataOfLength(&self, download: &NSURLDownload, length: NSUInteger);
 
         #[cfg(feature = "NSString")]
         /// This method is called if the download detects that the downloading file is encoded.
@@ -331,7 +330,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:shouldDecodeSourceDataOfMIMEType:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_shouldDecodeSourceDataOfMIMEType(
+        fn download_shouldDecodeSourceDataOfMIMEType(
             &self,
             download: &NSURLDownload,
             encoding_type: &NSString,
@@ -353,7 +352,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:decideDestinationWithSuggestedFilename:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_decideDestinationWithSuggestedFilename(
+        fn download_decideDestinationWithSuggestedFilename(
             &self,
             download: &NSURLDownload,
             filename: &NSString,
@@ -368,7 +367,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:didCreateDestination:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_didCreateDestination(&self, download: &NSURLDownload, path: &NSString);
+        fn download_didCreateDestination(&self, download: &NSURLDownload, path: &NSString);
 
         /// This method is called when the download has finished downloading.
         ///
@@ -379,7 +378,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(downloadDidFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn downloadDidFinish(&self, download: &NSURLDownload);
+        fn downloadDidFinish(&self, download: &NSURLDownload);
 
         #[cfg(feature = "NSError")]
         /// This method is called when the download has failed.
@@ -393,6 +392,6 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(download:didFailWithError:))]
         #[unsafe(method_family = none)]
-        unsafe fn download_didFailWithError(&self, download: &NSURLDownload, error: &NSError);
+        fn download_didFailWithError(&self, download: &NSURLDownload, error: &NSError);
     }
 );

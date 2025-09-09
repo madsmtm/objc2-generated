@@ -21,11 +21,11 @@ impl NSUnitConverter {
     extern_methods!(
         #[unsafe(method(baseUnitValueFromValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnitValueFromValue(&self, value: c_double) -> c_double;
+        pub fn baseUnitValueFromValue(&self, value: c_double) -> c_double;
 
         #[unsafe(method(valueFromBaseUnitValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueFromBaseUnitValue(&self, base_unit_value: c_double) -> c_double;
+        pub fn valueFromBaseUnitValue(&self, base_unit_value: c_double) -> c_double;
     );
 }
 
@@ -34,12 +34,19 @@ impl NSUnitConverter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitConverter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -75,14 +82,11 @@ impl NSUnitConverterLinear {
 
         #[unsafe(method(initWithCoefficient:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoefficient(
-            this: Allocated<Self>,
-            coefficient: c_double,
-        ) -> Retained<Self>;
+        pub fn initWithCoefficient(this: Allocated<Self>, coefficient: c_double) -> Retained<Self>;
 
         #[unsafe(method(initWithCoefficient:constant:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoefficient_constant(
+        pub fn initWithCoefficient_constant(
             this: Allocated<Self>,
             coefficient: c_double,
             constant: c_double,
@@ -95,12 +99,19 @@ impl NSUnitConverterLinear {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitConverterLinear {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -151,13 +162,20 @@ impl NSUnit {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnit {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -204,7 +222,7 @@ impl NSDimension {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -212,7 +230,7 @@ impl NSDimension {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -225,13 +243,20 @@ impl NSDimension {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSDimension {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -287,7 +312,7 @@ impl NSUnitAcceleration {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -295,7 +320,7 @@ impl NSUnitAcceleration {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -308,13 +333,20 @@ impl NSUnitAcceleration {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitAcceleration {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -386,7 +418,7 @@ impl NSUnitAngle {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -394,7 +426,7 @@ impl NSUnitAngle {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -407,13 +439,20 @@ impl NSUnitAngle {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitAngle {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -517,7 +556,7 @@ impl NSUnitArea {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -525,7 +564,7 @@ impl NSUnitArea {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -538,13 +577,20 @@ impl NSUnitArea {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitArea {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -594,7 +640,7 @@ impl NSUnitConcentrationMass {
 
         #[unsafe(method(millimolesPerLiterWithGramsPerMole:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn millimolesPerLiterWithGramsPerMole(
+        pub fn millimolesPerLiterWithGramsPerMole(
             grams_per_mole: c_double,
         ) -> Retained<NSUnitConcentrationMass>;
     );
@@ -606,7 +652,7 @@ impl NSUnitConcentrationMass {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -614,7 +660,7 @@ impl NSUnitConcentrationMass {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -627,13 +673,20 @@ impl NSUnitConcentrationMass {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitConcentrationMass {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -685,7 +738,7 @@ impl NSUnitDispersion {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -693,7 +746,7 @@ impl NSUnitDispersion {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -706,13 +759,20 @@ impl NSUnitDispersion {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitDispersion {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -788,7 +848,7 @@ impl NSUnitDuration {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -796,7 +856,7 @@ impl NSUnitDuration {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -809,13 +869,20 @@ impl NSUnitDuration {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitDuration {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -887,7 +954,7 @@ impl NSUnitElectricCharge {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -895,7 +962,7 @@ impl NSUnitElectricCharge {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -908,13 +975,20 @@ impl NSUnitElectricCharge {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitElectricCharge {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -982,7 +1056,7 @@ impl NSUnitElectricCurrent {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -990,7 +1064,7 @@ impl NSUnitElectricCurrent {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1003,13 +1077,20 @@ impl NSUnitElectricCurrent {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitElectricCurrent {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1077,7 +1158,7 @@ impl NSUnitElectricPotentialDifference {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -1085,7 +1166,7 @@ impl NSUnitElectricPotentialDifference {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1098,13 +1179,20 @@ impl NSUnitElectricPotentialDifference {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitElectricPotentialDifference {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1172,7 +1260,7 @@ impl NSUnitElectricResistance {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -1180,7 +1268,7 @@ impl NSUnitElectricResistance {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1193,13 +1281,20 @@ impl NSUnitElectricResistance {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitElectricResistance {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1267,7 +1362,7 @@ impl NSUnitEnergy {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -1275,7 +1370,7 @@ impl NSUnitEnergy {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1288,13 +1383,20 @@ impl NSUnitEnergy {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitEnergy {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1378,7 +1480,7 @@ impl NSUnitFrequency {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -1386,7 +1488,7 @@ impl NSUnitFrequency {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1399,13 +1501,20 @@ impl NSUnitFrequency {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitFrequency {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1465,7 +1574,7 @@ impl NSUnitFuelEfficiency {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -1473,7 +1582,7 @@ impl NSUnitFuelEfficiency {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1486,13 +1595,20 @@ impl NSUnitFuelEfficiency {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitFuelEfficiency {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1680,7 +1796,7 @@ impl NSUnitInformationStorage {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -1688,7 +1804,7 @@ impl NSUnitInformationStorage {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1701,13 +1817,20 @@ impl NSUnitInformationStorage {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitInformationStorage {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1843,7 +1966,7 @@ impl NSUnitLength {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -1851,7 +1974,7 @@ impl NSUnitLength {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1864,13 +1987,20 @@ impl NSUnitLength {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitLength {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1922,7 +2052,7 @@ impl NSUnitIlluminance {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -1930,7 +2060,7 @@ impl NSUnitIlluminance {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -1943,13 +2073,20 @@ impl NSUnitIlluminance {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitIlluminance {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2061,7 +2198,7 @@ impl NSUnitMass {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -2069,7 +2206,7 @@ impl NSUnitMass {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -2082,13 +2219,20 @@ impl NSUnitMass {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitMass {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2180,7 +2324,7 @@ impl NSUnitPower {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -2188,7 +2332,7 @@ impl NSUnitPower {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -2201,13 +2345,20 @@ impl NSUnitPower {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitPower {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2295,7 +2446,7 @@ impl NSUnitPressure {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -2303,7 +2454,7 @@ impl NSUnitPressure {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -2316,13 +2467,20 @@ impl NSUnitPressure {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitPressure {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2386,7 +2544,7 @@ impl NSUnitSpeed {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -2394,7 +2552,7 @@ impl NSUnitSpeed {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -2407,13 +2565,20 @@ impl NSUnitSpeed {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitSpeed {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2473,7 +2638,7 @@ impl NSUnitTemperature {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -2481,7 +2646,7 @@ impl NSUnitTemperature {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -2494,13 +2659,20 @@ impl NSUnitTemperature {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitTemperature {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2672,7 +2844,7 @@ impl NSUnitVolume {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:converter:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol_converter(
+        pub fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
@@ -2680,7 +2852,7 @@ impl NSUnitVolume {
 
         #[unsafe(method(baseUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseUnit() -> Retained<Self>;
+        pub fn baseUnit() -> Retained<Self>;
     );
 }
 
@@ -2693,11 +2865,18 @@ impl NSUnitVolume {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
+        pub fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUnitVolume {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

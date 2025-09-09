@@ -43,28 +43,28 @@ impl NSTermOfAddress {
         /// adjectives referring to the person
         #[unsafe(method(neutral))]
         #[unsafe(method_family = none)]
-        pub unsafe fn neutral() -> Retained<Self>;
+        pub fn neutral() -> Retained<Self>;
 
         /// Term of address that uses feminine pronouns (e.g. she/her/hers in English),
         /// and a feminine grammatical gender when inflecting verbs and adjectives
         /// referring to the person
         #[unsafe(method(feminine))]
         #[unsafe(method_family = none)]
-        pub unsafe fn feminine() -> Retained<Self>;
+        pub fn feminine() -> Retained<Self>;
 
         /// Term of address that uses masculine pronouns (e.g. he/him/his in English),
         /// and a masculine grammatical gender when inflecting verbs and adjectives
         /// referring to the person
         #[unsafe(method(masculine))]
         #[unsafe(method_family = none)]
-        pub unsafe fn masculine() -> Retained<Self>;
+        pub fn masculine() -> Retained<Self>;
 
         /// The term of address that should be used for addressing the user
         ///
         /// This term of address will only compare equal to another `+[NSTermOfAddress currentUser]`
         #[unsafe(method(currentUser))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentUser() -> Retained<Self>;
+        pub fn currentUser() -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSMorphology", feature = "NSString"))]
         /// A term of address restricted to a given language
@@ -75,7 +75,7 @@ impl NSTermOfAddress {
         /// refer to the person.
         #[unsafe(method(localizedForLanguageIdentifier:withPronouns:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedForLanguageIdentifier_withPronouns(
+        pub fn localizedForLanguageIdentifier_withPronouns(
             language: &NSString,
             pronouns: &NSArray<NSMorphologyPronoun>,
         ) -> Retained<Self>;

@@ -21,16 +21,16 @@ impl NSScriptSuiteRegistry {
     extern_methods!(
         #[unsafe(method(sharedScriptSuiteRegistry))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedScriptSuiteRegistry() -> Retained<NSScriptSuiteRegistry>;
+        pub fn sharedScriptSuiteRegistry() -> Retained<NSScriptSuiteRegistry>;
 
         #[unsafe(method(setSharedScriptSuiteRegistry:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSharedScriptSuiteRegistry(registry: &NSScriptSuiteRegistry);
+        pub fn setSharedScriptSuiteRegistry(registry: &NSScriptSuiteRegistry);
 
         #[cfg(feature = "NSBundle")]
         #[unsafe(method(loadSuitesFromBundle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn loadSuitesFromBundle(&self, bundle: &NSBundle);
+        pub fn loadSuitesFromBundle(&self, bundle: &NSBundle);
 
         #[cfg(all(feature = "NSBundle", feature = "NSDictionary"))]
         /// # Safety
@@ -47,15 +47,12 @@ impl NSScriptSuiteRegistry {
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[unsafe(method(registerClassDescription:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerClassDescription(&self, class_description: &NSScriptClassDescription);
+        pub fn registerClassDescription(&self, class_description: &NSScriptClassDescription);
 
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(registerCommandDescription:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerCommandDescription(
-            &self,
-            command_description: &NSScriptCommandDescription,
-        );
+        pub fn registerCommandDescription(&self, command_description: &NSScriptCommandDescription);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(suiteNames))]
@@ -65,12 +62,12 @@ impl NSScriptSuiteRegistry {
         #[cfg(feature = "NSString")]
         #[unsafe(method(appleEventCodeForSuite:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appleEventCodeForSuite(&self, suite_name: &NSString) -> FourCharCode;
+        pub fn appleEventCodeForSuite(&self, suite_name: &NSString) -> FourCharCode;
 
         #[cfg(all(feature = "NSBundle", feature = "NSString"))]
         #[unsafe(method(bundleForSuite:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bundleForSuite(&self, suite_name: &NSString) -> Option<Retained<NSBundle>>;
+        pub fn bundleForSuite(&self, suite_name: &NSString) -> Option<Retained<NSBundle>>;
 
         #[cfg(all(
             feature = "NSClassDescription",
@@ -80,7 +77,7 @@ impl NSScriptSuiteRegistry {
         ))]
         #[unsafe(method(classDescriptionsInSuite:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn classDescriptionsInSuite(
+        pub fn classDescriptionsInSuite(
             &self,
             suite_name: &NSString,
         ) -> Option<Retained<NSDictionary<NSString, NSScriptClassDescription>>>;
@@ -92,7 +89,7 @@ impl NSScriptSuiteRegistry {
         ))]
         #[unsafe(method(commandDescriptionsInSuite:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn commandDescriptionsInSuite(
+        pub fn commandDescriptionsInSuite(
             &self,
             suite_name: &NSString,
         ) -> Option<Retained<NSDictionary<NSString, NSScriptCommandDescription>>>;
@@ -100,7 +97,7 @@ impl NSScriptSuiteRegistry {
         #[cfg(feature = "NSString")]
         #[unsafe(method(suiteForAppleEventCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn suiteForAppleEventCode(
+        pub fn suiteForAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
         ) -> Option<Retained<NSString>>;
@@ -108,7 +105,7 @@ impl NSScriptSuiteRegistry {
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[unsafe(method(classDescriptionWithAppleEventCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn classDescriptionWithAppleEventCode(
+        pub fn classDescriptionWithAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
         ) -> Option<Retained<NSScriptClassDescription>>;
@@ -116,7 +113,7 @@ impl NSScriptSuiteRegistry {
         #[cfg(feature = "NSScriptCommandDescription")]
         #[unsafe(method(commandDescriptionWithAppleEventClass:andAppleEventCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn commandDescriptionWithAppleEventClass_andAppleEventCode(
+        pub fn commandDescriptionWithAppleEventClass_andAppleEventCode(
             &self,
             apple_event_class_code: FourCharCode,
             apple_event_id_code: FourCharCode,
@@ -125,7 +122,7 @@ impl NSScriptSuiteRegistry {
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[unsafe(method(aeteResource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn aeteResource(&self, language_name: &NSString) -> Option<Retained<NSData>>;
+        pub fn aeteResource(&self, language_name: &NSString) -> Option<Retained<NSData>>;
     );
 }
 
@@ -134,10 +131,17 @@ impl NSScriptSuiteRegistry {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSScriptSuiteRegistry {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

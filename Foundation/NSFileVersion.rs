@@ -62,19 +62,17 @@ impl NSFileVersion {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(currentVersionOfItemAtURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentVersionOfItemAtURL(url: &NSURL) -> Option<Retained<NSFileVersion>>;
+        pub fn currentVersionOfItemAtURL(url: &NSURL) -> Option<Retained<NSFileVersion>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSURL"))]
         #[unsafe(method(otherVersionsOfItemAtURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn otherVersionsOfItemAtURL(
-            url: &NSURL,
-        ) -> Option<Retained<NSArray<NSFileVersion>>>;
+        pub fn otherVersionsOfItemAtURL(url: &NSURL) -> Option<Retained<NSArray<NSFileVersion>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSURL"))]
         #[unsafe(method(unresolvedConflictVersionsOfItemAtURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unresolvedConflictVersionsOfItemAtURL(
+        pub fn unresolvedConflictVersionsOfItemAtURL(
             url: &NSURL,
         ) -> Option<Retained<NSArray<NSFileVersion>>>;
 
@@ -110,7 +108,7 @@ impl NSFileVersion {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(addVersionOfItemAtURL:withContentsOfURL:options:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addVersionOfItemAtURL_withContentsOfURL_options_error(
+        pub fn addVersionOfItemAtURL_withContentsOfURL_options_error(
             url: &NSURL,
             contents_url: &NSURL,
             options: NSFileVersionAddingOptions,
@@ -119,8 +117,7 @@ impl NSFileVersion {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(temporaryDirectoryURLForNewVersionOfItemAtURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn temporaryDirectoryURLForNewVersionOfItemAtURL(url: &NSURL)
-            -> Retained<NSURL>;
+        pub fn temporaryDirectoryURLForNewVersionOfItemAtURL(url: &NSURL) -> Retained<NSURL>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(URL))]
@@ -185,7 +182,7 @@ impl NSFileVersion {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(replaceItemAtURL:options:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replaceItemAtURL_options_error(
+        pub fn replaceItemAtURL_options_error(
             &self,
             url: &NSURL,
             options: NSFileVersionReplacingOptions,
@@ -194,14 +191,12 @@ impl NSFileVersion {
         #[cfg(feature = "NSError")]
         #[unsafe(method(removeAndReturnError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAndReturnError(&self) -> Result<(), Retained<NSError>>;
+        pub fn removeAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(removeOtherVersionsOfItemAtURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeOtherVersionsOfItemAtURL_error(
-            url: &NSURL,
-        ) -> Result<(), Retained<NSError>>;
+        pub fn removeOtherVersionsOfItemAtURL_error(url: &NSURL) -> Result<(), Retained<NSError>>;
     );
 }
 
@@ -210,10 +205,17 @@ impl NSFileVersion {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSFileVersion {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

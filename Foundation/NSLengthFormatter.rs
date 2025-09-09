@@ -103,7 +103,7 @@ impl NSLengthFormatter {
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringFromValue:unit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromValue_unit(
+        pub fn stringFromValue_unit(
             &self,
             value: c_double,
             unit: NSLengthFormatterUnit,
@@ -112,12 +112,12 @@ impl NSLengthFormatter {
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringFromMeters:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromMeters(&self, number_in_meters: c_double) -> Retained<NSString>;
+        pub fn stringFromMeters(&self, number_in_meters: c_double) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(unitStringFromValue:unit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unitStringFromValue_unit(
+        pub fn unitStringFromValue_unit(
             &self,
             value: c_double,
             unit: NSLengthFormatterUnit,
@@ -156,10 +156,18 @@ impl NSLengthFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSLengthFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

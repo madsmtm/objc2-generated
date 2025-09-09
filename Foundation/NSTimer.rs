@@ -161,7 +161,7 @@ impl NSTimer {
 
         #[unsafe(method(fire))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fire(&self);
+        pub fn fire(&self);
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(fireDate))]
@@ -194,7 +194,7 @@ impl NSTimer {
 
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidate(&self);
+        pub fn invalidate(&self);
 
         #[unsafe(method(isValid))]
         #[unsafe(method_family = none)]
@@ -211,10 +211,17 @@ impl NSTimer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTimer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

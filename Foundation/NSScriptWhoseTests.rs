@@ -57,11 +57,11 @@ impl NSScriptWhoseTest {
     extern_methods!(
         #[unsafe(method(isTrue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isTrue(&self) -> bool;
+        pub fn isTrue(&self) -> bool;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         /// # Safety
@@ -81,8 +81,15 @@ impl NSScriptWhoseTest {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSScriptWhoseTest {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -106,7 +113,7 @@ impl NSLogicalTest {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initAndTestWithTests:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initAndTestWithTests(
+        pub fn initAndTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Retained<Self>;
@@ -114,14 +121,14 @@ impl NSLogicalTest {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initOrTestWithTests:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initOrTestWithTests(
+        pub fn initOrTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Retained<Self>;
 
         #[unsafe(method(initNotTestWithTest:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initNotTestWithTest(
+        pub fn initNotTestWithTest(
             this: Allocated<Self>,
             sub_test: &NSScriptWhoseTest,
         ) -> Retained<Self>;
@@ -133,7 +140,7 @@ impl NSLogicalTest {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         /// # Safety
@@ -153,8 +160,15 @@ impl NSLogicalTest {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSLogicalTest {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -210,8 +224,15 @@ impl NSSpecifierTest {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSSpecifierTest {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 mod private_NSObjectNSComparisonMethods {
@@ -276,12 +297,12 @@ pub unsafe trait NSObjectNSComparisonMethods:
         #[cfg(feature = "NSString")]
         #[unsafe(method(isLike:))]
         #[unsafe(method_family = none)]
-        unsafe fn isLike(&self, object: &NSString) -> bool;
+        fn isLike(&self, object: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(isCaseInsensitiveLike:))]
         #[unsafe(method_family = none)]
-        unsafe fn isCaseInsensitiveLike(&self, object: &NSString) -> bool;
+        fn isCaseInsensitiveLike(&self, object: &NSString) -> bool;
     );
 }
 

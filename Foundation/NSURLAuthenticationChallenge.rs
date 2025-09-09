@@ -19,7 +19,7 @@ extern_protocol!(
         #[cfg(feature = "NSURLCredential")]
         #[unsafe(method(useCredential:forAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
-        unsafe fn useCredential_forAuthenticationChallenge(
+        fn useCredential_forAuthenticationChallenge(
             &self,
             credential: &NSURLCredential,
             challenge: &NSURLAuthenticationChallenge,
@@ -27,19 +27,19 @@ extern_protocol!(
 
         #[unsafe(method(continueWithoutCredentialForAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
-        unsafe fn continueWithoutCredentialForAuthenticationChallenge(
+        fn continueWithoutCredentialForAuthenticationChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
 
         #[unsafe(method(cancelAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
-        unsafe fn cancelAuthenticationChallenge(&self, challenge: &NSURLAuthenticationChallenge);
+        fn cancelAuthenticationChallenge(&self, challenge: &NSURLAuthenticationChallenge);
 
         #[optional]
         #[unsafe(method(performDefaultHandlingForAuthenticationChallenge:))]
         #[unsafe(method_family = none)]
-        unsafe fn performDefaultHandlingForAuthenticationChallenge(
+        fn performDefaultHandlingForAuthenticationChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
@@ -47,7 +47,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(rejectProtectionSpaceAndContinueWithChallenge:))]
         #[unsafe(method_family = none)]
-        unsafe fn rejectProtectionSpaceAndContinueWithChallenge(
+        fn rejectProtectionSpaceAndContinueWithChallenge(
             &self,
             challenge: &NSURLAuthenticationChallenge,
         );
@@ -106,7 +106,7 @@ impl NSURLAuthenticationChallenge {
         /// Returns: An authentication challenge initialized with the specified parameters
         #[unsafe(method(initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithProtectionSpace_proposedCredential_previousFailureCount_failureResponse_error_sender(
+        pub fn initWithProtectionSpace_proposedCredential_previousFailureCount_failureResponse_error_sender(
             this: Allocated<Self>,
             space: &NSURLProtectionSpace,
             credential: Option<&NSURLCredential>,
@@ -124,7 +124,7 @@ impl NSURLAuthenticationChallenge {
         /// one type of authentication challenge to look like another type.
         #[unsafe(method(initWithAuthenticationChallenge:sender:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAuthenticationChallenge_sender(
+        pub fn initWithAuthenticationChallenge_sender(
             this: Allocated<Self>,
             challenge: &NSURLAuthenticationChallenge,
             sender: &ProtocolObject<dyn NSURLAuthenticationChallengeSender>,
@@ -203,10 +203,17 @@ impl NSURLAuthenticationChallenge {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURLAuthenticationChallenge {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

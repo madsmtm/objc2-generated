@@ -41,7 +41,7 @@ impl NSIndexPath {
     extern_methods!(
         #[unsafe(method(indexPathWithIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Retained<Self>;
+        pub fn indexPathWithIndex(index: NSUInteger) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -66,19 +66,19 @@ impl NSIndexPath {
 
         #[unsafe(method(initWithIndex:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIndex(this: Allocated<Self>, index: NSUInteger) -> Retained<Self>;
+        pub fn initWithIndex(this: Allocated<Self>, index: NSUInteger) -> Retained<Self>;
 
         #[unsafe(method(indexPathByAddingIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexPathByAddingIndex(&self, index: NSUInteger) -> Retained<NSIndexPath>;
+        pub fn indexPathByAddingIndex(&self, index: NSUInteger) -> Retained<NSIndexPath>;
 
         #[unsafe(method(indexPathByRemovingLastIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexPathByRemovingLastIndex(&self) -> Retained<NSIndexPath>;
+        pub fn indexPathByRemovingLastIndex(&self) -> Retained<NSIndexPath>;
 
         #[unsafe(method(indexAtPosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexAtPosition(&self, position: NSUInteger) -> NSUInteger;
+        pub fn indexAtPosition(&self, position: NSUInteger) -> NSUInteger;
 
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
@@ -107,7 +107,7 @@ impl NSIndexPath {
         #[cfg(feature = "NSObjCRuntime")]
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn compare(&self, other_object: &NSIndexPath) -> NSComparisonResult;
+        pub fn compare(&self, other_object: &NSIndexPath) -> NSComparisonResult;
     );
 }
 
@@ -116,12 +116,19 @@ impl NSIndexPath {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSIndexPath {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSDeprecated.

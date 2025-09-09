@@ -90,13 +90,13 @@ impl NSDistributedNotificationCenter {
         #[cfg(feature = "NSString")]
         #[unsafe(method(notificationCenterForType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notificationCenterForType(
+        pub fn notificationCenterForType(
             notification_center_type: &NSDistributedNotificationCenterType,
         ) -> Retained<NSDistributedNotificationCenter>;
 
         #[unsafe(method(defaultCenter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultCenter() -> Retained<NSDistributedNotificationCenter>;
+        pub fn defaultCenter() -> Retained<NSDistributedNotificationCenter>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -169,7 +169,7 @@ impl NSDistributedNotificationCenter {
         #[cfg(feature = "NSString")]
         #[unsafe(method(postNotificationName:object:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn postNotificationName_object(
+        pub fn postNotificationName_object(
             &self,
             a_name: &NSNotificationName,
             an_object: Option<&NSString>,
@@ -209,10 +209,18 @@ impl NSDistributedNotificationCenter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSNotification")]
+impl DefaultRetained for NSDistributedNotificationCenter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

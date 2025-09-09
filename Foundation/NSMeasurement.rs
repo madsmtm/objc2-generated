@@ -67,7 +67,7 @@ impl<UnitType: Message> NSMeasurement<UnitType> {
 
         #[unsafe(method(initWithDoubleValue:unit:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDoubleValue_unit(
+        pub fn initWithDoubleValue_unit(
             this: Allocated<Self>,
             double_value: c_double,
             unit: &UnitType,
@@ -76,26 +76,23 @@ impl<UnitType: Message> NSMeasurement<UnitType> {
         #[cfg(feature = "NSUnit")]
         #[unsafe(method(canBeConvertedToUnit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canBeConvertedToUnit(&self, unit: &NSUnit) -> bool;
+        pub fn canBeConvertedToUnit(&self, unit: &NSUnit) -> bool;
 
         #[cfg(feature = "NSUnit")]
         #[unsafe(method(measurementByConvertingToUnit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn measurementByConvertingToUnit(
-            &self,
-            unit: &NSUnit,
-        ) -> Retained<NSMeasurement>;
+        pub fn measurementByConvertingToUnit(&self, unit: &NSUnit) -> Retained<NSMeasurement>;
 
         #[unsafe(method(measurementByAddingMeasurement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn measurementByAddingMeasurement(
+        pub fn measurementByAddingMeasurement(
             &self,
             measurement: &NSMeasurement<UnitType>,
         ) -> Retained<NSMeasurement<UnitType>>;
 
         #[unsafe(method(measurementBySubtractingMeasurement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn measurementBySubtractingMeasurement(
+        pub fn measurementBySubtractingMeasurement(
             &self,
             measurement: &NSMeasurement<UnitType>,
         ) -> Retained<NSMeasurement<UnitType>>;
@@ -107,6 +104,13 @@ impl<UnitType: Message> NSMeasurement<UnitType> {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl<UnitType: Message> DefaultRetained for NSMeasurement<UnitType> {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

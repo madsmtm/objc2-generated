@@ -117,13 +117,13 @@ impl NSProcessInfo {
         #[deprecated = "-operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead"]
         #[unsafe(method(operatingSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn operatingSystem(&self) -> NSUInteger;
+        pub fn operatingSystem(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "-operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead"]
         #[unsafe(method(operatingSystemName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn operatingSystemName(&self) -> Retained<NSString>;
+        pub fn operatingSystemName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(operatingSystemVersionString))]
@@ -148,10 +148,7 @@ impl NSProcessInfo {
 
         #[unsafe(method(isOperatingSystemAtLeastVersion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isOperatingSystemAtLeastVersion(
-            &self,
-            version: NSOperatingSystemVersion,
-        ) -> bool;
+        pub fn isOperatingSystemAtLeastVersion(&self, version: NSOperatingSystemVersion) -> bool;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(systemUptime))]
@@ -160,21 +157,21 @@ impl NSProcessInfo {
 
         #[unsafe(method(disableSuddenTermination))]
         #[unsafe(method_family = none)]
-        pub unsafe fn disableSuddenTermination(&self);
+        pub fn disableSuddenTermination(&self);
 
         #[unsafe(method(enableSuddenTermination))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enableSuddenTermination(&self);
+        pub fn enableSuddenTermination(&self);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(disableAutomaticTermination:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn disableAutomaticTermination(&self, reason: &NSString);
+        pub fn disableAutomaticTermination(&self, reason: &NSString);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(enableAutomaticTermination:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enableAutomaticTermination(&self, reason: &NSString);
+        pub fn enableAutomaticTermination(&self, reason: &NSString);
 
         #[unsafe(method(automaticTerminationSupportEnabled))]
         #[unsafe(method_family = none)]
@@ -195,12 +192,19 @@ impl NSProcessInfo {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSProcessInfo {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsactivityoptions?language=objc)
@@ -249,7 +253,7 @@ impl NSProcessInfo {
         #[cfg(feature = "NSString")]
         #[unsafe(method(beginActivityWithOptions:reason:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginActivityWithOptions_reason(
+        pub fn beginActivityWithOptions_reason(
             &self,
             options: NSActivityOptions,
             reason: &NSString,
@@ -257,12 +261,12 @@ impl NSProcessInfo {
 
         #[unsafe(method(endActivity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endActivity(&self, activity: &ProtocolObject<dyn NSObjectProtocol>);
+        pub fn endActivity(&self, activity: &ProtocolObject<dyn NSObjectProtocol>);
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
         #[unsafe(method(performActivityWithOptions:reason:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performActivityWithOptions_reason_usingBlock(
+        pub fn performActivityWithOptions_reason_usingBlock(
             &self,
             options: NSActivityOptions,
             reason: &NSString,

@@ -49,19 +49,19 @@ impl NSProgress {
     extern_methods!(
         #[unsafe(method(currentProgress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentProgress() -> Option<Retained<NSProgress>>;
+        pub fn currentProgress() -> Option<Retained<NSProgress>>;
 
         #[unsafe(method(progressWithTotalUnitCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressWithTotalUnitCount(unit_count: i64) -> Retained<NSProgress>;
+        pub fn progressWithTotalUnitCount(unit_count: i64) -> Retained<NSProgress>;
 
         #[unsafe(method(discreteProgressWithTotalUnitCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn discreteProgressWithTotalUnitCount(unit_count: i64) -> Retained<NSProgress>;
+        pub fn discreteProgressWithTotalUnitCount(unit_count: i64) -> Retained<NSProgress>;
 
         #[unsafe(method(progressWithTotalUnitCount:parent:pendingUnitCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressWithTotalUnitCount_parent_pendingUnitCount(
+        pub fn progressWithTotalUnitCount_parent_pendingUnitCount(
             unit_count: i64,
             parent: &NSProgress,
             portion_of_parent_total_unit_count: i64,
@@ -81,12 +81,12 @@ impl NSProgress {
 
         #[unsafe(method(becomeCurrentWithPendingUnitCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn becomeCurrentWithPendingUnitCount(&self, unit_count: i64);
+        pub fn becomeCurrentWithPendingUnitCount(&self, unit_count: i64);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(performAsCurrentWithPendingUnitCount:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performAsCurrentWithPendingUnitCount_usingBlock(
+        pub fn performAsCurrentWithPendingUnitCount_usingBlock(
             &self,
             unit_count: i64,
             work: &block2::DynBlock<dyn Fn() + '_>,
@@ -94,11 +94,11 @@ impl NSProgress {
 
         #[unsafe(method(resignCurrent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resignCurrent(&self);
+        pub fn resignCurrent(&self);
 
         #[unsafe(method(addChild:withPendingUnitCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addChild_withPendingUnitCount(&self, child: &NSProgress, in_unit_count: i64);
+        pub fn addChild_withPendingUnitCount(&self, child: &NSProgress, in_unit_count: i64);
 
         #[unsafe(method(totalUnitCount))]
         #[unsafe(method_family = none)]
@@ -268,15 +268,15 @@ impl NSProgress {
 
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancel(&self);
+        pub fn cancel(&self);
 
         #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pause(&self);
+        pub fn pause(&self);
 
         #[unsafe(method(resume))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resume(&self);
+        pub fn resume(&self);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(userInfo))]
@@ -379,11 +379,11 @@ impl NSProgress {
 
         #[unsafe(method(publish))]
         #[unsafe(method_family = none)]
-        pub unsafe fn publish(&self);
+        pub fn publish(&self);
 
         #[unsafe(method(unpublish))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unpublish(&self);
+        pub fn unpublish(&self);
 
         #[cfg(all(feature = "NSURL", feature = "block2"))]
         /// # Safety
@@ -414,12 +414,19 @@ impl NSProgress {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSProgress {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
