@@ -349,6 +349,7 @@ impl NSDocument {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_save_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(saveDocumentWithDelegate:didSaveSelector:contextInfo:))]
@@ -362,6 +363,7 @@ impl NSDocument {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_save_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(runModalSavePanelForSaveOperation:delegate:didSaveSelector:contextInfo:))]
@@ -398,6 +400,7 @@ impl NSDocument {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_save_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(saveToURL:ofType:forSaveOperation:delegate:didSaveSelector:contextInfo:))]
@@ -446,6 +449,7 @@ impl NSDocument {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_autosave_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:))]
@@ -517,6 +521,7 @@ impl NSDocument {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `should_close_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(canCloseDocumentWithDelegate:shouldCloseSelector:contextInfo:))]
@@ -541,6 +546,7 @@ impl NSDocument {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_duplicate_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(duplicateDocumentWithDelegate:didDuplicateSelector:contextInfo:))]
@@ -656,6 +662,7 @@ impl NSDocument {
         #[cfg(feature = "NSPrintInfo")]
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_run_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(runModalPageLayoutWithPrintInfo:delegate:didRunSelector:contextInfo:))]
@@ -701,6 +708,8 @@ impl NSDocument {
         #[cfg(feature = "NSPrintInfo")]
         /// # Safety
         ///
+        /// - `print_settings` generic should be of the correct type.
+        /// - `delegate` should be of the correct type.
         /// - `did_print_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(printDocumentWithSettings:showPrintPanel:delegate:didPrintSelector:contextInfo:))]
@@ -728,6 +737,7 @@ impl NSDocument {
         #[cfg(feature = "NSPrintOperation")]
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_run_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(runModalPrintOperation:delegate:didRunSelector:contextInfo:))]
@@ -844,6 +854,7 @@ impl NSDocument {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_present_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:))]
@@ -915,6 +926,7 @@ impl NSDocument {
         #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `should_close_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(shouldCloseWindowController:delegate:shouldCloseSelector:contextInfo:))]
@@ -1194,6 +1206,7 @@ impl NSDocument {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_save_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[deprecated]

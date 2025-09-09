@@ -56,6 +56,7 @@ impl ODSessionRef {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `options` generics must be of the correct type.
     /// - `options` might not allow `None`.
     /// - `error` must be a valid pointer.
@@ -92,7 +93,9 @@ impl ODSessionRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `session` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODSessionCopyNodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

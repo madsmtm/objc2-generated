@@ -2021,6 +2021,7 @@ impl NSApplication {
         ///
         /// # Safety
         ///
+        /// - `modal_delegate` should be of the correct type.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]

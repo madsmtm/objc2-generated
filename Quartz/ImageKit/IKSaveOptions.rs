@@ -63,7 +63,9 @@ impl IKSaveOptions {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);

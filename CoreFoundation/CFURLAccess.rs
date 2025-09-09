@@ -10,6 +10,8 @@ use crate::*;
 impl CFURL {
     /// # Safety
     ///
+    /// - `alloc` might not allow `None`.
+    /// - `url` might not allow `None`.
     /// - `resource_data` must be a valid pointer.
     /// - `properties` must be a valid pointer.
     /// - `desired_properties` generic must be of the correct type.
@@ -57,6 +59,7 @@ impl CFURL {
 
     /// # Safety
     ///
+    /// - `data_to_write` might not allow `None`.
     /// - `properties_to_write` generics must be of the correct type.
     /// - `properties_to_write` might not allow `None`.
     /// - `error_code` must be a valid pointer.
@@ -106,7 +109,10 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// `error_code` must be a valid pointer.
+    /// - `alloc` might not allow `None`.
+    /// - `url` might not allow `None`.
+    /// - `property` might not allow `None`.
+    /// - `error_code` must be a valid pointer.
     #[doc(alias = "CFURLCreatePropertyFromResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]

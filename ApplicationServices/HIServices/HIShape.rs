@@ -474,7 +474,8 @@ impl HIMutableShape {
 
     /// # Safety
     ///
-    /// `in_rect` must be a valid pointer.
+    /// - `in_shape` might not allow `None`.
+    /// - `in_rect` must be a valid pointer.
     #[doc(alias = "HIShapeUnionWithRect")]
     #[inline]
     pub unsafe fn union_with_rect(

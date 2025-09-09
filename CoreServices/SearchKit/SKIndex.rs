@@ -115,6 +115,8 @@ unsafe impl RefEncode for SKDocumentIndexState {
 impl SKIndex {
     /// # Safety
     ///
+    /// - `in_url` might not allow `None`.
+    /// - `in_index_name` might not allow `None`.
     /// - `in_analysis_properties` generics must be of the correct type.
     /// - `in_analysis_properties` might not allow `None`.
     #[doc(alias = "SKIndexCreateWithURL")]
@@ -163,6 +165,8 @@ impl SKIndex {
 
     /// # Safety
     ///
+    /// - `in_data` might not allow `None`.
+    /// - `in_index_name` might not allow `None`.
     /// - `in_analysis_properties` generics must be of the correct type.
     /// - `in_analysis_properties` might not allow `None`.
     #[doc(alias = "SKIndexCreateWithMutableData")]
@@ -409,6 +413,8 @@ impl SKIndex {
 
     /// # Safety
     ///
+    /// - `in_document` should be of the correct type.
+    /// - `in_document` might not allow `None`.
     /// - `in_properties` generics must be of the correct type.
     /// - `in_properties` might not allow `None`.
     #[doc(alias = "SKIndexSetDocumentProperties")]

@@ -280,6 +280,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `in_run_loop` possibly has additional threading requirements.
     /// - `in_completion_routine` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-foundation")]

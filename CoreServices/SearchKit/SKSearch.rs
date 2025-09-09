@@ -340,6 +340,8 @@ impl SKSearchGroup {
 impl SKSearchResults {
     /// # Safety
     ///
+    /// - `in_search_group` might not allow `None`.
+    /// - `in_query` might not allow `None`.
     /// - `in_context` must be a valid pointer.
     /// - `in_filter_call_back` must be implemented correctly.
     #[doc(alias = "SKSearchResultsCreateWithQuery")]
@@ -379,6 +381,7 @@ impl SKSearchResults {
 
     /// # Safety
     ///
+    /// - `in_search_group` might not allow `None`.
     /// - `in_example_documents` generic must be of the correct type.
     /// - `in_example_documents` might not allow `None`.
     /// - `in_context` must be a valid pointer.

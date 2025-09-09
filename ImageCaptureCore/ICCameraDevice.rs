@@ -254,6 +254,7 @@ impl ICCameraDevice {
         ///
         /// # Safety
         ///
+        /// - `read_delegate` should be of the correct type.
         /// - `selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(requestReadDataFromFile:atOffset:length:readDelegate:didReadDataSelector:contextInfo:))]
@@ -275,6 +276,7 @@ impl ICCameraDevice {
         ///
         /// # Safety
         ///
+        /// - `options` generic should be of the correct type.
         /// - `selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:))]
@@ -368,6 +370,8 @@ impl ICCameraDevice {
         ///
         /// # Safety
         ///
+        /// - `options` generic should be of the correct type.
+        /// - `upload_delegate` should be of the correct type.
         /// - `selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[deprecated = "Sandbox restrictions prohibit writing directly to device hardware"]
@@ -434,6 +438,7 @@ impl ICCameraDevice {
         ///
         /// # Safety
         ///
+        /// - `send_command_delegate` should be of the correct type.
         /// - `selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(requestSendPTPCommand:outData:sendCommandDelegate:didSendCommandSelector:contextInfo:))]
@@ -668,7 +673,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `context_info` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `context_info` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(didDownloadFile:error:options:contextInfo:))]
         #[unsafe(method_family = none)]

@@ -41,7 +41,9 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `session` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -83,7 +85,10 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `session` might not allow `None`.
+    /// - `node_name` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCreateWithName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -120,7 +125,9 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `node` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCreateCopy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -302,7 +309,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `record_type` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCopySupportedAttributes")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -347,7 +355,10 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `record_type` might not allow `None`.
+    /// - `record_name` might not allow `None`.
+    /// - `password` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeSetCredentials")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -400,6 +411,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
+    /// - `record_type` might not allow `None`.
+    /// - `auth_type` might not allow `None`.
     /// - `auth_items` generic must be of the correct type.
     /// - `auth_items` might not allow `None`.
     /// - `out_auth_items` must be a valid pointer.
@@ -450,7 +463,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `cache_name` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeSetCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -494,6 +508,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
+    /// - `record_type` might not allow `None`.
+    /// - `record_name` might not allow `None`.
     /// - `attribute_dict` generics must be of the correct type.
     /// - `attribute_dict` might not allow `None`.
     /// - `error` must be a valid pointer.
@@ -546,7 +562,11 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `record_type` might not allow `None`.
+    /// - `record_name` might not allow `None`.
+    /// - `attributes` should be of the correct type.
+    /// - `attributes` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCopyRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -589,7 +609,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `data` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCustomCall")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -634,7 +655,10 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `function` might not allow `None`.
+    /// - `payload` should be of the correct type.
+    /// - `payload` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCustomFunction")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -769,7 +793,10 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `policy_type` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -808,7 +835,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `policy_type` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -1031,7 +1059,9 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `password` might not allow `None`.
+    /// - `record_name` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodePasswordContentCheck")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

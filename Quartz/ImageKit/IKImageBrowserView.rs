@@ -346,7 +346,9 @@ impl IKImageBrowserView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `data_source` should be of the correct type.
+        /// - `data_source` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
@@ -372,7 +374,9 @@ impl IKImageBrowserView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "Deprecated - Please use NSCollectionView instead"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

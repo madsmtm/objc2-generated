@@ -64,7 +64,8 @@ impl NSAppleEventManager {
         #[cfg(target_vendor = "apple")]
         /// # Safety
         ///
-        /// `handle_event_selector` must be a valid selector.
+        /// - `handler` should be of the correct type.
+        /// - `handle_event_selector` must be a valid selector.
         #[unsafe(method(setEventHandler:andSelector:forEventClass:andEventID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEventHandler_andSelector_forEventClass_andEventID(

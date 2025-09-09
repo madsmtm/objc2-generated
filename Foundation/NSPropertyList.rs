@@ -119,7 +119,8 @@ impl NSPropertyListSerialization {
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         /// # Safety
         ///
-        /// `error_string` must be a valid pointer or null.
+        /// - `plist` should be of the correct type.
+        /// - `error_string` must be a valid pointer or null.
         #[deprecated = "Use dataWithPropertyList:format:options:error: instead."]
         #[unsafe(method(dataFromPropertyList:format:errorDescription:))]
         #[unsafe(method_family = none)]

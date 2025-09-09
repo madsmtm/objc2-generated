@@ -48,7 +48,9 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `username` might not allow `None`.
+    /// - `password` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetNodeCredentials")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -96,6 +98,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
+    /// - `record_type` might not allow `None`.
+    /// - `auth_type` might not allow `None`.
     /// - `auth_items` generic must be of the correct type.
     /// - `auth_items` might not allow `None`.
     /// - `out_auth_items` must be a valid pointer.
@@ -146,7 +150,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `cache_name` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetNodeCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -180,7 +185,9 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `record` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyPasswordPolicy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyEffectivePolicies"]
@@ -215,7 +222,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `password` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordVerifyPassword")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -258,6 +266,7 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
+    /// - `auth_type` might not allow `None`.
     /// - `auth_items` generic must be of the correct type.
     /// - `auth_items` might not allow `None`.
     /// - `out_auth_items` must be a valid pointer.
@@ -316,7 +325,9 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `old_password` might not allow `None`.
+    /// - `new_password` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordChangePassword")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -391,7 +402,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `attribute` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyValues")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -434,7 +446,10 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `attribute` might not allow `None`.
+    /// - `value_or_values` should be of the correct type.
+    /// - `value_or_values` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -474,7 +489,10 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `attribute` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordAddValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -515,7 +533,10 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `attribute` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordRemoveValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -645,7 +666,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `member` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordAddMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -679,7 +701,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `member` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordRemoveMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -714,7 +737,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `member` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordContainsMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -877,7 +901,10 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `policy` might not allow `None`.
+    /// - `value` should be of the correct type.
+    /// - `value` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -916,7 +943,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `policy` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -1181,7 +1209,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `new_password` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordPasswordChangeAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

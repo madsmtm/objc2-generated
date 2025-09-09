@@ -183,7 +183,9 @@ impl IOBluetoothL2CAPChannel {
         ///
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(registerForChannelOpenNotifications:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelOpenNotifications_selector(
@@ -220,7 +222,9 @@ impl IOBluetoothL2CAPChannel {
         ///
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(registerForChannelOpenNotifications:selector:withPSM:direction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelOpenNotifications_selector_withPSM_direction(
@@ -549,7 +553,9 @@ impl IOBluetoothL2CAPChannel {
         ///
         /// # Safety
         ///
-        /// `in_selector` must be a valid selector.
+        /// - `observer` should be of the correct type.
+        /// - `observer` might not allow `None`.
+        /// - `in_selector` must be a valid selector.
         #[unsafe(method(registerForChannelCloseNotification:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelCloseNotification_selector(
@@ -580,7 +586,8 @@ extern_protocol!(
         #[cfg(feature = "IOBluetoothObject")]
         /// # Safety
         ///
-        /// `data_pointer` must be a valid pointer.
+        /// - `l2cap_channel` might not allow `None`.
+        /// - `data_pointer` must be a valid pointer.
         #[optional]
         #[unsafe(method(l2capChannelData:data:length:))]
         #[unsafe(method_family = none)]
@@ -625,7 +632,8 @@ extern_protocol!(
         #[cfg(feature = "IOBluetoothObject")]
         /// # Safety
         ///
-        /// `refcon` must be a valid pointer.
+        /// - `l2cap_channel` might not allow `None`.
+        /// - `refcon` must be a valid pointer.
         #[optional]
         #[unsafe(method(l2capChannelWriteComplete:refcon:status:))]
         #[unsafe(method_family = none)]

@@ -37,6 +37,7 @@ impl NSScriptCoercionHandler {
 
         /// # Safety
         ///
+        /// - `coercer` should be of the correct type.
         /// - `selector` must be a valid selector.
         /// - `from_class` probably has further requirements.
         /// - `to_class` probably has further requirements.

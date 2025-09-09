@@ -72,7 +72,9 @@ impl IOBluetoothRFCOMMChannel {
         ///
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(registerForChannelOpenNotifications:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelOpenNotifications_selector(
@@ -111,7 +113,9 @@ impl IOBluetoothRFCOMMChannel {
         ///
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(registerForChannelOpenNotifications:selector:withChannelID:direction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelOpenNotifications_selector_withChannelID_direction(
@@ -428,7 +432,9 @@ impl IOBluetoothRFCOMMChannel {
         ///
         /// # Safety
         ///
-        /// `in_selector` must be a valid selector.
+        /// - `observer` should be of the correct type.
+        /// - `observer` might not allow `None`.
+        /// - `in_selector` must be a valid selector.
         #[unsafe(method(registerForChannelCloseNotification:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForChannelCloseNotification_selector(
@@ -459,7 +465,8 @@ extern_protocol!(
         #[cfg(feature = "IOBluetoothObject")]
         /// # Safety
         ///
-        /// `data_pointer` must be a valid pointer.
+        /// - `rfcomm_channel` might not allow `None`.
+        /// - `data_pointer` must be a valid pointer.
         #[optional]
         #[unsafe(method(rfcommChannelData:data:length:))]
         #[unsafe(method_family = none)]
@@ -519,7 +526,8 @@ extern_protocol!(
         #[cfg(feature = "IOBluetoothObject")]
         /// # Safety
         ///
-        /// `refcon` must be a valid pointer.
+        /// - `rfcomm_channel` might not allow `None`.
+        /// - `refcon` must be a valid pointer.
         #[optional]
         #[unsafe(method(rfcommChannelWriteComplete:refcon:status:))]
         #[unsafe(method_family = none)]
@@ -533,7 +541,8 @@ extern_protocol!(
         #[cfg(feature = "IOBluetoothObject")]
         /// # Safety
         ///
-        /// `refcon` must be a valid pointer.
+        /// - `rfcomm_channel` might not allow `None`.
+        /// - `refcon` must be a valid pointer.
         #[optional]
         #[unsafe(method(rfcommChannelWriteComplete:refcon:status:bytesWritten:))]
         #[unsafe(method_family = none)]

@@ -635,6 +635,7 @@ extern_protocol!(
 impl UIImage {
     /// # Safety
     ///
+    /// - `completion_target` should be of the correct type.
     /// - `completion_selector` must be a valid selector.
     /// - `context_info` must be a valid pointer or null.
     #[doc(alias = "UIImageWriteToSavedPhotosAlbum")]
@@ -678,6 +679,7 @@ pub unsafe extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `completion_target` should be of the correct type.
     /// - `completion_selector` must be a valid selector.
     /// - `context_info` must be a valid pointer or null.
     pub fn UISaveVideoAtPathToSavedPhotosAlbum(

@@ -265,7 +265,8 @@ pub unsafe extern "C-unwind" fn NSCompareHashTables(
 
 /// # Safety
 ///
-/// `zone` must be a valid pointer or null.
+/// - `table` generic should be of the correct type.
+/// - `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
@@ -282,7 +283,8 @@ pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
 
 /// # Safety
 ///
-/// `pointer` must be a valid pointer or null.
+/// - `table` generic should be of the correct type.
+/// - `pointer` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn NSHashGet(
     table: &NSHashTable,
@@ -298,28 +300,32 @@ pub unsafe extern "C-unwind" fn NSHashGet(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `pointer` must be a valid pointer or null.
+    /// - `table` generic should be of the correct type.
+    /// - `pointer` must be a valid pointer or null.
     pub fn NSHashInsert(table: &NSHashTable, pointer: *const c_void);
 }
 
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `pointer` must be a valid pointer or null.
+    /// - `table` generic should be of the correct type.
+    /// - `pointer` must be a valid pointer or null.
     pub fn NSHashInsertKnownAbsent(table: &NSHashTable, pointer: *const c_void);
 }
 
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `pointer` must be a valid pointer or null.
+    /// - `table` generic should be of the correct type.
+    /// - `pointer` must be a valid pointer or null.
     pub fn NSHashInsertIfAbsent(table: &NSHashTable, pointer: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `pointer` must be a valid pointer or null.
+    /// - `table` generic should be of the correct type.
+    /// - `pointer` must be a valid pointer or null.
     pub fn NSHashRemove(table: &NSHashTable, pointer: *const c_void);
 }
 

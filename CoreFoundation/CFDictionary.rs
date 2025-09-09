@@ -360,6 +360,7 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `keys` must be a valid pointer.
     /// - `values` must be a valid pointer.
     /// - `key_call_backs` must be a valid pointer.
@@ -510,6 +511,7 @@ impl CFMutableDictionary {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `key_call_backs` must be a valid pointer.
     /// - `value_call_backs` must be a valid pointer.
     /// - The returned generics must be of the correct type.
@@ -569,6 +571,7 @@ impl CFMutableDictionary {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `the_dict` generics must be of the correct type.
     /// - `the_dict` might not allow `None`.
     /// - The returned generics must be of the correct type.

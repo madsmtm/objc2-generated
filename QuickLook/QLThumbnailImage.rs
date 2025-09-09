@@ -26,6 +26,8 @@ impl QLThumbnail {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `url` might not allow `None`.
     /// - `options` generics must be of the correct type.
     /// - `options` might not allow `None`.
     #[doc(alias = "QLThumbnailImageCreate")]

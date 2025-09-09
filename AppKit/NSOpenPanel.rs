@@ -319,6 +319,8 @@ impl NSOpenPanel {
 
         /// # Safety
         ///
+        /// - `file_types` generic should be of the correct type.
+        /// - `delegate` should be of the correct type.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[deprecated]
@@ -337,6 +339,8 @@ impl NSOpenPanel {
 
         /// # Safety
         ///
+        /// - `file_types` generic should be of the correct type.
+        /// - `delegate` should be of the correct type.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[deprecated]

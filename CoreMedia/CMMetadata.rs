@@ -210,7 +210,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `identifier_out` must be a valid pointer.
+    /// - `key` should be of the correct type.
+    /// - `identifier_out` must be a valid pointer.
     pub fn CMMetadataCreateIdentifierForKeyAndKeySpace(
         allocator: Option<&CFAllocator>,
         key: &CFType,

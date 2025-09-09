@@ -241,6 +241,7 @@ impl IOBluetoothHandsFreeDevice {
         ///
         /// # Safety
         ///
+        /// - `at_command` might not allow `None`.
         /// - `selector` must be a valid selector.
         /// - `target` should be of the correct type.
         /// - `target` might not allow `None`.

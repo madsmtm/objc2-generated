@@ -503,6 +503,8 @@ pub type WSMethodInvocationDeserializationProcPtr = Option<
 impl WSMethodInvocation {
     /// # Safety
     ///
+    /// - `type_namespace` might not allow `None`.
+    /// - `type_name` might not allow `None`.
     /// - `deserialization_proc` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "WSMethodInvocationAddDeserializationOverride")]

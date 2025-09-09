@@ -1103,6 +1103,7 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
+    /// - `keychain_or_array` should be of the correct type.
     /// - `server_name` must be a valid pointer or null.
     /// - `security_domain` must be a valid pointer or null.
     /// - `account_name` must be a valid pointer or null.
@@ -1263,6 +1264,7 @@ impl SecKeychain {
     ///
     /// # Safety
     ///
+    /// - `keychain_or_array` should be of the correct type.
     /// - `service_name` must be a valid pointer or null.
     /// - `account_name` must be a valid pointer or null.
     /// - `password_length` must be a valid pointer or null.

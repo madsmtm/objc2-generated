@@ -199,6 +199,7 @@ pub unsafe trait NSObjectNSDelayedPerforming:
 
         /// # Safety
         ///
+        /// - `a_target` should be of the correct type.
         /// - `a_selector` must be a valid selector.
         /// - `an_argument` should be of the correct type.
         #[unsafe(method(cancelPreviousPerformRequestsWithTarget:selector:object:))]

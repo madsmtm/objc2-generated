@@ -225,6 +225,7 @@ impl CFBinaryHeap {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - `compare_context` must be a valid pointer.
     #[doc(alias = "CFBinaryHeapCreate")]
@@ -278,6 +279,7 @@ impl CFBinaryHeap {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `heap` generic must be of the correct type.
     /// - `heap` might not allow `None`.
     #[doc(alias = "CFBinaryHeapCreateCopy")]

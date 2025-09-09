@@ -269,7 +269,9 @@ impl SecTrust {
     ///
     /// # Safety
     ///
-    /// `trust` must be a valid pointer.
+    /// - `certificates` should be of the correct type.
+    /// - `policies` should be of the correct type.
+    /// - `trust` must be a valid pointer.
     #[doc(alias = "SecTrustCreateWithCertificates")]
     #[inline]
     pub unsafe fn create_with_certificates(

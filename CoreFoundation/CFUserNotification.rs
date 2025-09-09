@@ -42,6 +42,7 @@ unsafe impl ConcreteType for CFUserNotification {
 impl CFUserNotification {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `error` must be a valid pointer.
     /// - `dictionary` generics must be of the correct type.
     /// - `dictionary` might not allow `None`.
@@ -158,7 +159,9 @@ impl CFUserNotification {
 
     /// # Safety
     ///
-    /// `callout` must be implemented correctly.
+    /// - `allocator` might not allow `None`.
+    /// - `user_notification` might not allow `None`.
+    /// - `callout` must be implemented correctly.
     #[doc(alias = "CFUserNotificationCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -223,7 +226,15 @@ impl CFUserNotification {
 
     /// # Safety
     ///
-    /// `response_flags` must be a valid pointer.
+    /// - `icon_url` might not allow `None`.
+    /// - `sound_url` might not allow `None`.
+    /// - `localization_url` might not allow `None`.
+    /// - `alert_header` might not allow `None`.
+    /// - `alert_message` might not allow `None`.
+    /// - `default_button_title` might not allow `None`.
+    /// - `alternate_button_title` might not allow `None`.
+    /// - `other_button_title` might not allow `None`.
+    /// - `response_flags` must be a valid pointer.
     #[doc(alias = "CFUserNotificationDisplayAlert")]
     #[cfg(all(feature = "CFDate", feature = "CFURL"))]
     #[inline]

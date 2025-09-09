@@ -171,6 +171,7 @@ impl CMSDecoder {
 
     /// # Safety
     ///
+    /// - `policy_or_array` should be of the correct type.
     /// - `signer_status_out` must be a valid pointer or null.
     /// - `sec_trust_out` must be a valid pointer or null.
     /// - `cert_verify_result_code_out` must be a valid pointer or null.
@@ -356,7 +357,8 @@ impl CMSDecoder {
 
     /// # Safety
     ///
-    /// `timestamp` must be a valid pointer.
+    /// - `time_stamp_policy` should be of the correct type.
+    /// - `timestamp` must be a valid pointer.
     #[doc(alias = "CMSDecoderCopySignerTimestampWithPolicy")]
     #[inline]
     pub unsafe fn copy_signer_timestamp_with_policy(

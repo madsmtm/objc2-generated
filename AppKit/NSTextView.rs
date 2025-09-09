@@ -2143,7 +2143,8 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// `checking_types` must be a valid pointer.
+        /// - `options` generic should be of the correct type.
+        /// - `checking_types` must be a valid pointer.
         #[optional]
         #[unsafe(method(textView:willCheckTextInRange:options:types:))]
         #[unsafe(method_family = none)]

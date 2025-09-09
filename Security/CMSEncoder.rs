@@ -394,6 +394,8 @@ impl CMSEncoder {
 
 /// # Safety
 ///
+/// - `signers` should be of the correct type.
+/// - `recipients` should be of the correct type.
 /// - `e_content_type` must be a valid pointer or null.
 /// - `content` must be a valid pointer.
 /// - `encoded_content_out` must be a valid pointer.
@@ -438,6 +440,9 @@ pub unsafe extern "C-unwind" fn CMSEncode(
 
 /// # Safety
 ///
+/// - `signers` should be of the correct type.
+/// - `recipients` should be of the correct type.
+/// - `e_content_type_oid` should be of the correct type.
 /// - `content` must be a valid pointer.
 /// - `encoded_content_out` must be a valid pointer or null.
 #[inline]
@@ -500,7 +505,8 @@ impl CMSEncoder {
 
     /// # Safety
     ///
-    /// `timestamp` must be a valid pointer.
+    /// - `time_stamp_policy` should be of the correct type.
+    /// - `timestamp` must be a valid pointer.
     #[doc(alias = "CMSEncoderCopySignerTimestampWithPolicy")]
     #[inline]
     pub unsafe fn copy_signer_timestamp_with_policy(

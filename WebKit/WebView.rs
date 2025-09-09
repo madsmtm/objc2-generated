@@ -332,7 +332,8 @@ impl WebView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `ui_delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setUIDelegate:))]
         #[unsafe(method_family = none)]
@@ -356,7 +357,8 @@ impl WebView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `resource_load_delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setResourceLoadDelegate:))]
         #[unsafe(method_family = none)]
@@ -383,7 +385,8 @@ impl WebView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `download_delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setDownloadDelegate:))]
         #[unsafe(method_family = none)]
@@ -410,7 +413,8 @@ impl WebView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `frame_load_delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setFrameLoadDelegate:))]
         #[unsafe(method_family = none)]
@@ -437,7 +441,8 @@ impl WebView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `policy_delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setPolicyDelegate:))]
         #[unsafe(method_family = none)]
@@ -1313,7 +1318,8 @@ impl WebView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `editing_delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[unsafe(method(setEditingDelegate:))]
         #[unsafe(method_family = none)]

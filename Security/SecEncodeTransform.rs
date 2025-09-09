@@ -96,7 +96,8 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// `error` must be a valid pointer or null.
+/// - `encode_type` should be of the correct type.
+/// - `error` must be a valid pointer or null.
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

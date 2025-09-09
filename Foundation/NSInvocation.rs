@@ -50,7 +50,8 @@ impl NSInvocation {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `target` should be of the correct type.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);

@@ -151,7 +151,8 @@ impl NSWindowController {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `document` should be of the correct type.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDocument:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDocument(&self, document: Option<&AnyObject>);

@@ -154,7 +154,8 @@ impl MDLObject {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `stop_pointer` must be a valid pointer.
+        /// - `object_class` probably has further requirements.
+        /// - `stop_pointer` must be a valid pointer.
         #[unsafe(method(enumerateChildObjectsOfClass:root:usingBlock:stopPointer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateChildObjectsOfClass_root_usingBlock_stopPointer(

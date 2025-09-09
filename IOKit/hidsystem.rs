@@ -1470,7 +1470,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `acceleration` must be a valid pointer.
+    /// - `key` might not allow `None`.
+    /// - `acceleration` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDGetAccelerationWithKey(
@@ -1496,6 +1497,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `key` might not allow `None`.
     /// - `bytes` must be a valid pointer.
     /// - `actual_size` must be a valid pointer.
     #[cfg(feature = "libc")]
@@ -1512,7 +1514,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `bytes` must be a valid pointer.
+    /// - `key` might not allow `None`.
+    /// - `bytes` must be a valid pointer.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOHIDSetParameter(
@@ -1526,7 +1529,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `parameter` must be a valid pointer.
+    /// - `key` might not allow `None`.
+    /// - `parameter` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IOHIDCopyCFTypeParameter(
         handle: io_connect_t,

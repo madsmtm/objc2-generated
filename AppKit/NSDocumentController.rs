@@ -225,6 +225,7 @@ impl NSDocumentController {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_review_all_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:))]
@@ -240,6 +241,7 @@ impl NSDocumentController {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_close_all_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:))]
@@ -273,6 +275,7 @@ impl NSDocumentController {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_present_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(presentError:modalForWindow:delegate:didPresentSelector:contextInfo:))]

@@ -572,6 +572,9 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `data_buffer` might not allow `None`.
+    /// - `format_description` might not allow `None`.
     /// - `sample_timing_array` must be a valid pointer.
     /// - `sample_size_array` must be a valid pointer.
     /// - `s_buf_out` must be a valid pointer.
@@ -620,6 +623,9 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `image_buffer` might not allow `None`.
+    /// - `format_description` might not allow `None`.
     /// - `sample_timing` must be a valid pointer.
     /// - `s_buf_out` must be a valid pointer.
     #[cfg(all(
@@ -653,7 +659,9 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `s_buf_out` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `format_description` might not allow `None`.
+    /// - `s_buf_out` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferCreateNoDataMarker(
         allocator: Option<&CFAllocator>,

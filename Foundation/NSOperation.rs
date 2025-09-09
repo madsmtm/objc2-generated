@@ -248,6 +248,7 @@ impl NSInvocationOperation {
     extern_methods!(
         /// # Safety
         ///
+        /// - `target` should be of the correct type.
         /// - `sel` must be a valid selector.
         /// - `arg` should be of the correct type.
         #[unsafe(method(initWithTarget:selector:object:))]

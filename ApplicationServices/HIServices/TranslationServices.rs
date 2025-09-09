@@ -50,7 +50,9 @@ unsafe impl ConcreteType for Translation {
 impl Translation {
     /// # Safety
     ///
-    /// `out_translation` must be a valid pointer.
+    /// - `in_source_type` might not allow `None`.
+    /// - `in_destination_type` might not allow `None`.
+    /// - `out_translation` must be a valid pointer.
     #[doc(alias = "TranslationCreate")]
     #[inline]
     pub unsafe fn create(
@@ -111,7 +113,8 @@ impl Translation {
 
     /// # Safety
     ///
-    /// `out_destination_data` must be a valid pointer.
+    /// - `in_source_data` might not allow `None`.
+    /// - `out_destination_data` must be a valid pointer.
     #[doc(alias = "TranslationPerformForData")]
     #[inline]
     pub unsafe fn perform_for_data(
@@ -131,7 +134,9 @@ impl Translation {
 
     /// # Safety
     ///
-    /// `out_translated_url` must be a valid pointer.
+    /// - `in_source_url` might not allow `None`.
+    /// - `in_destination_url` might not allow `None`.
+    /// - `out_translated_url` must be a valid pointer.
     #[doc(alias = "TranslationPerformForURL")]
     #[inline]
     pub unsafe fn perform_for_url(

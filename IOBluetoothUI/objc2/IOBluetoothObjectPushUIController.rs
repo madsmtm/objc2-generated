@@ -113,6 +113,9 @@ impl IOBluetoothObjectPushUIController {
         ///
         /// # Safety
         ///
+        /// - `sheet_window` might not allow `None`.
+        /// - `modal_delegate` should be of the correct type.
+        /// - `modal_delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:))]

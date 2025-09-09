@@ -60,6 +60,8 @@ impl CFAttributedString {
     ///
     /// # Safety
     ///
+    /// - `alloc` might not allow `None`.
+    /// - `str` might not allow `None`.
     /// - `attributes` generics must be of the correct type.
     /// - `attributes` might not allow `None`.
     #[doc(alias = "CFAttributedStringCreate")]
@@ -174,7 +176,8 @@ impl CFAttributedString {
     ///
     /// # Safety
     ///
-    /// `effective_range` must be a valid pointer.
+    /// - `attr_name` might not allow `None`.
+    /// - `effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttribute")]
     #[inline]
     pub unsafe fn attribute(
@@ -232,7 +235,8 @@ impl CFAttributedString {
     ///
     /// # Safety
     ///
-    /// `longest_effective_range` must be a valid pointer.
+    /// - `attr_name` might not allow `None`.
+    /// - `longest_effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributeAndLongestEffectiveRange")]
     #[inline]
     pub unsafe fn attribute_and_longest_effective_range(
@@ -347,6 +351,7 @@ impl CFMutableAttributedString {
     ///
     /// # Safety
     ///
+    /// - `a_str` might not allow `None`.
     /// - `replacement` generics must be of the correct type.
     /// - `replacement` might not allow `None`.
     #[doc(alias = "CFAttributedStringSetAttributes")]

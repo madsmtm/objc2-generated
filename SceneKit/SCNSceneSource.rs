@@ -431,7 +431,8 @@ impl SCNSceneSource {
         ///
         /// # Safety
         ///
-        /// `status_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `status_handler` must be a valid pointer or null.
         #[unsafe(method(sceneWithOptions:statusHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithOptions_statusHandler(

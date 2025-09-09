@@ -57,7 +57,8 @@ extern "C-unwind" {
 ///
 /// # Safety
 ///
-/// `attachment_mode_out` must be a valid pointer or null.
+/// - `target` should be of the correct type.
+/// - `attachment_mode_out` must be a valid pointer or null.
 #[inline]
 pub unsafe extern "C-unwind" fn CMGetAttachment(
     target: &CMAttachmentBearer,
@@ -143,7 +144,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `the_attachments` generics must be of the correct type.
+    /// - `target` should be of the correct type.
+    /// - `the_attachments` generics must be of the correct type.
     pub fn CMSetAttachments(
         target: &CMAttachmentBearer,
         the_attachments: &CFDictionary,

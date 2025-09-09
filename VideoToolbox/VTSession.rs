@@ -35,7 +35,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `supported_property_dictionary_out` must be a valid pointer.
+    /// - `session` should be of the correct type.
+    /// - `supported_property_dictionary_out` must be a valid pointer.
     pub fn VTSessionCopySupportedPropertyDictionary(
         session: &VTSession,
         supported_property_dictionary_out: NonNull<*const CFDictionary>,
@@ -142,7 +143,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `property_value_out` must be a valid pointer or null.
+    /// - `session` should be of the correct type.
+    /// - `property_value_out` must be a valid pointer or null.
     pub fn VTSessionCopyProperty(
         session: &VTSession,
         property_key: &CFString,
@@ -158,7 +160,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `property_dictionary` generics must be of the correct type.
+    /// - `session` should be of the correct type.
+    /// - `property_dictionary` generics must be of the correct type.
     pub fn VTSessionSetProperties(
         session: &VTSession,
         property_dictionary: &CFDictionary,
@@ -173,7 +176,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `dictionary_out` must be a valid pointer.
+    /// - `session` should be of the correct type.
+    /// - `dictionary_out` must be a valid pointer.
     pub fn VTSessionCopySerializableProperties(
         session: &VTSession,
         allocator: Option<&CFAllocator>,

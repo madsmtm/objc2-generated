@@ -27,7 +27,8 @@ impl NSExtensionContext {
         #[cfg(all(feature = "NSArray", feature = "block2"))]
         /// # Safety
         ///
-        /// `completion_handler` block must be sendable.
+        /// - `items` generic should be of the correct type.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(completeRequestReturningItems:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn completeRequestReturningItems_completionHandler(

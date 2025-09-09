@@ -111,7 +111,8 @@ impl LAPrivateKey {
         ///
         /// # Safety
         ///
-        /// `handler` block must be sendable.
+        /// - `parameters` generic should be of the correct type.
+        /// - `handler` block must be sendable.
         #[unsafe(method(exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exchangeKeysWithPublicKey_secKeyAlgorithm_secKeyParameters_completion(

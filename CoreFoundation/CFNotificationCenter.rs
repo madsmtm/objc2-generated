@@ -188,6 +188,7 @@ impl CFNotificationCenter {
 
     /// # Safety
     ///
+    /// - `name` might not allow `None`.
     /// - `object` must be a valid pointer.
     /// - `user_info` generics must be of the correct type.
     /// - `user_info` might not allow `None`.
@@ -230,6 +231,7 @@ pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 impl CFNotificationCenter {
     /// # Safety
     ///
+    /// - `name` might not allow `None`.
     /// - `object` must be a valid pointer.
     /// - `user_info` generics must be of the correct type.
     /// - `user_info` might not allow `None`.

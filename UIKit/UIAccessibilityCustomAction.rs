@@ -28,7 +28,8 @@ impl UIAccessibilityCustomAction {
     extern_methods!(
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(initWithName:target:selector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_target_selector(
@@ -40,7 +41,8 @@ impl UIAccessibilityCustomAction {
 
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(initWithAttributedName:target:selector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedName_target_selector(
@@ -53,7 +55,8 @@ impl UIAccessibilityCustomAction {
         #[cfg(feature = "UIImage")]
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(initWithName:image:target:selector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_image_target_selector(
@@ -67,7 +70,8 @@ impl UIAccessibilityCustomAction {
         #[cfg(feature = "UIImage")]
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(initWithAttributedName:image:target:selector:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedName_image_target_selector(

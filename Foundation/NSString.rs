@@ -1393,7 +1393,8 @@ impl NSString {
         #[cfg(all(feature = "NSData", feature = "NSDictionary"))]
         /// # Safety
         ///
-        /// `used_lossy_conversion` must be a valid pointer or null.
+        /// - `opts` generic should be of the correct type.
+        /// - `used_lossy_conversion` must be a valid pointer or null.
         #[unsafe(method(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(

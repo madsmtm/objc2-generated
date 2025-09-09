@@ -193,7 +193,8 @@ impl IKScannerDeviceView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -216,7 +217,8 @@ impl IKScannerDeviceView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `scanner_device` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setScannerDevice:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScannerDevice(&self, scanner_device: Option<&ICScannerDevice>);

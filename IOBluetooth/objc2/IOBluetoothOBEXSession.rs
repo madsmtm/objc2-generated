@@ -106,6 +106,7 @@ impl IOBluetoothOBEXSession {
         ///
         /// # Safety
         ///
+        /// - `in_channel` might not allow `None`.
         /// - `in_event_selector` must be a valid selector.
         /// - `in_event_selector_target` should be of the correct type.
         /// - `in_event_selector_target` might not allow `None`.
@@ -174,6 +175,7 @@ impl IOBluetoothOBEXSession {
         ///
         /// # Safety
         ///
+        /// - `in_channel` might not allow `None`.
         /// - `in_event_selector` must be a valid selector.
         /// - `in_event_selector_target` should be of the correct type.
         /// - `in_event_selector_target` might not allow `None`.

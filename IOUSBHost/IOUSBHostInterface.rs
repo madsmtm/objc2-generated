@@ -63,7 +63,8 @@ impl IOUSBHostInterface {
         ///
         /// # Safety
         ///
-        /// The returned generics must be of the correct type.
+        /// - `product_id_array` generic should be of the correct type.
+        /// - The returned generics must be of the correct type.
         #[unsafe(method(createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createMatchingDictionaryWithVendorID_productID_bcdDevice_interfaceNumber_configurationValue_interfaceClass_interfaceSubclass_interfaceProtocol_speed_productIDArray(

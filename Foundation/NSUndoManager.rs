@@ -210,6 +210,7 @@ impl NSUndoManager {
         ///
         /// # Safety
         ///
+        /// - `target` should be of the correct type.
         /// - `selector` must be a valid selector.
         /// - `object` should be of the correct type.
         #[unsafe(method(registerUndoWithTarget:selector:object:))]
@@ -252,7 +253,8 @@ impl NSUndoManager {
         ///
         /// # Safety
         ///
-        /// `undo_handler` block must be sendable.
+        /// - `target` should be of the correct type.
+        /// - `undo_handler` block must be sendable.
         #[unsafe(method(registerUndoWithTarget:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerUndoWithTarget_handler(

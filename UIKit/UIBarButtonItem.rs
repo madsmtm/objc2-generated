@@ -147,7 +147,8 @@ impl UIBarButtonItem {
         #[cfg(feature = "UIImage")]
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(initWithImage:style:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_style_target_action(
@@ -161,7 +162,8 @@ impl UIBarButtonItem {
         #[cfg(feature = "UIImage")]
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(initWithImage:landscapeImagePhone:style:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_landscapeImagePhone_style_target_action(
@@ -175,7 +177,8 @@ impl UIBarButtonItem {
 
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(initWithTitle:style:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_style_target_action(
@@ -188,7 +191,8 @@ impl UIBarButtonItem {
 
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(initWithBarButtonSystemItem:target:action:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBarButtonSystemItem_target_action(
@@ -285,7 +289,8 @@ impl UIBarButtonItem {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(initWithTitle:image:target:action:menu:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_target_action_menu(

@@ -65,6 +65,7 @@ unsafe impl ConcreteType for CFURL {
 impl CFURL {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `url_bytes` must be a valid pointer.
     /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateWithBytes")]
@@ -131,6 +132,7 @@ impl CFURL {
 
     /// # Safety
     ///
+    /// - `alloc` might not allow `None`.
     /// - `relative_url_bytes` must be a valid pointer.
     /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateAbsoluteURLWithBytes")]
@@ -191,7 +193,8 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// `buffer` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `buffer` must be a valid pointer.
     #[doc(alias = "CFURLCreateFromFileSystemRepresentation")]
     #[inline]
     pub unsafe fn from_file_system_representation(
@@ -246,6 +249,7 @@ impl CFURL {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `buffer` must be a valid pointer.
     /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateFromFileSystemRepresentationRelativeToBase")]
@@ -786,7 +790,9 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `url` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateFileReferenceURL")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -808,7 +814,9 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `url` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateFilePathURL")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -830,6 +838,7 @@ impl CFURL {
 
     /// # Safety
     ///
+    /// - `key` might not allow `None`.
     /// - `property_value_type_ref_ptr` must be a valid pointer.
     /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCopyResourcePropertyForKey")]
@@ -881,7 +890,10 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `key` might not allow `None`.
+    /// - `property_value` should be of the correct type.
+    /// - `property_value` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLSetResourcePropertyForKey")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -1712,6 +1724,8 @@ pub type CFURLBookmarkFileCreationOptions = CFOptionFlags;
 impl CFURL {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `url` might not allow `None`.
     /// - `resource_properties_to_include` generic must be of the correct type.
     /// - `resource_properties_to_include` might not allow `None`.
     /// - `relative_to_url` might not allow `None`.
@@ -1752,6 +1766,9 @@ impl CFURL {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `bookmark` might not allow `None`.
+    /// - `relative_to_url` might not allow `None`.
     /// - `resource_properties_to_include` generic must be of the correct type.
     /// - `resource_properties_to_include` might not allow `None`.
     /// - `is_stale` must be a valid pointer.
@@ -1795,6 +1812,7 @@ impl CFURL {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `resource_properties_to_return` generic must be of the correct type.
     /// - `resource_properties_to_return` might not allow `None`.
     /// - `bookmark` might not allow `None`.
@@ -1855,7 +1873,9 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// `error_ref` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `file_url` might not allow `None`.
+    /// - `error_ref` must be a valid pointer.
     #[doc(alias = "CFURLCreateBookmarkDataFromFile")]
     #[cfg(all(feature = "CFData", feature = "CFError"))]
     #[inline]
@@ -1877,7 +1897,9 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// `error_ref` must be a valid pointer.
+    /// - `bookmark_ref` might not allow `None`.
+    /// - `file_url` might not allow `None`.
+    /// - `error_ref` must be a valid pointer.
     #[doc(alias = "CFURLWriteBookmarkDataToFile")]
     #[cfg(all(feature = "CFData", feature = "CFError"))]
     #[inline]

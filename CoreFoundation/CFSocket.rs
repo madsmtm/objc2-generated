@@ -182,6 +182,7 @@ unsafe impl ConcreteType for CFSocket {
 impl CFSocket {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFSocketCreate")]
@@ -223,6 +224,7 @@ impl CFSocket {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFSocketCreateWithNative")]
@@ -251,6 +253,7 @@ impl CFSocket {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `signature` must be a valid pointer.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.
@@ -287,6 +290,7 @@ impl CFSocket {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `signature` must be a valid pointer.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.

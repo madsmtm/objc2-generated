@@ -58,6 +58,7 @@ impl NSTimer {
         #[cfg(feature = "NSDate")]
         /// # Safety
         ///
+        /// - `a_target` should be of the correct type.
         /// - `a_selector` must be a valid selector.
         /// - `user_info` should be of the correct type.
         #[unsafe(method(timerWithTimeInterval:target:selector:userInfo:repeats:))]
@@ -73,6 +74,7 @@ impl NSTimer {
         #[cfg(feature = "NSDate")]
         /// # Safety
         ///
+        /// - `a_target` should be of the correct type.
         /// - `a_selector` must be a valid selector.
         /// - `user_info` should be of the correct type.
         #[unsafe(method(scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:))]
@@ -142,6 +144,7 @@ impl NSTimer {
         #[cfg(feature = "NSDate")]
         /// # Safety
         ///
+        /// - `t` should be of the correct type.
         /// - `s` must be a valid selector.
         /// - `ui` should be of the correct type.
         #[unsafe(method(initWithFireDate:interval:target:selector:userInfo:repeats:))]

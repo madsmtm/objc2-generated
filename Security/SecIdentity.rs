@@ -34,7 +34,8 @@ impl SecIdentity {
     ///
     /// # Safety
     ///
-    /// `identity_ref` must be a valid pointer.
+    /// - `keychain_or_array` should be of the correct type.
+    /// - `identity_ref` must be a valid pointer.
     #[doc(alias = "SecIdentityCreateWithCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]

@@ -21,7 +21,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `out_device_address` must be a valid pointer.
+    /// - `in_name_string` might not allow `None`.
+    /// - `out_device_address` must be a valid pointer.
     #[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
     pub fn IOBluetoothNSStringToDeviceAddress(
         in_name_string: Option<&NSString>,

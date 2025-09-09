@@ -279,7 +279,8 @@ impl NSSlider {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(sliderWithTarget:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sliderWithTarget_action(
@@ -304,7 +305,8 @@ impl NSSlider {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(sliderWithValue:minValue:maxValue:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sliderWithValue_minValue_maxValue_target_action(

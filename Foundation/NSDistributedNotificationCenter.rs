@@ -101,7 +101,8 @@ impl NSDistributedNotificationCenter {
         #[cfg(feature = "NSString")]
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `observer` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(addObserver:selector:name:object:suspensionBehavior:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_selector_name_object_suspensionBehavior(
@@ -153,7 +154,8 @@ impl NSDistributedNotificationCenter {
         #[cfg(feature = "NSString")]
         /// # Safety
         ///
-        /// `a_selector` must be a valid selector.
+        /// - `observer` should be of the correct type.
+        /// - `a_selector` must be a valid selector.
         #[unsafe(method(addObserver:selector:name:object:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_selector_name_object(

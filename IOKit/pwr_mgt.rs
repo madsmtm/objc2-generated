@@ -1679,7 +1679,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `assertion_id` must be a valid pointer.
+    /// - `assertion_type` might not allow `None`.
+    /// - `name` might not allow `None`.
+    /// - `details` might not allow `None`.
+    /// - `human_readable_reason` might not allow `None`.
+    /// - `localization_bundle_path` might not allow `None`.
+    /// - `timeout_action` might not allow `None`.
+    /// - `assertion_id` must be a valid pointer.
     pub fn IOPMAssertionCreateWithDescription(
         assertion_type: Option<&CFString>,
         name: Option<&CFString>,
@@ -1867,7 +1873,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `assertion_id` must be a valid pointer.
+    /// - `assertion_name` might not allow `None`.
+    /// - `assertion_id` must be a valid pointer.
     pub fn IOPMAssertionDeclareUserActivity(
         assertion_name: Option<&CFString>,
         user_type: IOPMUserActiveType,
@@ -1975,7 +1982,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `assertion_id` must be a valid pointer.
+    /// - `assertion_name` might not allow `None`.
+    /// - `assertion_id` must be a valid pointer.
     pub fn IOPMDeclareNetworkClientActivity(
         assertion_name: Option<&CFString>,
         assertion_id: *mut IOPMAssertionID,
@@ -2217,7 +2225,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `assertion_id` must be a valid pointer.
+    /// - `assertion_type` might not allow `None`.
+    /// - `assertion_id` must be a valid pointer.
     #[deprecated]
     pub fn IOPMAssertionCreate(
         assertion_type: Option<&CFString>,
@@ -2252,7 +2261,9 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `assertion_id` must be a valid pointer.
+    /// - `assertion_type` might not allow `None`.
+    /// - `assertion_name` might not allow `None`.
+    /// - `assertion_id` must be a valid pointer.
     pub fn IOPMAssertionCreateWithName(
         assertion_type: Option<&CFString>,
         assertion_level: IOPMAssertionLevel,

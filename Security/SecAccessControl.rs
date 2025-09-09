@@ -132,7 +132,8 @@ impl SecAccessControl {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer or null.
+    /// - `protection` should be of the correct type.
+    /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecAccessControlCreateWithFlags")]
     #[cfg(feature = "SecBase")]
     #[inline]

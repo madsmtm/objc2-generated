@@ -1040,7 +1040,8 @@ impl NSWorkspace {
 
         /// # Safety
         ///
-        /// `tag` must be a valid pointer or null.
+        /// - `files` generic should be of the correct type.
+        /// - `tag` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(performFileOperation:source:destination:files:tag:))]
         #[unsafe(method_family = none)]

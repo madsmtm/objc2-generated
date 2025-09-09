@@ -112,7 +112,9 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
-        /// `in_selector` must be a valid selector.
+        /// - `observer` should be of the correct type.
+        /// - `observer` might not allow `None`.
+        /// - `in_selector` must be a valid selector.
         #[unsafe(method(registerForConnectNotifications:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForConnectNotifications_selector(
@@ -137,7 +139,9 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
-        /// `in_selector` must be a valid selector.
+        /// - `observer` should be of the correct type.
+        /// - `observer` might not allow `None`.
+        /// - `in_selector` must be a valid selector.
         #[unsafe(method(registerForDisconnectNotification:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForDisconnectNotification_selector(

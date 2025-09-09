@@ -69,6 +69,7 @@ impl NSController {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_commit_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(commitEditingWithDelegate:didCommitSelector:contextInfo:))]

@@ -56,7 +56,8 @@ unsafe impl ConcreteType for CFBitVector {
 impl CFBitVector {
     /// # Safety
     ///
-    /// `bytes` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `bytes` must be a valid pointer.
     #[doc(alias = "CFBitVectorCreate")]
     #[inline]
     pub unsafe fn new(

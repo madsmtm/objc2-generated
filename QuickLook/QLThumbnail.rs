@@ -43,6 +43,8 @@ unsafe impl ConcreteType for QLThumbnail {
 impl QLThumbnail {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `url` might not allow `None`.
     /// - `options` generics must be of the correct type.
     /// - `options` might not allow `None`.
     #[doc(alias = "QLThumbnailCreate")]
@@ -100,7 +102,8 @@ impl QLThumbnail {
 
     /// # Safety
     ///
-    /// `completion` must be a valid pointer.
+    /// - `queue` might not allow `None`.
+    /// - `completion` must be a valid pointer.
     #[doc(alias = "QLThumbnailDispatchAsync")]
     #[cfg(feature = "dispatch2")]
     #[deprecated = "Use QLThumbnailGenerator in QuickLookThumbnailing to generate thumbnails."]

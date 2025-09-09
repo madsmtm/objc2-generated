@@ -127,7 +127,9 @@ impl IKImageView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -256,7 +258,8 @@ impl IKImageView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `image_correction` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setImageCorrection:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageCorrection(&self, image_correction: Option<&CIFilter>);
@@ -274,7 +277,8 @@ impl IKImageView {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `background_color` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);

@@ -1781,7 +1781,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `out_tap_id` must be a valid pointer.
+    /// - `in_description` might not allow `None`.
+    /// - `out_tap_id` must be a valid pointer.
     #[cfg(feature = "objc2")]
     pub fn AudioHardwareCreateProcessTap(
         in_description: Option<&CATapDescription>,

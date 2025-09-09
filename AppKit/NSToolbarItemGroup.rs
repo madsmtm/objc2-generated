@@ -90,7 +90,8 @@ impl NSToolbarItemGroup {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(groupWithItemIdentifier:titles:selectionMode:labels:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
@@ -106,7 +107,8 @@ impl NSToolbarItemGroup {
         #[cfg(all(feature = "NSImage", feature = "NSToolbar"))]
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(groupWithItemIdentifier:images:selectionMode:labels:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn groupWithItemIdentifier_images_selectionMode_labels_target_action(

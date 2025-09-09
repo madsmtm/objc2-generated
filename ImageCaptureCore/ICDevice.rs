@@ -494,6 +494,7 @@ impl ICDevice {
         ///
         /// # Safety
         ///
+        /// - `send_message_delegate` should be of the correct type.
         /// - `selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(requestSendMessage:outData:maxReturnedDataSize:sendMessageDelegate:didSendMessageSelector:contextInfo:))]

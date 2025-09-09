@@ -641,6 +641,7 @@ impl NSSavePanel {
 
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[deprecated = "Use beginSheetModalForWindow:completionHandler: instead. The following parameters are replaced by properties: 'path' is replaced by 'directoryURL' and 'name' by 'nameFieldStringValue'."]

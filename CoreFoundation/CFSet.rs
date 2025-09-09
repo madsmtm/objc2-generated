@@ -287,6 +287,7 @@ impl CFSet {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` must be a valid pointer.
     #[doc(alias = "CFSetCreate")]
@@ -392,6 +393,7 @@ impl CFMutableSet {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFSetCreateMutable")]
@@ -443,6 +445,7 @@ impl CFMutableSet {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - The returned generic must be of the correct type.

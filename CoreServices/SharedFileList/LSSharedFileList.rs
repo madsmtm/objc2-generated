@@ -208,6 +208,7 @@ impl LSSharedFileList {
 
     /// # Safety
     ///
+    /// - `in_runloop` possibly has additional threading requirements.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListAddObserver")]
@@ -236,6 +237,7 @@ impl LSSharedFileList {
 
     /// # Safety
     ///
+    /// - `in_runloop` possibly has additional threading requirements.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "LSSharedFileListRemoveObserver")]

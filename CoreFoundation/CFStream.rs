@@ -202,6 +202,7 @@ extern "C" {
 impl CFReadStream {
     /// # Safety
     ///
+    /// - `alloc` might not allow `None`.
     /// - `bytes` must be a valid pointer.
     /// - `bytes_deallocator` might not allow `None`.
     #[doc(alias = "CFReadStreamCreateWithBytesNoCopy")]
@@ -229,7 +230,8 @@ impl CFReadStream {
 impl CFWriteStream {
     /// # Safety
     ///
-    /// `buffer` must be a valid pointer.
+    /// - `alloc` might not allow `None`.
+    /// - `buffer` must be a valid pointer.
     #[doc(alias = "CFWriteStreamCreateWithBuffer")]
     #[inline]
     pub unsafe fn with_buffer(
@@ -306,6 +308,7 @@ impl CFWriteStream {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `alloc` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
     /// - `write_stream` must be a valid pointer.
     pub fn CFStreamCreateBoundPair(
@@ -431,6 +434,7 @@ extern "C" {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `alloc` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
     /// - `write_stream` must be a valid pointer.
     #[cfg(feature = "CFSocket")]
@@ -446,6 +450,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `alloc` might not allow `None`.
+    /// - `host` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
     /// - `write_stream` must be a valid pointer.
     #[deprecated = "Use nw_connection_t in Network framework instead"]
@@ -461,6 +467,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `alloc` might not allow `None`.
     /// - `signature` must be a valid pointer.
     /// - `read_stream` must be a valid pointer.
     /// - `write_stream` must be a valid pointer.

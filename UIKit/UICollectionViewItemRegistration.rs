@@ -40,7 +40,8 @@ impl UICollectionViewCellRegistration {
         ))]
         /// # Safety
         ///
-        /// `configuration_handler` must be a valid pointer.
+        /// - `cell_class` probably has further requirements.
+        /// - `configuration_handler` must be a valid pointer.
         #[unsafe(method(registrationWithCellClass:configurationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registrationWithCellClass_configurationHandler(
@@ -141,7 +142,8 @@ impl UICollectionViewSupplementaryRegistration {
         ))]
         /// # Safety
         ///
-        /// `configuration_handler` must be a valid pointer.
+        /// - `supplementary_class` probably has further requirements.
+        /// - `configuration_handler` must be a valid pointer.
         #[unsafe(method(registrationWithSupplementaryClass:elementKind:configurationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registrationWithSupplementaryClass_elementKind_configurationHandler(

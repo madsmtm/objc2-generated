@@ -397,7 +397,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `content_rect` must be a valid pointer.
+        /// - `item` should be of the correct type.
+        /// - `content_rect` must be a valid pointer.
         #[optional]
         #[unsafe(method(sharingService:transitionImageForShareItem:contentRect:))]
         #[unsafe(method_family = none)]
@@ -411,7 +412,8 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// # Safety
         ///
-        /// `sharing_content_scope` must be a valid pointer.
+        /// - `items` generic should be of the correct type.
+        /// - `sharing_content_scope` must be a valid pointer.
         #[optional]
         #[unsafe(method(sharingService:sourceWindowForShareItems:sharingContentScope:))]
         #[unsafe(method_family = none)]

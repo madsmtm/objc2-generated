@@ -360,7 +360,9 @@ unsafe impl ConcreteType for CFXMLNode {
 impl CFXMLNode {
     /// # Safety
     ///
-    /// `additional_info_ptr` must be a valid pointer.
+    /// - `alloc` might not allow `None`.
+    /// - `data_string` might not allow `None`.
+    /// - `additional_info_ptr` must be a valid pointer.
     #[doc(alias = "CFXMLNodeCreate")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]

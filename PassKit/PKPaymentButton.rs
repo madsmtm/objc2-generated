@@ -141,7 +141,8 @@ impl PKPaymentButton {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(buttonWithTitle:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_image_target_action(
@@ -164,7 +165,8 @@ impl PKPaymentButton {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(buttonWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_target_action(
@@ -186,7 +188,8 @@ impl PKPaymentButton {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(buttonWithImage:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithImage_target_action(
@@ -208,7 +211,8 @@ impl PKPaymentButton {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(checkboxWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkboxWithTitle_target_action(
@@ -230,7 +234,8 @@ impl PKPaymentButton {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(radioButtonWithTitle:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn radioButtonWithTitle_target_action(

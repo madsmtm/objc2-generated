@@ -365,7 +365,8 @@ impl NSItemProvider {
         ))]
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(loadItemForTypeIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadItemForTypeIdentifier_options_completionHandler(
@@ -436,7 +437,9 @@ impl NSItemProvider {
         ))]
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer.
+        /// - `options` generic should be of the correct type.
+        /// - `options` might not allow `None`.
+        /// - `completion_handler` must be a valid pointer.
         #[unsafe(method(loadPreviewImageWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPreviewImageWithOptions_completionHandler(

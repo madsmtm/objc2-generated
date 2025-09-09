@@ -956,7 +956,8 @@ impl AXUIElement {
     ///
     /// # Safety
     ///
-    /// `result` must be a valid pointer.
+    /// - `parameter` should be of the correct type.
+    /// - `result` must be a valid pointer.
     #[doc(alias = "AXUIElementCopyParameterizedAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]

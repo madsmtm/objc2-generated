@@ -135,7 +135,8 @@ impl NSSliderAccessoryBehavior {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(behaviorWithTarget:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn behaviorWithTarget_action(

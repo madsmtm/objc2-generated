@@ -187,6 +187,7 @@ impl QLThumbnailRequest {
     ///
     /// # Safety
     ///
+    /// - `image` might not allow `None`.
     /// - `properties` generics must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImage")]
@@ -214,6 +215,7 @@ impl QLThumbnailRequest {
     ///
     /// # Safety
     ///
+    /// - `data` might not allow `None`.
     /// - `properties` generics must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImageWithData")]
@@ -308,6 +310,7 @@ impl QLThumbnailRequest {
     ///
     /// # Safety
     ///
+    /// - `url` might not allow `None`.
     /// - `properties` generics must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
@@ -340,6 +343,8 @@ impl QLThumbnailRequest {
     ///
     /// # Safety
     ///
+    /// - `data` might not allow `None`.
+    /// - `content_type_uti` might not allow `None`.
     /// - `preview_properties` generics must be of the correct type.
     /// - `preview_properties` might not allow `None`.
     /// - `properties` generics must be of the correct type.
@@ -388,6 +393,8 @@ impl QLThumbnailRequest {
     ///
     /// # Safety
     ///
+    /// - `url` might not allow `None`.
+    /// - `content_type_uti` might not allow `None`.
     /// - `preview_properties` generics must be of the correct type.
     /// - `preview_properties` might not allow `None`.
     /// - `properties` generics must be of the correct type.
@@ -736,6 +743,8 @@ impl QLPreviewRequest {
     ///
     /// # Safety
     ///
+    /// - `data` might not allow `None`.
+    /// - `content_type_uti` might not allow `None`.
     /// - `properties` generics must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
@@ -774,6 +783,8 @@ impl QLPreviewRequest {
     ///
     /// # Safety
     ///
+    /// - `url` might not allow `None`.
+    /// - `content_type_uti` might not allow `None`.
     /// - `properties` generics must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetURLRepresentation")]

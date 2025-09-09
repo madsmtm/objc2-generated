@@ -311,6 +311,8 @@ impl JSContext {
         ///
         /// # Safety
         ///
+        /// - `object` should be of the correct type.
+        /// - `object` might not allow `None`.
         /// - `key` must implement NSCopying.
         /// - `key` might not allow `None`.
         #[unsafe(method(setObject:forKeyedSubscript:))]

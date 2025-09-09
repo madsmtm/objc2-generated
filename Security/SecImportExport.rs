@@ -224,6 +224,7 @@ unsafe impl RefEncode for SecItemImportExportKeyParameters {
 impl SecKeychainItem {
     /// # Safety
     ///
+    /// - `keychain_item_or_array` should be of the correct type.
     /// - `key_params` must be a valid pointer or null.
     /// - `exported_data` must be a valid pointer.
     #[doc(alias = "SecKeychainItemExport")]
@@ -261,6 +262,7 @@ impl SecKeychainItem {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `sec_item_or_array` should be of the correct type.
     /// - `key_params` must be a valid pointer or null.
     /// - `exported_data` must be a valid pointer.
     #[cfg(feature = "SecBase")]

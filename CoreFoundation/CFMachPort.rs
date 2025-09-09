@@ -79,6 +79,7 @@ unsafe impl ConcreteType for CFMachPort {
 impl CFMachPort {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.
     /// - `should_free_info` must be a valid pointer.
@@ -104,6 +105,7 @@ impl CFMachPort {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.
     /// - `should_free_info` must be a valid pointer.

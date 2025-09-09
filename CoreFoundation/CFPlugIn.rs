@@ -299,7 +299,8 @@ pub type CFPlugInInstanceDeallocateInstanceDataFunction =
 impl CFPlugInInstance {
     /// # Safety
     ///
-    /// `ftbl` must be a valid pointer.
+    /// - `interface_name` might not allow `None`.
+    /// - `ftbl` must be a valid pointer.
     #[doc(alias = "CFPlugInInstanceGetInterfaceFunctionTable")]
     #[inline]
     pub unsafe fn interface_function_table(
@@ -354,6 +355,7 @@ unsafe impl ConcreteType for CFPlugInInstance {
 impl CFPlugInInstance {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `deallocate_instance_function` must be implemented correctly.
     /// - `factory_name` might not allow `None`.
     /// - `get_interface_function` must be implemented correctly.

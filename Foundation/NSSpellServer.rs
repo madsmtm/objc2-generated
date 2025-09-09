@@ -185,7 +185,8 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// `word_count` must be a valid pointer.
+        /// - `options` generic should be of the correct type.
+        /// - `word_count` must be a valid pointer.
         #[optional]
         #[unsafe(method(spellServer:checkString:offset:types:options:orthography:wordCount:))]
         #[unsafe(method_family = none)]

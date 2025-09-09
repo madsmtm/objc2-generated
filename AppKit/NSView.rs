@@ -1019,7 +1019,8 @@ impl NSView {
 
         /// # Safety
         ///
-        /// `data` must be a valid pointer or null.
+        /// - `owner` should be of the correct type.
+        /// - `data` must be a valid pointer or null.
         #[unsafe(method(addToolTipRect:owner:userData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addToolTipRect_owner_userData(
@@ -1677,7 +1678,8 @@ impl NSView {
 
         /// # Safety
         ///
-        /// `data` must be a valid pointer or null.
+        /// - `owner` should be of the correct type.
+        /// - `data` must be a valid pointer or null.
         #[unsafe(method(addTrackingRect:owner:userData:assumeInside:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrackingRect_owner_userData_assumeInside(
@@ -1702,7 +1704,8 @@ impl NSView {
         #[cfg(target_vendor = "apple")]
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(

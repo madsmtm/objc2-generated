@@ -156,6 +156,7 @@ unsafe impl ConcreteType for CFBag {
 impl CFBag {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` must be a valid pointer.
     #[doc(alias = "CFBagCreate")]
@@ -180,6 +181,7 @@ impl CFBag {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `the_bag` generic must be of the correct type.
     /// - `the_bag` might not allow `None`.
     #[doc(alias = "CFBagCreateCopy")]
@@ -202,6 +204,7 @@ impl CFBag {
 impl CFMutableBag {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFBagCreateMutable")]
@@ -224,6 +227,7 @@ impl CFMutableBag {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `the_bag` generic must be of the correct type.
     /// - `the_bag` might not allow `None`.
     /// - The returned generic must be of the correct type.

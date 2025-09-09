@@ -450,7 +450,8 @@ impl GLKTextureLoader {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `block` must be a valid pointer.
+        /// - `paths` generic should be of the correct type.
+        /// - `block` must be a valid pointer.
         #[unsafe(method(cubeMapWithContentsOfFiles:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFiles_options_queue_completionHandler(

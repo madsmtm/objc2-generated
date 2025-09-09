@@ -534,7 +534,8 @@ unsafe impl ConcreteType for CFRunLoopSource {
 impl CFRunLoopSource {
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopSourceCreate")]
     #[inline]
     pub unsafe fn new(
@@ -655,6 +656,7 @@ unsafe impl ConcreteType for CFRunLoopObserver {
 impl CFRunLoopObserver {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopObserverCreate")]
@@ -824,6 +826,7 @@ unsafe impl ConcreteType for CFRunLoopTimer {
 impl CFRunLoopTimer {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFRunLoopTimerCreate")]

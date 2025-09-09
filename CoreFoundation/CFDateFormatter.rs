@@ -293,7 +293,10 @@ impl CFDateFormatter {
 
     /// # Safety
     ///
-    /// `rangep` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `formatter` might not allow `None`.
+    /// - `string` might not allow `None`.
+    /// - `rangep` must be a valid pointer.
     #[doc(alias = "CFDateFormatterCreateDateFromString")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -318,6 +321,7 @@ impl CFDateFormatter {
 
     /// # Safety
     ///
+    /// - `string` might not allow `None`.
     /// - `rangep` must be a valid pointer.
     /// - `atp` must be a valid pointer.
     #[doc(alias = "CFDateFormatterGetAbsoluteTimeFromString")]

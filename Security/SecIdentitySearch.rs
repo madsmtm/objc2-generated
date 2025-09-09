@@ -58,7 +58,8 @@ impl SecIdentitySearch {
     ///
     /// # Safety
     ///
-    /// `search_ref` must be a valid pointer or null.
+    /// - `keychain_or_array` should be of the correct type.
+    /// - `search_ref` must be a valid pointer or null.
     #[doc(alias = "SecIdentitySearchCreate")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]

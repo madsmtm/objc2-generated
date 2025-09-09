@@ -283,7 +283,8 @@ pub unsafe extern "C-unwind" fn NSCompareMapTables(
 
 /// # Safety
 ///
-/// `zone` must be a valid pointer or null.
+/// - `table` generic should be of the correct type.
+/// - `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
@@ -300,6 +301,7 @@ pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
 
 /// # Safety
 ///
+/// - `table` generic should be of the correct type.
 /// - `key` must be a valid pointer.
 /// - `original_key` must be a valid pointer or null.
 /// - `value` must be a valid pointer or null.
@@ -324,13 +326,15 @@ pub unsafe extern "C-unwind" fn NSMapMember(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `key` must be a valid pointer or null.
+    /// - `table` generic should be of the correct type.
+    /// - `key` must be a valid pointer or null.
     pub fn NSMapGet(table: &NSMapTable, key: *const c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `table` generic should be of the correct type.
     /// - `key` must be a valid pointer or null.
     /// - `value` must be a valid pointer or null.
     pub fn NSMapInsert(table: &NSMapTable, key: *const c_void, value: *const c_void);
@@ -339,6 +343,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `table` generic should be of the correct type.
     /// - `key` must be a valid pointer or null.
     /// - `value` must be a valid pointer or null.
     pub fn NSMapInsertKnownAbsent(table: &NSMapTable, key: *const c_void, value: *const c_void);
@@ -347,6 +352,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `table` generic should be of the correct type.
     /// - `key` must be a valid pointer or null.
     /// - `value` must be a valid pointer or null.
     pub fn NSMapInsertIfAbsent(
@@ -359,7 +365,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `key` must be a valid pointer or null.
+    /// - `table` generic should be of the correct type.
+    /// - `key` must be a valid pointer or null.
     pub fn NSMapRemove(table: &NSMapTable, key: *const c_void);
 }
 

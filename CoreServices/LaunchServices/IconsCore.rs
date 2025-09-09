@@ -631,7 +631,9 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `out_icon_ref` must be a valid pointer.
+    /// - `in_extension` might not allow `None`.
+    /// - `in_mime_type` might not allow `None`.
+    /// - `out_icon_ref` must be a valid pointer.
     #[deprecated = "Use -[NSWorkspace iconForFileType:] instead."]
     pub fn GetIconRefFromTypeInfo(
         in_creator: OSType,

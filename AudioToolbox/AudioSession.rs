@@ -411,6 +411,9 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `in_run_loop` possibly has additional threading requirements.
+    /// - `in_run_loop` might not allow `None`.
+    /// - `in_run_loop_mode` might not allow `None`.
     /// - `in_interruption_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]

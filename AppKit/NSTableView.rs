@@ -1770,7 +1770,8 @@ impl NSTableView {
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         /// # Safety
         ///
-        /// `drag_image_offset` must be a valid pointer.
+        /// - `drag_rows` generic should be of the correct type.
+        /// - `drag_image_offset` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(dragImageForRows:event:dragImageOffset:))]
         #[unsafe(method_family = none)]

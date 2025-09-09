@@ -195,7 +195,8 @@ impl NSScreen {
         #[cfg(target_vendor = "apple")]
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(

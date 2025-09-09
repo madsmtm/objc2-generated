@@ -40,6 +40,7 @@ impl SecKeychainSearch {
     ///
     /// # Safety
     ///
+    /// - `keychain_or_array` should be of the correct type.
     /// - `attr_list` must be a valid pointer or null.
     /// - `search_ref` must be a valid pointer.
     #[doc(alias = "SecKeychainSearchCreateFromAttributes")]

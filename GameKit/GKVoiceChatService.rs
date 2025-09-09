@@ -47,7 +47,8 @@ impl GKVoiceChatService {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `client` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "No longer supported."]
         #[unsafe(method(setClient:))]
         #[unsafe(method_family = none)]

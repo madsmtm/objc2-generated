@@ -291,7 +291,9 @@ impl NSManagedObjectContext {
 
         /// # Safety
         ///
-        /// `context` must be a valid pointer or null.
+        /// - `object` should be of the correct type.
+        /// - `change` generic should be of the correct type.
+        /// - `context` must be a valid pointer or null.
         #[unsafe(method(observeValueForKeyPath:ofObject:change:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn observeValueForKeyPath_ofObject_change_context(

@@ -137,7 +137,8 @@ impl QLPreviewPanel {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `data_source` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
@@ -219,7 +220,9 @@ impl QLPreviewPanel {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -543,7 +546,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `content_rect` must be a valid pointer.
+        /// - `panel` might not allow `None`.
+        /// - `item` might not allow `None`.
+        /// - `content_rect` must be a valid pointer.
         #[optional]
         #[unsafe(method(previewPanel:transitionImageForPreviewItem:contentRect:))]
         #[unsafe(method_family = none)]

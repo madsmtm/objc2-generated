@@ -368,7 +368,8 @@ impl NSRuleEditor {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `row_class` probably has further requirements.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setRowClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowClass(&self, row_class: &AnyClass);

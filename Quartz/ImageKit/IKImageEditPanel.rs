@@ -132,7 +132,8 @@ impl IKImageEditPanel {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `data_source` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(

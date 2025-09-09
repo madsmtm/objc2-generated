@@ -98,7 +98,8 @@ impl CFDate {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `other_date` might not allow `None`.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFDateCompare")]
     #[inline]
     pub unsafe fn compare(

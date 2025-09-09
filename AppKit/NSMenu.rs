@@ -306,7 +306,8 @@ impl NSMenu {
 
         /// # Safety
         ///
-        /// `action_selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action_selector` must be a valid selector.
         #[unsafe(method(indexOfItemWithTarget:andAction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indexOfItemWithTarget_andAction(

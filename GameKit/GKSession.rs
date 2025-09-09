@@ -156,7 +156,9 @@ impl GKSession {
         ///
         /// # Safety
         ///
-        /// `context` must be a valid pointer.
+        /// - `handler` should be of the correct type.
+        /// - `handler` might not allow `None`.
+        /// - `context` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(setDataReceiveHandler:withContext:))]
         #[unsafe(method_family = none)]

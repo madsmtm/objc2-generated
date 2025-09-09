@@ -139,7 +139,10 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
         ///
         /// # Safety
         ///
-        /// `info` must be a valid pointer.
+        /// - `controller` should be of the correct type.
+        /// - `controller` might not allow `None`.
+        /// - `device` might not allow `None`.
+        /// - `info` must be a valid pointer.
         #[unsafe(method(readRSSIForDeviceComplete:device:info:error:))]
         #[unsafe(method_family = none)]
         unsafe fn readRSSIForDeviceComplete_device_info_error(
@@ -163,7 +166,10 @@ pub unsafe trait NSObjectIOBluetoothHostControllerDelegate:
         ///
         /// # Safety
         ///
-        /// `info` must be a valid pointer.
+        /// - `controller` should be of the correct type.
+        /// - `controller` might not allow `None`.
+        /// - `device` might not allow `None`.
+        /// - `info` must be a valid pointer.
         #[unsafe(method(readLinkQualityForDeviceComplete:device:info:error:))]
         #[unsafe(method_family = none)]
         unsafe fn readLinkQualityForDeviceComplete_device_info_error(

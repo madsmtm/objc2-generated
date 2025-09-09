@@ -153,6 +153,7 @@ impl WSProtocolHandler {
 
     /// # Safety
     ///
+    /// - `method_name` might not allow `None`.
     /// - `method_params` generics must be of the correct type.
     /// - `method_params` might not allow `None`.
     /// - `method_param_order` generic must be of the correct type.
@@ -282,6 +283,8 @@ pub type WSProtocolHandlerDeserializationProcPtr = Option<
 impl WSProtocolHandler {
     /// # Safety
     ///
+    /// - `type_namespace` might not allow `None`.
+    /// - `type_name` might not allow `None`.
     /// - `deserialization_proc` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "WSProtocolHandlerSetDeserializationOverride")]

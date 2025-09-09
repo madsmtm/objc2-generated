@@ -107,7 +107,9 @@ impl NSObjectController {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `object_class` probably has further requirements.
+        /// - `object_class` might not allow `None`.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setObjectClass:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectClass(&self, object_class: Option<&AnyClass>);

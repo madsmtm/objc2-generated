@@ -60,7 +60,8 @@ impl CLGeocoder {
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer.
+        /// - `address_dictionary` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer.
         #[deprecated = "Use -geocodePostalAddress:completionHandler:"]
         #[unsafe(method(geocodeAddressDictionary:completionHandler:))]
         #[unsafe(method_family = none)]

@@ -234,6 +234,7 @@ impl NSPrintOperation {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_run_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(runOperationModalForWindow:delegate:didRunSelector:contextInfo:))]

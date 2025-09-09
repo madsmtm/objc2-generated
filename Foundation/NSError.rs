@@ -294,6 +294,7 @@ pub unsafe trait NSObjectNSErrorRecoveryAttempting:
     extern_methods!(
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_recover_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[unsafe(method(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:))]

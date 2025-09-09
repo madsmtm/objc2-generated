@@ -41,7 +41,8 @@ impl UILocalizedIndexedCollation {
 
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `object` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(sectionForObject:collationStringSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionForObject_collationStringSelector(
@@ -52,7 +53,8 @@ impl UILocalizedIndexedCollation {
 
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `array` generic should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(sortedArrayFromArray:collationStringSelector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayFromArray_collationStringSelector(

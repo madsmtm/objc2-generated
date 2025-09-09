@@ -57,7 +57,8 @@ unsafe impl ConcreteType for CFData {
 impl CFData {
     /// # Safety
     ///
-    /// `bytes` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `bytes` must be a valid pointer.
     #[doc(alias = "CFDataCreate")]
     #[inline]
     pub unsafe fn new(
@@ -78,6 +79,7 @@ impl CFData {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `bytes` must be a valid pointer.
     /// - `bytes_deallocator` might not allow `None`.
     #[doc(alias = "CFDataCreateWithBytesNoCopy")]
@@ -224,7 +226,8 @@ impl CFMutableData {
 
     /// # Safety
     ///
-    /// `bytes` must be a valid pointer.
+    /// - `the_data` might not allow `None`.
+    /// - `bytes` must be a valid pointer.
     #[doc(alias = "CFDataAppendBytes")]
     #[inline]
     pub unsafe fn append_bytes(
@@ -244,7 +247,8 @@ impl CFMutableData {
 
     /// # Safety
     ///
-    /// `new_bytes` must be a valid pointer.
+    /// - `the_data` might not allow `None`.
+    /// - `new_bytes` must be a valid pointer.
     #[doc(alias = "CFDataReplaceBytes")]
     #[inline]
     pub unsafe fn replace_bytes(

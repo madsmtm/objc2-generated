@@ -123,7 +123,8 @@ impl NSComboButton {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(comboButtonWithTitle:menu:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithTitle_menu_target_action(
@@ -147,7 +148,8 @@ impl NSComboButton {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(comboButtonWithImage:menu:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithImage_menu_target_action(
@@ -173,7 +175,8 @@ impl NSComboButton {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(comboButtonWithTitle:image:menu:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithTitle_image_menu_target_action(

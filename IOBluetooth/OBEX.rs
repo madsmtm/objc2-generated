@@ -2477,6 +2477,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `name` might not allow `None`.
     /// - `dict_ref` generics must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
@@ -2499,6 +2500,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `description` might not allow `None`.
     /// - `dict_ref` generics must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
@@ -2581,6 +2583,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `type` might not allow `None`.
     /// - `dict_ref` generics must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]

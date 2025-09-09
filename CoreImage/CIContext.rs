@@ -417,7 +417,8 @@ impl CIContext {
         #[cfg(target_os = "macos")]
         /// # Safety
         ///
-        /// `shared_context` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `shared_context` must be a valid pointer or null.
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[unsafe(method(contextForOfflineGPUAtIndex:colorSpace:options:sharedContext:))]
         #[unsafe(method_family = none)]

@@ -336,6 +336,7 @@ impl CFBundle {
 
     /// # Safety
     ///
+    /// - `url` might not allow `None`.
     /// - `package_type` must be a valid pointer.
     /// - `package_creator` must be a valid pointer.
     #[doc(alias = "CFBundleGetPackageInfoInDirectory")]
@@ -429,6 +430,9 @@ impl CFBundle {
     ///
     /// # Safety
     ///
+    /// - `key` might not allow `None`.
+    /// - `value` might not allow `None`.
+    /// - `table_name` might not allow `None`.
     /// - `localizations` generic must be of the correct type.
     /// - `localizations` might not allow `None`.
     #[doc(alias = "CFBundleCopyLocalizedStringForLocalizations")]

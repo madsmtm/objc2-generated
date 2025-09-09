@@ -339,6 +339,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `clock_name` might not allow `None`.
     /// - `source_identifier` must be a valid pointer.
     /// - `clock` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]

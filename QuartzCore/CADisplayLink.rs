@@ -26,7 +26,8 @@ impl CADisplayLink {
     extern_methods!(
         /// # Safety
         ///
-        /// `sel` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `sel` must be a valid selector.
         #[unsafe(method(displayLinkWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(

@@ -303,7 +303,8 @@ impl NSFontManager {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `delegate` should be of the correct type.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated = "NSFontManager doesn't have any delegate method. This property should not be used."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]

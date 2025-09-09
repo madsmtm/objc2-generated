@@ -239,7 +239,8 @@ impl AVContentKeySession {
         ///
         /// # Safety
         ///
-        /// `handler` block must be sendable.
+        /// - `options` generic should be of the correct type.
+        /// - `handler` block must be sendable.
         #[unsafe(method(invalidatePersistableContentKey:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidatePersistableContentKey_options_completionHandler(
@@ -264,7 +265,8 @@ impl AVContentKeySession {
         ///
         /// # Safety
         ///
-        /// `handler` block must be sendable.
+        /// - `options` generic should be of the correct type.
+        /// - `handler` block must be sendable.
         #[unsafe(method(invalidateAllPersistableContentKeysForApp:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidateAllPersistableContentKeysForApp_options_completionHandler(
@@ -595,7 +597,8 @@ impl AVContentKeyRequest {
         ///
         /// # Safety
         ///
-        /// `handler` block must be sendable.
+        /// - `options` generic should be of the correct type.
+        /// - `handler` block must be sendable.
         #[unsafe(method(makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeStreamingContentKeyRequestDataForApp_contentIdentifier_options_completionHandler(

@@ -78,14 +78,16 @@ impl MPRemoteCommand {
 
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(addTarget:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTarget_action(&self, target: &AnyObject, action: Sel);
 
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(removeTarget:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTarget_action(&self, target: &AnyObject, action: Option<Sel>);

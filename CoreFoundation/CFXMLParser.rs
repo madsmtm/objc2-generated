@@ -245,6 +245,9 @@ unsafe impl ConcreteType for CFXMLParser {
 impl CFXMLParser {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `xml_data` might not allow `None`.
+    /// - `data_source` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFXMLParserCreate")]
@@ -287,6 +290,8 @@ impl CFXMLParser {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `data_source` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFXMLParserCreateWithDataFromURL")]
@@ -490,7 +495,10 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
 
 /// # Safety
 ///
-/// `error_dict` must be a valid pointer.
+/// - `allocator` might not allow `None`.
+/// - `xml_data` might not allow `None`.
+/// - `data_source` might not allow `None`.
+/// - `error_dict` must be a valid pointer.
 #[cfg(all(
     feature = "CFData",
     feature = "CFDictionary",
@@ -581,6 +589,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
 
 /// # Safety
 ///
+/// - `allocator` might not allow `None`.
+/// - `string` might not allow `None`.
 /// - `entities_dictionary` generics must be of the correct type.
 /// - `entities_dictionary` might not allow `None`.
 #[cfg(feature = "CFDictionary")]
@@ -604,6 +614,8 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
 
 /// # Safety
 ///
+/// - `allocator` might not allow `None`.
+/// - `string` might not allow `None`.
 /// - `entities_dictionary` generics must be of the correct type.
 /// - `entities_dictionary` might not allow `None`.
 #[cfg(feature = "CFDictionary")]

@@ -459,7 +459,8 @@ impl NSSegmentedControl {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(segmentedControlWithLabels:trackingMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
@@ -485,7 +486,8 @@ impl NSSegmentedControl {
         ///
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(segmentedControlWithImages:trackingMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(

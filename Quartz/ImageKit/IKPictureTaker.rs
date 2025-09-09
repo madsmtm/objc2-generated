@@ -80,6 +80,8 @@ impl IKPictureTaker {
         ///
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginPictureTakerWithDelegate:didEndSelector:contextInfo:))]
@@ -104,6 +106,9 @@ impl IKPictureTaker {
         ///
         /// # Safety
         ///
+        /// - `a_window` might not allow `None`.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginPictureTakerSheetForWindow:withDelegate:didEndSelector:contextInfo:))]
@@ -129,6 +134,9 @@ impl IKPictureTaker {
         ///
         /// # Safety
         ///
+        /// - `a_view` might not allow `None`.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         #[unsafe(method(popUpRecentsMenuForView:withDelegate:didEndSelector:contextInfo:))]

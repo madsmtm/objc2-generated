@@ -74,7 +74,8 @@ impl NSPickerTouchBarItem {
     extern_methods!(
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action(
@@ -89,7 +90,8 @@ impl NSPickerTouchBarItem {
         #[cfg(feature = "NSImage")]
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_images_selectionMode_target_action(

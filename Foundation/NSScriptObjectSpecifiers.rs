@@ -240,7 +240,8 @@ impl NSScriptObjectSpecifier {
 
         /// # Safety
         ///
-        /// `count` must be a valid pointer.
+        /// - `container` should be of the correct type.
+        /// - `count` must be a valid pointer.
         #[unsafe(method(indicesOfObjectsByEvaluatingWithContainer:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn indicesOfObjectsByEvaluatingWithContainer_count(

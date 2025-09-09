@@ -209,6 +209,7 @@ impl NSPrintPanel {
         #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSWindow"))]
         /// # Safety
         ///
+        /// - `delegate` should be of the correct type.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer or null.
         #[deprecated]

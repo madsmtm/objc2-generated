@@ -289,6 +289,7 @@ impl CFLocale {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `dictionary` generics must be of the correct type.
     /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFLocaleCreateLocaleIdentifierFromComponents")]

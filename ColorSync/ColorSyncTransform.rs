@@ -59,7 +59,8 @@ impl ColorSyncTransform {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `key` should be of the correct type.
+    /// - `options` generics must be of the correct type.
     #[doc(alias = "ColorSyncTransformCopyProperty")]
     #[inline]
     pub unsafe fn property(

@@ -148,6 +148,7 @@ impl NSThread {
 
         /// # Safety
         ///
+        /// - `target` should be of the correct type.
         /// - `selector` must be a valid selector.
         /// - `argument` should be of the correct type.
         #[unsafe(method(initWithTarget:selector:object:))]

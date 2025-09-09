@@ -4662,7 +4662,8 @@ impl XCTestCase {
         ///
         /// # Safety
         ///
-        /// `handler` must be a valid pointer or null.
+        /// - `object_to_observe` should be of the correct type.
+        /// - `handler` must be a valid pointer or null.
         #[unsafe(method(keyValueObservingExpectationForObject:keyPath:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyValueObservingExpectationForObject_keyPath_handler(
@@ -4692,7 +4693,8 @@ impl XCTestCase {
         ///
         /// # Safety
         ///
-        /// `handler` must be a valid pointer or null.
+        /// - `object_to_observe` should be of the correct type.
+        /// - `handler` must be a valid pointer or null.
         #[unsafe(method(expectationForNotification:object:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForNotification_object_handler(
@@ -4725,7 +4727,8 @@ impl XCTestCase {
         ///
         /// # Safety
         ///
-        /// `handler` must be a valid pointer or null.
+        /// - `object_to_observe` should be of the correct type.
+        /// - `handler` must be a valid pointer or null.
         #[unsafe(method(expectationForNotification:object:notificationCenter:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForNotification_object_notificationCenter_handler(
@@ -4749,7 +4752,8 @@ impl XCTestCase {
         ///
         /// # Safety
         ///
-        /// `handler` must be a valid pointer or null.
+        /// - `object` should be of the correct type.
+        /// - `handler` must be a valid pointer or null.
         #[unsafe(method(expectationForPredicate:evaluatedWithObject:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectationForPredicate_evaluatedWithObject_handler(

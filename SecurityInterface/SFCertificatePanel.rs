@@ -130,6 +130,9 @@ impl SFCertificatePanel {
         ///
         /// # Safety
         ///
+        /// - `doc_window` might not allow `None`.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         /// - `trust` might not allow `None`.
@@ -165,6 +168,9 @@ impl SFCertificatePanel {
         ///
         /// # Safety
         ///
+        /// - `doc_window` might not allow `None`.
+        /// - `delegate` should be of the correct type.
+        /// - `delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         /// - `certificates` generic should be of the correct type.

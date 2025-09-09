@@ -373,7 +373,8 @@ impl UIControl {
 
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(addTarget:action:forControlEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTarget_action_forControlEvents(
@@ -385,7 +386,8 @@ impl UIControl {
 
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(removeTarget:action:forControlEvents:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTarget_action_forControlEvents(

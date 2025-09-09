@@ -176,7 +176,9 @@ impl CFNumberFormatter {
 
     /// # Safety
     ///
-    /// `value_ptr` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `formatter` might not allow `None`.
+    /// - `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterCreateStringWithValue")]
     #[cfg(feature = "CFNumber")]
     #[inline]
@@ -226,7 +228,10 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
 impl CFNumberFormatter {
     /// # Safety
     ///
-    /// `rangep` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `formatter` might not allow `None`.
+    /// - `string` might not allow `None`.
+    /// - `rangep` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterCreateNumberFromString")]
     #[cfg(feature = "CFNumber")]
     #[inline]
@@ -254,6 +259,7 @@ impl CFNumberFormatter {
 
     /// # Safety
     ///
+    /// - `string` might not allow `None`.
     /// - `rangep` must be a valid pointer.
     /// - `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterGetValueFromString")]
@@ -575,6 +581,7 @@ unsafe impl RefEncode for CFNumberFormatterPadPosition {
 impl CFNumberFormatter {
     /// # Safety
     ///
+    /// - `currency_code` might not allow `None`.
     /// - `default_fraction_digits` must be a valid pointer.
     /// - `rounding_increment` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterGetDecimalInfoForCurrencyCode")]

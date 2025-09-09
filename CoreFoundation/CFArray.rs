@@ -239,6 +239,7 @@ impl CFArray {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` must be a valid pointer.
     #[doc(alias = "CFArrayCreate")]
@@ -282,6 +283,7 @@ impl CFArray {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     #[doc(alias = "CFArrayCreateCopy")]
@@ -347,6 +349,7 @@ impl CFMutableArray {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFArrayCreateMutable")]
@@ -398,6 +401,7 @@ impl CFMutableArray {
     ///
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - The returned generic must be of the correct type.

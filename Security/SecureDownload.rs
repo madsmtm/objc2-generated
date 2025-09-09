@@ -121,6 +121,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `ticket` might not allow `None`.
     /// - `setup` must be implemented correctly.
     /// - `setup_context` must be a valid pointer.
     /// - `evaluate` must be implemented correctly.
@@ -281,7 +282,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `ticket_location` must be a valid pointer.
+    /// - `url` might not allow `None`.
+    /// - `ticket_location` must be a valid pointer.
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyTicketLocation(
         url: Option<&CFURL>,

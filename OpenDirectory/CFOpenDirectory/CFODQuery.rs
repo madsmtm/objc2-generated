@@ -69,7 +69,16 @@ impl ODQueryRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `node` might not allow `None`.
+    /// - `record_type_or_list` should be of the correct type.
+    /// - `record_type_or_list` might not allow `None`.
+    /// - `attribute` might not allow `None`.
+    /// - `query_value_or_list` should be of the correct type.
+    /// - `query_value_or_list` might not allow `None`.
+    /// - `return_attribute_or_list` should be of the correct type.
+    /// - `return_attribute_or_list` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODQueryCreateWithNode")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -146,7 +155,15 @@ impl ODQueryRef {
     ///
     /// # Safety
     ///
-    /// `error` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `record_type_or_list` should be of the correct type.
+    /// - `record_type_or_list` might not allow `None`.
+    /// - `attribute` might not allow `None`.
+    /// - `query_value_or_list` should be of the correct type.
+    /// - `query_value_or_list` might not allow `None`.
+    /// - `return_attribute_or_list` should be of the correct type.
+    /// - `return_attribute_or_list` might not allow `None`.
+    /// - `error` must be a valid pointer.
     #[doc(alias = "ODQueryCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",

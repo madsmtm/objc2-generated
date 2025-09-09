@@ -160,6 +160,10 @@ impl IKFilterBrowserPanel {
         ///
         /// # Safety
         ///
+        /// - `in_options` generic should be of the correct type.
+        /// - `in_options` might not allow `None`.
+        /// - `modeless_delegate` should be of the correct type.
+        /// - `modeless_delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginWithOptions:modelessDelegate:didEndSelector:contextInfo:))]
@@ -193,6 +197,11 @@ impl IKFilterBrowserPanel {
         ///
         /// # Safety
         ///
+        /// - `in_options` generic should be of the correct type.
+        /// - `in_options` might not allow `None`.
+        /// - `doc_window` might not allow `None`.
+        /// - `modal_delegate` should be of the correct type.
+        /// - `modal_delegate` might not allow `None`.
         /// - `did_end_selector` must be a valid selector.
         /// - `context_info` must be a valid pointer.
         #[unsafe(method(beginSheetWithOptions:modalForWindow:modalDelegate:didEndSelector:contextInfo:))]

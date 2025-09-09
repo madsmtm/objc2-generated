@@ -65,7 +65,8 @@ impl UIUpdateLink {
         #[cfg(feature = "UIUpdateActionPhase")]
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(addActionToPhase:target:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addActionToPhase_target_selector(
@@ -172,7 +173,8 @@ impl UIUpdateLink {
         ///
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(addActionWithTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addActionWithTarget_selector(&self, target: &AnyObject, selector: Sel);
@@ -201,7 +203,8 @@ impl UIUpdateLink {
         ///
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(updateLinkForWindowScene:actionTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForWindowScene_actionTarget_selector(
@@ -229,7 +232,8 @@ impl UIUpdateLink {
         ///
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `selector` must be a valid selector.
         #[unsafe(method(updateLinkForView:actionTarget:selector:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForView_actionTarget_selector(

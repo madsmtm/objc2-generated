@@ -870,7 +870,8 @@ impl UITableViewCell {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `target` should be of the correct type.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[deprecated]
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]

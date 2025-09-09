@@ -101,6 +101,8 @@ unsafe impl ConcreteType for CFMessagePort {
 impl CFMessagePort {
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `name` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer.
     /// - `should_free_info` must be a valid pointer.
@@ -234,7 +236,9 @@ impl CFMessagePort {
 
     /// # Safety
     ///
-    /// `return_data` must be a valid pointer.
+    /// - `data` might not allow `None`.
+    /// - `reply_mode` might not allow `None`.
+    /// - `return_data` must be a valid pointer.
     #[doc(alias = "CFMessagePortSendRequest")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]

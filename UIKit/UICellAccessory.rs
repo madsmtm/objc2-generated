@@ -992,7 +992,8 @@ impl UICellAccessory {
     ///
     /// # Safety
     ///
-    /// The returned block's argument must be a valid pointer.
+    /// - `accessory_class` probably has further requirements.
+    /// - The returned block's argument must be a valid pointer.
     #[doc(alias = "UICellAccessoryPositionBeforeAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1011,7 +1012,8 @@ impl UICellAccessory {
     ///
     /// # Safety
     ///
-    /// The returned block's argument must be a valid pointer.
+    /// - `accessory_class` probably has further requirements.
+    /// - The returned block's argument must be a valid pointer.
     #[doc(alias = "UICellAccessoryPositionAfterAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]

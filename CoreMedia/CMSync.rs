@@ -824,6 +824,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
+    /// - `of_clock_or_timebase` should be of the correct type.
+    /// - `relative_to_clock_or_timebase` should be of the correct type.
     /// - `out_relative_rate` must be a valid pointer or null.
     /// - `out_of_clock_or_timebase_anchor_time` must be a valid pointer or null.
     /// - `out_relative_to_clock_or_timebase_anchor_time` must be a valid pointer or null.

@@ -119,7 +119,8 @@ unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 ///
 /// # Safety
 ///
-/// `zone` must be a valid pointer or null.
+/// - `a_class` probably has further requirements.
+/// - `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllocateObject(
@@ -148,7 +149,8 @@ extern "C-unwind" {
 
 /// # Safety
 ///
-/// `zone` must be a valid pointer or null.
+/// - `object` should be of the correct type.
+/// - `zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[deprecated = "Not supported"]
 #[inline]
@@ -171,7 +173,8 @@ pub unsafe extern "C-unwind" fn NSCopyObject(
 
 /// # Safety
 ///
-/// `requested_zone` must be a valid pointer or null.
+/// - `an_object` should be of the correct type.
+/// - `requested_zone` must be a valid pointer or null.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSShouldRetainWithZone(

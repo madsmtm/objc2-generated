@@ -379,7 +379,8 @@ impl AVPlayerItemIntegratedTimeline {
         ///
         /// # Safety
         ///
-        /// `block` block must be sendable.
+        /// - `offsets_into_segment` generic should be of the correct type.
+        /// - `block` block must be sendable.
         #[unsafe(method(addBoundaryTimeObserverForSegment:offsetsIntoSegment:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForSegment_offsetsIntoSegment_queue_usingBlock(

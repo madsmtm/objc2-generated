@@ -375,7 +375,10 @@ pub unsafe extern "C-unwind" fn SecTransformCreateGroupTransform() -> CFRetained
 ///
 /// # Safety
 ///
-/// `error` must be a valid pointer or null.
+/// - `source_transform_ref` should be of the correct type.
+/// - `destination_transform_ref` should be of the correct type.
+/// - `group` should be of the correct type.
+/// - `error` must be a valid pointer or null.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
@@ -442,7 +445,9 @@ pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
 ///
 /// # Safety
 ///
-/// `error` must be a valid pointer or null.
+/// - `transform_ref` should be of the correct type.
+/// - `value` should be of the correct type.
+/// - `error` must be a valid pointer or null.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformSetAttribute(
@@ -577,7 +582,8 @@ pub unsafe extern "C-unwind" fn SecTransformFindByName(
 ///
 /// # Safety
 ///
-/// `error_ref` must be a valid pointer or null.
+/// - `transform_ref` should be of the correct type.
+/// - `error_ref` must be a valid pointer or null.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformExecute(

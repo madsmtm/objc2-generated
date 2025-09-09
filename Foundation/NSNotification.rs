@@ -137,6 +137,7 @@ impl NSNotificationCenter {
         #[cfg(feature = "NSString")]
         /// # Safety
         ///
+        /// - `observer` should be of the correct type.
         /// - `a_selector` must be a valid selector.
         /// - `an_object` should be of the correct type.
         #[unsafe(method(addObserver:selector:name:object:))]
@@ -203,7 +204,8 @@ impl NSNotificationCenter {
         #[cfg(all(feature = "NSOperation", feature = "NSString", feature = "block2"))]
         /// # Safety
         ///
-        /// `block` block must be sendable.
+        /// - `obj` should be of the correct type.
+        /// - `block` block must be sendable.
         #[unsafe(method(addObserverForName:object:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserverForName_object_queue_usingBlock(

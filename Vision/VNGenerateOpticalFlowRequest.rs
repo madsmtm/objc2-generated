@@ -201,7 +201,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCVPixelBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
@@ -256,7 +257,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options_completionHandler(
@@ -302,7 +304,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCGImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
@@ -357,7 +360,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCGImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_orientation_options_completionHandler(
@@ -403,7 +407,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCIImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
@@ -458,7 +463,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCIImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_orientation_options_completionHandler(
@@ -500,7 +506,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageURL:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
@@ -550,7 +557,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageURL:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_orientation_options_completionHandler(
@@ -592,7 +600,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageData:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
@@ -642,7 +651,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedImageData:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_orientation_options_completionHandler(
@@ -688,7 +698,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCMSampleBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
@@ -743,7 +754,8 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options_completionHandler(

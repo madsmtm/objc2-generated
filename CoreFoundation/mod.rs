@@ -3411,7 +3411,8 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFAllocatorCreate")]
     #[inline]
     pub unsafe fn new(
@@ -3452,7 +3453,8 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// `ptr` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocateTyped")]
     #[inline]
     pub unsafe fn reallocate_typed(
@@ -3493,7 +3495,8 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// `ptr` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocateBytes")]
     #[inline]
     pub unsafe fn reallocate_bytes(
@@ -3532,7 +3535,8 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// `ptr` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocate")]
     #[inline]
     pub unsafe fn reallocate(
@@ -3554,7 +3558,8 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// `ptr` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorDeallocate")]
     #[inline]
     pub unsafe fn deallocate(allocator: Option<&CFAllocator>, ptr: *mut c_void) {
@@ -3583,7 +3588,8 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFAllocatorGetContext")]
     #[inline]
     pub unsafe fn context(allocator: Option<&CFAllocator>, context: *mut CFAllocatorContext) {

@@ -252,7 +252,8 @@ impl UIButton {
         #[cfg(feature = "UIImage")]
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(systemButtonWithImage:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn systemButtonWithImage_target_action(

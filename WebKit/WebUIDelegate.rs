@@ -909,6 +909,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `web_view` might not allow `None`.
         /// - `action` must be a valid selector.
         /// - `sender` should be of the correct type.
         /// - `sender` might not allow `None`.

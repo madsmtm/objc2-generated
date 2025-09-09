@@ -12007,6 +12007,8 @@ pub type IOCFPlugInInterface = IOCFPlugInInterfaceStruct;
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `plugin_type` might not allow `None`.
+    /// - `interface_type` might not allow `None`.
     /// - `the_interface` must be a valid pointer.
     /// - `the_score` must be a valid pointer.
     #[cfg(feature = "libc")]
@@ -12053,7 +12055,10 @@ pub unsafe extern "C-unwind" fn IOCFSerialize(
 
 /// # Safety
 ///
-/// `error_code` must be a valid pointer.
+/// - `alloc` might not allow `None`.
+/// - `url` might not allow `None`.
+/// - `property` might not allow `None`.
+/// - `error_code` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOURLCreatePropertyFromResource(
     alloc: Option<&CFAllocator>,
@@ -12075,6 +12080,8 @@ pub unsafe extern "C-unwind" fn IOURLCreatePropertyFromResource(
 
 /// # Safety
 ///
+/// - `alloc` might not allow `None`.
+/// - `url` might not allow `None`.
 /// - `resource_data` must be a valid pointer.
 /// - `properties` must be a valid pointer.
 /// - `desired_properties` generic must be of the correct type.
@@ -12114,6 +12121,8 @@ pub unsafe extern "C-unwind" fn IOURLCreateDataAndPropertiesFromResource(
 
 /// # Safety
 ///
+/// - `url` might not allow `None`.
+/// - `data_to_write` might not allow `None`.
 /// - `properties_to_write` generics must be of the correct type.
 /// - `properties_to_write` might not allow `None`.
 /// - `error_code` must be a valid pointer.

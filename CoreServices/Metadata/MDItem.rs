@@ -119,6 +119,7 @@ impl MDItem {
 ///
 /// # Safety
 ///
+/// - `allocator` might not allow `None`.
 /// - `urls` generic must be of the correct type.
 /// - `urls` might not allow `None`.
 #[inline]

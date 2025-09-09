@@ -3972,7 +3972,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `value` must be a valid pointer.
+    /// - `parameter_name` might not allow `None`.
+    /// - `value` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IODisplayGetFloatParameter(
         service: io_service_t,
@@ -3985,6 +3986,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
+    /// - `parameter_name` might not allow `None`.
     /// - `value` must be a valid pointer.
     /// - `min` must be a valid pointer.
     /// - `max` must be a valid pointer.

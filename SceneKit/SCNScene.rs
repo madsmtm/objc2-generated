@@ -226,7 +226,8 @@ impl SCNScene {
         ///
         /// # Safety
         ///
-        /// `progress_handler` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `progress_handler` must be a valid pointer or null.
         #[unsafe(method(writeToURL:options:delegate:progressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_options_delegate_progressHandler(

@@ -235,7 +235,8 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         /// # Safety
         ///
-        /// `selector` must be a valid selector.
+        /// - `web_view` might not allow `None`.
+        /// - `selector` must be a valid selector.
         #[deprecated]
         #[optional]
         #[unsafe(method(webView:doCommandBySelector:))]

@@ -30,7 +30,8 @@ impl NSButtonTouchBarItem {
     extern_methods!(
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(buttonTouchBarItemWithIdentifier:title:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_target_action(
@@ -44,7 +45,8 @@ impl NSButtonTouchBarItem {
         #[cfg(feature = "NSImage")]
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(buttonTouchBarItemWithIdentifier:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_image_target_action(
@@ -58,7 +60,8 @@ impl NSButtonTouchBarItem {
         #[cfg(feature = "NSImage")]
         /// # Safety
         ///
-        /// `action` must be a valid selector.
+        /// - `target` should be of the correct type.
+        /// - `action` must be a valid selector.
         #[unsafe(method(buttonTouchBarItemWithIdentifier:title:image:target:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_image_target_action(

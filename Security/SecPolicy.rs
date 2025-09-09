@@ -307,7 +307,8 @@ impl SecPolicy {
     ///
     /// # Safety
     ///
-    /// `properties` generics must be of the correct type.
+    /// - `policy_identifier` should be of the correct type.
+    /// - `properties` generics must be of the correct type.
     #[doc(alias = "SecPolicyCreateWithProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]

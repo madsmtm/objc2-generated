@@ -186,7 +186,8 @@ impl NSSpellChecker {
 
         /// # Safety
         ///
-        /// `word_count` must be a valid pointer or null.
+        /// - `options` generic should be of the correct type.
+        /// - `word_count` must be a valid pointer or null.
         #[unsafe(method(checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkString_range_types_options_inSpellDocumentWithTag_orthography_wordCount(

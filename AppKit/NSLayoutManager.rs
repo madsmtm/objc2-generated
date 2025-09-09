@@ -1361,7 +1361,8 @@ extern_protocol!(
 
         /// # Safety
         ///
-        /// `effective_char_range` must be a valid pointer or null.
+        /// - `attrs` generic should be of the correct type.
+        /// - `effective_char_range` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(layoutManager:shouldUseTemporaryAttributes:forDrawingToScreen:atCharacterIndex:effectiveRange:))]
         #[unsafe(method_family = none)]

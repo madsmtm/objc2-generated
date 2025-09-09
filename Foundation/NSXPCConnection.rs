@@ -386,7 +386,8 @@ impl NSXPCInterface {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `protocol` possibly has further requirements.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setProtocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProtocol(&self, protocol: &AnyProtocol);
@@ -394,7 +395,8 @@ impl NSXPCInterface {
         #[cfg(feature = "NSSet")]
         /// # Safety
         ///
-        /// `sel` must be a valid selector.
+        /// - `classes` generic probably has further requirements.
+        /// - `sel` must be a valid selector.
         #[unsafe(method(setClasses:forSelector:argumentIndex:ofReply:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClasses_forSelector_argumentIndex_ofReply(

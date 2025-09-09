@@ -157,7 +157,8 @@ unsafe impl ConcreteType for CFNumber {
 impl CFNumber {
     /// # Safety
     ///
-    /// `value_ptr` must be a valid pointer.
+    /// - `allocator` might not allow `None`.
+    /// - `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberCreate")]
     #[inline]
     pub unsafe fn new(
@@ -223,7 +224,8 @@ impl CFNumber {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `other_number` might not allow `None`.
+    /// - `context` must be a valid pointer.
     #[doc(alias = "CFNumberCompare")]
     #[inline]
     pub unsafe fn compare(
