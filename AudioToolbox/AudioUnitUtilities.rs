@@ -185,6 +185,7 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer.
+    /// - `in_run_loop` possibly has additional threading requirements.
     /// - `out_listener` must be a valid pointer.
     #[cfg(all(
         feature = "AUComponent",

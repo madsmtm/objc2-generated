@@ -694,6 +694,7 @@ extern "C-unwind" {
     /// - `in_format` must be a valid pointer.
     /// - `in_callback_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer or null.
+    /// - `in_callback_run_loop` possibly has additional threading requirements.
     /// - `out_aq` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewOutput(
@@ -747,6 +748,7 @@ extern "C-unwind" {
     /// - `in_format` must be a valid pointer.
     /// - `in_callback_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer or null.
+    /// - `in_callback_run_loop` possibly has additional threading requirements.
     /// - `out_aq` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewInput(

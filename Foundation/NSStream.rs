@@ -133,6 +133,9 @@ impl NSStream {
         ) -> bool;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `a_run_loop` possibly has additional threading requirements.
         #[unsafe(method(scheduleInRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleInRunLoop_forMode(
@@ -142,6 +145,9 @@ impl NSStream {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `a_run_loop` possibly has additional threading requirements.
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(

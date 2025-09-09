@@ -598,6 +598,10 @@ impl CMTimebase {
     /// will be set far, far in the future. The runloop that timer is attached to must be
     /// passed in and the timebase will retain that runloop. The retained runloop will be
     /// used to call CFRunLoopWakeUp() any time the timebase modifies the timer's fire date.
+    ///
+    /// # Safety
+    ///
+    /// `runloop` possibly has additional threading requirements.
     #[doc(alias = "CMTimebaseAddTimer")]
     #[inline]
     pub unsafe fn add_timer(&self, timer: &CFRunLoopTimer, runloop: &CFRunLoop) -> OSStatus {

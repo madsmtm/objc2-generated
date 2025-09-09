@@ -277,12 +277,18 @@ impl NSConnection {
         pub unsafe fn multipleThreadsEnabled(&self) -> bool;
 
         #[cfg(feature = "NSRunLoop")]
+        /// # Safety
+        ///
+        /// `runloop` possibly has additional threading requirements.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(addRunLoop:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addRunLoop(&self, runloop: &NSRunLoop);
 
         #[cfg(feature = "NSRunLoop")]
+        /// # Safety
+        ///
+        /// `runloop` possibly has additional threading requirements.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(removeRunLoop:))]
         #[unsafe(method_family = none)]

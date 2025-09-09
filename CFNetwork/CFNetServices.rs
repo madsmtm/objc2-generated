@@ -517,6 +517,9 @@ impl CFNetService {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "CFNetServiceScheduleWithRunLoop")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -531,6 +534,9 @@ impl CFNetService {
         unsafe { CFNetServiceScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "CFNetServiceUnscheduleFromRunLoop")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -620,6 +626,9 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorStop(self, error) }
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "CFNetServiceMonitorScheduleWithRunLoop")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -634,6 +643,9 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "CFNetServiceMonitorUnscheduleFromRunLoop")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -749,6 +761,9 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserStopSearch(self, error) }
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "CFNetServiceBrowserScheduleWithRunLoop")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -763,6 +778,9 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "CFNetServiceBrowserUnscheduleFromRunLoop")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]

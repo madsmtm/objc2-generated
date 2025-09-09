@@ -34,10 +34,16 @@ impl CADisplayLink {
             sel: Sel,
         ) -> Retained<CADisplayLink>;
 
+        /// # Safety
+        ///
+        /// `runloop` possibly has additional threading requirements.
         #[unsafe(method(addToRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addToRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);
 
+        /// # Safety
+        ///
+        /// `runloop` possibly has additional threading requirements.
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(&self, runloop: &NSRunLoop, mode: &NSRunLoopMode);

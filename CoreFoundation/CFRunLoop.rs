@@ -277,6 +277,7 @@ impl CFRunLoop {
 
     /// # Safety
     ///
+    /// - `rl` possibly has additional threading requirements.
     /// - `mode` should be of the correct type.
     /// - `mode` might not allow `None`.
     /// - `block` might not allow `None`.

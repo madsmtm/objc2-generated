@@ -112,6 +112,9 @@ impl NSNetService {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `a_run_loop` possibly has additional threading requirements.
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(scheduleInRunLoop:forMode:))]
         #[unsafe(method_family = none)]
@@ -122,6 +125,9 @@ impl NSNetService {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `a_run_loop` possibly has additional threading requirements.
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
@@ -340,6 +346,9 @@ impl NSNetServiceBrowser {
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `a_run_loop` possibly has additional threading requirements.
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[unsafe(method(scheduleInRunLoop:forMode:))]
         #[unsafe(method_family = none)]
@@ -350,6 +359,9 @@ impl NSNetServiceBrowser {
         );
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `a_run_loop` possibly has additional threading requirements.
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]

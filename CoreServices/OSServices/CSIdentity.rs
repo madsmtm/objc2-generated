@@ -562,6 +562,7 @@ impl CSIdentity {
     /// # Safety
     ///
     /// - `client_context` must be a valid pointer.
+    /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
     /// - `authorization` must be a valid pointer.

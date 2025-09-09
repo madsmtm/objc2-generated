@@ -1229,6 +1229,10 @@ impl IOHIDQueue {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDQueueScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1253,6 +1257,10 @@ impl IOHIDQueue {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDQueueUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1722,6 +1730,10 @@ impl IOHIDDevice {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDDeviceScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1746,6 +1758,10 @@ impl IOHIDDevice {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when unscheduling any
     /// asynchronous activity.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDDeviceUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -4203,6 +4219,10 @@ impl IOHIDManager {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDManagerScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -4228,6 +4248,10 @@ impl IOHIDManager {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when unscheduling any
     /// asynchronous activity.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDManagerUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -9959,6 +9983,10 @@ impl IOHIDTransaction {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDTransactionScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -9983,6 +10011,10 @@ impl IOHIDTransaction {
     ///
     /// Parameter `runLoopMode`: Run loop mode to be used when scheduling any
     /// asynchronous activity.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "IOHIDTransactionUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {

@@ -66,11 +66,17 @@ impl NSPort {
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSPortDelegate>>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `run_loop` possibly has additional threading requirements.
         #[unsafe(method(scheduleInRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `run_loop` possibly has additional threading requirements.
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
@@ -114,6 +120,9 @@ impl NSPort {
             feature = "NSRunLoop",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// `run_loop` possibly has additional threading requirements.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(addConnection:toRunLoop:forMode:))]
         #[unsafe(method_family = none)]
@@ -130,6 +139,9 @@ impl NSPort {
             feature = "NSRunLoop",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// `run_loop` possibly has additional threading requirements.
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(removeConnection:fromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
@@ -273,11 +285,17 @@ impl NSMachPort {
         pub unsafe fn machPort(&self) -> u32;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `run_loop` possibly has additional threading requirements.
         #[unsafe(method(scheduleInRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn scheduleInRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `run_loop` possibly has additional threading requirements.
         #[unsafe(method(removeFromRunLoop:forMode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(&self, run_loop: &NSRunLoop, mode: &NSRunLoopMode);

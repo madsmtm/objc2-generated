@@ -172,6 +172,7 @@ impl ODQuery {
         ///
         /// # Safety
         ///
+        /// - `in_run_loop` possibly has additional threading requirements.
         /// - `in_run_loop` might not allow `None`.
         /// - `in_mode` might not allow `None`.
         #[unsafe(method(scheduleInRunLoop:forMode:))]
@@ -188,6 +189,7 @@ impl ODQuery {
         ///
         /// # Safety
         ///
+        /// - `in_run_loop` possibly has additional threading requirements.
         /// - `in_run_loop` might not allow `None`.
         /// - `in_mode` might not allow `None`.
         #[unsafe(method(removeFromRunLoop:forMode:))]

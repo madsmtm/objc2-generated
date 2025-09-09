@@ -273,6 +273,9 @@ impl CFHost {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "CFHostScheduleWithRunLoop")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -287,6 +290,9 @@ impl CFHost {
         unsafe { CFHostScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "CFHostUnscheduleFromRunLoop")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]

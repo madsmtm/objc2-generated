@@ -276,7 +276,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `stream_ref` must be a valid pointer.
+    /// - `stream_ref` must be a valid pointer.
+    /// - `run_loop` possibly has additional threading requirements.
     #[deprecated = "Use FSEventStreamSetDispatchQueue instead."]
     pub fn FSEventStreamScheduleWithRunLoop(
         stream_ref: FSEventStreamRef,
@@ -288,7 +289,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `stream_ref` must be a valid pointer.
+    /// - `stream_ref` must be a valid pointer.
+    /// - `run_loop` possibly has additional threading requirements.
     #[deprecated = "Use FSEventStreamSetDispatchQueue instead."]
     pub fn FSEventStreamUnscheduleFromRunLoop(
         stream_ref: FSEventStreamRef,

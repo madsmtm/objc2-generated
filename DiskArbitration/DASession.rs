@@ -65,6 +65,10 @@ impl DASession {
     /// Parameter `runLoop`: The run loop on which the session should be scheduled.
     ///
     /// Parameter `runLoopMode`: The run loop mode in which the session should be scheduled.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "DASessionScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -85,6 +89,10 @@ impl DASession {
     /// Parameter `runLoop`: The run loop on which the session is scheduled.
     ///
     /// Parameter `runLoopMode`: The run loop mode in which the session is scheduled.
+    ///
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "DASessionUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -153,6 +161,9 @@ impl DAApprovalSession {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "DAApprovalSessionScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -166,6 +177,9 @@ impl DAApprovalSession {
         unsafe { DAApprovalSessionScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// # Safety
+    ///
+    /// `run_loop` possibly has additional threading requirements.
     #[doc(alias = "DAApprovalSessionUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {

@@ -425,6 +425,7 @@ impl AERemoteProcessResolver {
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.
+    /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
     /// - `callback` must be implemented correctly.

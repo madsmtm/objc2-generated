@@ -389,6 +389,7 @@ impl WSMethodInvocation {
 
     /// # Safety
     ///
+    /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
     #[doc(alias = "WSMethodInvocationScheduleWithRunLoop")]
@@ -411,6 +412,7 @@ impl WSMethodInvocation {
 
     /// # Safety
     ///
+    /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
     #[doc(alias = "WSMethodInvocationUnscheduleFromRunLoop")]
