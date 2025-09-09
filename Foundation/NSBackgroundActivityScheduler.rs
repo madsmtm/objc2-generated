@@ -47,10 +47,7 @@ impl NSBackgroundActivityScheduler {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier(
-            this: Allocated<Self>,
-            identifier: &NSString,
-        ) -> Retained<Self>;
+        pub fn initWithIdentifier(this: Allocated<Self>, identifier: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(identifier))]
@@ -112,7 +109,7 @@ impl NSBackgroundActivityScheduler {
 
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidate(&self);
+        pub fn invalidate(&self);
 
         #[unsafe(method(shouldDefer))]
         #[unsafe(method_family = none)]
@@ -125,10 +122,17 @@ impl NSBackgroundActivityScheduler {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSBackgroundActivityScheduler {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

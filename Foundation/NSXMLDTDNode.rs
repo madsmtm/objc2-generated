@@ -104,7 +104,7 @@ impl NSXMLDTDNode {
         /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
         #[unsafe(method(initWithXMLString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithXMLString(
+        pub fn initWithXMLString(
             this: Allocated<Self>,
             string: &NSString,
         ) -> Option<Retained<Self>>;
@@ -112,7 +112,7 @@ impl NSXMLDTDNode {
         #[cfg(feature = "NSXMLNodeOptions")]
         #[unsafe(method(initWithKind:options:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithKind_options(
+        pub fn initWithKind_options(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
@@ -120,7 +120,7 @@ impl NSXMLDTDNode {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Sets the DTD sub kind.
         #[unsafe(method(DTDKind))]
@@ -194,7 +194,7 @@ impl NSXMLDTDNode {
         /// with options set to NSXMLNodeOptionsNone
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
+        pub fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     );
 }
 
@@ -204,6 +204,14 @@ impl NSXMLDTDNode {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSXMLNode")]
+impl DefaultRetained for NSXMLDTDNode {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

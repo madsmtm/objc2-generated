@@ -26,7 +26,7 @@ impl NSUserActivity {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithActivityType:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithActivityType(
+        pub fn initWithActivityType(
             this: Allocated<Self>,
             activity_type: &NSString,
         ) -> Retained<Self>;
@@ -34,7 +34,7 @@ impl NSUserActivity {
         #[deprecated = "Use initWithActivityType: with a specific activity type string"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(activityType))]
@@ -188,15 +188,15 @@ impl NSUserActivity {
 
         #[unsafe(method(becomeCurrent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn becomeCurrent(&self);
+        pub fn becomeCurrent(&self);
 
         #[unsafe(method(resignCurrent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resignCurrent(&self);
+        pub fn resignCurrent(&self);
 
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidate(&self);
+        pub fn invalidate(&self);
 
         #[cfg(all(feature = "NSError", feature = "NSStream", feature = "block2"))]
         /// # Safety
@@ -291,8 +291,15 @@ impl NSUserActivity {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUserActivity {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -307,18 +314,18 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(userActivityWillSave:))]
         #[unsafe(method_family = none)]
-        unsafe fn userActivityWillSave(&self, user_activity: &NSUserActivity);
+        fn userActivityWillSave(&self, user_activity: &NSUserActivity);
 
         #[optional]
         #[unsafe(method(userActivityWasContinued:))]
         #[unsafe(method_family = none)]
-        unsafe fn userActivityWasContinued(&self, user_activity: &NSUserActivity);
+        fn userActivityWasContinued(&self, user_activity: &NSUserActivity);
 
         #[cfg(feature = "NSStream")]
         #[optional]
         #[unsafe(method(userActivity:didReceiveInputStream:outputStream:))]
         #[unsafe(method_family = none)]
-        unsafe fn userActivity_didReceiveInputStream_outputStream(
+        fn userActivity_didReceiveInputStream_outputStream(
             &self,
             user_activity: &NSUserActivity,
             input_stream: &NSInputStream,

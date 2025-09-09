@@ -36,12 +36,12 @@ impl NSXMLDTD {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
         #[unsafe(method(initWithKind:options:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithKind_options(
+        pub fn initWithKind_options(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
             options: NSXMLNodeOptions,
@@ -50,7 +50,7 @@ impl NSXMLDTD {
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "NSXMLNodeOptions"))]
         #[unsafe(method(initWithContentsOfURL:options:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfURL_options_error(
+        pub fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
             url: &NSURL,
             mask: NSXMLNodeOptions,
@@ -59,7 +59,7 @@ impl NSXMLDTD {
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSXMLNodeOptions"))]
         #[unsafe(method(initWithData:options:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithData_options_error(
+        pub fn initWithData_options_error(
             this: Allocated<Self>,
             data: &NSData,
             mask: NSXMLNodeOptions,
@@ -96,71 +96,59 @@ impl NSXMLDTD {
         /// Inserts a child at a particular index.
         #[unsafe(method(insertChild:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
+        pub fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
         /// Insert several children at a particular index.
         #[unsafe(method(insertChildren:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertChildren_atIndex(
-            &self,
-            children: &NSArray<NSXMLNode>,
-            index: NSUInteger,
-        );
+        pub fn insertChildren_atIndex(&self, children: &NSArray<NSXMLNode>, index: NSUInteger);
 
         /// Removes a child at a particular index.
         #[unsafe(method(removeChildAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeChildAtIndex(&self, index: NSUInteger);
+        pub fn removeChildAtIndex(&self, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
         /// Removes all existing children and replaces them with the new children. Set children to nil to simply remove all children.
         #[unsafe(method(setChildren:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setChildren(&self, children: Option<&NSArray<NSXMLNode>>);
+        pub fn setChildren(&self, children: Option<&NSArray<NSXMLNode>>);
 
         /// Adds a child to the end of the existing children.
         #[unsafe(method(addChild:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addChild(&self, child: &NSXMLNode);
+        pub fn addChild(&self, child: &NSXMLNode);
 
         /// Replaces a child at a particular index with another child.
         #[unsafe(method(replaceChildAtIndex:withNode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replaceChildAtIndex_withNode(&self, index: NSUInteger, node: &NSXMLNode);
+        pub fn replaceChildAtIndex_withNode(&self, index: NSUInteger, node: &NSXMLNode);
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the entity declaration matching this name.
         #[unsafe(method(entityDeclarationForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn entityDeclarationForName(
-            &self,
-            name: &NSString,
-        ) -> Option<Retained<NSXMLDTDNode>>;
+        pub fn entityDeclarationForName(&self, name: &NSString) -> Option<Retained<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the notation declaration matching this name.
         #[unsafe(method(notationDeclarationForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notationDeclarationForName(
-            &self,
-            name: &NSString,
-        ) -> Option<Retained<NSXMLDTDNode>>;
+        pub fn notationDeclarationForName(&self, name: &NSString)
+            -> Option<Retained<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the element declaration matching this name.
         #[unsafe(method(elementDeclarationForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementDeclarationForName(
-            &self,
-            name: &NSString,
-        ) -> Option<Retained<NSXMLDTDNode>>;
+        pub fn elementDeclarationForName(&self, name: &NSString) -> Option<Retained<NSXMLDTDNode>>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the attribute declaration matching this name.
         #[unsafe(method(attributeDeclarationForName:elementName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributeDeclarationForName_elementName(
+        pub fn attributeDeclarationForName_elementName(
             &self,
             name: &NSString,
             element_name: &NSString,
@@ -199,7 +187,7 @@ impl NSXMLDTD {
         /// </ul>
         #[unsafe(method(predefinedEntityDeclarationForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn predefinedEntityDeclarationForName(
+        pub fn predefinedEntityDeclarationForName(
             name: &NSString,
         ) -> Option<Retained<NSXMLDTDNode>>;
     );
@@ -218,7 +206,7 @@ impl NSXMLDTD {
         /// with options set to NSXMLNodeOptionsNone
         #[unsafe(method(initWithKind:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
+        pub fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     );
 }
 
@@ -228,6 +216,14 @@ impl NSXMLDTD {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSXMLNode")]
+impl DefaultRetained for NSXMLDTD {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -19,7 +19,7 @@ pub unsafe trait NSObjectNSScripting:
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(scriptingValueForSpecifier:))]
         #[unsafe(method_family = none)]
-        unsafe fn scriptingValueForSpecifier(
+        fn scriptingValueForSpecifier(
             &self,
             object_specifier: &NSScriptObjectSpecifier,
         ) -> Option<Retained<AnyObject>>;

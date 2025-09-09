@@ -63,7 +63,7 @@ impl NSUserNotification {
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -321,8 +321,15 @@ impl NSUserNotification {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUserNotification {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -353,7 +360,7 @@ impl NSUserNotificationAction {
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(actionWithIdentifier:title:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn actionWithIdentifier_title(
+        pub fn actionWithIdentifier_title(
             identifier: Option<&NSString>,
             title: Option<&NSString>,
         ) -> Retained<Self>;
@@ -377,12 +384,19 @@ impl NSUserNotificationAction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUserNotificationAction {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -455,12 +469,12 @@ impl NSUserNotificationCenter {
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(scheduleNotification:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scheduleNotification(&self, notification: &NSUserNotification);
+        pub fn scheduleNotification(&self, notification: &NSUserNotification);
 
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(removeScheduledNotification:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeScheduledNotification(&self, notification: &NSUserNotification);
+        pub fn removeScheduledNotification(&self, notification: &NSUserNotification);
 
         #[cfg(feature = "NSArray")]
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -471,17 +485,17 @@ impl NSUserNotificationCenter {
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(deliverNotification:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deliverNotification(&self, notification: &NSUserNotification);
+        pub fn deliverNotification(&self, notification: &NSUserNotification);
 
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(removeDeliveredNotification:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeDeliveredNotification(&self, notification: &NSUserNotification);
+        pub fn removeDeliveredNotification(&self, notification: &NSUserNotification);
 
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[unsafe(method(removeAllDeliveredNotifications))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAllDeliveredNotifications(&self);
+        pub fn removeAllDeliveredNotifications(&self);
     );
 }
 
@@ -490,12 +504,19 @@ impl NSUserNotificationCenter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUserNotificationCenter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -505,7 +526,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(userNotificationCenter:didDeliverNotification:))]
         #[unsafe(method_family = none)]
-        unsafe fn userNotificationCenter_didDeliverNotification(
+        fn userNotificationCenter_didDeliverNotification(
             &self,
             center: &NSUserNotificationCenter,
             notification: &NSUserNotification,
@@ -515,7 +536,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(userNotificationCenter:didActivateNotification:))]
         #[unsafe(method_family = none)]
-        unsafe fn userNotificationCenter_didActivateNotification(
+        fn userNotificationCenter_didActivateNotification(
             &self,
             center: &NSUserNotificationCenter,
             notification: &NSUserNotification,
@@ -525,7 +546,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(userNotificationCenter:shouldPresentNotification:))]
         #[unsafe(method_family = none)]
-        unsafe fn userNotificationCenter_shouldPresentNotification(
+        fn userNotificationCenter_shouldPresentNotification(
             &self,
             center: &NSUserNotificationCenter,
             notification: &NSUserNotification,

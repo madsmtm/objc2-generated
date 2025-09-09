@@ -25,7 +25,7 @@ pub unsafe trait NSObjectNSScriptKeyValueCoding:
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueAtIndex:inPropertyWithKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn valueAtIndex_inPropertyWithKey(
+        fn valueAtIndex_inPropertyWithKey(
             &self,
             index: NSUInteger,
             key: &NSString,
@@ -34,7 +34,7 @@ pub unsafe trait NSObjectNSScriptKeyValueCoding:
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueWithName:inPropertyWithKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn valueWithName_inPropertyWithKey(
+        fn valueWithName_inPropertyWithKey(
             &self,
             name: &NSString,
             key: &NSString,
@@ -68,7 +68,7 @@ pub unsafe trait NSObjectNSScriptKeyValueCoding:
         #[cfg(feature = "NSString")]
         #[unsafe(method(removeValueAtIndex:fromPropertyWithKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn removeValueAtIndex_fromPropertyWithKey(&self, index: NSUInteger, key: &NSString);
+        fn removeValueAtIndex_fromPropertyWithKey(&self, index: NSUInteger, key: &NSString);
 
         #[cfg(feature = "NSString")]
         /// # Safety

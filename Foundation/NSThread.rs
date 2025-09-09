@@ -59,24 +59,24 @@ impl NSThread {
         #[cfg(feature = "NSDate")]
         #[unsafe(method(sleepUntilDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sleepUntilDate(date: &NSDate);
+        pub fn sleepUntilDate(date: &NSDate);
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(sleepForTimeInterval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sleepForTimeInterval(ti: NSTimeInterval);
+        pub fn sleepForTimeInterval(ti: NSTimeInterval);
 
         #[unsafe(method(exit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exit();
+        pub fn exit();
 
         #[unsafe(method(threadPriority))]
         #[unsafe(method_family = none)]
-        pub unsafe fn threadPriority_class() -> c_double;
+        pub fn threadPriority_class() -> c_double;
 
         #[unsafe(method(setThreadPriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setThreadPriority_class(p: c_double) -> bool;
+        pub fn setThreadPriority_class(p: c_double) -> bool;
 
         #[unsafe(method(threadPriority))]
         #[unsafe(method_family = none)]
@@ -185,11 +185,11 @@ impl NSThread {
 
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancel(&self);
+        pub fn cancel(&self);
 
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
-        pub unsafe fn start(&self);
+        pub fn start(&self);
 
         #[unsafe(method(main))]
         #[unsafe(method_family = none)]

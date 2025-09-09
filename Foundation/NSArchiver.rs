@@ -29,7 +29,7 @@ impl NSArchiver {
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(initForWritingWithMutableData:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initForWritingWithMutableData(
+        pub fn initForWritingWithMutableData(
             this: Allocated<Self>,
             mdata: &NSMutableData,
         ) -> Retained<Self>;
@@ -78,7 +78,7 @@ impl NSArchiver {
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(encodeClassName:intoClassName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodeClassName_intoClassName(
+        pub fn encodeClassName_intoClassName(
             &self,
             true_name: &NSString,
             in_archive_name: &NSString,
@@ -88,7 +88,7 @@ impl NSArchiver {
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(classNameEncodedForTrueClassName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn classNameEncodedForTrueClassName(
+        pub fn classNameEncodedForTrueClassName(
             &self,
             true_name: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -110,12 +110,20 @@ impl NSArchiver {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSCoder")]
+impl DefaultRetained for NSArchiver {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -264,7 +272,7 @@ pub unsafe trait NSObjectNSArchiverCallback:
         #[deprecated]
         #[unsafe(method(replacementObjectForArchiver:))]
         #[unsafe(method_family = none)]
-        unsafe fn replacementObjectForArchiver(
+        fn replacementObjectForArchiver(
             &self,
             archiver: &NSArchiver,
         ) -> Option<Retained<AnyObject>>;

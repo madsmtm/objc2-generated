@@ -13,7 +13,7 @@ impl NSString {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(pathWithComponents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pathWithComponents(components: &NSArray<NSString>) -> Retained<NSString>;
+        pub fn pathWithComponents(components: &NSArray<NSString>) -> Retained<NSString>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(pathComponents))]
@@ -46,10 +46,7 @@ impl NSString {
 
         #[unsafe(method(stringByAppendingPathExtension:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringByAppendingPathExtension(
-            &self,
-            str: &NSString,
-        ) -> Option<Retained<NSString>>;
+        pub fn stringByAppendingPathExtension(&self, str: &NSString) -> Option<Retained<NSString>>;
 
         #[unsafe(method(stringByAbbreviatingWithTildeInPath))]
         #[unsafe(method_family = none)]
@@ -70,7 +67,7 @@ impl NSString {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(stringsByAppendingPaths:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringsByAppendingPaths(
+        pub fn stringsByAppendingPaths(
             &self,
             paths: &NSArray<NSString>,
         ) -> Retained<NSArray<NSString>>;
@@ -78,7 +75,7 @@ impl NSString {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completePathIntoString_caseSensitive_matchesIntoArray_filterTypes(
+        pub fn completePathIntoString_caseSensitive_matchesIntoArray_filterTypes(
             &self,
             output_name: Option<&mut Option<Retained<NSString>>>,
             flag: bool,
@@ -110,7 +107,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "NSString")]
         #[unsafe(method(pathsMatchingExtensions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pathsMatchingExtensions(
+        pub fn pathsMatchingExtensions(
             &self,
             filter_types: &NSArray<NSString>,
         ) -> Retained<NSArray<NSString>>;

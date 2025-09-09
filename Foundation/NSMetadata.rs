@@ -153,11 +153,11 @@ impl NSMetadataQuery {
 
         #[unsafe(method(startQuery))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startQuery(&self) -> bool;
+        pub fn startQuery(&self) -> bool;
 
         #[unsafe(method(stopQuery))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopQuery(&self);
+        pub fn stopQuery(&self);
 
         #[unsafe(method(isStarted))]
         #[unsafe(method_family = none)]
@@ -173,11 +173,11 @@ impl NSMetadataQuery {
 
         #[unsafe(method(disableUpdates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn disableUpdates(&self);
+        pub fn disableUpdates(&self);
 
         #[unsafe(method(enableUpdates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enableUpdates(&self);
+        pub fn enableUpdates(&self);
 
         #[unsafe(method(resultCount))]
         #[unsafe(method_family = none)]
@@ -185,12 +185,12 @@ impl NSMetadataQuery {
 
         #[unsafe(method(resultAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resultAtIndex(&self, idx: NSUInteger) -> Retained<AnyObject>;
+        pub fn resultAtIndex(&self, idx: NSUInteger) -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(enumerateResultsUsingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateResultsUsingBlock(
+        pub fn enumerateResultsUsingBlock(
             &self,
             block: &block2::DynBlock<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
         );
@@ -198,7 +198,7 @@ impl NSMetadataQuery {
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[unsafe(method(enumerateResultsWithOptions:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateResultsWithOptions_usingBlock(
+        pub fn enumerateResultsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
             block: &block2::DynBlock<dyn Fn(NonNull<AnyObject>, NSUInteger, NonNull<Bool>) + '_>,
@@ -231,7 +231,7 @@ impl NSMetadataQuery {
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueOfAttribute:forResultAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueOfAttribute_forResultAtIndex(
+        pub fn valueOfAttribute_forResultAtIndex(
             &self,
             attr_name: &NSString,
             idx: NSUInteger,
@@ -244,12 +244,19 @@ impl NSMetadataQuery {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMetadataQuery {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -258,7 +265,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(metadataQuery:replacementObjectForResultObject:))]
         #[unsafe(method_family = none)]
-        unsafe fn metadataQuery_replacementObjectForResultObject(
+        fn metadataQuery_replacementObjectForResultObject(
             &self,
             query: &NSMetadataQuery,
             result: &NSMetadataItem,
@@ -392,17 +399,17 @@ impl NSMetadataItem {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
+        pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForAttribute:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForAttribute(&self, key: &NSString) -> Option<Retained<AnyObject>>;
+        pub fn valueForAttribute(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(valuesForAttributes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valuesForAttributes(
+        pub fn valuesForAttributes(
             &self,
             keys: &NSArray<NSString>,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -419,12 +426,19 @@ impl NSMetadataItem {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMetadataItem {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -460,12 +474,19 @@ impl NSMetadataQueryAttributeValueTuple {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMetadataQueryAttributeValueTuple {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -501,7 +522,7 @@ impl NSMetadataQueryResultGroup {
 
         #[unsafe(method(resultAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resultAtIndex(&self, idx: NSUInteger) -> Retained<AnyObject>;
+        pub fn resultAtIndex(&self, idx: NSUInteger) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(results))]
@@ -515,10 +536,17 @@ impl NSMetadataQueryResultGroup {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMetadataQueryResultGroup {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

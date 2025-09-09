@@ -58,7 +58,7 @@ impl NSAppleEventManager {
     extern_methods!(
         #[unsafe(method(sharedAppleEventManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedAppleEventManager() -> Retained<NSAppleEventManager>;
+        pub fn sharedAppleEventManager() -> Retained<NSAppleEventManager>;
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
@@ -80,7 +80,7 @@ impl NSAppleEventManager {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(removeEventHandlerForEventClass:andEventID:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeEventHandlerForEventClass_andEventID(
+        pub fn removeEventHandlerForEventClass_andEventID(
             &self,
             event_class: AEEventClass,
             event_id: AEEventID,
@@ -114,7 +114,7 @@ impl NSAppleEventManager {
 
         #[unsafe(method(suspendCurrentAppleEvent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
+        pub fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
         /// # Safety
@@ -162,10 +162,17 @@ impl NSAppleEventManager {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSAppleEventManager {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

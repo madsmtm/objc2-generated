@@ -45,7 +45,7 @@ impl NSTask {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(executableURL))]
@@ -154,23 +154,23 @@ impl NSTask {
         #[cfg(feature = "NSError")]
         #[unsafe(method(launchAndReturnError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launchAndReturnError(&self) -> Result<(), Retained<NSError>>;
+        pub fn launchAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[unsafe(method(interrupt))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interrupt(&self);
+        pub fn interrupt(&self);
 
         #[unsafe(method(terminate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn terminate(&self);
+        pub fn terminate(&self);
 
         #[unsafe(method(suspend))]
         #[unsafe(method_family = none)]
-        pub unsafe fn suspend(&self) -> bool;
+        pub fn suspend(&self) -> bool;
 
         #[unsafe(method(resume))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resume(&self) -> bool;
+        pub fn resume(&self) -> bool;
 
         #[unsafe(method(processIdentifier))]
         #[unsafe(method_family = none)]
@@ -229,8 +229,15 @@ impl NSTask {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTask {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSTaskConveniences.
@@ -257,7 +264,7 @@ impl NSTask {
 
         #[unsafe(method(waitUntilExit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitUntilExit(&self);
+        pub fn waitUntilExit(&self);
     );
 }
 
@@ -297,13 +304,13 @@ impl NSTask {
         #[deprecated]
         #[unsafe(method(launch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launch(&self);
+        pub fn launch(&self);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated]
         #[unsafe(method(launchedTaskWithLaunchPath:arguments:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launchedTaskWithLaunchPath_arguments(
+        pub fn launchedTaskWithLaunchPath_arguments(
             path: &NSString,
             arguments: &NSArray<NSString>,
         ) -> Retained<NSTask>;

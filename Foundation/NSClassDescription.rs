@@ -31,7 +31,7 @@ impl NSClassDescription {
 
         #[unsafe(method(invalidateClassDescriptionCache))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidateClassDescriptionCache();
+        pub fn invalidateClassDescriptionCache();
 
         /// # Safety
         ///
@@ -60,7 +60,7 @@ impl NSClassDescription {
         #[cfg(feature = "NSString")]
         #[unsafe(method(inverseForRelationshipKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inverseForRelationshipKey(
+        pub fn inverseForRelationshipKey(
             &self,
             relationship_key: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -72,12 +72,19 @@ impl NSClassDescription {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSClassDescription {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 mod private_NSObjectNSClassDescriptionPrimitives {
@@ -112,7 +119,7 @@ pub unsafe trait NSObjectNSClassDescriptionPrimitives:
         #[cfg(feature = "NSString")]
         #[unsafe(method(inverseForRelationshipKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn inverseForRelationshipKey(
+        fn inverseForRelationshipKey(
             &self,
             relationship_key: &NSString,
         ) -> Option<Retained<NSString>>;

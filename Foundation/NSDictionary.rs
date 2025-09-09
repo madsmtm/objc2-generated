@@ -182,8 +182,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(allKeysForObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allKeysForObject(&self, an_object: &ObjectType)
-            -> Retained<NSArray<KeyType>>;
+        pub fn allKeysForObject(&self, an_object: &ObjectType) -> Retained<NSArray<KeyType>>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(allValues))]
@@ -225,7 +224,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
 
         #[unsafe(method(isEqualToDictionary:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEqualToDictionary(
+        pub fn isEqualToDictionary(
             &self,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> bool;
@@ -238,7 +237,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(objectsForKeys:notFoundMarker:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectsForKeys_notFoundMarker(
+        pub fn objectsForKeys_notFoundMarker(
             &self,
             keys: &NSArray<KeyType>,
             marker: &ObjectType,
@@ -275,13 +274,12 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
 
         #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectForKeyedSubscript(&self, key: &KeyType)
-            -> Option<Retained<ObjectType>>;
+        pub fn objectForKeyedSubscript(&self, key: &KeyType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(enumerateKeysAndObjectsUsingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateKeysAndObjectsUsingBlock(
+        pub fn enumerateKeysAndObjectsUsingBlock(
             &self,
             block: &block2::DynBlock<
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) + '_,
@@ -291,7 +289,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[unsafe(method(enumerateKeysAndObjectsWithOptions:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateKeysAndObjectsWithOptions_usingBlock(
+        pub fn enumerateKeysAndObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
             block: &block2::DynBlock<
@@ -325,7 +323,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(all(feature = "NSSet", feature = "block2"))]
         #[unsafe(method(keysOfEntriesPassingTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keysOfEntriesPassingTest(
+        pub fn keysOfEntriesPassingTest(
             &self,
             predicate: &block2::DynBlock<
                 dyn Fn(NonNull<KeyType>, NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_,
@@ -335,7 +333,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSSet", feature = "block2"))]
         #[unsafe(method(keysOfEntriesWithOptions:passingTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keysOfEntriesWithOptions_passingTest(
+        pub fn keysOfEntriesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
             predicate: &block2::DynBlock<
@@ -420,7 +418,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
     extern_methods!(
         #[unsafe(method(dictionary))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionary() -> Retained<Self>;
+        pub fn dictionary() -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
         #[unsafe(method(dictionaryWithObject:forKey:))]
@@ -445,9 +443,8 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
 
         #[unsafe(method(dictionaryWithDictionary:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionaryWithDictionary(
-            dict: &NSDictionary<KeyType, ObjectType>,
-        ) -> Retained<Self>;
+        pub fn dictionaryWithDictionary(dict: &NSDictionary<KeyType, ObjectType>)
+            -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
         #[unsafe(method(dictionaryWithObjects:forKeys:))]
@@ -459,7 +456,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
 
         #[unsafe(method(initWithDictionary:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDictionary(
+        pub fn initWithDictionary(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> Retained<Self>;
@@ -490,7 +487,7 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
     extern_methods!(
         #[unsafe(method(dictionary))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionary() -> Retained<Self>;
+        pub fn dictionary() -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
         #[unsafe(method(dictionaryWithObject:forKey:))]
@@ -515,9 +512,8 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
 
         #[unsafe(method(dictionaryWithDictionary:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionaryWithDictionary(
-            dict: &NSDictionary<KeyType, ObjectType>,
-        ) -> Retained<Self>;
+        pub fn dictionaryWithDictionary(dict: &NSDictionary<KeyType, ObjectType>)
+            -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
         #[unsafe(method(dictionaryWithObjects:forKeys:))]
@@ -529,7 +525,7 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
 
         #[unsafe(method(initWithDictionary:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDictionary(
+        pub fn initWithDictionary(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> Retained<Self>;
@@ -737,7 +733,7 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
     extern_methods!(
         #[unsafe(method(addEntriesFromDictionary:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addEntriesFromDictionary(
+        pub fn addEntriesFromDictionary(
             &self,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         );
@@ -749,11 +745,11 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
         #[cfg(feature = "NSArray")]
         #[unsafe(method(removeObjectsForKeys:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeObjectsForKeys(&self, key_array: &NSArray<KeyType>);
+        pub fn removeObjectsForKeys(&self, key_array: &NSArray<KeyType>);
 
         #[unsafe(method(setDictionary:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDictionary(&self, other_dictionary: &NSDictionary<KeyType, ObjectType>);
+        pub fn setDictionary(&self, other_dictionary: &NSDictionary<KeyType, ObjectType>);
 
         #[cfg(feature = "NSObject")]
         #[unsafe(method(setObject:forKeyedSubscript:))]
@@ -771,7 +767,7 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
     extern_methods!(
         #[unsafe(method(dictionaryWithCapacity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionaryWithCapacity(num_items: NSUInteger) -> Retained<Self>;
+        pub fn dictionaryWithCapacity(num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(dictionaryWithContentsOfFile:))]

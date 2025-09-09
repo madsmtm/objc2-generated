@@ -80,18 +80,18 @@ impl NSUserDefaults {
         /// +resetStandardUserDefaults releases the standardUserDefaults and sets it to nil. A new standardUserDefaults will be created the next time it's accessed. The only visible effect this has is that all KVO observers of the previous standardUserDefaults will no longer be observing it.
         #[unsafe(method(resetStandardUserDefaults))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resetStandardUserDefaults();
+        pub fn resetStandardUserDefaults();
 
         /// -init is equivalent to -initWithSuiteName:nil
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         /// -initWithSuiteName: initializes an instance of NSUserDefaults that searches the shared preferences search list for the domain 'suitename'. For example, using the identifier of an application group will cause the receiver to search the preferences for that group. Passing the current application's bundle identifier, NSGlobalDomain, or the corresponding CFPreferences constants is an error. Passing nil will search the default search list.
         #[unsafe(method(initWithSuiteName:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSuiteName(
+        pub fn initWithSuiteName(
             this: Allocated<Self>,
             suitename: Option<&NSString>,
         ) -> Option<Retained<Self>>;
@@ -101,16 +101,13 @@ impl NSUserDefaults {
         #[deprecated = "Use -init instead"]
         #[unsafe(method(initWithUser:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithUser(
-            this: Allocated<Self>,
-            username: &NSString,
-        ) -> Option<Retained<Self>>;
+        pub fn initWithUser(this: Allocated<Self>, username: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         /// -objectForKey: will search the receiver's search list for a default with the key 'defaultName' and return it. If another process has changed defaults in the search list, NSUserDefaults will automatically update to the latest values. If the key in question has been marked as ubiquitous via a Defaults Configuration File, the latest value may not be immediately available, and the registered value will be returned instead.
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectForKey(&self, default_name: &NSString) -> Option<Retained<AnyObject>>;
+        pub fn objectForKey(&self, default_name: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         /// -setObject:forKey: immediately stores a value (or removes the value if nil is passed as the value) for the provided key in the search list entry for the receiver's suite name in the current user and any host, then asynchronously stores the value persistently, where it is made available to other processes.
@@ -126,25 +123,25 @@ impl NSUserDefaults {
         /// -removeObjectForKey: is equivalent to -[... setObject:nil forKey:defaultName]
         #[unsafe(method(removeObjectForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeObjectForKey(&self, default_name: &NSString);
+        pub fn removeObjectForKey(&self, default_name: &NSString);
 
         #[cfg(feature = "NSString")]
         /// -stringForKey: is equivalent to -objectForKey:, except that it will convert NSNumber values to their NSString representation. If a non-string non-number value is found, nil will be returned.
         #[unsafe(method(stringForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringForKey(&self, default_name: &NSString) -> Option<Retained<NSString>>;
+        pub fn stringForKey(&self, default_name: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// -arrayForKey: is equivalent to -objectForKey:, except that it will return nil if the value is not an NSArray.
         #[unsafe(method(arrayForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn arrayForKey(&self, default_name: &NSString) -> Option<Retained<NSArray>>;
+        pub fn arrayForKey(&self, default_name: &NSString) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// -dictionaryForKey: is equivalent to -objectForKey:, except that it will return nil if the value is not an NSDictionary.
         #[unsafe(method(dictionaryForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionaryForKey(
+        pub fn dictionaryForKey(
             &self,
             default_name: &NSString,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -153,7 +150,7 @@ impl NSUserDefaults {
         /// -dataForKey: is equivalent to -objectForKey:, except that it will return nil if the value is not an NSData.
         #[unsafe(method(dataForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataForKey(&self, default_name: &NSString) -> Option<Retained<NSData>>;
+        pub fn dataForKey(&self, default_name: &NSString) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// -stringForKey: is equivalent to -objectForKey:, except that it will return nil if the value is not an NSArray
@@ -161,7 +158,7 @@ impl NSUserDefaults {
         /// *>. Note that unlike -stringForKey:, NSNumbers are not converted to NSStrings.
         #[unsafe(method(stringArrayForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringArrayForKey(
+        pub fn stringArrayForKey(
             &self,
             default_name: &NSString,
         ) -> Option<Retained<NSArray<NSString>>>;
@@ -170,61 +167,61 @@ impl NSUserDefaults {
         /// -integerForKey: is equivalent to -objectForKey:, except that it converts the returned value to an NSInteger. If the value is an NSNumber, the result of -integerValue will be returned. If the value is an NSString, it will be converted to NSInteger if possible. If the value is a boolean, it will be converted to either 1 for YES or 0 for NO. If the value is absent or can't be converted to an integer, 0 will be returned.
         #[unsafe(method(integerForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn integerForKey(&self, default_name: &NSString) -> NSInteger;
+        pub fn integerForKey(&self, default_name: &NSString) -> NSInteger;
 
         #[cfg(feature = "NSString")]
         /// -floatForKey: is similar to -integerForKey:, except that it returns a float, and boolean values will not be converted.
         #[unsafe(method(floatForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn floatForKey(&self, default_name: &NSString) -> c_float;
+        pub fn floatForKey(&self, default_name: &NSString) -> c_float;
 
         #[cfg(feature = "NSString")]
         /// -doubleForKey: is similar to -integerForKey:, except that it returns a double, and boolean values will not be converted.
         #[unsafe(method(doubleForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleForKey(&self, default_name: &NSString) -> c_double;
+        pub fn doubleForKey(&self, default_name: &NSString) -> c_double;
 
         #[cfg(feature = "NSString")]
         /// -boolForKey: is equivalent to -objectForKey:, except that it converts the returned value to a BOOL. If the value is an NSNumber, NO will be returned if the value is 0, YES otherwise. If the value is an NSString, values of "YES" or "1" will return YES, and values of "NO", "0", or any other string will return NO. If the value is absent or can't be converted to a BOOL, NO will be returned.
         #[unsafe(method(boolForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boolForKey(&self, default_name: &NSString) -> bool;
+        pub fn boolForKey(&self, default_name: &NSString) -> bool;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         /// -URLForKey: is equivalent to -objectForKey: except that it converts the returned value to an NSURL. If the value is an NSString path, then it will construct a file URL to that path. If the value is an archived URL from -setURL:forKey: it will be unarchived. If the value is absent or can't be converted to an NSURL, nil will be returned.
         #[unsafe(method(URLForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLForKey(&self, default_name: &NSString) -> Option<Retained<NSURL>>;
+        pub fn URLForKey(&self, default_name: &NSString) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         /// -setInteger:forKey: is equivalent to -setObject:forKey: except that the value is converted from an NSInteger to an NSNumber.
         #[unsafe(method(setInteger:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInteger_forKey(&self, value: NSInteger, default_name: &NSString);
+        pub fn setInteger_forKey(&self, value: NSInteger, default_name: &NSString);
 
         #[cfg(feature = "NSString")]
         /// -setFloat:forKey: is equivalent to -setObject:forKey: except that the value is converted from a float to an NSNumber.
         #[unsafe(method(setFloat:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFloat_forKey(&self, value: c_float, default_name: &NSString);
+        pub fn setFloat_forKey(&self, value: c_float, default_name: &NSString);
 
         #[cfg(feature = "NSString")]
         /// -setDouble:forKey: is equivalent to -setObject:forKey: except that the value is converted from a double to an NSNumber.
         #[unsafe(method(setDouble:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDouble_forKey(&self, value: c_double, default_name: &NSString);
+        pub fn setDouble_forKey(&self, value: c_double, default_name: &NSString);
 
         #[cfg(feature = "NSString")]
         /// -setBool:forKey: is equivalent to -setObject:forKey: except that the value is converted from a BOOL to an NSNumber.
         #[unsafe(method(setBool:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBool_forKey(&self, value: bool, default_name: &NSString);
+        pub fn setBool_forKey(&self, value: bool, default_name: &NSString);
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         /// -setURL:forKey is equivalent to -setObject:forKey: except that the value is archived to an NSData. Use -URLForKey: to retrieve values set this way.
         #[unsafe(method(setURL:forKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setURL_forKey(&self, url: Option<&NSURL>, default_name: &NSString);
+        pub fn setURL_forKey(&self, url: Option<&NSURL>, default_name: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// -registerDefaults: adds the registrationDictionary to the last item in every search list. This means that after NSUserDefaults has looked for a value in every other valid location, it will look in registered defaults, making them useful as a "fallback" value. Registered defaults are never stored between runs of an application, and are visible only to the application that registers them.
@@ -245,21 +242,19 @@ impl NSUserDefaults {
         /// -addSuiteNamed: adds the full search list for 'suiteName' as a sub-search-list of the receiver's. The additional search lists are searched after the current domain, but before global defaults. Passing NSGlobalDomain or the current application's bundle identifier is unsupported.
         #[unsafe(method(addSuiteNamed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addSuiteNamed(&self, suite_name: &NSString);
+        pub fn addSuiteNamed(&self, suite_name: &NSString);
 
         #[cfg(feature = "NSString")]
         /// -removeSuiteNamed: removes a sub-searchlist added via -addSuiteNamed:.
         #[unsafe(method(removeSuiteNamed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeSuiteNamed(&self, suite_name: &NSString);
+        pub fn removeSuiteNamed(&self, suite_name: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// -dictionaryRepresentation returns a composite snapshot of the values in the receiver's search list, such that [[receiver dictionaryRepresentation] objectForKey:x] will return the same thing as [receiver objectForKey:x].
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionaryRepresentation(
-            &self,
-        ) -> Retained<NSDictionary<NSString, AnyObject>>;
+        pub fn dictionaryRepresentation(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(volatileDomainNames))]
@@ -269,7 +264,7 @@ impl NSUserDefaults {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(volatileDomainForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn volatileDomainForName(
+        pub fn volatileDomainForName(
             &self,
             domain_name: &NSString,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -289,20 +284,20 @@ impl NSUserDefaults {
         #[cfg(feature = "NSString")]
         #[unsafe(method(removeVolatileDomainForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeVolatileDomainForName(&self, domain_name: &NSString);
+        pub fn removeVolatileDomainForName(&self, domain_name: &NSString);
 
         #[cfg(feature = "NSArray")]
         /// -persistentDomainNames returns an incomplete list of domains that have preferences stored in them.
         #[deprecated = "Not recommended"]
         #[unsafe(method(persistentDomainNames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn persistentDomainNames(&self) -> Retained<NSArray>;
+        pub fn persistentDomainNames(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// -persistentDomainForName: returns a dictionary representation of the search list entry specified by 'domainName', the current user, and any host.
         #[unsafe(method(persistentDomainForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn persistentDomainForName(
+        pub fn persistentDomainForName(
             &self,
             domain_name: &NSString,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -325,7 +320,7 @@ impl NSUserDefaults {
         /// -removePersistentDomainForName: removes all values from the search list entry specified by 'domainName', the current user, and any host. The change is persistent.
         #[unsafe(method(removePersistentDomainForName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removePersistentDomainForName(&self, domain_name: &NSString);
+        pub fn removePersistentDomainForName(&self, domain_name: &NSString);
 
         /// -synchronize is deprecated and will be marked with the API_DEPRECATED macro in a future release.
         ///
@@ -336,21 +331,17 @@ impl NSUserDefaults {
         /// - ...for any other reason: remove the synchronize call
         #[unsafe(method(synchronize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn synchronize(&self) -> bool;
+        pub fn synchronize(&self) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(objectIsForcedForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectIsForcedForKey(&self, key: &NSString) -> bool;
+        pub fn objectIsForcedForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(objectIsForcedForKey:inDomain:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectIsForcedForKey_inDomain(
-            &self,
-            key: &NSString,
-            domain: &NSString,
-        ) -> bool;
+        pub fn objectIsForcedForKey_inDomain(&self, key: &NSString, domain: &NSString) -> bool;
     );
 }
 
@@ -359,8 +350,15 @@ impl NSUserDefaults {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUserDefaults {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {

@@ -66,7 +66,7 @@ impl NSCompoundPredicate {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initWithType:subpredicates:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_subpredicates(
+        pub fn initWithType_subpredicates(
             this: Allocated<Self>,
             r#type: NSCompoundPredicateType,
             subpredicates: &NSArray<NSPredicate>,
@@ -96,20 +96,20 @@ impl NSCompoundPredicate {
         /// * Convenience Methods **
         #[unsafe(method(andPredicateWithSubpredicates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn andPredicateWithSubpredicates(
+        pub fn andPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Retained<NSCompoundPredicate>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(orPredicateWithSubpredicates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orPredicateWithSubpredicates(
+        pub fn orPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Retained<NSCompoundPredicate>;
 
         #[unsafe(method(notPredicateWithSubpredicate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notPredicateWithSubpredicate(
+        pub fn notPredicateWithSubpredicate(
             predicate: &NSPredicate,
         ) -> Retained<NSCompoundPredicate>;
     );
@@ -121,10 +121,18 @@ impl NSCompoundPredicate {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSPredicate")]
+impl DefaultRetained for NSCompoundPredicate {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

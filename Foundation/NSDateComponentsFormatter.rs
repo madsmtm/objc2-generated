@@ -117,7 +117,7 @@ impl NSDateComponentsFormatter {
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
         #[unsafe(method(stringFromDateComponents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromDateComponents(
+        pub fn stringFromDateComponents(
             &self,
             components: &NSDateComponents,
         ) -> Option<Retained<NSString>>;
@@ -125,7 +125,7 @@ impl NSDateComponentsFormatter {
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(stringFromDate:toDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromDate_toDate(
+        pub fn stringFromDate_toDate(
             &self,
             start_date: &NSDate,
             end_date: &NSDate,
@@ -134,15 +134,12 @@ impl NSDateComponentsFormatter {
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(stringFromTimeInterval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromTimeInterval(
-            &self,
-            ti: NSTimeInterval,
-        ) -> Option<Retained<NSString>>;
+        pub fn stringFromTimeInterval(&self, ti: NSTimeInterval) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
         #[unsafe(method(localizedStringFromDateComponents:unitsStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringFromDateComponents_unitsStyle(
+        pub fn localizedStringFromDateComponents_unitsStyle(
             components: &NSDateComponents,
             units_style: NSDateComponentsFormatterUnitsStyle,
         ) -> Option<Retained<NSString>>;
@@ -280,10 +277,18 @@ impl NSDateComponentsFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSDateComponentsFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

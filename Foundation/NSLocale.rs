@@ -68,7 +68,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectForKey(&self, key: &NSLocaleKey) -> Option<Retained<AnyObject>>;
+        pub fn objectForKey(&self, key: &NSLocaleKey) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -85,10 +85,8 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithLocaleIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLocaleIdentifier(
-            this: Allocated<Self>,
-            string: &NSString,
-        ) -> Retained<Self>;
+        pub fn initWithLocaleIdentifier(this: Allocated<Self>, string: &NSString)
+            -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
         /// # Safety
@@ -114,7 +112,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForLocaleIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForLocaleIdentifier(
+        pub fn localizedStringForLocaleIdentifier(
             &self,
             locale_identifier: &NSString,
         ) -> Retained<NSString>;
@@ -127,7 +125,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForLanguageCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForLanguageCode(
+        pub fn localizedStringForLanguageCode(
             &self,
             language_code: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -147,7 +145,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForCountryCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForCountryCode(
+        pub fn localizedStringForCountryCode(
             &self,
             country_code: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -168,7 +166,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForScriptCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForScriptCode(
+        pub fn localizedStringForScriptCode(
             &self,
             script_code: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -181,7 +179,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForVariantCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForVariantCode(
+        pub fn localizedStringForVariantCode(
             &self,
             variant_code: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -199,7 +197,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForCalendarIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForCalendarIdentifier(
+        pub fn localizedStringForCalendarIdentifier(
             &self,
             calendar_identifier: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -212,7 +210,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForCollationIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForCollationIdentifier(
+        pub fn localizedStringForCollationIdentifier(
             &self,
             collation_identifier: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -244,7 +242,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForCurrencyCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForCurrencyCode(
+        pub fn localizedStringForCurrencyCode(
             &self,
             currency_code: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -257,7 +255,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedStringForCollatorIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForCollatorIdentifier(
+        pub fn localizedStringForCollatorIdentifier(
             &self,
             collator_identifier: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -302,7 +300,7 @@ impl NSLocale {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localeWithLocaleIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localeWithLocaleIdentifier(ident: &NSString) -> Retained<Self>;
+        pub fn localeWithLocaleIdentifier(ident: &NSString) -> Retained<Self>;
     );
 }
 
@@ -368,54 +366,47 @@ impl NSLocale {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(componentsFromLocaleIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn componentsFromLocaleIdentifier(
+        pub fn componentsFromLocaleIdentifier(
             string: &NSString,
         ) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(localeIdentifierFromComponents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localeIdentifierFromComponents(
+        pub fn localeIdentifierFromComponents(
             dict: &NSDictionary<NSString, NSString>,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(canonicalLocaleIdentifierFromString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canonicalLocaleIdentifierFromString(string: &NSString) -> Retained<NSString>;
+        pub fn canonicalLocaleIdentifierFromString(string: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(canonicalLanguageIdentifierFromString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canonicalLanguageIdentifierFromString(
-            string: &NSString,
-        ) -> Retained<NSString>;
+        pub fn canonicalLanguageIdentifierFromString(string: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(localeIdentifierFromWindowsLocaleCode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localeIdentifierFromWindowsLocaleCode(
-            lcid: u32,
-        ) -> Option<Retained<NSString>>;
+        pub fn localeIdentifierFromWindowsLocaleCode(lcid: u32) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(windowsLocaleCodeFromLocaleIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowsLocaleCodeFromLocaleIdentifier(locale_identifier: &NSString) -> u32;
+        pub fn windowsLocaleCodeFromLocaleIdentifier(locale_identifier: &NSString) -> u32;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(characterDirectionForLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn characterDirectionForLanguage(
-            iso_lang_code: &NSString,
-        ) -> NSLocaleLanguageDirection;
+        pub fn characterDirectionForLanguage(iso_lang_code: &NSString)
+            -> NSLocaleLanguageDirection;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(lineDirectionForLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineDirectionForLanguage(
-            iso_lang_code: &NSString,
-        ) -> NSLocaleLanguageDirection;
+        pub fn lineDirectionForLanguage(iso_lang_code: &NSString) -> NSLocaleLanguageDirection;
     );
 }
 

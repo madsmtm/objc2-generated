@@ -475,7 +475,7 @@ impl NSHTTPCookie {
         /// are the corresponding header field values.
         #[unsafe(method(requestHeaderFieldsWithCookies:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestHeaderFieldsWithCookies(
+        pub fn requestHeaderFieldsWithCookies(
             cookies: &NSArray<NSHTTPCookie>,
         ) -> Retained<NSDictionary<NSString, NSString>>;
 
@@ -497,7 +497,7 @@ impl NSHTTPCookie {
         /// you can pass a dictionary containing data other than cookie data.
         #[unsafe(method(cookiesWithResponseHeaderFields:forURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cookiesWithResponseHeaderFields_forURL(
+        pub fn cookiesWithResponseHeaderFields_forURL(
             header_fields: &NSDictionary<NSString, NSString>,
             url: &NSURL,
         ) -> Retained<NSArray<NSHTTPCookie>>;
@@ -697,10 +697,17 @@ impl NSHTTPCookie {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSHTTPCookie {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

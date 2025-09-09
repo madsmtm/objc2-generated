@@ -114,14 +114,14 @@ impl NSScriptObjectSpecifier {
         #[cfg(feature = "NSAppleEventDescriptor")]
         #[unsafe(method(objectSpecifierWithDescriptor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectSpecifierWithDescriptor(
+        pub fn objectSpecifierWithDescriptor(
             descriptor: &NSAppleEventDescriptor,
         ) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -134,7 +134,7 @@ impl NSScriptObjectSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -278,12 +278,19 @@ impl NSScriptObjectSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSScriptObjectSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 mod private_NSObjectNSScriptObjectSpecifiers {
@@ -303,7 +310,7 @@ pub unsafe trait NSObjectNSScriptObjectSpecifiers:
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[unsafe(method(indicesOfObjectsByEvaluatingObjectSpecifier:))]
         #[unsafe(method_family = none)]
-        unsafe fn indicesOfObjectsByEvaluatingObjectSpecifier(
+        fn indicesOfObjectsByEvaluatingObjectSpecifier(
             &self,
             specifier: &NSScriptObjectSpecifier,
         ) -> Option<Retained<NSArray<NSNumber>>>;
@@ -338,7 +345,7 @@ impl NSIndexSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:index:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_index(
+        pub fn initWithContainerClassDescription_containerSpecifier_key_index(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -363,7 +370,7 @@ impl NSIndexSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -376,7 +383,7 @@ impl NSIndexSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -401,12 +408,19 @@ impl NSIndexSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSIndexSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -435,7 +449,7 @@ impl NSMiddleSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -448,7 +462,7 @@ impl NSMiddleSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -473,12 +487,19 @@ impl NSMiddleSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSMiddleSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -517,7 +538,7 @@ impl NSNameSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:name:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_name(
+        pub fn initWithContainerClassDescription_containerSpecifier_key_name(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -546,7 +567,7 @@ impl NSNameSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -559,7 +580,7 @@ impl NSNameSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -573,12 +594,19 @@ impl NSNameSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSNameSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -596,7 +624,7 @@ impl NSPositionalSpecifier {
     extern_methods!(
         #[unsafe(method(initWithPosition:objectSpecifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithPosition_objectSpecifier(
+        pub fn initWithPosition_objectSpecifier(
             this: Allocated<Self>,
             position: NSInsertionPosition,
             specifier: &NSScriptObjectSpecifier,
@@ -613,14 +641,11 @@ impl NSPositionalSpecifier {
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[unsafe(method(setInsertionClassDescription:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInsertionClassDescription(
-            &self,
-            class_description: &NSScriptClassDescription,
-        );
+        pub fn setInsertionClassDescription(&self, class_description: &NSScriptClassDescription);
 
         #[unsafe(method(evaluate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn evaluate(&self);
+        pub fn evaluate(&self);
 
         #[unsafe(method(insertionContainer))]
         #[unsafe(method_family = none)]
@@ -646,12 +671,19 @@ impl NSPositionalSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSPositionalSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -680,7 +712,7 @@ impl NSPropertySpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -693,7 +725,7 @@ impl NSPropertySpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -718,12 +750,19 @@ impl NSPropertySpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSPropertySpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -752,7 +791,7 @@ impl NSRandomSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -765,7 +804,7 @@ impl NSRandomSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -790,12 +829,19 @@ impl NSRandomSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSRandomSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -834,7 +880,7 @@ impl NSRangeSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:startSpecifier:endSpecifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_startSpecifier_endSpecifier(
+        pub fn initWithContainerClassDescription_containerSpecifier_key_startSpecifier_endSpecifier(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -869,7 +915,7 @@ impl NSRangeSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -882,7 +928,7 @@ impl NSRangeSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -896,12 +942,19 @@ impl NSRangeSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSRangeSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -940,7 +993,7 @@ impl NSRelativeSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_relativePosition_baseSpecifier(
+        pub fn initWithContainerClassDescription_containerSpecifier_key_relativePosition_baseSpecifier(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -975,7 +1028,7 @@ impl NSRelativeSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -988,7 +1041,7 @@ impl NSRelativeSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -1002,12 +1055,19 @@ impl NSRelativeSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSRelativeSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1080,7 +1140,7 @@ impl NSUniqueIDSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -1093,7 +1153,7 @@ impl NSUniqueIDSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -1107,12 +1167,19 @@ impl NSUniqueIDSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSUniqueIDSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1152,7 +1219,7 @@ impl NSWhoseSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:test:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key_test(
+        pub fn initWithContainerClassDescription_containerSpecifier_key_test(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -1221,7 +1288,7 @@ impl NSWhoseSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithContainerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerSpecifier_key(
+        pub fn initWithContainerSpecifier_key(
             this: Allocated<Self>,
             container: &NSScriptObjectSpecifier,
             property: &NSString,
@@ -1234,7 +1301,7 @@ impl NSWhoseSpecifier {
         ))]
         #[unsafe(method(initWithContainerClassDescription:containerSpecifier:key:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerClassDescription_containerSpecifier_key(
+        pub fn initWithContainerClassDescription_containerSpecifier_key(
             this: Allocated<Self>,
             class_desc: &NSScriptClassDescription,
             container: Option<&NSScriptObjectSpecifier>,
@@ -1248,10 +1315,17 @@ impl NSWhoseSpecifier {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSWhoseSpecifier {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

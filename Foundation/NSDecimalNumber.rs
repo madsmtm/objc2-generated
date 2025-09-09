@@ -38,11 +38,11 @@ extern_protocol!(
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(roundingMode))]
         #[unsafe(method_family = none)]
-        unsafe fn roundingMode(&self) -> NSRoundingMode;
+        fn roundingMode(&self) -> NSRoundingMode;
 
         #[unsafe(method(scale))]
         #[unsafe(method_family = none)]
-        unsafe fn scale(&self) -> c_short;
+        fn scale(&self) -> c_short;
 
         #[cfg(all(feature = "NSDecimal", feature = "NSValue"))]
         /// # Safety
@@ -106,7 +106,7 @@ impl NSDecimalNumber {
     extern_methods!(
         #[unsafe(method(initWithMantissa:exponent:isNegative:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithMantissa_exponent_isNegative(
+        pub fn initWithMantissa_exponent_isNegative(
             this: Allocated<Self>,
             mantissa: c_ulonglong,
             exponent: c_short,
@@ -116,12 +116,12 @@ impl NSDecimalNumber {
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(initWithDecimal:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDecimal(this: Allocated<Self>, dcm: NSDecimal) -> Retained<Self>;
+        pub fn initWithDecimal(this: Allocated<Self>, dcm: NSDecimal) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithString(
+        pub fn initWithString(
             this: Allocated<Self>,
             number_value: Option<&NSString>,
         ) -> Retained<Self>;
@@ -156,7 +156,7 @@ impl NSDecimalNumber {
 
         #[unsafe(method(decimalNumberWithMantissa:exponent:isNegative:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberWithMantissa_exponent_isNegative(
+        pub fn decimalNumberWithMantissa_exponent_isNegative(
             mantissa: c_ulonglong,
             exponent: c_short,
             flag: bool,
@@ -165,12 +165,12 @@ impl NSDecimalNumber {
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(decimalNumberWithDecimal:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberWithDecimal(dcm: NSDecimal) -> Retained<NSDecimalNumber>;
+        pub fn decimalNumberWithDecimal(dcm: NSDecimal) -> Retained<NSDecimalNumber>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(decimalNumberWithString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberWithString(
+        pub fn decimalNumberWithString(
             number_value: Option<&NSString>,
         ) -> Retained<NSDecimalNumber>;
 
@@ -207,14 +207,14 @@ impl NSDecimalNumber {
 
         #[unsafe(method(decimalNumberByAdding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByAdding(
+        pub fn decimalNumberByAdding(
             &self,
             decimal_number: &NSDecimalNumber,
         ) -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(decimalNumberByAdding:withBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByAdding_withBehavior(
+        pub fn decimalNumberByAdding_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
@@ -222,14 +222,14 @@ impl NSDecimalNumber {
 
         #[unsafe(method(decimalNumberBySubtracting:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberBySubtracting(
+        pub fn decimalNumberBySubtracting(
             &self,
             decimal_number: &NSDecimalNumber,
         ) -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(decimalNumberBySubtracting:withBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberBySubtracting_withBehavior(
+        pub fn decimalNumberBySubtracting_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
@@ -237,14 +237,14 @@ impl NSDecimalNumber {
 
         #[unsafe(method(decimalNumberByMultiplyingBy:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByMultiplyingBy(
+        pub fn decimalNumberByMultiplyingBy(
             &self,
             decimal_number: &NSDecimalNumber,
         ) -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(decimalNumberByMultiplyingBy:withBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByMultiplyingBy_withBehavior(
+        pub fn decimalNumberByMultiplyingBy_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
@@ -252,14 +252,14 @@ impl NSDecimalNumber {
 
         #[unsafe(method(decimalNumberByDividingBy:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByDividingBy(
+        pub fn decimalNumberByDividingBy(
             &self,
             decimal_number: &NSDecimalNumber,
         ) -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(decimalNumberByDividingBy:withBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByDividingBy_withBehavior(
+        pub fn decimalNumberByDividingBy_withBehavior(
             &self,
             decimal_number: &NSDecimalNumber,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
@@ -267,14 +267,12 @@ impl NSDecimalNumber {
 
         #[unsafe(method(decimalNumberByRaisingToPower:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByRaisingToPower(
-            &self,
-            power: NSUInteger,
-        ) -> Retained<NSDecimalNumber>;
+        pub fn decimalNumberByRaisingToPower(&self, power: NSUInteger)
+            -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(decimalNumberByRaisingToPower:withBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByRaisingToPower_withBehavior(
+        pub fn decimalNumberByRaisingToPower_withBehavior(
             &self,
             power: NSUInteger,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
@@ -282,14 +280,14 @@ impl NSDecimalNumber {
 
         #[unsafe(method(decimalNumberByMultiplyingByPowerOf10:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByMultiplyingByPowerOf10(
+        pub fn decimalNumberByMultiplyingByPowerOf10(
             &self,
             power: c_short,
         ) -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(decimalNumberByMultiplyingByPowerOf10:withBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByMultiplyingByPowerOf10_withBehavior(
+        pub fn decimalNumberByMultiplyingByPowerOf10_withBehavior(
             &self,
             power: c_short,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
@@ -297,7 +295,7 @@ impl NSDecimalNumber {
 
         #[unsafe(method(decimalNumberByRoundingAccordingToBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberByRoundingAccordingToBehavior(
+        pub fn decimalNumberByRoundingAccordingToBehavior(
             &self,
             behavior: Option<&ProtocolObject<dyn NSDecimalNumberBehaviors>>,
         ) -> Retained<NSDecimalNumber>;
@@ -305,7 +303,7 @@ impl NSDecimalNumber {
         #[cfg(feature = "NSObjCRuntime")]
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn compare(&self, decimal_number: &NSNumber) -> NSComparisonResult;
+        pub fn compare(&self, decimal_number: &NSNumber) -> NSComparisonResult;
 
         #[unsafe(method(defaultBehavior))]
         #[unsafe(method_family = none)]
@@ -367,12 +365,20 @@ impl NSDecimalNumber {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSValue")]
+impl DefaultRetained for NSDecimalNumber {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -410,7 +416,7 @@ impl NSDecimalNumberHandler {
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
+        pub fn initWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
             this: Allocated<Self>,
             rounding_mode: NSRoundingMode,
             scale: c_short,
@@ -423,7 +429,7 @@ impl NSDecimalNumberHandler {
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalNumberHandlerWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
+        pub fn decimalNumberHandlerWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero(
             rounding_mode: NSRoundingMode,
             scale: c_short,
             exact: bool,
@@ -439,12 +445,19 @@ impl NSDecimalNumberHandler {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSDecimalNumberHandler {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSDecimalNumberExtensions.

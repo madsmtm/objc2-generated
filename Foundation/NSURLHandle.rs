@@ -199,13 +199,13 @@ impl NSURLHandle {
         #[deprecated]
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
-        pub unsafe fn status(&self) -> NSURLHandleStatus;
+        pub fn status(&self) -> NSURLHandleStatus;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
         #[unsafe(method(failureReason))]
         #[unsafe(method_family = none)]
-        pub unsafe fn failureReason(&self) -> Option<Retained<NSString>>;
+        pub fn failureReason(&self) -> Option<Retained<NSString>>;
 
         /// # Safety
         ///
@@ -226,34 +226,34 @@ impl NSURLHandle {
         #[deprecated]
         #[unsafe(method(loadInBackground))]
         #[unsafe(method_family = none)]
-        pub unsafe fn loadInBackground(&self);
+        pub fn loadInBackground(&self);
 
         #[deprecated]
         #[unsafe(method(cancelLoadInBackground))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelLoadInBackground(&self);
+        pub fn cancelLoadInBackground(&self);
 
         #[cfg(feature = "NSData")]
         #[deprecated]
         #[unsafe(method(resourceData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resourceData(&self) -> Option<Retained<NSData>>;
+        pub fn resourceData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
         #[deprecated]
         #[unsafe(method(availableResourceData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableResourceData(&self) -> Option<Retained<NSData>>;
+        pub fn availableResourceData(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
         #[unsafe(method(expectedResourceDataSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expectedResourceDataSize(&self) -> c_longlong;
+        pub fn expectedResourceDataSize(&self) -> c_longlong;
 
         #[deprecated]
         #[unsafe(method(flushCachedData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn flushCachedData(&self);
+        pub fn flushCachedData(&self);
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -356,17 +356,17 @@ impl NSURLHandle {
         #[deprecated]
         #[unsafe(method(loadInForeground))]
         #[unsafe(method_family = none)]
-        pub unsafe fn loadInForeground(&self) -> Option<Retained<NSData>>;
+        pub fn loadInForeground(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
         #[unsafe(method(beginLoadInBackground))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginLoadInBackground(&self);
+        pub fn beginLoadInBackground(&self);
 
         #[deprecated]
         #[unsafe(method(endLoadInBackground))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endLoadInBackground(&self);
+        pub fn endLoadInBackground(&self);
     );
 }
 
@@ -375,10 +375,17 @@ impl NSURLHandle {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURLHandle {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

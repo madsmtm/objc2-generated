@@ -104,7 +104,7 @@ impl NSByteCountFormatter {
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringFromByteCount:countStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromByteCount_countStyle(
+        pub fn stringFromByteCount_countStyle(
             byte_count: c_longlong,
             count_style: NSByteCountFormatterCountStyle,
         ) -> Retained<NSString>;
@@ -112,12 +112,12 @@ impl NSByteCountFormatter {
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringFromByteCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Retained<NSString>;
+        pub fn stringFromByteCount(&self, byte_count: c_longlong) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
         #[unsafe(method(stringFromMeasurement:countStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromMeasurement_countStyle(
+        pub fn stringFromMeasurement_countStyle(
             measurement: &NSMeasurement<NSUnitInformationStorage>,
             count_style: NSByteCountFormatterCountStyle,
         ) -> Retained<NSString>;
@@ -125,7 +125,7 @@ impl NSByteCountFormatter {
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
         #[unsafe(method(stringFromMeasurement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromMeasurement(
+        pub fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement<NSUnitInformationStorage>,
         ) -> Retained<NSString>;
@@ -230,10 +230,18 @@ impl NSByteCountFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSByteCountFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

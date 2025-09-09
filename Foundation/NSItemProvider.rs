@@ -68,7 +68,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(itemProviderVisibilityForRepresentationWithTypeIdentifier:))]
         #[unsafe(method_family = none)]
-        unsafe fn itemProviderVisibilityForRepresentationWithTypeIdentifier_class(
+        fn itemProviderVisibilityForRepresentationWithTypeIdentifier_class(
             type_identifier: &NSString,
         ) -> NSItemProviderRepresentationVisibility;
 
@@ -76,7 +76,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(itemProviderVisibilityForRepresentationWithTypeIdentifier:))]
         #[unsafe(method_family = none)]
-        unsafe fn itemProviderVisibilityForRepresentationWithTypeIdentifier(
+        fn itemProviderVisibilityForRepresentationWithTypeIdentifier(
             &self,
             type_identifier: &NSString,
         ) -> NSItemProviderRepresentationVisibility;
@@ -112,7 +112,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSString"))]
         #[unsafe(method(objectWithItemProviderData:typeIdentifier:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn objectWithItemProviderData_typeIdentifier_error(
+        fn objectWithItemProviderData_typeIdentifier_error(
             data: &NSData,
             type_identifier: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -160,7 +160,7 @@ impl NSItemProvider {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
             feature = "NSData",
@@ -217,7 +217,7 @@ impl NSItemProvider {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(registeredTypeIdentifiersWithFileOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registeredTypeIdentifiersWithFileOptions(
+        pub fn registeredTypeIdentifiersWithFileOptions(
             &self,
             file_options: NSItemProviderFileOptions,
         ) -> Retained<NSArray<NSString>>;
@@ -225,12 +225,12 @@ impl NSItemProvider {
         #[cfg(feature = "NSString")]
         #[unsafe(method(hasItemConformingToTypeIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasItemConformingToTypeIdentifier(&self, type_identifier: &NSString) -> bool;
+        pub fn hasItemConformingToTypeIdentifier(&self, type_identifier: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(hasRepresentationConformingToTypeIdentifier:fileOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasRepresentationConformingToTypeIdentifier_fileOptions(
+        pub fn hasRepresentationConformingToTypeIdentifier_fileOptions(
             &self,
             type_identifier: &NSString,
             file_options: NSItemProviderFileOptions,
@@ -305,14 +305,14 @@ impl NSItemProvider {
 
         #[unsafe(method(initWithObject:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithObject(
+        pub fn initWithObject(
             this: Allocated<Self>,
             object: &ProtocolObject<dyn NSItemProviderWriting>,
         ) -> Retained<Self>;
 
         #[unsafe(method(registerObject:visibility:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerObject_visibility(
+        pub fn registerObject_visibility(
             &self,
             object: &ProtocolObject<dyn NSItemProviderWriting>,
             visibility: NSItemProviderRepresentationVisibility,
@@ -321,7 +321,7 @@ impl NSItemProvider {
         #[cfg(all(feature = "NSObject", feature = "NSString"))]
         #[unsafe(method(initWithItem:typeIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithItem_typeIdentifier(
+        pub fn initWithItem_typeIdentifier(
             this: Allocated<Self>,
             item: Option<&ProtocolObject<dyn NSSecureCoding>>,
             type_identifier: Option<&NSString>,
@@ -383,8 +383,15 @@ impl NSItemProvider {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSItemProvider {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {

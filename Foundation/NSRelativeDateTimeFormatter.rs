@@ -137,7 +137,7 @@ impl NSRelativeDateTimeFormatter {
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
         #[unsafe(method(localizedStringFromDateComponents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringFromDateComponents(
+        pub fn localizedStringFromDateComponents(
             &self,
             date_components: &NSDateComponents,
         ) -> Retained<NSString>;
@@ -145,7 +145,7 @@ impl NSRelativeDateTimeFormatter {
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(localizedStringFromTimeInterval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringFromTimeInterval(
+        pub fn localizedStringFromTimeInterval(
             &self,
             time_interval: NSTimeInterval,
         ) -> Retained<NSString>;
@@ -153,7 +153,7 @@ impl NSRelativeDateTimeFormatter {
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(localizedStringForDate:relativeToDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringForDate_relativeToDate(
+        pub fn localizedStringForDate_relativeToDate(
             &self,
             date: &NSDate,
             reference_date: &NSDate,
@@ -178,10 +178,18 @@ impl NSRelativeDateTimeFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSRelativeDateTimeFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

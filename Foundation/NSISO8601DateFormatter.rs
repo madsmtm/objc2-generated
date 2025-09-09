@@ -112,22 +112,22 @@ impl NSISO8601DateFormatter {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(stringFromDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromDate(&self, date: &NSDate) -> Retained<NSString>;
+        pub fn stringFromDate(&self, date: &NSDate) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
         #[unsafe(method(dateFromString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dateFromString(&self, string: &NSString) -> Option<Retained<NSDate>>;
+        pub fn dateFromString(&self, string: &NSString) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString", feature = "NSTimeZone"))]
         #[unsafe(method(stringFromDate:timeZone:formatOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromDate_timeZone_formatOptions(
+        pub fn stringFromDate_timeZone_formatOptions(
             date: &NSDate,
             time_zone: &NSTimeZone,
             format_options: NSISO8601DateFormatOptions,
@@ -141,6 +141,14 @@ impl NSISO8601DateFormatter {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSISO8601DateFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

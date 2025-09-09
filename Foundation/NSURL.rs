@@ -1068,7 +1068,7 @@ impl NSURL {
         #[deprecated = "Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings."]
         #[unsafe(method(initWithScheme:host:path:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithScheme_host_path(
+        pub fn initWithScheme_host_path(
             this: Allocated<Self>,
             scheme: &NSString,
             host: Option<&NSString>,
@@ -1078,7 +1078,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initFileURLWithPath:isDirectory:relativeToURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initFileURLWithPath_isDirectory_relativeToURL(
+        pub fn initFileURLWithPath_isDirectory_relativeToURL(
             this: Allocated<Self>,
             path: &NSString,
             is_dir: bool,
@@ -1088,7 +1088,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initFileURLWithPath:relativeToURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initFileURLWithPath_relativeToURL(
+        pub fn initFileURLWithPath_relativeToURL(
             this: Allocated<Self>,
             path: &NSString,
             base_url: Option<&NSURL>,
@@ -1097,7 +1097,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initFileURLWithPath:isDirectory:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initFileURLWithPath_isDirectory(
+        pub fn initFileURLWithPath_isDirectory(
             this: Allocated<Self>,
             path: &NSString,
             is_dir: bool,
@@ -1106,13 +1106,12 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initFileURLWithPath:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initFileURLWithPath(this: Allocated<Self>, path: &NSString)
-            -> Retained<Self>;
+        pub fn initFileURLWithPath(this: Allocated<Self>, path: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileURLWithPath:isDirectory:relativeToURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileURLWithPath_isDirectory_relativeToURL(
+        pub fn fileURLWithPath_isDirectory_relativeToURL(
             path: &NSString,
             is_dir: bool,
             base_url: Option<&NSURL>,
@@ -1121,7 +1120,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileURLWithPath:relativeToURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileURLWithPath_relativeToURL(
+        pub fn fileURLWithPath_relativeToURL(
             path: &NSString,
             base_url: Option<&NSURL>,
         ) -> Retained<NSURL>;
@@ -1129,13 +1128,12 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileURLWithPath:isDirectory:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileURLWithPath_isDirectory(path: &NSString, is_dir: bool)
-            -> Retained<NSURL>;
+        pub fn fileURLWithPath_isDirectory(path: &NSString, is_dir: bool) -> Retained<NSURL>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileURLWithPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileURLWithPath(path: &NSString) -> Retained<NSURL>;
+        pub fn fileURLWithPath(path: &NSString) -> Retained<NSURL>;
 
         /// # Safety
         ///
@@ -1163,7 +1161,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithString(
+        pub fn initWithString(
             this: Allocated<Self>,
             url_string: &NSString,
         ) -> Option<Retained<Self>>;
@@ -1171,7 +1169,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithString:relativeToURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithString_relativeToURL(
+        pub fn initWithString_relativeToURL(
             this: Allocated<Self>,
             url_string: &NSString,
             base_url: Option<&NSURL>,
@@ -1180,12 +1178,12 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(URLWithString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLWithString(url_string: &NSString) -> Option<Retained<Self>>;
+        pub fn URLWithString(url_string: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(URLWithString:relativeToURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLWithString_relativeToURL(
+        pub fn URLWithString_relativeToURL(
             url_string: &NSString,
             base_url: Option<&NSURL>,
         ) -> Option<Retained<Self>>;
@@ -1201,7 +1199,7 @@ impl NSURL {
         /// - Returns: An `NSURL` instance for a valid URL, or `nil` if the URL is invalid.
         #[unsafe(method(initWithString:encodingInvalidCharacters:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithString_encodingInvalidCharacters(
+        pub fn initWithString_encodingInvalidCharacters(
             this: Allocated<Self>,
             url_string: &NSString,
             encoding_invalid_characters: bool,
@@ -1218,7 +1216,7 @@ impl NSURL {
         /// - Returns: An `NSURL` instance for a valid URL, or `nil` if the URL is invalid.
         #[unsafe(method(URLWithString:encodingInvalidCharacters:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLWithString_encodingInvalidCharacters(
+        pub fn URLWithString_encodingInvalidCharacters(
             url_string: &NSString,
             encoding_invalid_characters: bool,
         ) -> Option<Retained<Self>>;
@@ -1226,7 +1224,7 @@ impl NSURL {
         #[cfg(feature = "NSData")]
         #[unsafe(method(initWithDataRepresentation:relativeToURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDataRepresentation_relativeToURL(
+        pub fn initWithDataRepresentation_relativeToURL(
             this: Allocated<Self>,
             data: &NSData,
             base_url: Option<&NSURL>,
@@ -1235,7 +1233,7 @@ impl NSURL {
         #[cfg(feature = "NSData")]
         #[unsafe(method(URLWithDataRepresentation:relativeToURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLWithDataRepresentation_relativeToURL(
+        pub fn URLWithDataRepresentation_relativeToURL(
             data: &NSData,
             base_url: Option<&NSURL>,
         ) -> Retained<NSURL>;
@@ -1243,7 +1241,7 @@ impl NSURL {
         #[cfg(feature = "NSData")]
         #[unsafe(method(initAbsoluteURLWithDataRepresentation:relativeToURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initAbsoluteURLWithDataRepresentation_relativeToURL(
+        pub fn initAbsoluteURLWithDataRepresentation_relativeToURL(
             this: Allocated<Self>,
             data: &NSData,
             base_url: Option<&NSURL>,
@@ -1252,7 +1250,7 @@ impl NSURL {
         #[cfg(feature = "NSData")]
         #[unsafe(method(absoluteURLWithDataRepresentation:relativeToURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn absoluteURLWithDataRepresentation_relativeToURL(
+        pub fn absoluteURLWithDataRepresentation_relativeToURL(
             data: &NSData,
             base_url: Option<&NSURL>,
         ) -> Retained<NSURL>;
@@ -1365,11 +1363,11 @@ impl NSURL {
 
         #[unsafe(method(isFileReferenceURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFileReferenceURL(&self) -> bool;
+        pub fn isFileReferenceURL(&self) -> bool;
 
         #[unsafe(method(fileReferenceURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileReferenceURL(&self) -> Option<Retained<NSURL>>;
+        pub fn fileReferenceURL(&self) -> Option<Retained<NSURL>>;
 
         #[unsafe(method(filePathURL))]
         #[unsafe(method_family = none)]
@@ -1395,7 +1393,7 @@ impl NSURL {
         ))]
         #[unsafe(method(resourceValuesForKeys:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resourceValuesForKeys_error(
+        pub fn resourceValuesForKeys_error(
             &self,
             keys: &NSArray<NSURLResourceKey>,
         ) -> Result<Retained<NSDictionary<NSURLResourceKey, AnyObject>>, Retained<NSError>>;
@@ -1426,11 +1424,11 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(removeCachedResourceValueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeCachedResourceValueForKey(&self, key: &NSURLResourceKey);
+        pub fn removeCachedResourceValueForKey(&self, key: &NSURLResourceKey);
 
         #[unsafe(method(removeAllCachedResourceValues))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAllCachedResourceValues(&self);
+        pub fn removeAllCachedResourceValues(&self);
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -1452,7 +1450,7 @@ impl NSURL {
         ))]
         #[unsafe(method(bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bookmarkDataWithOptions_includingResourceValuesForKeys_relativeToURL_error(
+        pub fn bookmarkDataWithOptions_includingResourceValuesForKeys_relativeToURL_error(
             &self,
             options: NSURLBookmarkCreationOptions,
             keys: Option<&NSArray<NSURLResourceKey>>,
@@ -1494,7 +1492,7 @@ impl NSURL {
         ))]
         #[unsafe(method(resourceValuesForKeys:fromBookmarkData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resourceValuesForKeys_fromBookmarkData(
+        pub fn resourceValuesForKeys_fromBookmarkData(
             keys: &NSArray<NSURLResourceKey>,
             bookmark_data: &NSData,
         ) -> Option<Retained<NSDictionary<NSURLResourceKey, AnyObject>>>;
@@ -1502,7 +1500,7 @@ impl NSURL {
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[unsafe(method(writeBookmarkData:toURL:options:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn writeBookmarkData_toURL_options_error(
+        pub fn writeBookmarkData_toURL_options_error(
             bookmark_data: &NSData,
             bookmark_file_url: &NSURL,
             options: NSURLBookmarkFileCreationOptions,
@@ -1511,25 +1509,25 @@ impl NSURL {
         #[cfg(all(feature = "NSData", feature = "NSError"))]
         #[unsafe(method(bookmarkDataWithContentsOfURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bookmarkDataWithContentsOfURL_error(
+        pub fn bookmarkDataWithContentsOfURL_error(
             bookmark_file_url: &NSURL,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
         #[unsafe(method(URLByResolvingAliasFileAtURL:options:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLByResolvingAliasFileAtURL_options_error(
+        pub fn URLByResolvingAliasFileAtURL_options_error(
             url: &NSURL,
             options: NSURLBookmarkResolutionOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[unsafe(method(startAccessingSecurityScopedResource))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startAccessingSecurityScopedResource(&self) -> bool;
+        pub fn startAccessingSecurityScopedResource(&self) -> bool;
 
         #[unsafe(method(stopAccessingSecurityScopedResource))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopAccessingSecurityScopedResource(&self);
+        pub fn stopAccessingSecurityScopedResource(&self);
     );
 }
 
@@ -1538,12 +1536,19 @@ impl NSURL {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURL {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSPromisedItems.
@@ -1569,7 +1574,7 @@ impl NSURL {
         ))]
         #[unsafe(method(promisedItemResourceValuesForKeys:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn promisedItemResourceValuesForKeys_error(
+        pub fn promisedItemResourceValuesForKeys_error(
             &self,
             keys: &NSArray<NSURLResourceKey>,
         ) -> Result<Retained<NSDictionary<NSURLResourceKey, AnyObject>>, Retained<NSError>>;
@@ -1577,9 +1582,7 @@ impl NSURL {
         #[cfg(feature = "NSError")]
         #[unsafe(method(checkPromisedItemIsReachableAndReturnError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn checkPromisedItemIsReachableAndReturnError(
-            &self,
-        ) -> Result<(), Retained<NSError>>;
+        pub fn checkPromisedItemIsReachableAndReturnError(&self) -> Result<(), Retained<NSError>>;
     );
 }
 
@@ -1638,7 +1641,7 @@ impl NSURLQueryItem {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithName:value:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_value(
+        pub fn initWithName_value(
             this: Allocated<Self>,
             name: &NSString,
             value: Option<&NSString>,
@@ -1647,10 +1650,8 @@ impl NSURLQueryItem {
         #[cfg(feature = "NSString")]
         #[unsafe(method(queryItemWithName:value:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn queryItemWithName_value(
-            name: &NSString,
-            value: Option<&NSString>,
-        ) -> Retained<Self>;
+        pub fn queryItemWithName_value(name: &NSString, value: Option<&NSString>)
+            -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
@@ -1669,12 +1670,19 @@ impl NSURLQueryItem {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURLQueryItem {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1702,11 +1710,11 @@ impl NSURLComponents {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(initWithURL:resolvingAgainstBaseURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL_resolvingAgainstBaseURL(
+        pub fn initWithURL_resolvingAgainstBaseURL(
             this: Allocated<Self>,
             url: &NSURL,
             resolve: bool,
@@ -1714,7 +1722,7 @@ impl NSURLComponents {
 
         #[unsafe(method(componentsWithURL:resolvingAgainstBaseURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn componentsWithURL_resolvingAgainstBaseURL(
+        pub fn componentsWithURL_resolvingAgainstBaseURL(
             url: &NSURL,
             resolve: bool,
         ) -> Option<Retained<Self>>;
@@ -1722,7 +1730,7 @@ impl NSURLComponents {
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithString(
+        pub fn initWithString(
             this: Allocated<Self>,
             url_string: &NSString,
         ) -> Option<Retained<Self>>;
@@ -1730,7 +1738,7 @@ impl NSURLComponents {
         #[cfg(feature = "NSString")]
         #[unsafe(method(componentsWithString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn componentsWithString(url_string: &NSString) -> Option<Retained<Self>>;
+        pub fn componentsWithString(url_string: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
         /// Initializes an `NSURLComponents` with a URL string and the option to add (or skip) IDNA- and percent-encoding of invalid characters.
@@ -1743,7 +1751,7 @@ impl NSURLComponents {
         /// - Returns: An `NSURLComponents` instance for a valid URL, or `nil` if the URL is invalid.
         #[unsafe(method(initWithString:encodingInvalidCharacters:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithString_encodingInvalidCharacters(
+        pub fn initWithString_encodingInvalidCharacters(
             this: Allocated<Self>,
             url_string: &NSString,
             encoding_invalid_characters: bool,
@@ -1760,7 +1768,7 @@ impl NSURLComponents {
         /// - Returns: An `NSURLComponents` instance for a valid URL, or `nil` if the URL is invalid.
         #[unsafe(method(componentsWithString:encodingInvalidCharacters:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn componentsWithString_encodingInvalidCharacters(
+        pub fn componentsWithString_encodingInvalidCharacters(
             url_string: &NSString,
             encoding_invalid_characters: bool,
         ) -> Option<Retained<Self>>;
@@ -1771,7 +1779,7 @@ impl NSURLComponents {
 
         #[unsafe(method(URLRelativeToURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLRelativeToURL(&self, base_url: Option<&NSURL>) -> Option<Retained<NSURL>>;
+        pub fn URLRelativeToURL(&self, base_url: Option<&NSURL>) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(string))]
@@ -2051,8 +2059,15 @@ impl NSURLComponents {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSURLComponents {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSURLUtilities.
@@ -2092,7 +2107,7 @@ impl NSString {
         #[cfg(feature = "NSCharacterSet")]
         #[unsafe(method(stringByAddingPercentEncodingWithAllowedCharacters:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringByAddingPercentEncodingWithAllowedCharacters(
+        pub fn stringByAddingPercentEncodingWithAllowedCharacters(
             &self,
             allowed_characters: &NSCharacterSet,
         ) -> Option<Retained<NSString>>;
@@ -2104,7 +2119,7 @@ impl NSString {
         #[deprecated = "Use -stringByAddingPercentEncodingWithAllowedCharacters: instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent since each URL component or subcomponent has different rules for what characters are valid."]
         #[unsafe(method(stringByAddingPercentEscapesUsingEncoding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringByAddingPercentEscapesUsingEncoding(
+        pub fn stringByAddingPercentEscapesUsingEncoding(
             &self,
             enc: NSStringEncoding,
         ) -> Option<Retained<NSString>>;
@@ -2112,7 +2127,7 @@ impl NSString {
         #[deprecated = "Use -stringByRemovingPercentEncoding instead, which always uses the recommended UTF-8 encoding."]
         #[unsafe(method(stringByReplacingPercentEscapesUsingEncoding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringByReplacingPercentEscapesUsingEncoding(
+        pub fn stringByReplacingPercentEscapesUsingEncoding(
             &self,
             enc: NSStringEncoding,
         ) -> Option<Retained<NSString>>;
@@ -2125,9 +2140,8 @@ impl NSURL {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(fileURLWithPathComponents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileURLWithPathComponents(
-            components: &NSArray<NSString>,
-        ) -> Option<Retained<NSURL>>;
+        pub fn fileURLWithPathComponents(components: &NSArray<NSString>)
+            -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(pathComponents))]
@@ -2147,7 +2161,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(URLByAppendingPathComponent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLByAppendingPathComponent(
+        pub fn URLByAppendingPathComponent(
             &self,
             path_component: &NSString,
         ) -> Option<Retained<NSURL>>;
@@ -2155,7 +2169,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(URLByAppendingPathComponent:isDirectory:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLByAppendingPathComponent_isDirectory(
+        pub fn URLByAppendingPathComponent_isDirectory(
             &self,
             path_component: &NSString,
             is_directory: bool,
@@ -2168,7 +2182,7 @@ impl NSURL {
         #[cfg(feature = "NSString")]
         #[unsafe(method(URLByAppendingPathExtension:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLByAppendingPathExtension(
+        pub fn URLByAppendingPathExtension(
             &self,
             path_extension: &NSString,
         ) -> Option<Retained<NSURL>>;
@@ -2180,9 +2194,7 @@ impl NSURL {
         #[cfg(feature = "NSError")]
         #[unsafe(method(checkResourceIsReachableAndReturnError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn checkResourceIsReachableAndReturnError(
-            &self,
-        ) -> Result<(), Retained<NSError>>;
+        pub fn checkResourceIsReachableAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[unsafe(method(URLByStandardizingPath))]
         #[unsafe(method_family = none)]
@@ -2261,12 +2273,19 @@ impl NSFileSecurity {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSFileSecurity {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSURLLoading.
@@ -2276,10 +2295,7 @@ impl NSURL {
         #[deprecated = "Use NSURLConnection instead"]
         #[unsafe(method(resourceDataUsingCache:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resourceDataUsingCache(
-            &self,
-            should_use_cache: bool,
-        ) -> Option<Retained<NSData>>;
+        pub fn resourceDataUsingCache(&self, should_use_cache: bool) -> Option<Retained<NSData>>;
 
         /// # Safety
         ///
@@ -2297,14 +2313,13 @@ impl NSURL {
         #[deprecated = "Use NSURLConnection instead"]
         #[unsafe(method(propertyForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn propertyForKey(&self, property_key: &NSString)
-            -> Option<Retained<AnyObject>>;
+        pub fn propertyForKey(&self, property_key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSURLConnection instead"]
         #[unsafe(method(setResourceData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResourceData(&self, data: &NSData) -> bool;
+        pub fn setResourceData(&self, data: &NSData) -> bool;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -2323,9 +2338,6 @@ impl NSURL {
         #[deprecated = "Use NSURLConnection instead"]
         #[unsafe(method(URLHandleUsingCache:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLHandleUsingCache(
-            &self,
-            should_use_cache: bool,
-        ) -> Option<Retained<NSURLHandle>>;
+        pub fn URLHandleUsingCache(&self, should_use_cache: bool) -> Option<Retained<NSURLHandle>>;
     );
 }

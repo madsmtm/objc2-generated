@@ -30,18 +30,18 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(allConnections))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allConnections() -> Retained<NSArray<NSConnection>>;
+        pub fn allConnections() -> Retained<NSArray<NSConnection>>;
 
         #[deprecated]
         #[unsafe(method(defaultConnection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultConnection() -> Retained<NSConnection>;
+        pub fn defaultConnection() -> Retained<NSConnection>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connectionWithRegisteredName:host:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn connectionWithRegisteredName_host(
+        pub fn connectionWithRegisteredName_host(
             name: &NSString,
             host_name: Option<&NSString>,
         ) -> Option<Retained<Self>>;
@@ -50,7 +50,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connectionWithRegisteredName:host:usingNameServer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn connectionWithRegisteredName_host_usingNameServer(
+        pub fn connectionWithRegisteredName_host_usingNameServer(
             name: &NSString,
             host_name: Option<&NSString>,
             server: &NSPortNameServer,
@@ -60,7 +60,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(rootProxyForConnectionWithRegisteredName:host:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rootProxyForConnectionWithRegisteredName_host(
+        pub fn rootProxyForConnectionWithRegisteredName_host(
             name: &NSString,
             host_name: Option<&NSString>,
         ) -> Option<Retained<NSDistantObject>>;
@@ -74,7 +74,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(rootProxyForConnectionWithRegisteredName:host:usingNameServer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rootProxyForConnectionWithRegisteredName_host_usingNameServer(
+        pub fn rootProxyForConnectionWithRegisteredName_host_usingNameServer(
             name: &NSString,
             host_name: Option<&NSString>,
             server: &NSPortNameServer,
@@ -191,19 +191,19 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidate(&self);
+        pub fn invalidate(&self);
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(addRequestMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addRequestMode(&self, rmode: &NSString);
+        pub fn addRequestMode(&self, rmode: &NSString);
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(removeRequestMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeRequestMode(&self, rmode: &NSString);
+        pub fn removeRequestMode(&self, rmode: &NSString);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -215,13 +215,13 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(registerName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerName(&self, name: Option<&NSString>) -> bool;
+        pub fn registerName(&self, name: Option<&NSString>) -> bool;
 
         #[cfg(all(feature = "NSPortNameServer", feature = "NSString"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(registerName:withNameServer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerName_withNameServer(
+        pub fn registerName_withNameServer(
             &self,
             name: Option<&NSString>,
             server: &NSPortNameServer,
@@ -231,7 +231,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connectionWithReceivePort:sendPort:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn connectionWithReceivePort_sendPort(
+        pub fn connectionWithReceivePort_sendPort(
             receive_port: Option<&NSPort>,
             send_port: Option<&NSPort>,
         ) -> Option<Retained<Self>>;
@@ -239,13 +239,13 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(currentConversation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentConversation() -> Option<Retained<AnyObject>>;
+        pub fn currentConversation() -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSPort")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(initWithReceivePort:sendPort:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithReceivePort_sendPort(
+        pub fn initWithReceivePort_sendPort(
             this: Allocated<Self>,
             receive_port: Option<&NSPort>,
             send_port: Option<&NSPort>,
@@ -266,7 +266,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(enableMultipleThreads))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enableMultipleThreads(&self);
+        pub fn enableMultipleThreads(&self);
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(multipleThreadsEnabled))]
@@ -294,7 +294,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(runInNewThread))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runInNewThread(&self);
+        pub fn runInNewThread(&self);
 
         #[cfg(feature = "NSArray")]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -323,12 +323,19 @@ impl NSConnection {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSConnection {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -353,17 +360,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(makeNewConnection:sender:))]
         #[unsafe(method_family = none)]
-        unsafe fn makeNewConnection_sender(
-            &self,
-            conn: &NSConnection,
-            ancestor: &NSConnection,
-        ) -> bool;
+        fn makeNewConnection_sender(&self, conn: &NSConnection, ancestor: &NSConnection) -> bool;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[unsafe(method(connection:shouldMakeNewConnection:))]
         #[unsafe(method_family = none)]
-        unsafe fn connection_shouldMakeNewConnection(
+        fn connection_shouldMakeNewConnection(
             &self,
             ancestor: &NSConnection,
             conn: &NSConnection,
@@ -397,16 +400,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(createConversationForConnection:))]
         #[unsafe(method_family = none)]
-        unsafe fn createConversationForConnection(
-            &self,
-            conn: &NSConnection,
-        ) -> Retained<AnyObject>;
+        fn createConversationForConnection(&self, conn: &NSConnection) -> Retained<AnyObject>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[optional]
         #[unsafe(method(connection:handleRequest:))]
         #[unsafe(method_family = none)]
-        unsafe fn connection_handleRequest(
+        fn connection_handleRequest(
             &self,
             connection: &NSConnection,
             doreq: &NSDistantObjectRequest,
@@ -446,7 +446,7 @@ impl NSDistantObjectRequest {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(invocation))]
         #[unsafe(method_family = none)]
-        pub fn invocation(&self) -> Retained<NSInvocation>;
+        pub unsafe fn invocation(&self) -> Retained<NSInvocation>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connection))]
@@ -462,7 +462,7 @@ impl NSDistantObjectRequest {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(replyWithException:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replyWithException(&self, exception: Option<&NSException>);
+        pub fn replyWithException(&self, exception: Option<&NSException>);
     );
 }
 
@@ -471,10 +471,17 @@ impl NSDistantObjectRequest {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSDistantObjectRequest {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

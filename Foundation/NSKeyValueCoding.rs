@@ -100,7 +100,7 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
+        fn valueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -152,7 +152,7 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKeyPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn valueForKeyPath(&self, key_path: &NSString) -> Option<Retained<AnyObject>>;
+        fn valueForKeyPath(&self, key_path: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -207,7 +207,7 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForUndefinedKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn valueForUndefinedKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
+        fn valueForUndefinedKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -225,7 +225,7 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(dictionaryWithValuesForKeys:))]
         #[unsafe(method_family = none)]
-        unsafe fn dictionaryWithValuesForKeys(
+        fn dictionaryWithValuesForKeys(
             &self,
             keys: &NSArray<NSString>,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -253,7 +253,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
+        pub fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -272,7 +272,7 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<ObjectType>>;
+        pub fn valueForKey(&self, key: &NSString) -> Option<Retained<ObjectType>>;
     );
 }
 
@@ -294,7 +294,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
+        pub fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -313,7 +313,7 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
+        pub fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         /// # Safety

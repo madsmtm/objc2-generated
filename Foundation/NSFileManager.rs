@@ -279,7 +279,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(mountedVolumeURLsIncludingResourceValuesForKeys:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mountedVolumeURLsIncludingResourceValuesForKeys_options(
+        pub fn mountedVolumeURLsIncludingResourceValuesForKeys_options(
             &self,
             property_keys: Option<&NSArray<NSURLResourceKey>>,
             options: NSVolumeEnumerationOptions,
@@ -306,7 +306,7 @@ impl NSFileManager {
         ))]
         #[unsafe(method(contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentsOfDirectoryAtURL_includingPropertiesForKeys_options_error(
+        pub fn contentsOfDirectoryAtURL_includingPropertiesForKeys_options_error(
             &self,
             url: &NSURL,
             keys: Option<&NSArray<NSURLResourceKey>>,
@@ -316,7 +316,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSArray", feature = "NSPathUtilities", feature = "NSURL"))]
         #[unsafe(method(URLsForDirectory:inDomains:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLsForDirectory_inDomains(
+        pub fn URLsForDirectory_inDomains(
             &self,
             directory: NSSearchPathDirectory,
             domain_mask: NSSearchPathDomainMask,
@@ -325,7 +325,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSPathUtilities", feature = "NSURL"))]
         #[unsafe(method(URLForDirectory:inDomain:appropriateForURL:create:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLForDirectory_inDomain_appropriateForURL_create_error(
+        pub fn URLForDirectory_inDomain_appropriateForURL_create_error(
             &self,
             directory: NSSearchPathDirectory,
             domain: NSSearchPathDomainMask,
@@ -381,7 +381,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(createSymbolicLinkAtURL:withDestinationURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createSymbolicLinkAtURL_withDestinationURL_error(
+        pub fn createSymbolicLinkAtURL_withDestinationURL_error(
             &self,
             url: &NSURL,
             dest_url: &NSURL,
@@ -436,7 +436,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
         #[unsafe(method(contentsOfDirectoryAtPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentsOfDirectoryAtPath_error(
+        pub fn contentsOfDirectoryAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
@@ -444,7 +444,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
         #[unsafe(method(subpathsOfDirectoryAtPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn subpathsOfDirectoryAtPath_error(
+        pub fn subpathsOfDirectoryAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
@@ -452,7 +452,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
         #[unsafe(method(attributesOfItemAtPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributesOfItemAtPath_error(
+        pub fn attributesOfItemAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Retained<NSDictionary<NSFileAttributeKey, AnyObject>>, Retained<NSError>>;
@@ -460,7 +460,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
         #[unsafe(method(attributesOfFileSystemForPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributesOfFileSystemForPath_error(
+        pub fn attributesOfFileSystemForPath_error(
             &self,
             path: &NSString,
         ) -> Result<Retained<NSDictionary<NSFileAttributeKey, AnyObject>>, Retained<NSError>>;
@@ -468,7 +468,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(createSymbolicLinkAtPath:withDestinationPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createSymbolicLinkAtPath_withDestinationPath_error(
+        pub fn createSymbolicLinkAtPath_withDestinationPath_error(
             &self,
             path: &NSString,
             dest_path: &NSString,
@@ -477,7 +477,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(destinationOfSymbolicLinkAtPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn destinationOfSymbolicLinkAtPath_error(
+        pub fn destinationOfSymbolicLinkAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Retained<NSString>, Retained<NSError>>;
@@ -485,7 +485,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(copyItemAtPath:toPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn copyItemAtPath_toPath_error(
+        pub fn copyItemAtPath_toPath_error(
             &self,
             src_path: &NSString,
             dst_path: &NSString,
@@ -494,7 +494,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(moveItemAtPath:toPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn moveItemAtPath_toPath_error(
+        pub fn moveItemAtPath_toPath_error(
             &self,
             src_path: &NSString,
             dst_path: &NSString,
@@ -503,7 +503,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(linkItemAtPath:toPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn linkItemAtPath_toPath_error(
+        pub fn linkItemAtPath_toPath_error(
             &self,
             src_path: &NSString,
             dst_path: &NSString,
@@ -512,15 +512,12 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[unsafe(method(removeItemAtPath:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeItemAtPath_error(
-            &self,
-            path: &NSString,
-        ) -> Result<(), Retained<NSError>>;
+        pub fn removeItemAtPath_error(&self, path: &NSString) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(copyItemAtURL:toURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn copyItemAtURL_toURL_error(
+        pub fn copyItemAtURL_toURL_error(
             &self,
             src_url: &NSURL,
             dst_url: &NSURL,
@@ -529,7 +526,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(moveItemAtURL:toURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn moveItemAtURL_toURL_error(
+        pub fn moveItemAtURL_toURL_error(
             &self,
             src_url: &NSURL,
             dst_url: &NSURL,
@@ -538,7 +535,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(linkItemAtURL:toURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn linkItemAtURL_toURL_error(
+        pub fn linkItemAtURL_toURL_error(
             &self,
             src_url: &NSURL,
             dst_url: &NSURL,
@@ -547,12 +544,12 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(removeItemAtURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeItemAtURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
+        pub fn removeItemAtURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(trashItemAtURL:resultingItemURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trashItemAtURL_resultingItemURL_error(
+        pub fn trashItemAtURL_resultingItemURL_error(
             &self,
             url: &NSURL,
             out_resulting_url: Option<&mut Option<Retained<NSURL>>>,
@@ -562,7 +559,7 @@ impl NSFileManager {
         #[deprecated = "Use -attributesOfItemAtPath:error: instead"]
         #[unsafe(method(fileAttributesAtPath:traverseLink:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileAttributesAtPath_traverseLink(
+        pub fn fileAttributesAtPath_traverseLink(
             &self,
             path: &NSString,
             yorn: bool,
@@ -585,22 +582,20 @@ impl NSFileManager {
         #[deprecated = "Use -contentsOfDirectoryAtPath:error: instead"]
         #[unsafe(method(directoryContentsAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn directoryContentsAtPath(&self, path: &NSString) -> Option<Retained<NSArray>>;
+        pub fn directoryContentsAtPath(&self, path: &NSString) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "Use -attributesOfFileSystemForPath:error: instead"]
         #[unsafe(method(fileSystemAttributesAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileSystemAttributesAtPath(
-            &self,
-            path: &NSString,
-        ) -> Option<Retained<NSDictionary>>;
+        pub fn fileSystemAttributesAtPath(&self, path: &NSString)
+            -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -destinationOfSymbolicLinkAtPath:error:"]
         #[unsafe(method(pathContentOfSymbolicLinkAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pathContentOfSymbolicLinkAtPath(
+        pub fn pathContentOfSymbolicLinkAtPath(
             &self,
             path: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -609,7 +604,7 @@ impl NSFileManager {
         #[deprecated = "Use -createSymbolicLinkAtPath:error: instead"]
         #[unsafe(method(createSymbolicLinkAtPath:pathContent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createSymbolicLinkAtPath_pathContent(
+        pub fn createSymbolicLinkAtPath_pathContent(
             &self,
             path: &NSString,
             otherpath: &NSString,
@@ -691,12 +686,12 @@ impl NSFileManager {
         #[cfg(feature = "NSString")]
         #[unsafe(method(changeCurrentDirectoryPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn changeCurrentDirectoryPath(&self, path: &NSString) -> bool;
+        pub fn changeCurrentDirectoryPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileExistsAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileExistsAtPath(&self, path: &NSString) -> bool;
+        pub fn fileExistsAtPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -713,41 +708,37 @@ impl NSFileManager {
         #[cfg(feature = "NSString")]
         #[unsafe(method(isReadableFileAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isReadableFileAtPath(&self, path: &NSString) -> bool;
+        pub fn isReadableFileAtPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(isWritableFileAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isWritableFileAtPath(&self, path: &NSString) -> bool;
+        pub fn isWritableFileAtPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(isExecutableFileAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isExecutableFileAtPath(&self, path: &NSString) -> bool;
+        pub fn isExecutableFileAtPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(isDeletableFileAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDeletableFileAtPath(&self, path: &NSString) -> bool;
+        pub fn isDeletableFileAtPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(contentsEqualAtPath:andPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentsEqualAtPath_andPath(
-            &self,
-            path1: &NSString,
-            path2: &NSString,
-        ) -> bool;
+        pub fn contentsEqualAtPath_andPath(&self, path1: &NSString, path2: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(displayNameAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayNameAtPath(&self, path: &NSString) -> Retained<NSString>;
+        pub fn displayNameAtPath(&self, path: &NSString) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(componentsToDisplayForPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn componentsToDisplayForPath(
+        pub fn componentsToDisplayForPath(
             &self,
             path: &NSString,
         ) -> Option<Retained<NSArray<NSString>>>;
@@ -755,7 +746,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSEnumerator", feature = "NSString"))]
         #[unsafe(method(enumeratorAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumeratorAtPath(
+        pub fn enumeratorAtPath(
             &self,
             path: &NSString,
         ) -> Option<Retained<NSDirectoryEnumerator<NSString>>>;
@@ -770,7 +761,7 @@ impl NSFileManager {
         ))]
         #[unsafe(method(enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumeratorAtURL_includingPropertiesForKeys_options_errorHandler(
+        pub fn enumeratorAtURL_includingPropertiesForKeys_options_errorHandler(
             &self,
             url: &NSURL,
             keys: Option<&NSArray<NSURLResourceKey>>,
@@ -781,13 +772,12 @@ impl NSFileManager {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(subpathsAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn subpathsAtPath(&self, path: &NSString)
-            -> Option<Retained<NSArray<NSString>>>;
+        pub fn subpathsAtPath(&self, path: &NSString) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[unsafe(method(contentsAtPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentsAtPath(&self, path: &NSString) -> Option<Retained<NSData>>;
+        pub fn contentsAtPath(&self, path: &NSString) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSString"))]
         /// # Safety
@@ -805,7 +795,7 @@ impl NSFileManager {
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileSystemRepresentationWithPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileSystemRepresentationWithPath(&self, path: &NSString) -> NonNull<c_char>;
+        pub fn fileSystemRepresentationWithPath(&self, path: &NSString) -> NonNull<c_char>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -822,7 +812,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replaceItemAtURL_withItemAtURL_backupItemName_options_resultingItemURL_error(
+        pub fn replaceItemAtURL_withItemAtURL_backupItemName_options_resultingItemURL_error(
             &self,
             original_item_url: &NSURL,
             new_item_url: &NSURL,
@@ -834,7 +824,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(setUbiquitous:itemAtURL:destinationURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUbiquitous_itemAtURL_destinationURL_error(
+        pub fn setUbiquitous_itemAtURL_destinationURL_error(
             &self,
             flag: bool,
             url: &NSURL,
@@ -844,12 +834,12 @@ impl NSFileManager {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(isUbiquitousItemAtURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isUbiquitousItemAtURL(&self, url: &NSURL) -> bool;
+        pub fn isUbiquitousItemAtURL(&self, url: &NSURL) -> bool;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(startDownloadingUbiquitousItemAtURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startDownloadingUbiquitousItemAtURL_error(
+        pub fn startDownloadingUbiquitousItemAtURL_error(
             &self,
             url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
@@ -857,15 +847,12 @@ impl NSFileManager {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(evictUbiquitousItemAtURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn evictUbiquitousItemAtURL_error(
-            &self,
-            url: &NSURL,
-        ) -> Result<(), Retained<NSError>>;
+        pub fn evictUbiquitousItemAtURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(URLForUbiquityContainerIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLForUbiquityContainerIdentifier(
+        pub fn URLForUbiquityContainerIdentifier(
             &self,
             container_identifier: Option<&NSString>,
         ) -> Option<Retained<NSURL>>;
@@ -873,7 +860,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSDate", feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(URLForPublishingUbiquitousItemAtURL:expirationDate:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLForPublishingUbiquitousItemAtURL_expirationDate_error(
+        pub fn URLForPublishingUbiquitousItemAtURL_expirationDate_error(
             &self,
             url: &NSURL,
             out_date: Option<&mut Option<Retained<NSDate>>>,
@@ -1046,7 +1033,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(containerURLForSecurityApplicationGroupIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containerURLForSecurityApplicationGroupIdentifier(
+        pub fn containerURLForSecurityApplicationGroupIdentifier(
             &self,
             group_identifier: &NSString,
         ) -> Option<Retained<NSURL>>;
@@ -1058,12 +1045,19 @@ impl NSFileManager {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSFileManager {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSUserInformation.
@@ -1082,7 +1076,7 @@ impl NSFileManager {
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(homeDirectoryForUser:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn homeDirectoryForUser(&self, user_name: &NSString) -> Option<Retained<NSURL>>;
+        pub fn homeDirectoryForUser(&self, user_name: &NSString) -> Option<Retained<NSURL>>;
     );
 }
 
@@ -1093,7 +1087,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldCopyItemAtPath:toPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldCopyItemAtPath_toPath(
+        fn fileManager_shouldCopyItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             src_path: &NSString,
@@ -1104,7 +1098,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldCopyItemAtURL:toURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldCopyItemAtURL_toURL(
+        fn fileManager_shouldCopyItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             src_url: &NSURL,
@@ -1115,7 +1109,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldProceedAfterError:copyingItemAtPath:toPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldProceedAfterError_copyingItemAtPath_toPath(
+        fn fileManager_shouldProceedAfterError_copyingItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -1127,7 +1121,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldProceedAfterError:copyingItemAtURL:toURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldProceedAfterError_copyingItemAtURL_toURL(
+        fn fileManager_shouldProceedAfterError_copyingItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -1139,7 +1133,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldMoveItemAtPath:toPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldMoveItemAtPath_toPath(
+        fn fileManager_shouldMoveItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             src_path: &NSString,
@@ -1150,7 +1144,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldMoveItemAtURL:toURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldMoveItemAtURL_toURL(
+        fn fileManager_shouldMoveItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             src_url: &NSURL,
@@ -1161,7 +1155,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldProceedAfterError:movingItemAtPath:toPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldProceedAfterError_movingItemAtPath_toPath(
+        fn fileManager_shouldProceedAfterError_movingItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -1173,7 +1167,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldProceedAfterError:movingItemAtURL:toURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldProceedAfterError_movingItemAtURL_toURL(
+        fn fileManager_shouldProceedAfterError_movingItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -1185,7 +1179,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldLinkItemAtPath:toPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldLinkItemAtPath_toPath(
+        fn fileManager_shouldLinkItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             src_path: &NSString,
@@ -1196,7 +1190,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldLinkItemAtURL:toURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldLinkItemAtURL_toURL(
+        fn fileManager_shouldLinkItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             src_url: &NSURL,
@@ -1207,7 +1201,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldProceedAfterError:linkingItemAtPath:toPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldProceedAfterError_linkingItemAtPath_toPath(
+        fn fileManager_shouldProceedAfterError_linkingItemAtPath_toPath(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -1219,7 +1213,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldProceedAfterError:linkingItemAtURL:toURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldProceedAfterError_linkingItemAtURL_toURL(
+        fn fileManager_shouldProceedAfterError_linkingItemAtURL_toURL(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -1231,7 +1225,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldRemoveItemAtPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldRemoveItemAtPath(
+        fn fileManager_shouldRemoveItemAtPath(
             &self,
             file_manager: &NSFileManager,
             path: &NSString,
@@ -1241,7 +1235,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldRemoveItemAtURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldRemoveItemAtURL(
+        fn fileManager_shouldRemoveItemAtURL(
             &self,
             file_manager: &NSFileManager,
             url: &NSURL,
@@ -1251,7 +1245,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldProceedAfterError:removingItemAtPath:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldProceedAfterError_removingItemAtPath(
+        fn fileManager_shouldProceedAfterError_removingItemAtPath(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -1262,7 +1256,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fileManager:shouldProceedAfterError:removingItemAtURL:))]
         #[unsafe(method_family = none)]
-        unsafe fn fileManager_shouldProceedAfterError_removingItemAtURL(
+        fn fileManager_shouldProceedAfterError_removingItemAtURL(
             &self,
             file_manager: &NSFileManager,
             error: &NSError,
@@ -1327,7 +1321,7 @@ impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
 
         #[unsafe(method(skipDescendents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn skipDescendents(&self);
+        pub fn skipDescendents(&self);
 
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]
@@ -1335,7 +1329,7 @@ impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
 
         #[unsafe(method(skipDescendants))]
         #[unsafe(method_family = none)]
-        pub unsafe fn skipDescendants(&self);
+        pub fn skipDescendants(&self);
     );
 }
 
@@ -1345,12 +1339,20 @@ impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSEnumerator")]
+impl<ObjectType: Message> DefaultRetained for NSDirectoryEnumerator<ObjectType> {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1389,12 +1391,19 @@ impl NSFileProviderService {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSFileProviderService {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -1619,73 +1628,73 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
     extern_methods!(
         #[unsafe(method(fileSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileSize(&self) -> c_ulonglong;
+        pub fn fileSize(&self) -> c_ulonglong;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(fileModificationDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
+        pub fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
+        pub fn fileType(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(filePosixPermissions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn filePosixPermissions(&self) -> NSUInteger;
+        pub fn filePosixPermissions(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileOwnerAccountName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileOwnerAccountName(&self) -> Option<Retained<NSString>>;
+        pub fn fileOwnerAccountName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileGroupOwnerAccountName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileGroupOwnerAccountName(&self) -> Option<Retained<NSString>>;
+        pub fn fileGroupOwnerAccountName(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(fileSystemNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileSystemNumber(&self) -> NSInteger;
+        pub fn fileSystemNumber(&self) -> NSInteger;
 
         #[unsafe(method(fileSystemFileNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileSystemFileNumber(&self) -> NSUInteger;
+        pub fn fileSystemFileNumber(&self) -> NSUInteger;
 
         #[unsafe(method(fileExtensionHidden))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileExtensionHidden(&self) -> bool;
+        pub fn fileExtensionHidden(&self) -> bool;
 
         #[unsafe(method(fileHFSCreatorCode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileHFSCreatorCode(&self) -> OSType;
+        pub fn fileHFSCreatorCode(&self) -> OSType;
 
         #[unsafe(method(fileHFSTypeCode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileHFSTypeCode(&self) -> OSType;
+        pub fn fileHFSTypeCode(&self) -> OSType;
 
         #[unsafe(method(fileIsImmutable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileIsImmutable(&self) -> bool;
+        pub fn fileIsImmutable(&self) -> bool;
 
         #[unsafe(method(fileIsAppendOnly))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileIsAppendOnly(&self) -> bool;
+        pub fn fileIsAppendOnly(&self) -> bool;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(fileCreationDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileCreationDate(&self) -> Option<Retained<NSDate>>;
+        pub fn fileCreationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSValue")]
         #[unsafe(method(fileOwnerAccountID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileOwnerAccountID(&self) -> Option<Retained<NSNumber>>;
+        pub fn fileOwnerAccountID(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
         #[unsafe(method(fileGroupOwnerAccountID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileGroupOwnerAccountID(&self) -> Option<Retained<NSNumber>>;
+        pub fn fileGroupOwnerAccountID(&self) -> Option<Retained<NSNumber>>;
     );
 }

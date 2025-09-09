@@ -51,11 +51,11 @@ impl NSOperation {
     extern_methods!(
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
-        pub unsafe fn start(&self);
+        pub fn start(&self);
 
         #[unsafe(method(main))]
         #[unsafe(method_family = none)]
-        pub unsafe fn main(&self);
+        pub fn main(&self);
 
         #[unsafe(method(isCancelled))]
         #[unsafe(method_family = none)]
@@ -63,7 +63,7 @@ impl NSOperation {
 
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancel(&self);
+        pub fn cancel(&self);
 
         #[unsafe(method(isExecuting))]
         #[unsafe(method_family = none)]
@@ -87,11 +87,11 @@ impl NSOperation {
 
         #[unsafe(method(addDependency:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addDependency(&self, op: &NSOperation);
+        pub fn addDependency(&self, op: &NSOperation);
 
         #[unsafe(method(removeDependency:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeDependency(&self, op: &NSOperation);
+        pub fn removeDependency(&self, op: &NSOperation);
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(dependencies))]
@@ -132,7 +132,7 @@ impl NSOperation {
 
         #[unsafe(method(waitUntilFinished))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitUntilFinished(&self);
+        pub fn waitUntilFinished(&self);
 
         #[deprecated = "Not supported"]
         #[unsafe(method(threadPriority))]
@@ -176,12 +176,19 @@ impl NSOperation {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSOperation {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -225,12 +232,19 @@ impl NSBlockOperation {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSBlockOperation {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -271,7 +285,7 @@ impl NSInvocationOperation {
         #[cfg(feature = "NSInvocation")]
         #[unsafe(method(invocation))]
         #[unsafe(method_family = none)]
-        pub fn invocation(&self) -> Retained<NSInvocation>;
+        pub unsafe fn invocation(&self) -> Retained<NSInvocation>;
 
         #[unsafe(method(result))]
         #[unsafe(method_family = none)]
@@ -284,12 +298,19 @@ impl NSInvocationOperation {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSInvocationOperation {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -351,16 +372,12 @@ impl NSOperationQueue {
 
         #[unsafe(method(addOperation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addOperation(&self, op: &NSOperation);
+        pub fn addOperation(&self, op: &NSOperation);
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(addOperations:waitUntilFinished:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addOperations_waitUntilFinished(
-            &self,
-            ops: &NSArray<NSOperation>,
-            wait: bool,
-        );
+        pub fn addOperations_waitUntilFinished(&self, ops: &NSArray<NSOperation>, wait: bool);
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -428,11 +445,11 @@ impl NSOperationQueue {
 
         #[unsafe(method(cancelAllOperations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelAllOperations(&self);
+        pub fn cancelAllOperations(&self);
 
         #[unsafe(method(waitUntilAllOperationsAreFinished))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitUntilAllOperationsAreFinished(&self);
+        pub fn waitUntilAllOperationsAreFinished(&self);
 
         #[unsafe(method(currentQueue))]
         #[unsafe(method_family = none)]
@@ -449,12 +466,19 @@ impl NSOperationQueue {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSOperationQueue {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSDeprecated.

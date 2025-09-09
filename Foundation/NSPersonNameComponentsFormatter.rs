@@ -123,7 +123,7 @@ impl NSPersonNameComponentsFormatter {
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
         #[unsafe(method(localizedStringFromPersonNameComponents:style:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedStringFromPersonNameComponents_style_options(
+        pub fn localizedStringFromPersonNameComponents_style_options(
             components: &NSPersonNameComponents,
             name_format_style: NSPersonNameComponentsFormatterStyle,
             name_options: NSPersonNameComponentsFormatterOptions,
@@ -132,7 +132,7 @@ impl NSPersonNameComponentsFormatter {
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
         #[unsafe(method(stringFromPersonNameComponents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromPersonNameComponents(
+        pub fn stringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
         ) -> Retained<NSString>;
@@ -140,7 +140,7 @@ impl NSPersonNameComponentsFormatter {
         #[cfg(all(feature = "NSAttributedString", feature = "NSPersonNameComponents"))]
         #[unsafe(method(annotatedStringFromPersonNameComponents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn annotatedStringFromPersonNameComponents(
+        pub fn annotatedStringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
         ) -> Retained<NSAttributedString>;
@@ -148,7 +148,7 @@ impl NSPersonNameComponentsFormatter {
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
         #[unsafe(method(personNameComponentsFromString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn personNameComponentsFromString(
+        pub fn personNameComponentsFromString(
             &self,
             string: &NSString,
         ) -> Option<Retained<NSPersonNameComponents>>;
@@ -174,12 +174,20 @@ impl NSPersonNameComponentsFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSPersonNameComponentsFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {

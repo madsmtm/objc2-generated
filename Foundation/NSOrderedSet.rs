@@ -76,15 +76,15 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 
         #[unsafe(method(objectAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndex(&self, idx: NSUInteger) -> Retained<ObjectType>;
+        pub fn objectAtIndex(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[unsafe(method(indexOfObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfObject(&self, object: &ObjectType) -> NSUInteger;
+        pub fn indexOfObject(&self, object: &ObjectType) -> NSUInteger;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -115,8 +115,15 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl<ObjectType: Message> DefaultRetained for NSOrderedSet<ObjectType> {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSExtendedOrderedSet.
@@ -133,10 +140,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
         #[unsafe(method(objectsAtIndexes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectsAtIndexes(
-            &self,
-            indexes: &NSIndexSet,
-        ) -> Retained<NSArray<ObjectType>>;
+        pub fn objectsAtIndexes(&self, indexes: &NSIndexSet) -> Retained<NSArray<ObjectType>>;
 
         #[unsafe(method(firstObject))]
         #[unsafe(method_family = none)]
@@ -148,33 +152,33 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 
         #[unsafe(method(isEqualToOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEqualToOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
+        pub fn isEqualToOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
 
         #[unsafe(method(containsObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsObject(&self, object: &ObjectType) -> bool;
+        pub fn containsObject(&self, object: &ObjectType) -> bool;
 
         #[unsafe(method(intersectsOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intersectsOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
+        pub fn intersectsOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(intersectsSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intersectsSet(&self, set: &NSSet<ObjectType>) -> bool;
+        pub fn intersectsSet(&self, set: &NSSet<ObjectType>) -> bool;
 
         #[unsafe(method(isSubsetOfOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSubsetOfOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
+        pub fn isSubsetOfOrderedSet(&self, other: &NSOrderedSet<ObjectType>) -> bool;
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(isSubsetOfSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSubsetOfSet(&self, set: &NSSet<ObjectType>) -> bool;
+        pub fn isSubsetOfSet(&self, set: &NSSet<ObjectType>) -> bool;
 
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
+        pub fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[cfg(feature = "NSEnumerator")]
         #[unsafe(method(objectEnumerator))]
@@ -203,7 +207,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "block2")]
         #[unsafe(method(enumerateObjectsUsingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateObjectsUsingBlock(
+        pub fn enumerateObjectsUsingBlock(
             &self,
             block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
         );
@@ -211,7 +215,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[unsafe(method(enumerateObjectsWithOptions:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateObjectsWithOptions_usingBlock(
+        pub fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
             block: &block2::DynBlock<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
@@ -220,7 +224,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
         #[unsafe(method(enumerateObjectsAtIndexes:options:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateObjectsAtIndexes_options_usingBlock(
+        pub fn enumerateObjectsAtIndexes_options_usingBlock(
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
@@ -230,7 +234,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "block2")]
         #[unsafe(method(indexOfObjectPassingTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfObjectPassingTest(
+        pub fn indexOfObjectPassingTest(
             &self,
             predicate: &block2::DynBlock<
                 dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_,
@@ -240,7 +244,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[unsafe(method(indexOfObjectWithOptions:passingTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfObjectWithOptions_passingTest(
+        pub fn indexOfObjectWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
             predicate: &block2::DynBlock<
@@ -251,7 +255,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
         #[unsafe(method(indexOfObjectAtIndexes:options:passingTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfObjectAtIndexes_options_passingTest(
+        pub fn indexOfObjectAtIndexes_options_passingTest(
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
@@ -263,7 +267,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSIndexSet", feature = "block2"))]
         #[unsafe(method(indexesOfObjectsPassingTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexesOfObjectsPassingTest(
+        pub fn indexesOfObjectsPassingTest(
             &self,
             predicate: &block2::DynBlock<
                 dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) -> Bool + '_,
@@ -273,7 +277,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
         #[unsafe(method(indexesOfObjectsWithOptions:passingTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexesOfObjectsWithOptions_passingTest(
+        pub fn indexesOfObjectsWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
             predicate: &block2::DynBlock<
@@ -284,7 +288,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
         #[unsafe(method(indexesOfObjectsAtIndexes:options:passingTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexesOfObjectsAtIndexes_options_passingTest(
+        pub fn indexesOfObjectsAtIndexes_options_passingTest(
             &self,
             s: &NSIndexSet,
             opts: NSEnumerationOptions,
@@ -370,11 +374,11 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[unsafe(method(orderedSet))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSet() -> Retained<Self>;
+        pub fn orderedSet() -> Retained<Self>;
 
         #[unsafe(method(orderedSetWithObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithObject(object: &ObjectType) -> Retained<Self>;
+        pub fn orderedSetWithObject(object: &ObjectType) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -388,7 +392,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 
         #[unsafe(method(orderedSetWithOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithOrderedSet(set: &NSOrderedSet<ObjectType>) -> Retained<Self>;
+        pub fn orderedSetWithOrderedSet(set: &NSOrderedSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
         #[unsafe(method(orderedSetWithOrderedSet:range:copyItems:))]
@@ -402,7 +406,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(orderedSetWithArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
+        pub fn orderedSetWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSRange"))]
         #[unsafe(method(orderedSetWithArray:range:copyItems:))]
@@ -416,7 +420,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSSet")]
         #[unsafe(method(orderedSetWithSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
+        pub fn orderedSetWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(orderedSetWithSet:copyItems:))]
@@ -428,11 +432,11 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 
         #[unsafe(method(initWithObject:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithObject(this: Allocated<Self>, object: &ObjectType) -> Retained<Self>;
+        pub fn initWithObject(this: Allocated<Self>, object: &ObjectType) -> Retained<Self>;
 
         #[unsafe(method(initWithOrderedSet:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithOrderedSet(
+        pub fn initWithOrderedSet(
             this: Allocated<Self>,
             set: &NSOrderedSet<ObjectType>,
         ) -> Retained<Self>;
@@ -458,10 +462,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initWithArray:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithArray(
-            this: Allocated<Self>,
-            array: &NSArray<ObjectType>,
-        ) -> Retained<Self>;
+        pub fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initWithArray:copyItems:))]
@@ -485,8 +486,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSSet")]
         #[unsafe(method(initWithSet:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>)
-            -> Retained<Self>;
+        pub fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(initWithSet:copyItems:))]
@@ -506,11 +506,11 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
         #[unsafe(method(orderedSet))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSet() -> Retained<Self>;
+        pub fn orderedSet() -> Retained<Self>;
 
         #[unsafe(method(orderedSetWithObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithObject(object: &ObjectType) -> Retained<Self>;
+        pub fn orderedSetWithObject(object: &ObjectType) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -524,7 +524,7 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
 
         #[unsafe(method(orderedSetWithOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithOrderedSet(set: &NSOrderedSet<ObjectType>) -> Retained<Self>;
+        pub fn orderedSetWithOrderedSet(set: &NSOrderedSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
         #[unsafe(method(orderedSetWithOrderedSet:range:copyItems:))]
@@ -538,7 +538,7 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(orderedSetWithArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
+        pub fn orderedSetWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSRange"))]
         #[unsafe(method(orderedSetWithArray:range:copyItems:))]
@@ -552,7 +552,7 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "NSSet")]
         #[unsafe(method(orderedSetWithSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
+        pub fn orderedSetWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(orderedSetWithSet:copyItems:))]
@@ -564,11 +564,11 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
 
         #[unsafe(method(initWithObject:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithObject(this: Allocated<Self>, object: &ObjectType) -> Retained<Self>;
+        pub fn initWithObject(this: Allocated<Self>, object: &ObjectType) -> Retained<Self>;
 
         #[unsafe(method(initWithOrderedSet:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithOrderedSet(
+        pub fn initWithOrderedSet(
             this: Allocated<Self>,
             set: &NSOrderedSet<ObjectType>,
         ) -> Retained<Self>;
@@ -594,10 +594,7 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initWithArray:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithArray(
-            this: Allocated<Self>,
-            array: &NSArray<ObjectType>,
-        ) -> Retained<Self>;
+        pub fn initWithArray(this: Allocated<Self>, array: &NSArray<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(initWithArray:copyItems:))]
@@ -621,8 +618,7 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "NSSet")]
         #[unsafe(method(initWithSet:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>)
-            -> Retained<Self>;
+        pub fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(initWithSet:copyItems:))]
@@ -641,7 +637,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSOrderedCollectionDifference", feature = "block2"))]
         #[unsafe(method(differenceFromOrderedSet:withOptions:usingEquivalenceTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn differenceFromOrderedSet_withOptions_usingEquivalenceTest(
+        pub fn differenceFromOrderedSet_withOptions_usingEquivalenceTest(
             &self,
             other: &NSOrderedSet<ObjectType>,
             options: NSOrderedCollectionDifferenceCalculationOptions,
@@ -651,7 +647,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSOrderedCollectionDifference")]
         #[unsafe(method(differenceFromOrderedSet:withOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn differenceFromOrderedSet_withOptions(
+        pub fn differenceFromOrderedSet_withOptions(
             &self,
             other: &NSOrderedSet<ObjectType>,
             options: NSOrderedCollectionDifferenceCalculationOptions,
@@ -660,7 +656,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSOrderedCollectionDifference")]
         #[unsafe(method(differenceFromOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn differenceFromOrderedSet(
+        pub fn differenceFromOrderedSet(
             &self,
             other: &NSOrderedSet<ObjectType>,
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
@@ -668,7 +664,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSOrderedCollectionDifference")]
         #[unsafe(method(orderedSetByApplyingDifference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetByApplyingDifference(
+        pub fn orderedSetByApplyingDifference(
             &self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
         ) -> Option<Retained<NSOrderedSet<ObjectType>>>;
@@ -744,15 +740,15 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
         #[unsafe(method(insertObject:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertObject_atIndex(&self, object: &ObjectType, idx: NSUInteger);
+        pub fn insertObject_atIndex(&self, object: &ObjectType, idx: NSUInteger);
 
         #[unsafe(method(removeObjectAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeObjectAtIndex(&self, idx: NSUInteger);
+        pub fn removeObjectAtIndex(&self, idx: NSUInteger);
 
         #[unsafe(method(replaceObjectAtIndex:withObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replaceObjectAtIndex_withObject(&self, idx: NSUInteger, object: &ObjectType);
+        pub fn replaceObjectAtIndex_withObject(&self, idx: NSUInteger, object: &ObjectType);
 
         #[cfg(feature = "NSCoder")]
         /// # Safety
@@ -767,14 +763,11 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(initWithCapacity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCapacity(
-            this: Allocated<Self>,
-            num_items: NSUInteger,
-        ) -> Retained<Self>;
+        pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
     );
 }
 
@@ -799,8 +792,15 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl<ObjectType: Message> DefaultRetained for NSMutableOrderedSet<ObjectType> {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSExtendedMutableOrderedSet.
@@ -808,7 +808,7 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
         #[unsafe(method(addObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addObject(&self, object: &ObjectType);
+        pub fn addObject(&self, object: &ObjectType);
 
         /// # Safety
         ///
@@ -820,37 +820,29 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(addObjectsFromArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
+        pub fn addObjectsFromArray(&self, array: &NSArray<ObjectType>);
 
         #[unsafe(method(exchangeObjectAtIndex:withObjectAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exchangeObjectAtIndex_withObjectAtIndex(
-            &self,
-            idx1: NSUInteger,
-            idx2: NSUInteger,
-        );
+        pub fn exchangeObjectAtIndex_withObjectAtIndex(&self, idx1: NSUInteger, idx2: NSUInteger);
 
         #[cfg(feature = "NSIndexSet")]
         #[unsafe(method(moveObjectsAtIndexes:toIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn moveObjectsAtIndexes_toIndex(&self, indexes: &NSIndexSet, idx: NSUInteger);
+        pub fn moveObjectsAtIndexes_toIndex(&self, indexes: &NSIndexSet, idx: NSUInteger);
 
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
         #[unsafe(method(insertObjects:atIndexes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertObjects_atIndexes(
-            &self,
-            objects: &NSArray<ObjectType>,
-            indexes: &NSIndexSet,
-        );
+        pub fn insertObjects_atIndexes(&self, objects: &NSArray<ObjectType>, indexes: &NSIndexSet);
 
         #[unsafe(method(setObject:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndex(&self, obj: &ObjectType, idx: NSUInteger);
+        pub fn setObject_atIndex(&self, obj: &ObjectType, idx: NSUInteger);
 
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObject_atIndexedSubscript(&self, obj: &ObjectType, idx: NSUInteger);
+        pub fn setObject_atIndexedSubscript(&self, obj: &ObjectType, idx: NSUInteger);
 
         #[cfg(feature = "NSRange")]
         /// # Safety
@@ -868,7 +860,7 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(all(feature = "NSArray", feature = "NSIndexSet"))]
         #[unsafe(method(replaceObjectsAtIndexes:withObjects:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replaceObjectsAtIndexes_withObjects(
+        pub fn replaceObjectsAtIndexes_withObjects(
             &self,
             indexes: &NSIndexSet,
             objects: &NSArray<ObjectType>,
@@ -877,52 +869,52 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "NSRange")]
         #[unsafe(method(removeObjectsInRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeObjectsInRange(&self, range: NSRange);
+        pub fn removeObjectsInRange(&self, range: NSRange);
 
         #[cfg(feature = "NSIndexSet")]
         #[unsafe(method(removeObjectsAtIndexes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeObjectsAtIndexes(&self, indexes: &NSIndexSet);
+        pub fn removeObjectsAtIndexes(&self, indexes: &NSIndexSet);
 
         #[unsafe(method(removeAllObjects))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAllObjects(&self);
+        pub fn removeAllObjects(&self);
 
         #[unsafe(method(removeObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeObject(&self, object: &ObjectType);
+        pub fn removeObject(&self, object: &ObjectType);
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(removeObjectsInArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeObjectsInArray(&self, array: &NSArray<ObjectType>);
+        pub fn removeObjectsInArray(&self, array: &NSArray<ObjectType>);
 
         #[unsafe(method(intersectOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intersectOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
+        pub fn intersectOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
 
         #[unsafe(method(minusOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minusOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
+        pub fn minusOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
 
         #[unsafe(method(unionOrderedSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unionOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
+        pub fn unionOrderedSet(&self, other: &NSOrderedSet<ObjectType>);
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(intersectSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intersectSet(&self, other: &NSSet<ObjectType>);
+        pub fn intersectSet(&self, other: &NSSet<ObjectType>);
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(minusSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minusSet(&self, other: &NSSet<ObjectType>);
+        pub fn minusSet(&self, other: &NSSet<ObjectType>);
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(unionSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unionSet(&self, other: &NSSet<ObjectType>);
+        pub fn unionSet(&self, other: &NSSet<ObjectType>);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         /// # Safety
@@ -964,7 +956,7 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
     extern_methods!(
         #[unsafe(method(orderedSetWithCapacity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedSetWithCapacity(num_items: NSUInteger) -> Retained<Self>;
+        pub fn orderedSetWithCapacity(num_items: NSUInteger) -> Retained<Self>;
     );
 }
 
@@ -974,9 +966,6 @@ impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "NSOrderedCollectionDifference")]
         #[unsafe(method(applyDifference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applyDifference(
-            &self,
-            difference: &NSOrderedCollectionDifference<ObjectType>,
-        );
+        pub fn applyDifference(&self, difference: &NSOrderedCollectionDifference<ObjectType>);
     );
 }

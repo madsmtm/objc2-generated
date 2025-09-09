@@ -124,7 +124,7 @@ impl NSMeasurementFormatter {
         #[cfg(all(feature = "NSString", feature = "NSUnit"))]
         #[unsafe(method(stringFromUnit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Retained<NSString>;
+        pub fn stringFromUnit(&self, unit: &NSUnit) -> Retained<NSString>;
     );
 }
 
@@ -134,10 +134,18 @@ impl NSMeasurementFormatter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSFormatter")]
+impl DefaultRetained for NSMeasurementFormatter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -167,10 +167,7 @@ impl NSAttributedString {
         #[cfg(feature = "NSRange")]
         #[unsafe(method(attributedSubstringFromRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributedSubstringFromRange(
-            &self,
-            range: NSRange,
-        ) -> Retained<NSAttributedString>;
+        pub fn attributedSubstringFromRange(&self, range: NSRange) -> Retained<NSAttributedString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
         /// # Safety
@@ -201,7 +198,7 @@ impl NSAttributedString {
 
         #[unsafe(method(isEqualToAttributedString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEqualToAttributedString(&self, other: &NSAttributedString) -> bool;
+        pub fn isEqualToAttributedString(&self, other: &NSAttributedString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithString:))]
@@ -235,7 +232,7 @@ impl NSAttributedString {
         ))]
         #[unsafe(method(enumerateAttributesInRange:options:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateAttributesInRange_options_usingBlock(
+        pub fn enumerateAttributesInRange_options_usingBlock(
             &self,
             enumeration_range: NSRange,
             opts: NSAttributedStringEnumerationOptions,
@@ -251,7 +248,7 @@ impl NSAttributedString {
         #[cfg(all(feature = "NSRange", feature = "NSString", feature = "block2"))]
         #[unsafe(method(enumerateAttribute:inRange:options:usingBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumerateAttribute_inRange_options_usingBlock(
+        pub fn enumerateAttribute_inRange_options_usingBlock(
             &self,
             attr_name: &NSAttributedStringKey,
             enumeration_range: NSRange,
@@ -354,7 +351,7 @@ impl NSMutableAttributedString {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[unsafe(method(replaceCharactersInRange:withString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, str: &NSString);
+        pub fn replaceCharactersInRange_withString(&self, range: NSRange, str: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
         /// # Safety
@@ -426,12 +423,12 @@ impl NSMutableAttributedString {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[unsafe(method(removeAttribute:range:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAttribute_range(&self, name: &NSAttributedStringKey, range: NSRange);
+        pub fn removeAttribute_range(&self, name: &NSAttributedStringKey, range: NSRange);
 
         #[cfg(feature = "NSRange")]
         #[unsafe(method(replaceCharactersInRange:withAttributedString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replaceCharactersInRange_withAttributedString(
+        pub fn replaceCharactersInRange_withAttributedString(
             &self,
             range: NSRange,
             attr_string: &NSAttributedString,
@@ -439,7 +436,7 @@ impl NSMutableAttributedString {
 
         #[unsafe(method(insertAttributedString:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertAttributedString_atIndex(
+        pub fn insertAttributedString_atIndex(
             &self,
             attr_string: &NSAttributedString,
             loc: NSUInteger,
@@ -447,12 +444,12 @@ impl NSMutableAttributedString {
 
         #[unsafe(method(appendAttributedString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appendAttributedString(&self, attr_string: &NSAttributedString);
+        pub fn appendAttributedString(&self, attr_string: &NSAttributedString);
 
         #[cfg(feature = "NSRange")]
         #[unsafe(method(deleteCharactersInRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
+        pub fn deleteCharactersInRange(&self, range: NSRange);
 
         #[unsafe(method(setAttributedString:))]
         #[unsafe(method_family = none)]
@@ -460,11 +457,11 @@ impl NSMutableAttributedString {
 
         #[unsafe(method(beginEditing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginEditing(&self);
+        pub fn beginEditing(&self);
 
         #[unsafe(method(endEditing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endEditing(&self);
+        pub fn endEditing(&self);
     );
 }
 
@@ -625,7 +622,7 @@ impl NSAttributedStringMarkdownSourcePosition {
 
         #[unsafe(method(initWithStartLine:startColumn:endLine:endColumn:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithStartLine_startColumn_endLine_endColumn(
+        pub fn initWithStartLine_startColumn_endLine_endColumn(
             this: Allocated<Self>,
             start_line: NSInteger,
             start_column: NSInteger,
@@ -636,7 +633,7 @@ impl NSAttributedStringMarkdownSourcePosition {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         #[unsafe(method(rangeInString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rangeInString(&self, string: &NSString) -> NSRange;
+        pub fn rangeInString(&self, string: &NSString) -> NSRange;
     );
 }
 
@@ -645,12 +642,19 @@ impl NSAttributedStringMarkdownSourcePosition {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSAttributedStringMarkdownSourcePosition {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -678,7 +682,7 @@ impl NSAttributedStringMarkdownParsingOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(allowsExtendedAttributes))]
         #[unsafe(method_family = none)]
@@ -742,8 +746,15 @@ impl NSAttributedStringMarkdownParsingOptions {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSAttributedStringMarkdownParsingOptions {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// NSAttributedStringCreateFromMarkdown.
@@ -752,7 +763,7 @@ impl NSAttributedString {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
+        pub fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Allocated<Self>,
             markdown_file: &NSURL,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
@@ -762,7 +773,7 @@ impl NSAttributedString {
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithMarkdown:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithMarkdown_options_baseURL_error(
+        pub fn initWithMarkdown_options_baseURL_error(
             this: Allocated<Self>,
             markdown: &NSData,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
@@ -772,7 +783,7 @@ impl NSAttributedString {
         #[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(initWithMarkdownString:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithMarkdownString_options_baseURL_error(
+        pub fn initWithMarkdownString_options_baseURL_error(
             this: Allocated<Self>,
             markdown_string: &NSString,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
@@ -789,7 +800,7 @@ impl NSMutableAttributedString {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
+        pub fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Allocated<Self>,
             markdown_file: &NSURL,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
@@ -799,7 +810,7 @@ impl NSMutableAttributedString {
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSURL"))]
         #[unsafe(method(initWithMarkdown:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithMarkdown_options_baseURL_error(
+        pub fn initWithMarkdown_options_baseURL_error(
             this: Allocated<Self>,
             markdown: &NSData,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
@@ -809,7 +820,7 @@ impl NSMutableAttributedString {
         #[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(initWithMarkdownString:options:baseURL:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithMarkdownString_options_baseURL_error(
+        pub fn initWithMarkdownString_options_baseURL_error(
             this: Allocated<Self>,
             markdown_string: &NSString,
             options: Option<&NSAttributedStringMarkdownParsingOptions>,
@@ -864,7 +875,7 @@ impl NSAttributedString {
         /// by following the rule in the attribute.
         #[unsafe(method(attributedStringByInflectingString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributedStringByInflectingString(&self) -> Retained<NSAttributedString>;
+        pub fn attributedStringByInflectingString(&self) -> Retained<NSAttributedString>;
     );
 }
 
@@ -1031,14 +1042,14 @@ impl NSPresentationIntent {
 
         #[unsafe(method(paragraphIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn paragraphIntentWithIdentity_nestedInsideIntent(
+        pub fn paragraphIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
         #[unsafe(method(headerIntentWithIdentity:level:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn headerIntentWithIdentity_level_nestedInsideIntent(
+        pub fn headerIntentWithIdentity_level_nestedInsideIntent(
             identity: NSInteger,
             level: NSInteger,
             parent: Option<&NSPresentationIntent>,
@@ -1047,7 +1058,7 @@ impl NSPresentationIntent {
         #[cfg(feature = "NSString")]
         #[unsafe(method(codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn codeBlockIntentWithIdentity_languageHint_nestedInsideIntent(
+        pub fn codeBlockIntentWithIdentity_languageHint_nestedInsideIntent(
             identity: NSInteger,
             language_hint: Option<&NSString>,
             parent: Option<&NSPresentationIntent>,
@@ -1055,28 +1066,28 @@ impl NSPresentationIntent {
 
         #[unsafe(method(thematicBreakIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn thematicBreakIntentWithIdentity_nestedInsideIntent(
+        pub fn thematicBreakIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
         #[unsafe(method(orderedListIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orderedListIntentWithIdentity_nestedInsideIntent(
+        pub fn orderedListIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
         #[unsafe(method(unorderedListIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unorderedListIntentWithIdentity_nestedInsideIntent(
+        pub fn unorderedListIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
         #[unsafe(method(listItemIntentWithIdentity:ordinal:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn listItemIntentWithIdentity_ordinal_nestedInsideIntent(
+        pub fn listItemIntentWithIdentity_ordinal_nestedInsideIntent(
             identity: NSInteger,
             ordinal: NSInteger,
             parent: Option<&NSPresentationIntent>,
@@ -1084,7 +1095,7 @@ impl NSPresentationIntent {
 
         #[unsafe(method(blockQuoteIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn blockQuoteIntentWithIdentity_nestedInsideIntent(
+        pub fn blockQuoteIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
@@ -1092,7 +1103,7 @@ impl NSPresentationIntent {
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[unsafe(method(tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tableIntentWithIdentity_columnCount_alignments_nestedInsideIntent(
+        pub fn tableIntentWithIdentity_columnCount_alignments_nestedInsideIntent(
             identity: NSInteger,
             column_count: NSInteger,
             alignments: &NSArray<NSNumber>,
@@ -1101,14 +1112,14 @@ impl NSPresentationIntent {
 
         #[unsafe(method(tableHeaderRowIntentWithIdentity:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tableHeaderRowIntentWithIdentity_nestedInsideIntent(
+        pub fn tableHeaderRowIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
         #[unsafe(method(tableRowIntentWithIdentity:row:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tableRowIntentWithIdentity_row_nestedInsideIntent(
+        pub fn tableRowIntentWithIdentity_row_nestedInsideIntent(
             identity: NSInteger,
             row: NSInteger,
             parent: Option<&NSPresentationIntent>,
@@ -1116,7 +1127,7 @@ impl NSPresentationIntent {
 
         #[unsafe(method(tableCellIntentWithIdentity:column:nestedInsideIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tableCellIntentWithIdentity_column_nestedInsideIntent(
+        pub fn tableCellIntentWithIdentity_column_nestedInsideIntent(
             identity: NSInteger,
             column: NSInteger,
             parent: Option<&NSPresentationIntent>,
@@ -1173,8 +1184,7 @@ impl NSPresentationIntent {
         /// Returns `YES` if this intent is equivalent to the other presentation intent. Equivalence is the same as equality except that identity is not taken into account.
         #[unsafe(method(isEquivalentToPresentationIntent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEquivalentToPresentationIntent(&self, other: &NSPresentationIntent)
-            -> bool;
+        pub fn isEquivalentToPresentationIntent(&self, other: &NSPresentationIntent) -> bool;
     );
 }
 
@@ -1183,6 +1193,13 @@ impl NSPresentationIntent {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSPresentationIntent {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
