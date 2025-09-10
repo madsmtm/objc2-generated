@@ -60,7 +60,7 @@ impl NSScriptSuiteRegistry {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(suiteNames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn suiteNames(&self) -> Retained<NSArray<NSString>>;
+        pub fn suiteNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(appleEventCodeForSuite:))]

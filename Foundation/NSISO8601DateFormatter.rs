@@ -91,7 +91,7 @@ impl NSISO8601DateFormatter {
         #[cfg(feature = "NSTimeZone")]
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
+        pub fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
         /// Setter for [`timeZone`][Self::timeZone].
@@ -99,16 +99,16 @@ impl NSISO8601DateFormatter {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setTimeZone:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
+        pub fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[unsafe(method(formatOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn formatOptions(&self) -> NSISO8601DateFormatOptions;
+        pub fn formatOptions(&self) -> NSISO8601DateFormatOptions;
 
         /// Setter for [`formatOptions`][Self::formatOptions].
         #[unsafe(method(setFormatOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFormatOptions(&self, format_options: NSISO8601DateFormatOptions);
+        pub fn setFormatOptions(&self, format_options: NSISO8601DateFormatOptions);
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

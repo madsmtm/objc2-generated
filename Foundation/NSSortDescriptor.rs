@@ -95,15 +95,15 @@ impl NSSortDescriptor {
         #[cfg(feature = "NSString")]
         #[unsafe(method(key))]
         #[unsafe(method_family = none)]
-        pub unsafe fn key(&self) -> Option<Retained<NSString>>;
+        pub fn key(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(ascending))]
         #[unsafe(method_family = none)]
-        pub unsafe fn ascending(&self) -> bool;
+        pub fn ascending(&self) -> bool;
 
         #[unsafe(method(selector))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selector(&self) -> Option<Sel>;
+        pub fn selector(&self) -> Option<Sel>;
 
         #[unsafe(method(allowEvaluation))]
         #[unsafe(method_family = none)]
@@ -158,7 +158,7 @@ impl NSSortDescriptor {
 
         #[unsafe(method(reversedSortDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reversedSortDescriptor(&self) -> Retained<AnyObject>;
+        pub fn reversedSortDescriptor(&self) -> Retained<AnyObject>;
     );
 }
 

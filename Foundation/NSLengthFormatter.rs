@@ -72,7 +72,7 @@ impl NSLengthFormatter {
         #[cfg(feature = "NSNumberFormatter")]
         #[unsafe(method(numberFormatter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
+        pub fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
         /// Setter for [`numberFormatter`][Self::numberFormatter].
@@ -80,25 +80,25 @@ impl NSLengthFormatter {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNumberFormatter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
+        pub fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[unsafe(method(unitStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
+        pub fn unitStyle(&self) -> NSFormattingUnitStyle;
 
         /// Setter for [`unitStyle`][Self::unitStyle].
         #[unsafe(method(setUnitStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
+        pub fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[unsafe(method(isForPersonHeightUse))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isForPersonHeightUse(&self) -> bool;
+        pub fn isForPersonHeightUse(&self) -> bool;
 
         /// Setter for [`isForPersonHeightUse`][Self::isForPersonHeightUse].
         #[unsafe(method(setForPersonHeightUse:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setForPersonHeightUse(&self, for_person_height_use: bool);
+        pub fn setForPersonHeightUse(&self, for_person_height_use: bool);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringFromValue:unit:))]

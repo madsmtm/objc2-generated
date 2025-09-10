@@ -59,7 +59,7 @@ impl NSOperation {
 
         #[unsafe(method(isCancelled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCancelled(&self) -> bool;
+        pub fn isCancelled(&self) -> bool;
 
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
@@ -67,23 +67,23 @@ impl NSOperation {
 
         #[unsafe(method(isExecuting))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isExecuting(&self) -> bool;
+        pub fn isExecuting(&self) -> bool;
 
         #[unsafe(method(isFinished))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFinished(&self) -> bool;
+        pub fn isFinished(&self) -> bool;
 
         #[unsafe(method(isConcurrent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isConcurrent(&self) -> bool;
+        pub fn isConcurrent(&self) -> bool;
 
         #[unsafe(method(isAsynchronous))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAsynchronous(&self) -> bool;
+        pub fn isAsynchronous(&self) -> bool;
 
         #[unsafe(method(isReady))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isReady(&self) -> bool;
+        pub fn isReady(&self) -> bool;
 
         #[unsafe(method(addDependency:))]
         #[unsafe(method_family = none)]
@@ -96,16 +96,16 @@ impl NSOperation {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(dependencies))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dependencies(&self) -> Retained<NSArray<NSOperation>>;
+        pub fn dependencies(&self) -> Retained<NSArray<NSOperation>>;
 
         #[unsafe(method(queuePriority))]
         #[unsafe(method_family = none)]
-        pub unsafe fn queuePriority(&self) -> NSOperationQueuePriority;
+        pub fn queuePriority(&self) -> NSOperationQueuePriority;
 
         /// Setter for [`queuePriority`][Self::queuePriority].
         #[unsafe(method(setQueuePriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setQueuePriority(&self, queue_priority: NSOperationQueuePriority);
+        pub fn setQueuePriority(&self, queue_priority: NSOperationQueuePriority);
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -137,29 +137,29 @@ impl NSOperation {
         #[deprecated = "Not supported"]
         #[unsafe(method(threadPriority))]
         #[unsafe(method_family = none)]
-        pub unsafe fn threadPriority(&self) -> c_double;
+        pub fn threadPriority(&self) -> c_double;
 
         /// Setter for [`threadPriority`][Self::threadPriority].
         #[deprecated = "Not supported"]
         #[unsafe(method(setThreadPriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
+        pub fn setThreadPriority(&self, thread_priority: c_double);
 
         #[cfg(feature = "NSObjCRuntime")]
         #[unsafe(method(qualityOfService))]
         #[unsafe(method_family = none)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
         /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[unsafe(method(setQualityOfService:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
+        pub fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
@@ -167,7 +167,7 @@ impl NSOperation {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
     );
 }
 
@@ -271,11 +271,11 @@ impl NSInvocationOperation {
         #[cfg(feature = "NSInvocation")]
         #[unsafe(method(invocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invocation(&self) -> Retained<NSInvocation>;
+        pub fn invocation(&self) -> Retained<NSInvocation>;
 
         #[unsafe(method(result))]
         #[unsafe(method_family = none)]
-        pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
+        pub fn result(&self) -> Option<Retained<AnyObject>>;
     );
 }
 
@@ -347,7 +347,7 @@ impl NSOperationQueue {
         /// queue.progress.totalUnitCount = 10;
         #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progress(&self) -> Retained<NSProgress>;
+        pub fn progress(&self) -> Retained<NSProgress>;
 
         #[unsafe(method(addOperation:))]
         #[unsafe(method_family = none)]
@@ -386,29 +386,26 @@ impl NSOperationQueue {
 
         #[unsafe(method(maxConcurrentOperationCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxConcurrentOperationCount(&self) -> NSInteger;
+        pub fn maxConcurrentOperationCount(&self) -> NSInteger;
 
         /// Setter for [`maxConcurrentOperationCount`][Self::maxConcurrentOperationCount].
         #[unsafe(method(setMaxConcurrentOperationCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxConcurrentOperationCount(
-            &self,
-            max_concurrent_operation_count: NSInteger,
-        );
+        pub fn setMaxConcurrentOperationCount(&self, max_concurrent_operation_count: NSInteger);
 
         #[unsafe(method(isSuspended))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSuspended(&self) -> bool;
+        pub fn isSuspended(&self) -> bool;
 
         /// Setter for [`isSuspended`][Self::isSuspended].
         #[unsafe(method(setSuspended:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSuspended(&self, suspended: bool);
+        pub fn setSuspended(&self, suspended: bool);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
@@ -416,18 +413,18 @@ impl NSOperationQueue {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "NSObjCRuntime")]
         #[unsafe(method(qualityOfService))]
         #[unsafe(method_family = none)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
         /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[unsafe(method(setQualityOfService:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
+        pub fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[unsafe(method(cancelAllOperations))]
         #[unsafe(method_family = none)]
@@ -439,11 +436,11 @@ impl NSOperationQueue {
 
         #[unsafe(method(currentQueue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentQueue() -> Option<Retained<NSOperationQueue>>;
+        pub fn currentQueue() -> Option<Retained<NSOperationQueue>>;
 
         #[unsafe(method(mainQueue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainQueue() -> Retained<NSOperationQueue>;
+        pub fn mainQueue() -> Retained<NSOperationQueue>;
     );
 }
 
@@ -467,11 +464,11 @@ impl NSOperationQueue {
         #[deprecated = "access to operations is inherently a race condition, it should not be used. For barrier style behaviors please use addBarrierBlock: instead"]
         #[unsafe(method(operations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn operations(&self) -> Retained<NSArray<NSOperation>>;
+        pub fn operations(&self) -> Retained<NSArray<NSOperation>>;
 
         #[deprecated]
         #[unsafe(method(operationCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn operationCount(&self) -> NSUInteger;
+        pub fn operationCount(&self) -> NSUInteger;
     );
 }

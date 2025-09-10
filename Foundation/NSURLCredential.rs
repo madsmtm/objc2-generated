@@ -81,7 +81,7 @@ impl NSURLCredential {
         /// Returns: A value indicating whether this credential is stored permanently, per session or not at all.
         #[unsafe(method(persistence))]
         #[unsafe(method_family = none)]
-        pub unsafe fn persistence(&self) -> NSURLCredentialPersistence;
+        pub fn persistence(&self) -> NSURLCredentialPersistence;
     );
 }
 
@@ -146,7 +146,7 @@ impl NSURLCredential {
         /// Returns: The user string
         #[unsafe(method(user))]
         #[unsafe(method_family = none)]
-        pub unsafe fn user(&self) -> Option<Retained<NSString>>;
+        pub fn user(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Get the password
@@ -158,7 +158,7 @@ impl NSURLCredential {
         /// so do not call it unless needed.
         #[unsafe(method(password))]
         #[unsafe(method_family = none)]
-        pub unsafe fn password(&self) -> Option<Retained<NSString>>;
+        pub fn password(&self) -> Option<Retained<NSString>>;
 
         /// Find out if this credential has a password, without trying to get it
         ///
@@ -170,7 +170,7 @@ impl NSURLCredential {
         /// user may refuse access.
         #[unsafe(method(hasPassword))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasPassword(&self) -> bool;
+        pub fn hasPassword(&self) -> bool;
     );
 }
 
@@ -185,7 +185,7 @@ impl NSURLCredential {
         /// Returns: an NSArray of SecCertificateRef or NULL if this is a username/password credential
         #[unsafe(method(certificates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn certificates(&self) -> Retained<NSArray>;
+        pub fn certificates(&self) -> Retained<NSArray>;
     );
 }
 

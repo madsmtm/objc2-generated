@@ -152,7 +152,7 @@ impl NSSecureUnarchiveFromDataTransformer {
         /// Can be overridden by subclasses to provide an expanded or different set of allowed transformation classes.
         #[unsafe(method(allowedTopLevelClasses))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowedTopLevelClasses() -> Retained<NSArray<AnyClass>>;
+        pub fn allowedTopLevelClasses() -> Retained<NSArray<AnyClass>>;
     );
 }
 

@@ -117,17 +117,16 @@ impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
         #[unsafe(method(insertions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertions(&self)
-            -> Retained<NSArray<NSOrderedCollectionChange<ObjectType>>>;
+        pub fn insertions(&self) -> Retained<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
         #[unsafe(method(removals))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removals(&self) -> Retained<NSArray<NSOrderedCollectionChange<ObjectType>>>;
+        pub fn removals(&self) -> Retained<NSArray<NSOrderedCollectionChange<ObjectType>>>;
 
         #[unsafe(method(hasChanges))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasChanges(&self) -> bool;
+        pub fn hasChanges(&self) -> bool;
 
         #[cfg(all(feature = "NSOrderedCollectionChange", feature = "block2"))]
         /// # Safety

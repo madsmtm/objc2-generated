@@ -42,7 +42,7 @@ impl NSExtensionItem {
         #[cfg(feature = "NSAttributedString")]
         #[unsafe(method(attributedTitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
+        pub fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedTitle`][Self::attributedTitle].
@@ -50,12 +50,12 @@ impl NSExtensionItem {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributedTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
+        pub fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "NSAttributedString")]
         #[unsafe(method(attributedContentText))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributedContentText(&self) -> Option<Retained<NSAttributedString>>;
+        pub fn attributedContentText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedContentText`][Self::attributedContentText].
@@ -63,7 +63,7 @@ impl NSExtensionItem {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributedContentText:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAttributedContentText(
+        pub fn setAttributedContentText(
             &self,
             attributed_content_text: Option<&NSAttributedString>,
         );
@@ -71,7 +71,7 @@ impl NSExtensionItem {
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
         #[unsafe(method(attachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachments(&self) -> Option<Retained<NSArray<NSItemProvider>>>;
+        pub fn attachments(&self) -> Option<Retained<NSArray<NSItemProvider>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
         /// Setter for [`attachments`][Self::attachments].
@@ -79,12 +79,12 @@ impl NSExtensionItem {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttachments:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAttachments(&self, attachments: Option<&NSArray<NSItemProvider>>);
+        pub fn setAttachments(&self, attachments: Option<&NSArray<NSItemProvider>>);
 
         #[cfg(feature = "NSDictionary")]
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
+        pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`userInfo`][Self::userInfo].

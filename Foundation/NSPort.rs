@@ -55,7 +55,7 @@ impl NSPort {
 
         #[unsafe(method(isValid))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isValid(&self) -> bool;
+        pub fn isValid(&self) -> bool;
 
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
@@ -83,7 +83,7 @@ impl NSPort {
 
         #[unsafe(method(reservedSpaceLength))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reservedSpaceLength(&self) -> NSUInteger;
+        pub fn reservedSpaceLength(&self) -> NSUInteger;
 
         #[cfg(all(feature = "NSArray", feature = "NSDate"))]
         /// # Safety
@@ -282,7 +282,7 @@ impl NSMachPort {
 
         #[unsafe(method(machPort))]
         #[unsafe(method_family = none)]
-        pub unsafe fn machPort(&self) -> u32;
+        pub fn machPort(&self) -> u32;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         /// # Safety
@@ -469,24 +469,24 @@ impl NSSocketPort {
 
         #[unsafe(method(protocolFamily))]
         #[unsafe(method_family = none)]
-        pub unsafe fn protocolFamily(&self) -> c_int;
+        pub fn protocolFamily(&self) -> c_int;
 
         #[unsafe(method(socketType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn socketType(&self) -> c_int;
+        pub fn socketType(&self) -> c_int;
 
         #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
-        pub unsafe fn protocol(&self) -> c_int;
+        pub fn protocol(&self) -> c_int;
 
         #[cfg(feature = "NSData")]
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
-        pub unsafe fn address(&self) -> Retained<NSData>;
+        pub fn address(&self) -> Retained<NSData>;
 
         #[unsafe(method(socket))]
         #[unsafe(method_family = none)]
-        pub unsafe fn socket(&self) -> NSSocketNativeHandle;
+        pub fn socket(&self) -> NSSocketNativeHandle;
     );
 }
 

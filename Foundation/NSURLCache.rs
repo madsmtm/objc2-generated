@@ -146,7 +146,7 @@ impl NSCachedURLResponse {
         /// Returns: The response wrapped by this instance.
         #[unsafe(method(response))]
         #[unsafe(method_family = none)]
-        pub unsafe fn response(&self) -> Retained<NSURLResponse>;
+        pub fn response(&self) -> Retained<NSURLResponse>;
 
         #[cfg(feature = "NSData")]
         /// Returns the data of the receiver.
@@ -154,7 +154,7 @@ impl NSCachedURLResponse {
         /// Returns: The data of the receiver.
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
-        pub unsafe fn data(&self) -> Retained<NSData>;
+        pub fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "NSDictionary")]
         /// Returns the userInfo dictionary of the receiver.
@@ -162,14 +162,14 @@ impl NSCachedURLResponse {
         /// Returns: The userInfo dictionary of the receiver.
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
+        pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Returns the NSURLCacheStoragePolicy constant of the receiver.
         ///
         /// Returns: The NSURLCacheStoragePolicy constant of the receiver.
         #[unsafe(method(storagePolicy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn storagePolicy(&self) -> NSURLCacheStoragePolicy;
+        pub fn storagePolicy(&self) -> NSURLCacheStoragePolicy;
     );
 }
 
@@ -248,12 +248,12 @@ impl NSURLCache {
         /// Returns: the shared NSURLCache instance.
         #[unsafe(method(sharedURLCache))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedURLCache() -> Retained<NSURLCache>;
+        pub fn sharedURLCache() -> Retained<NSURLCache>;
 
         /// Setter for [`sharedURLCache`][Self::sharedURLCache].
         #[unsafe(method(setSharedURLCache:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSharedURLCache(shared_url_cache: &NSURLCache);
+        pub fn setSharedURLCache(shared_url_cache: &NSURLCache);
 
         #[cfg(feature = "NSString")]
         /// Initializes an NSURLCache with the given capacity and
@@ -366,24 +366,24 @@ impl NSURLCache {
         /// Returns: The in-memory capacity, measured in bytes, for the receiver.
         #[unsafe(method(memoryCapacity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn memoryCapacity(&self) -> NSUInteger;
+        pub fn memoryCapacity(&self) -> NSUInteger;
 
         /// Setter for [`memoryCapacity`][Self::memoryCapacity].
         #[unsafe(method(setMemoryCapacity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMemoryCapacity(&self, memory_capacity: NSUInteger);
+        pub fn setMemoryCapacity(&self, memory_capacity: NSUInteger);
 
         /// The on-disk capacity of the receiver.
         ///
         /// The on-disk capacity, measured in bytes, for the receiver. On mutation the on-disk cache will truncate its contents to the size given, if necessary.
         #[unsafe(method(diskCapacity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn diskCapacity(&self) -> NSUInteger;
+        pub fn diskCapacity(&self) -> NSUInteger;
 
         /// Setter for [`diskCapacity`][Self::diskCapacity].
         #[unsafe(method(setDiskCapacity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDiskCapacity(&self, disk_capacity: NSUInteger);
+        pub fn setDiskCapacity(&self, disk_capacity: NSUInteger);
 
         /// Returns the current amount of space consumed by the
         /// in-memory cache of the receiver.
@@ -394,7 +394,7 @@ impl NSURLCache {
         /// Returns: the current usage of the in-memory cache of the receiver.
         #[unsafe(method(currentMemoryUsage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentMemoryUsage(&self) -> NSUInteger;
+        pub fn currentMemoryUsage(&self) -> NSUInteger;
 
         /// Returns the current amount of space consumed by the
         /// on-disk cache of the receiver.
@@ -405,7 +405,7 @@ impl NSURLCache {
         /// Returns: the current usage of the on-disk cache of the receiver.
         #[unsafe(method(currentDiskUsage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentDiskUsage(&self) -> NSUInteger;
+        pub fn currentDiskUsage(&self) -> NSUInteger;
     );
 }
 

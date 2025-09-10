@@ -50,7 +50,7 @@ impl NSTask {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(executableURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executableURL(&self) -> Option<Retained<NSURL>>;
+        pub fn executableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`executableURL`][Self::executableURL].
@@ -58,12 +58,12 @@ impl NSTask {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setExecutableURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setExecutableURL(&self, executable_url: Option<&NSURL>);
+        pub fn setExecutableURL(&self, executable_url: Option<&NSURL>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(arguments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn arguments(&self) -> Option<Retained<NSArray<NSString>>>;
+        pub fn arguments(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Setter for [`arguments`][Self::arguments].
@@ -71,12 +71,12 @@ impl NSTask {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setArguments:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setArguments(&self, arguments: Option<&NSArray<NSString>>);
+        pub fn setArguments(&self, arguments: Option<&NSArray<NSString>>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(environment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn environment(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
+        pub fn environment(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`environment`][Self::environment].
@@ -84,12 +84,12 @@ impl NSTask {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setEnvironment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnvironment(&self, environment: Option<&NSDictionary<NSString, NSString>>);
+        pub fn setEnvironment(&self, environment: Option<&NSDictionary<NSString, NSString>>);
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(currentDirectoryURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentDirectoryURL(&self) -> Option<Retained<NSURL>>;
+        pub fn currentDirectoryURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`currentDirectoryURL`][Self::currentDirectoryURL].
@@ -97,12 +97,12 @@ impl NSTask {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCurrentDirectoryURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
+        pub fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
 
         #[cfg(feature = "NSData")]
         #[unsafe(method(launchRequirementData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launchRequirementData(&self) -> Option<Retained<NSData>>;
+        pub fn launchRequirementData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
         /// Setter for [`launchRequirementData`][Self::launchRequirementData].
@@ -110,11 +110,11 @@ impl NSTask {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLaunchRequirementData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLaunchRequirementData(&self, launch_requirement_data: Option<&NSData>);
+        pub fn setLaunchRequirementData(&self, launch_requirement_data: Option<&NSData>);
 
         #[unsafe(method(standardInput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn standardInput(&self) -> Option<Retained<AnyObject>>;
+        pub fn standardInput(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardInput`][Self::standardInput].
         ///
@@ -127,7 +127,7 @@ impl NSTask {
 
         #[unsafe(method(standardOutput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn standardOutput(&self) -> Option<Retained<AnyObject>>;
+        pub fn standardOutput(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardOutput`][Self::standardOutput].
         ///
@@ -140,7 +140,7 @@ impl NSTask {
 
         #[unsafe(method(standardError))]
         #[unsafe(method_family = none)]
-        pub unsafe fn standardError(&self) -> Option<Retained<AnyObject>>;
+        pub fn standardError(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardError`][Self::standardError].
         ///
@@ -174,19 +174,19 @@ impl NSTask {
 
         #[unsafe(method(processIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn processIdentifier(&self) -> c_int;
+        pub fn processIdentifier(&self) -> c_int;
 
         #[unsafe(method(isRunning))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isRunning(&self) -> bool;
+        pub fn isRunning(&self) -> bool;
 
         #[unsafe(method(terminationStatus))]
         #[unsafe(method_family = none)]
-        pub unsafe fn terminationStatus(&self) -> c_int;
+        pub fn terminationStatus(&self) -> c_int;
 
         #[unsafe(method(terminationReason))]
         #[unsafe(method_family = none)]
-        pub unsafe fn terminationReason(&self) -> NSTaskTerminationReason;
+        pub fn terminationReason(&self) -> NSTaskTerminationReason;
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -214,13 +214,13 @@ impl NSTask {
         #[cfg(feature = "NSObjCRuntime")]
         #[unsafe(method(qualityOfService))]
         #[unsafe(method_family = none)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
         /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[unsafe(method(setQualityOfService:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
+        pub fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
     );
 }
 
@@ -268,7 +268,7 @@ impl NSTask {
         #[deprecated]
         #[unsafe(method(launchPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launchPath(&self) -> Option<Retained<NSString>>;
+        pub fn launchPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`launchPath`][Self::launchPath].
@@ -277,13 +277,13 @@ impl NSTask {
         #[deprecated]
         #[unsafe(method(setLaunchPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLaunchPath(&self, launch_path: Option<&NSString>);
+        pub fn setLaunchPath(&self, launch_path: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         #[deprecated]
         #[unsafe(method(currentDirectoryPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentDirectoryPath(&self) -> Retained<NSString>;
+        pub fn currentDirectoryPath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`currentDirectoryPath`][Self::currentDirectoryPath].
@@ -292,7 +292,7 @@ impl NSTask {
         #[deprecated]
         #[unsafe(method(setCurrentDirectoryPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurrentDirectoryPath(&self, current_directory_path: &NSString);
+        pub fn setCurrentDirectoryPath(&self, current_directory_path: &NSString);
 
         #[deprecated]
         #[unsafe(method(launch))]

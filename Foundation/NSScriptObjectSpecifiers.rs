@@ -170,44 +170,35 @@ impl NSScriptObjectSpecifier {
 
         #[unsafe(method(containerSpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containerSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
+        pub fn containerSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         /// Setter for [`containerSpecifier`][Self::containerSpecifier].
         #[unsafe(method(setContainerSpecifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContainerSpecifier(
-            &self,
-            container_specifier: Option<&NSScriptObjectSpecifier>,
-        );
+        pub fn setContainerSpecifier(&self, container_specifier: Option<&NSScriptObjectSpecifier>);
 
         #[unsafe(method(containerIsObjectBeingTested))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containerIsObjectBeingTested(&self) -> bool;
+        pub fn containerIsObjectBeingTested(&self) -> bool;
 
         /// Setter for [`containerIsObjectBeingTested`][Self::containerIsObjectBeingTested].
         #[unsafe(method(setContainerIsObjectBeingTested:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContainerIsObjectBeingTested(
-            &self,
-            container_is_object_being_tested: bool,
-        );
+        pub fn setContainerIsObjectBeingTested(&self, container_is_object_being_tested: bool);
 
         #[unsafe(method(containerIsRangeContainerObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containerIsRangeContainerObject(&self) -> bool;
+        pub fn containerIsRangeContainerObject(&self) -> bool;
 
         /// Setter for [`containerIsRangeContainerObject`][Self::containerIsRangeContainerObject].
         #[unsafe(method(setContainerIsRangeContainerObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContainerIsRangeContainerObject(
-            &self,
-            container_is_range_container_object: bool,
-        );
+        pub fn setContainerIsRangeContainerObject(&self, container_is_range_container_object: bool);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(key))]
         #[unsafe(method_family = none)]
-        pub unsafe fn key(&self) -> Retained<NSString>;
+        pub fn key(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`key`][Self::key].
@@ -215,20 +206,18 @@ impl NSScriptObjectSpecifier {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setKey(&self, key: &NSString);
+        pub fn setKey(&self, key: &NSString);
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[unsafe(method(containerClassDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containerClassDescription(
-            &self,
-        ) -> Option<Retained<NSScriptClassDescription>>;
+        pub fn containerClassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         /// Setter for [`containerClassDescription`][Self::containerClassDescription].
         #[unsafe(method(setContainerClassDescription:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContainerClassDescription(
+        pub fn setContainerClassDescription(
             &self,
             container_class_description: Option<&NSScriptClassDescription>,
         );
@@ -236,7 +225,7 @@ impl NSScriptObjectSpecifier {
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[unsafe(method(keyClassDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyClassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
+        pub fn keyClassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
 
         /// # Safety
         ///
@@ -262,25 +251,25 @@ impl NSScriptObjectSpecifier {
 
         #[unsafe(method(objectsByEvaluatingSpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectsByEvaluatingSpecifier(&self) -> Option<Retained<AnyObject>>;
+        pub fn objectsByEvaluatingSpecifier(&self) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(evaluationErrorNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn evaluationErrorNumber(&self) -> NSInteger;
+        pub fn evaluationErrorNumber(&self) -> NSInteger;
 
         /// Setter for [`evaluationErrorNumber`][Self::evaluationErrorNumber].
         #[unsafe(method(setEvaluationErrorNumber:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEvaluationErrorNumber(&self, evaluation_error_number: NSInteger);
+        pub fn setEvaluationErrorNumber(&self, evaluation_error_number: NSInteger);
 
         #[unsafe(method(evaluationErrorSpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn evaluationErrorSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
+        pub fn evaluationErrorSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptor(&self) -> Option<Retained<NSAppleEventDescriptor>>;
+        pub fn descriptor(&self) -> Option<Retained<NSAppleEventDescriptor>>;
     );
 }
 
@@ -309,7 +298,7 @@ pub unsafe trait NSObjectNSScriptObjectSpecifiers:
     extern_methods!(
         #[unsafe(method(objectSpecifier))]
         #[unsafe(method_family = none)]
-        unsafe fn objectSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
+        fn objectSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[unsafe(method(indicesOfObjectsByEvaluatingObjectSpecifier:))]
@@ -359,12 +348,12 @@ impl NSIndexSpecifier {
 
         #[unsafe(method(index))]
         #[unsafe(method_family = none)]
-        pub unsafe fn index(&self) -> NSInteger;
+        pub fn index(&self) -> NSInteger;
 
         /// Setter for [`index`][Self::index].
         #[unsafe(method(setIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndex(&self, index: NSInteger);
+        pub fn setIndex(&self, index: NSInteger);
     );
 }
 
@@ -539,7 +528,7 @@ impl NSNameSpecifier {
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
@@ -547,7 +536,7 @@ impl NSNameSpecifier {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: &NSString);
+        pub fn setName(&self, name: &NSString);
     );
 }
 
@@ -615,11 +604,11 @@ impl NSPositionalSpecifier {
 
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
-        pub unsafe fn position(&self) -> NSInsertionPosition;
+        pub fn position(&self) -> NSInsertionPosition;
 
         #[unsafe(method(objectSpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectSpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
+        pub fn objectSpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[unsafe(method(setInsertionClassDescription:))]
@@ -635,20 +624,20 @@ impl NSPositionalSpecifier {
 
         #[unsafe(method(insertionContainer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertionContainer(&self) -> Option<Retained<AnyObject>>;
+        pub fn insertionContainer(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(insertionKey))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertionKey(&self) -> Option<Retained<NSString>>;
+        pub fn insertionKey(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(insertionIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertionIndex(&self) -> NSInteger;
+        pub fn insertionIndex(&self) -> NSInteger;
 
         #[unsafe(method(insertionReplaces))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertionReplaces(&self) -> bool;
+        pub fn insertionReplaces(&self) -> bool;
     );
 }
 
@@ -856,21 +845,21 @@ impl NSRangeSpecifier {
 
         #[unsafe(method(startSpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
+        pub fn startSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         /// Setter for [`startSpecifier`][Self::startSpecifier].
         #[unsafe(method(setStartSpecifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStartSpecifier(&self, start_specifier: Option<&NSScriptObjectSpecifier>);
+        pub fn setStartSpecifier(&self, start_specifier: Option<&NSScriptObjectSpecifier>);
 
         #[unsafe(method(endSpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
+        pub fn endSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         /// Setter for [`endSpecifier`][Self::endSpecifier].
         #[unsafe(method(setEndSpecifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEndSpecifier(&self, end_specifier: Option<&NSScriptObjectSpecifier>);
+        pub fn setEndSpecifier(&self, end_specifier: Option<&NSScriptObjectSpecifier>);
     );
 }
 
@@ -962,21 +951,21 @@ impl NSRelativeSpecifier {
 
         #[unsafe(method(relativePosition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn relativePosition(&self) -> NSRelativePosition;
+        pub fn relativePosition(&self) -> NSRelativePosition;
 
         /// Setter for [`relativePosition`][Self::relativePosition].
         #[unsafe(method(setRelativePosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRelativePosition(&self, relative_position: NSRelativePosition);
+        pub fn setRelativePosition(&self, relative_position: NSRelativePosition);
 
         #[unsafe(method(baseSpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
+        pub fn baseSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         /// Setter for [`baseSpecifier`][Self::baseSpecifier].
         #[unsafe(method(setBaseSpecifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBaseSpecifier(&self, base_specifier: Option<&NSScriptObjectSpecifier>);
+        pub fn setBaseSpecifier(&self, base_specifier: Option<&NSScriptObjectSpecifier>);
     );
 }
 
@@ -1070,7 +1059,7 @@ impl NSUniqueIDSpecifier {
 
         #[unsafe(method(uniqueID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn uniqueID(&self) -> Retained<AnyObject>;
+        pub fn uniqueID(&self) -> Retained<AnyObject>;
 
         /// Setter for [`uniqueID`][Self::uniqueID].
         ///
@@ -1174,55 +1163,55 @@ impl NSWhoseSpecifier {
         #[cfg(feature = "NSScriptWhoseTests")]
         #[unsafe(method(test))]
         #[unsafe(method_family = none)]
-        pub unsafe fn test(&self) -> Retained<NSScriptWhoseTest>;
+        pub fn test(&self) -> Retained<NSScriptWhoseTest>;
 
         #[cfg(feature = "NSScriptWhoseTests")]
         /// Setter for [`test`][Self::test].
         #[unsafe(method(setTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTest(&self, test: &NSScriptWhoseTest);
+        pub fn setTest(&self, test: &NSScriptWhoseTest);
 
         #[unsafe(method(startSubelementIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
+        pub fn startSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
 
         /// Setter for [`startSubelementIdentifier`][Self::startSubelementIdentifier].
         #[unsafe(method(setStartSubelementIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStartSubelementIdentifier(
+        pub fn setStartSubelementIdentifier(
             &self,
             start_subelement_identifier: NSWhoseSubelementIdentifier,
         );
 
         #[unsafe(method(startSubelementIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startSubelementIndex(&self) -> NSInteger;
+        pub fn startSubelementIndex(&self) -> NSInteger;
 
         /// Setter for [`startSubelementIndex`][Self::startSubelementIndex].
         #[unsafe(method(setStartSubelementIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStartSubelementIndex(&self, start_subelement_index: NSInteger);
+        pub fn setStartSubelementIndex(&self, start_subelement_index: NSInteger);
 
         #[unsafe(method(endSubelementIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
+        pub fn endSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
 
         /// Setter for [`endSubelementIdentifier`][Self::endSubelementIdentifier].
         #[unsafe(method(setEndSubelementIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEndSubelementIdentifier(
+        pub fn setEndSubelementIdentifier(
             &self,
             end_subelement_identifier: NSWhoseSubelementIdentifier,
         );
 
         #[unsafe(method(endSubelementIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endSubelementIndex(&self) -> NSInteger;
+        pub fn endSubelementIndex(&self) -> NSInteger;
 
         /// Setter for [`endSubelementIndex`][Self::endSubelementIndex].
         #[unsafe(method(setEndSubelementIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEndSubelementIndex(&self, end_subelement_index: NSInteger);
+        pub fn setEndSubelementIndex(&self, end_subelement_index: NSInteger);
     );
 }
 

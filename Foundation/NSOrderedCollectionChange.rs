@@ -71,19 +71,19 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
 
         #[unsafe(method(object))]
         #[unsafe(method_family = none)]
-        pub unsafe fn object(&self) -> Option<Retained<ObjectType>>;
+        pub fn object(&self) -> Option<Retained<ObjectType>>;
 
         #[unsafe(method(changeType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn changeType(&self) -> NSCollectionChangeType;
+        pub fn changeType(&self) -> NSCollectionChangeType;
 
         #[unsafe(method(index))]
         #[unsafe(method_family = none)]
-        pub unsafe fn index(&self) -> NSUInteger;
+        pub fn index(&self) -> NSUInteger;
 
         #[unsafe(method(associatedIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn associatedIndex(&self) -> NSUInteger;
+        pub fn associatedIndex(&self) -> NSUInteger;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

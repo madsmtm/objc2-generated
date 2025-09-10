@@ -192,29 +192,29 @@ impl NSComparisonPredicate {
 
         #[unsafe(method(predicateOperatorType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn predicateOperatorType(&self) -> NSPredicateOperatorType;
+        pub fn predicateOperatorType(&self) -> NSPredicateOperatorType;
 
         #[unsafe(method(comparisonPredicateModifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn comparisonPredicateModifier(&self) -> NSComparisonPredicateModifier;
+        pub fn comparisonPredicateModifier(&self) -> NSComparisonPredicateModifier;
 
         #[cfg(feature = "NSExpression")]
         #[unsafe(method(leftExpression))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leftExpression(&self) -> Retained<NSExpression>;
+        pub fn leftExpression(&self) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSExpression")]
         #[unsafe(method(rightExpression))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightExpression(&self) -> Retained<NSExpression>;
+        pub fn rightExpression(&self) -> Retained<NSExpression>;
 
         #[unsafe(method(customSelector))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customSelector(&self) -> Option<Sel>;
+        pub fn customSelector(&self) -> Option<Sel>;
 
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> NSComparisonPredicateOptions;
+        pub fn options(&self) -> NSComparisonPredicateOptions;
     );
 }
 

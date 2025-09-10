@@ -362,20 +362,20 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(tagSchemes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tagSchemes(&self) -> Retained<NSArray<NSLinguisticTagScheme>>;
+        pub fn tagSchemes(&self) -> Retained<NSArray<NSLinguisticTagScheme>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
-        pub unsafe fn string(&self) -> Option<Retained<NSString>>;
+        pub fn string(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`string`][Self::string].
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(setString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setString(&self, string: Option<&NSString>);
+        pub fn setString(&self, string: Option<&NSString>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
@@ -540,7 +540,7 @@ impl NSLinguisticTagger {
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[unsafe(method(dominantLanguage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dominantLanguage(&self) -> Option<Retained<NSString>>;
+        pub fn dominantLanguage(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]

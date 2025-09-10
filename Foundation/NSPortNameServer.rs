@@ -251,13 +251,13 @@ impl NSSocketPortNameServer {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(defaultNameServerPortNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultNameServerPortNumber(&self) -> u16;
+        pub fn defaultNameServerPortNumber(&self) -> u16;
 
         /// Setter for [`defaultNameServerPortNumber`][Self::defaultNameServerPortNumber].
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(setDefaultNameServerPortNumber:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultNameServerPortNumber(&self, default_name_server_port_number: u16);
+        pub fn setDefaultNameServerPortNumber(&self, default_name_server_port_number: u16);
     );
 }
 

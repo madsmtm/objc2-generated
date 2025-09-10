@@ -45,17 +45,17 @@ impl NSDateInterval {
         #[cfg(feature = "NSDate")]
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startDate(&self) -> Retained<NSDate>;
+        pub fn startDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(endDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endDate(&self) -> Retained<NSDate>;
+        pub fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn duration(&self) -> NSTimeInterval;
+        pub fn duration(&self) -> NSTimeInterval;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

@@ -193,12 +193,12 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSString")]
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
-        pub unsafe fn description(&self) -> Retained<NSString>;
+        pub fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(descriptionInStringsFileFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptionInStringsFileFormat(&self) -> Retained<NSString>;
+        pub fn descriptionInStringsFileFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// # Safety

@@ -64,7 +64,7 @@ impl NSEnergyFormatter {
         #[cfg(feature = "NSNumberFormatter")]
         #[unsafe(method(numberFormatter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
+        pub fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
         /// Setter for [`numberFormatter`][Self::numberFormatter].
@@ -72,25 +72,25 @@ impl NSEnergyFormatter {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNumberFormatter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
+        pub fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[unsafe(method(unitStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
+        pub fn unitStyle(&self) -> NSFormattingUnitStyle;
 
         /// Setter for [`unitStyle`][Self::unitStyle].
         #[unsafe(method(setUnitStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
+        pub fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[unsafe(method(isForFoodEnergyUse))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isForFoodEnergyUse(&self) -> bool;
+        pub fn isForFoodEnergyUse(&self) -> bool;
 
         /// Setter for [`isForFoodEnergyUse`][Self::isForFoodEnergyUse].
         #[unsafe(method(setForFoodEnergyUse:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setForFoodEnergyUse(&self, for_food_energy_use: bool);
+        pub fn setForFoodEnergyUse(&self, for_food_energy_use: bool);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringFromValue:unit:))]

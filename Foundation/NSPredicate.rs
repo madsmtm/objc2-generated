@@ -73,7 +73,7 @@ impl NSPredicate {
         #[cfg(feature = "NSString")]
         #[unsafe(method(predicateFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn predicateFormat(&self) -> Retained<NSString>;
+        pub fn predicateFormat(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// # Safety

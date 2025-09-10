@@ -38,7 +38,7 @@ impl NSArchiver {
         #[deprecated = "Use NSKeyedArchiver instead"]
         #[unsafe(method(archiverData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn archiverData(&self) -> Retained<NSMutableData>;
+        pub fn archiverData(&self) -> Retained<NSMutableData>;
 
         /// # Safety
         ///
@@ -258,7 +258,7 @@ pub unsafe trait NSObjectNSArchiverCallback:
     extern_methods!(
         #[unsafe(method(classForArchiver))]
         #[unsafe(method_family = none)]
-        unsafe fn classForArchiver(&self) -> Option<&'static AnyClass>;
+        fn classForArchiver(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "NSCoder")]
         #[deprecated]

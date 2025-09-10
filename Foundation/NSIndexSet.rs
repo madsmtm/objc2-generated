@@ -87,15 +87,15 @@ impl NSIndexSet {
 
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         #[unsafe(method(firstIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstIndex(&self) -> NSUInteger;
+        pub fn firstIndex(&self) -> NSUInteger;
 
         #[unsafe(method(lastIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lastIndex(&self) -> NSUInteger;
+        pub fn lastIndex(&self) -> NSUInteger;
 
         #[unsafe(method(indexGreaterThanIndex:))]
         #[unsafe(method_family = none)]

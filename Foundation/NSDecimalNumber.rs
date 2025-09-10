@@ -152,7 +152,7 @@ impl NSDecimalNumber {
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(decimalValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalValue(&self) -> NSDecimal;
+        pub fn decimalValue(&self) -> NSDecimal;
 
         #[unsafe(method(decimalNumberWithMantissa:exponent:isNegative:))]
         #[unsafe(method_family = none)]
@@ -187,23 +187,23 @@ impl NSDecimalNumber {
 
         #[unsafe(method(zero))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zero() -> Retained<NSDecimalNumber>;
+        pub fn zero() -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(one))]
         #[unsafe(method_family = none)]
-        pub unsafe fn one() -> Retained<NSDecimalNumber>;
+        pub fn one() -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(minimumDecimalNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumDecimalNumber() -> Retained<NSDecimalNumber>;
+        pub fn minimumDecimalNumber() -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(maximumDecimalNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumDecimalNumber() -> Retained<NSDecimalNumber>;
+        pub fn maximumDecimalNumber() -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(notANumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notANumber() -> Retained<NSDecimalNumber>;
+        pub fn notANumber() -> Retained<NSDecimalNumber>;
 
         #[unsafe(method(decimalNumberByAdding:))]
         #[unsafe(method_family = none)]
@@ -309,22 +309,20 @@ impl NSDecimalNumber {
 
         #[unsafe(method(defaultBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultBehavior() -> Retained<ProtocolObject<dyn NSDecimalNumberBehaviors>>;
+        pub fn defaultBehavior() -> Retained<ProtocolObject<dyn NSDecimalNumberBehaviors>>;
 
         /// Setter for [`defaultBehavior`][Self::defaultBehavior].
         #[unsafe(method(setDefaultBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultBehavior(
-            default_behavior: &ProtocolObject<dyn NSDecimalNumberBehaviors>,
-        );
+        pub fn setDefaultBehavior(default_behavior: &ProtocolObject<dyn NSDecimalNumberBehaviors>);
 
         #[unsafe(method(objCType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objCType(&self) -> NonNull<c_char>;
+        pub fn objCType(&self) -> NonNull<c_char>;
 
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleValue(&self) -> c_double;
+        pub fn doubleValue(&self) -> c_double;
     );
 }
 
@@ -407,7 +405,7 @@ impl NSDecimalNumberHandler {
     extern_methods!(
         #[unsafe(method(defaultDecimalNumberHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultDecimalNumberHandler() -> Retained<NSDecimalNumberHandler>;
+        pub fn defaultDecimalNumberHandler() -> Retained<NSDecimalNumberHandler>;
 
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:))]
@@ -458,7 +456,7 @@ impl NSNumber {
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(decimalValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decimalValue(&self) -> NSDecimal;
+        pub fn decimalValue(&self) -> NSDecimal;
     );
 }
 

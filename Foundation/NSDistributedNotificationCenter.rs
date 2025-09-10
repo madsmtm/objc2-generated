@@ -144,12 +144,12 @@ impl NSDistributedNotificationCenter {
 
         #[unsafe(method(suspended))]
         #[unsafe(method_family = none)]
-        pub unsafe fn suspended(&self) -> bool;
+        pub fn suspended(&self) -> bool;
 
         /// Setter for [`suspended`][Self::suspended].
         #[unsafe(method(setSuspended:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSuspended(&self, suspended: bool);
+        pub fn setSuspended(&self, suspended: bool);
 
         #[cfg(feature = "NSString")]
         /// # Safety

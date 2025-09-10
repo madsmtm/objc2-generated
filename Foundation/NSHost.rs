@@ -55,30 +55,30 @@ impl NSHost {
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(names))]
         #[unsafe(method_family = none)]
-        pub unsafe fn names(&self) -> Retained<NSArray<NSString>>;
+        pub fn names(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
-        pub unsafe fn address(&self) -> Option<Retained<NSString>>;
+        pub fn address(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
         #[unsafe(method(addresses))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addresses(&self) -> Retained<NSArray<NSString>>;
+        pub fn addresses(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
+        pub fn localizedName(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Caching no longer supported"]
         #[unsafe(method(setHostCacheEnabled:))]

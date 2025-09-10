@@ -129,7 +129,7 @@ impl NSXMLElement {
         /// Set the attributes. In the case of duplicate names, the first attribute with the name is used.
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributes(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
+        pub fn attributes(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`attributes`][Self::attributes].
@@ -137,7 +137,7 @@ impl NSXMLElement {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAttributes(&self, attributes: Option<&NSArray<NSXMLNode>>);
+        pub fn setAttributes(&self, attributes: Option<&NSArray<NSXMLNode>>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Set the attributes based on a name-value dictionary.
@@ -179,7 +179,7 @@ impl NSXMLElement {
         /// Set the namespaces. In the case of duplicate names, the first namespace with the name is used.
         #[unsafe(method(namespaces))]
         #[unsafe(method_family = none)]
-        pub unsafe fn namespaces(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
+        pub fn namespaces(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "NSArray")]
         /// Setter for [`namespaces`][Self::namespaces].
@@ -187,7 +187,7 @@ impl NSXMLElement {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNamespaces:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNamespaces(&self, namespaces: Option<&NSArray<NSXMLNode>>);
+        pub fn setNamespaces(&self, namespaces: Option<&NSArray<NSXMLNode>>);
 
         #[cfg(feature = "NSString")]
         /// Returns the namespace matching this prefix.

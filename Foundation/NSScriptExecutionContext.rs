@@ -25,7 +25,7 @@ impl NSScriptExecutionContext {
 
         #[unsafe(method(topLevelObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn topLevelObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn topLevelObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`topLevelObject`][Self::topLevelObject].
         ///
@@ -38,7 +38,7 @@ impl NSScriptExecutionContext {
 
         #[unsafe(method(objectBeingTested))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectBeingTested(&self) -> Option<Retained<AnyObject>>;
+        pub fn objectBeingTested(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectBeingTested`][Self::objectBeingTested].
         ///
@@ -51,7 +51,7 @@ impl NSScriptExecutionContext {
 
         #[unsafe(method(rangeContainerObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rangeContainerObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn rangeContainerObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`rangeContainerObject`][Self::rangeContainerObject].
         ///

@@ -76,12 +76,12 @@ impl NSBundle {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(allBundles))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allBundles() -> Retained<NSArray<NSBundle>>;
+        pub fn allBundles() -> Retained<NSArray<NSBundle>>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(allFrameworks))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allFrameworks() -> Retained<NSArray<NSBundle>>;
+        pub fn allFrameworks() -> Retained<NSArray<NSBundle>>;
 
         #[unsafe(method(load))]
         #[unsafe(method_family = none)]
@@ -89,7 +89,7 @@ impl NSBundle {
 
         #[unsafe(method(isLoaded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isLoaded(&self) -> bool;
+        pub fn isLoaded(&self) -> bool;
 
         #[unsafe(method(unload))]
         #[unsafe(method_family = none)]
@@ -108,17 +108,17 @@ impl NSBundle {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(bundleURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bundleURL(&self) -> Retained<NSURL>;
+        pub fn bundleURL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(resourceURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resourceURL(&self) -> Option<Retained<NSURL>>;
+        pub fn resourceURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(executableURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executableURL(&self) -> Option<Retained<NSURL>>;
+        pub fn executableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(URLForAuxiliaryExecutable:))]
@@ -131,42 +131,42 @@ impl NSBundle {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(privateFrameworksURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn privateFrameworksURL(&self) -> Option<Retained<NSURL>>;
+        pub fn privateFrameworksURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(sharedFrameworksURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedFrameworksURL(&self) -> Option<Retained<NSURL>>;
+        pub fn sharedFrameworksURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(sharedSupportURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedSupportURL(&self) -> Option<Retained<NSURL>>;
+        pub fn sharedSupportURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(builtInPlugInsURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn builtInPlugInsURL(&self) -> Option<Retained<NSURL>>;
+        pub fn builtInPlugInsURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(appStoreReceiptURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appStoreReceiptURL(&self) -> Option<Retained<NSURL>>;
+        pub fn appStoreReceiptURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(bundlePath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bundlePath(&self) -> Retained<NSString>;
+        pub fn bundlePath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(resourcePath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resourcePath(&self) -> Option<Retained<NSString>>;
+        pub fn resourcePath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(executablePath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executablePath(&self) -> Option<Retained<NSString>>;
+        pub fn executablePath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(pathForAuxiliaryExecutable:))]
@@ -179,22 +179,22 @@ impl NSBundle {
         #[cfg(feature = "NSString")]
         #[unsafe(method(privateFrameworksPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn privateFrameworksPath(&self) -> Option<Retained<NSString>>;
+        pub fn privateFrameworksPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(sharedFrameworksPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedFrameworksPath(&self) -> Option<Retained<NSString>>;
+        pub fn sharedFrameworksPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(sharedSupportPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedSupportPath(&self) -> Option<Retained<NSString>>;
+        pub fn sharedSupportPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(builtInPlugInsPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn builtInPlugInsPath(&self) -> Option<Retained<NSString>>;
+        pub fn builtInPlugInsPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(URLForResource:withExtension:subdirectory:inBundleWithURL:))]
@@ -361,7 +361,7 @@ impl NSBundle {
         #[cfg(feature = "NSString")]
         #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bundleIdentifier(&self) -> Option<Retained<NSString>>;
+        pub fn bundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(infoDictionary))]
@@ -371,7 +371,7 @@ impl NSBundle {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(localizedInfoDictionary))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedInfoDictionary(
+        pub fn localizedInfoDictionary(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -390,22 +390,22 @@ impl NSBundle {
 
         #[unsafe(method(principalClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn principalClass(&self) -> Option<&'static AnyClass>;
+        pub fn principalClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(preferredLocalizations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredLocalizations(&self) -> Retained<NSArray<NSString>>;
+        pub fn preferredLocalizations(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(localizations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizations(&self) -> Retained<NSArray<NSString>>;
+        pub fn localizations(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(developmentLocalization))]
         #[unsafe(method_family = none)]
-        pub unsafe fn developmentLocalization(&self) -> Option<Retained<NSString>>;
+        pub fn developmentLocalization(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(preferredLocalizationsFromArray:))]
@@ -425,7 +425,7 @@ impl NSBundle {
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[unsafe(method(executableArchitectures))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executableArchitectures(&self) -> Option<Retained<NSArray<NSNumber>>>;
+        pub fn executableArchitectures(&self) -> Option<Retained<NSArray<NSNumber>>>;
     );
 }
 
@@ -506,21 +506,21 @@ impl NSBundleResourceRequest {
 
         #[unsafe(method(loadingPriority))]
         #[unsafe(method_family = none)]
-        pub unsafe fn loadingPriority(&self) -> c_double;
+        pub fn loadingPriority(&self) -> c_double;
 
         /// Setter for [`loadingPriority`][Self::loadingPriority].
         #[unsafe(method(setLoadingPriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLoadingPriority(&self, loading_priority: c_double);
+        pub fn setLoadingPriority(&self, loading_priority: c_double);
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         #[unsafe(method(tags))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tags(&self) -> Retained<NSSet<NSString>>;
+        pub fn tags(&self) -> Retained<NSSet<NSString>>;
 
         #[unsafe(method(bundle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bundle(&self) -> Retained<NSBundle>;
+        pub fn bundle(&self) -> Retained<NSBundle>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
         /// # Safety
@@ -551,7 +551,7 @@ impl NSBundleResourceRequest {
         #[cfg(feature = "NSProgress")]
         #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progress(&self) -> Retained<NSProgress>;
+        pub fn progress(&self) -> Retained<NSProgress>;
     );
 }
 

@@ -89,7 +89,7 @@ impl NSPointerFunctions {
 
         #[unsafe(method(hashFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hashFunction(
+        pub fn hashFunction(
             &self,
         ) -> Option<
             unsafe extern "C-unwind" fn(
@@ -117,7 +117,7 @@ impl NSPointerFunctions {
 
         #[unsafe(method(isEqualFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEqualFunction(
+        pub fn isEqualFunction(
             &self,
         ) -> Option<
             unsafe extern "C-unwind" fn(
@@ -147,7 +147,7 @@ impl NSPointerFunctions {
 
         #[unsafe(method(sizeFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeFunction(
+        pub fn sizeFunction(
             &self,
         ) -> Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>;
 
@@ -166,7 +166,7 @@ impl NSPointerFunctions {
         #[cfg(feature = "NSString")]
         #[unsafe(method(descriptionFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptionFunction(
+        pub fn descriptionFunction(
             &self,
         ) -> Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> *mut NSString>;
 
@@ -187,7 +187,7 @@ impl NSPointerFunctions {
 
         #[unsafe(method(relinquishFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn relinquishFunction(
+        pub fn relinquishFunction(
             &self,
         ) -> Option<
             unsafe extern "C-unwind" fn(
@@ -215,7 +215,7 @@ impl NSPointerFunctions {
 
         #[unsafe(method(acquireFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn acquireFunction(
+        pub fn acquireFunction(
             &self,
         ) -> Option<
             unsafe extern "C-unwind" fn(
@@ -246,27 +246,24 @@ impl NSPointerFunctions {
         #[deprecated = "Garbage collection no longer supported"]
         #[unsafe(method(usesStrongWriteBarrier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn usesStrongWriteBarrier(&self) -> bool;
+        pub fn usesStrongWriteBarrier(&self) -> bool;
 
         /// Setter for [`usesStrongWriteBarrier`][Self::usesStrongWriteBarrier].
         #[deprecated = "Garbage collection no longer supported"]
         #[unsafe(method(setUsesStrongWriteBarrier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUsesStrongWriteBarrier(&self, uses_strong_write_barrier: bool);
+        pub fn setUsesStrongWriteBarrier(&self, uses_strong_write_barrier: bool);
 
         #[deprecated = "Garbage collection no longer supported"]
         #[unsafe(method(usesWeakReadAndWriteBarriers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn usesWeakReadAndWriteBarriers(&self) -> bool;
+        pub fn usesWeakReadAndWriteBarriers(&self) -> bool;
 
         /// Setter for [`usesWeakReadAndWriteBarriers`][Self::usesWeakReadAndWriteBarriers].
         #[deprecated = "Garbage collection no longer supported"]
         #[unsafe(method(setUsesWeakReadAndWriteBarriers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUsesWeakReadAndWriteBarriers(
-            &self,
-            uses_weak_read_and_write_barriers: bool,
-        );
+        pub fn setUsesWeakReadAndWriteBarriers(&self, uses_weak_read_and_write_barriers: bool);
     );
 }
 

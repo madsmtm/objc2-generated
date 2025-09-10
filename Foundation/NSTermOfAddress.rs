@@ -92,12 +92,12 @@ impl NSTermOfAddress {
         /// The ISO language code if this is a localized term of address
         #[unsafe(method(languageIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn languageIdentifier(&self) -> Option<Retained<NSString>>;
+        pub fn languageIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSMorphology"))]
         /// A list of pronouns for a localized term of address
         #[unsafe(method(pronouns))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pronouns(&self) -> Option<Retained<NSArray<NSMorphologyPronoun>>>;
+        pub fn pronouns(&self) -> Option<Retained<NSArray<NSMorphologyPronoun>>>;
     );
 }

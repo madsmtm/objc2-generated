@@ -100,12 +100,12 @@ impl NSTextCheckingResult {
     extern_methods!(
         #[unsafe(method(resultType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resultType(&self) -> NSTextCheckingType;
+        pub fn resultType(&self) -> NSTextCheckingType;
 
         #[cfg(feature = "NSRange")]
         #[unsafe(method(range))]
         #[unsafe(method_family = none)]
-        pub unsafe fn range(&self) -> NSRange;
+        pub fn range(&self) -> NSRange;
     );
 }
 
@@ -128,65 +128,63 @@ impl NSTextCheckingResult {
         #[cfg(feature = "NSOrthography")]
         #[unsafe(method(orthography))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orthography(&self) -> Option<Retained<NSOrthography>>;
+        pub fn orthography(&self) -> Option<Retained<NSOrthography>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(grammarDetails))]
         #[unsafe(method_family = none)]
-        pub unsafe fn grammarDetails(
+        pub fn grammarDetails(
             &self,
         ) -> Option<Retained<NSArray<NSDictionary<NSString, AnyObject>>>>;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
-        pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
+        pub fn date(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSTimeZone")]
         #[unsafe(method(timeZone))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
+        pub fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn duration(&self) -> NSTimeInterval;
+        pub fn duration(&self) -> NSTimeInterval;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(components))]
         #[unsafe(method_family = none)]
-        pub unsafe fn components(
-            &self,
-        ) -> Option<Retained<NSDictionary<NSTextCheckingKey, NSString>>>;
+        pub fn components(&self) -> Option<Retained<NSDictionary<NSTextCheckingKey, NSString>>>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
+        pub fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(replacementString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replacementString(&self) -> Option<Retained<NSString>>;
+        pub fn replacementString(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(alternativeStrings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alternativeStrings(&self) -> Option<Retained<NSArray<NSString>>>;
+        pub fn alternativeStrings(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSRegularExpression")]
         #[unsafe(method(regularExpression))]
         #[unsafe(method_family = none)]
-        pub unsafe fn regularExpression(&self) -> Option<Retained<NSRegularExpression>>;
+        pub fn regularExpression(&self) -> Option<Retained<NSRegularExpression>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(phoneNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn phoneNumber(&self) -> Option<Retained<NSString>>;
+        pub fn phoneNumber(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(numberOfRanges))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfRanges(&self) -> NSUInteger;
+        pub fn numberOfRanges(&self) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
         #[unsafe(method(rangeAtIndex:))]
@@ -208,7 +206,7 @@ impl NSTextCheckingResult {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(addressComponents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addressComponents(
+        pub fn addressComponents(
             &self,
         ) -> Option<Retained<NSDictionary<NSTextCheckingKey, NSString>>>;
     );

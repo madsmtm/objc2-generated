@@ -30,7 +30,7 @@ impl NSURLCredentialStorage {
         /// Returns: the shared authentication storage
         #[unsafe(method(sharedCredentialStorage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedCredentialStorage() -> Retained<NSURLCredentialStorage>;
+        pub fn sharedCredentialStorage() -> Retained<NSURLCredentialStorage>;
 
         #[cfg(all(
             feature = "NSDictionary",
@@ -63,7 +63,7 @@ impl NSURLCredentialStorage {
         /// and the values are NSURLCredentials
         #[unsafe(method(allCredentials))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allCredentials(
+        pub fn allCredentials(
             &self,
         ) -> Retained<NSDictionary<NSURLProtectionSpace, NSDictionary<NSString, NSURLCredential>>>;
 

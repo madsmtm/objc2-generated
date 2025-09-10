@@ -67,7 +67,7 @@ impl NSNotificationQueue {
     extern_methods!(
         #[unsafe(method(defaultQueue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultQueue() -> Retained<NSNotificationQueue>;
+        pub fn defaultQueue() -> Retained<NSNotificationQueue>;
 
         #[cfg(feature = "NSNotification")]
         #[unsafe(method(initWithNotificationCenter:))]

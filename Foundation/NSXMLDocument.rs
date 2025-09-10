@@ -132,7 +132,7 @@ impl NSXMLDocument {
         /// Sets the character encoding to an IANA type.
         #[unsafe(method(characterEncoding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn characterEncoding(&self) -> Option<Retained<NSString>>;
+        pub fn characterEncoding(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`characterEncoding`][Self::characterEncoding].
@@ -140,13 +140,13 @@ impl NSXMLDocument {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCharacterEncoding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCharacterEncoding(&self, character_encoding: Option<&NSString>);
+        pub fn setCharacterEncoding(&self, character_encoding: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         /// Sets the XML version. Should be 1.0 or 1.1.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
-        pub unsafe fn version(&self) -> Option<Retained<NSString>>;
+        pub fn version(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`version`][Self::version].
@@ -154,36 +154,33 @@ impl NSXMLDocument {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setVersion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVersion(&self, version: Option<&NSString>);
+        pub fn setVersion(&self, version: Option<&NSString>);
 
         /// Set whether this document depends on an external DTD. If this option is set the standalone declaration will appear on output.
         #[unsafe(method(isStandalone))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isStandalone(&self) -> bool;
+        pub fn isStandalone(&self) -> bool;
 
         /// Setter for [`isStandalone`][Self::isStandalone].
         #[unsafe(method(setStandalone:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStandalone(&self, standalone: bool);
+        pub fn setStandalone(&self, standalone: bool);
 
         /// The kind of document.
         #[unsafe(method(documentContentKind))]
         #[unsafe(method_family = none)]
-        pub unsafe fn documentContentKind(&self) -> NSXMLDocumentContentKind;
+        pub fn documentContentKind(&self) -> NSXMLDocumentContentKind;
 
         /// Setter for [`documentContentKind`][Self::documentContentKind].
         #[unsafe(method(setDocumentContentKind:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDocumentContentKind(
-            &self,
-            document_content_kind: NSXMLDocumentContentKind,
-        );
+        pub fn setDocumentContentKind(&self, document_content_kind: NSXMLDocumentContentKind);
 
         #[cfg(feature = "NSString")]
         /// Set the MIME type, eg text/xml.
         #[unsafe(method(MIMEType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn MIMEType(&self) -> Option<Retained<NSString>>;
+        pub fn MIMEType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`MIMEType`][Self::MIMEType].
@@ -191,13 +188,13 @@ impl NSXMLDocument {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMIMEType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMIMEType(&self, mime_type: Option<&NSString>);
+        pub fn setMIMEType(&self, mime_type: Option<&NSString>);
 
         #[cfg(feature = "NSXMLDTD")]
         /// Set the associated DTD. This DTD will be output with the document.
         #[unsafe(method(DTD))]
         #[unsafe(method_family = none)]
-        pub unsafe fn DTD(&self) -> Option<Retained<NSXMLDTD>>;
+        pub fn DTD(&self) -> Option<Retained<NSXMLDTD>>;
 
         #[cfg(feature = "NSXMLDTD")]
         /// Setter for [`DTD`][Self::DTD].
@@ -205,7 +202,7 @@ impl NSXMLDocument {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setDTD:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDTD(&self, dtd: Option<&NSXMLDTD>);
+        pub fn setDTD(&self, dtd: Option<&NSXMLDTD>);
 
         #[cfg(feature = "NSXMLElement")]
         /// Set the root element. Removes all other children including comments and processing-instructions.
@@ -259,7 +256,7 @@ impl NSXMLDocument {
         /// Invokes XMLDataWithOptions with NSXMLNodeOptionsNone.
         #[unsafe(method(XMLData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn XMLData(&self) -> Retained<NSData>;
+        pub fn XMLData(&self) -> Retained<NSData>;
 
         #[cfg(all(feature = "NSData", feature = "NSXMLNodeOptions"))]
         /// The representation of this node as it would appear in an XML document, encoded based on characterEncoding.

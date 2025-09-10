@@ -170,12 +170,12 @@ impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[cfg(feature = "NSPointerFunctions")]
         #[unsafe(method(keyPointerFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyPointerFunctions(&self) -> Retained<NSPointerFunctions>;
+        pub fn keyPointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[cfg(feature = "NSPointerFunctions")]
         #[unsafe(method(valuePointerFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valuePointerFunctions(&self) -> Retained<NSPointerFunctions>;
+        pub fn valuePointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]
@@ -195,7 +195,7 @@ impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
 
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         #[cfg(feature = "NSEnumerator")]
         #[unsafe(method(keyEnumerator))]

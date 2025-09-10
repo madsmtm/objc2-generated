@@ -239,21 +239,21 @@ impl NSURLProtectionSpace {
         /// Returns: The realm string
         #[unsafe(method(realm))]
         #[unsafe(method_family = none)]
-        pub unsafe fn realm(&self) -> Option<Retained<NSString>>;
+        pub fn realm(&self) -> Option<Retained<NSString>>;
 
         /// Determine if the password for this protection space can be sent securely
         ///
         /// Returns: YES if a secure authentication method or protocol will be used, NO otherwise
         #[unsafe(method(receivesCredentialSecurely))]
         #[unsafe(method_family = none)]
-        pub unsafe fn receivesCredentialSecurely(&self) -> bool;
+        pub fn receivesCredentialSecurely(&self) -> bool;
 
         /// Determine if this authenticating protection space is a proxy server
         ///
         /// Returns: YES if a proxy, NO otherwise
         #[unsafe(method(isProxy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isProxy(&self) -> bool;
+        pub fn isProxy(&self) -> bool;
 
         #[cfg(feature = "NSString")]
         /// Get the proxy host if this is a proxy authentication, or the host from the URL.
@@ -261,14 +261,14 @@ impl NSURLProtectionSpace {
         /// Returns: The host for this protection space.
         #[unsafe(method(host))]
         #[unsafe(method_family = none)]
-        pub unsafe fn host(&self) -> Retained<NSString>;
+        pub fn host(&self) -> Retained<NSString>;
 
         /// Get the proxy port if this is a proxy authentication, or the port from the URL.
         ///
         /// Returns: The port for this protection space, or 0 if not set.
         #[unsafe(method(port))]
         #[unsafe(method_family = none)]
-        pub unsafe fn port(&self) -> NSInteger;
+        pub fn port(&self) -> NSInteger;
 
         #[cfg(feature = "NSString")]
         /// Get the type of this protection space, if a proxy
@@ -276,7 +276,7 @@ impl NSURLProtectionSpace {
         /// Returns: The type string, or nil if not a proxy.
         #[unsafe(method(proxyType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn proxyType(&self) -> Option<Retained<NSString>>;
+        pub fn proxyType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Get the protocol of this protection space, if not a proxy
@@ -284,7 +284,7 @@ impl NSURLProtectionSpace {
         /// Returns: The type string, or nil if a proxy.
         #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
-        pub unsafe fn protocol(&self) -> Option<Retained<NSString>>;
+        pub fn protocol(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Get the authentication method to be used for this protection space
@@ -292,7 +292,7 @@ impl NSURLProtectionSpace {
         /// Returns: The authentication method
         #[unsafe(method(authenticationMethod))]
         #[unsafe(method_family = none)]
-        pub unsafe fn authenticationMethod(&self) -> Retained<NSString>;
+        pub fn authenticationMethod(&self) -> Retained<NSString>;
     );
 }
 
@@ -320,7 +320,7 @@ impl NSURLProtectionSpace {
         /// Returns: An array of NSData objects.  (Nil if the authenticationMethod is not NSURLAuthenticationMethodClientCertificate)
         #[unsafe(method(distinguishedNames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn distinguishedNames(&self) -> Option<Retained<NSArray<NSData>>>;
+        pub fn distinguishedNames(&self) -> Option<Retained<NSArray<NSData>>>;
     );
 }
 

@@ -171,7 +171,7 @@ impl NSFileManager {
     extern_methods!(
         #[unsafe(method(defaultManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultManager() -> Retained<NSFileManager>;
+        pub fn defaultManager() -> Retained<NSFileManager>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(mountedVolumeURLsIncludingResourceValuesForKeys:options:))]
@@ -583,7 +583,7 @@ impl NSFileManager {
         #[cfg(feature = "NSString")]
         #[unsafe(method(currentDirectoryPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentDirectoryPath(&self) -> Retained<NSString>;
+        pub fn currentDirectoryPath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(changeCurrentDirectoryPath:))]
@@ -779,7 +779,7 @@ impl NSFileManager {
         #[cfg(feature = "NSObject")]
         #[unsafe(method(ubiquityIdentityToken))]
         #[unsafe(method_family = none)]
-        pub unsafe fn ubiquityIdentityToken(
+        pub fn ubiquityIdentityToken(
             &self,
         ) -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying+ NSCoding */>>;
 
@@ -835,12 +835,12 @@ impl NSFileManager {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(homeDirectoryForCurrentUser))]
         #[unsafe(method_family = none)]
-        pub unsafe fn homeDirectoryForCurrentUser(&self) -> Retained<NSURL>;
+        pub fn homeDirectoryForCurrentUser(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(temporaryDirectory))]
         #[unsafe(method_family = none)]
-        pub unsafe fn temporaryDirectory(&self) -> Retained<NSURL>;
+        pub fn temporaryDirectory(&self) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         #[unsafe(method(homeDirectoryForUser:))]
@@ -1073,20 +1073,20 @@ impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(fileAttributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileAttributes(
+        pub fn fileAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSFileAttributeKey, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(directoryAttributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn directoryAttributes(
+        pub fn directoryAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSFileAttributeKey, AnyObject>>>;
 
         #[unsafe(method(isEnumeratingDirectoryPostOrder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnumeratingDirectoryPostOrder(&self) -> bool;
+        pub fn isEnumeratingDirectoryPostOrder(&self) -> bool;
 
         #[unsafe(method(skipDescendents))]
         #[unsafe(method_family = none)]
@@ -1094,7 +1094,7 @@ impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
 
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]
-        pub unsafe fn level(&self) -> NSUInteger;
+        pub fn level(&self) -> NSUInteger;
 
         #[unsafe(method(skipDescendants))]
         #[unsafe(method_family = none)]
@@ -1143,7 +1143,7 @@ impl NSFileProviderService {
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSFileProviderServiceName>;
+        pub fn name(&self) -> Retained<NSFileProviderServiceName>;
     );
 }
 

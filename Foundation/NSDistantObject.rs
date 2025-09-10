@@ -102,6 +102,6 @@ impl NSDistantObject {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connectionForProxy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn connectionForProxy(&self) -> Retained<NSConnection>;
+        pub fn connectionForProxy(&self) -> Retained<NSConnection>;
     );
 }

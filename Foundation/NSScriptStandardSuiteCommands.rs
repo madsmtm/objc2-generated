@@ -57,7 +57,7 @@ impl NSCloneCommand {
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(keySpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
+        pub fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     );
 }
 
@@ -123,7 +123,7 @@ impl NSCloseCommand {
     extern_methods!(
         #[unsafe(method(saveOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn saveOptions(&self) -> NSSaveOptions;
+        pub fn saveOptions(&self) -> NSSaveOptions;
     );
 }
 
@@ -252,12 +252,12 @@ impl NSCreateCommand {
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
         #[unsafe(method(createClassDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createClassDescription(&self) -> Retained<NSScriptClassDescription>;
+        pub fn createClassDescription(&self) -> Retained<NSScriptClassDescription>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(resolvedKeyDictionary))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resolvedKeyDictionary(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
+        pub fn resolvedKeyDictionary(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
     );
 }
 
@@ -329,7 +329,7 @@ impl NSDeleteCommand {
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(keySpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
+        pub fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     );
 }
 
@@ -525,7 +525,7 @@ impl NSMoveCommand {
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(keySpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
+        pub fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     );
 }
 
@@ -591,7 +591,7 @@ impl NSQuitCommand {
     extern_methods!(
         #[unsafe(method(saveOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn saveOptions(&self) -> NSSaveOptions;
+        pub fn saveOptions(&self) -> NSSaveOptions;
     );
 }
 
@@ -663,7 +663,7 @@ impl NSSetCommand {
         #[cfg(feature = "NSScriptObjectSpecifiers")]
         #[unsafe(method(keySpecifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
+        pub fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     );
 }
 

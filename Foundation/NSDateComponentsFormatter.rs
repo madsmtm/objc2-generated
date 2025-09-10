@@ -149,34 +149,32 @@ impl NSDateComponentsFormatter {
 
         #[unsafe(method(unitsStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unitsStyle(&self) -> NSDateComponentsFormatterUnitsStyle;
+        pub fn unitsStyle(&self) -> NSDateComponentsFormatterUnitsStyle;
 
         /// Setter for [`unitsStyle`][Self::unitsStyle].
         #[unsafe(method(setUnitsStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUnitsStyle(&self, units_style: NSDateComponentsFormatterUnitsStyle);
+        pub fn setUnitsStyle(&self, units_style: NSDateComponentsFormatterUnitsStyle);
 
         #[cfg(feature = "NSCalendar")]
         #[unsafe(method(allowedUnits))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowedUnits(&self) -> NSCalendarUnit;
+        pub fn allowedUnits(&self) -> NSCalendarUnit;
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`allowedUnits`][Self::allowedUnits].
         #[unsafe(method(setAllowedUnits:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowedUnits(&self, allowed_units: NSCalendarUnit);
+        pub fn setAllowedUnits(&self, allowed_units: NSCalendarUnit);
 
         #[unsafe(method(zeroFormattingBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zeroFormattingBehavior(
-            &self,
-        ) -> NSDateComponentsFormatterZeroFormattingBehavior;
+        pub fn zeroFormattingBehavior(&self) -> NSDateComponentsFormatterZeroFormattingBehavior;
 
         /// Setter for [`zeroFormattingBehavior`][Self::zeroFormattingBehavior].
         #[unsafe(method(setZeroFormattingBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setZeroFormattingBehavior(
+        pub fn setZeroFormattingBehavior(
             &self,
             zero_formatting_behavior: NSDateComponentsFormatterZeroFormattingBehavior,
         );
@@ -184,7 +182,7 @@ impl NSDateComponentsFormatter {
         #[cfg(feature = "NSCalendar")]
         #[unsafe(method(calendar))]
         #[unsafe(method_family = none)]
-        pub unsafe fn calendar(&self) -> Option<Retained<NSCalendar>>;
+        pub fn calendar(&self) -> Option<Retained<NSCalendar>>;
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`calendar`][Self::calendar].
@@ -192,12 +190,12 @@ impl NSDateComponentsFormatter {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCalendar:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
+        pub fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(referenceDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn referenceDate(&self) -> Option<Retained<NSDate>>;
+        pub fn referenceDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`referenceDate`][Self::referenceDate].
@@ -205,61 +203,61 @@ impl NSDateComponentsFormatter {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setReferenceDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setReferenceDate(&self, reference_date: Option<&NSDate>);
+        pub fn setReferenceDate(&self, reference_date: Option<&NSDate>);
 
         #[unsafe(method(allowsFractionalUnits))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsFractionalUnits(&self) -> bool;
+        pub fn allowsFractionalUnits(&self) -> bool;
 
         /// Setter for [`allowsFractionalUnits`][Self::allowsFractionalUnits].
         #[unsafe(method(setAllowsFractionalUnits:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsFractionalUnits(&self, allows_fractional_units: bool);
+        pub fn setAllowsFractionalUnits(&self, allows_fractional_units: bool);
 
         #[unsafe(method(maximumUnitCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumUnitCount(&self) -> NSInteger;
+        pub fn maximumUnitCount(&self) -> NSInteger;
 
         /// Setter for [`maximumUnitCount`][Self::maximumUnitCount].
         #[unsafe(method(setMaximumUnitCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumUnitCount(&self, maximum_unit_count: NSInteger);
+        pub fn setMaximumUnitCount(&self, maximum_unit_count: NSInteger);
 
         #[unsafe(method(collapsesLargestUnit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn collapsesLargestUnit(&self) -> bool;
+        pub fn collapsesLargestUnit(&self) -> bool;
 
         /// Setter for [`collapsesLargestUnit`][Self::collapsesLargestUnit].
         #[unsafe(method(setCollapsesLargestUnit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCollapsesLargestUnit(&self, collapses_largest_unit: bool);
+        pub fn setCollapsesLargestUnit(&self, collapses_largest_unit: bool);
 
         #[unsafe(method(includesApproximationPhrase))]
         #[unsafe(method_family = none)]
-        pub unsafe fn includesApproximationPhrase(&self) -> bool;
+        pub fn includesApproximationPhrase(&self) -> bool;
 
         /// Setter for [`includesApproximationPhrase`][Self::includesApproximationPhrase].
         #[unsafe(method(setIncludesApproximationPhrase:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIncludesApproximationPhrase(&self, includes_approximation_phrase: bool);
+        pub fn setIncludesApproximationPhrase(&self, includes_approximation_phrase: bool);
 
         #[unsafe(method(includesTimeRemainingPhrase))]
         #[unsafe(method_family = none)]
-        pub unsafe fn includesTimeRemainingPhrase(&self) -> bool;
+        pub fn includesTimeRemainingPhrase(&self) -> bool;
 
         /// Setter for [`includesTimeRemainingPhrase`][Self::includesTimeRemainingPhrase].
         #[unsafe(method(setIncludesTimeRemainingPhrase:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIncludesTimeRemainingPhrase(&self, includes_time_remaining_phrase: bool);
+        pub fn setIncludesTimeRemainingPhrase(&self, includes_time_remaining_phrase: bool);
 
         #[unsafe(method(formattingContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn formattingContext(&self) -> NSFormattingContext;
+        pub fn formattingContext(&self) -> NSFormattingContext;
 
         /// Setter for [`formattingContext`][Self::formattingContext].
         #[unsafe(method(setFormattingContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
+        pub fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(feature = "NSString")]
         /// # Safety

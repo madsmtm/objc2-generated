@@ -24,7 +24,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(statistics))]
         #[unsafe(method_family = none)]
-        pub unsafe fn statistics(&self) -> Retained<NSDictionary<NSString, NSNumber>>;
+        pub fn statistics(&self) -> Retained<NSDictionary<NSString, NSNumber>>;
 
         #[cfg(feature = "NSArray")]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -107,32 +107,32 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(requestTimeout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestTimeout(&self) -> NSTimeInterval;
+        pub fn requestTimeout(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`requestTimeout`][Self::requestTimeout].
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(setRequestTimeout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRequestTimeout(&self, request_timeout: NSTimeInterval);
+        pub fn setRequestTimeout(&self, request_timeout: NSTimeInterval);
 
         #[cfg(feature = "NSDate")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(replyTimeout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replyTimeout(&self) -> NSTimeInterval;
+        pub fn replyTimeout(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`replyTimeout`][Self::replyTimeout].
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(setReplyTimeout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setReplyTimeout(&self, reply_timeout: NSTimeInterval);
+        pub fn setReplyTimeout(&self, reply_timeout: NSTimeInterval);
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(rootObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rootObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn rootObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`rootObject`][Self::rootObject].
         ///
@@ -169,27 +169,24 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(independentConversationQueueing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn independentConversationQueueing(&self) -> bool;
+        pub fn independentConversationQueueing(&self) -> bool;
 
         /// Setter for [`independentConversationQueueing`][Self::independentConversationQueueing].
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(setIndependentConversationQueueing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndependentConversationQueueing(
-            &self,
-            independent_conversation_queueing: bool,
-        );
+        pub fn setIndependentConversationQueueing(&self, independent_conversation_queueing: bool);
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(isValid))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isValid(&self) -> bool;
+        pub fn isValid(&self) -> bool;
 
         #[cfg(all(feature = "NSDistantObject", feature = "NSProxy"))]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(rootProxy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rootProxy(&self) -> Retained<NSDistantObject>;
+        pub fn rootProxy(&self) -> Retained<NSDistantObject>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(invalidate))]
@@ -212,7 +209,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(requestModes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestModes(&self) -> Retained<NSArray<NSString>>;
+        pub fn requestModes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSXPCConnection instead"]
@@ -258,13 +255,13 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(sendPort))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendPort(&self) -> Retained<NSPort>;
+        pub fn sendPort(&self) -> Retained<NSPort>;
 
         #[cfg(feature = "NSPort")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(receivePort))]
         #[unsafe(method_family = none)]
-        pub unsafe fn receivePort(&self) -> Retained<NSPort>;
+        pub fn receivePort(&self) -> Retained<NSPort>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(enableMultipleThreads))]
@@ -274,7 +271,7 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(multipleThreadsEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn multipleThreadsEnabled(&self) -> bool;
+        pub fn multipleThreadsEnabled(&self) -> bool;
 
         #[cfg(feature = "NSRunLoop")]
         /// # Safety
@@ -303,13 +300,13 @@ impl NSConnection {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(remoteObjects))]
         #[unsafe(method_family = none)]
-        pub unsafe fn remoteObjects(&self) -> Retained<NSArray>;
+        pub fn remoteObjects(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(localObjects))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localObjects(&self) -> Retained<NSArray>;
+        pub fn localObjects(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
         /// # Safety
@@ -449,17 +446,17 @@ impl NSDistantObjectRequest {
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(invocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invocation(&self) -> Retained<NSInvocation>;
+        pub fn invocation(&self) -> Retained<NSInvocation>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(connection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn connection(&self) -> Retained<NSConnection>;
+        pub fn connection(&self) -> Retained<NSConnection>;
 
         #[deprecated = "Use NSXPCConnection instead"]
         #[unsafe(method(conversation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn conversation(&self) -> Retained<AnyObject>;
+        pub fn conversation(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSException")]
         #[deprecated = "Use NSXPCConnection instead"]

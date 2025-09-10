@@ -91,26 +91,26 @@ impl NSPersonNameComponentsFormatter {
     extern_methods!(
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
-        pub unsafe fn style(&self) -> NSPersonNameComponentsFormatterStyle;
+        pub fn style(&self) -> NSPersonNameComponentsFormatterStyle;
 
         /// Setter for [`style`][Self::style].
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStyle(&self, style: NSPersonNameComponentsFormatterStyle);
+        pub fn setStyle(&self, style: NSPersonNameComponentsFormatterStyle);
 
         #[unsafe(method(isPhonetic))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isPhonetic(&self) -> bool;
+        pub fn isPhonetic(&self) -> bool;
 
         /// Setter for [`isPhonetic`][Self::isPhonetic].
         #[unsafe(method(setPhonetic:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPhonetic(&self, phonetic: bool);
+        pub fn setPhonetic(&self, phonetic: bool);
 
         #[cfg(feature = "NSLocale")]
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
-        pub unsafe fn locale(&self) -> Retained<NSLocale>;
+        pub fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
@@ -118,7 +118,7 @@ impl NSPersonNameComponentsFormatter {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setLocale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
+        pub fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
         #[unsafe(method(localizedStringFromPersonNameComponents:style:options:))]

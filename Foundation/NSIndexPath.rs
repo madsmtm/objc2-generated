@@ -82,7 +82,7 @@ impl NSIndexPath {
 
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
-        pub unsafe fn length(&self) -> NSUInteger;
+        pub fn length(&self) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
         /// Copies the indexes stored in this index path from the positions specified by positionRange into indexes.

@@ -182,12 +182,12 @@ impl NSException {
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[unsafe(method(callStackReturnAddresses))]
         #[unsafe(method_family = none)]
-        pub unsafe fn callStackReturnAddresses(&self) -> Retained<NSArray<NSNumber>>;
+        pub fn callStackReturnAddresses(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(callStackSymbols))]
         #[unsafe(method_family = none)]
-        pub unsafe fn callStackSymbols(&self) -> Retained<NSArray<NSString>>;
+        pub fn callStackSymbols(&self) -> Retained<NSArray<NSString>>;
     );
 }
 
@@ -240,7 +240,7 @@ impl NSAssertionHandler {
     extern_methods!(
         #[unsafe(method(currentHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentHandler() -> Retained<NSAssertionHandler>;
+        pub fn currentHandler() -> Retained<NSAssertionHandler>;
     );
 }
 

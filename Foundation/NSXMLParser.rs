@@ -85,35 +85,30 @@ impl NSXMLParser {
 
         #[unsafe(method(shouldProcessNamespaces))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shouldProcessNamespaces(&self) -> bool;
+        pub fn shouldProcessNamespaces(&self) -> bool;
 
         /// Setter for [`shouldProcessNamespaces`][Self::shouldProcessNamespaces].
         #[unsafe(method(setShouldProcessNamespaces:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShouldProcessNamespaces(&self, should_process_namespaces: bool);
+        pub fn setShouldProcessNamespaces(&self, should_process_namespaces: bool);
 
         #[unsafe(method(shouldReportNamespacePrefixes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shouldReportNamespacePrefixes(&self) -> bool;
+        pub fn shouldReportNamespacePrefixes(&self) -> bool;
 
         /// Setter for [`shouldReportNamespacePrefixes`][Self::shouldReportNamespacePrefixes].
         #[unsafe(method(setShouldReportNamespacePrefixes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShouldReportNamespacePrefixes(
-            &self,
-            should_report_namespace_prefixes: bool,
-        );
+        pub fn setShouldReportNamespacePrefixes(&self, should_report_namespace_prefixes: bool);
 
         #[unsafe(method(externalEntityResolvingPolicy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn externalEntityResolvingPolicy(
-            &self,
-        ) -> NSXMLParserExternalEntityResolvingPolicy;
+        pub fn externalEntityResolvingPolicy(&self) -> NSXMLParserExternalEntityResolvingPolicy;
 
         /// Setter for [`externalEntityResolvingPolicy`][Self::externalEntityResolvingPolicy].
         #[unsafe(method(setExternalEntityResolvingPolicy:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setExternalEntityResolvingPolicy(
+        pub fn setExternalEntityResolvingPolicy(
             &self,
             external_entity_resolving_policy: NSXMLParserExternalEntityResolvingPolicy,
         );
@@ -121,7 +116,7 @@ impl NSXMLParser {
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
         #[unsafe(method(allowedExternalEntityURLs))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowedExternalEntityURLs(&self) -> Option<Retained<NSSet<NSURL>>>;
+        pub fn allowedExternalEntityURLs(&self) -> Option<Retained<NSSet<NSURL>>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
         /// Setter for [`allowedExternalEntityURLs`][Self::allowedExternalEntityURLs].
@@ -129,7 +124,7 @@ impl NSXMLParser {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setAllowedExternalEntityURLs:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowedExternalEntityURLs(
+        pub fn setAllowedExternalEntityURLs(
             &self,
             allowed_external_entity_ur_ls: Option<&NSSet<NSURL>>,
         );
@@ -145,19 +140,16 @@ impl NSXMLParser {
         #[cfg(feature = "NSError")]
         #[unsafe(method(parserError))]
         #[unsafe(method_family = none)]
-        pub unsafe fn parserError(&self) -> Option<Retained<NSError>>;
+        pub fn parserError(&self) -> Option<Retained<NSError>>;
 
         #[unsafe(method(shouldResolveExternalEntities))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shouldResolveExternalEntities(&self) -> bool;
+        pub fn shouldResolveExternalEntities(&self) -> bool;
 
         /// Setter for [`shouldResolveExternalEntities`][Self::shouldResolveExternalEntities].
         #[unsafe(method(setShouldResolveExternalEntities:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShouldResolveExternalEntities(
-            &self,
-            should_resolve_external_entities: bool,
-        );
+        pub fn setShouldResolveExternalEntities(&self, should_resolve_external_entities: bool);
     );
 }
 
@@ -180,20 +172,20 @@ impl NSXMLParser {
         #[cfg(feature = "NSString")]
         #[unsafe(method(publicID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn publicID(&self) -> Option<Retained<NSString>>;
+        pub fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(systemID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemID(&self) -> Option<Retained<NSString>>;
+        pub fn systemID(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(lineNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineNumber(&self) -> NSInteger;
+        pub fn lineNumber(&self) -> NSInteger;
 
         #[unsafe(method(columnNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn columnNumber(&self) -> NSInteger;
+        pub fn columnNumber(&self) -> NSInteger;
     );
 }
 

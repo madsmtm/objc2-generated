@@ -42,7 +42,7 @@ impl NSPersonNameComponents {
         #[cfg(feature = "NSString")]
         #[unsafe(method(namePrefix))]
         #[unsafe(method_family = none)]
-        pub unsafe fn namePrefix(&self) -> Option<Retained<NSString>>;
+        pub fn namePrefix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`namePrefix`][Self::namePrefix].
@@ -50,12 +50,12 @@ impl NSPersonNameComponents {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNamePrefix:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNamePrefix(&self, name_prefix: Option<&NSString>);
+        pub fn setNamePrefix(&self, name_prefix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(givenName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn givenName(&self) -> Option<Retained<NSString>>;
+        pub fn givenName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`givenName`][Self::givenName].
@@ -63,12 +63,12 @@ impl NSPersonNameComponents {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setGivenName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setGivenName(&self, given_name: Option<&NSString>);
+        pub fn setGivenName(&self, given_name: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(middleName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn middleName(&self) -> Option<Retained<NSString>>;
+        pub fn middleName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`middleName`][Self::middleName].
@@ -76,12 +76,12 @@ impl NSPersonNameComponents {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setMiddleName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMiddleName(&self, middle_name: Option<&NSString>);
+        pub fn setMiddleName(&self, middle_name: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(familyName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn familyName(&self) -> Option<Retained<NSString>>;
+        pub fn familyName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`familyName`][Self::familyName].
@@ -89,12 +89,12 @@ impl NSPersonNameComponents {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFamilyName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFamilyName(&self, family_name: Option<&NSString>);
+        pub fn setFamilyName(&self, family_name: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(nameSuffix))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nameSuffix(&self) -> Option<Retained<NSString>>;
+        pub fn nameSuffix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`nameSuffix`][Self::nameSuffix].
@@ -102,12 +102,12 @@ impl NSPersonNameComponents {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNameSuffix:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNameSuffix(&self, name_suffix: Option<&NSString>);
+        pub fn setNameSuffix(&self, name_suffix: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(nickname))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nickname(&self) -> Option<Retained<NSString>>;
+        pub fn nickname(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`nickname`][Self::nickname].
@@ -115,18 +115,18 @@ impl NSPersonNameComponents {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setNickname:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNickname(&self, nickname: Option<&NSString>);
+        pub fn setNickname(&self, nickname: Option<&NSString>);
 
         #[unsafe(method(phoneticRepresentation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn phoneticRepresentation(&self) -> Option<Retained<NSPersonNameComponents>>;
+        pub fn phoneticRepresentation(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         /// Setter for [`phoneticRepresentation`][Self::phoneticRepresentation].
         ///
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPhoneticRepresentation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPhoneticRepresentation(
+        pub fn setPhoneticRepresentation(
             &self,
             phonetic_representation: Option<&NSPersonNameComponents>,
         );

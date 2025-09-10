@@ -44,16 +44,16 @@ impl NSNotification {
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSNotificationName>;
+        pub fn name(&self) -> Retained<NSNotificationName>;
 
         #[unsafe(method(object))]
         #[unsafe(method_family = none)]
-        pub unsafe fn object(&self) -> Option<Retained<AnyObject>>;
+        pub fn object(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSDictionary")]
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
+        pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// # Safety
@@ -132,7 +132,7 @@ impl NSNotificationCenter {
     extern_methods!(
         #[unsafe(method(defaultCenter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultCenter() -> Retained<NSNotificationCenter>;
+        pub fn defaultCenter() -> Retained<NSNotificationCenter>;
 
         #[cfg(feature = "NSString")]
         /// # Safety

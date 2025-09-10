@@ -22,7 +22,7 @@ impl NSExtensionContext {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(inputItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputItems(&self) -> Retained<NSArray>;
+        pub fn inputItems(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
         /// # Safety

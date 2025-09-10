@@ -36,7 +36,7 @@ impl NSFileHandle {
         #[cfg(feature = "NSData")]
         #[unsafe(method(availableData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableData(&self) -> Retained<NSData>;
+        pub fn availableData(&self) -> Retained<NSData>;
 
         #[unsafe(method(initWithFileDescriptor:closeOnDealloc:))]
         #[unsafe(method_family = init)]
@@ -145,19 +145,19 @@ impl NSFileHandle {
     extern_methods!(
         #[unsafe(method(fileHandleWithStandardInput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileHandleWithStandardInput() -> Retained<NSFileHandle>;
+        pub fn fileHandleWithStandardInput() -> Retained<NSFileHandle>;
 
         #[unsafe(method(fileHandleWithStandardOutput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileHandleWithStandardOutput() -> Retained<NSFileHandle>;
+        pub fn fileHandleWithStandardOutput() -> Retained<NSFileHandle>;
 
         #[unsafe(method(fileHandleWithStandardError))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileHandleWithStandardError() -> Retained<NSFileHandle>;
+        pub fn fileHandleWithStandardError() -> Retained<NSFileHandle>;
 
         #[unsafe(method(fileHandleWithNullDevice))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileHandleWithNullDevice() -> Retained<NSFileHandle>;
+        pub fn fileHandleWithNullDevice() -> Retained<NSFileHandle>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(fileHandleForReadingAtPath:))]
@@ -358,7 +358,7 @@ impl NSFileHandle {
 
         #[unsafe(method(fileDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileDescriptor(&self) -> c_int;
+        pub fn fileDescriptor(&self) -> c_int;
     );
 }
 
@@ -385,7 +385,7 @@ impl NSFileHandle {
         #[deprecated]
         #[unsafe(method(offsetInFile))]
         #[unsafe(method_family = none)]
-        pub unsafe fn offsetInFile(&self) -> c_ulonglong;
+        pub fn offsetInFile(&self) -> c_ulonglong;
 
         #[deprecated]
         #[unsafe(method(seekToEndOfFile))]
@@ -433,11 +433,11 @@ impl NSPipe {
     extern_methods!(
         #[unsafe(method(fileHandleForReading))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileHandleForReading(&self) -> Retained<NSFileHandle>;
+        pub fn fileHandleForReading(&self) -> Retained<NSFileHandle>;
 
         #[unsafe(method(fileHandleForWriting))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileHandleForWriting(&self) -> Retained<NSFileHandle>;
+        pub fn fileHandleForWriting(&self) -> Retained<NSFileHandle>;
 
         #[unsafe(method(pipe))]
         #[unsafe(method_family = none)]

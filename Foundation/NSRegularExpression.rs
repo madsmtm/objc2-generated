@@ -95,15 +95,15 @@ impl NSRegularExpression {
         #[cfg(feature = "NSString")]
         #[unsafe(method(pattern))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pattern(&self) -> Retained<NSString>;
+        pub fn pattern(&self) -> Retained<NSString>;
 
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> NSRegularExpressionOptions;
+        pub fn options(&self) -> NSRegularExpressionOptions;
 
         #[unsafe(method(numberOfCaptureGroups))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfCaptureGroups(&self) -> NSUInteger;
+        pub fn numberOfCaptureGroups(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(escapedPatternForString:))]
@@ -347,7 +347,7 @@ impl NSDataDetector {
         #[cfg(feature = "NSTextCheckingResult")]
         #[unsafe(method(checkingTypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn checkingTypes(&self) -> NSTextCheckingTypes;
+        pub fn checkingTypes(&self) -> NSTextCheckingTypes;
     );
 }
 

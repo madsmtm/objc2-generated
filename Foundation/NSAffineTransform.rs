@@ -145,13 +145,13 @@ impl NSAffineTransform {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(transformStruct))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transformStruct(&self) -> NSAffineTransformStruct;
+        pub fn transformStruct(&self) -> NSAffineTransformStruct;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transformStruct`][Self::transformStruct].
         #[unsafe(method(setTransformStruct:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransformStruct(&self, transform_struct: NSAffineTransformStruct);
+        pub fn setTransformStruct(&self, transform_struct: NSAffineTransformStruct);
     );
 }
 

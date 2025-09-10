@@ -96,7 +96,7 @@ impl NSFileAccessIntent {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URL(&self) -> Retained<NSURL>;
+        pub fn URL(&self) -> Retained<NSURL>;
     );
 }
 
@@ -139,7 +139,7 @@ impl NSFileCoordinator {
         #[cfg(all(feature = "NSArray", feature = "NSFilePresenter"))]
         #[unsafe(method(filePresenters))]
         #[unsafe(method_family = none)]
-        pub unsafe fn filePresenters() -> Retained<NSArray<ProtocolObject<dyn NSFilePresenter>>>;
+        pub fn filePresenters() -> Retained<NSArray<ProtocolObject<dyn NSFilePresenter>>>;
 
         #[cfg(feature = "NSFilePresenter")]
         #[unsafe(method(initWithFilePresenter:))]
@@ -152,7 +152,7 @@ impl NSFileCoordinator {
         #[cfg(feature = "NSString")]
         #[unsafe(method(purposeIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn purposeIdentifier(&self) -> Retained<NSString>;
+        pub fn purposeIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`purposeIdentifier`][Self::purposeIdentifier].
@@ -160,7 +160,7 @@ impl NSFileCoordinator {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPurposeIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPurposeIdentifier(&self, purpose_identifier: &NSString);
+        pub fn setPurposeIdentifier(&self, purpose_identifier: &NSString);
 
         #[cfg(all(
             feature = "NSArray",

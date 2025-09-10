@@ -218,31 +218,31 @@ impl NSError {
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedFailureReason))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedFailureReason(&self) -> Option<Retained<NSString>>;
+        pub fn localizedFailureReason(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(localizedRecoverySuggestion))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedRecoverySuggestion(&self) -> Option<Retained<NSString>>;
+        pub fn localizedRecoverySuggestion(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(localizedRecoveryOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedRecoveryOptions(&self) -> Option<Retained<NSArray<NSString>>>;
+        pub fn localizedRecoveryOptions(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[unsafe(method(recoveryAttempter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recoveryAttempter(&self) -> Option<Retained<AnyObject>>;
+        pub fn recoveryAttempter(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(helpAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn helpAnchor(&self) -> Option<Retained<NSString>>;
+        pub fn helpAnchor(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(underlyingErrors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn underlyingErrors(&self) -> Retained<NSArray<NSError>>;
+        pub fn underlyingErrors(&self) -> Retained<NSArray<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
         /// # Safety

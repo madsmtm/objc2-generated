@@ -75,7 +75,7 @@ impl NSUserDefaults {
         /// +standardUserDefaults returns a global instance of NSUserDefaults configured to search the current application's search list.
         #[unsafe(method(standardUserDefaults))]
         #[unsafe(method_family = none)]
-        pub unsafe fn standardUserDefaults() -> Retained<NSUserDefaults>;
+        pub fn standardUserDefaults() -> Retained<NSUserDefaults>;
 
         /// +resetStandardUserDefaults releases the standardUserDefaults and sets it to nil. A new standardUserDefaults will be created the next time it's accessed. The only visible effect this has is that all KVO observers of the previous standardUserDefaults will no longer be observing it.
         #[unsafe(method(resetStandardUserDefaults))]
@@ -264,7 +264,7 @@ impl NSUserDefaults {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(volatileDomainNames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn volatileDomainNames(&self) -> Retained<NSArray<NSString>>;
+        pub fn volatileDomainNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(volatileDomainForName:))]
