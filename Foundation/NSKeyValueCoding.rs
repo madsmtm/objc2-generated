@@ -111,6 +111,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `io_value` should be of the correct type.
         #[unsafe(method(validateValue:forKey:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn validateValue_forKey_error(
@@ -160,6 +163,9 @@ pub unsafe trait NSObjectNSKeyValueCoding:
         unsafe fn setValue_forKeyPath(&self, value: Option<&AnyObject>, key_path: &NSString);
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `io_value` should be of the correct type.
         #[unsafe(method(validateValue:forKeyPath:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn validateValue_forKeyPath_error(

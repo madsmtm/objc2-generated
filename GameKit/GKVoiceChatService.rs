@@ -56,7 +56,8 @@ impl GKVoiceChatService {
 
         /// # Safety
         ///
-        /// `participant_id` might not allow `None`.
+        /// - `participant_id` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(startVoiceChatWithParticipantID:error:))]
         #[unsafe(method_family = none)]
@@ -74,6 +75,9 @@ impl GKVoiceChatService {
         #[unsafe(method_family = none)]
         pub unsafe fn stopVoiceChatWithParticipantID(&self, participant_id: Option<&NSString>);
 
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[deprecated = "Use SharePlay instead"]
         #[unsafe(method(acceptCallID:error:))]
         #[unsafe(method_family = none)]

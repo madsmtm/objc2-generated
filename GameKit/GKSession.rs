@@ -125,6 +125,7 @@ impl GKSession {
         /// - `data` might not allow `None`.
         /// - `peers` generic should be of the correct type.
         /// - `peers` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "No longer supported."]
         #[unsafe(method(sendData:toPeers:withDataMode:error:))]
         #[unsafe(method_family = none)]
@@ -141,7 +142,8 @@ impl GKSession {
         ///
         /// # Safety
         ///
-        /// `data` might not allow `None`.
+        /// - `data` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "No longer supported."]
         #[unsafe(method(sendDataToAllPeers:withDataMode:error:))]
         #[unsafe(method_family = none)]
@@ -197,7 +199,8 @@ impl GKSession {
         ///
         /// # Safety
         ///
-        /// `peer_id` might not allow `None`.
+        /// - `peer_id` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated]
         #[unsafe(method(acceptConnectionFromPeer:error:))]
         #[unsafe(method_family = none)]

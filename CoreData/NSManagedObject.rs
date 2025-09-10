@@ -250,6 +250,9 @@ impl NSManagedObject {
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(validateValue:forKey:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn validateValue_forKey_error(

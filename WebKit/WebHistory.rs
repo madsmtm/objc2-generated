@@ -88,7 +88,8 @@ impl WebHistory {
         ///
         /// # Safety
         ///
-        /// `url` might not allow `None`.
+        /// - `url` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated]
         #[unsafe(method(loadFromURL:error:))]
         #[unsafe(method_family = none)]
@@ -108,7 +109,8 @@ impl WebHistory {
         ///
         /// # Safety
         ///
-        /// `url` might not allow `None`.
+        /// - `url` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated]
         #[unsafe(method(saveToURL:error:))]
         #[unsafe(method_family = none)]

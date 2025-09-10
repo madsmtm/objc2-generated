@@ -172,6 +172,9 @@ impl NSSpellChecker {
             language: Option<&NSString>,
         ) -> NSInteger;
 
+        /// # Safety
+        ///
+        /// `details` generic generic should be of the correct type.
         #[unsafe(method(checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkGrammarOfString_startingAt_language_wrap_inSpellDocumentWithTag_details(

@@ -103,7 +103,8 @@ impl AMAction {
 
         /// # Safety
         ///
-        /// `input` should be of the correct type.
+        /// - `input` should be of the correct type.
+        /// - `error_info` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(runWithInput:fromAction:error:))]
         #[unsafe(method_family = none)]

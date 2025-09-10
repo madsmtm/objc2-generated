@@ -1364,6 +1364,9 @@ impl NSURL {
         pub unsafe fn filePathURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(getResourceValue:forKey:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getResourceValue_forKey_error(
@@ -1535,6 +1538,9 @@ impl NSURL {
 impl NSURL {
     extern_methods!(
         #[cfg(all(feature = "NSError", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(getPromisedItemResourceValue:forKey:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPromisedItemResourceValue_forKey_error(

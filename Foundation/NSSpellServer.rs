@@ -165,6 +165,9 @@ extern_protocol!(
             feature = "NSRange",
             feature = "NSString"
         ))]
+        /// # Safety
+        ///
+        /// `details` generic generic should be of the correct type.
         #[optional]
         #[unsafe(method(spellServer:checkGrammarInString:language:details:))]
         #[unsafe(method_family = none)]

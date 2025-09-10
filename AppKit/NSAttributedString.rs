@@ -456,7 +456,8 @@ pub unsafe trait NSAttributedStringDocumentFormats:
     extern_methods!(
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `dict` generic should be of the correct type.
         #[unsafe(method(initWithURL:options:documentAttributes:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithURL_options_documentAttributes_error(
@@ -472,7 +473,8 @@ pub unsafe trait NSAttributedStringDocumentFormats:
 
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `dict` generic should be of the correct type.
         #[unsafe(method(initWithData:options:documentAttributes:error:_))]
         #[unsafe(method_family = init)]
         unsafe fn initWithData_options_documentAttributes_error(
@@ -524,7 +526,8 @@ pub unsafe trait NSMutableAttributedStringDocumentFormats:
     extern_methods!(
         /// # Safety
         ///
-        /// `opts` generic should be of the correct type.
+        /// - `opts` generic should be of the correct type.
+        /// - `dict` generic should be of the correct type.
         #[unsafe(method(readFromURL:options:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn readFromURL_options_documentAttributes_error(
@@ -540,7 +543,8 @@ pub unsafe trait NSMutableAttributedStringDocumentFormats:
 
         /// # Safety
         ///
-        /// `opts` generic should be of the correct type.
+        /// - `opts` generic should be of the correct type.
+        /// - `dict` generic should be of the correct type.
         #[unsafe(method(readFromData:options:documentAttributes:error:_))]
         #[unsafe(method_family = none)]
         unsafe fn readFromData_options_documentAttributes_error(
@@ -853,6 +857,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
     ClassType + Sized + private_NSAttributedStringAppKitDocumentFormats::Sealed
 {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithRTF:documentAttributes:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithRTF_documentAttributes(
@@ -865,6 +872,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             >,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithRTFD:documentAttributes:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithRTFD_documentAttributes(
@@ -877,6 +887,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             >,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithHTML:documentAttributes:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithHTML_documentAttributes(
@@ -889,6 +902,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             >,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithHTML:baseURL:documentAttributes:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithHTML_baseURL_documentAttributes(
@@ -902,6 +918,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             >,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithDocFormat:documentAttributes:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithDocFormat_documentAttributes(
@@ -916,7 +935,8 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
 
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `dict` generic should be of the correct type.
         #[unsafe(method(initWithHTML:options:documentAttributes:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithHTML_options_documentAttributes(
@@ -930,6 +950,9 @@ pub unsafe trait NSAttributedStringAppKitDocumentFormats:
             >,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[unsafe(method(initWithRTFDFileWrapper:documentAttributes:))]
         #[unsafe(method_family = init)]
         unsafe fn initWithRTFDFileWrapper_documentAttributes(
@@ -1270,6 +1293,9 @@ pub unsafe trait NSAttributedStringNSDeprecatedKitAdditions:
         #[unsafe(method_family = none)]
         unsafe fn textUnfilteredPasteboardTypes() -> Retained<NSArray>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[unsafe(method(initWithURL:documentAttributes:))]
         #[unsafe(method_family = init)]
@@ -1279,6 +1305,9 @@ pub unsafe trait NSAttributedStringNSDeprecatedKitAdditions:
             dict: Option<&mut Option<Retained<NSDictionary>>>,
         ) -> Option<Retained<Self>>;
 
+        /// # Safety
+        ///
+        /// `dict` generic should be of the correct type.
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
         #[unsafe(method(initWithPath:documentAttributes:))]
         #[unsafe(method_family = init)]

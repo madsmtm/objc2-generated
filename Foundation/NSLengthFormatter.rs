@@ -136,6 +136,9 @@ impl NSLengthFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(getObjectValue:forString:errorDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_errorDescription(

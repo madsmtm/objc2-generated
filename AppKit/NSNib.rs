@@ -87,6 +87,8 @@ impl NSNib {
         ///
         /// - `owner` should be of the correct type.
         /// - `owner` might not allow `None`.
+        /// - `top_level_objects` generic should be of the correct type.
+        /// - `top_level_objects` might not allow `None`.
         #[deprecated]
         #[unsafe(method(instantiateNibWithOwner:topLevelObjects:))]
         #[unsafe(method_family = none)]

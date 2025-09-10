@@ -82,6 +82,7 @@ impl ODQuery {
         /// - `in_query_value_or_list` might not allow `None`.
         /// - `in_return_attribute_or_list` should be of the correct type.
         /// - `in_return_attribute_or_list` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
@@ -117,6 +118,7 @@ impl ODQuery {
         /// - `in_query_value_or_list` might not allow `None`.
         /// - `in_return_attribute_or_list` should be of the correct type.
         /// - `in_return_attribute_or_list` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
@@ -137,6 +139,10 @@ impl ODQuery {
         /// will block the call until all results are returned or an error occurs.  YES can be passed at any time
         /// even if previous calls were made with NO.  outError is optional parameter, nil can be passed if error
         /// details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `out_error` might not allow `None`.
         #[unsafe(method(resultsAllowingPartial:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn resultsAllowingPartial_error(

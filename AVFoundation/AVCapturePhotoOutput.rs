@@ -2970,6 +2970,10 @@ extern_protocol!(
         ///
         ///
         /// This callback is optional. If your delegate does not implement this callback, the existing embedded thumbnail photo in the in-memory AVCapturePhoto container will be written to the file data representation.
+        ///
+        /// # Safety
+        ///
+        /// `replacement_embedded_thumbnail_photo_format_out` generic should be of the correct type.
         #[optional]
         #[unsafe(method(replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:))]
         #[unsafe(method_family = none)]

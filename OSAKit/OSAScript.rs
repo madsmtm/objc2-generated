@@ -183,6 +183,9 @@ impl OSAScript {
             storage_options: OSAStorageOptions,
         ) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[unsafe(method(initWithContentsOfURL:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
@@ -192,6 +195,9 @@ impl OSAScript {
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "OSALanguage")]
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(initWithContentsOfURL:language:error:))]
         #[unsafe(method_family = init)]
@@ -212,6 +218,9 @@ impl OSAScript {
             storage_options: OSAStorageOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(initWithCompiledData:error:))]
         #[unsafe(method_family = init)]
@@ -275,6 +284,9 @@ impl OSAScript {
         #[unsafe(method_family = none)]
         pub unsafe fn isCompiled(&self) -> bool;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[unsafe(method(compileAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compileAndReturnError(
@@ -282,6 +294,9 @@ impl OSAScript {
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[unsafe(method(executeAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeAndReturnError(
@@ -289,6 +304,9 @@ impl OSAScript {
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[unsafe(method(executeAppleEvent:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeAppleEvent_error(
@@ -297,6 +315,9 @@ impl OSAScript {
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[unsafe(method(executeAndReturnDisplayValue:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeAndReturnDisplayValue_error(
@@ -307,7 +328,8 @@ impl OSAScript {
 
         /// # Safety
         ///
-        /// `arguments` generic should be of the correct type.
+        /// - `arguments` generic should be of the correct type.
+        /// - `error_info` generic should be of the correct type.
         #[unsafe(method(executeHandlerWithName:arguments:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeHandlerWithName_arguments_error(
@@ -328,6 +350,9 @@ impl OSAScript {
             descriptor: &NSAppleEventDescriptor,
         ) -> Option<Retained<NSAttributedString>>;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[unsafe(method(writeToURL:ofType:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_ofType_error(
@@ -337,6 +362,9 @@ impl OSAScript {
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[unsafe(method(writeToURL:ofType:usingStorageOptions:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_ofType_usingStorageOptions_error(
@@ -347,6 +375,9 @@ impl OSAScript {
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
+        /// # Safety
+        ///
+        /// `error_info` generic should be of the correct type.
         #[unsafe(method(compiledDataForType:usingStorageOptions:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn compiledDataForType_usingStorageOptions_error(

@@ -69,6 +69,10 @@ impl IOBluetoothServiceBrowserController {
         ///
         /// This method allocates and runs the browser window as a modal window waiting for the user to either select a
         /// service, or cancel the browser window.
+        ///
+        /// # Safety
+        ///
+        /// `out_record` might not allow `None`.
         #[deprecated]
         #[unsafe(method(browseDevices:options:))]
         #[unsafe(method_family = none)]
@@ -95,7 +99,8 @@ impl IOBluetoothServiceBrowserController {
         ///
         /// # Safety
         ///
-        /// `in_window` might not allow `None`.
+        /// - `out_record` might not allow `None`.
+        /// - `in_window` might not allow `None`.
         #[deprecated]
         #[unsafe(method(browseDevicesAsSheetForWindow:options:window:))]
         #[unsafe(method_family = none)]
@@ -145,6 +150,10 @@ impl IOBluetoothServiceBrowserController {
         /// kCanceledErr - User canceled.
         ///
         /// This method will run the IOBluetoothServiceBrowserController browser window modally.
+        ///
+        /// # Safety
+        ///
+        /// `out_record` might not allow `None`.
         #[deprecated]
         #[unsafe(method(discover:))]
         #[unsafe(method_family = none)]
@@ -170,7 +179,8 @@ impl IOBluetoothServiceBrowserController {
         ///
         /// # Safety
         ///
-        /// `sheet_window` might not allow `None`.
+        /// - `sheet_window` might not allow `None`.
+        /// - `out_record` might not allow `None`.
         #[deprecated]
         #[unsafe(method(discoverAsSheetForWindow:withRecord:))]
         #[unsafe(method_family = none)]
@@ -205,6 +215,7 @@ impl IOBluetoothServiceBrowserController {
         /// - `device_attributes` must be a valid pointer.
         /// - `service_array` generic should be of the correct type.
         /// - `service_array` might not allow `None`.
+        /// - `out_record` might not allow `None`.
         #[deprecated]
         #[unsafe(method(discoverWithDeviceAttributes:serviceList:serviceRecord:))]
         #[unsafe(method_family = none)]

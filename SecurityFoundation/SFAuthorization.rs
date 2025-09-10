@@ -107,7 +107,8 @@ impl SFAuthorization {
         ///
         /// # Safety
         ///
-        /// `right_name` must be a valid pointer.
+        /// - `right_name` must be a valid pointer.
+        /// - `error` might not allow `None`.
         #[unsafe(method(obtainWithRight:flags:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn obtainWithRight_flags_error(
@@ -135,6 +136,7 @@ impl SFAuthorization {
         /// - `rights` must be a valid pointer.
         /// - `environment` must be a valid pointer.
         /// - `authorized_rights` must be a valid pointer.
+        /// - `error` might not allow `None`.
         #[unsafe(method(obtainWithRights:flags:environment:authorizedRights:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn obtainWithRights_flags_environment_authorizedRights_error(

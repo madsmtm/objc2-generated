@@ -39,6 +39,7 @@ impl ODRecord {
         ///
         /// - `in_username` might not allow `None`.
         /// - `in_password` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(setNodeCredentials:password:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNodeCredentials_password_error(
@@ -63,6 +64,11 @@ impl ODRecord {
         /// - `in_type` might not allow `None`.
         /// - `in_items` generic should be of the correct type.
         /// - `in_items` might not allow `None`.
+        /// - `out_items` generic should be of the correct type.
+        /// - `out_items` might not allow `None`.
+        /// - `out_context` should be of the correct type.
+        /// - `out_context` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(setNodeCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNodeCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
@@ -81,7 +87,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `in_cache_name` might not allow `None`.
+        /// - `in_cache_name` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setNodeCredentialsUsingKerberosCache:error:))]
         #[unsafe(method_family = none)]
@@ -95,6 +102,10 @@ impl ODRecord {
         ///
         /// Returns a dictionary containing the password policy for the record if available.  If no policy for record
         /// nil will be returned.  outError is optional parameter, nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `out_error` might not allow `None`.
         #[deprecated = "use effectivePoliciesAndReturnError"]
         #[unsafe(method(passwordPolicyAndReturnError:))]
         #[unsafe(method_family = none)]
@@ -110,7 +121,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `in_password` might not allow `None`.
+        /// - `in_password` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(verifyPassword:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn verifyPassword_error(
@@ -133,6 +145,11 @@ impl ODRecord {
         /// - `in_type` might not allow `None`.
         /// - `in_items` generic should be of the correct type.
         /// - `in_items` might not allow `None`.
+        /// - `out_items` generic should be of the correct type.
+        /// - `out_items` might not allow `None`.
+        /// - `out_context` should be of the correct type.
+        /// - `out_context` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(verifyExtendedWithAuthenticationType:authenticationItems:continueItems:context:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn verifyExtendedWithAuthenticationType_authenticationItems_continueItems_context_error(
@@ -153,6 +170,7 @@ impl ODRecord {
         ///
         /// - `old_password` might not allow `None`.
         /// - `new_password` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(changePassword:toPassword:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn changePassword_toPassword_error(
@@ -169,6 +187,10 @@ impl ODRecord {
         /// has been accessed.  Additionally, any changes made to the record will be committed to the directory,
         /// if the node does not do immediate commits.  outError is optional parameter, nil can be passed if error details
         /// are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `out_error` might not allow `None`.
         #[unsafe(method(synchronizeAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizeAndReturnError(
@@ -202,6 +224,7 @@ impl ODRecord {
         ///
         /// - `in_attributes` generic should be of the correct type.
         /// - `in_attributes` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(recordDetailsForAttributes:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordDetailsForAttributes_error(
@@ -218,7 +241,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `in_attribute` might not allow `None`.
+        /// - `in_attribute` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(valuesForAttribute:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valuesForAttribute_error(
@@ -238,6 +262,7 @@ impl ODRecord {
         /// - `in_value_or_values` should be of the correct type.
         /// - `in_value_or_values` might not allow `None`.
         /// - `in_attribute` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(setValue:forAttribute:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttribute_error(
@@ -255,7 +280,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `in_attribute` might not allow `None`.
+        /// - `in_attribute` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(removeValuesForAttribute:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeValuesForAttribute_error(
@@ -275,6 +301,7 @@ impl ODRecord {
         /// - `in_value` should be of the correct type.
         /// - `in_value` might not allow `None`.
         /// - `in_attribute` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(addValue:toAttribute:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addValue_toAttribute_error(
@@ -295,6 +322,7 @@ impl ODRecord {
         /// - `in_value` should be of the correct type.
         /// - `in_value` might not allow `None`.
         /// - `in_attribute` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(removeValue:fromAttribute:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeValue_fromAttribute_error(
@@ -308,6 +336,10 @@ impl ODRecord {
         ///
         /// Deletes the record from the node and invalidates the record.  The ODRecord should be
         /// released after deletion.  outError is optional parameter, nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `out_error` might not allow `None`.
         #[unsafe(method(deleteRecordAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteRecordAndReturnError(
@@ -318,6 +350,10 @@ impl ODRecord {
         /// This will copy any policies configured for the record.
         ///
         /// This will copy any policies configured for the record.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[deprecated = "use accountPoliciesAndReturnError:"]
         #[unsafe(method(policiesAndReturnError:))]
         #[unsafe(method_family = none)]
@@ -329,6 +365,10 @@ impl ODRecord {
         /// This will copy any policies configured for the record.
         ///
         /// This will copy any policies configured for the record.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[deprecated = "use authenticationAllowedAndReturnError: and similar methods"]
         #[unsafe(method(effectivePoliciesAndReturnError:))]
         #[unsafe(method_family = none)]
@@ -342,6 +382,10 @@ impl ODRecord {
         /// This will return a dictionary of supported policies, if appropriate, the value will be the maximum value allowed
         /// for the policy in question.  For example, if password history is available, it will state how much history is
         /// supported.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[deprecated]
         #[unsafe(method(supportedPoliciesAndReturnError:))]
         #[unsafe(method_family = none)]
@@ -358,6 +402,7 @@ impl ODRecord {
         ///
         /// - `policies` generic should be of the correct type.
         /// - `policies` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "use setAccountPolicies:error:"]
         #[unsafe(method(setPolicies:error:))]
         #[unsafe(method_family = none)]
@@ -377,6 +422,7 @@ impl ODRecord {
         /// - `policy` might not allow `None`.
         /// - `value` should be of the correct type.
         /// - `value` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
         #[unsafe(method(setPolicy:value:error:))]
         #[unsafe(method_family = none)]
@@ -394,7 +440,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `policy` might not allow `None`.
+        /// - `policy` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
         #[unsafe(method(removePolicy:error:))]
         #[unsafe(method_family = none)]
@@ -432,6 +479,7 @@ impl ODRecord {
         /// - `policy` generic should be of the correct type.
         /// - `policy` might not allow `None`.
         /// - `category` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(addAccountPolicy:toCategory:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccountPolicy_toCategory_error(
@@ -460,6 +508,7 @@ impl ODRecord {
         /// - `policy` generic should be of the correct type.
         /// - `policy` might not allow `None`.
         /// - `category` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(removeAccountPolicy:fromCategory:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
@@ -495,6 +544,7 @@ impl ODRecord {
         ///
         /// - `policies` generic should be of the correct type.
         /// - `policies` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(setAccountPolicies:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountPolicies_error(
@@ -515,6 +565,10 @@ impl ODRecord {
         /// Returns: a NSDictionary containing all currently set policies.  The
         /// format of the dictionary is the same as described in
         /// setAccountPolicies.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[unsafe(method(accountPoliciesAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountPoliciesAndReturnError(
@@ -544,6 +598,10 @@ impl ODRecord {
         /// Parameter `error`: an optional NSError reference for error details.
         ///
         /// Returns: a bool which signifies if the authentication is allowed, otherwise error is set.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[unsafe(method(authenticationAllowedAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticationAllowedAndReturnError(
@@ -573,7 +631,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `new_password` might not allow `None`.
+        /// - `new_password` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(passwordChangeAllowed:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordChangeAllowed_error(
@@ -680,7 +739,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `in_record` might not allow `None`.
+        /// - `in_record` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(addMemberRecord:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMemberRecord_error(
@@ -697,7 +757,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `in_record` might not allow `None`.
+        /// - `in_record` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(removeMemberRecord:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeMemberRecord_error(
@@ -714,7 +775,8 @@ impl ODRecord {
         ///
         /// # Safety
         ///
-        /// `in_record` might not allow `None`.
+        /// - `in_record` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(isMemberRecord:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMemberRecord_error(

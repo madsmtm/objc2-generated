@@ -339,7 +339,8 @@ impl ODConfiguration {
         ///
         /// # Safety
         ///
-        /// `authorization` might not allow `None`.
+        /// - `authorization` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(saveUsingAuthorization:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveUsingAuthorization_error(
@@ -363,6 +364,7 @@ impl ODConfiguration {
         /// - `account_password` might not allow `None`.
         /// - `username` might not allow `None`.
         /// - `password` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrustType_trustAccount_trustPassword_username_password_joinExisting_error(
@@ -385,6 +387,7 @@ impl ODConfiguration {
         ///
         /// - `username` might not allow `None`.
         /// - `password` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(removeTrustUsingUsername:password:deleteTrustAccount:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrustUsingUsername_password_deleteTrustAccount_error(

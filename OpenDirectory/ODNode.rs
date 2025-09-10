@@ -35,7 +35,8 @@ impl ODNode {
         ///
         /// # Safety
         ///
-        /// `in_session` might not allow `None`.
+        /// - `in_session` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(nodeWithSession:type:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSession_type_error(
@@ -54,6 +55,7 @@ impl ODNode {
         ///
         /// - `in_session` might not allow `None`.
         /// - `in_name` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(nodeWithSession:name:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSession_name_error(
@@ -74,7 +76,8 @@ impl ODNode {
         ///
         /// # Safety
         ///
-        /// `in_session` might not allow `None`.
+        /// - `in_session` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(initWithSession:type:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_type_error(
@@ -94,6 +97,7 @@ impl ODNode {
         ///
         /// - `in_session` might not allow `None`.
         /// - `in_name` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(initWithSession:name:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_name_error(
@@ -108,6 +112,10 @@ impl ODNode {
         /// Returns NSArray of node names for this node, which may contain sub-nodes or search policy nodes.
         /// Commonly used with Search policy nodes.  outError is optional parameter, nil can be passed if error
         /// details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `out_error` might not allow `None`.
         #[unsafe(method(subnodeNamesAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn subnodeNamesAndReturnError(
@@ -120,6 +128,10 @@ impl ODNode {
         /// Will return NSArray of names of subnodes that are not currently reachable.  Commonly used with Search policy
         /// nodes to determine if any nodes are currently unreachable, but may also return other subnodes if the
         /// OpenDirectory plugin supports.  outError is optional parameter, nil can be passed if error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `out_error` might not allow `None`.
         #[unsafe(method(unreachableSubnodeNamesAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn unreachableSubnodeNamesAndReturnError(
@@ -144,6 +156,7 @@ impl ODNode {
         ///
         /// - `in_keys` generic should be of the correct type.
         /// - `in_keys` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(nodeDetailsForKeys:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeDetailsForKeys_error(
@@ -157,6 +170,10 @@ impl ODNode {
         /// Returns a NSArray of the record types supported by this node.  If node does not support the check
         /// then all possible types will be returned.  outError is optional parameter, nil can be passed if error details
         /// are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `out_error` might not allow `None`.
         #[unsafe(method(supportedRecordTypesAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRecordTypesAndReturnError(
@@ -173,7 +190,8 @@ impl ODNode {
         ///
         /// # Safety
         ///
-        /// `in_record_type` might not allow `None`.
+        /// - `in_record_type` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(supportedAttributesForRecordType:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedAttributesForRecordType_error(
@@ -195,6 +213,7 @@ impl ODNode {
         /// - `in_record_type` might not allow `None`.
         /// - `in_record_name` might not allow `None`.
         /// - `in_password` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(setCredentialsWithRecordType:recordName:password:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsWithRecordType_recordName_password_error(
@@ -219,6 +238,11 @@ impl ODNode {
         /// - `in_type` might not allow `None`.
         /// - `in_items` generic should be of the correct type.
         /// - `in_items` might not allow `None`.
+        /// - `out_items` generic should be of the correct type.
+        /// - `out_items` might not allow `None`.
+        /// - `out_context` should be of the correct type.
+        /// - `out_context` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(setCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
@@ -237,7 +261,8 @@ impl ODNode {
         ///
         /// # Safety
         ///
-        /// `in_cache_name` might not allow `None`.
+        /// - `in_cache_name` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setCredentialsUsingKerberosCache:error:))]
         #[unsafe(method_family = none)]
@@ -264,6 +289,7 @@ impl ODNode {
         /// - `in_record_name` might not allow `None`.
         /// - `in_attributes` generic should be of the correct type.
         /// - `in_attributes` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(createRecordWithRecordType:name:attributes:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createRecordWithRecordType_name_attributes_error(
@@ -291,6 +317,7 @@ impl ODNode {
         /// - `in_record_name` might not allow `None`.
         /// - `in_attributes` should be of the correct type.
         /// - `in_attributes` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(recordWithRecordType:name:attributes:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordWithRecordType_name_attributes_error(
@@ -308,7 +335,8 @@ impl ODNode {
         ///
         /// # Safety
         ///
-        /// `in_send_data` might not allow `None`.
+        /// - `in_send_data` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(customCall:sendData:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customCall_sendData_error(
@@ -329,6 +357,7 @@ impl ODNode {
         /// - `function` might not allow `None`.
         /// - `payload` should be of the correct type.
         /// - `payload` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(customFunction:payload:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customFunction_payload_error(
@@ -350,6 +379,10 @@ impl ODNode {
         /// This will copy any policies configured for the node.
         ///
         /// This will copy any policies configured for the node.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[deprecated = "use accountPoliciesAndReturnError:"]
         #[unsafe(method(policiesAndReturnError:))]
         #[unsafe(method_family = none)]
@@ -363,6 +396,10 @@ impl ODNode {
         /// This will return a dictionary of supported policies, if appropriate, the value will be the maximum value allowed
         /// for the policy in question.  For example, if password history is available, it will state how much history is
         /// supported.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[deprecated]
         #[unsafe(method(supportedPoliciesAndReturnError:))]
         #[unsafe(method_family = none)]
@@ -379,6 +416,7 @@ impl ODNode {
         ///
         /// - `policies` generic should be of the correct type.
         /// - `policies` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "use setAccountPolicies:error:"]
         #[unsafe(method(setPolicies:error:))]
         #[unsafe(method_family = none)]
@@ -398,6 +436,7 @@ impl ODNode {
         /// - `policy` might not allow `None`.
         /// - `value` should be of the correct type.
         /// - `value` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
         #[unsafe(method(setPolicy:value:error:))]
         #[unsafe(method_family = none)]
@@ -415,7 +454,8 @@ impl ODNode {
         ///
         /// # Safety
         ///
-        /// `policy` might not allow `None`.
+        /// - `policy` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
         #[unsafe(method(removePolicy:error:))]
         #[unsafe(method_family = none)]
@@ -453,6 +493,7 @@ impl ODNode {
         /// - `policy` generic should be of the correct type.
         /// - `policy` might not allow `None`.
         /// - `category` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(addAccountPolicy:toCategory:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccountPolicy_toCategory_error(
@@ -481,6 +522,7 @@ impl ODNode {
         /// - `policy` generic should be of the correct type.
         /// - `policy` might not allow `None`.
         /// - `category` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(removeAccountPolicy:fromCategory:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
@@ -516,6 +558,7 @@ impl ODNode {
         ///
         /// - `policies` generic should be of the correct type.
         /// - `policies` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(setAccountPolicies:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountPolicies_error(
@@ -533,6 +576,10 @@ impl ODNode {
         /// Returns: an NSDictionary containing all currently set policies.  The
         /// format of the dictionary is the same as described in
         /// setAccountPolicies.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[unsafe(method(accountPoliciesAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn accountPoliciesAndReturnError(
@@ -565,6 +612,7 @@ impl ODNode {
         ///
         /// - `password` might not allow `None`.
         /// - `record_name` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(passwordContentCheck:forRecordName:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordContentCheck_forRecordName_error(

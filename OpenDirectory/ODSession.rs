@@ -87,6 +87,7 @@ impl ODSession {
         ///
         /// - `in_options` generic should be of the correct type.
         /// - `in_options` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(sessionWithOptions:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithOptions_error(
@@ -111,6 +112,7 @@ impl ODSession {
         ///
         /// - `in_options` generic should be of the correct type.
         /// - `in_options` might not allow `None`.
+        /// - `out_error` might not allow `None`.
         #[unsafe(method(initWithOptions:error:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions_error(
@@ -123,6 +125,10 @@ impl ODSession {
         ///
         /// Returns the node names that are registered on this ODSession.  outError can be nil if
         /// error details are not needed.
+        ///
+        /// # Safety
+        ///
+        /// `out_error` might not allow `None`.
         #[unsafe(method(nodeNamesAndReturnError:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeNamesAndReturnError(
@@ -155,6 +161,10 @@ impl ODSession {
         ///
         /// Returns an authorization appropriate for managing configurations.  If a proxy session is in use this method will return
         /// nil and no error.
+        ///
+        /// # Safety
+        ///
+        /// `error` might not allow `None`.
         #[unsafe(method(configurationAuthorizationAllowingUserInteraction:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationAuthorizationAllowingUserInteraction_error(
@@ -189,6 +199,7 @@ impl ODSession {
         ///
         /// - `configuration` might not allow `None`.
         /// - `authorization` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(addConfiguration:authorization:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addConfiguration_authorization_error(
@@ -208,6 +219,7 @@ impl ODSession {
         ///
         /// - `configuration` might not allow `None`.
         /// - `authorization` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(deleteConfiguration:authorization:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteConfiguration_authorization_error(
@@ -227,6 +239,7 @@ impl ODSession {
         ///
         /// - `nodename` might not allow `None`.
         /// - `authorization` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(deleteConfigurationWithNodename:authorization:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteConfigurationWithNodename_authorization_error(

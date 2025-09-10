@@ -257,6 +257,7 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
+        /// - `new_channel` might not allow `None`.
         /// - `channel_delegate` should be of the correct type.
         /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openL2CAPChannelSync:withPSM:delegate:))]
@@ -298,6 +299,7 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
+        /// - `new_channel` might not allow `None`.
         /// - `channel_delegate` should be of the correct type.
         /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openL2CAPChannelAsync:withPSM:delegate:))]
@@ -331,6 +333,10 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the open process was successfully started (or if an existing
         /// L2CAP channel was found).
+        ///
+        /// # Safety
+        ///
+        /// `new_channel` might not allow `None`.
         #[deprecated]
         #[unsafe(method(openL2CAPChannel:findExisting:newChannel:))]
         #[unsafe(method_family = none)]
@@ -382,6 +388,10 @@ impl IOBluetoothDevice {
         ///
         /// Returns: Returns kIOReturnSuccess if the open process was successfully started (or if an existing
         /// RFCOMM channel was found).
+        ///
+        /// # Safety
+        ///
+        /// `rfcomm_channel` might not allow `None`.
         #[deprecated]
         #[unsafe(method(openRFCOMMChannel:channel:))]
         #[unsafe(method_family = none)]
@@ -430,6 +440,7 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
+        /// - `rfcomm_channel` might not allow `None`.
         /// - `channel_delegate` should be of the correct type.
         /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openRFCOMMChannelSync:withChannelID:delegate:))]
@@ -480,6 +491,7 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
+        /// - `rfcomm_channel` might not allow `None`.
         /// - `channel_delegate` should be of the correct type.
         /// - `channel_delegate` might not allow `None`.
         #[unsafe(method(openRFCOMMChannelAsync:withChannelID:delegate:))]
@@ -1195,6 +1207,7 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
+        /// - `new_channel` might not allow `None`.
         /// - `channel_configuration` generic should be of the correct type.
         /// - `channel_configuration` might not allow `None`.
         /// - `channel_delegate` should be of the correct type.
@@ -1247,6 +1260,7 @@ impl IOBluetoothDevice {
         ///
         /// # Safety
         ///
+        /// - `new_channel` might not allow `None`.
         /// - `channel_configuration` generic should be of the correct type.
         /// - `channel_configuration` might not allow `None`.
         /// - `channel_delegate` should be of the correct type.

@@ -28,6 +28,7 @@ impl AMWorkspace {
         /// - `path` might not allow `None`.
         /// - `input` should be of the correct type.
         /// - `input` might not allow `None`.
+        /// - `error` might not allow `None`.
         #[unsafe(method(runWorkflowAtPath:withInput:error:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runWorkflowAtPath_withInput_error(
