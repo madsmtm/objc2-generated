@@ -15,9 +15,22 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Creates a new VTFrameProcessor for the configured video effect
+    /// Provides a unified interface you can use to apply video effects to frames.
     ///
-    /// The VTFrameProcessor class is the main class to perform frame processing. Users can specify a video effect by passing a VTFrameProcessorConfiguration based object to the startSessionWithConfiguration call. Once a session is created, the processWithParameters method is called in a loop to process the frames one by one. Once all the frames are processed, endSession needs to called to finish all pending processing.  The caller needs to ensure that all buffers passed to the processWithParameters interface are unmodified (inclduing attachments) until the function returns or the callback is received in the case of asynchronous mode.
+    /// The VTFrameProcessor gives access to a set of powerful video processing implementation suitable for different use cases.
+    /// A configuration object (conforming to the ``VTFrameProcessorConfiguration`` protocol) passes initialization and
+    /// configuration parameters for the processor. A Parameter object (conforming to the ``VTFrameProcessorParameters``
+    /// protocol) provides the parameters for each individual processing operation. A Configuration object and a Parameter
+    /// object define each processor implementation. These Configuration and Parameters objects for each implementation are
+    /// defined in a processor-specific header file.
+    ///
+    /// Use an instance of this class to apply configured video effects either directly to pixel buffers or as a
+    /// part of Metal pipeline. The video effect must be specified as a ``VTFrameProcessorConfiguration`` instance at session
+    /// startup. Once a session is started, you need to call one of the process methods for each input frame. After all input
+    /// frames have been provided, session must be ended for the system to finish all pending processing.
+    ///
+    /// After you call the process function, you must not modify input and output buffers (including attachments) before the
+    /// function returns or the system receives the callback, in the case of asynchronous processing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor?language=objc)
     #[unsafe(super(NSObject))]
@@ -34,6 +47,7 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl VTFrameProcessor {
     extern_methods!(
+        /// Create a new instance of the frame processor.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -42,11 +56,12 @@ impl VTFrameProcessor {
             feature = "VTFrameProcessorConfiguration",
             feature = "objc2-foundation"
         ))]
-        /// Starts a new session and configures the processor pipeline.
+        /// Starts a new session and configures the processor pipeline for an effect.
         ///
-        /// Parameter `configuration`: A VTFrameProcessorConfiguration based object corresponding to the video effect that will be applied in the subsequent processWithParameters calls.
-        ///
-        /// Parameter `error`: Will contain error information if any. You may specify NULL for this parameter if you do not want the error information.
+        /// - Parameters:
+        /// - configuration: The system uses this parameter to create an effect pipeline for processing frames. This object
+        /// must conform to the ``VTFrameProcessorConfiguration`` interface.
+        /// - error: Contains error information if any. You may specify NULL for this parameter if you do not want the error information.
         #[unsafe(method(startSessionWithConfiguration:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startSessionWithConfiguration_error(
@@ -55,13 +70,15 @@ impl VTFrameProcessor {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VTFrameProcessorParameters", feature = "objc2-foundation"))]
-        /// Synchronously performs the effect specified in startSessionWithConfigurations.
+        /// Synchronously performs the processor effects.
         ///
-        /// Frame level settings and frame level input/output parameters are passed by using the respective VTFrameProcessorParameters for the effect that VTFrameProcessor is configured for.
+        /// Use the respective ``VTFrameProcessorParameters`` to pass frame level settings and frame level input/output parameters
+        /// for the effect that you configured this session for by calling ``startSessionWithConfiguration:error``.
         ///
-        /// Parameter `parameters`: A VTFrameProcessorParameters based object to specify additional frame based parameters to be used during processing. it needs to match the configuration type used during start session.
-        ///
-        /// Parameter `error`: Will contain error information if any. You may specify NULL for this parameter if you do not want the error information.
+        /// - Parameters:
+        /// - parameters: A `VTFrameProcessorParameters` based object to specify additional frame based parameters to use
+        /// during processing. It needs to match the configuration type used during start session.
+        /// - error: Contains error information if any. You may specify NULL for this parameter if you do not want the error information.
         #[unsafe(method(processWithParameters:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn processWithParameters_error(
@@ -74,11 +91,14 @@ impl VTFrameProcessor {
             feature = "block2",
             feature = "objc2-foundation"
         ))]
-        /// Asynchronously performs the effect specified in startSessionWithConfigurations.
+        /// Asynchronously performs the processor effects.
         ///
-        /// Parameter `parameters`: A VTFrameProcessorParameters based object to specify additional frame based parameters to be used during processing. it needs to match the configuration type used during start session.
-        ///
-        /// Parameter `completionHandler`: This completion handler will be called when frame processing in competed.  The completion handler will receive the same parameters object that was provided tot he original call, as well as an NSError which will contain an error code if processing was not successful.
+        /// - Parameters:
+        /// - parameters: A `VTFrameProcessorParameters` based object to specify additional frame based parameters to use
+        /// during processing. It needs to match the configuration type used during start session.
+        /// - completionHandler: This completion handler is called when frame processing is completed. The completion handler
+        /// receives the same parameters object that you provided to the original call, as well as an `NSError` which contains
+        /// an error code if processing was not successful.
         #[unsafe(method(processWithParameters:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processWithParameters_completionHandler(
@@ -95,13 +115,25 @@ impl VTFrameProcessor {
             feature = "objc2-core-media",
             feature = "objc2-foundation"
         ))]
-        /// Used with VTFrameProcessor configurations which allow multiple output frames from a single processing call, such as frame rate conversion processor cases when the client needs access to output frames as they become available, rather than waiting for all output frames to be complete.
+        /// Asynchronously performs the processor effects and outputs each frame separately.
         ///
-        /// This interface is suitable for low-latnecy scenarios when a call would generate multiple output frames, but waiting for all frames to be generated before beginning to use the frames is not ideal.  Because the frames that are returned may be used as references for frames still being generated, the output frames are strictly read-only.  If you want to modify the frames, you must create a copy first.
+        /// Use with frame processor configurations which allow multiple output frames from a single processing call, such
+        /// as frame rate conversion processor cases when you need access to output frames as they become available, rather than
+        /// waiting for all output frames to be complete.
         ///
-        /// Parameter `parameters`: A VTFrameProcessorParameters based object to specify additional frame based parameters to be used during processing. it needs to match the configuration type used during start session.
+        /// This interface is suitable for low-latency scenarios when a call would generate multiple output frames, but waiting
+        /// for all frames to be generated before beginning to use the frames is not ideal. Because the processor may use the
+        /// output frames as references for frames still being generated, the output frames are strictly read-only. If you want
+        /// to modify the frames, you must create a copy first.
         ///
-        /// Parameter `frameOutputHandler`: This frame output handler will be called once for each destination frame in the provided parameters if no errors are encountered.  The output handler will receive the same parameters object that was provided to the original call, a flag indicating if this is the final output to be called for this processing request, and the CMTime value associated with the VTFrameProcessorFrame that it is being called for.  An NSError parameter will contain an error code if processing was not successful.
+        /// - Parameters:
+        /// - parameters: A `VTFrameProcessorParameters` based object to specify additional frame based parameters to use
+        /// during processing. It needs to match the configuration type used during start session.
+        /// - frameOutputHandler: This frame output handler is called once for each destination frame in the provided parameters
+        /// if no errors are encountered. The output handler receives the same parameters object that you provided to the
+        /// original call, a flag indicating if this is the final output to be called for this processing request, and the
+        /// presentation timestamp associated with the `VTFrameProcessorFrame` that it is being called for. The `NSError`
+        /// parameter contains an error code if processing was not successful.
         #[unsafe(method(processWithParameters:frameOutputHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processWithParameters_frameOutputHandler(
@@ -118,13 +150,19 @@ impl VTFrameProcessor {
         );
 
         #[cfg(all(feature = "VTFrameProcessorParameters", feature = "objc2-metal"))]
-        /// This API provides a Metal API friendly version of processWithParameters.
+        /// Performs effects in a Metal command buffer.
         ///
-        /// This function allows clients to add the effect to an existing Metal command buffer. This can be used by clients that have an existing Metal pipeline and want to add this effect to it. Note: this function will wait until all previously inserted tasks in the command buffer finished before running. Tasks inserted after the processWithCommandBuffer will run after the effect is applied.  Processing does not happen until the commandBuffer is executed.
+        /// This function allows you to add the effect to an existing Metal command buffer. The clients that have an existing
+        /// Metal pipeline and want to add this effect to it can use this function.
         ///
-        /// Parameter `commandBuffer`: An existing Metal command buffer where the frame processing will be inserted.
+        /// > Note: this function waits until all previously inserted tasks in the command buffer finish before running. Tasks
+        /// inserted after the `processWithCommandBuffer` returns are run by the system after the effect is applied. Processing
+        /// does not happen until the commandBuffer is executed.
         ///
-        /// Parameter `parameters`: A VTFrameProcessorParameters based object to specify additional frame based parameters to be used during processing. it needs to match the configuration type used during start session.
+        /// - Parameters:
+        /// - commandBuffer: An existing Metal command buffer where the frame processing is inserted.
+        /// - parameters: A `VTFrameProcessorParameters` based object to specify additional frame based parameters to use
+        /// during processing. It needs to match the configuration type used during start session.
         #[unsafe(method(processWithCommandBuffer:parameters:))]
         #[unsafe(method_family = none)]
         pub unsafe fn processWithCommandBuffer_parameters(
@@ -133,7 +171,9 @@ impl VTFrameProcessor {
             parameters: &ProtocolObject<dyn VTFrameProcessorParameters>,
         );
 
-        /// Performs all necessary tasks to end the session. After this call completes, no new frames can be processed unless startSessionWithConfigurations is called again.
+        /// Performs all necessary tasks to end the session.
+        ///
+        /// After this call completes, you can process no new frames unless you call ``startSessionWithConfiguration`` again.
         #[unsafe(method(endSession))]
         #[unsafe(method_family = none)]
         pub unsafe fn endSession(&self);

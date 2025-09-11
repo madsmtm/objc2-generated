@@ -8,7 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Quality prioritization levels to favor quality or performance.
+/// Configuration value you set to prioritize quality or performance.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfigurationqualityprioritization?language=objc)
 // NS_ENUM
@@ -34,7 +34,10 @@ unsafe impl RefEncode for VTMotionBlurConfigurationQualityPrioritization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// List of existing algorithm revisions with the highest being the latest. Clients can read defaultRevision property to find the default revision.
+/// Available algorithm revisions.
+///
+/// A new enum case with higher revision number is added when the processing algorithm is updated.
+/// The ``VTMotionBlurConfiguration/defaultRevision`` property provides the default algorithm revision.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfigurationrevision?language=objc)
 // NS_ENUM
@@ -58,7 +61,18 @@ unsafe impl RefEncode for VTMotionBlurConfigurationRevision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Hint to let the processor know whether frames are being submitted in presenatation sequence, allowing performance optimizations based on previous processing requests
+/// Indicates the order of input frames.
+///
+/// When submitting ``VTMotionBlurParameters`` to the processor, you need to provide one of these values based on how
+/// the input frames are related to each other.
+///
+/// Use ``VTMotionBlurParametersSubmissionModeSequential`` to indicate that the current submission follows presentation
+/// time order without jump or skip, when compared to previous submissions. This value provides better processor
+/// performance than other values.
+///
+/// Use ``VTMotionBlurParametersSubmissionModeRandom`` to indicate that the current submission has no relation to the
+/// previous submission. Typically, this indicates a jump or a skip in the frame sequence. The processor clears internal
+/// caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameterssubmissionmode?language=objc)
 // NS_ENUM
@@ -86,10 +100,9 @@ unsafe impl RefEncode for VTMotionBlurParametersSubmissionMode {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Configuration that is used to set up the MotionBlur Processor.
+    /// Configuration that you use to set up the motion blur processor.
     ///
-    ///
-    /// This configuration enables the MotionBlur on a VTFrameProcesing session.
+    /// This configuration enables the motion blur on a `VTFrameProcessor` session.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -117,25 +130,18 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl VTMotionBlurConfiguration {
     extern_methods!(
-        /// Creates a new VTMotionBlurConfiguration with specified flow width and height.
+        /// Creates a new motion blur configuration.
         ///
+        /// Returns `nil` if dimensions are out of range or revision is unsupported.
         ///
-        /// init will return nil if dimensions are out of range or revision is unsupported.
-        ///
-        ///
-        /// Parameter `frameWidth`: Width of source frame in pixels. Maximum value is 8192 for macOS, and 4096 for iOS.
-        ///
-        ///
-        /// Parameter `frameHeight`: Height of source frame in pixels. Maximum value is 4320 for macOS, and 2160 for iOS.
-        ///
-        ///
-        /// Parameter `usePrecomputedFlow`: Boolean value to indicate that Optical Flow will be provided by the user, if false this configuration will compute the optical flow on the fly.
-        ///
-        ///
-        /// Parameter `qualityPrioritization`: Used to control quality and performance levels. See VTMotionBlurConfigurationQualityPrioritization for more info.
-        ///
-        ///
-        /// Parameter `revision`: The specific algorithm or configuration revision that is to be used to perform the request.
+        /// - Parameters:
+        /// - frameWidth: Width of source frame in pixels; the maximum value is 8192 for macOS, and 4096 for iOS.
+        /// - frameHeight: Height of source frame in pixels; the maximum value is 4320 for macOS, and 2160 for iOS.
+        /// - usePrecomputedFlow: Boolean value that indicates whether you will provide optical flow; if false, this
+        /// configuration computes the optical flow on the fly.
+        /// - qualityPrioritization: A level you use to prioritize quality or performance; for more information about supported
+        /// levels, see ``VTMotionBlurConfigurationQualityPrioritization``.
+        /// - revision: The specific algorithm or configuration revision you use to perform the request.
         #[unsafe(method(initWithFrameWidth:frameHeight:usePrecomputedFlow:qualityPrioritization:revision:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameWidth_frameHeight_usePrecomputedFlow_qualityPrioritization_revision(
@@ -177,7 +183,7 @@ impl VTMotionBlurConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn frameHeight(&self) -> NSInteger;
 
-        /// Indicates that caller will provide optical flow.
+        /// Indicates that you provide optical flow.
         ///
         /// This property is not atomic.
         ///
@@ -188,7 +194,9 @@ impl VTMotionBlurConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn usePrecomputedFlow(&self) -> bool;
 
-        /// parameter used to control quality and performance levels. See VTMotionBlurConfigurationQualityPrioritization for more info.
+        /// A parameter you use to control quality and performance levels.
+        ///
+        /// For more information about supported levels, see ``VTMotionBlurConfigurationQualityPrioritization``.
         ///
         /// This property is not atomic.
         ///
@@ -201,7 +209,7 @@ impl VTMotionBlurConfiguration {
             &self,
         ) -> VTMotionBlurConfigurationQualityPrioritization;
 
-        /// The specific algorithm or configuration revision that is to be used to perform the request.
+        /// The specific algorithm or configuration revision you use to perform the request.
         ///
         /// This property is not atomic.
         ///
@@ -213,20 +221,20 @@ impl VTMotionBlurConfiguration {
         pub unsafe fn revision(&self) -> VTMotionBlurConfigurationRevision;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Provides the collection of currently-supported algorithm or configuration revisions for the class of configuration.
+        /// Provides the collection of currently supported algorithms or configuration revisions for the class of configuration.
         ///
-        /// This property allows clients to introspect at runtime what revisions are available for each configuration.
+        /// A property you use to introspect at runtime which revisions are available for each configuration.
         #[unsafe(method(supportedRevisions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRevisions() -> Retained<NSIndexSet>;
 
-        /// Provides the default revision of a particular algorithm or configuration.
+        /// Provides the default revision of a specific algorithm or configuration.
         #[unsafe(method(defaultRevision))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRevision() -> VTMotionBlurConfigurationRevision;
 
         #[cfg(feature = "objc2-foundation")]
-        /// list of source frame supported pixel formats for current configuration
+        /// Available supported pixel formats for source frames for current configuration.
         ///
         /// This property is not atomic.
         ///
@@ -238,7 +246,9 @@ impl VTMotionBlurConfiguration {
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as source frames and reference frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent source frames and reference frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         ///
         /// This property is not atomic.
         ///
@@ -252,7 +262,9 @@ impl VTMotionBlurConfiguration {
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as destination frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent destination frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         ///
         /// This property is not atomic.
         ///
@@ -265,7 +277,7 @@ impl VTMotionBlurConfiguration {
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// reports whether this processor is supported
+        /// Reports whether the system supports this processor.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
@@ -279,10 +291,11 @@ impl VTMotionBlurConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// VTMotionBlurParameters object contains both input and output parameters needed to run the MotionBlur processor on a frame. This object is used in the processWithParameters call of VTFrameProcessor class. The output parameter for this class is destinationFrame where the output frame is returned (as VTFrameProcessorFrame) back to the caller function once the processWithParameters completes.
+    /// An object that contains both input and output parameters that the motion blur processor needs to run on a frame.
     ///
+    /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class. The output parameter for this class is `destinationFrame` where the processor returns the output frame (as `VTFrameProcessorFrame`) back to you once the `processWithParameters` completes.
     ///
-    /// VTMotionBlurParameters are frame level parameters.
+    /// `VTMotionBlurParameters` are frame-level parameters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameters?language=objc)
     #[unsafe(super(NSObject))]
@@ -305,34 +318,23 @@ extern_conformance!(
 impl VTMotionBlurParameters {
     extern_methods!(
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Creates a new VTMotionBlurParameters .
+        /// Creates a new motion blur parameters object.
         ///
+        /// Returns `nil` if `sourceFrame` or `destinationFrame` is `nil`, `sourceFrame` and reference frames are different pixel
+        /// formats, or `motionBlurStrength` is out of range.
         ///
-        /// init will return nil if sourceFrame or destinationFrame is nil, sourceFrame and reference frames  are different pixelFormats, or motionBlurStrength is out of range.
-        ///
-        ///
-        /// Parameter `sourceFrame`: Current source frame. Must be non nil.
-        ///
-        ///
-        /// Parameter `nextFrame`: Next source frame in presentation time order. For the last frame this can be set to nil.
-        ///
-        ///
-        /// Parameter `previousFrame`: Previous source frame in presentation time order. For the first frame this can be set to nil.
-        ///
-        ///
-        /// Parameter `nextOpticalFlow`: Optional VTFrameProcessorOpticalFlow object that contains forward and backward optical flow with next frame. Only needed if optical flow is pre-computed. For the last frame this will always be nil.
-        ///
-        ///
-        /// Parameter `previousOpticalFlow`: Optional VTFrameProcessorOpticalFlow object that contains forward and backward optical flow with previous frame. Only needed if optical flow is pre-computed. For the first frame this will always be nil.
-        ///
-        ///
-        /// Parameter `motionBlurStrength`: NSInteger number to indicate the strength of blur to apply. Range is from 1 to 100. Default value is 50.
-        ///
-        ///
-        /// Parameter `submissionMode`: Set to VTMotionBlurParametersSubmissionModeSequential to indicate that current submission follow presentation time order without jump or skip when compared to previous submission. VTMotionBlurParametersSubmissionModeSequential will yield better performance. Set to VTMotionBlurParametersSubmissionModeRandom to indicate a skip or a jump in frame sequence. If VTMotionBlurParametersSubmissionModeRandom is set internal cache will be cleared during processWithParameters call.
-        ///
-        ///
-        /// Parameter `destinationFrame`: User allocated pixel buffer that will receive the results.
+        /// - Parameters:
+        /// - sourceFrame: Current source frame; must be non `nil`.
+        /// - nextFrame: Next source frame in presentation time order; for the last frame you can set this to `nil`.
+        /// - previousFrame: Previous source frame in presentation time order; for the first frame you can set this to `nil`.
+        /// - nextOpticalFlow: Optional `VTFrameProcessorOpticalFlow` object that contains forward and backward optical flow
+        /// with `nextFrame`. You only need this object if optical flow is pre-computed. For the last frame this is always `nil`.
+        /// - previousOpticalFlow: Optional VTFrameProcessorOpticalFlow object that contains forward and backward optical flow
+        /// with `previousFrame`. You only need to use this if the optical flow is pre-computed. For the first frame this is always `nil`.
+        /// - motionBlurStrength: Number that indicates the strength of blur applied by the processor. Range is from 1 to 100. Default value is 50.
+        /// - submissionMode: Provides a hint to let the processor know whether you are submitting frames in presenatation
+        /// sequence. For more information about supported modes see ``VTMotionBlurParametersSubmissionMode``.
+        /// - destinationFrame: User-allocated pixel buffer that receives a frame with motion blur applied by the processor.
         #[unsafe(method(initWithSourceFrame:nextFrame:previousFrame:nextOpticalFlow:previousOpticalFlow:motionBlurStrength:submissionMode:destinationFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceFrame_nextFrame_previousFrame_nextOpticalFlow_previousOpticalFlow_motionBlurStrength_submissionMode_destinationFrame(
@@ -356,47 +358,53 @@ impl VTMotionBlurParameters {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// sourceFrame Current source frame. Must be non nil
+        /// Current source frame, which must be non `nil`.
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Next source frame in presentation time order. For the last frame this will be nil.
+        /// The next source frame in presentation time order, which is `nil` for the last frame.
         #[unsafe(method(nextFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFrame(&self) -> Option<Retained<VTFrameProcessorFrame>>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Previous source frame in presentation time order. For the first frame this will be nil.
+        /// Previous source frame in presentation time order, which is `nil` for the first frame.
         #[unsafe(method(previousFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousFrame(&self) -> Option<Retained<VTFrameProcessorFrame>>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Optional VTFrameProcessorOpticalFlow object that contains forward and backward optical flow with next frame. Only needed if optical flow is pre-computed. For the last frame this will be nil.
+        /// Optional frame processor optical flow object that contains forward and backward optical flow with next frame.
+        ///
+        /// You only need to use this object if the optical flow is pre-computed. For the last frame this is `nil`.
         #[unsafe(method(nextOpticalFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextOpticalFlow(&self) -> Option<Retained<VTFrameProcessorOpticalFlow>>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Optional VTFrameProcessorOpticalFlow object  that contains forward and backward optical flow with previous frame. Only needed if optical flow is pre-computed. For the first frame this will be nil.
+        /// Optional frame processor optical flow object that contains forward and backward optical flow with previous frame.
+        ///
+        /// You only need to use this object if the optical flow is pre-computed. For the first frame this is `nil`.
         #[unsafe(method(previousOpticalFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn previousOpticalFlow(&self) -> Option<Retained<VTFrameProcessorOpticalFlow>>;
 
-        /// motionBlurStrength NSInteger number to indicate the strength of blur to apply. Range is from 1 to 100. Default value is 50.
+        /// Number that indicates the strength of motion blur.
+        ///
+        /// The range is from 1 to 100; the default value is 50.
         #[unsafe(method(motionBlurStrength))]
         #[unsafe(method_family = none)]
         pub unsafe fn motionBlurStrength(&self) -> NSInteger;
 
-        /// A VTMotionBlurParametersSubmissionMode value describing the processing request in this Parameters object .
+        /// Ordering of the input frames this submission related to the previous submission.
         #[unsafe(method(submissionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn submissionMode(&self) -> VTMotionBlurParametersSubmissionMode;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// VTFrameProcessorFrame that contains user allocated pixel buffer that will receive the results.
+        /// Destination frame that contains user-allocated pixel buffer that receive a frame with motion blur applied by the processor.
         #[unsafe(method(destinationFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFrame(&self) -> Retained<VTFrameProcessorFrame>;

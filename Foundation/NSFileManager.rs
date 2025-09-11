@@ -156,15 +156,21 @@ extern "C" {
     pub static NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols?language=objc)
+/// An option set of the sync controls available for an item.
+///
+/// Get an instance of this type by calling ``URL/resourceValues(forKeys:)`` on a ``URL`` instance (Swift) or ``NSURL/getResourceValue:forKey:error:`` on an ``NSURL`` (Swift or Objective-C) and passing in the key ``NSURLUbiquitousItemSupportedSyncControlsKey``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileManagerSupportedSyncControls(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerSupportedSyncControls: NSUInteger {
+/// The file provider supports pausing the sync on the item.
         #[doc(alias = "NSFileManagerSupportedSyncControlsPauseSync")]
         const PauseSync = 1<<0;
+/// The file provider supports failing an upload if the local and server versions conflict.
         #[doc(alias = "NSFileManagerSupportedSyncControlsFailUploadOnConflict")]
         const FailUploadOnConflict = 1<<1;
     }
@@ -178,16 +184,39 @@ unsafe impl RefEncode for NSFileManagerSupportedSyncControls {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior?language=objc)
+/// The behaviors the file manager can apply to resolve conflicts when resuming a sync.
+///
+/// You use this type when calling ``FileManager/resumeSyncForUbiquitousItem(at:with:completionHandler:)`` to resume synchronizing.
+/// In most situations, the ``NSFileManagerResumeSyncBehavior/preserveLocalChanges`` behavior is the best choice to avoid risk of data loss.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileManagerResumeSyncBehavior(pub NSInteger);
 impl NSFileManagerResumeSyncBehavior {
+    /// Resumes synchronizing by uploading the local version of the file.
+    ///
+    /// If the server has a newer version, the server may create a conflict copy of the file, or may automatically pick the winner of the conflict.
+    /// Apps can choose to implement conflict handling themselves by passing `NSFileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict`.
     #[doc(alias = "NSFileManagerResumeSyncBehaviorPreserveLocalChanges")]
     pub const PreserveLocalChanges: Self = Self(0);
+    /// Resumes sync by first uploading the local version of the file, failing if the provider detects a conflict.
+    ///
+    /// If the upload succeeds, the sync resumes with the ``preserveLocalChanges`` behavior.
+    ///
+    /// If the provider detects a conflict, the upload fails with an  ``NSFileWriteUnknownError-enum.case``, with the underlying error of
+    /// <doc
+    /// ://com.apple.documentation/documentation/FileProvider/NSFileProviderError/localVersionConflictingWithServer>.
+    /// In this case, the app needs to call ``FileManager/fetchLatestRemoteVersionOfItem(at:completionHandler:)``, rebase local changes on top of the newly fetched version to resolve the conflict, and try again to resume sync.
+    /// This scenario is only available on paused items for which the file provider supports the fail-on-conflict behavior.
+    /// To check that the file provider supports the behavior, get the ``NSURLUbiquitousItemSupportedSyncControlsKey`` URL resource and verify that ``NSFileManagerSupportedSyncControls/failUploadOnConflict`` is `true`.
     #[doc(alias = "NSFileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict")]
     pub const AfterUploadWithFailOnConflict: Self = Self(1);
+    /// Resumes synchronizing by overwriting any local changes with the remote version of the file.
+    ///
+    /// If a conflict occurs, the file manager stores the local changes as an alternate version.
+    /// Only use this behavior if you provide a separate means of resolving and merging conflicts.
     #[doc(alias = "NSFileManagerResumeSyncBehaviorDropLocalChanges")]
     pub const DropLocalChanges: Self = Self(2);
 }
@@ -200,14 +229,24 @@ unsafe impl RefEncode for NSFileManagerResumeSyncBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy?language=objc)
+/// The policies the file manager can apply to resolve conflicts when uploading a local version of a file.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileManagerUploadLocalVersionConflictPolicy(pub NSInteger);
 impl NSFileManagerUploadLocalVersionConflictPolicy {
+    /// Resolves the conflict using the policy defined by the file provider.
     #[doc(alias = "NSFileManagerUploadConflictPolicyDefault")]
     pub const ConflictPolicyDefault: Self = Self(0);
+    /// Resolves the conflict by causing the upload to fail.
+    ///
+    /// This policy causes an upload to fail if the local version of a file, with any local changes applied, doesn't match the server version.
+    /// In this scenario, call ``FileManager/fetchLatestRemoteVersionOfItem(at:completionHandler:)``, rebase local changes on top of the newly fetched version, and retry the upload.
+    ///
+    /// This policy is only available on paused items for which the file provider supports the fail-on-conflict behavior.
+    /// To check that the file provider supports the behavior, get the ``NSURLUbiquitousItemSupportedSyncControlsKey`` URL resource and verify that ``NSFileManagerSupportedSyncControls/failUploadOnConflict`` is `true`.
     #[doc(alias = "NSFileManagerUploadConflictPolicyFailOnConflict")]
     pub const ConflictPolicyFailOnConflict: Self = Self(1);
 }
@@ -848,6 +887,27 @@ impl NSFileManager {
         ) -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying+ NSCoding */>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
+        /// Asynchronously pauses sync of an item at the given URL.
+        ///
+        /// Call this when opening an item to prevent sync from altering the contents of the URL.
+        /// Once paused, the file provider will not upload local changes nor download remote changes.
+        ///
+        /// While paused, call ``uploadLocalVersionOfUbiquitousItem(at:withConflictResolutionPolicy:completionHandler:)`` when the document is in a stable state.
+        /// This action keeps the server version as up-to-date as possible.
+        ///
+        /// If the item is already paused, a second call to this method reports success.
+        /// If the file provider is already applying changes to the item, the pause fails with an ``NSFileWriteUnknownError-enum.case``, with an underlying error that has domain ``NSPOSIXErrorDomain`` and code ``POSIXError/EBUSY``.
+        /// If the pause fails, wait for the state to stabilize before retrying.
+        /// Pausing also fails with ``CocoaError/featureUnsupported`` if `url` refers to a regular (non-package) directory.
+        ///
+        /// Pausing sync is independent of the calling app's lifecycle; sync doesn't automatically resume if the app closes or crashes and relaunches later.
+        /// To resume syncing, explicitly call ``resumeSyncForUbiquitousItem(at:with:completionHandler:)``.
+        /// Always be sure to resume syncing before you close the item.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the item for which to pause sync.
+        /// - completionHandler: A closure or block that the framework calls when the pause action completes. It receives a single ``NSError`` parameter to indicate an error that prevented pausing; this value is `nil` if the pause succeeded. In Swift, you can omit the completion handler and catch the thrown error instead.
+        ///
         /// # Safety
         ///
         /// `completion_handler` block must be sendable.
@@ -860,6 +920,22 @@ impl NSFileManager {
         );
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
+        /// Asynchronously resumes the sync on a paused item using the given resume behavior.
+        ///
+        /// Always call this method when your app closes an item to allow the file provider to sync local changes back to the server.
+        ///
+        /// In most situations, the ``NSFileManagerResumeSyncBehavior/preserveLocalChanges`` behavior is the best choice to avoid any risk of data loss.
+        ///
+        /// The resume call fails with ``CocoaError/featureUnsupported`` if `url` isn't currently paused.
+        /// If the device isn't connected to the network, the call may fail with ``NSFileWriteUnknownError-enum.case``, with the underlying error of
+        /// <doc
+        /// ://com.apple.documentation/documentation/FileProvider/NSFileProviderError/serverUnreachable>.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the item for which to resume sync.
+        /// - behavior: A ``NSFileManagerResumeSyncBehavior`` value that tells the file manager how to handle conflicts between local and remote versions of files.
+        /// - completionHandler: A closure or block that the framework calls when the resume action completes. It receives a single ``NSError`` parameter to indicate an error that prevented the resume action; the value is `nil` if the resume succeeded. In Swift, you can omit the completion handler and catch the thrown error instead.
+        ///
         /// # Safety
         ///
         /// `completion_handler` block must be sendable.
@@ -878,6 +954,24 @@ impl NSFileManager {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// Asynchronously fetches the latest remote version of a given item from the server.
+        ///
+        /// Use this method if uploading fails due to a version conflict and sync is paused.
+        /// In this case, fetching the latest remote version allows you to inspect the newer item from the server, resolve the conflict, and resume uploading.
+        ///
+        /// The version provided by this call depends on several factors:
+        /// * If there is no newer version of the file on the server, the caller receives the current version of the file.
+        /// * If the server has a newer version and sync isn't paused, this call replaces the local item and provides the version of the new item.
+        /// * If the server has a newer version but sync is paused, the returned version points to a side location. In this case, call ``NSFileVersion/replaceItem(at:options:)`` on the provided version object to replace the local item with the newer item from the server.
+        ///
+        /// If the device isn't connected to the network, the call may fail with ``NSFileReadUnknownError-enum.case``, with the underlying error of
+        /// <doc
+        /// ://com.apple.documentation/documentation/FileProvider/NSFileProviderError/serverUnreachable>.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the item for which to check the version.
+        /// - completionHandler: A closure or block that the framework calls when the fetch action completes. It receives parameters of types ``NSFileVersion`` and ``NSError``. The error is `nil` if fetching the remote version succeeded; otherwise it indicates the error that caused the call to fail. In Swift, you can omit the completion handler, catching any error in a `do`-`catch` block and receiving the version as the return value.
+        ///
         /// # Safety
         ///
         /// `completion_handler` block must be sendable.
@@ -895,6 +989,25 @@ impl NSFileManager {
             feature = "NSURL",
             feature = "block2"
         ))]
+        /// Asynchronously uploads the local version of the item using the provided conflict resolution policy.
+        ///
+        /// Once your app pauses a sync for an item, call this method every time your document is in a stable state.
+        /// This action keeps the server version as up-to-date as possible.
+        ///
+        /// If the server has a newer version than the one to which the app made changes, uploading fails with ``NSFileWriteUnknownError-enum.case``, with an underlying error of
+        /// <doc
+        /// ://com.apple.documentation/documentation/FileProvider/NSFileProviderError/localVersionConflictingWithServer>.
+        /// In this case, call ``FileManager/fetchLatestRemoteVersionOfItem(at:completionHandler:)``, rebase local changes on top of that version, and retry the upload.
+        ///
+        /// If the device isn't connected to the network, the call may fail with ``NSFileWriteUnknownError-enum.case``, with the underlying error of
+        /// <doc
+        /// ://com.apple.documentation/documentation/FileProvider/NSFileProviderError/serverUnreachable>.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the item for which to check the version.
+        /// - conflictResolutionPolicy: The policy the file manager applies if the local and server versions conflict.
+        /// - completionHandler: A closure or block that the framework calls when the upload completes. It receives parameters of types ``NSFileVersion`` and ``NSError``. The error is `nil` if fetching the remote version succeeded; otherwise it indicates the error that caused the call to fail. In Swift, you can omit the completion handler, catching any error in a `do`-`catch` block and receiving the version as the return value.
+        ///
         /// # Safety
         ///
         /// `completion_handler` block must be sendable.

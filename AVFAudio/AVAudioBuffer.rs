@@ -365,6 +365,14 @@ impl AVAudioCompressedBuffer {
         #[unsafe(method(packetDescriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn packetDescriptions(&self) -> *mut AudioStreamPacketDescription;
+
+        #[cfg(feature = "objc2-core-audio-types")]
+        /// Access the buffer's array of packet dependencies, if any.
+        ///
+        /// If the format doesn't employ packet dependencies, this will be nil.
+        #[unsafe(method(packetDependencies))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn packetDependencies(&self) -> *mut AudioStreamPacketDependencyDescription;
     );
 }
 

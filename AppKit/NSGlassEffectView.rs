@@ -9,6 +9,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectviewstyle?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSGlassEffectViewStyle(pub NSInteger);
+impl NSGlassEffectViewStyle {
+    /// Standard glass effect style.
+    #[doc(alias = "NSGlassEffectViewStyleRegular")]
+    pub const Regular: Self = Self(0);
+    /// Clear glass effect style.
+    #[doc(alias = "NSGlassEffectViewStyleClear")]
+    pub const Clear: Self = Self(1);
+}
+
+unsafe impl Encode for NSGlassEffectViewStyle {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSGlassEffectViewStyle {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// A view that embeds its content view in a dynamic glass effect.
     ///
@@ -111,6 +133,16 @@ impl NSGlassEffectView {
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&NSColor>);
+
+        /// The style of glass this view uses.
+        #[unsafe(method(style))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn style(&self) -> NSGlassEffectViewStyle;
+
+        /// Setter for [`style`][Self::style].
+        #[unsafe(method(setStyle:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setStyle(&self, style: NSGlassEffectViewStyle);
     );
 }
 

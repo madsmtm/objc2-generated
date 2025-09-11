@@ -51,14 +51,16 @@ impl CKShareAccessRequester {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentity")]
-        /// The user identity this share access requester represents.
+        /// The identity of the user requesting access to the share.
         #[unsafe(method(userIdentity))]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentity(&self) -> Retained<CKUserIdentity>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
-        /// Convenience method to get the requester's lookup info.
-        /// This lookup info can be used in ``CKFetchShareParticipantsOperation`` to approve the requester by fetching the corresponding participant and adding the participant to the share.
+        /// Lookup information for the requester.
+        ///
+        /// Use this lookup info with ``CKFetchShareParticipantsOperation`` to fetch the corresponding participant.
+        /// Once fetched, add the participant to the share to approve the requester.
         ///
         /// This property is not atomic.
         ///
@@ -71,9 +73,10 @@ impl CKShareAccessRequester {
 
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
-        /// Returns a displayable `CNContact` for the requester, or a new `CNContact` if none exists in the user's contacts.
-        /// Provides a standardized format for the requester's underlying lookup info in the user identity.
-        /// Use when displaying the requester information to other participants and approvers in application UI.
+        /// A displayable `CNContact` representing the requester.
+        ///
+        /// If the requester doesn't exist in the user's contacts or is not accessible, returns a newly created `CNContact`.
+        /// This provides formatted requester information suitable for display in the application's UI.
         ///
         /// This property is not atomic.
         ///

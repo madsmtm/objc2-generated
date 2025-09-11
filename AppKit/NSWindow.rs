@@ -106,6 +106,9 @@ unsafe impl RefEncode for NSWindowSharingType {
 ///
 ///
 ///
+///
+///
+///
 /// You may specify at most one of
 /// `NSWindowCollectionBehaviorManaged,``NSWindowCollectionBehaviorTransient,`or
 /// `NSWindowCollectionBehaviorStationary.`If neither is specified, the window gets the default behavior determined by its window level.

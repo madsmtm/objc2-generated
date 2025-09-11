@@ -195,7 +195,7 @@ impl CIRenderDestination {
             blends_in_destination_color_space: bool,
         );
 
-        /// Tell the next using this destination to capture a Metal trace.
+        /// Tell the next render using this destination to capture a Metal trace.
         ///
         /// If this property is set to a file-based URL, then the next render using this
         /// destination will capture a Metal trace, deleting any existing file if present.

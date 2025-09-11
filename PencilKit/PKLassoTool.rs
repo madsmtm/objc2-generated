@@ -17,6 +17,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PKTool")]
+unsafe impl Send for PKLassoTool {}
+
+#[cfg(feature = "PKTool")]
+unsafe impl Sync for PKLassoTool {}
+
+#[cfg(feature = "PKTool")]
 extern_conformance!(
     unsafe impl NSCopying for PKLassoTool {}
 );

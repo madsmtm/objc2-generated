@@ -104,6 +104,9 @@ impl NSPersistentContainer {
         pub unsafe fn newBackgroundContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(all(feature = "NSManagedObjectContext", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(performBackgroundTask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performBackgroundTask(

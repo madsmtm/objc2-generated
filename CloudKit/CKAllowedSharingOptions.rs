@@ -124,8 +124,9 @@ impl CKAllowedSharingOptions {
             allowed_participant_access_options: CKSharingParticipantAccessOption,
         );
 
-        /// Defaults to `NO`. If set, the system sharing UI will allow the user to choose whether added participants can invite others to the share.
-        /// Shares with ``.administrator`` participants will be returned as read-only to devices running OS versions prior to the ``.administrator`` role being introduced. The ``.administrator`` participants on these read-only shares will be returned as ``.privateUser``.
+        /// Default value is `NO`. If set, the system sharing UI will allow the user to choose whether added participants can invite others to the share.
+        /// Shares with ``CloudKit/CKShareParticipantRole/CKShareParticipantRoleAdministrator`` participants will be returned as read-only to devices running OS versions prior to this role being introduced.
+        /// Administrator participants on these read-only shares will be returned as ``CloudKit/CKShareParticipantRole/CKShareParticipantRolePrivateUser``.
         #[unsafe(method(allowsParticipantsToInviteOthers))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsParticipantsToInviteOthers(&self) -> bool;

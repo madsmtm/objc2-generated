@@ -503,11 +503,17 @@ impl NSPersistentStoreCoordinator {
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(performBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performBlock(&self, block: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(feature = "block2")]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(performBlockAndWait:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performBlockAndWait(&self, block: &block2::DynBlock<dyn Fn() + '_>);

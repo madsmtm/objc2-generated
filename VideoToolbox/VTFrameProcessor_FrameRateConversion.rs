@@ -8,7 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Quality prioritization levels to favor quality or performance.
+/// Configuration value you set to prioritize quality or performance.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfigurationqualityprioritization?language=objc)
 // NS_ENUM
@@ -34,7 +34,10 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationQualityPrioritizatio
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// List of existing algorithm revisions with the highest being the latest. Clients can read defaultRevision property to find the default revision.
+/// Available algorithm revisions.
+///
+/// A new enum case with higher revision number is added when the processing algorithm is updated.
+/// The ``VTFrameRateConversionConfiguration/defaultRevision`` property provides the default algorithm revision.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfigurationrevision?language=objc)
 // NS_ENUM
@@ -58,7 +61,21 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationRevision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Hint to let the processor know whether frames are being submitted in presenatation sequence, allowing performance optimizations based on previous processing requests
+/// Indicates the order of input frames.
+///
+/// When submitting ``VTFrameRateConversionParameters`` to the processor, you need to provide one of these values based on
+/// how the input frames are related to each other.
+///
+/// Use ``VTFrameRateConversionParametersSubmissionModeSequential`` to indicate that the current submission follows
+/// presentation time order without jump or skip, when compared to previous submissions. This value provides better
+/// processor performance than other values.
+///
+/// Use ``VTFrameRateConversionParametersSubmissionModeRandom`` to indicate that the current submission has no relation
+/// to the previous submission. Typically, this indicates a jump or a skip in the frame sequence. The processor clears
+/// internal caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
+///
+/// Use ``VTFrameRateConversionParametersSubmissionModeSequentialReferencesUnchanged`` to indicate that the frames are
+/// in sequential order however, the reference frames are unchanged.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameterssubmissionmode?language=objc)
 // NS_ENUM
@@ -68,10 +85,15 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationRevision {
 pub struct VTFrameRateConversionParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionParametersSubmissionMode {
+    /// You are submitting frames in non-sequential order.
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
+    /// You are submitting frames sequentially following presentation time order.
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
+    /// You are submitting frames sequentially.
+    ///
+    /// This processing request uses the same source and next reference frames as the previous submission.
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeSequentialReferencesUnchanged")]
     pub const SequentialReferencesUnchanged: Self = Self(3);
 }
@@ -88,10 +110,9 @@ unsafe impl RefEncode for VTFrameRateConversionParametersSubmissionMode {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Configuration that is used to set up the FrameRateConversion Processor.
+    /// Configuration that you use to set up the frame rate conversion processor.
     ///
-    ///
-    /// This configuration enables the FrameRateConversion on a VTFrameProcesing session.
+    /// This configuration enables the frame-rate conversion on a `VTFrameProcessor` session.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -119,25 +140,16 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionConfiguration {
     extern_methods!(
-        /// Creates a new VTFrameRateConversionConfiguration with specified flow width and height.
+        /// Creates a new frame-rate conversion configuration.
         ///
+        /// Returns `nil` if dimensions are out of range or revision is unsupported.
         ///
-        /// init will return nil if dimensions are out of range or revision is unsupported.
-        ///
-        ///
-        /// Parameter `frameWidth`: Width of source frame in pixels. Maximum value is 8192 for macOS, and 4096 for iOS.
-        ///
-        ///
-        /// Parameter `frameHeight`: Height of source frame in pixels. Maximum value is 4320 for macOS, and 2160 for iOS.
-        ///
-        ///
-        /// Parameter `usePrecomputedFlow`: Boolean value to indicate that Optical Flow will be provided by the user, if false this configuration will compute the optical flow on the fly.
-        ///
-        ///
-        /// Parameter `qualityPrioritization`: Used to control quality and performance levels. See VTFrameRateConversionConfigurationQualityPrioritization for more info.
-        ///
-        ///
-        /// Parameter `revision`: The specific algorithm or configuration revision that is to be used to perform the request.
+        /// - Parameters:
+        /// - frameWidth: Width of source frame in pixels; the maximum value is 8192 for macOS, and 4096 for iOS.
+        /// - frameHeight: Height of source frame in pixels; the maximum value is 4320 for macOS, and 2160 for iOS.
+        /// - usePrecomputedFlow: A Boolean value that indicates whether you are providing Optical Flow. If false, optical flow is computed on the fly.
+        /// - qualityPrioritization: A level you use to prioritize quality or performance; for more information about supported levels, see ``VTFrameRateConversionConfigurationQualityPrioritization``.
+        /// - revision: The specific algorithm or configuration revision you use to perform the request.
         #[unsafe(method(initWithFrameWidth:frameHeight:usePrecomputedFlow:qualityPrioritization:revision:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameWidth_frameHeight_usePrecomputedFlow_qualityPrioritization_revision(
@@ -179,7 +191,7 @@ impl VTFrameRateConversionConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn frameHeight(&self) -> NSInteger;
 
-        /// Indicates that caller will provide optical flow.
+        /// Indicates that caller provides optical flow.
         ///
         /// This property is not atomic.
         ///
@@ -190,7 +202,9 @@ impl VTFrameRateConversionConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn usePrecomputedFlow(&self) -> bool;
 
-        /// parameter used to control quality and performance levels. See VTFrameRateConversionConfigurationQualityPrioritization for more info.
+        /// A parameter you use to control quality and performance levels.
+        ///
+        /// For more information about supported levels, see ``VTFrameRateConversionConfigurationQualityPrioritization``.
         ///
         /// This property is not atomic.
         ///
@@ -203,7 +217,7 @@ impl VTFrameRateConversionConfiguration {
             &self,
         ) -> VTFrameRateConversionConfigurationQualityPrioritization;
 
-        /// The specific algorithm or configuration revision that is to be used to perform the request.
+        /// The specific algorithm or configuration revision you use to perform the request.
         ///
         /// This property is not atomic.
         ///
@@ -215,20 +229,20 @@ impl VTFrameRateConversionConfiguration {
         pub unsafe fn revision(&self) -> VTFrameRateConversionConfigurationRevision;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Provides the collection of currently-supported algorithm or configuration revisions for the class of configuration.
+        /// Provides the collection of currently supported algorithms or configuration revisions for the class of configuration.
         ///
-        /// This property allows clients to introspect at runtime what revisions are available for each configuration.
+        /// A property you use to introspect at runtime which revisions are available for each configuration.
         #[unsafe(method(supportedRevisions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRevisions() -> Retained<NSIndexSet>;
 
-        /// Provides the default revision of a particular algorithm or configuration.
+        /// Provides the default revision of a specific algorithm or configuration.
         #[unsafe(method(defaultRevision))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRevision() -> VTFrameRateConversionConfigurationRevision;
 
         #[cfg(feature = "objc2-foundation")]
-        /// list of source frame supported pixel formats for current configuration
+        /// Supported pixel formats available for source frames for current configuration.
         ///
         /// This property is not atomic.
         ///
@@ -240,7 +254,9 @@ impl VTFrameRateConversionConfiguration {
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as source frames and reference frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent source frames and reference frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         ///
         /// This property is not atomic.
         ///
@@ -254,7 +270,9 @@ impl VTFrameRateConversionConfiguration {
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as destination frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent destination frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         ///
         /// This property is not atomic.
         ///
@@ -267,7 +285,7 @@ impl VTFrameRateConversionConfiguration {
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// reports whether this processor is supported
+        /// Reports whether the system supports this processor.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
@@ -281,10 +299,13 @@ impl VTFrameRateConversionConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// VTFrameRateConversionParameters object contains both input and output parameters needed to run the FrameRateConversion processor on a frame. This object is used in the processWithParameters call of VTFrameProcessor class. The output parameter for this class is destinationFrame where the output frame is returned (as VTFrameProcessorMutableFrame) back to the caller function once the processWithParameters completes.
+    /// An object that contains both input and output parameters, which the frame-rate conversion processor needs to process a frame.
     ///
+    /// Use this object as a parameter to the ``VTFrameProcessor/processWithParameters`` method. The output parameter for
+    /// this class is ``destinationFrame`` where the processor returns output frame (as mutable ``VTFrameProcessorFrame``)
+    /// back to you once the `processWithParameters` completes.
     ///
-    /// VTFrameRateConversionParameters are frame level parameters.
+    /// `VTFrameRateConversionParameters` are frame-level parameters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters?language=objc)
     #[unsafe(super(NSObject))]
@@ -307,28 +328,22 @@ extern_conformance!(
 impl VTFrameRateConversionParameters {
     extern_methods!(
         #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
-        /// Creates a new VTFrameRateConversionParameters .
+        /// Creates new frame rate conversion parameters.
         ///
+        /// Returns `nil` if `sourceFrame` or `nextFrame` is `nil`, if `sourceFrame` and reference frames don't have the same pixel format, or if `interpolationPhase` array count does not match `destinationFrames` array count.
         ///
-        /// init will return nil if sourceFrame or nextFrame is nil, if sourceFrame and reference frames don't have the same pixelformat, or if interpolationPhase array count does not match destinationFrames array count.
-        ///
-        ///
-        /// Parameter `sourceFrame`: Current source frame. Must be non nil.
-        ///
-        ///
-        /// Parameter `nextFrame`: Next source frame in presentation time order.  Must be non nil.
-        ///
-        ///
-        /// Parameter `opticalFlow`: Optional VTFrameProcessorOpticalFlow object that contains forward and backward optical flow with next frame. Only needed if optical flow is pre-computed. For the first frame this will always be nil.
-        ///
-        ///
-        /// Parameter `interpolationPhase`: Array of float numbers to indicate at what intervals to insert a frame between current and next frame. Array size indicates how many frames to interpolate and needs to match destinationFrames size, one interval for each destination frame. Float number values should be between 0 and 1, e.g to insert one frame in the middle a value of 0.5 can be used.
-        ///
-        ///
-        /// Parameter `submissionMode`: Set to VTFrameRateConversionParametersSubmissionModeSequential to indicate that current submission follow presentation time order without jump or skip when compared to previous submission. VTFrameRateConversionParametersSubmissionModeSequential will yield better performance. Set to  VTFrameRateConversionParametersSubmissionModeRandom to indicate a skip or a jump in frame sequence. If VTFrameRateConversionParametersSubmissionModeRandom is set internal cache will be cleared during processWithParameters call.
-        ///
-        ///
-        /// Parameter `destinationFrames`: Caller-allocated NSArray of VTFrameProcessorFrame that contains  pixel buffers that will receive the results.  Must contain the same number of elements as interpolationPhase NSArray.
+        /// - Parameters:
+        /// - sourceFrame: Current source frame; must be non `nil`.
+        /// - nextFrame: Next source frame in presentation time order; must be non `nil`.
+        /// - opticalFlow: Optional ``VTFrameProcessorOpticalFlow`` object that contains forward and backward optical flow with
+        /// next frame. You only need to use this if the optical flow is pre-computed. For the first frame this is always `nil`.
+        /// - interpolationPhase: Array of float numbers that indicate intervals at which the processor inserts a frame between
+        /// current and next frame. The array size indicates how many frames to interpolate and this size must match
+        /// `destinationFrames` size, with one interval for each destination frame. Use float number values between 0 and 1,
+        /// for example, to insert one frame in the middle use a value of 0.5.
+        /// - submissionMode: Provides a hint to let the processor know whether you are submitting frames in presentation
+        /// sequence. For more information about supported modes see ``VTFrameRateConversionParametersSubmissionMode``.
+        /// - destinationFrames: Caller-allocated array of ``VTFrameProcessorFrame`` that contains pixel buffers to receive the results. Must contain the same number of elements as `interpolationPhase`.
         #[unsafe(method(initWithSourceFrame:nextFrame:opticalFlow:interpolationPhase:submissionMode:destinationFrames:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceFrame_nextFrame_opticalFlow_interpolationPhase_submissionMode_destinationFrames(
@@ -350,36 +365,42 @@ impl VTFrameRateConversionParameters {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// sourceFrame Current source frame. Must be non nil
+        /// Current source frame, which must be non `nil`.
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Next source frame in presentation time order. For the last frame this will be nil.
+        /// The next source frame in presentation time order, which is `nil` for the last frame.
         #[unsafe(method(nextFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFrame(&self) -> Option<Retained<VTFrameProcessorFrame>>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Optional VTFrameProcessorReadOnlyOpticalFlow object that contains forward and backward optical flow with next frame. Only needed if optical flow is pre-computed. For the last frame this will be nil.
+        /// An optional object that contains forward and backward optical flow with next frame.
+        ///
+        /// Only needed if optical flow is pre-computed. For the last frame this is `nil`.
         #[unsafe(method(opticalFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn opticalFlow(&self) -> Option<Retained<VTFrameProcessorOpticalFlow>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Array of float numbers to indicate at what intervals to insert a frame between current and next frame. Array size indicates how many frames to interpolate and needs to match destinationFrames size, one interval for each destination frame. Float number values should be between 0 and 1, e.g to insert one frame in the middle a value of 0.5 can be used.
+        /// Array of float numbers that indicate intervals at which the processor inserts a frame between the current and next frame.
+        ///
+        /// Array size indicates how many frames to interpolate and must match `destinationFrames` size, one interval for each destination frame. Use float number values between 0 and 1, for example, to insert one frame in the middle use a value of 0.5.
         #[unsafe(method(interpolationPhase))]
         #[unsafe(method_family = none)]
         pub unsafe fn interpolationPhase(&self) -> Retained<NSArray<NSNumber>>;
 
-        /// A VTFrameRateConversionParametersSubmissionMode value describing the processing request in this Parameters object .
+        /// Ordering of the input frames in this submission relative to the previous submission.
         #[unsafe(method(submissionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn submissionMode(&self) -> VTFrameRateConversionParametersSubmissionMode;
 
         #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
-        /// Caller-allocated NSArray of VTFrameProcessorFrame that contains  pixel buffers that will receive the results.  Must contain the same number of elements as interpolationPhase NSArray.
+        /// Caller-allocated array of video frame objects that contain pixel buffers to receive the results.
+        ///
+        /// Must contain the same number of elements as `interpolationPhase` NSArray.
         #[unsafe(method(destinationFrames))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFrames(&self) -> Retained<NSArray<VTFrameProcessorFrame>>;

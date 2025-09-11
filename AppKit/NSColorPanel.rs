@@ -274,6 +274,18 @@ impl NSColorPanel {
         #[unsafe(method(detachColorList:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detachColorList(&self, color_list: &NSColorList);
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The maximum linear exposure that can be set on a color picked in the color panel. Defaults to 1 and ignores any value less than 1. If set to a value >= 2, the color picked by the panel may have a linear exposure applied to it.
+        #[unsafe(method(maximumLinearExposure))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maximumLinearExposure(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
+        #[unsafe(method(setMaximumLinearExposure:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
     );
 }
 

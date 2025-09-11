@@ -41,6 +41,12 @@ extern_class!(
 );
 
 #[cfg(feature = "PKTool")]
+unsafe impl Send for PKEraserTool {}
+
+#[cfg(feature = "PKTool")]
+unsafe impl Sync for PKEraserTool {}
+
+#[cfg(feature = "PKTool")]
 extern_conformance!(
     unsafe impl NSCopying for PKEraserTool {}
 );
@@ -59,6 +65,12 @@ extern_conformance!(
 impl PKEraserTool {
     extern_methods!(
         /// The eraser type.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(eraserType))]
         #[unsafe(method_family = none)]
         pub unsafe fn eraserType(&self) -> PKEraserType;
@@ -86,6 +98,12 @@ impl PKEraserTool {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The width of the eraser.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;

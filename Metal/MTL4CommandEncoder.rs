@@ -13,9 +13,9 @@ use crate::*;
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct MTL4VisibilityOptions(pub NSInteger);
+pub struct MTL4VisibilityOptions(pub NSUInteger);
 bitflags::bitflags! {
-    impl MTL4VisibilityOptions: NSInteger {
+    impl MTL4VisibilityOptions: NSUInteger {
 /// Don't flush caches. When you use this option on a barrier, it turns it into an execution barrier.
         #[doc(alias = "MTL4VisibilityOptionNone")]
         const None = 0;
@@ -32,7 +32,7 @@ bitflags::bitflags! {
 }
 
 unsafe impl Encode for MTL4VisibilityOptions {
-    const ENCODING: Encoding = NSInteger::ENCODING;
+    const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
 unsafe impl RefEncode for MTL4VisibilityOptions {

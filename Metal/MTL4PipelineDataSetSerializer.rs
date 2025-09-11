@@ -18,9 +18,9 @@ use crate::*;
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct MTL4PipelineDataSetSerializerConfiguration(pub NSInteger);
+pub struct MTL4PipelineDataSetSerializerConfiguration(pub NSUInteger);
 bitflags::bitflags! {
-    impl MTL4PipelineDataSetSerializerConfiguration: NSInteger {
+    impl MTL4PipelineDataSetSerializerConfiguration: NSUInteger {
 /// Enables serializing pipeline scripts.
 ///
 /// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsPipelinesScriptWithError``.
@@ -37,7 +37,7 @@ bitflags::bitflags! {
 }
 
 unsafe impl Encode for MTL4PipelineDataSetSerializerConfiguration {
-    const ENCODING: Encoding = NSInteger::ENCODING;
+    const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
 unsafe impl RefEncode for MTL4PipelineDataSetSerializerConfiguration {

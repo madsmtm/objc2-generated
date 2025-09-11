@@ -18,6 +18,10 @@ extern_class!(
     pub struct PKStrokePath;
 );
 
+unsafe impl Send for PKStrokePath {}
+
+unsafe impl Sync for PKStrokePath {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKStrokePath {}
 );
@@ -48,12 +52,24 @@ impl PKStrokePath {
         ) -> Retained<Self>;
 
         /// The number of control points in this stroke path.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// The time at which this stroke path was started.
         /// The `timeOffset` of contained PKStrokePoints is relative to this date.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(creationDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Retained<NSDate>;

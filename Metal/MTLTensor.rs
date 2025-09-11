@@ -125,7 +125,7 @@ extern "C" {
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct MTLTensorError(pub NSUInteger);
+pub struct MTLTensorError(pub NSInteger);
 impl MTLTensorError {
     #[doc(alias = "MTLTensorErrorNone")]
     pub const None: Self = Self(0);
@@ -136,7 +136,7 @@ impl MTLTensorError {
 }
 
 unsafe impl Encode for MTLTensorError {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
+    const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
 unsafe impl RefEncode for MTLTensorError {
@@ -149,9 +149,9 @@ unsafe impl RefEncode for MTLTensorError {
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct MTLTensorUsage(pub NSInteger);
+pub struct MTLTensorUsage(pub NSUInteger);
 bitflags::bitflags! {
-    impl MTLTensorUsage: NSInteger {
+    impl MTLTensorUsage: NSUInteger {
 /// A tensor context that applies to compute encoders.
 ///
 /// You can use tensors with this context in ``MTL4ComputeCommandEncoder`` or ``MTLComputeCommandEncoder`` instances.
@@ -171,7 +171,7 @@ bitflags::bitflags! {
 }
 
 unsafe impl Encode for MTLTensorUsage {
-    const ENCODING: Encoding = NSInteger::ENCODING;
+    const ENCODING: Encoding = NSUInteger::ENCODING;
 }
 
 unsafe impl RefEncode for MTLTensorUsage {
@@ -224,14 +224,14 @@ impl MTLTensorDescriptor {
         /// - If `usage` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``, the second element of `strides` is aligned to 64 bytes, and for any `i` larger than one, `strides[i]` is equal to `strides[i-1] * dimensions[i-1]`.
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
-        pub unsafe fn strides(&self) -> Retained<MTLTensorExtents>;
+        pub unsafe fn strides(&self) -> Option<Retained<MTLTensorExtents>>;
 
         /// Setter for [`strides`][Self::strides].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStrides:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStrides(&self, strides: &MTLTensorExtents);
+        pub unsafe fn setStrides(&self, strides: Option<&MTLTensorExtents>);
 
         /// A data format for the tensors you create with this descriptor.
         ///
@@ -356,7 +356,7 @@ extern_protocol!(
         /// This property only applies if this tensor shares its storage with a buffer, otherwise it's nil.
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
-        unsafe fn strides(&self) -> Retained<MTLTensorExtents>;
+        unsafe fn strides(&self) -> Option<Retained<MTLTensorExtents>>;
 
         /// An array of sizes, in elements, one for each dimension of this tensor.
         #[unsafe(method(dimensions))]

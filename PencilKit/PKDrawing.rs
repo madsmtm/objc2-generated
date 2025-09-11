@@ -28,6 +28,10 @@ extern_class!(
     pub struct PKDrawing;
 );
 
+unsafe impl Send for PKDrawing {}
+
+unsafe impl Sync for PKDrawing {}
+
 extern_conformance!(
     unsafe impl NSCoding for PKDrawing {}
 );
@@ -91,6 +95,12 @@ impl PKDrawing {
 
         #[cfg(feature = "PKStroke")]
         /// The strokes that this drawing contains.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(strokes))]
         #[unsafe(method_family = none)]
         pub unsafe fn strokes(&self) -> Retained<NSArray<PKStroke>>;
@@ -98,12 +108,24 @@ impl PKDrawing {
         #[cfg(feature = "objc2-core-foundation")]
         /// The bounds of the drawing's contents, taking into account the rendered width of all content.
         /// If these bounds are used to render an image with `imageFromRect:scale:`, no contents will be cropped.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "PKContentVersion")]
         /// The PencilKit version required to use this drawing.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(requiredContentVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredContentVersion(&self) -> PKContentVersion;

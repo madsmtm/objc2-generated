@@ -6631,6 +6631,8 @@ pub use self::__cssmapple::CSSM_APPLE_PRIVATE_CSPDL_CODE_26;
 #[cfg(feature = "cssmapple")]
 pub use self::__cssmapple::CSSM_APPLE_PRIVATE_CSPDL_CODE_27;
 #[cfg(feature = "cssmapple")]
+pub use self::__cssmapple::CSSM_APPLE_PRIVATE_CSPDL_CODE_28;
+#[cfg(feature = "cssmapple")]
 pub use self::__cssmapple::CSSM_APPLE_PRIVATE_CSPDL_CODE_8;
 #[cfg(feature = "cssmapple")]
 pub use self::__cssmapple::CSSM_APPLE_PRIVATE_CSPDL_CODE_9;

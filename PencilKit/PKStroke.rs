@@ -20,6 +20,10 @@ extern_class!(
     pub struct PKStroke;
 );
 
+unsafe impl Send for PKStroke {}
+
+unsafe impl Sync for PKStroke {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKStroke {}
 );
@@ -71,24 +75,47 @@ impl PKStroke {
 
         #[cfg(feature = "PKInk")]
         /// The ink used to render this stroke.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(ink))]
         #[unsafe(method_family = none)]
         pub unsafe fn ink(&self) -> Retained<PKInk>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The affine transform of the stroke when rendered.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "PKStrokePath")]
         /// The B-spline path that describes this stroke.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(path))]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Retained<PKStrokePath>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(mask))]
         #[unsafe(method_family = none)]
         pub unsafe fn mask(&self) -> Option<Retained<NSBezierPath>>;
@@ -99,6 +126,12 @@ impl PKStroke {
         /// &
         /// ink of the stroke after the transform
         /// is applied.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(renderBounds))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderBounds(&self) -> CGRect;
@@ -106,17 +139,35 @@ impl PKStroke {
         #[cfg(feature = "PKFloatRange")]
         /// These are the parametric parameter ranges of points in `strokePath`
         /// that intersect the stroke's mask.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maskedPathRanges))]
         #[unsafe(method_family = none)]
         pub unsafe fn maskedPathRanges(&self) -> Retained<NSArray<PKFloatRange>>;
 
         /// The random seed for drawing strokes that use randomized effects.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(randomSeed))]
         #[unsafe(method_family = none)]
         pub unsafe fn randomSeed(&self) -> u32;
 
         #[cfg(feature = "PKContentVersion")]
         /// The PencilKit version required to use this stroke.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(requiredContentVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredContentVersion(&self) -> PKContentVersion;

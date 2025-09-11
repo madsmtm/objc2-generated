@@ -290,6 +290,12 @@ impl UIHDRHeadroomUsageLimit {
     /// Headroom usage limits are not defined
     #[doc(alias = "UIHDRHeadroomUsageLimitUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// Headroom usage limits are in effect, HDR headroom usage should be restricted
+    #[doc(alias = "UIHDRHeadroomUsageLimitActive")]
+    pub const Active: Self = Self(0);
+    /// Headroom usage limits are disabled, HDR headroom usage is unrestricted.
+    #[doc(alias = "UIHDRHeadroomUsageLimitInactive")]
+    pub const Inactive: Self = Self(1);
 }
 
 unsafe impl Encode for UIHDRHeadroomUsageLimit {

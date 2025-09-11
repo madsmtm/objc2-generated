@@ -8,7 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Quality prioritization levels to favor quality or performance.
+/// Configuration value you set to prioritize quality or performance.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfigurationqualityprioritization?language=objc)
 // NS_ENUM
@@ -34,7 +34,10 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationQualityPrioritization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// List of existing algorithm revisions with the highest being the latest. Clients can read defaultRevision property to find the default revision.
+/// Available algorithm revisions.
+///
+/// A new enum case with higher revision number is added when the processing algorithm is updated.
+/// The ``VTOpticalFlowConfiguration/defaultRevision`` property provides the default algorithm revision.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfigurationrevision?language=objc)
 // NS_ENUM
@@ -58,7 +61,18 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationRevision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Hint to let the processor know whether frames are being submitted in presenatation sequence, allowing performance optimizations based on previous processing requests
+/// Indicates the order of input frames.
+///
+/// When submitting ``VTOpticalFlowParameters`` to the processor, you need to provide one of these values based on how
+/// the input frames are related to each other.
+///
+/// Use ``VTOpticalFlowParametersSubmissionModeSequential`` to indicate that the current submission follows presentation
+/// time order without jump or skip, when compared to previous submissions. This value provides better processor
+/// performance than other values.
+///
+/// Use ``VTOpticalFlowParametersSubmissionModeRandom`` to indicate that the current submission has no relation to the
+/// previous submission. Typically, this indicates a jump or a skip in the frame sequence. The processor clears internal
+/// caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowparameterssubmissionmode?language=objc)
 // NS_ENUM
@@ -86,10 +100,9 @@ unsafe impl RefEncode for VTOpticalFlowParametersSubmissionMode {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Configuration that is used to set up an OpticalFlow processor
+    /// Configuration that you use to set up an optical flow processor
     ///
-    ///
-    /// This configuration enables the OpticalFlow on a VTFrameProcessing session.
+    /// This configuration enables the optical flow on a `VTFrameProcessor` session.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -117,25 +130,16 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowConfiguration {
     extern_methods!(
-        /// Creates a new VTOpticalFlowConfiguration with specified flow width and height.
+        /// Creates a new optical flow configuration.
         ///
+        /// Returns ``nil`` if dimensions are out of range or revision is unsupported.
         ///
-        /// init will return nil if dimensions are out of range or revision is unsupported.
-        ///
-        ///
-        /// Parameter `frameWidth`: Width of source frame in pixels. Maximum value is 8192 for macOS, and 4096 for iOS.
-        ///
-        ///
-        /// Parameter `frameHeight`: Height of source frame in pixels. Maximum value is 4320 for macOS, and 2160 for iOS.
-        ///
-        ///
-        /// Parameter `usePrecomputedFlow`: Boolean value to indicate that Optical Flow will be provided by the user, if false this configuration will compute the optical flow on the fly.
-        ///
-        ///
-        /// Parameter `qualityPrioritization`: Used to control quality and performance levels. See VTOpticalFlowConfigurationQualityPrioritization for more info.
-        ///
-        ///
-        /// Parameter `revision`: The specific algorithm or configuration revision that is to be used to perform the request.
+        /// - Parameters:
+        /// - frameWidth: Width of source frame in pixels; the maximum value is 8192 for macOS, and 4096 for iOS.
+        /// - frameHeight: Height of source frame in pixels; the maximum value is 4320 for macOS, and 2160 for iOS.
+        /// - qualityPrioritization: A level you use to prioritize quality or performance; for more information about supported
+        /// levels, see ``VTOpticalFlowConfigurationQualityPrioritization``.
+        /// - revision: The specific algorithm or configuration revision you use to perform the request.
         #[unsafe(method(initWithFrameWidth:frameHeight:qualityPrioritization:revision:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameWidth_frameHeight_qualityPrioritization_revision(
@@ -176,7 +180,9 @@ impl VTOpticalFlowConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn frameHeight(&self) -> NSInteger;
 
-        /// parameter used to control quality and performance levels. See VTOpticalFlowConfigurationQualityPrioritization for more info.
+        /// A parameter you use to control quality and performance levels.
+        ///
+        /// For more information about supported levels, see ``VTOpticalFlowConfigurationQualityPrioritization``.
         ///
         /// This property is not atomic.
         ///
@@ -189,7 +195,7 @@ impl VTOpticalFlowConfiguration {
             &self,
         ) -> VTOpticalFlowConfigurationQualityPrioritization;
 
-        /// The specific algorithm or configuration revision that is to be used to perform the request.
+        /// The specific algorithm or configuration revision you use to perform the request.
         ///
         /// This property is not atomic.
         ///
@@ -201,20 +207,20 @@ impl VTOpticalFlowConfiguration {
         pub unsafe fn revision(&self) -> VTOpticalFlowConfigurationRevision;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Provides the collection of currently-supported algorithm or configuration revisions for the class of configuration.
+        /// Provides the collection of currently supported algorithms or configuration revisions for the class of configuration.
         ///
-        /// This property allows clients to introspect at runtime what revisions are available for each configuration.
+        /// A property you use to introspect at runtime which revisions are available for each configuration.
         #[unsafe(method(supportedRevisions))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRevisions() -> Retained<NSIndexSet>;
 
-        /// Provides the default revision of a particular algorithm or configuration.
+        /// Provides the default revision of a specific algorithm or configuration.
         #[unsafe(method(defaultRevision))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultRevision() -> VTOpticalFlowConfigurationRevision;
 
         #[cfg(feature = "objc2-foundation")]
-        /// list of source frame supported pixel formats for current configuration
+        /// Supported pixel formats for source frames for current configuration.
         ///
         /// This property is not atomic.
         ///
@@ -226,7 +232,9 @@ impl VTOpticalFlowConfiguration {
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as source frames and reference frames.
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent source frames and reference frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         ///
         /// This property is not atomic.
         ///
@@ -240,7 +248,9 @@ impl VTOpticalFlowConfiguration {
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as OpticalFlow buffers
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent destination frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         ///
         /// This property is not atomic.
         ///
@@ -253,7 +263,7 @@ impl VTOpticalFlowConfiguration {
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// reports whether this processor is supported
+        /// Reports whether the system supports this processor.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
@@ -267,10 +277,11 @@ impl VTOpticalFlowConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// VTOpticalFlowParameters object contains both input and output parameters needed to generate optical flow between two frames. This object is used in the processWithParameters call of VTFrameProcessor class. The output parameter for this class is destinationOpticalFlow where the output flow is returned (as VTFrameProcessorMutableOpticalFlow) back to the caller function once the processWithParameters completes.
+    /// An object that contains both input and output parameters the frame processor needs to generate optical flow between two frames.
     ///
+    /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class. The output parameter for this class is `destinationOpticalFlow` where the processor returns the output flow (as mutable `VTFrameProcessorOpticalFlow`) back to you once the `processWithParameters` completes.
     ///
-    /// VTOpticalFlowParameters are frame level parameters.
+    /// `VTOpticalFlowParameters` are frame-level parameters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowparameters?language=objc)
     #[unsafe(super(NSObject))]
@@ -293,22 +304,16 @@ extern_conformance!(
 impl VTOpticalFlowParameters {
     extern_methods!(
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Creates a new VTOpticalFlowParameters .
+        /// Creates a new optical flow parameters object.
         ///
+        /// Returns `nil` if `sourceFrame` or `nextFrame` is `nil`, or if `sourceFrame` and `nextFrame` have different pixel formats.
         ///
-        /// init will return nil if sourceFrame or nextFrame is nil, or sourceFrame and nextFrame are different pixelFormats..
-        ///
-        ///
-        /// Parameter `sourceFrame`: Current source frame. Must be non nil.
-        ///
-        ///
-        /// Parameter `nextFrame`: Next source frame in presentation time order.
-        ///
-        ///
-        /// Parameter `submissionMode`: Set to VTOpticalFlowParametersSubmissionModeSequential to indicate that current submission follow presentation time order without jump or skip when compared to previous submission. VTOpticalFlowParametersSubmissionModeSequential will yield better performance. Set to  VTOpticalFlowParametersSubmissionModeRandom to indicate a skip or a jump in frame sequence. If VTOpticalFlowParametersSubmissionModeRandom is set internal cache will be cleared during processWithParameters call.
-        ///
-        ///
-        /// Parameter `destinationOpticalFlow`: User allocated VTFrameProcessorMutableOpticalFlow that will receive the results.
+        /// - Parameters:
+        /// - sourceFrame: Current source frame; must be non `nil`.
+        /// - nextFrame: Next source frame in presentation time order.
+        /// - submissionMode: Provides a hint to let the processor know whether you are submitting frames in presentation
+        /// sequence. For more information about supported modes see ``VTOpticalFlowParametersSubmissionMode``.
+        /// - destinationOpticalFlow: User allocated `VTFrameProcessorOpticalFlow` that receives the results.
         #[unsafe(method(initWithSourceFrame:nextFrame:submissionMode:destinationOpticalFlow:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceFrame_nextFrame_submissionMode_destinationOpticalFlow(
@@ -328,24 +333,24 @@ impl VTOpticalFlowParameters {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// sourceFrame Current source frame. Must be non nil
+        /// Current source frame, which must be non `nil`.
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Next source frame in presentation time order.
+        /// The next source frame in presentation time order.
         #[unsafe(method(nextFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
-        /// A VTOpticalFlowParametersSubmissionMode value describing the processing request in this Parameters object .
+        /// Ordering of the input frames in this submission relative to the previous submission.
         #[unsafe(method(submissionMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn submissionMode(&self) -> VTOpticalFlowParametersSubmissionMode;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// VTFrameProcessorMutableOpticalFlow that contains user allocated flow pixel buffers that will receive the results.
+        /// Output optical flow calculated by the processor.
         #[unsafe(method(destinationOpticalFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationOpticalFlow(&self) -> Retained<VTFrameProcessorOpticalFlow>;
