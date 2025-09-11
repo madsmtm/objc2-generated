@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage?language=objc)
+#[doc(alias = "CGPDFPageRef")]
 #[repr(C)]
 pub struct CGPDFPage {
     inner: [u8; 0],

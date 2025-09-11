@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthentication?language=objc)
+#[doc(alias = "CFHTTPAuthenticationRef")]
 #[repr(C)]
 pub struct CFHTTPAuthentication {
     inner: [u8; 0],

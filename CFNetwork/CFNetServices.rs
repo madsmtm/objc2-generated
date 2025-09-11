@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservice?language=objc)
+#[doc(alias = "CFNetServiceRef")]
 #[repr(C)]
 pub struct CFNetService {
     inner: [u8; 0],
@@ -26,6 +27,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitor?language=objc)
+#[doc(alias = "CFNetServiceMonitorRef")]
 #[repr(C)]
 pub struct CFNetServiceMonitor {
     inner: [u8; 0],
@@ -41,6 +43,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowser?language=objc)
+#[doc(alias = "CFNetServiceBrowserRef")]
 #[repr(C)]
 pub struct CFNetServiceBrowser {
     inner: [u8; 0],

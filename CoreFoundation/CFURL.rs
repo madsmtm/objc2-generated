@@ -37,6 +37,7 @@ unsafe impl RefEncode for CFURLPathStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurl?language=objc)
 ///
 /// This is toll-free bridged with `NSURL`.
+#[doc(alias = "CFURLRef")]
 #[repr(C)]
 pub struct CFURL {
     inner: [u8; 0],

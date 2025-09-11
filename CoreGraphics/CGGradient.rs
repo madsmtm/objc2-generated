@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient?language=objc)
+#[doc(alias = "CGGradientRef")]
 #[repr(C)]
 pub struct CGGradient {
     inner: [u8; 0],

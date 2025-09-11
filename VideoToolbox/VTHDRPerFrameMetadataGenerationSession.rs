@@ -43,6 +43,7 @@ extern "C" {
 /// VTHDRPerFrameMetadataGenerationSessionRef is a CF type, so call CFRelease to release your object reference.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationsession?language=objc)
+#[doc(alias = "VTHDRPerFrameMetadataGenerationSessionRef")]
 #[repr(C)]
 pub struct VTHDRPerFrameMetadataGenerationSession {
     inner: [u8; 0],

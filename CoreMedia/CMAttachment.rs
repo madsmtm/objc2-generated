@@ -7,6 +7,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentbearer?language=objc)
+#[doc(alias = "CMAttachmentBearerRef")]
 pub type CMAttachmentBearer = CFType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentmode?language=objc)

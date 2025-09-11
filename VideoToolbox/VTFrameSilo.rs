@@ -24,6 +24,7 @@ use crate::*;
 /// do not expect to get identical object pointers back.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilo?language=objc)
+#[doc(alias = "VTFrameSiloRef")]
 #[repr(C)]
 pub struct VTFrameSilo {
     inner: [u8; 0],

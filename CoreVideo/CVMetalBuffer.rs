@@ -16,6 +16,7 @@ use crate::*;
 /// Retaining a CVMetalBuffer is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffer?language=objc)
+#[doc(alias = "CVMetalBufferRef")]
 #[cfg(feature = "CVBuffer")]
 pub type CVMetalBuffer = CVBuffer;
 

@@ -16,6 +16,7 @@ use crate::*;
 /// CoreVideo OpenGL Texture Cache
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecache?language=objc)
+#[doc(alias = "CVOpenGLTextureCacheRef")]
 #[repr(C)]
 pub struct CVOpenGLTextureCache {
     inner: [u8; 0],

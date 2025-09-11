@@ -42,6 +42,7 @@ impl CFStringTokenizer {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizer?language=objc)
+#[doc(alias = "CFStringTokenizerRef")]
 #[repr(C)]
 pub struct CFStringTokenizer {
     inner: [u8; 0],

@@ -25,6 +25,7 @@ use crate::*;
 /// Additionally, the CMSync infrastructure monitors relative drift between CMClocks.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclock?language=objc)
+#[doc(alias = "CMClockRef")]
 #[repr(C)]
 pub struct CMClock {
     inner: [u8; 0],
@@ -59,6 +60,7 @@ unsafe impl Sync for CMClock {}
 /// the timebase's time changes relative to the ultimate source clock.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimebase?language=objc)
+#[doc(alias = "CMTimebaseRef")]
 #[repr(C)]
 pub struct CMTimebase {
     inner: [u8; 0],
@@ -78,6 +80,7 @@ unsafe impl Send for CMTimebase {}
 unsafe impl Sync for CMTimebase {}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclockortimebase?language=objc)
+#[doc(alias = "CMClockOrTimebaseRef")]
 pub type CMClockOrTimebase = CFType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmclockerror_missingrequiredparameter?language=objc)

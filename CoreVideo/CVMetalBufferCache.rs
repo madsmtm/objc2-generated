@@ -19,6 +19,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercache?language=objc)
+#[doc(alias = "CVMetalBufferCacheRef")]
 #[repr(C)]
 pub struct CVMetalBufferCache {
     inner: [u8; 0],

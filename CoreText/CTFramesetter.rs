@@ -12,6 +12,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesetter?language=objc)
+#[doc(alias = "CTFramesetterRef")]
 #[repr(C)]
 pub struct CTFramesetter {
     inner: [u8; 0],

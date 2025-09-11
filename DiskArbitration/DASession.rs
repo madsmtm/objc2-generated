@@ -15,6 +15,7 @@ use crate::*;
 /// Type of a reference to DASession instances.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasession?language=objc)
+#[doc(alias = "DASessionRef")]
 #[repr(C)]
 pub struct DASession {
     inner: [u8; 0],
@@ -123,6 +124,7 @@ impl DASession {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsession?language=objc)
+#[doc(alias = "DAApprovalSessionRef")]
 #[repr(C)]
 pub struct DAApprovalSession {
     inner: [u8; 0],

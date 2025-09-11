@@ -834,6 +834,7 @@ pub type IOHIDAccelerationAlgorithmType = u8;
 /// This is the type of a reference to the IOHIDDevice.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevice?language=objc)
+#[doc(alias = "IOHIDDeviceRef")]
 #[repr(C)]
 pub struct IOHIDDevice {
     inner: [u8; 0],
@@ -851,6 +852,7 @@ cf_objc2_type!(
 /// This is the type of a reference to the IOHIDElement.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelement?language=objc)
+#[doc(alias = "IOHIDElementRef")]
 #[repr(C)]
 pub struct IOHIDElement {
     inner: [u8; 0],
@@ -868,6 +870,7 @@ cf_objc2_type!(
 /// This is the type of a reference to the IOHIDValue.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvalue?language=objc)
+#[doc(alias = "IOHIDValueRef")]
 #[repr(C)]
 pub struct IOHIDValue {
     inner: [u8; 0],
@@ -1028,6 +1031,7 @@ pub type IOHIDDeviceCallback =
 /// This is the type of a reference to the IOHIDQueue.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidqueue?language=objc)
+#[doc(alias = "IOHIDQueueRef")]
 #[repr(C)]
 pub struct IOHIDQueue {
     inner: [u8; 0],
@@ -4039,6 +4043,7 @@ unsafe impl RefEncode for IOHIDManagerOptions {
 /// This is the type of a reference to the IOHIDManager.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidmanager?language=objc)
+#[doc(alias = "IOHIDManagerRef")]
 #[repr(C)]
 pub struct IOHIDManager {
     inner: [u8; 0],
@@ -9798,6 +9803,7 @@ unsafe impl RefEncode for IOHIDTransactionOptions {
 /// This is the type of a reference to the IOHIDTransaction.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransaction?language=objc)
+#[doc(alias = "IOHIDTransactionRef")]
 #[repr(C)]
 pub struct IOHIDTransaction {
     inner: [u8; 0],

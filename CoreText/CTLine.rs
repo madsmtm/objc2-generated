@@ -13,6 +13,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctline?language=objc)
+#[doc(alias = "CTLineRef")]
 #[repr(C)]
 pub struct CTLine {
     inner: [u8; 0],

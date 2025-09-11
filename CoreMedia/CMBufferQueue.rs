@@ -34,6 +34,7 @@ pub const kCMBufferQueueError_InvalidBuffer: OSStatus = -12769;
 /// A reference to a CMBufferQueue, a CF object that implements a queue of timed buffers.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferqueue?language=objc)
+#[doc(alias = "CMBufferQueueRef")]
 #[repr(C)]
 pub struct CMBufferQueue {
     inner: [u8; 0],
@@ -54,6 +55,7 @@ cf_objc2_type!(
 /// types are CMSampleBufferRef and CVPixelBufferRef.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffer?language=objc)
+#[doc(alias = "CMBufferRef")]
 pub type CMBuffer = CFType;
 
 /// Client callback that returns a CMTime from a CMBufferRef

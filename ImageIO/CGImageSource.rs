@@ -13,6 +13,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesource?language=objc)
+#[doc(alias = "CGImageSourceRef")]
 #[repr(C)]
 pub struct CGImageSource {
     inner: [u8; 0],

@@ -14,6 +14,7 @@ use crate::*;
 pub type CFNotificationName = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenter?language=objc)
+#[doc(alias = "CFNotificationCenterRef")]
 #[repr(C)]
 pub struct CFNotificationCenter {
     inner: [u8; 0],

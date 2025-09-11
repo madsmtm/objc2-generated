@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmm?language=objc)
+#[doc(alias = "ColorSyncCMMRef")]
 #[repr(C)]
 pub struct ColorSyncCMM {
     inner: [u8; 0],

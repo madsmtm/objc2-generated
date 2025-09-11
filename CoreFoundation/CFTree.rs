@@ -101,6 +101,7 @@ pub type CFTreeApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_voi
 /// This is the type of a reference to CFTrees.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftree?language=objc)
+#[doc(alias = "CFTreeRef")]
 #[repr(C)]
 pub struct CFTree {
     inner: [u8; 0],

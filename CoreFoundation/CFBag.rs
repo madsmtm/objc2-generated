@@ -75,6 +75,7 @@ extern "C" {
 pub type CFBagApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbag?language=objc)
+#[doc(alias = "CFBagRef")]
 #[repr(C)]
 pub struct CFBag<T: ?Sized = Opaque> {
     inner: [u8; 0],
@@ -109,6 +110,7 @@ impl<T: ?Sized> CFBag<T> {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebag?language=objc)
+#[doc(alias = "CFMutableBagRef")]
 #[repr(C)]
 pub struct CFMutableBag<T: ?Sized = Opaque> {
     inner: [u8; 0],

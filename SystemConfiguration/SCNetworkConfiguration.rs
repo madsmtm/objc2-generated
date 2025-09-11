@@ -14,6 +14,7 @@ use crate::*;
 /// a network interface.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterface?language=objc)
+#[doc(alias = "SCNetworkInterfaceRef")]
 #[repr(C)]
 pub struct SCNetworkInterface {
     inner: [u8; 0],
@@ -123,12 +124,14 @@ extern "C" {
 /// an Ethernet Bond interface.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterface?language=objc)
+#[doc(alias = "SCBondInterfaceRef")]
 pub type SCBondInterface = SCNetworkInterface;
 
 /// This is the type of a reference to an object that represents
 /// the status of an Ethernet Bond interface.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondstatus?language=objc)
+#[doc(alias = "SCBondStatusRef")]
 #[repr(C)]
 pub struct SCBondStatus {
     inner: [u8; 0],
@@ -173,12 +176,14 @@ extern "C" {
 /// a Virtual LAN (VLAN) interface.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterface?language=objc)
+#[doc(alias = "SCVLANInterfaceRef")]
 pub type SCVLANInterface = SCNetworkInterface;
 
 /// This is the type of a reference to an object that represents
 /// a network protocol.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkprotocol?language=objc)
+#[doc(alias = "SCNetworkProtocolRef")]
 #[repr(C)]
 pub struct SCNetworkProtocol {
     inner: [u8; 0],
@@ -222,6 +227,7 @@ extern "C" {
 /// a network service.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservice?language=objc)
+#[doc(alias = "SCNetworkServiceRef")]
 #[repr(C)]
 pub struct SCNetworkService {
     inner: [u8; 0],
@@ -240,6 +246,7 @@ cf_objc2_type!(
 /// a network set.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkset?language=objc)
+#[doc(alias = "SCNetworkSetRef")]
 #[repr(C)]
 pub struct SCNetworkSet {
     inner: [u8; 0],

@@ -12,6 +12,7 @@ use crate::*;
 /// A reference to an opaque policy search structure.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysearch?language=objc)
+#[doc(alias = "SecPolicySearchRef")]
 #[repr(C)]
 pub struct SecPolicySearch {
     inner: [u8; 0],

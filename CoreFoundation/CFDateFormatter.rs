@@ -14,6 +14,7 @@ use crate::*;
 pub type CFDateFormatterKey = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatter?language=objc)
+#[doc(alias = "CFDateFormatterRef")]
 #[repr(C)]
 pub struct CFDateFormatter {
     inner: [u8; 0],

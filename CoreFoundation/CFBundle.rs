@@ -10,6 +10,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundle?language=objc)
+#[doc(alias = "CFBundleRef")]
 #[repr(C)]
 pub struct CFBundle {
     inner: [u8; 0],
@@ -25,6 +26,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugin?language=objc)
+#[doc(alias = "CFPlugInRef")]
 #[repr(C)]
 pub struct CFPlugIn {
     inner: [u8; 0],

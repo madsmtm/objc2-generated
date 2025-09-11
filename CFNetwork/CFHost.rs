@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhost?language=objc)
+#[doc(alias = "CFHostRef")]
 #[repr(C)]
 pub struct CFHost {
     inner: [u8; 0],

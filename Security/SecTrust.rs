@@ -88,6 +88,7 @@ unsafe impl RefEncode for SecTrustResultType {
 /// CFType used for performing X.509 certificate trust evaluations.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrust?language=objc)
+#[doc(alias = "SecTrustRef")]
 #[repr(C)]
 pub struct SecTrust {
     inner: [u8; 0],

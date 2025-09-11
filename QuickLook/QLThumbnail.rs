@@ -15,6 +15,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnail?language=objc)
+#[doc(alias = "QLThumbnailRef")]
 #[repr(C)]
 pub struct QLThumbnail {
     inner: [u8; 0],

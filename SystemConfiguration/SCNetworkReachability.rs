@@ -15,6 +15,7 @@ use crate::*;
 /// This is the handle to a network address or name.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachability?language=objc)
+#[doc(alias = "SCNetworkReachabilityRef")]
 #[repr(C)]
 pub struct SCNetworkReachability {
     inner: [u8; 0],

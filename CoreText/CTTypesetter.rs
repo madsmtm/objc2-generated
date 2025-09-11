@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesetter?language=objc)
+#[doc(alias = "CTTypesetterRef")]
 #[repr(C)]
 pub struct CTTypesetter {
     inner: [u8; 0],

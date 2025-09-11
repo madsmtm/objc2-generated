@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksummary?language=objc)
+#[doc(alias = "SKSummaryRef")]
 #[repr(C)]
 pub struct SKSummary {
     inner: [u8; 0],

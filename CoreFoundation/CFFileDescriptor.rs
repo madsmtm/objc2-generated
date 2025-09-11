@@ -13,6 +13,7 @@ use crate::*;
 pub type CFFileDescriptorNativeDescriptor = c_int;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptor?language=objc)
+#[doc(alias = "CFFileDescriptorRef")]
 #[repr(C)]
 pub struct CFFileDescriptor {
     inner: [u8; 0],

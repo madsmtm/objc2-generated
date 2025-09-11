@@ -17,6 +17,7 @@ use crate::*;
 /// The data stored in the VTMultiPassStorage is private to the video encoder.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmultipassstorage?language=objc)
+#[doc(alias = "VTMultiPassStorageRef")]
 #[repr(C)]
 pub struct VTMultiPassStorage {
     inner: [u8; 0],

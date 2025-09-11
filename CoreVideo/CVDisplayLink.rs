@@ -16,6 +16,7 @@ use objc2_open_gl::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylink?language=objc)
+#[doc(alias = "CVDisplayLinkRef")]
 #[repr(C)]
 pub struct CVDisplayLink {
     inner: [u8; 0],

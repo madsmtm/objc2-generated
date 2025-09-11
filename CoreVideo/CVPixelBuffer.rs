@@ -522,6 +522,7 @@ extern "C" {
 /// Based on the image buffer type. The pixel buffer implements the memory storage for an image buffer.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffer?language=objc)
+#[doc(alias = "CVPixelBufferRef")]
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVPixelBuffer = CVImageBuffer;
 

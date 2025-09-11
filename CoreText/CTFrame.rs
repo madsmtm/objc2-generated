@@ -13,6 +13,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframe?language=objc)
+#[doc(alias = "CTFrameRef")]
 #[repr(C)]
 pub struct CTFrame {
     inner: [u8; 0],

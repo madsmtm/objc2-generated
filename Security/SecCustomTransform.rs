@@ -132,6 +132,7 @@ unsafe impl RefEncode for SecTransformMetaAttributeType {
 /// it up by name.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformattribute?language=objc)
+#[doc(alias = "SecTransformAttributeRef")]
 #[deprecated = "SecTransform is no longer supported"]
 pub type SecTransformAttribute = CFType;
 
@@ -139,6 +140,7 @@ pub type SecTransformAttribute = CFType;
 /// a SecTransformAttributeRef may be used.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformstringorattribute?language=objc)
+#[doc(alias = "SecTransformStringOrAttributeRef")]
 #[deprecated = "SecTransform is no longer supported"]
 pub type SecTransformStringOrAttribute = CFType;
 

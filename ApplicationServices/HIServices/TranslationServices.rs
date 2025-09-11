@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/translation?language=objc)
+#[doc(alias = "TranslationRef")]
 #[repr(C)]
 pub struct Translation {
     inner: [u8; 0],

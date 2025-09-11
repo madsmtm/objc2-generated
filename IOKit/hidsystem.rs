@@ -1874,6 +1874,7 @@ pub type NXParsedKeyMapping = _NXParsedKeyMapping_;
 /// See also: IOKit/hidsystem/IOHIDServiceClient.h
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohideventsystemclient?language=objc)
+#[doc(alias = "IOHIDEventSystemClientRef")]
 #[repr(C)]
 pub struct IOHIDEventSystemClient {
     inner: [u8; 0],
@@ -2063,6 +2064,7 @@ impl IOHIDEventSystemClient {
 /// about the services available in the HID event system.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidserviceclient?language=objc)
+#[doc(alias = "IOHIDServiceClientRef")]
 #[repr(C)]
 pub struct IOHIDServiceClient {
     inner: [u8; 0],
@@ -2212,6 +2214,7 @@ impl IOHIDServiceClient {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevice?language=objc)
+#[doc(alias = "IOHIDUserDeviceRef")]
 #[repr(C)]
 pub struct IOHIDUserDevice {
     inner: [u8; 0],

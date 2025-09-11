@@ -13,6 +13,7 @@ use objc2_security::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelist?language=objc)
+#[doc(alias = "LSSharedFileListRef")]
 #[repr(C)]
 pub struct LSSharedFileList {
     inner: [u8; 0],
@@ -28,6 +29,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistitem?language=objc)
+#[doc(alias = "LSSharedFileListItemRef")]
 #[repr(C)]
 pub struct LSSharedFileListItem {
     inner: [u8; 0],

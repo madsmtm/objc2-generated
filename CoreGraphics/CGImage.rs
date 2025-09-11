@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage?language=objc)
+#[doc(alias = "CGImageRef")]
 #[repr(C)]
 pub struct CGImage {
     inner: [u8; 0],

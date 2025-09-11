@@ -53,6 +53,7 @@ unsafe impl RefEncode for CMTagCollectionError {
 /// A reference to a CMTagCollection, a CF object that adheres to retain/release semantics. This value type represents an unordered collection of zero or more CMTags. This type is roughly analogous to CFSetRef in that it is unordered and has operations for Boolean set math. It is however optimized for the storage of CMTag structures.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollection?language=objc)
+#[doc(alias = "CMTagCollectionRef")]
 #[repr(C)]
 pub struct CMTagCollection {
     inner: [u8; 0],
@@ -68,6 +69,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmutabletagcollection?language=objc)
+#[doc(alias = "CMMutableTagCollectionRef")]
 #[repr(C)]
 pub struct CMMutableTagCollection {
     inner: [u8; 0],

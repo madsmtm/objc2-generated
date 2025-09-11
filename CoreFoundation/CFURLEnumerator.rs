@@ -10,6 +10,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumerator?language=objc)
+#[doc(alias = "CFURLEnumeratorRef")]
 #[repr(C)]
 pub struct CFURLEnumerator {
     inner: [u8; 0],

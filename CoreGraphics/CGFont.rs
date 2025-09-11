@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont?language=objc)
+#[doc(alias = "CGFontRef")]
 #[repr(C)]
 pub struct CGFont {
     inner: [u8; 0],

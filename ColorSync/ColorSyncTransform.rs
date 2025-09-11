@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransform?language=objc)
+#[doc(alias = "ColorSyncTransformRef")]
 #[repr(C)]
 pub struct ColorSyncTransform {
     inner: [u8; 0],

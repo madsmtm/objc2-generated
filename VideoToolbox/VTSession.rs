@@ -10,6 +10,7 @@ use crate::*;
 /// Compression Session or Pixel Transfer Session.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsession?language=objc)
+#[doc(alias = "VTSessionRef")]
 pub type VTSession = CFType;
 
 extern "C-unwind" {

@@ -24,6 +24,7 @@ use crate::*;
 /// to tear it down and CFRelease to release your object reference.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersession?language=objc)
+#[doc(alias = "VTPixelTransferSessionRef")]
 #[repr(C)]
 pub struct VTPixelTransferSession {
     inner: [u8; 0],

@@ -93,10 +93,12 @@ pub const kSecTransformErrorAborted: CFIndex = 20;
 pub const kSecTransformInvalidArgument: CFIndex = 21;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransform?language=objc)
+#[doc(alias = "SecTransformRef")]
 #[deprecated = "SecTransform is no longer supported"]
 pub type SecTransform = CFType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secgrouptransform?language=objc)
+#[doc(alias = "SecGroupTransformRef")]
 #[deprecated = "SecTransform is no longer supported"]
 pub type SecGroupTransform = CFType;
 

@@ -11,6 +11,7 @@ use crate::*;
 /// OpenGL texture based image buffer
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexture?language=objc)
+#[doc(alias = "CVOpenGLTextureRef")]
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLTexture = CVImageBuffer;
 

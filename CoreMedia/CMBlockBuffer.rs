@@ -50,6 +50,7 @@ pub const kCMBlockBufferPermitEmptyReferenceFlag: CMBlockBufferFlags = 1 << 3;
 /// deallocated. These operations are recursive, so one release could result in many follow on releses.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffer?language=objc)
+#[doc(alias = "CMBlockBufferRef")]
 #[repr(C)]
 pub struct CMBlockBuffer {
     inner: [u8; 0],

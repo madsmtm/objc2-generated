@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpool?language=objc)
+#[doc(alias = "CVOpenGLBufferPoolRef")]
 #[repr(C)]
 pub struct CVOpenGLBufferPool {
     inner: [u8; 0],

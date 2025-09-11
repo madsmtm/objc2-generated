@@ -60,6 +60,7 @@ unsafe impl RefEncode for CVAttachmentMode {
 /// Base type for all CoreVideo buffers
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbuffer?language=objc)
+#[doc(alias = "CVBufferRef")]
 #[repr(C)]
 pub struct CVBuffer {
     inner: [u8; 0],

@@ -36,6 +36,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdate?language=objc)
 ///
 /// This is toll-free bridged with `NSDate`.
+#[doc(alias = "CFDateRef")]
 #[repr(C)]
 pub struct CFDate {
     inner: [u8; 0],
@@ -121,6 +122,7 @@ impl CFDate {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezone?language=objc)
 ///
 /// This is toll-free bridged with `NSTimeZone`.
+#[doc(alias = "CFTimeZoneRef")]
 #[repr(C)]
 pub struct CFTimeZone {
     inner: [u8; 0],

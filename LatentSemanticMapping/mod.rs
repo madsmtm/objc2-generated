@@ -46,6 +46,7 @@ pub const kLSMMapOverflow: c_int = -6645;
 /// An opaque Core Foundation type representing an LSM map (mutable).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmap?language=objc)
+#[doc(alias = "LSMMapRef")]
 #[repr(C)]
 pub struct LSMMap {
     inner: [u8; 0],
@@ -75,6 +76,7 @@ unsafe impl ConcreteType for LSMMap {
 /// An opaque Core Foundation type representing an input text (mutable).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmtext?language=objc)
+#[doc(alias = "LSMTextRef")]
 #[repr(C)]
 pub struct LSMText {
     inner: [u8; 0],
@@ -104,6 +106,7 @@ unsafe impl ConcreteType for LSMText {
 /// An opaque Core Foundation type representing the result of a lookup (immutable).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresult?language=objc)
+#[doc(alias = "LSMResultRef")]
 #[repr(C)]
 pub struct LSMResult {
     inner: [u8; 0],

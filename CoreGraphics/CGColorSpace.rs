@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace?language=objc)
+#[doc(alias = "CGColorSpaceRef")]
 #[repr(C)]
 pub struct CGColorSpace {
     inner: [u8; 0],

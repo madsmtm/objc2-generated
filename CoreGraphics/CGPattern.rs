@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpattern?language=objc)
+#[doc(alias = "CGPatternRef")]
 #[repr(C)]
 pub struct CGPattern {
     inner: [u8; 0],

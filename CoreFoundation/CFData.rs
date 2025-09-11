@@ -12,6 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdata?language=objc)
 ///
 /// This is toll-free bridged with `NSData`.
+#[doc(alias = "CFDataRef")]
 #[repr(C)]
 pub struct CFData {
     inner: [u8; 0],
@@ -29,6 +30,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledata?language=objc)
 ///
 /// This is toll-free bridged with `NSMutableData`.
+#[doc(alias = "CFMutableDataRef")]
 #[repr(C)]
 pub struct CFMutableData {
     inner: [u8; 0],

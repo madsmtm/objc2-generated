@@ -6,6 +6,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocument?language=objc)
+#[doc(alias = "SKDocumentRef")]
 pub type SKDocument = CFType;
 
 #[inline]

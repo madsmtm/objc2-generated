@@ -179,6 +179,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocation?language=objc)
+#[doc(alias = "WSMethodInvocationRef")]
 #[repr(C)]
 pub struct WSMethodInvocation {
     inner: [u8; 0],

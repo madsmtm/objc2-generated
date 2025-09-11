@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpool?language=objc)
+#[doc(alias = "CVPixelBufferPoolRef")]
 #[repr(C)]
 pub struct CVPixelBufferPool {
     inner: [u8; 0],

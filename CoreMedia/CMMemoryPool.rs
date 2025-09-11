@@ -40,6 +40,7 @@ use crate::*;
 /// CFAllocatorDeallocate methods.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypool?language=objc)
+#[doc(alias = "CMMemoryPoolRef")]
 #[repr(C)]
 pub struct CMMemoryPool {
     inner: [u8; 0],

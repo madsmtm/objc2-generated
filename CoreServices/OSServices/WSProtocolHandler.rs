@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandler?language=objc)
+#[doc(alias = "WSProtocolHandlerRef")]
 #[repr(C)]
 pub struct WSProtocolHandler {
     inner: [u8; 0],

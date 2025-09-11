@@ -19,6 +19,7 @@ pub type CFLocaleKey = CFString;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocale?language=objc)
 ///
 /// This is toll-free bridged with `NSLocale`.
+#[doc(alias = "CFLocaleRef")]
 #[repr(C)]
 pub struct CFLocale {
     inner: [u8; 0],

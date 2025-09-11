@@ -19,6 +19,7 @@ pub const kQLReturnHasMore: c_uint = kQLReturnMask | 10;
 /// This is the type of a reference to Thumbnail requests.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequest?language=objc)
+#[doc(alias = "QLThumbnailRequestRef")]
 #[repr(C)]
 pub struct QLThumbnailRequest {
     inner: [u8; 0],
@@ -476,6 +477,7 @@ extern "C" {
 /// This is the type of a reference to Preview requests.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequest?language=objc)
+#[doc(alias = "QLPreviewRequestRef")]
 #[repr(C)]
 pub struct QLPreviewRequest {
     inner: [u8; 0],

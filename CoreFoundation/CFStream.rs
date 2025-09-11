@@ -133,6 +133,7 @@ unsafe impl RefEncode for CFStreamClientContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstream?language=objc)
 ///
 /// This is toll-free bridged with `NSInputStream`.
+#[doc(alias = "CFReadStreamRef")]
 #[repr(C)]
 pub struct CFReadStream {
     inner: [u8; 0],
@@ -150,6 +151,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestream?language=objc)
 ///
 /// This is toll-free bridged with `NSOutputStream`.
+#[doc(alias = "CFWriteStreamRef")]
 #[repr(C)]
 pub struct CFWriteStream {
     inner: [u8; 0],

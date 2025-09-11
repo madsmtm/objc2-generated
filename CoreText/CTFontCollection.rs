@@ -13,6 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollection?language=objc)
 ///
 /// This is toll-free bridged with `NSFontCollection`.
+#[doc(alias = "CTFontCollectionRef")]
 #[repr(C)]
 pub struct CTFontCollection {
     inner: [u8; 0],
@@ -30,6 +31,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctmutablefontcollection?language=objc)
 ///
 /// This is toll-free bridged with `NSMutableFontCollection`.
+#[doc(alias = "CTMutableFontCollectionRef")]
 #[repr(C)]
 pub struct CTMutableFontCollection {
     inner: [u8; 0],

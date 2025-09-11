@@ -13,6 +13,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrun?language=objc)
+#[doc(alias = "CTRunRef")]
 #[repr(C)]
 pub struct CTRun {
     inner: [u8; 0],

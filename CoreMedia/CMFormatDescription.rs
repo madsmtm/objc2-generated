@@ -24,6 +24,7 @@ pub const kCMFormatDescriptionError_ValueNotAvailable: OSStatus = -12718;
 /// A reference to a CMFormatDescription, a CF object describing media of a particular type (audio, video, muxed, etc).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescription?language=objc)
+#[doc(alias = "CMFormatDescriptionRef")]
 #[repr(C)]
 pub struct CMFormatDescription {
     inner: [u8; 0],
@@ -350,6 +351,7 @@ pub const kCMAudioCodecType_AAC_AudibleProtected: CMAudioCodecType = 0x61616163;
 /// SYnonym type used for manipulating audio CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescription?language=objc)
+#[doc(alias = "CMAudioFormatDescriptionRef")]
 pub type CMAudioFormatDescription = CMFormatDescription;
 
 extern "C-unwind" {
@@ -578,6 +580,7 @@ pub unsafe extern "C-unwind" fn CMAudioFormatDescriptionEqual(
 /// Synonym type used for manipulating video CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescription?language=objc)
+#[doc(alias = "CMVideoFormatDescriptionRef")]
 pub type CMVideoFormatDescription = CMFormatDescription;
 
 /// Four-character codes identifying the pixel format. Only some codec types are pixel formats.
@@ -1615,6 +1618,7 @@ extern "C-unwind" {
 /// Synonym type used for manipulating CMTaggedBufferGroup media CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformatdescription?language=objc)
+#[doc(alias = "CMTaggedBufferGroupFormatDescriptionRef")]
 pub type CMTaggedBufferGroupFormatDescription = CMFormatDescription;
 
 /// The subtypes of CMTaggedBufferGroup media type.
@@ -1629,6 +1633,7 @@ pub const kCMTaggedBufferGroupFormatType_TaggedBufferGroup: CMTaggedBufferGroupF
 /// Synonym type used for manipulating muxed media CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmuxedformatdescription?language=objc)
+#[doc(alias = "CMMuxedFormatDescriptionRef")]
 pub type CMMuxedFormatDescription = CMFormatDescription;
 
 /// Muxed media format/subtype.
@@ -1679,6 +1684,7 @@ extern "C-unwind" {
 /// Synonym type used for manipulating closed-caption media CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescription?language=objc)
+#[doc(alias = "CMClosedCaptionFormatDescriptionRef")]
 pub type CMClosedCaptionFormatDescription = CMFormatDescription;
 
 /// Closed-caption media format/subtype.
@@ -1697,6 +1703,7 @@ pub const kCMClosedCaptionFormatType_ATSC: CMClosedCaptionFormatType = 0x6174636
 /// Synonym type used for manipulating Text media CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescription?language=objc)
+#[doc(alias = "CMTextFormatDescriptionRef")]
 pub type CMTextFormatDescription = CMFormatDescription;
 
 /// Text media format/subtype.
@@ -1971,6 +1978,7 @@ pub const kCMSubtitleFormatType_WebVTT: CMSubtitleFormatType = 0x77767474;
 /// SYnonym type used for manipulating TimeCode media CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescription?language=objc)
+#[doc(alias = "CMTimeCodeFormatDescriptionRef")]
 pub type CMTimeCodeFormatDescription = CMFormatDescription;
 
 /// The types of TimeCode.
@@ -2064,6 +2072,7 @@ extern "C" {
 /// SYnonym type used for manipulating Metadata media CMFormatDescriptions
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescription?language=objc)
+#[doc(alias = "CMMetadataFormatDescriptionRef")]
 pub type CMMetadataFormatDescription = CMFormatDescription;
 
 /// The subtypes of Metadata media type.

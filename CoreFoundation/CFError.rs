@@ -18,6 +18,7 @@ pub type CFErrorDomain = CFString;
 /// This is toll-free bridged with `NSError`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferror?language=objc)
+#[doc(alias = "CFErrorRef")]
 #[repr(C)]
 pub struct CFError {
     inner: [u8; 0],

@@ -19,6 +19,7 @@ pub const COLORSYNC_PROFILE_INSTALL_ENTITLEMENT: &CStr = unsafe {
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_md5_length?language=objc)
 pub const COLORSYNC_MD5_LENGTH: c_uint = 16;
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofile?language=objc)
+#[doc(alias = "ColorSyncProfileRef")]
 #[repr(C)]
 pub struct ColorSyncProfile {
     inner: [u8; 0],
@@ -34,6 +35,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmutableprofile?language=objc)
+#[doc(alias = "ColorSyncMutableProfileRef")]
 #[repr(C)]
 pub struct ColorSyncMutableProfile {
     inner: [u8; 0],

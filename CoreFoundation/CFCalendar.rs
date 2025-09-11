@@ -12,6 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendar?language=objc)
 ///
 /// This is toll-free bridged with `NSCalendar`.
+#[doc(alias = "CFCalendarRef")]
 #[repr(C)]
 pub struct CFCalendar {
     inner: [u8; 0],

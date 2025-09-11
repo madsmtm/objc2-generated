@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttab?language=objc)
+#[doc(alias = "CTTextTabRef")]
 #[repr(C)]
 pub struct CTTextTab {
     inner: [u8; 0],

@@ -21,6 +21,7 @@ extern "C" {
 /// CoreVideo Metal Texture Cache
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecache?language=objc)
+#[doc(alias = "CVMetalTextureCacheRef")]
 #[repr(C)]
 pub struct CVMetalTextureCache {
     inner: [u8; 0],

@@ -152,6 +152,7 @@ pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void
 /// This is toll-free bridged with `NSSet`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfset?language=objc)
+#[doc(alias = "CFSetRef")]
 #[repr(C)]
 pub struct CFSet<T: ?Sized = Opaque> {
     inner: [u8; 0],
@@ -190,6 +191,7 @@ impl<T: ?Sized> CFSet<T> {
 /// This is toll-free bridged with `NSMutableSet`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableset?language=objc)
+#[doc(alias = "CFMutableSetRef")]
 #[repr(C)]
 pub struct CFMutableSet<T: ?Sized = Opaque> {
     inner: [u8; 0],

@@ -408,6 +408,7 @@ pub unsafe extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
 /// Base type for all CoreVideo image buffers
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffer?language=objc)
+#[doc(alias = "CVImageBufferRef")]
 #[cfg(feature = "CVBuffer")]
 pub type CVImageBuffer = CVBuffer;
 

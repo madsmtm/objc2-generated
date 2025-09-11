@@ -14,6 +14,7 @@ use crate::*;
 pub type CFNumberFormatterKey = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatter?language=objc)
+#[doc(alias = "CFNumberFormatterRef")]
 #[repr(C)]
 pub struct CFNumberFormatter {
     inner: [u8; 0],

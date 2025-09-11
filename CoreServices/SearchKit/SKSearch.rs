@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearch?language=objc)
+#[doc(alias = "SKSearchRef")]
 #[repr(C)]
 pub struct SKSearch {
     inner: [u8; 0],
@@ -222,6 +223,7 @@ impl SKIndex {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchgroup?language=objc)
+#[doc(alias = "SKSearchGroupRef")]
 #[repr(C)]
 pub struct SKSearchGroup {
     inner: [u8; 0],
@@ -248,6 +250,7 @@ unsafe impl ConcreteType for SKSearchGroup {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchresults?language=objc)
+#[doc(alias = "SKSearchResultsRef")]
 #[repr(C)]
 pub struct SKSearchResults {
     inner: [u8; 0],

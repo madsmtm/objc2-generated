@@ -13,6 +13,7 @@ use objc2_security::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentity?language=objc)
+#[doc(alias = "CSIdentityRef")]
 #[repr(C)]
 pub struct CSIdentity {
     inner: [u8; 0],
@@ -28,6 +29,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityquery?language=objc)
+#[doc(alias = "CSIdentityQueryRef")]
 #[repr(C)]
 pub struct CSIdentityQuery {
     inner: [u8; 0],

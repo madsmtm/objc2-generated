@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading?language=objc)
+#[doc(alias = "CGShadingRef")]
 #[repr(C)]
 pub struct CGShading {
     inner: [u8; 0],

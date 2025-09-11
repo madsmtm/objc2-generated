@@ -185,6 +185,7 @@ pub type CFDictionaryApplierFunction =
 /// This is toll-free bridged with `NSDictionary`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionary?language=objc)
+#[doc(alias = "CFDictionaryRef")]
 #[repr(C)]
 pub struct CFDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
     inner: [u8; 0],
@@ -223,6 +224,7 @@ impl<K: ?Sized, V: ?Sized> CFDictionary<K, V> {
 /// This is toll-free bridged with `NSMutableDictionary`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledictionary?language=objc)
+#[doc(alias = "CFMutableDictionaryRef")]
 #[repr(C)]
 pub struct CFMutableDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
     inner: [u8; 0],

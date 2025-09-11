@@ -56,6 +56,7 @@ pub const kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment: u32 = 1 << 
 /// samples of a particular media type (audio, video, muxed, etc).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffer?language=objc)
+#[doc(alias = "CMSampleBufferRef")]
 #[repr(C)]
 pub struct CMSampleBuffer {
     inner: [u8; 0],

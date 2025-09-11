@@ -20,6 +20,7 @@ use crate::*;
 /// The session reference is a reference-counted CF object.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsession?language=objc)
+#[doc(alias = "VTRAWProcessingSessionRef")]
 #[repr(C)]
 pub struct VTRAWProcessingSession {
     inner: [u8; 0],

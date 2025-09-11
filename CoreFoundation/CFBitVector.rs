@@ -13,6 +13,7 @@ use crate::*;
 pub type CFBit = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvector?language=objc)
+#[doc(alias = "CFBitVectorRef")]
 #[repr(C)]
 pub struct CFBitVector {
     inner: [u8; 0],
@@ -28,6 +29,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebitvector?language=objc)
+#[doc(alias = "CFMutableBitVectorRef")]
 #[repr(C)]
 pub struct CFMutableBitVector {
     inner: [u8; 0],

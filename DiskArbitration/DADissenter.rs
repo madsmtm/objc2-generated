@@ -44,6 +44,7 @@ pub type DAReturn = libc::mach_error_t;
 /// Type of a reference to DADissenter instances.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadissenter?language=objc)
+#[doc(alias = "DADissenterRef")]
 #[repr(C)]
 pub struct DADissenter {
     inner: [u8; 0],

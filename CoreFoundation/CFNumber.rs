@@ -12,6 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfboolean?language=objc)
 ///
 /// This is toll-free bridged with `NSNumber`.
+#[doc(alias = "CFBooleanRef")]
 #[repr(C)]
 pub struct CFBoolean {
     inner: [u8; 0],
@@ -114,6 +115,7 @@ unsafe impl RefEncode for CFNumberType {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumber?language=objc)
 ///
 /// This is toll-free bridged with `NSNumber`.
+#[doc(alias = "CFNumberRef")]
 #[repr(C)]
 pub struct CFNumber {
     inner: [u8; 0],

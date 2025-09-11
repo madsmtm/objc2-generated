@@ -14,6 +14,7 @@ use crate::*;
 /// This is toll-free bridged with `NSCharacterSet`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharacterset?language=objc)
+#[doc(alias = "CFCharacterSetRef")]
 #[repr(C)]
 pub struct CFCharacterSet {
     inner: [u8; 0],
@@ -33,6 +34,7 @@ cf_objc2_type!(
 /// This is toll-free bridged with `NSMutableCharacterSet`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablecharacterset?language=objc)
+#[doc(alias = "CFMutableCharacterSetRef")]
 #[repr(C)]
 pub struct CFMutableCharacterSet {
     inner: [u8; 0],

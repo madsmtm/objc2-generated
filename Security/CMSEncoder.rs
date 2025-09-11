@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoder?language=objc)
+#[doc(alias = "CMSEncoderRef")]
 #[repr(C)]
 pub struct CMSEncoder {
     inner: [u8; 0],

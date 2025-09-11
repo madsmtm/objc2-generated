@@ -245,6 +245,7 @@ extern "C" {
 /// operates on the result.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccode?language=objc)
+#[doc(alias = "SecCodeRef")]
 #[repr(C)]
 pub struct SecCode {
     inner: [u8; 0],
@@ -262,6 +263,7 @@ cf_objc2_type!(
 /// This is the type of a reference to static code on disk.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcode?language=objc)
+#[doc(alias = "SecStaticCodeRef")]
 #[repr(C)]
 pub struct SecStaticCode {
     inner: [u8; 0],
@@ -279,6 +281,7 @@ cf_objc2_type!(
 /// This is the type of a reference to a code requirement.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirement?language=objc)
+#[doc(alias = "SecRequirementRef")]
 #[repr(C)]
 pub struct SecRequirement {
     inner: [u8; 0],

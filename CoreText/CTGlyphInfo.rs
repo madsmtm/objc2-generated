@@ -14,6 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfo?language=objc)
 ///
 /// This is toll-free bridged with `NSGlyphInfo`.
+#[doc(alias = "CTGlyphInfoRef")]
 #[repr(C)]
 pub struct CTGlyphInfo {
     inner: [u8; 0],

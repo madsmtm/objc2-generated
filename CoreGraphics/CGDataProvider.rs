@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider?language=objc)
+#[doc(alias = "CGDataProviderRef")]
 #[repr(C)]
 pub struct CGDataProvider {
     inner: [u8; 0],

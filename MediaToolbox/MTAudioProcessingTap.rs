@@ -15,6 +15,7 @@ use objc2_core_media::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtap?language=objc)
+#[doc(alias = "MTAudioProcessingTapRef")]
 #[repr(C)]
 pub struct MTAudioProcessingTap {
     inner: [u8; 0],

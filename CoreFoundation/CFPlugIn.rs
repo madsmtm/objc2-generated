@@ -269,6 +269,7 @@ impl CFPlugIn {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstance?language=objc)
+#[doc(alias = "CFPlugInInstanceRef")]
 #[repr(C)]
 pub struct CFPlugInInstance {
     inner: [u8; 0],

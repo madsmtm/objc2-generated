@@ -12,6 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstring?language=objc)
 ///
 /// This is toll-free bridged with `NSAttributedString`.
+#[doc(alias = "CFAttributedStringRef")]
 #[repr(C)]
 pub struct CFAttributedString {
     inner: [u8; 0],
@@ -29,6 +30,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableattributedstring?language=objc)
 ///
 /// This is toll-free bridged with `NSMutableAttributedString`.
+#[doc(alias = "CFMutableAttributedStringRef")]
 #[repr(C)]
 pub struct CFMutableAttributedString {
     inner: [u8; 0],

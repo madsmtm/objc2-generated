@@ -95,6 +95,7 @@ extern "C-unwind" {
 /// respond to messages sent by assistive applications and send notifications that describe state changes.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axuielement?language=objc)
+#[doc(alias = "AXUIElementRef")]
 #[repr(C)]
 pub struct AXUIElement {
     inner: [u8; 0],
@@ -1560,6 +1561,7 @@ impl AXUIElement {
 /// ).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axtextmarker?language=objc)
+#[doc(alias = "AXTextMarkerRef")]
 #[repr(C)]
 pub struct AXTextMarker {
     inner: [u8; 0],
@@ -1669,6 +1671,7 @@ impl AXTextMarker {
 /// ).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axtextmarkerrange?language=objc)
+#[doc(alias = "AXTextMarkerRangeRef")]
 #[repr(C)]
 pub struct AXTextMarkerRange {
     inner: [u8; 0],
@@ -1836,6 +1839,7 @@ impl AXTextMarkerRange {
 /// ).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axobserver?language=objc)
+#[doc(alias = "AXObserverRef")]
 #[repr(C)]
 pub struct AXObserver {
     inner: [u8; 0],

@@ -10,6 +10,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparser?language=objc)
+#[doc(alias = "CFXMLParserRef")]
 #[repr(C)]
 pub struct CFXMLParser {
     inner: [u8; 0],

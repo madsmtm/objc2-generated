@@ -66,6 +66,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessage?language=objc)
+#[doc(alias = "CFHTTPMessageRef")]
 #[repr(C)]
 pub struct CFHTTPMessage {
     inner: [u8; 0],

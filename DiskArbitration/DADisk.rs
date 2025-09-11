@@ -208,6 +208,7 @@ extern "C" {
 /// Type of a reference to DADisk instances.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadisk?language=objc)
+#[doc(alias = "DADiskRef")]
 #[repr(C)]
 pub struct DADisk {
     inner: [u8; 0],

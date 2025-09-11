@@ -12,6 +12,7 @@ use crate::*;
 /// Contains information about an identity search.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysearch?language=objc)
+#[doc(alias = "SecIdentitySearchRef")]
 #[repr(C)]
 pub struct SecIdentitySearch {
     inner: [u8; 0],

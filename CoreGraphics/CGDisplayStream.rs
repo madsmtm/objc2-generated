@@ -22,6 +22,7 @@ use crate::*;
 /// at either a traditional CFRunLoop, or at a dispatch queue.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream?language=objc)
+#[doc(alias = "CGDisplayStreamRef")]
 #[repr(C)]
 pub struct CGDisplayStream {
     inner: [u8; 0],
@@ -44,6 +45,7 @@ cf_objc2_type!(
 /// where apps need to coalesce the values because they decided to skip processing for one or more frames.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate?language=objc)
+#[doc(alias = "CGDisplayStreamUpdateRef")]
 #[repr(C)]
 pub struct CGDisplayStreamUpdate {
     inner: [u8; 0],

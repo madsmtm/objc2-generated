@@ -15,6 +15,7 @@ use crate::*;
 /// This is the handle to manage a connection-oriented service.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnection?language=objc)
+#[doc(alias = "SCNetworkConnectionRef")]
 #[repr(C)]
 pub struct SCNetworkConnection {
     inner: [u8; 0],

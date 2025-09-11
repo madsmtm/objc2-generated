@@ -14,6 +14,7 @@ use crate::*;
 /// See SecCertificate.h for details.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificate?language=objc)
+#[doc(alias = "SecCertificateRef")]
 #[repr(C)]
 pub struct SecCertificate {
     inner: [u8; 0],
@@ -33,6 +34,7 @@ cf_objc2_type!(
 /// SecIdentity.h for details.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentity?language=objc)
+#[doc(alias = "SecIdentityRef")]
 #[repr(C)]
 pub struct SecIdentity {
     inner: [u8; 0],
@@ -51,6 +53,7 @@ cf_objc2_type!(
 /// SecKey.h for details.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckey?language=objc)
+#[doc(alias = "SecKeyRef")]
 #[repr(C)]
 pub struct SecKey {
     inner: [u8; 0],
@@ -69,6 +72,7 @@ cf_objc2_type!(
 /// See SecPolicy.h for details.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicy?language=objc)
+#[doc(alias = "SecPolicyRef")]
 #[repr(C)]
 pub struct SecPolicy {
     inner: [u8; 0],
@@ -87,6 +91,7 @@ cf_objc2_type!(
 /// SecAccessControl.h for details.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrol?language=objc)
+#[doc(alias = "SecAccessControlRef")]
 #[repr(C)]
 pub struct SecAccessControl {
     inner: [u8; 0],
@@ -104,6 +109,7 @@ cf_objc2_type!(
 /// Contains information about a keychain.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychain?language=objc)
+#[doc(alias = "SecKeychainRef")]
 #[repr(C)]
 pub struct SecKeychain {
     inner: [u8; 0],
@@ -121,6 +127,7 @@ cf_objc2_type!(
 /// Contains information about a keychain item.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitem?language=objc)
+#[doc(alias = "SecKeychainItemRef")]
 #[repr(C)]
 pub struct SecKeychainItem {
     inner: [u8; 0],
@@ -138,6 +145,7 @@ cf_objc2_type!(
 /// Contains information about a keychain search.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsearch?language=objc)
+#[doc(alias = "SecKeychainSearchRef")]
 #[repr(C)]
 pub struct SecKeychainSearch {
     inner: [u8; 0],
@@ -226,6 +234,7 @@ pub type SecKeychainStatus = u32;
 /// Contains information about a trusted application.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplication?language=objc)
+#[doc(alias = "SecTrustedApplicationRef")]
 #[repr(C)]
 pub struct SecTrustedApplication {
     inner: [u8; 0],
@@ -243,6 +252,7 @@ cf_objc2_type!(
 /// Contains information about an access.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccess?language=objc)
+#[doc(alias = "SecAccessRef")]
 #[repr(C)]
 pub struct SecAccess {
     inner: [u8; 0],
@@ -260,6 +270,7 @@ cf_objc2_type!(
 /// Contains information about an access control list (ACL) entry.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secacl?language=objc)
+#[doc(alias = "SecACLRef")]
 #[repr(C)]
 pub struct SecACL {
     inner: [u8; 0],
@@ -277,6 +288,7 @@ cf_objc2_type!(
 /// Contains information about a password.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpassword?language=objc)
+#[doc(alias = "SecPasswordRef")]
 #[repr(C)]
 pub struct SecPassword {
     inner: [u8; 0],

@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindex?language=objc)
+#[doc(alias = "SKIndexRef")]
 #[repr(C)]
 pub struct SKIndex {
     inner: [u8; 0],
@@ -37,6 +38,7 @@ unsafe impl ConcreteType for SKIndex {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindexdocumentiterator?language=objc)
+#[doc(alias = "SKIndexDocumentIteratorRef")]
 #[repr(C)]
 pub struct SKIndexDocumentIterator {
     inner: [u8; 0],

@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityauthority?language=objc)
+#[doc(alias = "CSIdentityAuthorityRef")]
 #[repr(C)]
 pub struct CSIdentityAuthority {
     inner: [u8; 0],

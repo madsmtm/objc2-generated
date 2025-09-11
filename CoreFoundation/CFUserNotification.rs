@@ -10,6 +10,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotification?language=objc)
+#[doc(alias = "CFUserNotificationRef")]
 #[repr(C)]
 pub struct CFUserNotification {
     inner: [u8; 0],

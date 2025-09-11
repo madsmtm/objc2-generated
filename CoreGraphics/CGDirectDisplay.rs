@@ -22,6 +22,7 @@ pub type CGOpenGLDisplayMask = u32;
 pub type CGRefreshRate = c_double;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode?language=objc)
+#[doc(alias = "CGDisplayModeRef")]
 #[repr(C)]
 pub struct CGDisplayMode {
     inner: [u8; 0],

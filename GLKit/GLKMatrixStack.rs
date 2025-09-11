@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstack?language=objc)
+#[doc(alias = "GLKMatrixStackRef")]
 #[repr(C)]
 pub struct GLKMatrixStack {
     inner: [u8; 0],

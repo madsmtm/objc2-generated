@@ -15,6 +15,7 @@ use crate::*;
 /// This is the type of a reference to MDQuerys.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquery?language=objc)
+#[doc(alias = "MDQueryRef")]
 #[repr(C)]
 pub struct MDQuery {
     inner: [u8; 0],

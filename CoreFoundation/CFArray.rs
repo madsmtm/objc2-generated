@@ -100,6 +100,7 @@ pub type CFArrayApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_vo
 /// This is toll-free bridged with `NSArray`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarray?language=objc)
+#[doc(alias = "CFArrayRef")]
 #[repr(C)]
 pub struct CFArray<T: ?Sized = Opaque> {
     inner: [u8; 0],
@@ -138,6 +139,7 @@ impl<T: ?Sized> CFArray<T> {
 /// This is toll-free bridged with `NSMutableArray`.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablearray?language=objc)
+#[doc(alias = "CFMutableArrayRef")]
 #[repr(C)]
 pub struct CFMutableArray<T: ?Sized = Opaque> {
     inner: [u8; 0],

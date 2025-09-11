@@ -23,6 +23,7 @@ use crate::*;
 /// and release your object reference.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsession?language=objc)
+#[doc(alias = "VTPixelRotationSessionRef")]
 #[repr(C)]
 pub struct VTPixelRotationSession {
     inner: [u8; 0],

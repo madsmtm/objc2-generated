@@ -16,6 +16,7 @@ use crate::*;
 /// with the system configuration daemon.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstore?language=objc)
+#[doc(alias = "SCDynamicStoreRef")]
 #[repr(C)]
 pub struct SCDynamicStore {
     inner: [u8; 0],

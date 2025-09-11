@@ -12,6 +12,7 @@ use crate::*;
 /// CFType used for representing a task
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectask?language=objc)
+#[doc(alias = "SecTaskRef")]
 #[repr(C)]
 pub struct SecTask {
     inner: [u8; 0],

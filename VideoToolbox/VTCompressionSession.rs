@@ -26,6 +26,7 @@ use crate::*;
 /// to tear it down and CFRelease to release your object reference.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsession?language=objc)
+#[doc(alias = "VTCompressionSessionRef")]
 #[repr(C)]
 pub struct VTCompressionSession {
     inner: [u8; 0],

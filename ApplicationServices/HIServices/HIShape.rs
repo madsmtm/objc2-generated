@@ -13,6 +13,7 @@ use objc2_core_graphics::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/hishape?language=objc)
+#[doc(alias = "HIShapeRef")]
 #[repr(C)]
 pub struct HIShape {
     inner: [u8; 0],
@@ -28,6 +29,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/himutableshape?language=objc)
+#[doc(alias = "HIMutableShapeRef")]
 #[repr(C)]
 pub struct HIMutableShape {
     inner: [u8; 0],

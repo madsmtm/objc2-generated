@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor?language=objc)
+#[doc(alias = "CGColorRef")]
 #[repr(C)]
 pub struct CGColor {
     inner: [u8; 0],

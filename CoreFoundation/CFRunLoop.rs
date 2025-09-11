@@ -14,6 +14,7 @@ use crate::*;
 pub type CFRunLoopMode = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloop?language=objc)
+#[doc(alias = "CFRunLoopRef")]
 #[repr(C)]
 pub struct CFRunLoop {
     inner: [u8; 0],
@@ -29,6 +30,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsource?language=objc)
+#[doc(alias = "CFRunLoopSourceRef")]
 #[repr(C)]
 pub struct CFRunLoopSource {
     inner: [u8; 0],
@@ -44,6 +46,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserver?language=objc)
+#[doc(alias = "CFRunLoopObserverRef")]
 #[repr(C)]
 pub struct CFRunLoopObserver {
     inner: [u8; 0],
@@ -61,6 +64,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimer?language=objc)
 ///
 /// This is toll-free bridged with `NSTimer`.
+#[doc(alias = "CFRunLoopTimerRef")]
 #[repr(C)]
 pub struct CFRunLoopTimer {
     inner: [u8; 0],

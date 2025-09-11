@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmutablepath?language=objc)
+#[doc(alias = "CGMutablePathRef")]
 #[repr(C)]
 pub struct CGMutablePath {
     inner: [u8; 0],
@@ -26,6 +27,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath?language=objc)
+#[doc(alias = "CGPathRef")]
 #[repr(C)]
 pub struct CGPath {
     inner: [u8; 0],

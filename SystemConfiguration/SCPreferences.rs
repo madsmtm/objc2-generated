@@ -18,6 +18,7 @@ use crate::*;
 /// accessing system configuration preferences.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferences?language=objc)
+#[doc(alias = "SCPreferencesRef")]
 #[repr(C)]
 pub struct SCPreferences {
     inner: [u8; 0],

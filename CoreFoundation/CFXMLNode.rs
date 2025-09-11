@@ -13,6 +13,7 @@ use crate::*;
 pub const kCFXMLNodeCurrentVersion: CFIndex = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnode?language=objc)
+#[doc(alias = "CFXMLNodeRef")]
 #[repr(C)]
 pub struct CFXMLNode {
     inner: [u8; 0],
@@ -28,6 +29,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltree?language=objc)
+#[doc(alias = "CFXMLTreeRef")]
 #[cfg(feature = "CFTree")]
 pub type CFXMLTree = CFTree;
 

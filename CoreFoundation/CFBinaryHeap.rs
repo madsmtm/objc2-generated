@@ -132,6 +132,7 @@ pub type CFBinaryHeapApplierFunction =
 /// This is the type of a reference to CFBinaryHeaps.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheap?language=objc)
+#[doc(alias = "CFBinaryHeapRef")]
 #[repr(C)]
 pub struct CFBinaryHeap<T: ?Sized = Opaque> {
     inner: [u8; 0],

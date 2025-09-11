@@ -9,6 +9,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuid?language=objc)
+#[doc(alias = "CFUUIDRef")]
 #[repr(C)]
 pub struct CFUUID {
     inner: [u8; 0],

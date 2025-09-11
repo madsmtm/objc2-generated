@@ -10,6 +10,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocket?language=objc)
+#[doc(alias = "CFSocketRef")]
 #[repr(C)]
 pub struct CFSocket {
     inner: [u8; 0],

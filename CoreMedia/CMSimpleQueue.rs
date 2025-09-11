@@ -22,6 +22,7 @@ pub const kCMSimpleQueueError_QueueIsFull: OSStatus = -12773;
 /// A reference to a CMSimpleQueue, a CF object that implements a simple lockless queue of (void *) elements.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeue?language=objc)
+#[doc(alias = "CMSimpleQueueRef")]
 #[repr(C)]
 pub struct CMSimpleQueue {
     inner: [u8; 0],

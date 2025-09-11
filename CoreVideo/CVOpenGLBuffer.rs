@@ -39,6 +39,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffer?language=objc)
+#[doc(alias = "CVOpenGLBufferRef")]
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLBuffer = CVImageBuffer;
 

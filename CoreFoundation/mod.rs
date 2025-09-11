@@ -3149,6 +3149,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstring?language=objc)
 ///
 /// This is toll-free bridged with `NSString`.
+#[doc(alias = "CFStringRef")]
 #[repr(C)]
 pub struct CFString {
     inner: [u8; 0],
@@ -3166,6 +3167,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablestring?language=objc)
 ///
 /// This is toll-free bridged with `NSMutableString`.
+#[doc(alias = "CFMutableStringRef")]
 #[repr(C)]
 pub struct CFMutableString {
     inner: [u8; 0],
@@ -3181,6 +3183,7 @@ cf_objc2_type!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylist?language=objc)
+#[doc(alias = "CFPropertyListRef")]
 pub type CFPropertyList = CFType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult?language=objc)
@@ -3236,6 +3239,7 @@ unsafe impl RefEncode for CFRange {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnull?language=objc)
 ///
 /// This is toll-free bridged with `NSNull`.
+#[doc(alias = "CFNullRef")]
 #[repr(C)]
 pub struct CFNull {
     inner: [u8; 0],
@@ -3267,6 +3271,7 @@ extern "C" {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocator?language=objc)
+#[doc(alias = "CFAllocatorRef")]
 #[repr(C)]
 pub struct CFAllocator {
     inner: [u8; 0],

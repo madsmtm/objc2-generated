@@ -13,6 +13,7 @@ use crate::*;
 /// an immutable container for CGImageMetadataTags
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadata?language=objc)
+#[doc(alias = "CGImageMetadataRef")]
 #[repr(C)]
 pub struct CGImageMetadata {
     inner: [u8; 0],
@@ -51,6 +52,7 @@ unsafe impl ConcreteType for CGImageMetadata {
 /// accepts a CGImageMetadataRef.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgmutableimagemetadata?language=objc)
+#[doc(alias = "CGMutableImageMetadataRef")]
 #[repr(C)]
 pub struct CGMutableImageMetadata {
     inner: [u8; 0],
@@ -111,6 +113,7 @@ impl CGMutableImageMetadata {
 /// for more details.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatag?language=objc)
+#[doc(alias = "CGImageMetadataTagRef")]
 #[repr(C)]
 pub struct CGImageMetadataTag {
     inner: [u8; 0],

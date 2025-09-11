@@ -11,6 +11,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnostic?language=objc)
+#[doc(alias = "CFNetDiagnosticRef")]
 #[repr(C)]
 pub struct CFNetDiagnostic {
     inner: [u8; 0],
