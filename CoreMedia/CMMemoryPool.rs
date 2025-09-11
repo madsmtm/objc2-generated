@@ -54,6 +54,10 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueCMMemoryPool"> for CMMemoryPool {}
 );
 
+unsafe impl Send for CMMemoryPool {}
+
+unsafe impl Sync for CMMemoryPool {}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypoolerror_allocationfailed?language=objc)
 pub const kCMMemoryPoolError_AllocationFailed: OSStatus = -15490;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypoolerror_invalidparameter?language=objc)

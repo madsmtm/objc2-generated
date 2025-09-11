@@ -39,6 +39,10 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueCMClock"> for CMClock {}
 );
 
+unsafe impl Send for CMClock {}
+
+unsafe impl Sync for CMClock {}
+
 /// Models a timeline under application control.
 ///
 /// A timebase represents a timeline that clients can control by setting the rate and time.
@@ -68,6 +72,10 @@ cf_type!(
 cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueCMTimebase"> for CMTimebase {}
 );
+
+unsafe impl Send for CMTimebase {}
+
+unsafe impl Sync for CMTimebase {}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclockortimebase?language=objc)
 pub type CMClockOrTimebase = CFType;

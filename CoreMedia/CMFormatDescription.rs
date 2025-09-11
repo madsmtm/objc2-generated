@@ -38,6 +38,10 @@ cf_objc2_type!(
     unsafe impl RefEncode<"opaqueCMFormatDescription"> for CMFormatDescription {}
 );
 
+unsafe impl Send for CMFormatDescription {}
+
+unsafe impl Sync for CMFormatDescription {}
+
 /// The type of media described by a CMFormatDescription.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmediatype?language=objc)
