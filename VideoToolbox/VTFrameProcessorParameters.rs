@@ -10,26 +10,28 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// VTFrameProcessorParameters is the base protocol for input and output processing parameters for a VTFrameProcessor processing implementation..  An instance of a class corresponding to this protocol is passed to processFrameWithParameters calls, and in async versions of those APIs, the same instance is returned in the completion.
+    /// The base protocol for input and output processing parameters for a Video Toolbox frame processor implementation.
+    ///
+    /// Pass an instance of a class corresponding to this protocol to `processFrameWithParameters` calls. In async versions of those APIs, the completion handler returns the same instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorparameters?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait VTFrameProcessorParameters: NSObjectProtocol {
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// VTFrameProcessorFrame that contains the current source frame to be used for all processing features. Must be non-null
+        /// Use `VTFrameProcessorFrame` that contains the current source frame for all processing features; must be non-null.
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// VTFrameProcessorFrame that contains the destination frame for processors which output a single processed frame.
+        /// Destination frame that contains the destination frame for processors which output a single processed frame.
         #[optional]
         #[unsafe(method(destinationFrame))]
         #[unsafe(method_family = none)]
         unsafe fn destinationFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(all(feature = "VTFrameProcessorFrame", feature = "objc2-foundation"))]
-        /// NSArray of VTFrameProcessorFrame that contains the destination frames for processors which may output more than one processed frame.
+        /// Array of destination frames for processors which may output more than one processed frame.
         #[optional]
         #[unsafe(method(destinationFrames))]
         #[unsafe(method_family = none)]

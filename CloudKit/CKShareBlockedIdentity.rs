@@ -51,7 +51,7 @@ impl CKShareBlockedIdentity {
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentity")]
-        /// The user identity this blocked identity represents.
+        /// The identity of the user who has been blocked from requesting access to the share.
         ///
         /// This property is not atomic.
         ///
@@ -64,9 +64,10 @@ impl CKShareBlockedIdentity {
 
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
-        /// Returns a displayable `CNContact` for the blocked identity, or a new `CNContact` if none exists in the user's contacts.
-        /// Provides a standardized format for the blocked identity's underlying lookup info in the user identity.
-        /// Use when displaying the blocked identity information to other participants in application UI.
+        /// A displayable `CNContact` representing the blocked user.
+        ///
+        /// If the blocked identity does not exist in the user's contacts or is not accessible, returns a newly created `CNContact`.
+        /// This provides formatted blocked identity information suitable for display in the application's UI.
         ///
         /// This property is not atomic.
         ///

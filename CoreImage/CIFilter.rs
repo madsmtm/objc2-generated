@@ -515,6 +515,7 @@ extern "C" {
 
 extern "C" {
     /// A key to get or set the geometric angle value of a Core Image filter.  Typically the angle is in radians.
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputanglekey?language=objc)
@@ -559,6 +560,7 @@ extern "C" {
 
 extern "C" {
     /// A key to get or set the scalar EV value of a Core Image filter that specifies how many F-stops brighter or darker to make the image.
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputevkey?language=objc)
@@ -630,6 +632,7 @@ extern "C" {
 
 extern "C" {
     /// A key to get or set the boolean behavior of a Core Image filter that specifies if the filter should extrapolate a table beyond the defined range.
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputextrapolatekey?language=objc)
@@ -638,6 +641,7 @@ extern "C" {
 
 extern "C" {
     /// A key to get or set the boolean behavior of a Core Image filter that specifies if the filter should operate in linear or perceptual colors.
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputperceptualkey?language=objc)
@@ -673,6 +677,7 @@ extern "C" {
 
 extern "C" {
     /// A key to get or set the gradient map image of a Core Image filter that maps luminance to a color with alpha.
+    ///
     /// The value for this key needs to be a 1 pixel tall ``CIImage`` instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputgradientimagekey?language=objc)
@@ -699,6 +704,7 @@ extern "C" {
 
 extern "C" {
     /// A key to get or set the environment map image of a Core Image filter that maps normal directions to a color with alpha.
+    ///
     /// The value for this key needs to be a ``CIImage`` instance.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputshadingimagekey?language=objc)
@@ -765,6 +771,7 @@ extern "C" {
 }
 
 /// An enum string type that your code can use to select different System Tone Mapping modes.
+///
 /// These options are consistent with the analogous options available in Core Graphics,
 /// Core Animation, AppKit, UIKit, and SwiftUI,
 /// In Core Image, this option can be set on the `CISystemToneMap` filter.
@@ -774,7 +781,8 @@ extern "C" {
 pub type CIDynamicRangeOption = NSString;
 
 extern "C" {
-    /// Standard dynamic range.
+    /// Use Standard dynamic range.
+    ///
     /// Images with `contentHeadroom` metadata will be tone mapped to a maximum pixel value of 1.0.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcidynamicrangestandard?language=objc)
@@ -783,15 +791,18 @@ extern "C" {
 
 extern "C" {
     /// Use extended dynamic range, but brightness is modulated to optimize for
-    /// co-existence with other composited content. For best results, images should
-    /// contain `contentAverageLightLevel` metadata.
+    /// co-existence with other composited content.
+    ///
+    /// For best results, images should contain `contentAverageLightLevel` metadata.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcidynamicrangeconstrainedhigh?language=objc)
     pub static kCIDynamicRangeConstrainedHigh: &'static CIDynamicRangeOption;
 }
 
 extern "C" {
-    /// Use High dynamic range. Provides the best HDR quality. This needs to be reserved
+    /// Use High dynamic range.
+    ///
+    /// The provides the best HDR quality and needs to be reserved
     /// for situations where the user is focused on the media, such as larger views in
     /// an image editing/viewing app, or annotating/drawing with HDR colors
     ///

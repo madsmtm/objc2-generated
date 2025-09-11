@@ -239,12 +239,12 @@ impl MTL4PipelineDescriptor {
         /// Provides compile-time options when you build the pipeline.
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> Retained<MTL4PipelineOptions>;
+        pub unsafe fn options(&self) -> Option<Retained<MTL4PipelineOptions>>;
 
         /// Setter for [`options`][Self::options].
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOptions(&self, options: &MTL4PipelineOptions);
+        pub unsafe fn setOptions(&self, options: Option<&MTL4PipelineOptions>);
     );
 }
 

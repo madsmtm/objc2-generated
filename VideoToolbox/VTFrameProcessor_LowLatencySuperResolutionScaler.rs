@@ -13,10 +13,14 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Creates an object which is used to configure VTFrameProcessor for Low Latency Super Resolution Scaler processing.
+    /// An object you use to configure frame processor for low-latency super-resolution scaler processing.
     ///
+    /// Use this object to configure a ``VTFrameProcessor``. Query this interface also for important operating details, like
+    /// the pixel buffer attributes required for frames you submit to the processor.
     ///
-    /// VTLowLatencySuperResolutionScalerConfiguration is used to configure a VTFrameProcessor.  This interface can also queried for important operating details, like the pixel buffer attributes required for frames submitted to the processor.   Important: When calling [VTFrameProcessor startSessionWithConfiguration:] to create a VTLowLatencySuperResolutionScaler session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering pipelines during this call.
+    /// > Important: When calling ``VTFrameProcessor/startSessionWithConfiguration:error:`` to create a `VTLowLatencySuperResolutionScaler`
+    /// session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering
+    /// pipelines during this call.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencysuperresolutionscalerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
@@ -44,16 +48,12 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl VTLowLatencySuperResolutionScalerConfiguration {
     extern_methods!(
-        /// Creates a new VTLowLatencySuperResolutionScalerConfiguration with specified frame width and height.
+        /// Creates a new low-latency super-resolution scaler configuration with specified frame width and height.
         ///
-        ///
-        /// Parameter `frameWidth`: Width of source frame in pixels.
-        ///
-        ///
-        /// Parameter `frameHeight`: Height of source frame in pixels.
-        ///
-        ///
-        /// Parameter `scaleFactor`: The scale factor to be applied.  This must be a supported value returned by supportedScaleFactorsForFrameWidth:frameHeight.
+        /// - Parameters:
+        /// - frameWidth: Width of source frame in pixels.
+        /// - frameHeight: Height of source frame in pixels.
+        /// - scaleFactor: The scale factor to apply. This must be a supported value that ``supportedScaleFactorsForFrameWidth:frameHeight:`` returns.
         #[unsafe(method(initWithFrameWidth:frameHeight:scaleFactor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameWidth_frameHeight_scaleFactor(
@@ -94,7 +94,7 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
         pub unsafe fn frameHeight(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-foundation")]
-        /// list of pixel formats for source frames for the current configuration
+        /// Available supported pixel formats for source frames for current configuration.
         ///
         /// This property is not atomic.
         ///
@@ -106,7 +106,9 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
         pub unsafe fn frameSupportedPixelFormats(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as source and reference frames
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent source frames and reference frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         ///
         /// This property is not atomic.
         ///
@@ -120,7 +122,9 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
-        /// returns a pixelBufferAttributes dictionary describing requirements for pixelBuffers used as destination frames
+        /// Pixel buffer attributes dictionary that describes requirements for pixel buffers which represent destination frames.
+        ///
+        /// Use ``CVPixelBufferCreateResolvedAttributesDictionary`` to combine this dictionary with your pixel buffer attributes dictionary.
         ///
         /// This property is not atomic.
         ///
@@ -133,7 +137,7 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        /// Returns the scale factor that the configuration was initialized with.
+        /// Scale factor with which you initialized the configuration.
         ///
         /// This property is not atomic.
         ///
@@ -145,27 +149,24 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
         pub unsafe fn scaleFactor(&self) -> c_float;
 
         #[cfg(feature = "objc2-core-media")]
-        /// returns the maximum dimensions for a sourceFrame for the processor
+        /// Maximum dimensions for a source frame for the processor.
         #[unsafe(method(maximumDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDimensions() -> CMVideoDimensions;
 
         #[cfg(feature = "objc2-core-media")]
-        /// returns the minimum dimensions for a sourceFrame for the processor
+        /// Minimum dimensions for a source frame for the processor.
         #[unsafe(method(minimumDimensions))]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumDimensions() -> CMVideoDimensions;
 
-        /// reports whether this processor is supported on the current config.
+        /// Reports whether the system supports this processor on the current configuration.
         #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
 
         #[cfg(feature = "objc2-foundation")]
-        /// Returns the supported scale factors for the provided input dimensions.
-        ///
-        ///
-        /// returns an array of supported scale factors values, or an empty list if the dimensions are unsupported.
+        /// Returns an array of supported scale factors values, or an empty list if the processor doesn't support the dimensions.
         #[unsafe(method(supportedScaleFactorsForFrameWidth:frameHeight:))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedScaleFactorsForFrameWidth_frameHeight(
@@ -177,10 +178,11 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// VTLowLatencySuperResolutionScalerParameters object contains both input and output parameters needed for the Low Latency Super Resolution Scaler Frame Processor. This object is used in the processWithParameters call of VTFrameProcessor class.
+    /// An object that contains both input and output parameters that the low-latency super-resolution scaler frame processor needs.
     ///
+    /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class.
     ///
-    /// VTLowLatencySuperResolutionScalerParameters are frame level parameters.
+    /// `VTLowLatencySuperResolutionScalerParameters` are frame-level parameters.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencysuperresolutionscalerparameters?language=objc)
     #[unsafe(super(NSObject))]
@@ -203,13 +205,11 @@ extern_conformance!(
 impl VTLowLatencySuperResolutionScalerParameters {
     extern_methods!(
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// Creates a new VTLowLatencySuperResolutionScalerParameters object.
+        /// Creates a new low-latency, super-resolution scaler parameters object.
         ///
-        ///
-        /// Parameter `sourceFrame`: Current source frame. Must be non nil.
-        ///
-        ///
-        /// Parameter `destinationFrame`: User allocated pixel buffer that will receive the results.  Must be non nil.
+        /// - Parameters:
+        /// - sourceFrame: Current source frame; must be non `nil`.
+        /// - destinationFrame: User-allocated pixel buffer that receives the scaled processor output; must be non `nil`.
         #[unsafe(method(initWithSourceFrame:destinationFrame:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceFrame_destinationFrame(
@@ -227,13 +227,13 @@ impl VTLowLatencySuperResolutionScalerParameters {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// sourceFrame Current source frame. Must be non nil
+        /// Current source frame, which must be non `nil`.
         #[unsafe(method(sourceFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFrame(&self) -> Retained<VTFrameProcessorFrame>;
 
         #[cfg(feature = "VTFrameProcessorFrame")]
-        /// VTFrameProcessorFrame that contains user allocated pixel buffer that will receive the results.
+        /// Destination frame that contains user-allocated pixel buffer that receives the scaled processor output.
         #[unsafe(method(destinationFrame))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationFrame(&self) -> Retained<VTFrameProcessorFrame>;

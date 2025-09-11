@@ -18,6 +18,10 @@ extern_class!(
     pub struct PKInk;
 );
 
+unsafe impl Send for PKInk {}
+
+unsafe impl Sync for PKInk {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKInk {}
 );
@@ -44,18 +48,35 @@ impl PKInk {
 
         #[cfg(feature = "PKInkType")]
         /// The type of ink, eg. pen, pencil...
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(inkType))]
         #[unsafe(method_family = none)]
         pub unsafe fn inkType(&self) -> Retained<PKInkType>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "PKContentVersion")]
         /// The PencilKit version required to use this ink.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(requiredContentVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredContentVersion(&self) -> PKContentVersion;

@@ -12,7 +12,10 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Helper class to wrap video frames that will be sent to the processor, as source frames, reference frames, or output frames.  Instances retain the buffer backing them.
+    /// Helper class to wrap pixel buffers as video frames.
+    ///
+    /// You can use the frames as source frames, reference frames, or output frames of a processor. Frame instances retain
+    /// the backing pixel buffer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorframe?language=objc)
     #[unsafe(super(NSObject))]
@@ -30,11 +33,14 @@ extern_conformance!(
 impl VTFrameProcessorFrame {
     extern_methods!(
         #[cfg(all(feature = "objc2-core-media", feature = "objc2-core-video"))]
-        /// initialize class with a CVPixelBufferRef and a presentation time. Buffer is retained.  Returns nil if no CVPixelBuffer is provided or CVPixelBuffer is not IOSurface backed.
+        /// Creates a new instance of frame with a pixel buffer and presentation timestamp.
         ///
-        /// Parameter `buffer`: The CVPixelBufferRef that this VTFrameProcessorFrame will wrap.  Must not be nil and must be IOSurface backed.
+        /// The `CVPixelBuffer` is retained in this object.
+        /// Returns `nil` if the ``CVPixelBuffer`` you provided is NULL or the ``CVPixelBuffer`` is not backed by ``IOSurface``.
         ///
-        /// Parameter `presentationTimeStamp`: The presentation timestamp of the buffer.
+        /// - Parameters:
+        /// - buffer: The ``CVPixelBuffer`` that this frame wraps; it must not be `nil` and must be ``IOSurface`` backed.
+        /// - presentationTimeStamp: The presentation timestamp of the buffer.
         #[unsafe(method(initWithBuffer:presentationTimeStamp:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_presentationTimeStamp(
@@ -52,13 +58,13 @@ impl VTFrameProcessorFrame {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
-        /// Returns the CVPixelBufferRef  that was provided when the object was initialized with.
+        /// Pixel buffer that you provided when you initialized the object.
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
         pub unsafe fn buffer(&self) -> Retained<CVPixelBuffer>;
 
         #[cfg(feature = "objc2-core-media")]
-        /// Returns the presentation timestamp that was provided when the object was initialized with
+        /// Presentation timestamp that you provided when you initialized the object.
         #[unsafe(method(presentationTimeStamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationTimeStamp(&self) -> CMTime;
@@ -67,7 +73,9 @@ impl VTFrameProcessorFrame {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Helper class to wrap optical flow that will be sent to the processor.   Instances retain the buffers backing them.
+    /// Helper class to wrap optical flow.
+    ///
+    /// Instances retain the backing pixel buffers that you provide.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessoropticalflow?language=objc)
     #[unsafe(super(NSObject))]
@@ -85,11 +93,14 @@ extern_conformance!(
 impl VTFrameProcessorOpticalFlow {
     extern_methods!(
         #[cfg(feature = "objc2-core-video")]
-        /// initialize class with forward and backward optical flow CVPixelBufferRefs. Instances retain the buffers backing them. Returns nil if a nil CVPixelBuffer is provided or CVPixelBuffers are not IOSurface backed.
+        /// Creates a new instance of forward and backward optical flow with pixel buffers.
         ///
-        /// Parameter `forwardFlow`: CVPixelBufferRef that contains forward optical flow. Must not be nil and must be IOSurface backed.
+        /// Create a new instance with forward and backward optical flow ``CVPixelBuffer``s. Instances retain the pixel buffers
+        /// you provide to this method. Returns `nil` if either `CVPixelBuffer` is NULL or the `CVPixelBuffer`s are not `IOSurface` backed.
         ///
-        /// Parameter `backwardFlow`: CVPixelBufferRef that contains backward optical flow. Must not be nil and must be IOSurface backed.
+        /// - Parameters:
+        /// - forwardFlow: `CVPixelBuffer` that contains forward optical flow; it must not be `nil` and must be `IOSurface` backed.
+        /// - backwardFlow: `CVPixelBuffer` that contains backward optical flow; it must not be `nil` and must be `IOSurface` backed.
         #[unsafe(method(initWithForwardFlow:backwardFlow:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithForwardFlow_backwardFlow(
@@ -107,13 +118,13 @@ impl VTFrameProcessorOpticalFlow {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
-        /// Returns the forward optical flow CVPixelBufferRef that was provided when the object was initialized.
+        /// Returns the forward optical flow `CVPixelBuffer` that you provided when you initialized the object.
         #[unsafe(method(forwardFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn forwardFlow(&self) -> Retained<CVPixelBuffer>;
 
         #[cfg(feature = "objc2-core-video")]
-        /// Returns the backward optical flow CVPixelBufferRef that was provided when the object was initialized.
+        /// Returns the backward optical flow `CVPixelBuffer` that you provided when you initialized the object.
         #[unsafe(method(backwardFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn backwardFlow(&self) -> Retained<CVPixelBuffer>;

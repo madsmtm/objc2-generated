@@ -23,15 +23,15 @@ extern_conformance!(
 #[cfg(feature = "CKOperation")]
 impl CKShareRequestAccessOperation {
     extern_methods!(
-        /// - Returns: A new ``CKShareRequestAccessOperation`` instance.
+        /// Creates a new, empty share request access operation.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// Creates a ``CKShareRequestAccessOperation`` for requesting access to the specified shares.
+        /// Creates a share request access operation configured with specified share URLs.
         ///
-        /// - Parameter shareURLs: An array of `NSURL` objects for shares you wish to request access to
-        /// - Returns: A ``CKShareRequestAccessOperation`` instance configured with the given share URLs.
+        /// - Parameter shareURLs: An array of `NSURL` objects representing the shares to request access to.
+        /// - Returns: A configured ``CKShareRequestAccessOperation`` instance.
         #[unsafe(method(initWithShareURLs:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithShareURLs(
@@ -39,10 +39,9 @@ impl CKShareRequestAccessOperation {
             share_ur_ls: &NSArray<NSURL>,
         ) -> Retained<Self>;
 
-        /// The share URLs for which access is being requested.
+        /// The URLs of the shares to request access to.
         ///
-        /// If requesting access to multiple shares, include multiple `NSURL` objects.
-        /// The server processes them independently.
+        /// Include multiple URLs to request access to multiple shares simultaneously. The server processes each URL independently.
         ///
         /// This property is not atomic.
         ///
@@ -65,13 +64,13 @@ impl CKShareRequestAccessOperation {
         pub unsafe fn setShareURLs(&self, share_ur_ls: Option<&NSArray<NSURL>>);
 
         #[cfg(feature = "block2")]
-        /// A block that is called once for each share URL processed by the server.
+        /// A completion block called once for each processed share URL.
+        ///
+        /// The server does not disclose share existence to protect user privacy.
         ///
         /// - Parameters:
-        /// - shareURL: The URL of the processed share.
-        /// - shareRequestAccessError: If non-nil, an error describing why the request failed for this share.
-        ///
-        /// The server does **not** reveal share existence to the requester to protect privacy.
+        /// - shareURL: The URL of the share that was processed.
+        /// - shareRequestAccessError: An error describing why the access request failed, or `nil` if successful.
         ///
         /// This property is not atomic.
         ///
@@ -104,12 +103,11 @@ impl CKShareRequestAccessOperation {
         );
 
         #[cfg(feature = "block2")]
-        /// A block that is called when the entire operation completes.
+        /// A completion block called when the entire operation finishes.
         ///
-        /// - Parameter operationError: If non-nil, an error describing why the request failed.
+        /// - Parameter operationError: An error describing the overall operation failure, or `nil` if successful.
         ///
-        /// If operationError is CKErrorPartialFailure, the userInfo dictionary
-        /// contains per-share errors under ``CKPartialErrorsByItemIDKey``.
+        /// If `operationError` is `CKErrorPartialFailure`, the `userInfo` dictionary contains detailed errors for each share under ``CKPartialErrorsByItemIDKey``.
         ///
         /// This property is not atomic.
         ///

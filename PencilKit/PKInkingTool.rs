@@ -7,6 +7,8 @@ use objc2::__framework_prelude::*;
 use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-graphics")]
+use objc2_core_graphics::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -20,6 +22,12 @@ extern_class!(
     #[cfg(feature = "PKTool")]
     pub struct PKInkingTool;
 );
+
+#[cfg(feature = "PKTool")]
+unsafe impl Send for PKInkingTool {}
+
+#[cfg(feature = "PKTool")]
+unsafe impl Sync for PKInkingTool {}
 
 #[cfg(feature = "PKTool")]
 extern_conformance!(
@@ -115,36 +123,86 @@ impl PKInkingTool {
 
         #[cfg(feature = "PKInkType")]
         /// The type of ink, eg. pen, pencil...
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(inkType))]
         #[unsafe(method_family = none)]
         pub unsafe fn inkType(&self) -> Retained<PKInkType>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        /// Converts a color from light to dark appearance or vice versa.
+        ///
+        ///
+        /// Parameter `color`: The color to be inverted light
+        /// <
+        /// ->dark.
+        ///
+        /// Returns: The inverted color.
+        ///
+        /// This has the same effect as `convertColor` with opposite user interface styles.
+        #[unsafe(method(invertColor:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn invertColor(color: &CGColor) -> Retained<CGColor>;
+
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(color))]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The base width of the ink.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The base angle of the ink.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(azimuth))]
         #[unsafe(method_family = none)]
         pub unsafe fn azimuth(&self) -> CGFloat;
 
         #[cfg(feature = "PKInk")]
         /// The ink that this tool will create strokes with.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(ink))]
         #[unsafe(method_family = none)]
         pub unsafe fn ink(&self) -> Retained<PKInk>;
 
         #[cfg(feature = "PKContentVersion")]
         /// The PencilKit version required to use this inking tool.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(requiredContentVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredContentVersion(&self) -> PKContentVersion;

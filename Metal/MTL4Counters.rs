@@ -30,7 +30,7 @@ unsafe impl RefEncode for MTL4TimestampHeapEntry {
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct MTL4CounterHeapType(pub NSUInteger);
+pub struct MTL4CounterHeapType(pub NSInteger);
 impl MTL4CounterHeapType {
     /// Specifies that ``MTL4CounterHeap`` entries contain invalid data.
     #[doc(alias = "MTL4CounterHeapTypeInvalid")]
@@ -41,7 +41,7 @@ impl MTL4CounterHeapType {
 }
 
 unsafe impl Encode for MTL4CounterHeapType {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
+    const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
 unsafe impl RefEncode for MTL4CounterHeapType {

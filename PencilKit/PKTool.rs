@@ -16,6 +16,10 @@ extern_class!(
     pub struct PKTool;
 );
 
+unsafe impl Send for PKTool {}
+
+unsafe impl Sync for PKTool {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKTool {}
 );

@@ -19,6 +19,10 @@ extern_class!(
     pub struct PKStrokePoint;
 );
 
+unsafe impl Send for PKStrokePoint {}
+
+unsafe impl Sync for PKStrokePoint {}
+
 extern_conformance!(
     unsafe impl NSCopying for PKStrokePoint {}
 );
@@ -87,41 +91,83 @@ impl PKStrokePoint {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Location of the point.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> CGPoint;
 
         /// Time offset since the start of the stroke path in seconds.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(timeOffset))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeOffset(&self) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Size of the point.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Opacity of the point 0-2.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(opacity))]
         #[unsafe(method_family = none)]
         pub unsafe fn opacity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Azimuth of the point in radians, 0.0-2π radians
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(azimuth))]
         #[unsafe(method_family = none)]
         pub unsafe fn azimuth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Force used to create this point.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(force))]
         #[unsafe(method_family = none)]
         pub unsafe fn force(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Altitude used to create this point in radians, 0.0-π/2 radians
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(altitude))]
         #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CGFloat;
@@ -130,6 +176,12 @@ impl PKStrokePoint {
         /// The scaling of the point for secondary effects.
         ///
         /// For example the scaling of the pigment in the watercolor ink.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(secondaryScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryScale(&self) -> CGFloat;
@@ -139,6 +191,12 @@ impl PKStrokePoint {
         ///
         /// When rendering only pixels with an alpha greater than the threshold are drawn. A threshold of 0 has no affect on rendering,
         /// a threshold of 1 does not draw anything. Thresholds are only used for some inks, eg. `PKInkIdentifierReed`.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(threshold))]
         #[unsafe(method_family = none)]
         pub unsafe fn threshold(&self) -> CGFloat;

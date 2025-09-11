@@ -121,7 +121,7 @@ impl MKMapItem {
         pub unsafe fn mapItemForCurrentLocation() -> Retained<MKMapItem>;
 
         #[cfg(all(feature = "MKPlacemark", feature = "objc2-core-location"))]
-        #[deprecated = "Use initWithLocation:address:"]
+        #[deprecated = "Use init(location:address:)"]
         #[unsafe(method(initWithPlacemark:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlacemark(
