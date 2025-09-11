@@ -401,7 +401,9 @@ extern_protocol!(
     /// Delegate protocol for AVPlayerPlaybackCoordinator.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinatordelegate?language=objc)
-    pub unsafe trait AVPlayerPlaybackCoordinatorDelegate: NSObjectProtocol {
+    pub unsafe trait AVPlayerPlaybackCoordinatorDelegate:
+        NSObjectProtocol + Send + Sync
+    {
         #[cfg(feature = "AVPlayerItem")]
         /// Called by the coordinator to identify AVPlayerItems played by the coordinator's AVPlayer.
         ///
@@ -622,7 +624,9 @@ extern_protocol!(
     /// A custom player implementation
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinatorplaybackcontroldelegate?language=objc)
-    pub unsafe trait AVPlaybackCoordinatorPlaybackControlDelegate: NSObjectProtocol {
+    pub unsafe trait AVPlaybackCoordinatorPlaybackControlDelegate:
+        NSObjectProtocol + Send + Sync
+    {
         #[cfg(feature = "block2")]
         /// Called by the coordinator to match the playback rate of the control delegate to the group, when the target rate is non-zero.
         ///

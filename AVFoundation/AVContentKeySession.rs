@@ -383,7 +383,7 @@ extern "C" {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessiondelegate?language=objc)
-    pub unsafe trait AVContentKeySessionDelegate: NSObjectProtocol {
+    pub unsafe trait AVContentKeySessionDelegate: NSObjectProtocol + Send + Sync {
         #[unsafe(method(contentKeySession:didProvideContentKeyRequest:))]
         #[unsafe(method_family = none)]
         unsafe fn contentKeySession_didProvideContentKeyRequest(

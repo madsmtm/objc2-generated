@@ -252,7 +252,7 @@ extern_protocol!(
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput pull sample output acquisition.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpulldelegate?language=objc)
-    pub unsafe trait AVPlayerItemOutputPullDelegate: NSObjectProtocol {
+    pub unsafe trait AVPlayerItemOutputPullDelegate: NSObjectProtocol + Send + Sync {
         /// A method invoked once, prior to a new sample, if the AVPlayerItemOutput sender was previously messaged requestNotificationOfMediaDataChangeWithAdvanceInterval:.
         ///
         /// This method is invoked once after the sender is messaged requestNotificationOfMediaDataChangeWithAdvanceInterval:.
@@ -429,7 +429,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemLegibleOutputPushDelegate:
-        AVPlayerItemOutputPushDelegate
+        AVPlayerItemOutputPushDelegate + Send + Sync
     {
         #[cfg(feature = "objc2-core-media")]
         /// A delegate callback that delivers new textual samples.
@@ -466,7 +466,7 @@ extern_protocol!(
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput push sample output acquisition.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpushdelegate?language=objc)
-    pub unsafe trait AVPlayerItemOutputPushDelegate: NSObjectProtocol {
+    pub unsafe trait AVPlayerItemOutputPushDelegate: NSObjectProtocol + Send + Sync {
         /// A method invoked when the output is commencing a new sequence of media data.
         ///
         /// This method is invoked after any seeking and change in playback direction. If you are maintaining any queued future media data, received previously, you may want to discard these after receiving this message.
@@ -573,7 +573,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemMetadataOutputPushDelegate:
-        AVPlayerItemOutputPushDelegate
+        AVPlayerItemOutputPushDelegate + Send + Sync
     {
         #[cfg(all(feature = "AVPlayerItemTrack", feature = "AVTimedMetadataGroup"))]
         /// A delegate callback that delivers a new collection of metadata items.

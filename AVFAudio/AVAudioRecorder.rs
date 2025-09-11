@@ -244,7 +244,7 @@ extern_protocol!(
     /// A protocol for delegates of AVAudioRecorder.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiorecorderdelegate?language=objc)
-    pub unsafe trait AVAudioRecorderDelegate: NSObjectProtocol {
+    pub unsafe trait AVAudioRecorderDelegate: NSObjectProtocol + Send + Sync {
         /// This callback method is called when a recording has been finished or stopped.
         ///
         /// This method is NOT called if the recorder is stopped due to an interruption.

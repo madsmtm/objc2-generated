@@ -320,7 +320,7 @@ extern_protocol!(
     /// different aspects of an accessory
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorydelegate?language=objc)
-    pub unsafe trait HMAccessoryDelegate: NSObjectProtocol {
+    pub unsafe trait HMAccessoryDelegate: NSObjectProtocol + Send + Sync {
         /// Informs the delegate when the name of the accessory is modified.
         ///
         ///

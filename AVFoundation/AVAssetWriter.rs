@@ -751,7 +751,7 @@ impl AVAssetWriter {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterdelegate?language=objc)
-    pub unsafe trait AVAssetWriterDelegate: NSObjectProtocol {
+    pub unsafe trait AVAssetWriterDelegate: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "AVAssetSegmentReport")]
         /// A method invoked when a segment data is output.
         ///

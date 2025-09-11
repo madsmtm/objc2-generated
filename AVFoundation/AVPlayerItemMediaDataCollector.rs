@@ -153,7 +153,9 @@ impl AVPlayerItemMetadataCollector {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollectorpushdelegate?language=objc)
-    pub unsafe trait AVPlayerItemMetadataCollectorPushDelegate: NSObjectProtocol {
+    pub unsafe trait AVPlayerItemMetadataCollectorPushDelegate:
+        NSObjectProtocol + Send + Sync
+    {
         #[cfg(feature = "AVTimedMetadataGroup")]
         /// A delegate callback that delivers the total set of AVDateRangeMetadataGroups for this collector.
         ///

@@ -15,7 +15,9 @@ extern_protocol!(
     /// in the challenge.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationchallengesender?language=objc)
-    pub unsafe trait NSURLAuthenticationChallengeSender: NSObjectProtocol {
+    pub unsafe trait NSURLAuthenticationChallengeSender:
+        NSObjectProtocol + Send + Sync
+    {
         #[cfg(feature = "NSURLCredential")]
         #[unsafe(method(useCredential:forAuthenticationChallenge:))]
         #[unsafe(method_family = none)]

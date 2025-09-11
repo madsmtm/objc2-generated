@@ -1631,7 +1631,7 @@ unsafe impl RefEncode for NSURLSessionResponseDisposition {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondelegate?language=objc)
-    pub unsafe trait NSURLSessionDelegate: NSObjectProtocol {
+    pub unsafe trait NSURLSessionDelegate: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "NSError")]
         #[optional]
         #[unsafe(method(URLSession:didBecomeInvalidWithError:))]

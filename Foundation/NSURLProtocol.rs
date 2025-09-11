@@ -12,7 +12,7 @@ extern_protocol!(
     /// implementors.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocolclient?language=objc)
-    pub unsafe trait NSURLProtocolClient: NSObjectProtocol {
+    pub unsafe trait NSURLProtocolClient: NSObjectProtocol + Send + Sync {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         /// Indicates to an NSURLProtocolClient that a redirect has
         /// occurred.

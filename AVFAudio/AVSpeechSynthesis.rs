@@ -676,7 +676,7 @@ extern_protocol!(
     /// Defines an interface for delegates of AVSpeechSynthesizer to receive notifications of important speech utterance events.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizerdelegate?language=objc)
-    pub unsafe trait AVSpeechSynthesizerDelegate: NSObjectProtocol {
+    pub unsafe trait AVSpeechSynthesizerDelegate: NSObjectProtocol + Send + Sync {
         #[optional]
         #[unsafe(method(speechSynthesizer:didStartSpeechUtterance:))]
         #[unsafe(method_family = none)]

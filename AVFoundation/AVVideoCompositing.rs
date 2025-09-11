@@ -239,7 +239,7 @@ extern_protocol!(
     /// Custom video compositor instances will then be retained by the AVFoundation object for as long as the value of its videoComposition property indicates that an instance of the same custom video compositor class should be used, even if the value is changed from one instance of AVVideoComposition to another instance that's associated with the same custom video compositor class.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositing?language=objc)
-    pub unsafe trait AVVideoCompositing: NSObjectProtocol {
+    pub unsafe trait AVVideoCompositing: NSObjectProtocol + Send + Sync {
         /// This property is not atomic.
         ///
         /// # Safety

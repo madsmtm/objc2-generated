@@ -154,7 +154,9 @@ extern_protocol!(
     /// A protocol for delegates of a custom routing controller.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingcontrollerdelegate?language=objc)
-    pub unsafe trait AVCustomRoutingControllerDelegate: NSObjectProtocol {
+    pub unsafe trait AVCustomRoutingControllerDelegate:
+        NSObjectProtocol + Send + Sync
+    {
         #[cfg(all(feature = "AVCustomRoutingEvent", feature = "block2"))]
         /// Connects to, or disconnects from, a device when a user requests it in the
         /// picker.

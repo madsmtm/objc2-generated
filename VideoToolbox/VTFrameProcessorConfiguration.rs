@@ -19,7 +19,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorconfiguration?language=objc)
     #[cfg(feature = "objc2")]
-    pub unsafe trait VTFrameProcessorConfiguration: NSObjectProtocol {
+    pub unsafe trait VTFrameProcessorConfiguration: NSObjectProtocol + Send + Sync {
         /// Returns a Boolean indicating whether the processor supported on the current config.
         #[unsafe(method(processorSupported))]
         #[unsafe(method_family = none)]

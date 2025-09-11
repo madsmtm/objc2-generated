@@ -458,7 +458,9 @@ extern_protocol!(
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloaddelegate?language=objc)
-    pub unsafe trait AVAssetDownloadDelegate: NSURLSessionTaskDelegate {
+    pub unsafe trait AVAssetDownloadDelegate:
+        NSURLSessionTaskDelegate + Send + Sync
+    {
         /// Sent when a download task that has completed a download.
         ///
         /// Unlike NSURLSessionDownloadDelegate, the delegate should NOT move the file from this directory after it has been called. Downloaded assets must remain at the system provided URL. URLSession:task:didCompleteWithError: will still be called.
