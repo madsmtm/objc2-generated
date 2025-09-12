@@ -2814,7 +2814,7 @@ impl XCTPerformanceMeasurement {
         ///
         /// # Safety
         ///
-        /// `value` generic should be of the correct type.
+        /// `value` generic should be bound by `AsRef<NSUnit>`.
         #[unsafe(method(initWithIdentifier:displayName:value:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_displayName_value(
@@ -2857,7 +2857,7 @@ impl XCTPerformanceMeasurement {
         ///
         /// # Safety
         ///
-        /// `value` generic should be of the correct type.
+        /// `value` generic should be bound by `AsRef<NSUnit>`.
         #[unsafe(method(initWithIdentifier:displayName:value:polarity:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_displayName_value_polarity(

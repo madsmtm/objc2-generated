@@ -101,7 +101,7 @@ impl NSManagedObjectModel {
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         /// # Safety
         ///
-        /// `fetch_request_template` generic should be of the correct type.
+        /// `fetch_request_template` generic should be bound by `NSFetchRequestResult`.
         #[unsafe(method(setFetchRequestTemplate:forName:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRequestTemplate_forName(

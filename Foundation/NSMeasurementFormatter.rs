@@ -113,7 +113,7 @@ impl NSMeasurementFormatter {
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
         /// # Safety
         ///
-        /// `measurement` generic should be of the correct type.
+        /// `measurement` generic should be bound by `AsRef<NSUnit>`.
         #[unsafe(method(stringFromMeasurement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeasurement(

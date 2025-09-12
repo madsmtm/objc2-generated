@@ -237,7 +237,7 @@ impl NSObjectController {
         #[cfg(target_vendor = "apple")]
         /// # Safety
         ///
-        /// `fetch_request` generic should be of the correct type.
+        /// `fetch_request` generic should be bound by `NSFetchRequestResult`.
         #[unsafe(method(fetchWithRequest:merge:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchWithRequest_merge_error(

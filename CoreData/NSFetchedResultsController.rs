@@ -209,7 +209,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSFetchRequest", feature = "NSManagedObjectID"))]
         /// # Safety
         ///
-        /// `controller` generic should be of the correct type.
+        /// `controller` generic should be bound by `NSFetchRequestResult`.
         #[optional]
         #[unsafe(method(controller:didChangeContentWithDifference:))]
         #[unsafe(method_family = none)]
@@ -222,7 +222,7 @@ extern_protocol!(
         #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
-        /// - `controller` generic should be of the correct type.
+        /// - `controller` generic should be bound by `NSFetchRequestResult`.
         /// - `an_object` should be of the correct type.
         #[optional]
         #[unsafe(method(controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:))]
@@ -239,7 +239,7 @@ extern_protocol!(
         #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
-        /// `controller` generic should be of the correct type.
+        /// `controller` generic should be bound by `NSFetchRequestResult`.
         #[optional]
         #[unsafe(method(controller:didChangeSection:atIndex:forChangeType:))]
         #[unsafe(method_family = none)]
@@ -254,7 +254,7 @@ extern_protocol!(
         #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
-        /// `controller` generic should be of the correct type.
+        /// `controller` generic should be bound by `NSFetchRequestResult`.
         #[optional]
         #[unsafe(method(controllerWillChangeContent:))]
         #[unsafe(method_family = none)]
@@ -263,7 +263,7 @@ extern_protocol!(
         #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
-        /// `controller` generic should be of the correct type.
+        /// `controller` generic should be bound by `NSFetchRequestResult`.
         #[optional]
         #[unsafe(method(controllerDidChangeContent:))]
         #[unsafe(method_family = none)]
@@ -272,7 +272,7 @@ extern_protocol!(
         #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
-        /// `controller` generic should be of the correct type.
+        /// `controller` generic should be bound by `NSFetchRequestResult`.
         #[optional]
         #[unsafe(method(controller:sectionIndexTitleForSectionName:))]
         #[unsafe(method_family = none)]

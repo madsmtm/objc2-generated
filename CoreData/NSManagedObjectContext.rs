@@ -250,7 +250,7 @@ impl NSManagedObjectContext {
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         /// # Safety
         ///
-        /// `request` generic should be of the correct type.
+        /// `request` generic should be bound by `NSFetchRequestResult`.
         #[unsafe(method(executeFetchRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeFetchRequest_error(

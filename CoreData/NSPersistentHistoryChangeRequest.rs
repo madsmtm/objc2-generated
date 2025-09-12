@@ -54,7 +54,7 @@ impl NSPersistentHistoryChangeRequest {
         #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
-        /// `fetch_request` generic should be of the correct type.
+        /// `fetch_request` generic should be bound by `NSFetchRequestResult`.
         #[unsafe(method(fetchHistoryWithFetchRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchHistoryWithFetchRequest(
@@ -105,7 +105,7 @@ impl NSPersistentHistoryChangeRequest {
         ///
         /// # Safety
         ///
-        /// `fetch_request` generic should be of the correct type.
+        /// `fetch_request` generic should be bound by `NSFetchRequestResult`.
         #[unsafe(method(setFetchRequest:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFetchRequest(&self, fetch_request: Option<&NSFetchRequest>);
