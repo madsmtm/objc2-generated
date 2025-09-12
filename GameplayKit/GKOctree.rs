@@ -46,14 +46,14 @@ extern_class!(
     pub struct GKOctree<ElementType: ?Sized = AnyObject>;
 );
 
-impl<ElementType: ?Sized + Message> GKOctree<ElementType> {
+impl<ElementType: ?Sized + Message + AsRef<NSObject>> GKOctree<ElementType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewElementType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewElementType: ?Sized + Message + AsRef<NSObject>>(
         &self,
     ) -> &GKOctree<NewElementType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -61,10 +61,10 @@ impl<ElementType: ?Sized + Message> GKOctree<ElementType> {
 }
 
 extern_conformance!(
-    unsafe impl<ElementType: ?Sized> NSObjectProtocol for GKOctree<ElementType> {}
+    unsafe impl<ElementType: ?Sized + AsRef<NSObject>> NSObjectProtocol for GKOctree<ElementType> {}
 );
 
-impl<ElementType: Message> GKOctree<ElementType> {
+impl<ElementType: Message + AsRef<NSObject>> GKOctree<ElementType> {
     extern_methods!(
         /// Removes the given NSObject from this octree
         /// Note that this is an exhaustive search and is can be slow for larger trees.
@@ -98,7 +98,7 @@ impl<ElementType: Message> GKOctree<ElementType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<ElementType: Message> GKOctree<ElementType> {
+impl<ElementType: Message + AsRef<NSObject>> GKOctree<ElementType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

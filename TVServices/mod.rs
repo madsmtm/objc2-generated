@@ -116,7 +116,11 @@ pub use self::__TVTopShelfInsetContent::TVTopShelfInsetContent;
 pub use self::__TVTopShelfItem::TVTopShelfItem;
 #[cfg(feature = "TVTopShelfItem")]
 pub use self::__TVTopShelfItem::TVTopShelfItemImageTraits;
-#[cfg(all(feature = "TVTopShelfItemCollection", feature = "TVTopShelfObject"))]
+#[cfg(all(
+    feature = "TVTopShelfItem",
+    feature = "TVTopShelfItemCollection",
+    feature = "TVTopShelfObject"
+))]
 pub use self::__TVTopShelfItemCollection::TVTopShelfItemCollection;
 #[cfg(feature = "TVTopShelfNamedAttribute")]
 pub use self::__TVTopShelfNamedAttribute::TVTopShelfNamedAttribute;

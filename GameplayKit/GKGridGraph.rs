@@ -11,52 +11,60 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgridgraph?language=objc)
     #[unsafe(super(GKGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GKGraph")]
+    #[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
     pub struct GKGridGraph<NodeType: ?Sized = AnyObject>;
 );
 
-#[cfg(feature = "GKGraph")]
-impl<NodeType: ?Sized + Message> GKGridGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+impl<NodeType: ?Sized + Message + AsRef<GKGridGraphNode>> GKGridGraph<NodeType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewNodeType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewNodeType: ?Sized + Message + AsRef<GKGridGraphNode>>(
         &self,
     ) -> &GKGridGraph<NewNodeType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
 
-#[cfg(feature = "GKGraph")]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
 extern_conformance!(
-    unsafe impl<NodeType: ?Sized + NSCoding> NSCoding for GKGridGraph<NodeType> {}
+    unsafe impl<NodeType: ?Sized + NSCoding + AsRef<GKGridGraphNode>> NSCoding
+        for GKGridGraph<NodeType>
+    {
+    }
 );
 
-#[cfg(feature = "GKGraph")]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
 extern_conformance!(
-    unsafe impl<NodeType: ?Sized> NSCopying for GKGridGraph<NodeType> {}
+    unsafe impl<NodeType: ?Sized + AsRef<GKGridGraphNode>> NSCopying for GKGridGraph<NodeType> {}
 );
 
-#[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized + Message> CopyingHelper for GKGridGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+unsafe impl<NodeType: ?Sized + Message + AsRef<GKGridGraphNode>> CopyingHelper
+    for GKGridGraph<NodeType>
+{
     type Result = Self;
 }
 
-#[cfg(feature = "GKGraph")]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
 extern_conformance!(
-    unsafe impl<NodeType: ?Sized> NSObjectProtocol for GKGridGraph<NodeType> {}
+    unsafe impl<NodeType: ?Sized + AsRef<GKGridGraphNode>> NSObjectProtocol for GKGridGraph<NodeType> {}
 );
 
-#[cfg(feature = "GKGraph")]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
 extern_conformance!(
-    unsafe impl<NodeType: ?Sized + NSSecureCoding> NSSecureCoding for GKGridGraph<NodeType> {}
+    unsafe impl<NodeType: ?Sized + NSSecureCoding + AsRef<GKGridGraphNode>> NSSecureCoding
+        for GKGridGraph<NodeType>
+    {
+    }
 );
 
-#[cfg(feature = "GKGraph")]
-impl<NodeType: Message> GKGridGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+impl<NodeType: Message + AsRef<GKGridGraphNode>> GKGridGraph<NodeType> {
     extern_methods!(
         #[unsafe(method(gridWidth))]
         #[unsafe(method_family = none)]
@@ -70,7 +78,6 @@ impl<NodeType: Message> GKGridGraph<NodeType> {
         #[unsafe(method_family = none)]
         pub unsafe fn diagonalsAllowed(&self) -> bool;
 
-        #[cfg(feature = "GKGraphNode")]
         /// Connects the given GKGridGraphNode to this graph by connecting it to it's adjacent nodes on the grid
         /// Input node must have coordinates within the rectangle specified by minCoordinates and maxCoordinates
         ///
@@ -88,10 +95,9 @@ impl<NodeType: Message> GKGridGraph<NodeType> {
 }
 
 /// Methods declared on superclass `GKGraph`.
-#[cfg(feature = "GKGraph")]
-impl<NodeType: Message> GKGridGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+impl<NodeType: Message + AsRef<GKGridGraphNode>> GKGridGraph<NodeType> {
     extern_methods!(
-        #[cfg(feature = "GKGraphNode")]
         /// Creates a graph with the provided array of nodes.
         ///
         /// Parameter `nodes`: the nodes to create the graph with
@@ -99,7 +105,6 @@ impl<NodeType: Message> GKGridGraph<NodeType> {
         #[unsafe(method_family = none)]
         pub unsafe fn graphWithNodes(nodes: &NSArray<GKGraphNode>) -> Retained<Self>;
 
-        #[cfg(feature = "GKGraphNode")]
         #[unsafe(method(initWithNodes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNodes(
@@ -110,8 +115,8 @@ impl<NodeType: Message> GKGridGraph<NodeType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "GKGraph")]
-impl<NodeType: Message> GKGridGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+impl<NodeType: Message + AsRef<GKGridGraphNode>> GKGridGraph<NodeType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

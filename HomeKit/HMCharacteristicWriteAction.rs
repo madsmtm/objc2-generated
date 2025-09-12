@@ -19,14 +19,14 @@ extern_class!(
 );
 
 #[cfg(feature = "HMAction")]
-impl<TargetValueType: ?Sized + Message> HMCharacteristicWriteAction<TargetValueType> {
+impl<TargetValueType: ?Sized + Message + NSCopying> HMCharacteristicWriteAction<TargetValueType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewTargetValueType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewTargetValueType: ?Sized + Message + NSCopying>(
         &self,
     ) -> &HMCharacteristicWriteAction<NewTargetValueType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -35,14 +35,14 @@ impl<TargetValueType: ?Sized + Message> HMCharacteristicWriteAction<TargetValueT
 
 #[cfg(feature = "HMAction")]
 extern_conformance!(
-    unsafe impl<TargetValueType: ?Sized> NSObjectProtocol
+    unsafe impl<TargetValueType: ?Sized + NSCopying> NSObjectProtocol
         for HMCharacteristicWriteAction<TargetValueType>
     {
     }
 );
 
 #[cfg(feature = "HMAction")]
-impl<TargetValueType: Message> HMCharacteristicWriteAction<TargetValueType> {
+impl<TargetValueType: Message + NSCopying> HMCharacteristicWriteAction<TargetValueType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

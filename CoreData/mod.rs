@@ -467,7 +467,7 @@ pub use self::__NSFetchRequestExpression::NSFetchRequestExpressionType;
 pub use self::__NSFetchedPropertyDescription::NSFetchedPropertyDescription;
 #[cfg(feature = "NSFetchedResultsController")]
 pub use self::__NSFetchedResultsController::NSFetchedResultsChangeType;
-#[cfg(feature = "NSFetchedResultsController")]
+#[cfg(all(feature = "NSFetchRequest", feature = "NSFetchedResultsController"))]
 pub use self::__NSFetchedResultsController::NSFetchedResultsController;
 #[cfg(feature = "NSFetchedResultsController")]
 pub use self::__NSFetchedResultsController::NSFetchedResultsControllerDelegate;
@@ -702,7 +702,7 @@ pub use self::__NSPersistentStoreDescription::NSPersistentStoreDescription;
 pub use self::__NSPersistentStoreRequest::NSPersistentStoreRequest;
 #[cfg(feature = "NSPersistentStoreRequest")]
 pub use self::__NSPersistentStoreRequest::NSPersistentStoreRequestType;
-#[cfg(feature = "NSPersistentStoreResult")]
+#[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreResult"))]
 pub use self::__NSPersistentStoreResult::NSAsynchronousFetchResult;
 #[cfg(feature = "NSPersistentStoreResult")]
 pub use self::__NSPersistentStoreResult::NSBatchDeleteRequestResultType;

@@ -32,7 +32,7 @@ impl PHChange {
             object: &PHObject,
         ) -> Option<Retained<PHObjectChangeDetails>>;
 
-        #[cfg(feature = "PHFetchResult")]
+        #[cfg(all(feature = "PHFetchResult", feature = "PHObject"))]
         /// # Safety
         ///
         /// `object` generic should be of the correct type.
@@ -62,28 +62,35 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjectchangedetails?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "PHObject")]
     pub struct PHObjectChangeDetails<ObjectType: ?Sized = AnyObject>;
 );
 
-impl<ObjectType: ?Sized + Message> PHObjectChangeDetails<ObjectType> {
+#[cfg(feature = "PHObject")]
+impl<ObjectType: ?Sized + Message + AsRef<PHObject>> PHObjectChangeDetails<ObjectType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message + AsRef<PHObject>>(
         &self,
     ) -> &PHObjectChangeDetails<NewObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
 
+#[cfg(feature = "PHObject")]
 extern_conformance!(
-    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHObjectChangeDetails<ObjectType> {}
+    unsafe impl<ObjectType: ?Sized + AsRef<PHObject>> NSObjectProtocol
+        for PHObjectChangeDetails<ObjectType>
+    {
+    }
 );
 
-impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
+#[cfg(feature = "PHObject")]
+impl<ObjectType: Message + AsRef<PHObject>> PHObjectChangeDetails<ObjectType> {
     extern_methods!(
         #[unsafe(method(objectBeforeChanges))]
         #[unsafe(method_family = none)]
@@ -104,7 +111,8 @@ impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
+#[cfg(feature = "PHObject")]
+impl<ObjectType: Message + AsRef<PHObject>> PHObjectChangeDetails<ObjectType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -120,28 +128,35 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phfetchresultchangedetails?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "PHObject")]
     pub struct PHFetchResultChangeDetails<ObjectType: ?Sized = AnyObject>;
 );
 
-impl<ObjectType: ?Sized + Message> PHFetchResultChangeDetails<ObjectType> {
+#[cfg(feature = "PHObject")]
+impl<ObjectType: ?Sized + Message + AsRef<PHObject>> PHFetchResultChangeDetails<ObjectType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewObjectType: ?Sized + Message + AsRef<PHObject>>(
         &self,
     ) -> &PHFetchResultChangeDetails<NewObjectType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
 
+#[cfg(feature = "PHObject")]
 extern_conformance!(
-    unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResultChangeDetails<ObjectType> {}
+    unsafe impl<ObjectType: ?Sized + AsRef<PHObject>> NSObjectProtocol
+        for PHFetchResultChangeDetails<ObjectType>
+    {
+    }
 );
 
-impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
+#[cfg(feature = "PHObject")]
+impl<ObjectType: Message + AsRef<PHObject>> PHFetchResultChangeDetails<ObjectType> {
     extern_methods!(
         #[cfg(feature = "PHFetchResult")]
         #[unsafe(method(fetchResultBeforeChanges))]
@@ -205,7 +220,8 @@ impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
+#[cfg(feature = "PHObject")]
+impl<ObjectType: Message + AsRef<PHObject>> PHFetchResultChangeDetails<ObjectType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

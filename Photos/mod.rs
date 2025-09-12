@@ -151,9 +151,9 @@ pub use self::__PHAssetResourceManager::PHAssetResourceRequestOptions;
 pub use self::__PHAssetResourceManager::PHInvalidAssetResourceDataRequestID;
 #[cfg(feature = "PHChange")]
 pub use self::__PHChange::PHChange;
-#[cfg(feature = "PHChange")]
+#[cfg(all(feature = "PHChange", feature = "PHObject"))]
 pub use self::__PHChange::PHFetchResultChangeDetails;
-#[cfg(feature = "PHChange")]
+#[cfg(all(feature = "PHChange", feature = "PHObject"))]
 pub use self::__PHChange::PHObjectChangeDetails;
 #[cfg(feature = "PHChangeRequest")]
 pub use self::__PHChangeRequest::PHChangeRequest;

@@ -46,14 +46,14 @@ extern_class!(
     pub struct GKQuadtree<ElementType: ?Sized = AnyObject>;
 );
 
-impl<ElementType: ?Sized + Message> GKQuadtree<ElementType> {
+impl<ElementType: ?Sized + Message + AsRef<NSObject>> GKQuadtree<ElementType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewElementType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewElementType: ?Sized + Message + AsRef<NSObject>>(
         &self,
     ) -> &GKQuadtree<NewElementType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -61,10 +61,10 @@ impl<ElementType: ?Sized + Message> GKQuadtree<ElementType> {
 }
 
 extern_conformance!(
-    unsafe impl<ElementType: ?Sized> NSObjectProtocol for GKQuadtree<ElementType> {}
+    unsafe impl<ElementType: ?Sized + AsRef<NSObject>> NSObjectProtocol for GKQuadtree<ElementType> {}
 );
 
-impl<ElementType: Message> GKQuadtree<ElementType> {
+impl<ElementType: Message + AsRef<NSObject>> GKQuadtree<ElementType> {
     extern_methods!(
         /// Removes the given NSObject from this quad tree.
         /// Note that this is an exhaustive search and is slow.
@@ -98,7 +98,7 @@ impl<ElementType: Message> GKQuadtree<ElementType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<ElementType: Message> GKQuadtree<ElementType> {
+impl<ElementType: Message + AsRef<NSObject>> GKQuadtree<ElementType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

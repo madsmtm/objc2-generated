@@ -12,32 +12,35 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitemcollection?language=objc)
     #[unsafe(super(TVTopShelfObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "TVTopShelfObject")]
+    #[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]
     pub struct TVTopShelfItemCollection<Item: ?Sized = AnyObject>;
 );
 
-#[cfg(feature = "TVTopShelfObject")]
-impl<Item: ?Sized + Message> TVTopShelfItemCollection<Item> {
+#[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]
+impl<Item: ?Sized + Message + AsRef<TVTopShelfItem>> TVTopShelfItemCollection<Item> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewItem: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewItem: ?Sized + Message + AsRef<TVTopShelfItem>>(
         &self,
     ) -> &TVTopShelfItemCollection<NewItem> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
 
-#[cfg(feature = "TVTopShelfObject")]
+#[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]
 extern_conformance!(
-    unsafe impl<Item: ?Sized> NSObjectProtocol for TVTopShelfItemCollection<Item> {}
+    unsafe impl<Item: ?Sized + AsRef<TVTopShelfItem>> NSObjectProtocol
+        for TVTopShelfItemCollection<Item>
+    {
+    }
 );
 
-#[cfg(feature = "TVTopShelfObject")]
-impl<Item: Message> TVTopShelfItemCollection<Item> {
+#[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]
+impl<Item: Message + AsRef<TVTopShelfItem>> TVTopShelfItemCollection<Item> {
     extern_methods!(
         /// The collection's items.
         #[unsafe(method(items))]
@@ -53,8 +56,8 @@ impl<Item: Message> TVTopShelfItemCollection<Item> {
 }
 
 /// Methods declared on superclass `TVTopShelfObject`.
-#[cfg(feature = "TVTopShelfObject")]
-impl<Item: Message> TVTopShelfItemCollection<Item> {
+#[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]
+impl<Item: Message + AsRef<TVTopShelfItem>> TVTopShelfItemCollection<Item> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

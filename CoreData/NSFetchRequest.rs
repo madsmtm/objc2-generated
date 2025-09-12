@@ -77,14 +77,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-impl<ResultType: ?Sized + Message> NSFetchRequest<ResultType> {
+impl<ResultType: ?Sized + Message + NSFetchRequestResult> NSFetchRequest<ResultType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message + NSFetchRequestResult>(
         &self,
     ) -> &NSFetchRequest<NewResultType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -93,26 +93,34 @@ impl<ResultType: ?Sized + Message> NSFetchRequest<ResultType> {
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 extern_conformance!(
-    unsafe impl<ResultType: ?Sized + NSCoding> NSCoding for NSFetchRequest<ResultType> {}
+    unsafe impl<ResultType: ?Sized + NSCoding + NSFetchRequestResult> NSCoding
+        for NSFetchRequest<ResultType>
+    {
+    }
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 extern_conformance!(
-    unsafe impl<ResultType: ?Sized> NSCopying for NSFetchRequest<ResultType> {}
+    unsafe impl<ResultType: ?Sized + NSFetchRequestResult> NSCopying for NSFetchRequest<ResultType> {}
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSFetchRequest<ResultType> {
+unsafe impl<ResultType: ?Sized + Message + NSFetchRequestResult> CopyingHelper
+    for NSFetchRequest<ResultType>
+{
     type Result = Self;
 }
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 extern_conformance!(
-    unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> {}
+    unsafe impl<ResultType: ?Sized + NSFetchRequestResult> NSObjectProtocol
+        for NSFetchRequest<ResultType>
+    {
+    }
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-impl<ResultType: Message> NSFetchRequest<ResultType> {
+impl<ResultType: Message + NSFetchRequestResult> NSFetchRequest<ResultType> {
     extern_methods!(
         #[unsafe(method(fetchRequestWithEntityName:))]
         #[unsafe(method_family = none)]
@@ -335,7 +343,7 @@ impl<ResultType: Message> NSFetchRequest<ResultType> {
 
 /// Methods declared on superclass `NSObject`.
 #[cfg(feature = "NSPersistentStoreRequest")]
-impl<ResultType: Message> NSFetchRequest<ResultType> {
+impl<ResultType: Message + NSFetchRequestResult> NSFetchRequest<ResultType> {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -357,14 +365,14 @@ extern_class!(
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-impl<ResultType: ?Sized + Message> NSAsynchronousFetchRequest<ResultType> {
+impl<ResultType: ?Sized + Message + NSFetchRequestResult> NSAsynchronousFetchRequest<ResultType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message + NSFetchRequestResult>(
         &self,
     ) -> &NSAsynchronousFetchRequest<NewResultType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -373,21 +381,29 @@ impl<ResultType: ?Sized + Message> NSAsynchronousFetchRequest<ResultType> {
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 extern_conformance!(
-    unsafe impl<ResultType: ?Sized> NSCopying for NSAsynchronousFetchRequest<ResultType> {}
+    unsafe impl<ResultType: ?Sized + NSFetchRequestResult> NSCopying
+        for NSAsynchronousFetchRequest<ResultType>
+    {
+    }
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-unsafe impl<ResultType: ?Sized + Message> CopyingHelper for NSAsynchronousFetchRequest<ResultType> {
+unsafe impl<ResultType: ?Sized + Message + NSFetchRequestResult> CopyingHelper
+    for NSAsynchronousFetchRequest<ResultType>
+{
     type Result = Self;
 }
 
 #[cfg(feature = "NSPersistentStoreRequest")]
 extern_conformance!(
-    unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<ResultType> {}
+    unsafe impl<ResultType: ?Sized + NSFetchRequestResult> NSObjectProtocol
+        for NSAsynchronousFetchRequest<ResultType>
+    {
+    }
 );
 
 #[cfg(feature = "NSPersistentStoreRequest")]
-impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
+impl<ResultType: Message + NSFetchRequestResult> NSAsynchronousFetchRequest<ResultType> {
     extern_methods!(
         #[unsafe(method(fetchRequest))]
         #[unsafe(method_family = none)]
@@ -425,7 +441,7 @@ impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
 
 /// Methods declared on superclass `NSObject`.
 #[cfg(feature = "NSPersistentStoreRequest")]
-impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
+impl<ResultType: Message + NSFetchRequestResult> NSAsynchronousFetchRequest<ResultType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

@@ -19,14 +19,14 @@ extern_class!(
     pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject>;
 );
 
-impl<UnitType: ?Sized + Message> MXHistogramBucket<UnitType> {
+impl<UnitType: ?Sized + Message + AsRef<NSUnit>> MXHistogramBucket<UnitType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message + AsRef<NSUnit>>(
         &self,
     ) -> &MXHistogramBucket<NewUnitType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -34,18 +34,21 @@ impl<UnitType: ?Sized + Message> MXHistogramBucket<UnitType> {
 }
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogramBucket<UnitType> {}
+    unsafe impl<UnitType: ?Sized + NSCoding + AsRef<NSUnit>> NSCoding for MXHistogramBucket<UnitType> {}
 );
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogramBucket<UnitType> {}
+    unsafe impl<UnitType: ?Sized + AsRef<NSUnit>> NSObjectProtocol for MXHistogramBucket<UnitType> {}
 );
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBucket<UnitType> {}
+    unsafe impl<UnitType: ?Sized + NSSecureCoding + AsRef<NSUnit>> NSSecureCoding
+        for MXHistogramBucket<UnitType>
+    {
+    }
 );
 
-impl<UnitType: Message> MXHistogramBucket<UnitType> {
+impl<UnitType: Message + AsRef<NSUnit>> MXHistogramBucket<UnitType> {
     extern_methods!(
         /// An NSMeasurement representing the start of a histogram bucket.
         #[unsafe(method(bucketStart))]
@@ -65,7 +68,7 @@ impl<UnitType: Message> MXHistogramBucket<UnitType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<UnitType: Message> MXHistogramBucket<UnitType> {
+impl<UnitType: Message + AsRef<NSUnit>> MXHistogramBucket<UnitType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -86,14 +89,14 @@ extern_class!(
     pub struct MXHistogram<UnitType: ?Sized = AnyObject>;
 );
 
-impl<UnitType: ?Sized + Message> MXHistogram<UnitType> {
+impl<UnitType: ?Sized + Message + AsRef<NSUnit>> MXHistogram<UnitType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message + AsRef<NSUnit>>(
         &self,
     ) -> &MXHistogram<NewUnitType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -101,18 +104,21 @@ impl<UnitType: ?Sized + Message> MXHistogram<UnitType> {
 }
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXHistogram<UnitType> {}
+    unsafe impl<UnitType: ?Sized + NSCoding + AsRef<NSUnit>> NSCoding for MXHistogram<UnitType> {}
 );
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXHistogram<UnitType> {}
+    unsafe impl<UnitType: ?Sized + AsRef<NSUnit>> NSObjectProtocol for MXHistogram<UnitType> {}
 );
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogram<UnitType> {}
+    unsafe impl<UnitType: ?Sized + NSSecureCoding + AsRef<NSUnit>> NSSecureCoding
+        for MXHistogram<UnitType>
+    {
+    }
 );
 
-impl<UnitType: Message> MXHistogram<UnitType> {
+impl<UnitType: Message + AsRef<NSUnit>> MXHistogram<UnitType> {
     extern_methods!(
         /// The number of buckets contained within this histogram.
         ///
@@ -131,7 +137,7 @@ impl<UnitType: Message> MXHistogram<UnitType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<UnitType: Message> MXHistogram<UnitType> {
+impl<UnitType: Message + AsRef<NSUnit>> MXHistogram<UnitType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

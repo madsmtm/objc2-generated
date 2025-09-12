@@ -1968,14 +1968,14 @@ extern_class!(
     pub struct SRKeyboardProbabilityMetric<UnitType: ?Sized = AnyObject>;
 );
 
-impl<UnitType: ?Sized + Message> SRKeyboardProbabilityMetric<UnitType> {
+impl<UnitType: ?Sized + Message + AsRef<NSUnit>> SRKeyboardProbabilityMetric<UnitType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message + AsRef<NSUnit>>(
         &self,
     ) -> &SRKeyboardProbabilityMetric<NewUnitType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -1983,10 +1983,13 @@ impl<UnitType: ?Sized + Message> SRKeyboardProbabilityMetric<UnitType> {
 }
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized> NSObjectProtocol for SRKeyboardProbabilityMetric<UnitType> {}
+    unsafe impl<UnitType: ?Sized + AsRef<NSUnit>> NSObjectProtocol
+        for SRKeyboardProbabilityMetric<UnitType>
+    {
+    }
 );
 
-impl<UnitType: Message> SRKeyboardProbabilityMetric<UnitType> {
+impl<UnitType: Message + AsRef<NSUnit>> SRKeyboardProbabilityMetric<UnitType> {
     extern_methods!(
         /// Sample values from probability distribution
         #[unsafe(method(distributionSampleValues))]
@@ -1997,7 +2000,7 @@ impl<UnitType: Message> SRKeyboardProbabilityMetric<UnitType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<UnitType: Message> SRKeyboardProbabilityMetric<UnitType> {
+impl<UnitType: Message + AsRef<NSUnit>> SRKeyboardProbabilityMetric<UnitType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

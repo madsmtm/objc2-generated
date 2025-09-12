@@ -92,14 +92,14 @@ extern_class!(
     pub struct GKComponentSystem<ComponentType: ?Sized = AnyObject>;
 );
 
-impl<ComponentType: ?Sized + Message> GKComponentSystem<ComponentType> {
+impl<ComponentType: ?Sized + Message + AsRef<GKComponent>> GKComponentSystem<ComponentType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewComponentType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewComponentType: ?Sized + Message + AsRef<GKComponent>>(
         &self,
     ) -> &GKComponentSystem<NewComponentType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -107,14 +107,20 @@ impl<ComponentType: ?Sized + Message> GKComponentSystem<ComponentType> {
 }
 
 extern_conformance!(
-    unsafe impl<ComponentType: ?Sized> NSFastEnumeration for GKComponentSystem<ComponentType> {}
+    unsafe impl<ComponentType: ?Sized + AsRef<GKComponent>> NSFastEnumeration
+        for GKComponentSystem<ComponentType>
+    {
+    }
 );
 
 extern_conformance!(
-    unsafe impl<ComponentType: ?Sized> NSObjectProtocol for GKComponentSystem<ComponentType> {}
+    unsafe impl<ComponentType: ?Sized + AsRef<GKComponent>> NSObjectProtocol
+        for GKComponentSystem<ComponentType>
+    {
+    }
 );
 
-impl<ComponentType: Message> GKComponentSystem<ComponentType> {
+impl<ComponentType: Message + AsRef<GKComponent>> GKComponentSystem<ComponentType> {
     extern_methods!(
         /// The collection's component class. Any selector the component supports can be called on the system and it will be forwarded
         /// to each of the components in the collection.
@@ -200,7 +206,7 @@ impl<ComponentType: Message> GKComponentSystem<ComponentType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<ComponentType: Message> GKComponentSystem<ComponentType> {
+impl<ComponentType: Message + AsRef<GKComponent>> GKComponentSystem<ComponentType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

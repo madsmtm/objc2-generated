@@ -16,31 +16,36 @@ extern_class!(
     pub struct MXAverage<UnitType: ?Sized = AnyObject>;
 );
 
-impl<UnitType: ?Sized + Message> MXAverage<UnitType> {
+impl<UnitType: ?Sized + Message + AsRef<NSUnit>> MXAverage<UnitType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(&self) -> &MXAverage<NewUnitType> {
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message + AsRef<NSUnit>>(
+        &self,
+    ) -> &MXAverage<NewUnitType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for MXAverage<UnitType> {}
+    unsafe impl<UnitType: ?Sized + NSCoding + AsRef<NSUnit>> NSCoding for MXAverage<UnitType> {}
 );
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized> NSObjectProtocol for MXAverage<UnitType> {}
+    unsafe impl<UnitType: ?Sized + AsRef<NSUnit>> NSObjectProtocol for MXAverage<UnitType> {}
 );
 
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXAverage<UnitType> {}
+    unsafe impl<UnitType: ?Sized + NSSecureCoding + AsRef<NSUnit>> NSSecureCoding
+        for MXAverage<UnitType>
+    {
+    }
 );
 
-impl<UnitType: Message> MXAverage<UnitType> {
+impl<UnitType: Message + AsRef<NSUnit>> MXAverage<UnitType> {
     extern_methods!(
         /// An NSMeasurement that contains the average measurement.
         #[unsafe(method(averageMeasurement))]
@@ -64,7 +69,7 @@ impl<UnitType: Message> MXAverage<UnitType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<UnitType: Message> MXAverage<UnitType> {
+impl<UnitType: Message + AsRef<NSUnit>> MXAverage<UnitType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

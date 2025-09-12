@@ -52,8 +52,10 @@ extern_class!(
     >;
 );
 
-impl<Key: ?Sized + Message, Element: ?Sized + Message>
-    GCPhysicalInputElementCollection<Key, Element>
+impl<
+        Key: ?Sized + Message + AsRef<NSString>,
+        Element: ?Sized + Message + GCPhysicalInputElement,
+    > GCPhysicalInputElementCollection<Key, Element>
 {
     /// Unchecked conversion of the generic parameters.
     ///
@@ -61,7 +63,10 @@ impl<Key: ?Sized + Message, Element: ?Sized + Message>
     ///
     /// The generics must be valid to reinterpret as the given types.
     #[inline]
-    pub unsafe fn cast_unchecked<NewKey: ?Sized + Message, NewElement: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<
+        NewKey: ?Sized + Message + AsRef<NSString>,
+        NewElement: ?Sized + Message + GCPhysicalInputElement,
+    >(
         &self,
     ) -> &GCPhysicalInputElementCollection<NewKey, NewElement> {
         unsafe { &*((self as *const Self).cast()) }
@@ -69,20 +74,22 @@ impl<Key: ?Sized + Message, Element: ?Sized + Message>
 }
 
 extern_conformance!(
-    unsafe impl<Key: ?Sized, Element: ?Sized> NSFastEnumeration
-        for GCPhysicalInputElementCollection<Key, Element>
+    unsafe impl<Key: ?Sized + AsRef<NSString>, Element: ?Sized + GCPhysicalInputElement>
+        NSFastEnumeration for GCPhysicalInputElementCollection<Key, Element>
     {
     }
 );
 
 extern_conformance!(
-    unsafe impl<Key: ?Sized, Element: ?Sized> NSObjectProtocol
-        for GCPhysicalInputElementCollection<Key, Element>
+    unsafe impl<Key: ?Sized + AsRef<NSString>, Element: ?Sized + GCPhysicalInputElement>
+        NSObjectProtocol for GCPhysicalInputElementCollection<Key, Element>
     {
     }
 );
 
-impl<Key: Message, Element: Message> GCPhysicalInputElementCollection<Key, Element> {
+impl<Key: Message + AsRef<NSString>, Element: Message + GCPhysicalInputElement>
+    GCPhysicalInputElementCollection<Key, Element>
+{
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]

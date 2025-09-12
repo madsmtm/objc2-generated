@@ -11,31 +11,37 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultscontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "NSFetchRequest")]
     pub struct NSFetchedResultsController<ResultType: ?Sized = AnyObject>;
 );
 
-impl<ResultType: ?Sized + Message> NSFetchedResultsController<ResultType> {
+#[cfg(feature = "NSFetchRequest")]
+impl<ResultType: ?Sized + Message + NSFetchRequestResult> NSFetchedResultsController<ResultType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewResultType: ?Sized + Message + NSFetchRequestResult>(
         &self,
     ) -> &NSFetchedResultsController<NewResultType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
 
+#[cfg(feature = "NSFetchRequest")]
 extern_conformance!(
-    unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchedResultsController<ResultType> {}
+    unsafe impl<ResultType: ?Sized + NSFetchRequestResult> NSObjectProtocol
+        for NSFetchedResultsController<ResultType>
+    {
+    }
 );
 
-impl<ResultType: Message> NSFetchedResultsController<ResultType> {
+#[cfg(feature = "NSFetchRequest")]
+impl<ResultType: Message + NSFetchRequestResult> NSFetchedResultsController<ResultType> {
     extern_methods!(
         #[cfg(all(
-            feature = "NSFetchRequest",
             feature = "NSManagedObjectContext",
             feature = "NSPersistentStoreRequest"
         ))]
@@ -53,7 +59,7 @@ impl<ResultType: Message> NSFetchedResultsController<ResultType> {
         #[unsafe(method_family = none)]
         pub unsafe fn performFetch(&self) -> Result<(), Retained<NSError>>;
 
-        #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
+        #[cfg(feature = "NSPersistentStoreRequest")]
         #[unsafe(method(fetchRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest<ResultType>>;
@@ -139,7 +145,8 @@ impl<ResultType: Message> NSFetchedResultsController<ResultType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<ResultType: Message> NSFetchedResultsController<ResultType> {
+#[cfg(feature = "NSFetchRequest")]
+impl<ResultType: Message + NSFetchRequestResult> NSFetchedResultsController<ResultType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -199,7 +206,7 @@ unsafe impl RefEncode for NSFetchedResultsChangeType {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultscontrollerdelegate?language=objc)
     pub unsafe trait NSFetchedResultsControllerDelegate: NSObjectProtocol {
-        #[cfg(feature = "NSManagedObjectID")]
+        #[cfg(all(feature = "NSFetchRequest", feature = "NSManagedObjectID"))]
         /// # Safety
         ///
         /// `controller` generic should be of the correct type.
@@ -212,6 +219,7 @@ extern_protocol!(
             diff: &NSOrderedCollectionDifference<NSManagedObjectID>,
         );
 
+        #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
         /// - `controller` generic should be of the correct type.
@@ -228,6 +236,7 @@ extern_protocol!(
             new_index_path: Option<&NSIndexPath>,
         );
 
+        #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
         /// `controller` generic should be of the correct type.
@@ -242,6 +251,7 @@ extern_protocol!(
             r#type: NSFetchedResultsChangeType,
         );
 
+        #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
         /// `controller` generic should be of the correct type.
@@ -250,6 +260,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn controllerWillChangeContent(&self, controller: &NSFetchedResultsController);
 
+        #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
         /// `controller` generic should be of the correct type.
@@ -258,6 +269,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn controllerDidChangeContent(&self, controller: &NSFetchedResultsController);
 
+        #[cfg(feature = "NSFetchRequest")]
         /// # Safety
         ///
         /// `controller` generic should be of the correct type.

@@ -39,52 +39,57 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraph?language=objc)
     #[unsafe(super(GKGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "GKGraph")]
+    #[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
     pub struct GKMeshGraph<NodeType: ?Sized = AnyObject>;
 );
 
-#[cfg(feature = "GKGraph")]
-impl<NodeType: ?Sized + Message> GKMeshGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+impl<NodeType: ?Sized + Message + AsRef<GKGraphNode2D>> GKMeshGraph<NodeType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewNodeType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewNodeType: ?Sized + Message + AsRef<GKGraphNode2D>>(
         &self,
     ) -> &GKMeshGraph<NewNodeType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
 
-#[cfg(feature = "GKGraph")]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
 extern_conformance!(
-    unsafe impl<NodeType: ?Sized + NSCoding> NSCoding for GKMeshGraph<NodeType> {}
+    unsafe impl<NodeType: ?Sized + NSCoding + AsRef<GKGraphNode2D>> NSCoding for GKMeshGraph<NodeType> {}
 );
 
-#[cfg(feature = "GKGraph")]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
 extern_conformance!(
-    unsafe impl<NodeType: ?Sized> NSCopying for GKMeshGraph<NodeType> {}
+    unsafe impl<NodeType: ?Sized + AsRef<GKGraphNode2D>> NSCopying for GKMeshGraph<NodeType> {}
 );
 
-#[cfg(feature = "GKGraph")]
-unsafe impl<NodeType: ?Sized + Message> CopyingHelper for GKMeshGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+unsafe impl<NodeType: ?Sized + Message + AsRef<GKGraphNode2D>> CopyingHelper
+    for GKMeshGraph<NodeType>
+{
     type Result = Self;
 }
 
-#[cfg(feature = "GKGraph")]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
 extern_conformance!(
-    unsafe impl<NodeType: ?Sized> NSObjectProtocol for GKMeshGraph<NodeType> {}
+    unsafe impl<NodeType: ?Sized + AsRef<GKGraphNode2D>> NSObjectProtocol for GKMeshGraph<NodeType> {}
 );
 
-#[cfg(feature = "GKGraph")]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
 extern_conformance!(
-    unsafe impl<NodeType: ?Sized + NSSecureCoding> NSSecureCoding for GKMeshGraph<NodeType> {}
+    unsafe impl<NodeType: ?Sized + NSSecureCoding + AsRef<GKGraphNode2D>> NSSecureCoding
+        for GKMeshGraph<NodeType>
+    {
+    }
 );
 
-#[cfg(feature = "GKGraph")]
-impl<NodeType: Message> GKMeshGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+impl<NodeType: Message + AsRef<GKGraphNode2D>> GKMeshGraph<NodeType> {
     extern_methods!(
         #[cfg(feature = "GKObstacle")]
         /// Array of the extruded obstacles currently represented by this graph
@@ -154,10 +159,9 @@ impl<NodeType: Message> GKMeshGraph<NodeType> {
 }
 
 /// Methods declared on superclass `GKGraph`.
-#[cfg(feature = "GKGraph")]
-impl<NodeType: Message> GKMeshGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+impl<NodeType: Message + AsRef<GKGraphNode2D>> GKMeshGraph<NodeType> {
     extern_methods!(
-        #[cfg(feature = "GKGraphNode")]
         /// Creates a graph with the provided array of nodes.
         ///
         /// Parameter `nodes`: the nodes to create the graph with
@@ -165,7 +169,6 @@ impl<NodeType: Message> GKMeshGraph<NodeType> {
         #[unsafe(method_family = none)]
         pub unsafe fn graphWithNodes(nodes: &NSArray<GKGraphNode>) -> Retained<Self>;
 
-        #[cfg(feature = "GKGraphNode")]
         #[unsafe(method(initWithNodes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNodes(
@@ -176,8 +179,8 @@ impl<NodeType: Message> GKMeshGraph<NodeType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-#[cfg(feature = "GKGraph")]
-impl<NodeType: Message> GKMeshGraph<NodeType> {
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]
+impl<NodeType: Message + AsRef<GKGraphNode2D>> GKMeshGraph<NodeType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

@@ -176,9 +176,9 @@ pub use self::__GKGraphNode::GKGraphNode2D;
 pub use self::__GKGraphNode::GKGraphNode3D;
 #[cfg(feature = "GKGraphNode")]
 pub use self::__GKGraphNode::GKGridGraphNode;
-#[cfg(all(feature = "GKGraph", feature = "GKGridGraph"))]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode", feature = "GKGridGraph"))]
 pub use self::__GKGridGraph::GKGridGraph;
-#[cfg(all(feature = "GKGraph", feature = "GKMeshGraph"))]
+#[cfg(all(feature = "GKGraph", feature = "GKGraphNode", feature = "GKMeshGraph"))]
 pub use self::__GKMeshGraph::GKMeshGraph;
 #[cfg(feature = "GKMeshGraph")]
 pub use self::__GKMeshGraph::GKMeshGraphTriangulationMode;
@@ -218,7 +218,11 @@ pub use self::__GKObstacle::GKObstacle;
 pub use self::__GKObstacle::GKPolygonObstacle;
 #[cfg(feature = "GKObstacle")]
 pub use self::__GKObstacle::GKSphereObstacle;
-#[cfg(all(feature = "GKGraph", feature = "GKObstacleGraph"))]
+#[cfg(all(
+    feature = "GKGraph",
+    feature = "GKGraphNode",
+    feature = "GKObstacleGraph"
+))]
 pub use self::__GKObstacleGraph::GKObstacleGraph;
 #[cfg(feature = "GKOctree")]
 pub use self::__GKOctree::GKOctree;

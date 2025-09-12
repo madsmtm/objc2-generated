@@ -19,14 +19,14 @@ extern_class!(
 );
 
 #[cfg(feature = "HMEvent")]
-impl<TriggerValueType: ?Sized + Message> HMCharacteristicEvent<TriggerValueType> {
+impl<TriggerValueType: ?Sized + Message + NSCopying> HMCharacteristicEvent<TriggerValueType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewTriggerValueType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewTriggerValueType: ?Sized + Message + NSCopying>(
         &self,
     ) -> &HMCharacteristicEvent<NewTriggerValueType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -35,11 +35,14 @@ impl<TriggerValueType: ?Sized + Message> HMCharacteristicEvent<TriggerValueType>
 
 #[cfg(feature = "HMEvent")]
 extern_conformance!(
-    unsafe impl<TriggerValueType: ?Sized> NSCopying for HMCharacteristicEvent<TriggerValueType> {}
+    unsafe impl<TriggerValueType: ?Sized + NSCopying> NSCopying
+        for HMCharacteristicEvent<TriggerValueType>
+    {
+    }
 );
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized + Message> CopyingHelper
+unsafe impl<TriggerValueType: ?Sized + Message + NSCopying> CopyingHelper
     for HMCharacteristicEvent<TriggerValueType>
 {
     type Result = Self;
@@ -47,11 +50,14 @@ unsafe impl<TriggerValueType: ?Sized + Message> CopyingHelper
 
 #[cfg(feature = "HMEvent")]
 extern_conformance!(
-    unsafe impl<TriggerValueType: ?Sized> NSMutableCopying for HMCharacteristicEvent<TriggerValueType> {}
+    unsafe impl<TriggerValueType: ?Sized + NSCopying> NSMutableCopying
+        for HMCharacteristicEvent<TriggerValueType>
+    {
+    }
 );
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
+unsafe impl<TriggerValueType: ?Sized + Message + NSCopying> MutableCopyingHelper
     for HMCharacteristicEvent<TriggerValueType>
 {
     type Result = HMMutableCharacteristicEvent<TriggerValueType>;
@@ -59,11 +65,14 @@ unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
 
 #[cfg(feature = "HMEvent")]
 extern_conformance!(
-    unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol for HMCharacteristicEvent<TriggerValueType> {}
+    unsafe impl<TriggerValueType: ?Sized + NSCopying> NSObjectProtocol
+        for HMCharacteristicEvent<TriggerValueType>
+    {
+    }
 );
 
 #[cfg(feature = "HMEvent")]
-impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
+impl<TriggerValueType: Message + NSCopying> HMCharacteristicEvent<TriggerValueType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -140,7 +149,7 @@ impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
 
 /// Methods declared on superclass `HMEvent`.
 #[cfg(feature = "HMEvent")]
-impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
+impl<TriggerValueType: Message + NSCopying> HMCharacteristicEvent<TriggerValueType> {
     extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]
@@ -161,14 +170,16 @@ extern_class!(
 );
 
 #[cfg(feature = "HMEvent")]
-impl<TriggerValueType: ?Sized + Message> HMMutableCharacteristicEvent<TriggerValueType> {
+impl<TriggerValueType: ?Sized + Message + NSCopying>
+    HMMutableCharacteristicEvent<TriggerValueType>
+{
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewTriggerValueType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewTriggerValueType: ?Sized + Message + NSCopying>(
         &self,
     ) -> &HMMutableCharacteristicEvent<NewTriggerValueType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -177,11 +188,14 @@ impl<TriggerValueType: ?Sized + Message> HMMutableCharacteristicEvent<TriggerVal
 
 #[cfg(feature = "HMEvent")]
 extern_conformance!(
-    unsafe impl<TriggerValueType: ?Sized> NSCopying for HMMutableCharacteristicEvent<TriggerValueType> {}
+    unsafe impl<TriggerValueType: ?Sized + NSCopying> NSCopying
+        for HMMutableCharacteristicEvent<TriggerValueType>
+    {
+    }
 );
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized + Message> CopyingHelper
+unsafe impl<TriggerValueType: ?Sized + Message + NSCopying> CopyingHelper
     for HMMutableCharacteristicEvent<TriggerValueType>
 {
     type Result = HMCharacteristicEvent<TriggerValueType>;
@@ -189,14 +203,14 @@ unsafe impl<TriggerValueType: ?Sized + Message> CopyingHelper
 
 #[cfg(feature = "HMEvent")]
 extern_conformance!(
-    unsafe impl<TriggerValueType: ?Sized> NSMutableCopying
+    unsafe impl<TriggerValueType: ?Sized + NSCopying> NSMutableCopying
         for HMMutableCharacteristicEvent<TriggerValueType>
     {
     }
 );
 
 #[cfg(feature = "HMEvent")]
-unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
+unsafe impl<TriggerValueType: ?Sized + Message + NSCopying> MutableCopyingHelper
     for HMMutableCharacteristicEvent<TriggerValueType>
 {
     type Result = Self;
@@ -204,14 +218,14 @@ unsafe impl<TriggerValueType: ?Sized + Message> MutableCopyingHelper
 
 #[cfg(feature = "HMEvent")]
 extern_conformance!(
-    unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol
+    unsafe impl<TriggerValueType: ?Sized + NSCopying> NSObjectProtocol
         for HMMutableCharacteristicEvent<TriggerValueType>
     {
     }
 );
 
 #[cfg(feature = "HMEvent")]
-impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+impl<TriggerValueType: Message + NSCopying> HMMutableCharacteristicEvent<TriggerValueType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -266,7 +280,7 @@ impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
 
 /// Methods declared on superclass `HMCharacteristicEvent`.
 #[cfg(feature = "HMEvent")]
-impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+impl<TriggerValueType: Message + NSCopying> HMMutableCharacteristicEvent<TriggerValueType> {
     extern_methods!(
         #[cfg(feature = "HMCharacteristic")]
         /// Initializes a new characteristic event object
@@ -294,7 +308,7 @@ impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
 
 /// Methods declared on superclass `HMEvent`.
 #[cfg(feature = "HMEvent")]
-impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
+impl<TriggerValueType: Message + NSCopying> HMMutableCharacteristicEvent<TriggerValueType> {
     extern_methods!(
         #[deprecated = "HMEvent is abstract"]
         #[unsafe(method(new))]

@@ -2081,7 +2081,7 @@ pub use self::__NSMapTable::NSStringFromMapTable;
 pub use self::__NSMassFormatter::NSMassFormatter;
 #[cfg(feature = "NSMassFormatter")]
 pub use self::__NSMassFormatter::NSMassFormatterUnit;
-#[cfg(feature = "NSMeasurement")]
+#[cfg(all(feature = "NSMeasurement", feature = "NSUnit"))]
 pub use self::__NSMeasurement::NSMeasurement;
 #[cfg(all(feature = "NSFormatter", feature = "NSMeasurementFormatter"))]
 pub use self::__NSMeasurementFormatter::NSMeasurementFormatter;

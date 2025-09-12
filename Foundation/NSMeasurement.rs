@@ -10,48 +10,55 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmeasurement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "NSUnit")]
     pub struct NSMeasurement<UnitType: ?Sized = AnyObject>;
 );
 
-impl<UnitType: ?Sized + Message> NSMeasurement<UnitType> {
+#[cfg(feature = "NSUnit")]
+impl<UnitType: ?Sized + Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewUnitType: ?Sized + Message + AsRef<NSUnit>>(
         &self,
     ) -> &NSMeasurement<NewUnitType> {
         unsafe { &*((self as *const Self).cast()) }
     }
 }
 
-#[cfg(feature = "NSObject")]
+#[cfg(all(feature = "NSObject", feature = "NSUnit"))]
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized + NSCoding> NSCoding for NSMeasurement<UnitType> {}
+    unsafe impl<UnitType: ?Sized + NSCoding + AsRef<NSUnit>> NSCoding for NSMeasurement<UnitType> {}
 );
 
-#[cfg(feature = "NSObject")]
+#[cfg(all(feature = "NSObject", feature = "NSUnit"))]
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized> NSCopying for NSMeasurement<UnitType> {}
+    unsafe impl<UnitType: ?Sized + AsRef<NSUnit>> NSCopying for NSMeasurement<UnitType> {}
 );
 
-#[cfg(feature = "NSObject")]
-unsafe impl<UnitType: ?Sized + Message> CopyingHelper for NSMeasurement<UnitType> {
+#[cfg(all(feature = "NSObject", feature = "NSUnit"))]
+unsafe impl<UnitType: ?Sized + Message + AsRef<NSUnit>> CopyingHelper for NSMeasurement<UnitType> {
     type Result = Self;
 }
 
+#[cfg(feature = "NSUnit")]
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized> NSObjectProtocol for NSMeasurement<UnitType> {}
+    unsafe impl<UnitType: ?Sized + AsRef<NSUnit>> NSObjectProtocol for NSMeasurement<UnitType> {}
 );
 
-#[cfg(feature = "NSObject")]
+#[cfg(all(feature = "NSObject", feature = "NSUnit"))]
 extern_conformance!(
-    unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<UnitType> {}
+    unsafe impl<UnitType: ?Sized + NSSecureCoding + AsRef<NSUnit>> NSSecureCoding
+        for NSMeasurement<UnitType>
+    {
+    }
 );
 
-impl<UnitType: Message> NSMeasurement<UnitType> {
+#[cfg(feature = "NSUnit")]
+impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
     extern_methods!(
         #[unsafe(method(unit))]
         #[unsafe(method_family = none)]
@@ -73,12 +80,10 @@ impl<UnitType: Message> NSMeasurement<UnitType> {
             unit: &UnitType,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "NSUnit")]
         #[unsafe(method(canBeConvertedToUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canBeConvertedToUnit(&self, unit: &NSUnit) -> bool;
 
-        #[cfg(feature = "NSUnit")]
         #[unsafe(method(measurementByConvertingToUnit:))]
         #[unsafe(method_family = none)]
         pub unsafe fn measurementByConvertingToUnit(
@@ -103,7 +108,8 @@ impl<UnitType: Message> NSMeasurement<UnitType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<UnitType: Message> NSMeasurement<UnitType> {
+#[cfg(feature = "NSUnit")]
+impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]

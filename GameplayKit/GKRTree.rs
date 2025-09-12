@@ -43,14 +43,14 @@ extern_class!(
     pub struct GKRTree<ElementType: ?Sized = AnyObject>;
 );
 
-impl<ElementType: ?Sized + Message> GKRTree<ElementType> {
+impl<ElementType: ?Sized + Message + AsRef<NSObject>> GKRTree<ElementType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewElementType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewElementType: ?Sized + Message + AsRef<NSObject>>(
         &self,
     ) -> &GKRTree<NewElementType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -58,10 +58,10 @@ impl<ElementType: ?Sized + Message> GKRTree<ElementType> {
 }
 
 extern_conformance!(
-    unsafe impl<ElementType: ?Sized> NSObjectProtocol for GKRTree<ElementType> {}
+    unsafe impl<ElementType: ?Sized + AsRef<NSObject>> NSObjectProtocol for GKRTree<ElementType> {}
 );
 
-impl<ElementType: Message> GKRTree<ElementType> {
+impl<ElementType: Message + AsRef<NSObject>> GKRTree<ElementType> {
     extern_methods!(
         /// Amount of array items to reserve before a query.
         /// This improves query performance at the cost of memory
@@ -94,7 +94,7 @@ impl<ElementType: Message> GKRTree<ElementType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<ElementType: Message> GKRTree<ElementType> {
+impl<ElementType: Message + AsRef<NSObject>> GKRTree<ElementType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

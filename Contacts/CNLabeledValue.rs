@@ -15,14 +15,14 @@ extern_class!(
     pub struct CNLabeledValue<ValueType: ?Sized = AnyObject>;
 );
 
-impl<ValueType: ?Sized + Message> CNLabeledValue<ValueType> {
+impl<ValueType: ?Sized + Message + NSCopying + NSSecureCoding> CNLabeledValue<ValueType> {
     /// Unchecked conversion of the generic parameter.
     ///
     /// # Safety
     ///
     /// The generic must be valid to reinterpret as the given type.
     #[inline]
-    pub unsafe fn cast_unchecked<NewValueType: ?Sized + Message>(
+    pub unsafe fn cast_unchecked<NewValueType: ?Sized + Message + NSCopying + NSSecureCoding>(
         &self,
     ) -> &CNLabeledValue<NewValueType> {
         unsafe { &*((self as *const Self).cast()) }
@@ -30,26 +30,40 @@ impl<ValueType: ?Sized + Message> CNLabeledValue<ValueType> {
 }
 
 extern_conformance!(
-    unsafe impl<ValueType: ?Sized + NSCoding> NSCoding for CNLabeledValue<ValueType> {}
+    unsafe impl<ValueType: ?Sized + NSCoding + NSCopying + NSSecureCoding> NSCoding
+        for CNLabeledValue<ValueType>
+    {
+    }
 );
 
 extern_conformance!(
-    unsafe impl<ValueType: ?Sized> NSCopying for CNLabeledValue<ValueType> {}
+    unsafe impl<ValueType: ?Sized + NSCopying + NSSecureCoding> NSCopying
+        for CNLabeledValue<ValueType>
+    {
+    }
 );
 
-unsafe impl<ValueType: ?Sized + Message> CopyingHelper for CNLabeledValue<ValueType> {
+unsafe impl<ValueType: ?Sized + Message + NSCopying + NSSecureCoding> CopyingHelper
+    for CNLabeledValue<ValueType>
+{
     type Result = Self;
 }
 
 extern_conformance!(
-    unsafe impl<ValueType: ?Sized> NSObjectProtocol for CNLabeledValue<ValueType> {}
+    unsafe impl<ValueType: ?Sized + NSCopying + NSSecureCoding> NSObjectProtocol
+        for CNLabeledValue<ValueType>
+    {
+    }
 );
 
 extern_conformance!(
-    unsafe impl<ValueType: ?Sized + NSSecureCoding> NSSecureCoding for CNLabeledValue<ValueType> {}
+    unsafe impl<ValueType: ?Sized + NSSecureCoding + NSCopying + NSSecureCoding> NSSecureCoding
+        for CNLabeledValue<ValueType>
+    {
+    }
 );
 
-impl<ValueType: Message> CNLabeledValue<ValueType> {
+impl<ValueType: Message + NSCopying + NSSecureCoding> CNLabeledValue<ValueType> {
     extern_methods!(
         /// The identifier is unique among contacts on the device. It can be saved and used for finding labeled values next application launch.
         #[unsafe(method(identifier))]
@@ -117,7 +131,7 @@ impl<ValueType: Message> CNLabeledValue<ValueType> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<ValueType: Message> CNLabeledValue<ValueType> {
+impl<ValueType: Message + NSCopying + NSSecureCoding> CNLabeledValue<ValueType> {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
